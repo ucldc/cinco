@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ repository }}: {% if form.instance %}Update{% else %}Upload{% endif %} {{ record_type }}
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>{% if form.instance %}Update{% else %}Upload{% endif %} {{ record_type }}</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
