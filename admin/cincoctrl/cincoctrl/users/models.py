@@ -2,10 +2,20 @@
 from typing import ClassVar
 
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
-from django.db.models import EmailField
+from django.db import models
+
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from django.db.models import CharField
+from django.db.models import EmailField
+from django.db.models import ForeignKey
+from django.db.models import ImageField
+from django.db.models import SlugField
+from django.db.models import TextField
+from django.db.models import URLField
+from django.db.models import BooleanField
+from django.db.models import DateTimeField
 
 from .managers import UserManager
 
@@ -37,3 +47,57 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"pk": self.id})
+
+    def has_repo_access(self, repository_id):
+        return self.userrole_set.filter(repository__pk=repository_id).exists()
+
+    def has_role(self, repository_id, role):
+        return self.userrole_set.filter(repository__pk=repository_id, role=role).exists()
+
+class Repository(models.Model):
+    ark = CharField(max_length=255, unique=True)
+    code = SlugField(unique=True)
+    name = CharField(max_length=255)
+    description = TextField(blank=True)
+    logo = ImageField()
+    building = CharField(max_length=255, blank=True)
+    address1 = CharField(max_length=255, blank=True)
+    address2 = CharField(max_length=255, blank=True)
+    city = CharField(max_length=255, blank=True)
+    state = CharField(max_length=2, blank=True)
+    country = CharField(max_length=2, blank=True)
+    zipcode = CharField(max_length=15, blank=True)
+    phone = CharField(max_length=15, blank=True)
+    contact_email = EmailField(blank=True)
+    aeon_url = URLField(blank=True)
+    oclc_share = BooleanField(default=False)
+    date_created = DateTimeField(auto_now_add=True)
+    date_updated = DateTimeField(auto_now=True)
+
+    def get_state_line(self):
+        return f"{self.city}, {self.state} {self.zipcode}, {self.country}"
+
+    def __str__(self):
+        return self.name
+
+class RepositoryLink(models.Model):
+    repository = ForeignKey('Repository', on_delete=models.CASCADE)
+    url = URLField()
+    text = CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.text} ({self.url})"
+
+USER_ROLES = (
+    ("local-admin", "Local Admin"),
+    ("contributor", "Contributor"),
+)
+
+class UserRole(models.Model):
+    user = ForeignKey("User", on_delete=models.CASCADE)
+    repository = ForeignKey("Repository", on_delete=models.CASCADE)
+    role = CharField(max_length=11, choices=USER_ROLES)
+    key_contact = BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.repository} / {self.user}"

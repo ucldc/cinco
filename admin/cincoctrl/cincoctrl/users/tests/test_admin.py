@@ -33,6 +33,10 @@ class TestUserAdmin:
                 "email": "new-admin@example.com",
                 "password1": "My_R@ndom-P@ssw0rd",
                 "password2": "My_R@ndom-P@ssw0rd",
+                "userrole_set-TOTAL_FORMS": 3,
+                "userrole_set-INITIAL_FORMS": 0,
+                "userrole_set-MIN_NUM_FORMS": 0,
+                "userrole_set-MAX_NUM_FORMS": 1000,
             },
         )
         assert response.status_code == HTTPStatus.FOUND
