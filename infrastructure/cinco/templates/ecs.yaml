@@ -98,29 +98,23 @@ Resources:
       Cpu: '1024'
       Memory: '3072'
 
-  # CincoAdminSecurityGroup:
-  #   Type: AWS::EC2::SecurityGroup
-  #   Properties:
-  #     GroupDescription: Security Group for Cinco admin load balancer
-  #     GroupName: cinco-admin-loadbalancer-securitygroup
-  #     SecurityGroupEgress:
-  #       - CidrIp: '0.0.0.0/0'
-  #         Description: Allow outbound traffic on port 80
-  #         FromPort: '80'
-  #         IpProtocol: tcp
-  #         ToPort: '80'
-  #     SecurityGroupIngress:
-  #       - CidrIp: '0.0.0.0/0'
-  #         Description: Allow HTTP access
-  #         FromPort: '80'
-  #         IpProtocol: tcp
-  #         ToPort: '80'
-  #       - CidrIp: '0.0.0.0/0'
-  #         Description: Allow HTTPS access
-  #         FromPort: '443'
-  #         IpProtocol: tcp
-  #         ToPort: '443'
-  #     VpcId: Ref 'VpcId'
+  CincoAdminLBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for Cinco Admin load balancer
+      GroupName: cinco-admin-loadbalancer-securitygroup
+      SecurityGroupIngress:
+        - Description: Allow HTTP access
+          IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: '0.0.0.0/0'
+        - Description: Allow HTTPS access
+          IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+          CidrIp: '0.0.0.0/0'
+      VpcId: !Ref 'VpcId'
 
   CincoAdminService:
     Type: AWS::ECS::Service
@@ -155,7 +149,8 @@ Resources:
     Properties:
       Type: application
       Name: alb-test
-      SecurityGroups: !Ref SecurityGroupIDs
+      SecurityGroups: 
+        - !Ref CincoAdminLBSecurityGroup
       Subnets: !Ref SubnetIDs
   
   CincoAdminTargetGroup:
