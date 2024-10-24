@@ -98,7 +98,7 @@ Resources:
       Cpu: '1024'
       Memory: '3072'
 
-  # SecurityGroup:
+  # CincoAdminSecurityGroup:
   #   Type: AWS::EC2::SecurityGroup
   #   Properties:
   #     GroupDescription: Security Group for Cinco admin load balancer
@@ -130,13 +130,12 @@ Resources:
       LaunchType: FARGATE
       ServiceName: cinco-admin-service
       SchedulingStrategy: REPLICA
-      DesiredCount: 1   # New! Updated from 1 to 3
-      # LoadBalancers:  # New!
-      #   - ContainerName: cinco-admin-container,
-      #     ContainerPort: 80,
-      #     LoadBalancerName: Ref AWS::NoValue
-      #     TargetGroupArn: Ref CincoAdminTargetGroup
-      # HealthcheckGracePeriodSeconds: 60   # New! 
+      DesiredCount: 3
+      LoadBalancers:
+        - ContainerName: cinco-admin-container
+          ContainerPort: 80
+          LoadBalancerName: !Ref AWS::NoValue
+          TargetGroupArn: !Ref CincoAdminTargetGroup
       NetworkConfiguration: 
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
@@ -149,39 +148,39 @@ Resources:
         DeploymentCircuitBreaker:
           Enable: true
           Rollback: true
-    # DependsOn: CincoAdminListener   # New!
+    DependsOn: CincoAdminListener
 
-  # CincoAdminLoadBalancer:
-  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-  #   Properties:
-  #     Type: application
-  #     Name: alb-test
-  #     SecurityGroups: Ref SecurityGroupIDs
-  #     Subnets: Ref SubnetIDs
+  CincoAdminLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Type: application
+      Name: alb-test
+      SecurityGroups: !Ref SecurityGroupIDs
+      Subnets: !Ref SubnetIDs
   
-  # CincoAdminTargetGroup:
-  #   Type: AWS::ElasticLoadBalancingV2::TargetGroup
-  #   Properties:
-  #     HealthCheckPath: "/"
-  #     Name: "ecs-task-m-alb"
-  #     Port: 80
-  #     Protocol: "HTTP"
-  #     TargetType: "ip"
-  #     HealthCheckProtocol: "HTTP"
-  #     VpcId: Ref VpcId
-  #     TargetGroupAttributes:
-  #       - Key: "deregistration_delay.timeout_seconds"
-  #         Value: "300"
+  CincoAdminTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckPath: "/"
+      Name: "ecs-task-m-alb"
+      Port: 80
+      Protocol: "HTTP"
+      TargetType: "ip"
+      HealthCheckProtocol: "HTTP"
+      VpcId: !Ref VpcId
+      TargetGroupAttributes:
+        - Key: "deregistration_delay.timeout_seconds"
+          Value: "300"
   
-  # CincoAdminListener:
-  #   Type: AWS::ElasticLoadBalancingV2::Listener
-  #   Properties:
-  #     DefaultActions: 
-  #       - Type: forward
-  #         TargetGroupArn: Ref CincoAdminTargetGroup
-  #     LoadBalancerArn: Ref CincoAdminLoadBalancer
-  #     Port: 80
-  #     Protocol: HTTP
+  CincoAdminListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions: 
+        - Type: forward
+          TargetGroupArn: !Ref CincoAdminTargetGroup
+      LoadBalancerArn: !Ref CincoAdminLoadBalancer
+      Port: 80
+      Protocol: HTTP
 
 Outputs:
   CincoAdminECSCluster:
@@ -200,14 +199,14 @@ Outputs:
     Description: The ECS Service for the Cinco Admin service
     Value: !Ref CincoAdminService
 
-  # CincoAdminLoadBalancer:
-  #   Description: "The created load balancer."
-  #   Value: Ref CincoAdminLoadBalancer
+  CincoAdminLoadBalancer:
+    Description: "The created load balancer."
+    Value: !Ref CincoAdminLoadBalancer
 
-  # CincoAdminListener:
-  #   Description: "The created listener."
-  #   Value: Ref CincoAdminListener
+  CincoAdminListener:
+    Description: "The created listener."
+    Value: !Ref CincoAdminListener
 
-  # CincoAdminTargetGroup: 
-  #   Description: "The created target group."
-  #   Value: Ref CincoAdminTargetGroup
+  CincoAdminTargetGroup: 
+    Description: "The created target group."
+    Value: !Ref CincoAdminTargetGroup
