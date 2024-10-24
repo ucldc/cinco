@@ -1,0 +1,213 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Cinco Admin - includes an ECR Private Repository, ECS Cluster, ECS Task Definition, and ECS Service
+
+Parameters:
+  VpcId:
+    Description: The VPC the ECS service will run in
+    Type: String
+  SecurityGroupIDs:
+    Description: Comma-separated list of security group IDs
+    Type: List<AWS::EC2::SecurityGroup::Id>
+  SubnetIDs:
+    Description: Comma-separated list of subnet IDs
+    Type: List<AWS::EC2::Subnet::Id>
+
+Resources:
+  CincoAdminECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: cinco-admin
+      CapacityProviders: 
+        - FARGATE
+
+  CincoAdminECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: cinco/admin
+
+  CincoAdminECSTaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: cinco-admin-ecs-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ecs-tasks.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: cinco-admin-ecs-policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+              - Effect: "Allow"
+                Action:
+                  - "ecr:GetAuthorizationToken"
+                  - "ecr:BatchCheckLayerAvailability"
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:BatchGetImage"
+                Resource: "*"
+
+  CincoAdminTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Name: cinco-admin-container
+          Image: 'public.ecr.aws/docker/library/httpd:2.4'
+          PortMappings:
+            - ContainerPort: 80
+              HostPort: 80
+              Protocol: tcp
+          Essential: true
+          EntryPoint:
+            - sh
+            - '-c'
+          Command:
+            - >-
+              /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
+              App</title> <style>body {margin-top: 40px; background-color:
+              #333;} </style> </head><body> <div
+              style=color:white;text-align:center> <h1>Amazon ECS Sample
+              App</h1> <h2>Congratulations!</h2> <p>Your application is now
+              running on a container in Amazon ECS.</p> </div></body></html>' > 
+              /usr/local/apache2/htdocs/index.html && httpd-foreground"
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-create-group: true
+              awslogs-group: /ecs/cinco-admin-task-definition
+              awslogs-region: us-west-2
+              awslogs-stream-prefix: ecs
+      Family: cinco-admin-task-definition
+      ExecutionRoleArn: !GetAtt 'CincoAdminECSTaskExecutionRole.Arn'
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: x86_64
+        OperatingSystemFamily: LINUX
+      Cpu: '1024'
+      Memory: '3072'
+
+  # SecurityGroup:
+  #   Type: AWS::EC2::SecurityGroup
+  #   Properties:
+  #     GroupDescription: Security Group for Cinco admin load balancer
+  #     GroupName: cinco-admin-loadbalancer-securitygroup
+  #     SecurityGroupEgress:
+  #       - CidrIp: '0.0.0.0/0'
+  #         Description: Allow outbound traffic on port 80
+  #         FromPort: '80'
+  #         IpProtocol: tcp
+  #         ToPort: '80'
+  #     SecurityGroupIngress:
+  #       - CidrIp: '0.0.0.0/0'
+  #         Description: Allow HTTP access
+  #         FromPort: '80'
+  #         IpProtocol: tcp
+  #         ToPort: '80'
+  #       - CidrIp: '0.0.0.0/0'
+  #         Description: Allow HTTPS access
+  #         FromPort: '443'
+  #         IpProtocol: tcp
+  #         ToPort: '443'
+  #     VpcId: Ref 'VpcId'
+
+  CincoAdminService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref CincoAdminECSCluster
+      TaskDefinition: !Ref CincoAdminTaskDefinition
+      LaunchType: FARGATE
+      ServiceName: cinco-admin-service
+      SchedulingStrategy: REPLICA
+      DesiredCount: 1   # New! Updated from 1 to 3
+      # LoadBalancers:  # New!
+      #   - ContainerName: cinco-admin-container,
+      #     ContainerPort: 80,
+      #     LoadBalancerName: Ref AWS::NoValue
+      #     TargetGroupArn: Ref CincoAdminTargetGroup
+      # HealthcheckGracePeriodSeconds: 60   # New! 
+      NetworkConfiguration: 
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups: !Ref SecurityGroupIDs
+          Subnets: !Ref SubnetIDs
+      PlatformVersion: 'LATEST'
+      DeploymentConfiguration: 
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+    # DependsOn: CincoAdminListener   # New!
+
+  # CincoAdminLoadBalancer:
+  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  #   Properties:
+  #     Type: application
+  #     Name: alb-test
+  #     SecurityGroups: Ref SecurityGroupIDs
+  #     Subnets: Ref SubnetIDs
+  
+  # CincoAdminTargetGroup:
+  #   Type: AWS::ElasticLoadBalancingV2::TargetGroup
+  #   Properties:
+  #     HealthCheckPath: "/"
+  #     Name: "ecs-task-m-alb"
+  #     Port: 80
+  #     Protocol: "HTTP"
+  #     TargetType: "ip"
+  #     HealthCheckProtocol: "HTTP"
+  #     VpcId: Ref VpcId
+  #     TargetGroupAttributes:
+  #       - Key: "deregistration_delay.timeout_seconds"
+  #         Value: "300"
+  
+  # CincoAdminListener:
+  #   Type: AWS::ElasticLoadBalancingV2::Listener
+  #   Properties:
+  #     DefaultActions: 
+  #       - Type: forward
+  #         TargetGroupArn: Ref CincoAdminTargetGroup
+  #     LoadBalancerArn: Ref CincoAdminLoadBalancer
+  #     Port: 80
+  #     Protocol: HTTP
+
+Outputs:
+  CincoAdminECSCluster:
+    Description: The ECS Cluster for the Cinco Admin service
+    Value: !Ref CincoAdminECSCluster
+
+  CincoAdminECRRepository:
+    Description: The ECR Repository for the Cinco Admin service
+    Value: !Ref CincoAdminECRRepository
+
+  CincoAdminTaskDefinition:
+    Description: The ECS Task Definition for the Cinco Admin service
+    Value: !Ref CincoAdminTaskDefinition
+
+  CincoAdminService:
+    Description: The ECS Service for the Cinco Admin service
+    Value: !Ref CincoAdminService
+
+  # CincoAdminLoadBalancer:
+  #   Description: "The created load balancer."
+  #   Value: Ref CincoAdminLoadBalancer
+
+  # CincoAdminListener:
+  #   Description: "The created listener."
+  #   Value: Ref CincoAdminListener
+
+  # CincoAdminTargetGroup: 
+  #   Description: "The created target group."
+  #   Value: Ref CincoAdminTargetGroup
