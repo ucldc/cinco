@@ -5,5 +5,4 @@ parameters:
   Namespace: cinco-admin
   RepositoryName: cinco/admin
   VpcId: !environment_variable VPC_ID
-  SecurityGroupIDs: !environment_variable SECURITY_GROUP_IDS
   SubnetIDs: !environment_variable SUBNET_IDS

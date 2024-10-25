@@ -12,9 +12,6 @@ Parameters:
   VpcId:
     Description: The VPC the ECS service will run in
     Type: String
-  SecurityGroupIDs:
-    Description: Comma-separated list of security group IDs
-    Type: List<AWS::EC2::SecurityGroup::Id>
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
@@ -104,22 +101,22 @@ Resources:
       Cpu: '1024'
       Memory: '3072'
 
-  LoadBalancerSecurityGroup:
+  SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security Group for application load balancer
-      GroupName: !Sub ${Namespace}-loadbalancer-securitygroup
+      GroupDescription: Security Group for application load balancer and ECS service
+      GroupName: !Sub ${Namespace}-securitygroup
       SecurityGroupIngress:
         - Description: Allow HTTP access
           IpProtocol: tcp
           FromPort: '80'
           ToPort: '80'
           CidrIp: '0.0.0.0/0'
-        - Description: Allow HTTPS access
-          IpProtocol: tcp
-          FromPort: '443'
-          ToPort: '443'
-          CidrIp: '0.0.0.0/0'
+        # - Description: Allow HTTPS access
+        #   IpProtocol: tcp
+        #   FromPort: '443'
+        #   ToPort: '443'
+        #   CidrIp: '0.0.0.0/0'
       VpcId: !Ref 'VpcId'
 
   ECSService:
@@ -139,7 +136,8 @@ Resources:
       NetworkConfiguration: 
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups: !Ref SecurityGroupIDs
+          SecurityGroups: 
+            - !Ref SecurityGroup
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
       DeploymentConfiguration: 
@@ -156,7 +154,7 @@ Resources:
       Type: application
       Name: !Sub ${Namespace}-alb
       SecurityGroups: 
-        - !Ref LoadBalancerSecurityGroup
+        - !Ref SecurityGroup
       Subnets: !Ref SubnetIDs
   
   TargetGroup:
