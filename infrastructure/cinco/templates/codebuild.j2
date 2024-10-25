@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CodeBuild Role, Policy, and Project for building a Docker image 
+  and pushing to Public ECR from GitHub, triggered by push to main branch.
+  Sets up permissions to send logs to CloudWatch group with log stream name 'build'.
+Parameters:
+  GitHubRepo:
+    Description: The URL of the GitHub repository to pull code from
+    Type: String
+  Namespace:
+    Description: The namespace for the CodeBuild project
+    Type: String
+  # BuildSpecLocation:
+  #   Description: The path to the buildspec.yml file in the GitHub repository - 
+  #     this should be relative to the root of the repo (the value of built-in 
+  #     env var CODEBUILD_SRC_DIR)
+    
+Resources:
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-codebuild
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ codebuild.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+
+  CodeBuildPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-codebuild-policy
+      Path: "/"
+      Roles: [ !Ref CodeBuildRole ]
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: 
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource:
+              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}
+              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}:*
+          - Effect: Allow
+            Action: 
+              - ecr-public:GetAuthorizationToken
+              - ecr-public:BatchCheckLayerAvailability
+              - ecr-public:InitiateLayerUpload
+              - ecr-public:UploadLayerPart
+              - ecr-public:CompleteLayerUpload
+              - ecr-public:PutImage
+              - sts:GetServiceBearerToken
+            Resource: "*"
+
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Ref Namespace
+      Description: !Sub Builds the ${Namespace} docker image and pushes to our public ECR
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      SourceVersion: main
+      Source:
+        Type: GITHUB
+        Location: !Ref GitHubRepo
+        Auth:
+          Type: OAUTH
+        GitCloneDepth: 1
+        BuildSpec: {{ sceptre_user_data.build_spec }}
+        # BuildSpec: Ref BuildSpecLocation
+      Environment: 
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        PrivilegedMode: true
+      Triggers:
+        Webhook: true
+        FilterGroups:
+          - - Type: EVENT
+              Pattern: PUSH
+            - Type: HEAD_REF
+              Pattern: ^refs/heads/main$
+              ExcludeMatchedPattern: false
+            - Type: FILE_PATH
+              Pattern: admin/.*
+              ExcludeMatchedPattern: false
+      Artifacts: 
+        Type: NO_ARTIFACTS
+      LogsConfig: 
+        CloudWatchLogs: 
+          GroupName: !Ref Namespace
+          Status: ENABLED
+          StreamName: build
+
