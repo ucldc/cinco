@@ -16,6 +16,6 @@ def test_user_has_repo_access(user: User):
         code="repo1",
         name="Repository 1",
     )
-    assert not user.has_repo_access(repository.pk)
+    assert not user.has_repo_access(repository.code)
     _role = UserRole.objects.create(user=user, repository=repository)
-    assert user.has_repo_access(repository.pk)
+    assert user.has_repo_access(repository.code)

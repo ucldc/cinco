@@ -1,8 +1,10 @@
 from django.contrib import admin
 
 from cincoctrl.findingaids.models import ExpressRecord
-from cincoctrl.findingaids.models import ExpressRecordField
+from cincoctrl.findingaids.models import ExpressRecordCreator
+from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import RevisionHistory
 from cincoctrl.findingaids.models import SupplementaryFile
 
 
@@ -15,10 +17,22 @@ class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline]
 
 
-class ExpressRecordFieldInline(admin.TabularInline):
-    model = ExpressRecordField
+class ExpressRecordCreatorInline(admin.TabularInline):
+    model = ExpressRecordCreator
+
+
+class ExpressRecordSubjectInline(admin.TabularInline):
+    model = ExpressRecordSubject
+
+
+class RevisionHistoryInline(admin.TabularInline):
+    model = RevisionHistory
 
 
 @admin.register(ExpressRecord)
 class ExpressRecordAdmin(admin.ModelAdmin):
-    inlines = [ExpressRecordFieldInline]
+    inlines = [
+        ExpressRecordCreatorInline,
+        ExpressRecordSubjectInline,
+        RevisionHistoryInline,
+    ]

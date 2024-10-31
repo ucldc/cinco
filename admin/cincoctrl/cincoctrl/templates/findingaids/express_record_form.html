@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
-{% load record_tags %}
+{% load static %}
 
 {% block title %}
-  {{ repository }}: {{ verb }} {% record_type_label record_type %}
+  {{ repository }}: {{ verb }} Express Record
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>{{ verb }} {% record_type_label record_type %}</h2>
+        <h2>{{ verb }} Express Record</h2>
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <table>
             {% if finding_aid_form %}{{ finding_aid_form.as_table }}{% endif %}
             {{ form.as_table }}
-            {% if formset %}
+            {% for formset in formsets %}
               {{ formset.management_form }}
               {{ formset.as_table }}
-            {% endif %}
+            {% endfor %}
           </table>
           <input type="submit" value="Submit" />
         </form>

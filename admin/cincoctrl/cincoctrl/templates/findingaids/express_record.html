@@ -1,91 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
-<ead>
-<eadheader langencoding="iso639-2b" scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601">
-<eadid xmlns:cdlpath="http://www.cdlib.org/path/" countrycode="us" identifier="{{ instance.ark }}" mainagencycode="{{ instance.publisher.mainagency }}" publicid="{{ instance.local_identifier }}" cdlpath:parent="{{ instance.institution.ark }}">
-{{ instance.local_identifier }}
-</eadid>
-<filedesc id="filedesc">
-<titlestmt>
-<titleproper>{{ instance.title }}</titleproper>
-<titleproper type="filing">{{ instance.title_filing }}</titleproper>
-<author>{{ instance.institution.name }}</author>
-</titlestmt>
-<publicationstmt>
-<publisher>{{ instance.institution.name }}</publisher>
-<date>{{ instance.date_dacs }}</date>
-</publicationstmt>
-</filedesc>
-</eadheader>
-<archdesc level="collection" id="archdesc">
-<did id="did">
-<head>Descriptive Summary</head>
-<unittitle label="Title">{{ instance.title }}</unittitle>
-<unitdate
-{% if instance.date_iso %}normal="{{ instance.date_iso }}"{% endif %}
-label="Dates">
-{{ instance.date_dacs }}
-</unitdate>
-<unitid label="Collection Number" repositorycode="{{ instance.publisher.mainagency }}" countrycode="US">
-{{ instance.local_identifier }}
-</unitid>
-<origination label="Creator/Collector">
-{% for qdc in instance.creator_person %}<persname>{{ qdc.content }}</persname>{% endfor %}
-{% for qdc in instance.creator_family %}<famname>{{ qdc.content }}</famname>{% endfor %}
-{% for qdc in instance.creator_organization %}<corpname>{{ qdc.content }}</corpname>{% endfor %}
-</origination>
-<physdesc label="Extent">
-<extent>{{ instance.extent }}</extent>
-</physdesc>
-{% if instance.online_items_url %}
-  <extent type="dao">Online items available</extent>
-  <dao role="http://oac.cdlib.org/arcrole/link/search" href="{{ instance.online_items_url }}" title="Online items" />
-{% endif %}
-<repository label="Repository">
-<corpname>
-{{ instance.publisher.name }}
-</corpname>
-</repository>
-<abstract label="Abstract">
-{{ instance.abstract }}
-</abstract>
-<langmaterial>
-<language langcode="{{ instance.language }}" />
-</langmaterial>
-</did>
-<accessrestrict id="accessrestrict">
-<head>Access</head>
-<p>{{ instance.accessrestrict }}</p>
-</accessrestrict>
-<userestrict id="userestrict">
-<head>Publication Rights</head>
-<p>{{ instance.userestrict }}</p>
-</userestrict>
-<prefercite id="prefercite">
-<head>Preferred Citation</head>
-<p>{{ instance.title }}.  {{ instance.publisher.name }}</p>
-</prefercite>
-<acqinfo id="acqinfo">
-<head>Acquisition Information</head>
-<p>{{ instance.acqinfo }}</p>
-</acqinfo>
-{% if instance.bioghist %}
-  <bioghist id="bioghist">
-  <head>Biography/Administrative History</head>
-  <p>{{ instance.bioghist }}</p>
-  </bioghist>
-{% endif %}
-<scopecontent id="scopecontent">
-<head>Scope and Content of Collection</head>
-<p>{{ instance.scopecontent }}</p>
-</scopecontent>
-{% if instance.supplementalfile_set.count > 0 %}
-  <otherfindaid id="otherfindaid">
-  <head>Additional collection guides</head>
-  <list>
-  {% for supp_file in instance.supplementalfile_set.all %}{{ supp_file.xml|safe }}{% endfor %}
-  </list>
-  </otherfindaid>
-{% endif %}
-</archdesc>
-</ead>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ object.finding_aid.repository }}: {{ object.finding_aid.collection_title }}
+{% endblock title %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>{{ object.finding_aid.collection_title }}</h2>
+        <ul>
+          <li>Collection Title: {{ object.finding_aid.collection_title }}</li>
+          <li>Collection Number: {{ object.finding_aid.collection_number }}</li>
+          <li>Title Filing: {{ object.title_filing }}</li>
+          <li>Date (dacs): {{ object.date_dacs }}</li>
+          <li>Date (iso): {{ object.date_iso }}</li>
+          <li>Extent: {{ object.extent }}</li>
+          <li>Language: {{ object.language }}</li>
+          <li>Access Conditions: {{ object.accessrestrict }}</li>
+          <li>Publication Rights: {{ object.userestrict }}</li>
+          <li>Preferred Citation: {{ object.preferred_citation }}</li>
+          <li>Acquisition Information: {{ object.acqinfo }}</li>
+          <li>Scope and Content of Collection: {{ object.scopecontent }}</li>
+          <li>Biography/Administrative History: {{ object.bioghist }}</li>
+          <li>Ark: {{ object.finding_aid.ark }}</li>
+          <li>Repository: {{ object.finding_aid.repository }}</li>
+          <li>Created By: {{ object.finding_aid.created_by }}</li>
+          <li>Record type: {{ object.finding_aid.record_type }}</li>
+          <li>Status: {{ object.finding_aid.status }}</li>
+          <li>Date created: {{ object.finding_aid.date_created }}</li>
+          <li>Date updated: {{ object.finding_aid.date_updated }}</li>
+        </ul>
+        {% if object.expressrecordcreator_set.exists %}
+          <h3>Creators</h3>
+          <ul>
+            {% for c in object.expressrecordcreator_set.all %}<li>{{ c }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+        {% if object.expressrecordsubject_set.exists %}
+          <h3>Subjects</h3>
+          <ul>
+            {% for s in object.expressrecordsubject_set.all %}<li>{{ s }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+        {% if object.revisionhistory_set.exists %}
+          <h3>Revision History</h3>
+          <ul>
+            {% for r in object.revisionhistory_set.all %}<li>{{ r }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+        {% if object.findingaid.supplementaryfile_set.exists %}
+          <h3>Supplementary Files</h3>
+          <ul>
+            {% for f in object.findingaid.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+        <a href="{% url 'findingaids:update_record_express' object.finding_aid.repository.code object.pk %}">Update</a>
+        <a href="{% url 'findingaids:view_record_express_xml' object.finding_aid.repository.code object.pk %}">View XML</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

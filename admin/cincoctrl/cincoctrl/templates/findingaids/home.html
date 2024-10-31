@@ -18,13 +18,13 @@
           {{ r.repository }}
           <ul>
             <li>
-              <a href="{% url 'findingaids:list_records' r.repository.pk 'ead' %}">EAD</a>
+              <a href="{% url 'findingaids:list_records' r.repository.code 'ead' %}">EAD</a>
             </li>
             <li>
-              <a href="{% url 'findingaids:list_records' r.repository.pk 'ead_pdf' %}">EAD with PDF</a>
+              <a href="{% url 'findingaids:list_records' r.repository.code 'ead_pdf' %}">EAD with PDF</a>
             </li>
             <li>
-              <a href="{% url 'findingaids:list_records' r.repository.pk 'express' %}">Record Express</a>
+              <a href="{% url 'findingaids:list_records' r.repository.code 'express' %}">Record Express</a>
             </li>
           </ul>
         </li>
