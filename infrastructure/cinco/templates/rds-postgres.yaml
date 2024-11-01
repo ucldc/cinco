@@ -9,13 +9,13 @@ Parameters:
     Type: "String" 
   VpcId:
     Description: The VPC the RDS instance will run in
-    Type: "String"
+    Type: AWS::EC2::VPC::Id
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
   ApplicationSecurityGroup:
     Description: The security group for the application - this template allows the RDS instance to be accessed from an application residing in the application security group
-    Type: "AWS::EC2::SecurityGroup::Id"
+    Type: AWS::EC2::SecurityGroup::Id
 
 
 Resources: 

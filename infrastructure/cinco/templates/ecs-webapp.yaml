@@ -8,7 +8,7 @@ Parameters:
     Type: String
   VpcId:
     Description: The VPC the ECS service will run in
-    Type: String
+    Type: AWS::EC2::VPC::Id
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
