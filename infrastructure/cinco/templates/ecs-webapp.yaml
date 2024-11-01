@@ -12,6 +12,25 @@ Parameters:
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
+  ContainerImage:
+    Description: The container image to use for the ECS task
+    Type: String
+    Default: 'public.ecr.aws/docker/library/httpd:2.4'
+  ContainerEntryPoint:
+    Description: The entry point for the container
+    Type: CommaDelimitedList
+    Default: 'sh,-c'
+  ContainerCommand:
+    Description: The command to run in the container
+    Type: CommaDelimitedList
+    Default: >-
+      /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
+      App</title> <style>body {margin-top: 40px; background-color:
+      #333;} </style> </head><body> <div
+      style=color:white;text-align:center> <h1>Amazon ECS Sample
+      App</h1> <h2>Congratulations!</h2> <p>Your application is now
+      running on a container in Amazon ECS.</p> </div></body></html>' > 
+      /usr/local/apache2/htdocs/index.html && httpd-foreground"
 
 Resources:
   ECSCluster:
@@ -57,24 +76,14 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Name: !Sub ${Namespace}-container
-          Image: 'public.ecr.aws/docker/library/httpd:2.4'
+          Image: !Ref ContainerImage
           PortMappings:
             - ContainerPort: 80
               HostPort: 80
               Protocol: tcp
           Essential: true
-          EntryPoint:
-            - sh
-            - '-c'
-          Command:
-            - >-
-              /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
-              App</title> <style>body {margin-top: 40px; background-color:
-              #333;} </style> </head><body> <div
-              style=color:white;text-align:center> <h1>Amazon ECS Sample
-              App</h1> <h2>Congratulations!</h2> <p>Your application is now
-              running on a container in Amazon ECS.</p> </div></body></html>' > 
-              /usr/local/apache2/htdocs/index.html && httpd-foreground"
+          EntryPoint: !Ref ContainerEntryPoint
+          Command: !Ref ContainerCommand
           LogConfiguration:
             LogDriver: awslogs
             Options:
