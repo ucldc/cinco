@@ -13,6 +13,9 @@ Parameters:
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
+  ApplicationSecurityGroup:
+    Description: The security group for the application - this template allows the RDS instance to be accessed from an application residing in the application security group
+    Type: "AWS::EC2::SecurityGroup::Id"
 
 
 Resources: 
@@ -27,7 +30,7 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security Group for RDS instance
+      GroupDescription: !Sub Security Group for ${Namespace} RDS instance
       GroupName: !Sub ${Namespace}-rds-securitygroup
       VpcId: !Ref 'VpcId'
       SecurityGroupEgress:
@@ -43,6 +46,16 @@ Resources:
       FromPort: "0"
       ToPort: "65535"
       SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
+
+  InstanceSecurityGroupApplicationIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    DependsOn: "InstanceSecurityGroup"
+    Properties:
+      GroupId: !Ref "InstanceSecurityGroup"
+      IpProtocol: "tcp"
+      FromPort: "5432"
+      ToPort: "5432"
+      SourceSecurityGroupId: !Ref "ApplicationSecurityGroup"
 
   RDSInstance:
     Type: AWS::RDS::DBInstance
@@ -78,11 +91,11 @@ Outputs:
   RDSInstance:
     Description: The RDS instance
     Value: !Ref RDSInstance
-    Export:
-      Name: !Sub ${Namespace}-RDSInstance
   
   RDSHostName:
     Description: The RDS hostname
     Value: !GetAtt RDSInstance.Endpoint.Address
-    Export:
-      Name: !Sub ${Namespace}-RDSHostName
+
+  RDSSecurityGroup:
+    Description: The RDS security group
+    Value: !Ref InstanceSecurityGroup
