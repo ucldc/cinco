@@ -1,0 +1,9 @@
+template:
+  path: rds.yaml
+  type: file
+parameters:
+  Namespace: cinco-admin
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  DBUsername: !environment_variable DB_USERNAME
+  DBPassword: !environment_variable DB_PASSWORD
