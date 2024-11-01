@@ -6,6 +6,9 @@ Parameters:
   GitHubRepo:
     Description: The URL of the GitHub repository to pull code from
     Type: String
+  ECRRepositoryName:
+    Description: The name of the ECR repository to create
+    Type: String
   Namespace:
     Description: The namespace for the CodeBuild project
     Type: String
@@ -15,6 +18,11 @@ Parameters:
   #     env var CODEBUILD_SRC_DIR)
     
 Resources:
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref ECRRepositoryName
+
   CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
@@ -94,4 +102,9 @@ Resources:
           GroupName: !Ref Namespace
           Status: ENABLED
           StreamName: build
+
+Outputs:
+  ECRRepository:
+    Description: The ECR Repository
+    Value: !Ref ECRRepository
 

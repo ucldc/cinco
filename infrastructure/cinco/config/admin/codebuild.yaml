@@ -3,6 +3,7 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
+  ECRRepositoryName: cinco/admin
   Namespace: cinco-admin
 
 sceptre_user_data:

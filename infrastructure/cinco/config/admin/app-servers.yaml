@@ -3,6 +3,5 @@ template:
   type: file
 parameters:
   Namespace: cinco-admin
-  RepositoryName: cinco/admin
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS

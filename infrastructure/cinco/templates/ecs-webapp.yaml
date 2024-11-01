@@ -6,9 +6,6 @@ Parameters:
   Namespace:
     Description: The namespace for the ECS Application
     Type: String
-  RepositoryName:
-    Description: The name of the ECR repository to create
-    Type: String
   VpcId:
     Description: The VPC the ECS service will run in
     Type: String
@@ -23,11 +20,6 @@ Resources:
       ClusterName: !Ref Namespace
       CapacityProviders: 
         - FARGATE
-
-  ECRRepository:
-    Type: AWS::ECR::Repository
-    Properties:
-      RepositoryName: !Ref RepositoryName
 
   ECSTaskExecutionRole:
     Type: AWS::IAM::Role
@@ -185,10 +177,6 @@ Outputs:
   ECSCluster:
     Description: The ECS Cluster
     Value: !Ref ECSCluster
-
-  ECRRepository:
-    Description: The ECR Repository
-    Value: !Ref ECRRepository
 
   TaskDefinition:
     Description: The ECS Task Definition
