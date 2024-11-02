@@ -1,5 +1,5 @@
 template:
-  path: ecs-webapp.yaml
+  path: ecs-webapp.j2
   type: file
 parameters:
   Namespace: cinco-admin
