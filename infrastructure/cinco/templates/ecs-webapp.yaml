@@ -31,6 +31,21 @@ Parameters:
       App</h1> <h2>Congratulations!</h2> <p>Your application is now
       running on a container in Amazon ECS.</p> </div></body></html>' > 
       /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  ContainerPort:
+    Description: The port the container listens on, maps to 80 on the ECS host
+    Type: Number
+    Default: 80
+  ContainerCount:
+    Description: The number of tasks to run in the ECS service
+    Type: Number
+    Default: 1
+  SSLCertArn:
+    Description: The ARN of the SSL certificate to use for the load balancer
+    Type: String
+    Default: ""
+
+Conditions:
+  HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
 
 Resources:
   ECSCluster:
@@ -78,7 +93,7 @@ Resources:
         - Name: !Sub ${Namespace}-container
           Image: !Ref ContainerImage
           PortMappings:
-            - ContainerPort: 80
+            - ContainerPort: !Ref ContainerPort
               HostPort: 80
               Protocol: tcp
           Essential: true
@@ -113,12 +128,18 @@ Resources:
           FromPort: '80'
           ToPort: '80'
           CidrIp: '0.0.0.0/0'
-        # - Description: Allow HTTPS access
-        #   IpProtocol: tcp
-        #   FromPort: '443'
-        #   ToPort: '443'
-        #   CidrIp: '0.0.0.0/0'
       VpcId: !Ref 'VpcId'
+
+  SecurityGroupHttpsIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Condition: HasSSLCert
+    Properties:
+      Description: Allow HTTPS access
+      GroupId: !Ref SecurityGroup
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+      CidrIp: "0.0.0.0/0"
 
   ECSService:
     Type: AWS::ECS::Service
@@ -128,7 +149,7 @@ Resources:
       LaunchType: FARGATE
       ServiceName: !Sub ${Namespace}-service
       SchedulingStrategy: REPLICA
-      DesiredCount: 3
+      DesiredCount: !Ref ContainerCount
       LoadBalancers:
         - ContainerName: !Sub ${Namespace}-container
           ContainerPort: 80
@@ -147,7 +168,7 @@ Resources:
         DeploymentCircuitBreaker:
           Enable: true
           Rollback: true
-    DependsOn: Listener
+    DependsOn: HttpListener
 
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -172,7 +193,7 @@ Resources:
         - Key: "deregistration_delay.timeout_seconds"
           Value: "300"
   
-  Listener:
+  HttpListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       DefaultActions: 
@@ -181,6 +202,20 @@ Resources:
       LoadBalancerArn: !Ref LoadBalancer
       Port: 80
       Protocol: HTTP
+
+  HttpsListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Condition: HasSSLCert
+    Properties:
+      Port: 443
+      Protocol: HTTPS
+      LoadBalancerArn: !Ref LoadBalancer
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+      Certificates:
+        - CertificateArn: !Ref SSLCertArn
+      SslPolicy: ELBSecurityPolicy-2016-08
 
 Outputs:
   ECSCluster:
@@ -203,9 +238,9 @@ Outputs:
     Description: The Load Balancer
     Value: !Ref LoadBalancer
 
-  Listener:
-    Description: The Listener
-    Value: !Ref Listener
+  HttpListener:
+    Description: The Http Listener
+    Value: !Ref HttpListener
 
   TargetGroup: 
     Description: The Target Group
