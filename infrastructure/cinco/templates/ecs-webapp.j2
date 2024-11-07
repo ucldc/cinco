@@ -35,6 +35,10 @@ Parameters:
     Description: The port the container listens on, maps to 80 on the ECS host
     Type: Number
     Default: 80
+  HealthCheckPath:
+    Description: The path to use for the health check
+    Type: String
+    Default: "/healthcheck"
   ContainerCount:
     Description: The number of tasks to run in the ECS service
     Type: Number
@@ -189,7 +193,7 @@ Resources:
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      HealthCheckPath: "/"
+      HealthCheckPath: !Ref HealthCheckPath
       Name: !Sub ${Namespace}-targetgroup
       Port: 80
       Protocol: HTTP
