@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: ECS deployment - includes an ECR Private Repository, ECS Cluster, Task Definition, and Service, and an Application Load Balancer
+Description: ECS deployment - includes an ECS Cluster, Task Definition, and Service, and an Application Load Balancer
 
 Parameters:
   Namespace:
@@ -50,6 +50,7 @@ Parameters:
 
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
+  HasContainerPort: !Not [!Equals [!Ref ContainerPort, 80]]
 
 Resources:
   ECSCluster:
@@ -98,7 +99,7 @@ Resources:
           Image: !Ref ContainerImage
           PortMappings:
             - ContainerPort: !Ref ContainerPort
-              HostPort: 80
+              HostPort: !Ref ContainerPort
               Protocol: tcp
           Essential: true
           EntryPoint: !Ref ContainerEntryPoint
@@ -131,15 +132,15 @@ Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security Group for application load balancer and ECS service
+      GroupDescription: Security Group for application load balancer and, if container listens on port 80, ECS service
       GroupName: !Sub ${Namespace}-securitygroup
+      VpcId: !Ref 'VpcId'
       SecurityGroupIngress:
         - Description: Allow HTTP access
           IpProtocol: tcp
           FromPort: '80'
           ToPort: '80'
           CidrIp: '0.0.0.0/0'
-      VpcId: !Ref 'VpcId'
 
   SecurityGroupHttpsIngress:
     Type: AWS::EC2::SecurityGroupIngress
@@ -152,6 +153,20 @@ Resources:
       ToPort: 443
       CidrIp: "0.0.0.0/0"
 
+  ServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Condition: HasContainerPort
+    Properties:
+      GroupDescription: Security Group for ECS service, if container listens on a port other than 80
+      GroupName: !Sub ${Namespace}-service-securitygroup
+      VpcId: !Ref 'VpcId'
+      SecurityGroupIngress:
+        - Description: Allow access on ContainerPort
+          IpProtocol: tcp
+          FromPort: !Ref ContainerPort
+          ToPort: !Ref ContainerPort
+          SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
+
   ECSService:
     Type: AWS::ECS::Service
     Properties:
@@ -163,14 +178,14 @@ Resources:
       DesiredCount: !Ref ContainerCount
       LoadBalancers:
         - ContainerName: !Sub ${Namespace}-container
-          ContainerPort: 80
+          ContainerPort: !Ref ContainerPort
           LoadBalancerName: !Ref AWS::NoValue
           TargetGroupArn: !Ref TargetGroup
       NetworkConfiguration: 
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
           SecurityGroups: 
-            - !Ref SecurityGroup
+            - !If [HasContainerPort, !Ref ServiceSecurityGroup, !Ref SecurityGroup]
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
       DeploymentConfiguration: 
@@ -195,7 +210,7 @@ Resources:
     Properties:
       HealthCheckPath: !Ref HealthCheckPath
       Name: !Sub ${Namespace}-targetgroup
-      Port: 80
+      Port: !Ref ContainerPort
       Protocol: HTTP
       TargetType: ip
       HealthCheckProtocol: HTTP

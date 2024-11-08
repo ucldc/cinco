@@ -7,6 +7,7 @@ parameters:
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: 'public.ecr.aws/docker/library/httpd:2.4'
   ContainerEntryPoint: 'sh,-c'
+  HealthCheckPath: '/'
   ContainerCommand: >-
     /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
     App</title> <style>body {margin-top: 40px; background-color:
