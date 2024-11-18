@@ -1,0 +1,273 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: ECS deployment - includes an ECS Cluster, Task Definition, and Service, and an Application Load Balancer
+
+Parameters:
+  Namespace:
+    Description: The namespace for the ECS Application
+    Type: String
+  VpcId:
+    Description: The VPC the ECS service will run in
+    Type: AWS::EC2::VPC::Id
+  SubnetIDs:
+    Description: Comma-separated list of subnet IDs
+    Type: List<AWS::EC2::Subnet::Id>
+  ContainerImage:
+    Description: The container image to use for the ECS task
+    Type: String
+    Default: 'public.ecr.aws/docker/library/httpd:2.4'
+  ContainerEntryPoint:
+    Description: The entry point for the container
+    Type: CommaDelimitedList
+    Default: 'sh,-c'
+  ContainerCommand:
+    Description: The command to run in the container
+    Type: CommaDelimitedList
+    Default: >-
+      /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
+      App</title> <style>body {margin-top: 40px; background-color:
+      #333;} </style> </head><body> <div
+      style=color:white;text-align:center> <h1>Amazon ECS Sample
+      App</h1> <h2>Congratulations!</h2> <p>Your application is now
+      running on a container in Amazon ECS.</p> </div></body></html>' > 
+      /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  ContainerPort:
+    Description: The port the container listens on, maps to 80 on the ECS host
+    Type: Number
+    Default: 80
+  HealthCheckPath:
+    Description: The path to use for the health check
+    Type: String
+    Default: "/healthcheck"
+  ContainerCount:
+    Description: The number of tasks to run in the ECS service
+    Type: Number
+    Default: 1
+  SSLCertArn:
+    Description: The ARN of the SSL certificate to use for the load balancer
+    Type: String
+    Default: ""
+
+Conditions:
+  HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
+  HasContainerPort: !Not [!Equals [!Ref ContainerPort, 80]]
+
+Resources:
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref Namespace
+      CapacityProviders: 
+        - FARGATE
+
+  ECSTaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-ecs-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ecs-tasks.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: !Sub ${Namespace}-ecs-policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+              - Effect: "Allow"
+                Action:
+                  - "ecr:GetAuthorizationToken"
+                  - "ecr:BatchCheckLayerAvailability"
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:BatchGetImage"
+                Resource: "*"
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Name: !Sub ${Namespace}-container
+          Image: !Ref ContainerImage
+          PortMappings:
+            - ContainerPort: !Ref ContainerPort
+              HostPort: !Ref ContainerPort
+              Protocol: tcp
+          Essential: true
+          EntryPoint: !Ref ContainerEntryPoint
+          Command: !Ref ContainerCommand
+          {% if sceptre_user_data and sceptre_user_data.ContainerEnvironment %}
+          Environment:
+            {% for item in sceptre_user_data.ContainerEnvironment %}
+            - Name: "{{ item.Name }}"
+              Value: "{{ item.Value }}"
+            {% endfor %}
+          {% endif %}
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-create-group: true
+              awslogs-group: !Sub /ecs/${Namespace}-task-definition
+              awslogs-region: us-west-2
+              awslogs-stream-prefix: ecs
+      Family: !Sub ${Namespace}-task-definition
+      ExecutionRoleArn: !GetAtt 'ECSTaskExecutionRole.Arn'
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: x86_64
+        OperatingSystemFamily: LINUX
+      Cpu: '1024'
+      Memory: '3072'
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for application load balancer and, if container listens on port 80, ECS service
+      GroupName: !Sub ${Namespace}-securitygroup
+      VpcId: !Ref 'VpcId'
+      SecurityGroupIngress:
+        - Description: Allow HTTP access
+          IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: '0.0.0.0/0'
+
+  SecurityGroupHttpsIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Condition: HasSSLCert
+    Properties:
+      Description: Allow HTTPS access
+      GroupId: !Ref SecurityGroup
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+      CidrIp: "0.0.0.0/0"
+
+  ServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Condition: HasContainerPort
+    Properties:
+      GroupDescription: Security Group for ECS service, if container listens on a port other than 80
+      GroupName: !Sub ${Namespace}-service-securitygroup
+      VpcId: !Ref 'VpcId'
+      SecurityGroupIngress:
+        - Description: Allow access on ContainerPort
+          IpProtocol: tcp
+          FromPort: !Ref ContainerPort
+          ToPort: !Ref ContainerPort
+          SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
+
+  ECSService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref ECSCluster
+      TaskDefinition: !Ref TaskDefinition
+      LaunchType: FARGATE
+      ServiceName: !Sub ${Namespace}-service
+      SchedulingStrategy: REPLICA
+      DesiredCount: !Ref ContainerCount
+      LoadBalancers:
+        - ContainerName: !Sub ${Namespace}-container
+          ContainerPort: !Ref ContainerPort
+          LoadBalancerName: !Ref AWS::NoValue
+          TargetGroupArn: !Ref TargetGroup
+      NetworkConfiguration: 
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups: 
+            - !If [HasContainerPort, !Ref ServiceSecurityGroup, !Ref SecurityGroup]
+          Subnets: !Ref SubnetIDs
+      PlatformVersion: 'LATEST'
+      DeploymentConfiguration: 
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+    DependsOn: HttpListener
+
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Type: application
+      Name: !Sub ${Namespace}-alb
+      SecurityGroups: 
+        - !Ref SecurityGroup
+      Subnets: !Ref SubnetIDs
+  
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckPath: !Ref HealthCheckPath
+      Name: !Sub ${Namespace}-targetgroup
+      Port: !Ref ContainerPort
+      Protocol: HTTP
+      TargetType: ip
+      HealthCheckProtocol: HTTP
+      VpcId: !Ref VpcId
+      TargetGroupAttributes:
+        - Key: "deregistration_delay.timeout_seconds"
+          Value: "300"
+  
+  HttpListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions: 
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+
+  HttpsListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Condition: HasSSLCert
+    Properties:
+      Port: 443
+      Protocol: HTTPS
+      LoadBalancerArn: !Ref LoadBalancer
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+      Certificates:
+        - CertificateArn: !Ref SSLCertArn
+      SslPolicy: ELBSecurityPolicy-2016-08
+
+Outputs:
+  ECSCluster:
+    Description: The ECS Cluster
+    Value: !Ref ECSCluster
+
+  TaskDefinition:
+    Description: The ECS Task Definition
+    Value: !Ref TaskDefinition
+
+  SecurityGroup:
+    Description: The Security Group
+    Value: !Ref SecurityGroup
+
+  ECSService:
+    Description: The ECS Service
+    Value: !Ref ECSService
+
+  LoadBalancer:
+    Description: The Load Balancer
+    Value: !Ref LoadBalancer
+
+  HttpListener:
+    Description: The Http Listener
+    Value: !Ref HttpListener
+
+  TargetGroup: 
+    Description: The Target Group
+    Value: !Ref TargetGroup

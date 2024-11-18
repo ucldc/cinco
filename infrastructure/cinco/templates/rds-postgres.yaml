@@ -1,0 +1,101 @@
+Parameters:
+  DBUsername:
+    Description: The master username for the RDS instance
+    Type: "String" 
+  DBPassword:
+    Description: The master password for the RDS instance
+    Type: "String"
+  Namespace:
+    Type: "String" 
+  VpcId:
+    Description: The VPC the RDS instance will run in
+    Type: AWS::EC2::VPC::Id
+  SubnetIDs:
+    Description: Comma-separated list of subnet IDs
+    Type: List<AWS::EC2::Subnet::Id>
+  ApplicationSecurityGroup:
+    Description: The security group for the application - this template allows the RDS instance to be accessed from an application residing in the application security group
+    Type: AWS::EC2::SecurityGroup::Id
+
+
+Resources: 
+
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupName: !Sub ${Namespace}-rds-subnet-group
+      DBSubnetGroupDescription: !Sub "Subnet group for ${Namespace} RDS"
+      SubnetIds: !Ref SubnetIDs
+
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub Security Group for ${Namespace} RDS instance
+      GroupName: !Sub ${Namespace}-rds-securitygroup
+      VpcId: !Ref 'VpcId'
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          CidrIp: "0.0.0.0/0"
+
+  InstanceSecurityGroupIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    DependsOn: "InstanceSecurityGroup"
+    Properties:
+      GroupId: !Ref "InstanceSecurityGroup"
+      IpProtocol: "tcp"
+      FromPort: "0"
+      ToPort: "65535"
+      SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
+
+  InstanceSecurityGroupApplicationIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    DependsOn: "InstanceSecurityGroup"
+    Properties:
+      GroupId: !Ref "InstanceSecurityGroup"
+      IpProtocol: "tcp"
+      FromPort: "5432"
+      ToPort: "5432"
+      SourceSecurityGroupId: !Ref "ApplicationSecurityGroup"
+
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: postgres
+      EngineVersion: "16.3"
+      EngineLifecycleSupport: open-source-rds-extended-support-disabled
+      MultiAZ: false
+      DBInstanceIdentifier: cinco-admin
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      DBInstanceClass: db.t3.small
+      StorageType: io2
+      AllocatedStorage: 200
+      Iops: 3000
+      MaxAllocatedStorage: 1000  # implicitly enables autoscaling
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      Port: 5432
+      PubliclyAccessible: false
+      VPCSecurityGroups: 
+        - !Ref InstanceSecurityGroup
+      EnablePerformanceInsights: true
+      PerformanceInsightsRetentionPeriod: 7
+      # PerformanceInsightsKMSKeyId: String
+      BackupRetentionPeriod: 7
+      EnableCloudwatchLogsExports: 
+        - postgresql
+        - upgrade
+      AutoMinorVersionUpgrade: true
+      DeletionProtection: true
+
+Outputs:
+  RDSInstance:
+    Description: The RDS instance
+    Value: !Ref RDSInstance
+  
+  RDSHostName:
+    Description: The RDS hostname
+    Value: !GetAtt RDSInstance.Endpoint.Address
+
+  RDSSecurityGroup:
+    Description: The RDS security group
+    Value: !Ref InstanceSecurityGroup
