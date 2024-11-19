@@ -23,6 +23,9 @@ sceptre_user_data:
   ContainerEnvironment:
     - Name: POSTGRES_HOST
       Value: !stack_output admin/db.yaml::RDSHostName
+      # TODO: this is a circular dependency, but not sure how to resolve
+      # the db.yaml stack depends on the Security Group
+      # created in this stack
     - Name: POSTGRES_PORT
       Value: 5432
     - Name: POSTGRES_DB
