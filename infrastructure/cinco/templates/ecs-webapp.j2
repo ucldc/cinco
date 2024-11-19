@@ -59,6 +59,9 @@ Resources:
       ClusterName: !Ref Namespace
       CapacityProviders:
         - FARGATE
+      ClusterSettings:
+        - Name: containerInsights
+          Value: disabled
 
   ECSTaskExecutionRole:
     Type: AWS::IAM::Role
@@ -104,7 +107,7 @@ Resources:
           Essential: true
           EntryPoint: !Ref ContainerEntryPoint
           Command: !Ref ContainerCommand
-          {% if sceptre_user_data and sceptre_user_data.ContainerEnvironment %}
+          {% if sceptre_user_data and sceptre_user_data.ContainerEnvironment is defined %}
           Environment:
             {% for item in sceptre_user_data.ContainerEnvironment %}
             - Name: "{{ item.Name }}"

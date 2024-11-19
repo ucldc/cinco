@@ -1,0 +1,13 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  Namespace: cinco-solr
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: 'public.ecr.aws/docker/library/solr:9.6.1'
+  ContainerPort: 8983
+  ContainerCount: 1
+  ContainerEntryPoint: "docker-entrypoint.sh"
+  ContainerCommand: "solr-foreground"
+  HealthCheckPath: "/solr/#/"
