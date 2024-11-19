@@ -1,0 +1,140 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: EFS Volume
+
+Parameters:
+  Namespace:
+    Description: The namespace for the EFS Volume
+    Type: String
+  VpcId:
+    Description: The VPC the EFS volume will exist in
+    Type: AWS::EC2::VPC::Id
+  PrivateSubnetId1:
+    Description: The first private subnet the EFS volume will exist in
+    Type: AWS::EC2::Subnet::Id
+  PrivateSubnetId2:
+    Description: The second private subnet the EFS volume will exist in
+    Type: AWS::EC2::Subnet::Id
+  EFSAccessPointUserGroup:    # "8983"
+    Description: The user and group for the EFS Access Point
+    Type: String
+  EFSAccessPointPath:         # "/var/solr"
+    Description: The path for the EFS Access Point
+    Type: String
+
+Resources:
+  EfsSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub ${Namespace}-efs
+      GroupDescription: !Sub Security Group for ${Namespace} EFS
+      SecurityGroupIngress:
+        - Description: Allow inbound traffic NFS traffic
+          ToPort: 2049
+          FromPort: 2049
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - Description: Allow outbound NFS traffic
+          ToPort: 2049
+          FromPort: 2049
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+      VpcId: !Ref 'VpcId'
+
+  # ignore cfn-lint error I3011
+  EfsFileSystem:
+    Type: AWS::EFS::FileSystem
+    Properties:
+      PerformanceMode: generalPurpose
+      FileSystemTags:
+        - Key: Name
+          Value: !Sub ${Namespace}-efs-volume
+      BackupPolicy:
+        Status: ENABLED
+      Encrypted: false
+      LifecyclePolicies:
+        - TransitionToIA: AFTER_30_DAYS
+        - TransitionToPrimaryStorageClass: AFTER_1_ACCESS
+
+  EfsAccessPoint:
+    Type: AWS::EFS::AccessPoint
+    Properties:
+      FileSystemId: !Ref EfsFileSystem
+      PosixUser:
+        Uid: !Ref EFSAccessPointUserGroup
+        Gid: !Ref EFSAccessPointUserGroup
+      RootDirectory:
+        CreationInfo:
+          OwnerGid: !Ref EFSAccessPointUserGroup
+          OwnerUid: !Ref EFSAccessPointUserGroup
+          Permissions: "0755"
+        Path: !Ref EFSAccessPointPath
+
+  EfsMountTarget1:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EfsFileSystem
+      SubnetId: !Ref PrivateSubnetId1
+      SecurityGroups:
+        - !Ref EfsSecurityGroup
+
+  EfsMountTarget2:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EfsFileSystem
+      SubnetId: !Ref PrivateSubnetId2
+      SecurityGroups:
+        - !Ref EfsSecurityGroup
+
+  EfsTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-task-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ ecs-tasks.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+            Condition:
+              ArnLike:
+                aws:SourceArn:
+                  - !Sub "arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:*"
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+
+  EfsTaskPolicy:
+      Type: AWS::IAM::ManagedPolicy
+      Properties:
+        ManagedPolicyName: !Sub ${Namespace}-task-policy
+        Path: "/"
+        Roles: [ !Ref EfsTaskRole ]
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Sid: EFSAccess
+              Effect: Allow
+              Action:
+                - elasticfilesystem:ClientMount
+                - elasticfilesystem:ClientWrite
+                - elasticfilesystem:DescribeMountTargets
+                - elasticfilesystem:DescribeFileSystems
+              Resource: !GetAtt EfsFileSystem.Arn
+
+Outputs:
+  EfsFileSystemId:
+    Description: The ID of the EFS file system
+    Value: !Ref EfsFileSystem
+
+  EfsAccessPointId:
+    Description: The ID of the EFS access point
+    Value: !Ref EfsAccessPoint
+  
+  EfsTaskRoleArn:
+    Description: The ARN of the EFS task role
+    Value: !GetAtt EfsTaskRole.Arn
