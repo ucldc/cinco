@@ -6,6 +6,10 @@ Parameters:
   Namespace:
     Description: The namespace for the ECS Application
     Type: String
+  ClusterName:
+    Description: The name of the ECS cluster - if not provided, will create one using namespace.
+    Type: String
+    Default: ""
   VpcId:
     Description: The VPC the ECS service will run in
     Type: AWS::EC2::VPC::Id
@@ -51,10 +55,12 @@ Parameters:
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
   HasContainerPort: !Not [!Equals [!Ref ContainerPort, 80]]
+  CreateCluster: !Equals [!Ref ClusterName, ""]
 
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
+    Condition: CreateCluster
     Properties:
       ClusterName: !Ref Namespace
       CapacityProviders:
@@ -189,7 +195,7 @@ Resources:
   ECSService:
     Type: AWS::ECS::Service
     Properties:
-      Cluster: !Ref ECSCluster
+      Cluster: !If [CreateCluster, !Ref ECSCluster, !Ref ClusterName]
       TaskDefinition: !Ref TaskDefinition
       LaunchType: FARGATE
       ServiceName: !Sub ${Namespace}-service
@@ -265,7 +271,7 @@ Resources:
 Outputs:
   ECSCluster:
     Description: The ECS Cluster
-    Value: !Ref ECSCluster
+    Value: !If [CreateCluster, !Ref ECSCluster, !Ref ClusterName]
 
   TaskDefinition:
     Description: The ECS Task Definition
