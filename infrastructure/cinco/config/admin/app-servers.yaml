@@ -5,14 +5,39 @@ parameters:
   Namespace: cinco-admin
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: 'public.ecr.aws/docker/library/httpd:2.4'
-  ContainerEntryPoint: 'sh,-c'
+  # ContainerImage: 'public.ecr.aws/docker/library/httpd:2.4'
+  # ContainerEntryPoint: 'sh,-c'
+  ContainerImage: '${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin'
+  ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
-  ContainerCommand: >-
-    /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
-    App</title> <style>body {margin-top: 40px; background-color:
-    #333;} </style> </head><body> <div
-    style=color:white;text-align:center> <h1>Amazon ECS Sample
-    App</h1> <h2>Congratulations!</h2> <p>Your application is now
-    running on a container in Amazon ECS.</p> </div></body></html>' >
-    /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  ContainerCommand: "/start"
+  # ContainerCommand: >-
+  #   /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
+  #   App</title> <style>body {margin-top: 40px; background-color:
+  #   #333;} </style> </head><body> <div
+  #   style=color:white;text-align:center> <h1>Amazon ECS Sample
+  #   App</h1> <h2>Congratulations!</h2> <p>Your application is now
+  #   running on a container in Amazon ECS.</p> </div></body></html>' >
+  #   /usr/local/apache2/htdocs/index.html && httpd-foreground"
+sceptre_user_data:
+  ContainerEnvironment:
+    - Name: POSTGRES_HOST
+      Value: !stack_output admin/db.yaml::RDSHostName
+    - Name: POSTGRES_PORT
+      Value: 5432
+    - Name: POSTGRES_DB
+      Value: postgres
+    - Name: POSTGRES_USER
+      Value: !environment_variable DB_USERNAME
+    - Name: POSTGRES_PASSWORD
+      Value: !environment_variable DB_PASSWORD
+    - Name: DJANGO_SETTINGS_MODULE
+      Value: config.settings.production
+    - Name: DJANGO_SECRET_KEY
+      Value: !environment_variable DJANGO_SECRET_KEY
+    - Name: DJANGO_ADMIN_URL
+      Value: !environment_variable DJANGO_ADMIN_URL
+    - Name: DJANGO_AWS_STORAGE_BUCKET_NAME
+      Value: !environment_variable S3_BCUKET
+    - Name: WEB_CONCURRENCY
+      Value: 4
