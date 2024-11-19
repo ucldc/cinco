@@ -1,0 +1,22 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output arclight/solr.yaml::ECSCluster
+  Namespace: cinco-solr-writer
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: 'public.ecr.aws/docker/library/solr:9.6.1'
+  ContainerPort: 8983
+  ContainerCount: 1
+  ContainerEntryPoint: "docker-entrypoint.sh"
+  ContainerCommand: "solr-foreground"
+  HealthCheckPath: "/solr/#/"
+
+sceptre_user_data:
+  EFSVolumes:
+    Name: "cinco-solr-efs-volume"
+    Path: "/var/solr"
+    FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
+    AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
+    TaskRoleArn: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
