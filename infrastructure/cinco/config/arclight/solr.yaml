@@ -11,3 +11,11 @@ parameters:
   ContainerEntryPoint: "docker-entrypoint.sh"
   ContainerCommand: "solr-foreground"
   HealthCheckPath: "/solr/#/"
+
+sceptre_user_data:
+  EFSVolumes:
+    Name: "cinco-solr-efs-volume"
+    Path: "/var/solr"
+    FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
+    AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
+    TaskRoleArn: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
