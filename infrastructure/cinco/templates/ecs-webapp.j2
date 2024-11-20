@@ -126,21 +126,14 @@ Resources:
               awslogs-group: !Sub /ecs/${Namespace}-task-definition
               awslogs-region: us-west-2
               awslogs-stream-prefix: ecs
-          {% if sceptre_user_data and sceptre_user_data.EFSVolumes is defined %}
-          MountPoints:
-            - SourceVolume: {{ sceptre_user_data.EFSVolumes.Name }}
-              ContainerPath: {{ sceptre_user_data.EFSVolumes.Path }}
+          {% if sceptre_user_data and sceptre_user_data.ContainerMountPoints is defined %}
+          MountPoints: {{ sceptre_user_data.ContainerMountPoints }}
           {% endif %}
-      {% if sceptre_user_data and sceptre_user_data.EFSVolumes is defined %}
-      Volumes:
-        - Name: {{ sceptre_user_data.EFSVolumes.Name }}
-          EFSVolumeConfiguration:
-            FilesystemId: {{ sceptre_user_data.EFSVolumes.FilesystemId }}
-            AuthorizationConfig:
-              AccessPointId: {{ sceptre_user_data.EFSVolumes.AccessPointId }}
-              IAM: ENABLED
-            TransitEncryption: ENABLED
-      TaskRoleArn: {{ sceptre_user_data.EFSVolumes.TaskRoleArn }}
+      {% if sceptre_user_data and sceptre_user_data.Volumes is defined %}
+      Volumes: {{ sceptre_user_data.Volumes }}
+      {% endif %}
+      {% if sceptre_user_data and sceptre_user_data.TaskRole is defined %}
+      TaskRoleArn: {{ sceptre_user_data.TaskRole }}
       {% endif %}
       Family: !Sub ${Namespace}-task-definition
       ExecutionRoleArn: !GetAtt 'ECSTaskExecutionRole.Arn'

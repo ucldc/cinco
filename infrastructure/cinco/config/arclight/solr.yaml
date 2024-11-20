@@ -13,12 +13,18 @@ parameters:
   HealthCheckPath: "/solr/#/"
 
 sceptre_user_data:
-  EFSVolumes:
-    Name: "cinco-solr-efs-volume"
-    Path: "/var/solr"
-    FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
-    AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
-    TaskRoleArn: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
+  Volumes:
+    - Name: "cinco-solr-efs-volume"
+      EFSVolumeConfiguration:
+        FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
+        AuthorizationConfig:
+          AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
+          IAM: ENABLED
+        TransitEncryption: ENABLED
+  ContainerMountPoints:
+    - SourceVolume: "cinco-solr-efs-volume"
+      ContainerPath: "/var/solr"
+  TaskRole: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
   HttpAccessList:
     - Name: "Admin"
       Id: !stack_output admin/app-servers.yaml::ServiceSecurityGroup
