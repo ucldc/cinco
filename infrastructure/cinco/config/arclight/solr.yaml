@@ -19,3 +19,10 @@ sceptre_user_data:
     FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
     AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
     TaskRoleArn: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
+  HttpAccessList:
+    - Name: "Admin"
+      Id: !stack_output admin/app-servers.yaml::ServiceSecurityGroup
+    # - Name: "Arclight"
+    #   Id: !stack_output arclight/arclight.yaml::ServiceSecurityGroup
+    # - Name: "PADAirflow"
+    #   Id: !environment_variable PAD_AIRFLOW_SECURITY_GROUP
