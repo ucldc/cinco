@@ -21,11 +21,11 @@ parameters:
   #   /usr/local/apache2/htdocs/index.html && httpd-foreground"
 sceptre_user_data:
   ContainerEnvironment:
-    - Name: POSTGRES_HOST
-      Value: !stack_output admin/db.yaml::RDSHostName
-      # TODO: this is a circular dependency, but not sure how to resolve
-      # the db.yaml stack depends on the Security Group
-      # created in this stack
+    # TODO: this is a circular dependency, but not sure how to resolve
+    # the db.yaml stack depends on the Security Group
+    # created in this stack
+    # - Name: POSTGRES_HOST
+    #   Value: !stack_output admin/db.yaml::RDSHostName
     - Name: POSTGRES_PORT
       Value: 5432
     - Name: POSTGRES_DB
