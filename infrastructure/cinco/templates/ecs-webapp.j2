@@ -52,6 +52,47 @@ Parameters:
     Type: String
     Default: ""
 
+{# In addition to the CloudFormation Parameters listed above, this template also supports
+   the following sceptre_user_data parameters:
+
+  ContainerEnvironment:
+    Type: a list of key-value pairs
+    Description: environment variables to set in the container, eg:
+      ContainerEnvironment:
+        - ENV_VAR: value
+    Required: false - if not provided, no environment variables will be set
+
+  HttpAccessList:
+    Type: a list of security group ids
+    Description: If provided, whitelists access to the container via the load balancer
+      over HTTP and, if an SSL cert is provided, HTTPS e.g.:
+      HttpAccessList:
+        - sg-12345678
+    Required: false - if not provided, the load balancer's SecurityGroups will allow
+      access to ports 80 and 443 from everywhere.
+
+  Volumes:
+    Type: a list of AWS::ECS::TaskDefinition Volumes
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html
+    Description: Volume configuration for tasks launched by the task definnition
+      Volume Name value corresponds to SourceVolume value in ContainerMountPoints
+    Required: false - if not provided, no volumes will be configured
+
+  ContainerMountPoints:
+    Type: a list of AWS::ECS::TaskDefinition MountPoints
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-mountpoint.html
+    Description: a list of mount points for the container
+      SourceVolume corresponds to the Name value in Volumes
+    Required: false - if not provided, no mount points will be configured
+
+  TaskRole:
+    Type: an AWS::IAM::Role Arn
+    Description: a role to grant permissions to task containers
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-taskrolearn
+    Required: false - if not provided, no role will be configured.
+      required if an EFS Volume is configured, though.
+  #}
+
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
   CreateCluster: !Equals [!Ref ClusterName, ""]
@@ -159,7 +200,7 @@ Resources:
           IpProtocol: tcp
           FromPort: 80
           ToPort: 80
-          SourceSecurityGroupId: {{ securitygroup.Id }}
+          SourceSecurityGroupId: {{ securitygroup }}
         {% endfor %}
       {% else %}
       SecurityGroupIngress:
@@ -172,7 +213,7 @@ Resources:
 
   {% if sceptre_user_data and sceptre_user_data.HttpAccessList is defined %}
   {% for securitygroup in sceptre_user_data.HttpAccessList %}
-  SecurityGroupHttpsIngress{{ securitygroup.Name }}:
+  SecurityGroupHttpsIngress{{ loop.index }}:
     Type: AWS::EC2::SecurityGroupIngress
     Condition: HasSSLCert
     Properties:
@@ -181,7 +222,7 @@ Resources:
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
-      SourceSecurityGroupId: {{ securitygroup.Id }}
+      SourceSecurityGroupId: {{ securitygroup }}
   {% endfor %}
   {% else %}
   SecurityGroupHttpsIngress:
