@@ -5,7 +5,7 @@ parameters:
   Namespace: cinco-admin
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  # ContainerImage: 'public.ecr.aws/docker/library/httpd:2.4'
+  # ContainerImage: "public.ecr.aws/docker/library/httpd:2.4"
   # ContainerEntryPoint: 'sh,-c'
   ContainerImage: '${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin'
   ContainerEntryPoint: '/entrypoint'
@@ -41,6 +41,6 @@ sceptre_user_data:
     - Name: DJANGO_ADMIN_URL
       Value: !environment_variable DJANGO_ADMIN_URL
     - Name: DJANGO_AWS_STORAGE_BUCKET_NAME
-      Value: !environment_variable S3_BCUKET
+      Value: !environment_variable S3_BUCKET
     - Name: WEB_CONCURRENCY
       Value: 4
