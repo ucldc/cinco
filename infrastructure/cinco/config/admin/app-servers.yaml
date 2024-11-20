@@ -24,23 +24,13 @@ sceptre_user_data:
     # TODO: this is a circular dependency, but not sure how to resolve
     # the db.yaml stack depends on the Security Group
     # created in this stack
-    # - Name: POSTGRES_HOST
-    #   Value: !stack_output admin/db.yaml::RDSHostName
-    - Name: POSTGRES_PORT
-      Value: 5432
-    - Name: POSTGRES_DB
-      Value: postgres
-    - Name: POSTGRES_USER
-      Value: !environment_variable DB_USERNAME
-    - Name: POSTGRES_PASSWORD
-      Value: !environment_variable DB_PASSWORD
-    - Name: DJANGO_SETTINGS_MODULE
-      Value: config.settings.production
-    - Name: DJANGO_SECRET_KEY
-      Value: !environment_variable DJANGO_SECRET_KEY
-    - Name: DJANGO_ADMIN_URL
-      Value: !environment_variable DJANGO_ADMIN_URL
-    - Name: DJANGO_AWS_STORAGE_BUCKET_NAME
-      Value: !environment_variable S3_BUCKET
-    - Name: WEB_CONCURRENCY
-      Value: 4
+    # - POSTGRES_HOST: !stack_output admin/db.yaml::RDSHostName
+    - POSTGRES_PORT: 5432
+    - POSTGRES_DB: postgres
+    - POSTGRES_USER: !environment_variable DB_USERNAME
+    - POSTGRES_PASSWORD: !environment_variable DB_PASSWORD
+    - DJANGO_SETTINGS_MODULE: config.settings.production
+    - DJANGO_SECRET_KEY: !environment_variable DJANGO_SECRET_KEY
+    - DJANGO_ADMIN_URL: !environment_variable DJANGO_ADMIN_URL
+    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET
+    - WEB_CONCURRENCY: 4
