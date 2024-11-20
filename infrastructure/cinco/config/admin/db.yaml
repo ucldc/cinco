@@ -7,4 +7,4 @@ parameters:
   SubnetIDs: !environment_variable SUBNET_IDS
   DBUsername: !environment_variable DB_USERNAME
   DBPassword: !environment_variable DB_PASSWORD
-  ApplicationSecurityGroup: !stack_output admin/app-servers.yaml::SecurityGroup
+  ApplicationSecurityGroup: !stack_output admin/app-servers.yaml::ServiceSecurityGroup
