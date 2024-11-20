@@ -54,7 +54,6 @@ Parameters:
 
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
-  HasContainerPort: !Not [!Equals [!Ref ContainerPort, 80]]
   CreateCluster: !Equals [!Ref ClusterName, ""]
 
 Resources:
@@ -157,7 +156,7 @@ Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security Group for application load balancer and, if container listens on port 80, ECS service
+      GroupDescription: Security Group for application load balancer
       GroupName: !Sub ${Namespace}-securitygroup
       VpcId: !Ref 'VpcId'
       SecurityGroupIngress:
@@ -180,9 +179,8 @@ Resources:
 
   ServiceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Condition: HasContainerPort
     Properties:
-      GroupDescription: Security Group for ECS service, if container listens on a port other than 80
+      GroupDescription: Security Group for ECS service
       GroupName: !Sub ${Namespace}-service-securitygroup
       VpcId: !Ref 'VpcId'
       SecurityGroupIngress:
@@ -209,8 +207,8 @@ Resources:
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups:
-            - !If [HasContainerPort, !Ref ServiceSecurityGroup, !Ref SecurityGroup]
+          SecurityGroups: 
+            - !Ref ServiceSecurityGroup
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
       DeploymentConfiguration:
@@ -280,6 +278,10 @@ Outputs:
   SecurityGroup:
     Description: The Security Group
     Value: !Ref SecurityGroup
+
+  ServiceSecurityGroup:
+    Description: The Service Security Group
+    Value: !Ref ServiceSecurityGroup
 
   ECSService:
     Description: The ECS Service
