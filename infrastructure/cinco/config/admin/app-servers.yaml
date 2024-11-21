@@ -16,3 +16,4 @@ parameters:
     App</h1> <h2>Congratulations!</h2> <p>Your application is now
     running on a container in Amazon ECS.</p> </div></body></html>' >
     /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  DBInstanceSecurityGroup: !stack_output admin/db.yaml::RDSSecurityGroup
