@@ -51,6 +51,10 @@ Parameters:
     Description: The ARN of the SSL certificate to use for the load balancer
     Type: String
     Default: ""
+  DBInstanceSecurityGroup:
+    Type: String
+    Description: The security group for the RDS instance
+    Default: ""
 
 {# In addition to the CloudFormation Parameters listed above, this template also supports
    the following sceptre_user_data parameters:
@@ -96,6 +100,7 @@ Parameters:
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
   CreateCluster: !Equals [!Ref ClusterName, ""]
+  HasDBInstance: !Not [!Equals [!Ref DBInstanceSecurityGroup, ""]]
 
 Resources:
   ECSCluster:
@@ -251,6 +256,16 @@ Resources:
           FromPort: !Ref ContainerPort
           ToPort: !Ref ContainerPort
           SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
+
+  DBInstanceSecurityGroupApplicationIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Condition: HasDBInstance
+    Properties:
+      GroupId: !Ref DBInstanceSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: "5432"
+      ToPort: "5432"
+      SourceSecurityGroupId: !Ref ServiceSecurityGroup
 
   ECSService:
     Type: AWS::ECS::Service

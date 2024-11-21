@@ -19,12 +19,10 @@ parameters:
   #   App</h1> <h2>Congratulations!</h2> <p>Your application is now
   #   running on a container in Amazon ECS.</p> </div></body></html>' >
   #   /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  DBInstanceSecurityGroup: !stack_output admin/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEnvironment:
-    # TODO: this is a circular dependency, but not sure how to resolve
-    # the db.yaml stack depends on the Security Group
-    # created in this stack
-    # - POSTGRES_HOST: !stack_output admin/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output admin/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable DB_USERNAME
