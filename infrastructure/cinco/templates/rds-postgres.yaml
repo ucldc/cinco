@@ -13,9 +13,6 @@ Parameters:
   SubnetIDs:
     Description: Comma-separated list of subnet IDs
     Type: List<AWS::EC2::Subnet::Id>
-  ApplicationSecurityGroup:
-    Description: The security group for the application - this template allows the RDS instance to be accessed from an application residing in the application security group
-    Type: AWS::EC2::SecurityGroup::Id
 
 
 Resources:
@@ -39,23 +36,12 @@ Resources:
 
   InstanceSecurityGroupIngress:
     Type: "AWS::EC2::SecurityGroupIngress"
-    DependsOn: "InstanceSecurityGroup"
     Properties:
       GroupId: !Ref "InstanceSecurityGroup"
       IpProtocol: "tcp"
       FromPort: "0"
       ToPort: "65535"
       SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
-
-  InstanceSecurityGroupApplicationIngress:
-    Type: "AWS::EC2::SecurityGroupIngress"
-    DependsOn: "InstanceSecurityGroup"
-    Properties:
-      GroupId: !Ref "InstanceSecurityGroup"
-      IpProtocol: "tcp"
-      FromPort: "5432"
-      ToPort: "5432"
-      SourceSecurityGroupId: !Ref "ApplicationSecurityGroup"
 
   RDSInstance:
     Type: AWS::RDS::DBInstance

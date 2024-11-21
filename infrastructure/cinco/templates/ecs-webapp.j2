@@ -51,10 +51,15 @@ Parameters:
     Description: The ARN of the SSL certificate to use for the load balancer
     Type: String
     Default: ""
+  DBInstanceSecurityGroup:
+    Type: String
+    Description: The security group for the RDS instance
+    Default: ""
 
 Conditions:
   HasSSLCert: !Not [!Equals [!Ref SSLCertArn, ""]]
   CreateCluster: !Equals [!Ref ClusterName, ""]
+  HasDBInstance: !Not [!Equals [!Ref DBInstanceSecurityGroup, ""]]
 
 Resources:
   ECSCluster:
@@ -190,6 +195,16 @@ Resources:
           ToPort: !Ref ContainerPort
           SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
 
+  DBInstanceSecurityGroupApplicationIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Condition: HasDBInstance
+    Properties:
+      GroupId: !Ref DBInstanceSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: "5432"
+      ToPort: "5432"
+      SourceSecurityGroupId: !Ref ServiceSecurityGroup
+
   ECSService:
     Type: AWS::ECS::Service
     Properties:
@@ -207,7 +222,7 @@ Resources:
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups: 
+          SecurityGroups:
             - !Ref ServiceSecurityGroup
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
