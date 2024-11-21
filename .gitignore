@@ -281,4 +281,5 @@ admin/cincoctrl/cincoctrl/media/
 
 ### Infrastructure
 env.*
+!env.example
 .DS_Store
