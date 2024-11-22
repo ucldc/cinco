@@ -1,4 +1,4 @@
-exclude: '^docs/|/migrations/|devcontainer.json'
+exclude: '^admin/cincoctrl/docs/|/migrations/|devcontainer.json'
 default_stages: [pre-commit]
 
 default_language_version:
