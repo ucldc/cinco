@@ -16,7 +16,7 @@ updates:
   # https://github.com/dependabot/dependabot-core/issues/2178
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/django` directory
-    directory: 'compose/local/django/'
+    directory: 'admin/cincoctrl/compose/local/django/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -29,7 +29,7 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/docs` directory
-    directory: 'compose/local/docs/'
+    directory: 'admin/cincoctrl/compose/local/docs/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -42,21 +42,21 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/node` directory
-    directory: 'compose/local/node/'
+    directory: 'admin/cincoctrl/compose/local/node/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/aws` directory
-    directory: 'compose/production/aws/'
+    directory: 'admin/cincoctrl/compose/production/aws/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/django` directory
-    directory: 'compose/production/django/'
+    directory: 'admin/cincoctrl/compose/production/django/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -69,14 +69,14 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/postgres` directory
-    directory: 'compose/production/postgres/'
+    directory: 'admin/cincoctrl/compose/production/postgres/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/traefik` directory
-    directory: 'compose/production/traefik/'
+    directory: 'admin/cincoctrl/compose/production/traefik/'
     # Every weekday
     schedule:
       interval: 'daily'
