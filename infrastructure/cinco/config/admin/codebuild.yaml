@@ -15,5 +15,6 @@ sceptre_user_data:
                 build:
                   commands:
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
-                    - docker buildx create --use
-                    - docker buildx build --platform linux/arm64,linux/amd64 --file admin/cincoctrl/compose/production/django/Dockerfile -t ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin admin/cincoctrl --push
+                    - docker build -t cinco/admin admin/cincoctrl --file admin/cincoctrl/compose/production/django/Dockerfile
+                    - docker tag cinco/admin:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin:latest
