@@ -18,6 +18,10 @@ Parameters:
     Type: List<AWS::EC2::Subnet::Id>
   ContainerImage:
     Description: The container image to use for the ECS task
+    {# Possible tactics for getting private repository image:
+      ContainerImage: rcmd aws ecr describe-repositories --repository-names cinco/admin --query 'repositories[0].repositoryUri' --output text --region us-west-2
+      ContainerImage: rcmd echo "`aws sts get-caller-identity --query Account --output text`.dkr.ecr.us-west-2.amazonaws.com/cinco/admin:latest"
+    #}
     Type: String
     Default: 'public.ecr.aws/docker/library/httpd:2.4'
   ContainerEntryPoint:
