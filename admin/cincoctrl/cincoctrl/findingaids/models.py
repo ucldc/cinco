@@ -42,37 +42,44 @@ FIELD_QUALIFIERS = (
     ("OC", "Occupation"),
 )
 
+
 class FindingAid(models.Model):
-    ark = CharField(max_length=255, unique=True) # auto-assigned
-    repository = ForeignKey("users.Repository", on_delete=models.CASCADE) # auto
+    ark = CharField(max_length=255, unique=True)  # auto-assigned
+    repository = ForeignKey("users.Repository", on_delete=models.CASCADE)  # auto
     created_by = ForeignKey(
         "users.User",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-    ) # auto
-    collection_title = CharField(max_length=255) # extract from <archdesc><unitittle> or user entered
-    collection_number = CharField(max_length=255) # extract from <archdesc> <unitid>
-    ead_file = ForeignKey('File', on_delete=models.CASCADE) # user select
-    record_type = CharField(max_length=10, choices=RECORD_TYPES) # auto
-    status = CharField(max_length=50, default="imported", choices=STATUSES) # auto
-    date_created = DateTimeField(auto_now_add=True) # auto
-    date_updated = DateTimeField(auto_now=True) # auto
+    )  # auto
+    collection_title = CharField(max_length=255)  # extracted
+    collection_number = CharField(max_length=255)  # extracted
+    ead_file = ForeignKey("File", on_delete=models.CASCADE)  # user select
+    record_type = CharField(max_length=10, choices=RECORD_TYPES)  # auto
+    status = CharField(max_length=50, default="imported", choices=STATUSES)  # auto
+    date_created = DateTimeField(auto_now_add=True)  # auto
+    date_updated = DateTimeField(auto_now=True)  # auto
 
     def __str__(self):
         return self.collection_title
 
+
 class SupplementaryFile(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
-    file = ForeignKey('File', on_delete=models.CASCADE)
+    file = ForeignKey("File", on_delete=models.CASCADE)
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.finding_aid} / {self.file}"
 
+
 class File(models.Model):
     file = FileField()
+
+    def __str__(self):
+        return f"{self.file}"
+
 
 class ExpressRecord(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
@@ -97,6 +104,7 @@ class ExpressRecord(models.Model):
     def __str__(self):
         return f"{self.finding_aid} (Express)"
 
+
 class ExpressRecordField(models.Model):
     record = ForeignKey("ExpressRecord", on_delete=models.CASCADE)
     term = CharField(max_length=5, choices=FIELD_TERMS)
@@ -106,8 +114,9 @@ class ExpressRecordField(models.Model):
     def __str__(self):
         return f"{self.term} / {self.qualifier} = {self.value}"
 
+
 class RevisionHistory(models.Model):
-    record = ForeignKey('ExpressRecord', on_delete=models.CASCADE)
+    record = ForeignKey("ExpressRecord", on_delete=models.CASCADE)
     date_revised = DateTimeField(auto_now_add=True)
     note = TextField()
 
