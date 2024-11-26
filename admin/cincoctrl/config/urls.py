@@ -19,7 +19,9 @@ urlpatterns = [
     # User management
     path("users/", include("cincoctrl.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("findingaids/", include("cincoctrl.findingaids.urls", namespace="findingaids")),
+    path(
+        "findingaids/", include("cincoctrl.findingaids.urls", namespace="findingaids")
+    ),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

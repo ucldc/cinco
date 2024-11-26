@@ -4,18 +4,21 @@ from django.db.models import QuerySet
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView
+from django.views.generic import ListView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
-from django.views.generic import ListView
 
-from cincoctrl.users.models import User
 from cincoctrl.users.models import Repository
+from cincoctrl.users.models import User
+
 
 class RepositoryListView(LoginRequiredMixin, ListView):
     model = Repository
     template_name = "users/repositories.yml"
 
+
 repository_list_view = RepositoryListView.as_view()
+
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
@@ -35,7 +38,7 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         assert self.request.user.is_authenticated  # type guard
         return self.request.user.get_absolute_url()
 
-    def get_object(self, queryset: QuerySet | None=None) -> User:
+    def get_object(self, queryset: QuerySet | None = None) -> User:
         assert self.request.user.is_authenticated  # type guard
         return self.request.user
 

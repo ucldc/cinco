@@ -6,7 +6,10 @@ from django.utils.translation import gettext_lazy as _
 
 from .forms import UserAdminChangeForm
 from .forms import UserAdminCreationForm
-from .models import User, UserRole, RepositoryLink, Repository
+from .models import Repository
+from .models import RepositoryLink
+from .models import User
+from .models import UserRole
 
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
@@ -14,17 +17,20 @@ if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     admin.autodiscover()
     admin.site.login = secure_admin_login(admin.site.login)  # type: ignore[method-assign]
 
+
 class UserRoleInline(admin.TabularInline):
     model = UserRole
 
+
 class RepositoryLinkInline(admin.TabularInline):
     model = RepositoryLink
+
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
-    inlines = [UserRoleInline,]
+    inlines = [UserRoleInline]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         (_("Personal info"), {"fields": ("name",)}),
@@ -55,11 +61,12 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
     )
 
-class RepositoryAdmin(admin.ModelAdmin):
-    inlines = [RepositoryLinkInline,]
 
+@admin.register(Repository)
+class RepositoryAdmin(admin.ModelAdmin):
+    inlines = [RepositoryLinkInline]
+
+
+@admin.register(UserRole)
 class UserRoleAdmin(admin.ModelAdmin):
     pass
-
-admin.site.register(Repository, RepositoryAdmin)
-admin.site.register(UserRole, UserRoleAdmin)

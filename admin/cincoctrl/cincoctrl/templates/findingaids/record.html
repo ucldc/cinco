@@ -5,7 +5,6 @@
 {% block title %}
   {{ record.repository }}: {{ record.collection_title }}
 {% endblock title %}
-
 {% block content %}
   <div class="container">
     <div class="row">
@@ -25,5 +24,5 @@
         <a href="{% url 'findingaids:update_record' record.pk %}">Update</a>
       </div>
     </div>
-</div>
+  </div>
 {% endblock content %}

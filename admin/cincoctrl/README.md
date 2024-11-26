@@ -15,7 +15,7 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ### Development
 
-The development environment can be setup using docker. 
+The development environment can be setup using docker.
 
 https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally-docker.html
 

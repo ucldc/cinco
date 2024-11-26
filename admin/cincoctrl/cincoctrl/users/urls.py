@@ -1,9 +1,9 @@
 from django.urls import path
 
+from .views import repository_list_view
 from .views import user_detail_view
 from .views import user_redirect_view
 from .views import user_update_view
-from .views import repository_list_view
 
 app_name = "users"
 urlpatterns = [

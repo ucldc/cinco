@@ -1,16 +1,14 @@
 from http import HTTPStatus
 
-import pytest
-
 from django.conf import settings
-from django.test import RequestFactory
 from django.contrib.auth.models import AnonymousUser
-from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.test import RequestFactory
+from django.urls import reverse
 
+from cincoctrl.findingaids.views import home
 from cincoctrl.users.models import User
 from cincoctrl.users.tests.factories import UserFactory
-from cincoctrl.findingaids.views import home
 
 
 class TestFindingAidHomeView:

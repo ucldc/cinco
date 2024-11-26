@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: CodeBuild Role, Policy, and Project for building a Docker image 
+Description: CodeBuild Role, Policy, and Project for building a Docker image
   and pushing to Public ECR from GitHub, triggered by push to main branch.
   Sets up permissions to send logs to CloudWatch group with log stream name 'build'.
 Parameters:
@@ -13,10 +13,10 @@ Parameters:
     Description: The namespace for the CodeBuild project
     Type: String
   # BuildSpecLocation:
-  #   Description: The path to the buildspec.yml file in the GitHub repository - 
-  #     this should be relative to the root of the repo (the value of built-in 
+  #   Description: The path to the buildspec.yml file in the GitHub repository -
+  #     this should be relative to the root of the repo (the value of built-in
   #     env var CODEBUILD_SRC_DIR)
-    
+
 Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
@@ -46,7 +46,7 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Effect: Allow
-            Action: 
+            Action:
               - logs:CreateLogGroup
               - logs:CreateLogStream
               - logs:PutLogEvents
@@ -54,7 +54,7 @@ Resources:
               - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}
               - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}:*
           - Effect: Allow
-            Action: 
+            Action:
               - ecr-public:GetAuthorizationToken
               - ecr-public:BatchCheckLayerAvailability
               - ecr-public:InitiateLayerUpload
@@ -79,7 +79,7 @@ Resources:
         GitCloneDepth: 1
         BuildSpec: {{ sceptre_user_data.build_spec }}
         # BuildSpec: Ref BuildSpecLocation
-      Environment: 
+      Environment:
         Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
@@ -95,10 +95,10 @@ Resources:
             - Type: FILE_PATH
               Pattern: admin/.*
               ExcludeMatchedPattern: false
-      Artifacts: 
+      Artifacts:
         Type: NO_ARTIFACTS
-      LogsConfig: 
-        CloudWatchLogs: 
+      LogsConfig:
+        CloudWatchLogs:
           GroupName: !Ref Namespace
           Status: ENABLED
           StreamName: build
@@ -107,4 +107,3 @@ Outputs:
   ECRRepository:
     Description: The ECR Repository
     Value: !Ref ECRRepository
-

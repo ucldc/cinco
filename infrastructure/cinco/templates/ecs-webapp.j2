@@ -29,7 +29,7 @@ Parameters:
       #333;} </style> </head><body> <div
       style=color:white;text-align:center> <h1>Amazon ECS Sample
       App</h1> <h2>Congratulations!</h2> <p>Your application is now
-      running on a container in Amazon ECS.</p> </div></body></html>' > 
+      running on a container in Amazon ECS.</p> </div></body></html>' >
       /usr/local/apache2/htdocs/index.html && httpd-foreground"
   ContainerPort:
     Description: The port the container listens on, maps to 80 on the ECS host
@@ -57,7 +57,7 @@ Resources:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: !Ref Namespace
-      CapacityProviders: 
+      CapacityProviders:
         - FARGATE
 
   ECSTaskExecutionRole:
@@ -181,14 +181,14 @@ Resources:
           ContainerPort: !Ref ContainerPort
           LoadBalancerName: !Ref AWS::NoValue
           TargetGroupArn: !Ref TargetGroup
-      NetworkConfiguration: 
+      NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups: 
+          SecurityGroups:
             - !If [HasContainerPort, !Ref ServiceSecurityGroup, !Ref SecurityGroup]
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
-      DeploymentConfiguration: 
+      DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
         DeploymentCircuitBreaker:
@@ -201,10 +201,10 @@ Resources:
     Properties:
       Type: application
       Name: !Sub ${Namespace}-alb
-      SecurityGroups: 
+      SecurityGroups:
         - !Ref SecurityGroup
       Subnets: !Ref SubnetIDs
-  
+
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -218,11 +218,11 @@ Resources:
       TargetGroupAttributes:
         - Key: "deregistration_delay.timeout_seconds"
           Value: "300"
-  
+
   HttpListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
-      DefaultActions: 
+      DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref TargetGroup
       LoadBalancerArn: !Ref LoadBalancer
@@ -268,6 +268,6 @@ Outputs:
     Description: The Http Listener
     Value: !Ref HttpListener
 
-  TargetGroup: 
+  TargetGroup:
     Description: The Target Group
     Value: !Ref TargetGroup

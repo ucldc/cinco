@@ -18,7 +18,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     "oac5.cdlib.org",
-    "http://cinco-admin-alb-1730456277.us-west-2.elb.amazonaws.com/"
+    "http://cinco-admin-alb-1730456277.us-west-2.elb.amazonaws.com/",
 ]
 
 # DATABASES

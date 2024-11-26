@@ -1,12 +1,12 @@
 Parameters:
   DBUsername:
     Description: The master username for the RDS instance
-    Type: "String" 
+    Type: "String"
   DBPassword:
     Description: The master password for the RDS instance
     Type: "String"
   Namespace:
-    Type: "String" 
+    Type: "String"
   VpcId:
     Description: The VPC the RDS instance will run in
     Type: AWS::EC2::VPC::Id
@@ -18,7 +18,7 @@ Parameters:
     Type: AWS::EC2::SecurityGroup::Id
 
 
-Resources: 
+Resources:
 
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
@@ -75,13 +75,13 @@ Resources:
       DBSubnetGroupName: !Ref DBSubnetGroup
       Port: 5432
       PubliclyAccessible: false
-      VPCSecurityGroups: 
+      VPCSecurityGroups:
         - !Ref InstanceSecurityGroup
       EnablePerformanceInsights: true
       PerformanceInsightsRetentionPeriod: 7
       # PerformanceInsightsKMSKeyId: String
       BackupRetentionPeriod: 7
-      EnableCloudwatchLogsExports: 
+      EnableCloudwatchLogsExports:
         - postgresql
         - upgrade
       AutoMinorVersionUpgrade: true
@@ -91,7 +91,7 @@ Outputs:
   RDSInstance:
     Description: The RDS instance
     Value: !Ref RDSInstance
-  
+
   RDSHostName:
     Description: The RDS hostname
     Value: !GetAtt RDSInstance.Endpoint.Address

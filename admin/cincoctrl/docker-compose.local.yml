@@ -1,7 +1,7 @@
 volumes:
   cincoctrl_local_postgres_data: {}
   cincoctrl_local_postgres_data_backups: {}
-  
+
 
 services:
   django:
