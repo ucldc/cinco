@@ -47,8 +47,6 @@ A list of [all  possible settings](http://cookiecutter-django.readthedocs.io/en/
 
 - Django 5.0.9
 - Postgres 16
-- Redis (for caching) - consider replacing with memcached
-- Traeffik (reverse proxy) - remove?
 - Allauth - consider removing, not sure if it's really doing anything for us
 - Gunicorn
 - Sentry (logging)
