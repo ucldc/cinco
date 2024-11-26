@@ -284,7 +284,7 @@ Resources:
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups: 
+          SecurityGroups:
             - !Ref ServiceSecurityGroup
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'

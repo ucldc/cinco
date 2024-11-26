@@ -134,7 +134,7 @@ Outputs:
   EfsAccessPointId:
     Description: The ID of the EFS access point
     Value: !Ref EfsAccessPoint
-  
+
   EfsTaskRoleArn:
     Description: The ARN of the EFS task role
     Value: !GetAtt EfsTaskRole.Arn
