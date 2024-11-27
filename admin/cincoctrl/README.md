@@ -13,9 +13,9 @@ License: BSD
 
 - project_name: Cinco Control
 - project_slug: cincoctrl
-- description: 
+- description:
 - author_name: CDL
-- email: 
+- email:
 - username_type: email
 - domain_name: oac5.cdlib.org (fake should be updated)
 - version:
