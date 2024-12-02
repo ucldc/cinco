@@ -25,7 +25,7 @@ sceptre_user_data:
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-efs-volume"
       ContainerPath: "/var/solr"
-  TaskRole: !stack_output arclight/solr-efs.yaml::EfsTaskRoleArn
+  TaskRole: !stack_output arclight/solr-efs.yaml::EfsWriterRoleArn
   HttpAccessList:
     - !stack_output admin/app-servers.yaml::ServiceSecurityGroup
     # - !stack_output arclight/arclight.yaml::ServiceSecurityGroup
