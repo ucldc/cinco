@@ -6,6 +6,7 @@ parameters:
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: !stack_output admin/codebuild.yaml::ECRRepository
+  ContainerPort: 5000
   ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
   ContainerCommand: "/start"
