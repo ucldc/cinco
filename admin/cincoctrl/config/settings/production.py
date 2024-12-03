@@ -103,7 +103,7 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "static",
-            "default_acl": "public-read",
+            # "default_acl": "public-read",
         },
     },
 }
