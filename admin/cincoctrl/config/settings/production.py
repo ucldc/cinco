@@ -4,6 +4,8 @@
 # import sentry_sdk
 # from sentry_sdk.integrations.django import DjangoIntegration
 # from sentry_sdk.integrations.logging import LoggingIntegration
+from socket import gethostbyname
+from socket import gethostname
 
 from .base import *  # noqa: F403
 from .base import DATABASES
@@ -19,6 +21,10 @@ ALLOWED_HOSTS = [
     "oac5.cdlib.org",
     "http://cinco-admin-alb-1730456277.us-west-2.elb.amazonaws.com/",
 ]
+
+# https://medium.com/django-unleashed/djangos-allowed-hosts-in-aws-ecs-369959f2c2ab
+# Added to get the IP address of the host machine in ECS container env
+ALLOWED_HOSTS.append(gethostbyname(gethostname()))
 
 # DATABASES
 # ------------------------------------------------------------------------------
