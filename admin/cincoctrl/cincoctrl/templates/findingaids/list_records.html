@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
-{% load static %}
+{% load record_tags %}
 
 {% block title %}
-  {{ repository }}: List {{ record_type }} Records
+  {{ repository }}: List {% record_type_label record_type %} Records
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>List {{ record_type }} Records</h2>
+        <h2>List {% record_type_label record_type %} Records</h2>
         <ul>
           {% for r in records %}
             <li>
-              <a href="{% url 'findingaids:view_record' r.pk %}">{{ r }}</a>
+              <a href="{{ r.get_absolute_url }}">{{ r }}</a>
             </li>
           {% endfor %}
         </ul>
-        <a href="{% url 'findingaids:upload_ead' repository.pk %}">Create EAD</a>
+        {% if record_type == 'express' %}
+          <a href="{% url 'findingaids:create_record_express' repository.code %}">Create Record Express</a>
+        {% else %}
+          <a href="{% url 'findingaids:upload_record' repository.code record_type %}">Create {% record_type_label record_type %}</a>
+        {% endif %}
       </div>
     </div>
   </div>

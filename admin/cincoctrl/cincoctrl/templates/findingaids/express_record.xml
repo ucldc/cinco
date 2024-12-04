@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<ead>
+    <eadheader langencoding="iso639-2b"
+               scriptencoding="iso15924"
+               repositoryencoding="iso15511"
+               countryencoding="iso3166-1"
+               dateencoding="iso8601">
+        <eadid xmlns:cdlpath="http://www.cdlib.org/path/"
+               countrycode="us" identifier="{{ object.finding_aid.ark }}"
+               mainagencycode="{{ object.finding_aid.repository.code }}"
+               publicid="{{ object.finding_aid.collection_number }}"
+               cdlpath:parent="{{ object.finding_aid.ark }}">
+            {{ object.finding_aid.collection_number }}
+        </eadid>
+         <filedesc id="filedesc">
+             <titlestmt>
+                 <titleproper>{{ object.finding_aid.collection_title }}</titleproper>
+                 <titleproper type="filing">{{ object.title_filing }}</titleproper>
+                 <author>
+                 {% if object.author_statement %}
+                    {{ object.author_statement }}
+                 {% else %}
+                    Finding aid created by {{ object.finding_aid.repository.name }} staff.
+                 {% endif %}
+                 </author>
+             </titlestmt>
+             <publicationstmt>
+                 <publisher>{{ object.finding_aid.repository.name }}</publisher>
+                 <date>{{ object.date_dacs }}</date>
+             </publicationstmt>
+         </filedesc>
+        {% if object.revisionhistory_set.exists %}
+            <revisiondesc>
+                {% for r in object.revisionhistory_set.all %}
+                    <change>
+                        <date>{{ r.date_revised }}</date>
+                        <item>{{ r.note }}</item>
+                    </change>
+                {% endfor %}
+            </revisiondesc>
+        {% endif %}
+        <profiledesc>
+            <creation>
+                This finding aid was produced using Record Express for OAC5 on
+                <date>{{ object.finding_aid.date_created }}</date>
+            </creation>
+        </profiledesc>
+     </eadheader>
+     <archdesc level="collection" id="archdesc">
+         <did id="did">
+             <head>Descriptive Summary</head>
+             <unittitle label="Title">{{ object.collection_title }}</unittitle>
+             <unitdate {% if object.date_iso %}normal="{{ object.date_iso }}"{% endif %} label="Dates">
+                {{ object.date_dacs }}
+            </unitdate>
+             <unitid label="Collection Number" repositorycode="{{ instance.finding_aid.repository.code }}" countrycode="US">
+                {{ object.finding_aid.collection_number }}
+            </unitid>
+             <origination label="Creator/Collector">
+                 {% for c in object.expressrecordcreator_set.all %}
+                 <{{c.creator_type}}>{{c.value}}</{{c.creator_type}}>
+                 {% endfor %}
+\             </origination>
+             <physdesc label="Extent">
+                <extent>{{object.extent}}</extent>
+             </physdesc>
+             {% if object.online_items_url %}
+             <extent type="dao">Online items available</extent>
+             <dao role="http://oac.cdlib.org/arcrole/link/search"
+                  href="{{ object.online_items_url }}"
+                  title="Online items"/>
+             {% endif %}
+             <repository label="Repository">
+                 <corpname>
+                    {{ object.finding_aid.repository.name }}
+                 </corpname>
+             </repository>
+             <abstract label="Abstract">
+                {{ object.abstract }}
+            </abstract>
+             <langmaterial>
+                <language langcode="{{object.language}}"/>
+            </langmaterial>
+        </did>
+        <accessrestrict id="accessrestrict">
+            <head>Access</head>
+            <p>{{ object.accessrestrict }}</p>
+        </accessrestrict>
+        <userestrict id="userestrict">
+            <head>Publication Rights</head>
+            <p>{{ object.userestrict }}</p>
+        </userestrict>
+        <prefercite id="prefercite">
+            <head>Preferred Citation</head>
+            <p>
+            {% if object.preferred_citation %}
+            {{ object.preferred_citation }}
+            {% else %}
+            {{ object.finding_aid.collection_title }}.  {{object.finding_aid.repository.name}}
+            {% endif %}
+            </p>
+        </prefercite>
+        <acqinfo id="acqinfo">
+            <head>Acquisition Information</head>
+            <p>{{ object.acqinfo }}</p>
+        </acqinfo>
+        {% if object.bioghist %}
+        <bioghist id="bioghist">
+            <head>Biography/Administrative History</head>
+            <p>{{object.bioghist}}</p>
+        </bioghist>
+        {% endif %}
+        <scopecontent id="scopecontent">
+            <head>Scope and Content of Collection</head>
+            <p>{{ object.scopecontent }}</p>
+        </scopecontent>
+        <controlaccess id="controlaccess">
+            <head>Indexing Terms</head>
+            {% for s in object.expressrecordsubject_set.all %}
+                {% if s.subject_type == 'subject'%}
+                <subject>{{s.value}}</subject>
+                {% else %}
+                <{{s.subject_type}} role="subject">{{s.value}}</{{s.subject_type}}>
+                {% endif %}
+            {% endfor %}
+        </controlaccess>
+        {% if object.findingaid.supplementaryfile_set.exists %}
+        <otherfindaid id="otherfindaid">
+            <head>Additional collection guides</head>
+            <list>
+            {% for supp_file in object.supplementaryfile_set.all %}
+              {{ supp_file.pdf_file }}
+            {% endfor %}
+            </list>
+        </otherfindaid>
+        {% endif %}
+        {% if object.processing_information %}
+        <processinfo>
+            <head>Processing information</head>
+            <p>{{ object.processing_information }}</p>
+        </processinfo>
+        {% endif %}
+    </archdesc>
+</ead>

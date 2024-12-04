@@ -159,7 +159,7 @@ typings/
 *.code-workspace
 
 # Local History for devcontainer
-.devcontainer/bash_history
+admin/cincoctrl/.devcontainer/bash_history
 
 
 
@@ -271,7 +271,7 @@ tags
 dump.rdb
 
 ### Project template
-cincoctrl/media/
+admin/cincoctrl/cincoctrl/media/
 
 .pytest_cache/
 .ipython/

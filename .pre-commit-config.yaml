@@ -1,4 +1,4 @@
-exclude: '^admin/cincoctrl/docs/|/migrations/|devcontainer.json'
+exclude: '^admin/cincoctrl/docs/|/migrations/|devcontainer.json|express_record.xml'
 default_stages: [pre-commit]
 
 default_language_version:
@@ -33,7 +33,7 @@ repos:
     hooks:
       # Linter
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix, --ignore, "ERA001"]
+        args: [--fix, --exit-non-zero-on-fix, --ignore, ERA001, --ignore, EM101, --ignore, TRY003, --ignore, DJ006, --ignore, S314]
       # Formatter
       - id: ruff-format
 

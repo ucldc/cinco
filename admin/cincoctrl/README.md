@@ -131,6 +131,8 @@ To run the tests, check your test coverage, and generate an HTML coverage report
 
     $ pytest
 
+By default tests are run with the `--reuse-db` option this can sometimes cause some problems if your db migrations have changed you can run with the `--create-db` option to override.
+
 ### Live reloading and Sass CSS compilation
 
 Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).

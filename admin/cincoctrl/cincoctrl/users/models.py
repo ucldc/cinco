@@ -45,12 +45,12 @@ class User(AbstractUser):
         """
         return reverse("users:detail", kwargs={"pk": self.id})
 
-    def has_repo_access(self, repository_id):
-        return self.userrole_set.filter(repository__pk=repository_id).exists()
+    def has_repo_access(self, repository_code):
+        return self.userrole_set.filter(repository__code=repository_code).exists()
 
-    def has_role(self, repository_id, role):
+    def has_role(self, repository_code, role):
         return self.userrole_set.filter(
-            repository__pk=repository_id,
+            repository__code=repository_code,
             role=role,
         ).exists()
 
