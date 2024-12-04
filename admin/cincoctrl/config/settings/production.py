@@ -12,6 +12,8 @@ from .base import DATABASES
 from .base import INSTALLED_APPS
 from .base import env
 
+DEBUG = True
+
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
