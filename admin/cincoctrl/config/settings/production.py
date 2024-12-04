@@ -20,6 +20,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = [
     "oac5.cdlib.org",
     "cinco-admin-alb-1944578478.us-west-2.elb.amazonaws.com",
+    "52.34.189.245",  # public IP of the ALB
 ]
 
 # https://medium.com/django-unleashed/djangos-allowed-hosts-in-aws-ecs-369959f2c2ab
