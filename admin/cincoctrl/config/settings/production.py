@@ -17,8 +17,21 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     "oac5.cdlib.org",
-    "http://cinco-admin-alb-1730456277.us-west-2.elb.amazonaws.com/",
+    "*",
 ]
+
+# We need the ALB's DNS record & public IP in ALLOWED_HOSTS, but neither
+# are persistent at the moment - revisit once we have a persistent DNS
+# record.
+
+# When/if we lock down ALLOWED_HOSTS, we'll need to add the following so
+# that the ECS task instance's health check will pass successfully
+# (health check configured at the target group):
+# This gets the IP address of the host machine in ECS container env
+# https://medium.com/django-unleashed/djangos-allowed-hosts-in-aws-ecs-369959f2c2ab
+# from socket import gethostbyname
+# from socket import gethostname
+# ALLOWED_HOSTS.append(gethostbyname(gethostname()))
 
 # DATABASES
 # ------------------------------------------------------------------------------
