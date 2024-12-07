@@ -63,6 +63,15 @@ Resources:
               - ecr-public:PutImage
               - sts:GetServiceBearerToken
             Resource: "*"
+          - Effect: Allow
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:BatchCheckLayerAvailability
+              - ecr:InitiateLayerUpload
+              - ecr:UploadLayerPart
+              - ecr:CompleteLayerUpload
+              - ecr:PutImage
+            Resource: "*"
 
   CodeBuildProject:
     Type: AWS::CodeBuild::Project
@@ -106,4 +115,4 @@ Resources:
 Outputs:
   ECRRepository:
     Description: The ECR Repository
-    Value: !Ref ECRRepository
+    Value: !GetAtt ECRRepository.RepositoryUri

@@ -5,15 +5,23 @@ parameters:
   Namespace: cinco-admin
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: 'public.ecr.aws/docker/library/httpd:2.4'
-  ContainerEntryPoint: 'sh,-c'
+  ContainerImage: !stack_output admin/codebuild.yaml::ECRRepository
+  ContainerPort: 5000
+  ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
-  ContainerCommand: >-
-    /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
-    App</title> <style>body {margin-top: 40px; background-color:
-    #333;} </style> </head><body> <div
-    style=color:white;text-align:center> <h1>Amazon ECS Sample
-    App</h1> <h2>Congratulations!</h2> <p>Your application is now
-    running on a container in Amazon ECS.</p> </div></body></html>' >
-    /usr/local/apache2/htdocs/index.html && httpd-foreground"
+  ContainerCommand: "/start"
   DBInstanceSecurityGroup: !stack_output admin/db.yaml::RDSSecurityGroup
+sceptre_user_data:
+  TaskRole: !stack_output admin/task-role.yaml::TaskRole
+  ContainerEnvironment:
+    - POSTGRES_HOST: !stack_output admin/db.yaml::RDSHostName
+    - POSTGRES_PORT: 5432
+    - POSTGRES_DB: postgres
+    - POSTGRES_USER: !environment_variable DB_USERNAME
+    - POSTGRES_PASSWORD: !environment_variable DB_PASSWORD
+    - DJANGO_SETTINGS_MODULE: config.settings.production
+    - DJANGO_SECRET_KEY: !environment_variable DJANGO_SECRET_KEY
+    - DJANGO_ADMIN_URL: !environment_variable DJANGO_ADMIN_URL
+    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET
+    - WEB_CONCURRENCY: 4
+    - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
