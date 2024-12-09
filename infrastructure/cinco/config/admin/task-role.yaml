@@ -1,0 +1,6 @@
+template:
+  path: task-role.yaml
+  type: file
+parameters:
+  Namespace: cinco-admin-task
+  BucketName: !environment_variable S3_BUCKET
