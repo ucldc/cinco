@@ -283,3 +283,35 @@ admin/cincoctrl/cincoctrl/media/
 env.*
 !env.example
 .DS_Store
+
+### Arclight
+
+# Ignore bundler config.
+/arclight/.bundle
+
+# Ignore all environment files (except templates).
+/arclight/.env*
+!/arclight/.env*.erb
+
+# Ignore all logfiles and tempfiles.
+/arclight/log/*
+/arclight/tmp/*
+!/arclight/log/.keep
+!/arclight/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/arclight/tmp/pids/*
+!/arclight/tmp/pids/
+!/arclight/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/arclight/storage/*
+!/arclight/storage/.keep
+/arclight/tmp/storage/*
+!/arclight/tmp/storage/
+!/arclight/tmp/storage/.keep
+
+arclight/public/assets
+
+# Ignore master key for decrypting credentials and more.
+arclight/config/master.key
