@@ -2,6 +2,7 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
+  ClusterName: !environment_variable STAGE_CLUSTER
   Namespace: cinco-ctrl
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
