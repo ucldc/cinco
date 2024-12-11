@@ -1,4 +1,4 @@
-exclude: '^admin/cincoctrl/docs/|/migrations/|devcontainer.json|express_record.xml'
+exclude: '^cincoctrl/docs/|/migrations/|devcontainer.json|express_record.xml'
 default_stages: [pre-commit]
 
 default_language_version:
