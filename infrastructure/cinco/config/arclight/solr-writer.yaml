@@ -2,7 +2,7 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output arclight/solr.yaml::ECSCluster
+  ClusterName: !stack_output ctrl/ctrl.yaml::ECSCluster
   Namespace: cinco-solr-writer
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
