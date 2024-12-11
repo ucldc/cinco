@@ -17,16 +17,16 @@ sceptre_user_data:
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
-        FilesystemId: !stack_output arclight/solr-efs.yaml::EfsFileSystemId
+        FilesystemId: !stack_output ctrl/solr-efs.yaml::EfsFileSystemId
         AuthorizationConfig:
-          AccessPointId: !stack_output arclight/solr-efs.yaml::EfsAccessPointId
+          AccessPointId: !stack_output ctrl/solr-efs.yaml::EfsAccessPointId
           IAM: ENABLED
         TransitEncryption: ENABLED
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-efs-volume"
       ContainerPath: "/var/solr"
-  TaskRole: !stack_output arclight/solr-efs.yaml::EfsReaderRoleArn
+  TaskRole: !stack_output ctrl/solr-efs.yaml::EfsReaderRoleArn
   HttpAccessList:
     - !stack_output ctrl/ctrl.yaml::ServiceSecurityGroup
-    # - !stack_output arclight/arclight.yaml::ServiceSecurityGroup
+    # - !stack_output ctrl/arclight.yaml::ServiceSecurityGroup
     # - !environment_variable PAD_AIRFLOW_SECURITY_GROUP
