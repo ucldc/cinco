@@ -2,8 +2,8 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output ctrl/ctrl.yaml::ECSCluster
-  Namespace: cinco-solr-reader
+  ClusterName: !stack_output stage/ctrl.yaml::ECSCluster
+  Namespace: cinco-solr-writer
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: 'public.ecr.aws/docker/library/solr:9.6.1'
@@ -17,16 +17,16 @@ sceptre_user_data:
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
-        FilesystemId: !stack_output ctrl/solr-efs.yaml::EfsFileSystemId
+        FilesystemId: !stack_output stage/solr-efs.yaml::EfsFileSystemId
         AuthorizationConfig:
-          AccessPointId: !stack_output ctrl/solr-efs.yaml::EfsAccessPointId
+          AccessPointId: !stack_output stage/solr-efs.yaml::EfsAccessPointId
           IAM: ENABLED
         TransitEncryption: ENABLED
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-efs-volume"
       ContainerPath: "/var/solr"
-  TaskRole: !stack_output ctrl/solr-efs.yaml::EfsReaderRoleArn
+  TaskRole: !stack_output stage/solr-efs.yaml::EfsWriterRoleArn
   HttpAccessList:
-    - !stack_output ctrl/ctrl.yaml::ServiceSecurityGroup
-    # - !stack_output ctrl/arclight.yaml::ServiceSecurityGroup
+    - !stack_output stage/ctrl.yaml::ServiceSecurityGroup
+    # - !stack_output stage/arclight.yaml::ServiceSecurityGroup
     # - !environment_variable PAD_AIRFLOW_SECURITY_GROUP
