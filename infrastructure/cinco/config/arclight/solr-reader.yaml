@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   ClusterName: !stack_output ctrl/ctrl.yaml::ECSCluster
-  Namespace: cinco-solr
+  Namespace: cinco-solr-reader
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: 'public.ecr.aws/docker/library/solr:9.6.1'
