@@ -11,11 +11,11 @@ parameters:
   ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
   ContainerCommand: "/start"
-  DBInstanceSecurityGroup: !stack_output stage/db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output stage/ctrl-db.yaml::RDSSecurityGroup
 sceptre_user_data:
   TaskRole: !stack_output stage/task-role.yaml::TaskRole
   ContainerEnvironment:
-    - POSTGRES_HOST: !stack_output stage/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output stage/ctrl-db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable DB_USERNAME
