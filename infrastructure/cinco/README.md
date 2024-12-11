@@ -25,7 +25,7 @@ To create or update only a single stack or stack group (this is a sceptre-ism, n
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch ctrl/app-servers.yaml
+sceptre launch ctrl/ctrl.yaml
 ```
 
 > Sceptre must be run from the `infrastructure/cinco` directory, and must not include `config` as part of the stack path.
@@ -41,15 +41,15 @@ sceptre launch ctrl
 Other useful sceptre commands:
 
 ```
-sceptre --debug generate ctrl/app-servers.yaml
-sceptre --debug validate ctrl/app-servers.yaml
-sceptre --debug launch ctrl/app-servers.yaml --disable-rollback
-sceptre --debug delete ctrl/app-servers.yaml
+sceptre --debug generate ctrl/ctrl.yaml
+sceptre --debug validate ctrl/ctrl.yaml
+sceptre --debug launch ctrl/ctrl.yaml --disable-rollback
+sceptre --debug delete ctrl/ctrl.yaml
 ```
 
-- `generate` outputs the CloudFormation template - for example, the `ecs-webapp.j2` template is a jinja template and the `ctrl/app-servers.yaml` config provides some `sceptre_user_data` that is resolved at `generate` time to produce the CloudFormation template.
+- `generate` outputs the CloudFormation template - for example, the `ecs-webapp.j2` template is a jinja template and the `ctrl/ctrl.yaml` config provides some `sceptre_user_data` that is resolved at `generate` time to produce the CloudFormation template.
 - `validate` validates the CloudFormation template against AWS and corresponds to the `validate-template` command in the aws cloudformation cli - requires credentials.
-- `launch` creates or updates a CloudFormation stack using the parameters provided in the config, for example, `launch ctrl/app-servers.yaml` updates the cinco-ctrl-app-servers stack, using the template configured in app-servers.yaml (doing any `generate` step required, if the template is not a straight yaml template), and the parameters configured in app-servers.yaml.
+- `launch` creates or updates a CloudFormation stack using the parameters provided in the config, for example, `launch ctrl/ctrl.yaml` updates the cinco-ctrl-ctrl stack, using the template configured in ctrl.yaml (doing any `generate` step required, if the template is not a straight yaml template), and the parameters configured in ctrl.yaml.
 - `delete` destroys a CloudFormation stack.
 
 > When updating stacks, be aware that some resource properties are immutable and, if updated, will require deleting and recreating the resource entirely. Property immutablity coupled with resource deletion protection can create unexpected results.

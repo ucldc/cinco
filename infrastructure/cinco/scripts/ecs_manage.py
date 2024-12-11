@@ -31,7 +31,7 @@ def task_template():
 
 
 def main(command: list[str] = ["migrate"]):
-    cinco_ctrl = get_stack("cinco-ctrl-app-servers")
+    cinco_ctrl = get_stack("cinco-ctrl-ctrl")
     cluster = get_stack_output(cinco_ctrl, "ECSCluster")
     task_definition = get_stack_output(cinco_ctrl, "TaskDefinition")
     task_definition = ":".join(task_definition.split(":")[:-1])
