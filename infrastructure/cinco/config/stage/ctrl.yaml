@@ -6,7 +6,7 @@ parameters:
   Namespace: cinco-ctrl
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output stage/codebuild.yaml::ECRRepository
+  ContainerImage: !stack_output stage/ctrl-build.yaml::ECRRepository
   ContainerPort: 5000
   ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
