@@ -50,7 +50,7 @@ Resources:
       EngineVersion: "16.3"
       EngineLifecycleSupport: open-source-rds-extended-support-disabled
       MultiAZ: false
-      DBInstanceIdentifier: cinco-admin
+      DBInstanceIdentifier: cinco-ctrl
       MasterUsername: !Ref DBUsername
       MasterUserPassword: !Ref DBPassword
       DBInstanceClass: db.t3.small

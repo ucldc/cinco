@@ -25,7 +25,7 @@ To create or update only a single stack or stack group (this is a sceptre-ism, n
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch admin/app-servers.yaml
+sceptre launch ctrl/app-servers.yaml
 ```
 
 > Sceptre must be run from the `infrastructure/cinco` directory, and must not include `config` as part of the stack path.
@@ -35,26 +35,26 @@ You could also launch a "stack group":
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch admin
+sceptre launch ctrl
 ```
 
 Other useful sceptre commands:
 
 ```
-sceptre --debug generate admin/app-servers.yaml
-sceptre --debug validate admin/app-servers.yaml
-sceptre --debug launch admin/app-servers.yaml --disable-rollback
-sceptre --debug delete admin/app-servers.yaml
+sceptre --debug generate ctrl/app-servers.yaml
+sceptre --debug validate ctrl/app-servers.yaml
+sceptre --debug launch ctrl/app-servers.yaml --disable-rollback
+sceptre --debug delete ctrl/app-servers.yaml
 ```
 
-- `generate` outputs the CloudFormation template - for example, the `ecs-webapp.j2` template is a jinja template and the `admin/app-servers.yaml` config provides some `sceptre_user_data` that is resolved at `generate` time to produce the CloudFormation template.
+- `generate` outputs the CloudFormation template - for example, the `ecs-webapp.j2` template is a jinja template and the `ctrl/app-servers.yaml` config provides some `sceptre_user_data` that is resolved at `generate` time to produce the CloudFormation template.
 - `validate` validates the CloudFormation template against AWS and corresponds to the `validate-template` command in the aws cloudformation cli - requires credentials.
-- `launch` creates or updates a CloudFormation stack using the parameters provided in the config, for example, `launch admin/app-servers.yaml` updates the cinco-admin-app-servers stack, using the template configured in app-servers.yaml (doing any `generate` step required, if the template is not a straight yaml template), and the parameters configured in app-servers.yaml.
+- `launch` creates or updates a CloudFormation stack using the parameters provided in the config, for example, `launch ctrl/app-servers.yaml` updates the cinco-ctrl-app-servers stack, using the template configured in app-servers.yaml (doing any `generate` step required, if the template is not a straight yaml template), and the parameters configured in app-servers.yaml.
 - `delete` destroys a CloudFormation stack.
 
 > When updating stacks, be aware that some resource properties are immutable and, if updated, will require deleting and recreating the resource entirely. Property immutablity coupled with resource deletion protection can create unexpected results.
 
-> Sceptre resolvers can resolve parameter values like "!stack_output admin/db.yaml::RDSHostName", but "launching" a stack with a parameter value that references another stack will trigger updating that stack as well (and any stacks that stack may reference)! Be careful about lingering working branch changes.
+> Sceptre resolvers can resolve parameter values like "!stack_output ctrl/db.yaml::RDSHostName", but "launching" a stack with a parameter value that references another stack will trigger updating that stack as well (and any stacks that stack may reference)! Be careful about lingering working branch changes.
 
 Templates are in `infrastructure/cinco/templates` directory. The ecs-webapp.j2 template is diagramed here:
 

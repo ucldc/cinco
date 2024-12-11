@@ -2,19 +2,19 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  Namespace: cinco-admin
+  Namespace: cinco-ctrl
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output admin/codebuild.yaml::ECRRepository
+  ContainerImage: !stack_output ctrl/codebuild.yaml::ECRRepository
   ContainerPort: 5000
   ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
   ContainerCommand: "/start"
-  DBInstanceSecurityGroup: !stack_output admin/db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output ctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
-  TaskRole: !stack_output admin/task-role.yaml::TaskRole
+  TaskRole: !stack_output ctrl/task-role.yaml::TaskRole
   ContainerEnvironment:
-    - POSTGRES_HOST: !stack_output admin/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output ctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable DB_USERNAME

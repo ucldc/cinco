@@ -31,9 +31,9 @@ def task_template():
 
 
 def main(command: list[str] = ["migrate"]):
-    cinco_admin = get_stack("cinco-admin-app-servers")
-    cluster = get_stack_output(cinco_admin, "ECSCluster")
-    task_definition = get_stack_output(cinco_admin, "TaskDefinition")
+    cinco_ctrl = get_stack("cinco-ctrl-app-servers")
+    cluster = get_stack_output(cinco_ctrl, "ECSCluster")
+    task_definition = get_stack_output(cinco_ctrl, "TaskDefinition")
     task_definition = ":".join(task_definition.split(":")[:-1])
 
     print(f"Running `python manage.py {' '.join(command)}` " "on Cinco Ctrl in ECS")
@@ -47,7 +47,7 @@ def main(command: list[str] = ["migrate"]):
             "awsvpcConfiguration": {
                 "subnets": os.environ["SUBNET_IDS"].split(","),
                 "securityGroups": [
-                    get_stack_output(cinco_admin, "ServiceSecurityGroup")
+                    get_stack_output(cinco_ctrl, "ServiceSecurityGroup")
                 ],
                 "assignPublicIp": "ENABLED",
             }
@@ -55,7 +55,7 @@ def main(command: list[str] = ["migrate"]):
         overrides={
             "containerOverrides": [
                 {
-                    "name": "cinco-admin-container",
+                    "name": "cinco-ctrl-container",
                     "command": ["python", "manage.py", *command],
                 }
             ]
@@ -91,8 +91,8 @@ def main(command: list[str] = ["migrate"]):
 
     cloudwatch = boto3.client("logs", region_name="us-west-2")
     task_id = task_arn.split("/")[-1]
-    log_group_name = "/ecs/cinco-admin-task-definition"
-    log_stream_name = f"ecs/cinco-admin-container/{task_id}"
+    log_group_name = "/ecs/cinco-ctrl-task-definition"
+    log_stream_name = f"ecs/cinco-ctrl-container/{task_id}"
     events = 0
     print(f"Retrieving last 50 lines for {container_name}/{task_id}:")
     while events < 50:

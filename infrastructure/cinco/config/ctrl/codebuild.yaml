@@ -3,8 +3,8 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
-  ECRRepositoryName: cinco/admin
-  Namespace: cinco-admin
+  ECRRepositoryName: cinco/ctrl
+  Namespace: cinco-ctrl
 
 sceptre_user_data:
   build_spec: |-
@@ -15,6 +15,6 @@ sceptre_user_data:
                 build:
                   commands:
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
-                    - docker build -t cinco/admin cincoctrl --file cincoctrl/compose/production/django/Dockerfile
-                    - docker tag cinco/admin:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin:latest
-                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/admin:latest
+                    - docker build -t cinco/ctrl cincoctrl --file cincoctrl/compose/production/django/Dockerfile
+                    - docker tag cinco/ctrl:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/ctrl:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco/ctrl:latest
