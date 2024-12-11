@@ -93,12 +93,17 @@ Parameters:
       SourceVolume corresponds to the Name value in Volumes
     Required: false - if not provided, no mount points will be configured
 
-  TaskRole:
-    Type: an AWS::IAM::Role Arn
-    Description: a role to grant permissions to task containers
+  TaskPolicies:
+    Type: a list of AWS::IAM::Policy Arns
+    Description: policies that grant permissions to task containers,
+      will be attached to the ECSTaskRole assigned to the container.
       https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-taskrolearn
-    Required: false - if not provided, no role will be configured.
-      required if an EFS Volume is configured, though.
+      Can also attach policies after the stack is created using
+      !stack_output ECSTaskRole, but this argument allows for the policies
+      to be attached at stack creation time (esp useful if permissions are
+      required for healthchecks or other container startup tasks)
+    Required: false - if not provided an ECSTaskRole will be configured
+      with arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
   #}
 
 Conditions:
@@ -149,6 +154,52 @@ Resources:
                   - "ecr:BatchGetImage"
                 Resource: "*"
 
+  ECSTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-task-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ ecs-tasks.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+            Condition:
+              ArnLike:
+                aws:SourceArn:
+                  - !Sub "arn:${AWS::Partition}:ecs:${AWS::Region}:${AWS::AccountId}:*"
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ ecs-tasks.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+            Condition:
+              ArnLike:
+                aws:SourceArn:
+                  - !Sub "arn:${AWS::Partition}:ecs:${AWS::Region}:${AWS::AccountId}:*"
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        {% if sceptre_user_data and sceptre_user_data.TaskPolicies is defined %}
+        {% for policy in sceptre_user_data.TaskPolicies %}
+        - {{ policy }}
+        {% endfor %}
+        {% endif %}
+
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
@@ -184,9 +235,7 @@ Resources:
       {% if sceptre_user_data and sceptre_user_data.Volumes is defined %}
       Volumes: {{ sceptre_user_data.Volumes }}
       {% endif %}
-      {% if sceptre_user_data and sceptre_user_data.TaskRole is defined %}
-      TaskRoleArn: {{ sceptre_user_data.TaskRole }}
-      {% endif %}
+      TaskRoleArn: !Ref ECSTaskRole
       Family: !Sub ${Namespace}-task-definition
       ExecutionRoleArn: !GetAtt 'ECSTaskExecutionRole.Arn'
       NetworkMode: awsvpc
@@ -379,3 +428,7 @@ Outputs:
   TargetGroup:
     Description: The Target Group
     Value: !Ref TargetGroup
+
+  TaskRole:
+    Description: The Task Role - attach policies to this role to grant permissions to task containers
+    Value: !Ref ECSTaskRole

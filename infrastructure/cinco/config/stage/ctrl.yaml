@@ -13,7 +13,8 @@ parameters:
   ContainerCommand: "/start"
   DBInstanceSecurityGroup: !stack_output stage/ctrl-db.yaml::RDSSecurityGroup
 sceptre_user_data:
-  TaskRole: !stack_output stage/ctrl-task-role.yaml::TaskRole
+  TaskPolicies:
+    - !stack_output stage/s3-access.yaml::Policy
   ContainerEnvironment:
     - POSTGRES_HOST: !stack_output stage/ctrl-db.yaml::RDSHostName
     - POSTGRES_PORT: 5432

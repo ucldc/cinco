@@ -1,6 +1,5 @@
 template:
-  path: task-role.yaml
+  path: s3-access-policy.yaml
   type: file
 parameters:
-  Namespace: cinco-ctrl-task
   BucketName: !environment_variable S3_BUCKET
