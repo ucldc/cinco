@@ -16,7 +16,7 @@ updates:
   # https://github.com/dependabot/dependabot-core/issues/2178
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/django` directory
-    directory: 'admin/cincoctrl/compose/local/django/'
+    directory: 'cincoctrl/compose/local/django/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -29,7 +29,7 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/docs` directory
-    directory: 'admin/cincoctrl/compose/local/docs/'
+    directory: 'cincoctrl/compose/local/docs/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -42,21 +42,21 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/node` directory
-    directory: 'admin/cincoctrl/compose/local/node/'
+    directory: 'cincoctrl/compose/local/node/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/aws` directory
-    directory: 'admin/cincoctrl/compose/production/aws/'
+    directory: 'cincoctrl/compose/production/aws/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/django` directory
-    directory: 'admin/cincoctrl/compose/production/django/'
+    directory: 'cincoctrl/compose/production/django/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -69,7 +69,7 @@ updates:
 
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/postgres` directory
-    directory: 'admin/cincoctrl/compose/production/postgres/'
+    directory: 'cincoctrl/compose/production/postgres/'
     # Every weekday
     schedule:
       interval: 'daily'

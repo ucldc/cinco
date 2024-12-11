@@ -57,7 +57,7 @@ A list of [all  possible settings](http://cookiecutter-django.readthedocs.io/en/
 
 ```
 git clone
-cd cinco/admin/cincoctrl
+cd cinco/cincoctrl
 ```
 
 ### Virtualenv
