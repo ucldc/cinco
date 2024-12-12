@@ -277,7 +277,7 @@ cincoctrl/cincoctrl/media/
 .ipython/
 .env
 **/.envs/*
-!.envs/.local/
+!cincoctrl/.envs/.local/
 
 ### Infrastructure
 env.*
