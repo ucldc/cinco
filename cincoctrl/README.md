@@ -85,6 +85,19 @@ pre-commit install
 
 The development environment can be setup using docker.
 
+Run the development environment:
+
+```
+docker compose -f docker-compose.local.yml up
+```
+
+Run the production environment:
+
+```
+docker compose -f docker-compose.production.yml
+```
+
+
 https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally-docker.html
 
 The commands below can be run like:
