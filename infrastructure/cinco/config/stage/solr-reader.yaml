@@ -2,7 +2,7 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !environment_variable STAGE_CLUSTER
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
   Namespace: cinco-solr-reader
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
