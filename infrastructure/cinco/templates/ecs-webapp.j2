@@ -227,7 +227,7 @@ Resources:
             LogDriver: awslogs
             Options:
               awslogs-create-group: true
-              awslogs-group: !Sub /ecs/${Namespace}-task-definition
+              awslogs-group: !Sub /ecs/${Namespace}
               awslogs-region: us-west-2
               awslogs-stream-prefix: ecs
           {% if sceptre_user_data and sceptre_user_data.ContainerMountPoints is defined %}
@@ -237,7 +237,7 @@ Resources:
       Volumes: {{ sceptre_user_data.Volumes }}
       {% endif %}
       TaskRoleArn: !Ref ECSTaskRole
-      Family: !Sub ${Namespace}-task-definition
+      Family: !Sub ${Namespace}
       ExecutionRoleArn: !GetAtt 'ECSTaskExecutionRole.Arn'
       NetworkMode: awsvpc
       RequiresCompatibilities:
