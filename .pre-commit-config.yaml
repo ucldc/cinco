@@ -41,7 +41,9 @@ repos:
     rev: v1.35.2
     hooks:
       - id: djlint-reformat-django
+        files: "admin/cincoctrl/"
       - id: djlint-django
+        files: "admin/cincoctrl/"
 
 # sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
 ci:
