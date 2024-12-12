@@ -1,7 +1,8 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: CodeBuild Role, Policy, and Project for building a Docker image
-  and pushing to Public ECR from GitHub, triggered by push to main branch.
-  Sets up permissions to send logs to CloudWatch group with log stream name 'build'.
+
+Description: ECR Repo & CodeBuild Project; build triggered by push to main,
+  logs in CloudWatch group <Namespace> stream name "build"
+
 Parameters:
   GitHubRepo:
     Description: The URL of the GitHub repository to pull code from
