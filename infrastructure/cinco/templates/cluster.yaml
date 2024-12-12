@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  A Fargate ECS Cluster
+
+Parameters:
+  Namespace:
+    Description: The namespace for the ECS Application
+    Type: String
+
+Resources:
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref Namespace
+      CapacityProviders:
+        - FARGATE
+      ClusterSettings:
+        - Name: containerInsights
+          Value: disabled
+
+Outputs:
+  ECSCluster:
+    Description: The ECS Cluster
+    Value: !Ref ECSCluster
