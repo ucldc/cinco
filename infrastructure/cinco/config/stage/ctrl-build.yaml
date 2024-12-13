@@ -5,6 +5,8 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   ECRRepositoryName: cinco/ctrl
   Namespace: cinco-ctrl
+  Branch: main
+  FilePath: cincoctrl/.*
 
 sceptre_user_data:
   build_spec: |-

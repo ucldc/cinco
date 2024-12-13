@@ -13,6 +13,14 @@ Parameters:
   Namespace:
     Description: The namespace for the CodeBuild project
     Type: String
+  Branch:
+    Description: The branch to build from
+    Type: String
+    Default: main
+  FilePath:
+    Description: The path to build from in the GitHub repository
+    Type: String
+    Default: .*
   # BuildSpecLocation:
   #   Description: The path to the buildspec.yml file in the GitHub repository -
   #     this should be relative to the root of the repo (the value of built-in
@@ -52,8 +60,8 @@ Resources:
               - logs:CreateLogStream
               - logs:PutLogEvents
             Resource:
-              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}
-              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}:*
+              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/codebuild/${Namespace}
+              - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/codebuild/${Namespace}:*
           - Effect: Allow
             Action:
               - ecr-public:GetAuthorizationToken
@@ -80,7 +88,7 @@ Resources:
       Name: !Ref Namespace
       Description: !Sub Builds the ${Namespace} docker image and pushes to our public ECR
       ServiceRole: !GetAtt CodeBuildRole.Arn
-      SourceVersion: main
+      SourceVersion: !Ref Branch
       Source:
         Type: GITHUB
         Location: !Ref GitHubRepo
@@ -100,16 +108,16 @@ Resources:
           - - Type: EVENT
               Pattern: PUSH
             - Type: HEAD_REF
-              Pattern: ^refs/heads/main$
+              Pattern: !Sub ^refs/heads/${Branch}$
               ExcludeMatchedPattern: false
             - Type: FILE_PATH
-              Pattern: cincoctrl/.*
+              Pattern: !Ref FilePath
               ExcludeMatchedPattern: false
       Artifacts:
         Type: NO_ARTIFACTS
       LogsConfig:
         CloudWatchLogs:
-          GroupName: !Ref Namespace
+          GroupName: !Sub /codebuild/${Namespace}
           Status: ENABLED
           StreamName: build
 
