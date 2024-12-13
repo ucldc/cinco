@@ -75,6 +75,9 @@ class Repository(models.Model):
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural = "repositories"
+
     def __str__(self):
         return self.name
 
