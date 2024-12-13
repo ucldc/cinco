@@ -81,6 +81,15 @@ Resources:
               - ecr:CompleteLayerUpload
               - ecr:PutImage
             Resource: "*"
+          - Effect: Allow
+            Action:
+              - ecs:RunTask
+              - ecs:DescribeTasks
+              - ecs:UpdateService
+              - cloudformation:DescribeStacks
+              - iam:PassRole
+              - logs:GetLogEvents
+            Resource: "*"
 
   CodeBuildProject:
     Type: AWS::CodeBuild::Project
@@ -102,6 +111,15 @@ Resources:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
         PrivilegedMode: true
+        {% if sceptre_user_data and sceptre_user_data.BuildEnvironment is defined %}
+        EnvironmentVariables:
+          {% for env_var in sceptre_user_data.BuildEnvironment %}
+          {% for key, value in env_var.items() %}
+          - Name: "{{ key }}"
+            Value: "{{ value }}"
+          {% endfor %}
+          {% endfor %}
+        {% endif %}
       Triggers:
         Webhook: true
         FilterGroups:
