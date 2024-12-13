@@ -1,5 +1,5 @@
 import os
-import time
+# import time
 
 import boto3
 
@@ -31,7 +31,7 @@ def task_template():
 
 
 def main(command: list[str] = ["migrate"]):
-    cinco_ctrl = get_stack("cinco-ctrl-ctrl")
+    cinco_ctrl = get_stack("cinco-stage-ctrl")
     cluster = get_stack_output(cinco_ctrl, "ECSCluster")
     task_definition = get_stack_output(cinco_ctrl, "TaskDefinition")
     task_definition = ":".join(task_definition.split(":")[:-1])
@@ -89,35 +89,42 @@ def main(command: list[str] = ["migrate"]):
     else:
         print(f"{container_name} ran successfully!")
 
-    cloudwatch = boto3.client("logs", region_name="us-west-2")
+    # cloudwatch = boto3.client("logs", region_name="us-west-2")
     task_id = task_arn.split("/")[-1]
-    log_group_name = "/ecs/cinco-ctrl-task-definition"
+    log_group_name = "/ecs/cinco-ctrl"
     log_stream_name = f"ecs/cinco-ctrl-container/{task_id}"
-    events = 0
-    print(f"Retrieving last 50 lines for {container_name}/{task_id}:")
-    while events < 50:
-        try:
-            log_resp = cloudwatch.get_log_events(
-                logGroupName=log_group_name,
-                logStreamName=log_stream_name,
-                limit=50,
-                startFromHead=False,
-            )
-        except cloudwatch.exceptions.ResourceNotFoundException:
-            time.sleep(30)
-            print("trying again...")
-            print("or cancel this process and run...")
-            print(
-                f"aws logs tail --follow {log_group_name} --log-stream-name-prefix {log_stream_name}"
-            )
-            continue
+    print(
+        f"aws logs tail --follow {log_group_name} --log-stream-name-prefix "
+        f"{log_stream_name} --region us-west-2"
+    )
 
-        for event in log_resp["events"]:
-            events += 1
-            print(event["message"])
+    # events = 0
+    # print(f"Retrieving last 50 lines for {container_name}/{task_id}:")
+    # while events < 50:
+    #     try:
+    #         log_resp = cloudwatch.get_log_events(
+    #             logGroupName=log_group_name,
+    #             logStreamName=log_stream_name,
+    #             limit=50,
+    #             startFromHead=False,
+    #         )
+    #     except cloudwatch.exceptions.ResourceNotFoundException:
+    #         time.sleep(30)
+    #         print("trying again...")
+    #         print("or cancel this process and run...")
+    #         print(
+    #             f"aws logs tail --follow {log_group_name} --log-stream-name-prefix {log_stream_name}"
+    #         )
+    #         continue
+
+    #     for event in log_resp["events"]:
+    #         events += 1
+    #         print(event["message"])
 
 
-# python manage.py createsuperuser --noinput --username <username> --email <email>
+# python ecs_manage.py createsuperuser --no-input --email <email>
+# python ecs_manage.py migrate --no-input
+# python ecs_manage.py collectstatic --no-input
 if __name__ == "__main__":
     import sys
 
