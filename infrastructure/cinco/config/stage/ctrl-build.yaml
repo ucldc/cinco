@@ -29,3 +29,5 @@ sceptre_user_data:
                   commands:
                     - chmod +x $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py collectstatic --no-input
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py migrate --no-input
+                    - aws ecs update-service --cluster cinco-stage --service cinco-ctrl-service --force-new-deployment
