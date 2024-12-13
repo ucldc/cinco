@@ -93,8 +93,8 @@ def main(command: list[str] = ["migrate"]):
     task_id = task_arn.split("/")[-1]
     log_group_name = "/ecs/cinco-ctrl"
     log_stream_name = f"ecs/cinco-ctrl-container/{task_id}"
-    print(
-        f"aws logs tail --follow {log_group_name} --log-stream-name-prefix "
+    return (
+        f"aws logs tail {log_group_name} --log-stream-name-prefix "
         f"{log_stream_name} --region us-west-2"
     )
 
@@ -122,10 +122,24 @@ def main(command: list[str] = ["migrate"]):
     #         print(event["message"])
 
 
+class bcolors:
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+
 # python ecs_manage.py createsuperuser --no-input --email <email>
 # python ecs_manage.py migrate --no-input
 # python ecs_manage.py collectstatic --no-input
 if __name__ == "__main__":
     import sys
 
-    main(sys.argv[1:])
+    tail_logs = main(sys.argv[1:])
+    print(f"{bcolors.OKCYAN}[ECS_MANAGE]: {tail_logs}{bcolors.ENDC}")
+    os.system(tail_logs)
