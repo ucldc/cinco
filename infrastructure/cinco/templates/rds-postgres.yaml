@@ -77,6 +77,8 @@ Resources:
         - upgrade
       AutoMinorVersionUpgrade: true
       DeletionProtection: true
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
 
 Outputs:
   RDSInstance:
