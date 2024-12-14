@@ -31,6 +31,7 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: !Ref ECRRepositoryName
+    DeletionPolicy: Retain
 
   CodeBuildRole:
     Type: AWS::IAM::Role
