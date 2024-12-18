@@ -6,7 +6,7 @@ parameters:
   Namespace: cinco-solr-reader
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: 'public.ecr.aws/docker/library/solr:9.6.1'
+  ContainerImage: !stack_output stage/solr-build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   ContainerEntryPoint: "docker-entrypoint.sh"
