@@ -1,0 +1,6 @@
+FROM public.ecr.aws/docker/library/solr:9.6.1
+
+# Copy arclight/solr directory to /opt/solr/server/solr/configsets/arclight
+COPY arclight/solr /opt/solr/server/solr/configsets/arclight
+
+CMD ["solr-precreate", "arclight", "/opt/solr/server/solr/configsets/arclight"]
