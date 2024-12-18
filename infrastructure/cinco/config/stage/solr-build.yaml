@@ -1,0 +1,26 @@
+template:
+  path: codebuild.j2
+  type: file
+parameters:
+  GitHubRepo: https://github.com/ucldc/cinco
+  ECRRepositoryName: cinco-solr
+  Namespace: cinco-solr
+  Branch: main
+  FilePath: Dockerfile.solr
+
+sceptre_user_data:
+  build_spec: |-
+    !Sub >-
+              version: 0.2
+
+              phases:
+                build:
+                  commands:
+                    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
+                    - docker build -t cinco-solr . --file Dockerfile.solr
+                    - docker tag cinco-solr:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-solr:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-solr:latest
+                post_build:
+                  commands:
+                    - aws ecs update-service --cluster cinco-stage --service cinco-solr-reader-service --force-new-deployment
+                    - aws ecs update-service --cluster cinco-stage --service cinco-solr-writer-service --force-new-deployment
