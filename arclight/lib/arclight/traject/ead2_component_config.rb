@@ -119,7 +119,7 @@ to_field 'containers_ssim' do |record, accumulator|
       accumulator << [node.attribute('type'), node.text].join(' ').strip
     end
 end
-  
+
 to_field 'normalized_date_ssm' do |_record, accumulator, context|
   accumulator << settings['date_normalizer'].constantize.new(
     context.output_hash['unitdate_inclusive_ssm'],
