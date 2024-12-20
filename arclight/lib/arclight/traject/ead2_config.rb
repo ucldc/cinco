@@ -12,7 +12,7 @@ require 'arclight/normalized_title'
 require 'active_model/conversion' ## Needed for Arclight::Repository
 require 'active_support/core_ext/array/wrap'
 require 'arclight/digital_object'
-require 'arclight/year_range'
+require 'arclight/optional_year_range'
 require 'arclight/repository'
 require 'arclight/traject/nokogiri_namespaceless_reader'
 
@@ -227,7 +227,7 @@ to_field 'dimensions_tesim', extract_xpath('/ead/archdesc/did/physdesc/dimension
 to_field 'genreform_ssim', extract_xpath('/ead/archdesc/controlaccess/genreform')
 
 to_field 'date_range_isim', extract_xpath('/ead/archdesc/did/unitdate/@normal', to_text: false) do |_record, accumulator|
-  range = Arclight::YearRange.new
+  range = Arclight::OptionalYearRange.new
   next range.years if accumulator.blank?
 
   ranges = accumulator.map(&:to_s)
@@ -309,7 +309,9 @@ to_field 'components' do |record, accumulator, context|
   end
 
   child_components.each do |child_component|
-    output = component_indexer.map_record(child_component)
-    accumulator << output if output.keys.any?
+    if child_component.content.strip.length > 0
+      output = component_indexer.map_record(child_component)
+      accumulator << output if output.keys.any?
+    end
   end
 end

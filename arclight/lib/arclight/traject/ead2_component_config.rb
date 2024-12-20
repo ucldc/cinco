@@ -7,11 +7,11 @@ require 'traject_plus'
 require 'traject_plus/macros'
 require 'arclight/level_label'
 require 'arclight/normalized_date'
-require 'arclight/normalized_title'
+require 'arclight/normalized_component_title'
 require 'active_model/conversion' ## Needed for Arclight::Repository
 require 'active_support/core_ext/array/wrap'
 require 'arclight/digital_object'
-require 'arclight/year_range'
+require 'arclight/optional_year_range'
 require 'arclight/missing_id_strategy'
 require 'arclight/traject/nokogiri_namespaceless_reader'
 
@@ -26,7 +26,7 @@ settings do
   # provide 'depth' # the current nesting depth of the component
   provide 'component_traject_config', __FILE__
   provide 'date_normalizer', 'Arclight::NormalizedDate'
-  provide 'title_normalizer', 'Arclight::NormalizedTitle'
+  provide 'title_normalizer', 'Arclight::NormalizedComponentTitle'
   provide 'reader_class_name', 'Arclight::Traject::NokogiriNamespacelessReader'
   provide 'logger', Logger.new($stderr)
   provide 'component_identifier_format', '%<root_id>s_%<ref_id>s'
@@ -112,6 +112,14 @@ to_field 'unitdate_bulk_ssim', extract_xpath('./did/unitdate[@type="bulk"]')
 to_field 'unitdate_inclusive_ssm', extract_xpath('./did/unitdate[@type="inclusive"]')
 to_field 'unitdate_other_ssim', extract_xpath('./did/unitdate[not(@type)]')
 
+to_field 'unitid_ssm', extract_xpath('./did/unitid')
+
+to_field 'containers_ssim' do |record, accumulator|
+    record.xpath('./did/container').each do |node|
+      accumulator << [node.attribute('type'), node.text].join(' ').strip
+    end
+end
+
 to_field 'normalized_date_ssm' do |_record, accumulator, context|
   accumulator << settings['date_normalizer'].constantize.new(
     context.output_hash['unitdate_inclusive_ssm'],
@@ -123,7 +131,9 @@ end
 to_field 'normalized_title_ssm' do |_record, accumulator, context|
   title = context.output_hash['title_ssm']&.first
   date = context.output_hash['normalized_date_ssm']&.first
-  accumulator << settings['title_normalizer'].constantize.new(title, date).to_s
+  container_label = context.output_hash['containers_ssim']
+  unitid = context.output_hash['unitid_ssm']&.first
+  accumulator << settings['title_normalizer'].constantize.new(title, date, container_label, unitid).to_s
 end
 
 to_field 'component_level_isim' do |_record, accumulator|
@@ -159,7 +169,6 @@ to_field 'parent_levels_ssm' do |_record, accumulator, _context|
   accumulator.concat settings[:parent].output_hash['level_ssm'] || []
 end
 
-to_field 'unitid_ssm', extract_xpath('./did/unitid')
 to_field 'repository_ssim' do |_record, accumulator, _context|
   accumulator << settings[:root].clipboard[:repository]
 end
@@ -258,7 +267,7 @@ to_field 'digital_objects_ssm', extract_xpath('./dao|./did/dao', to_text: false)
 end
 
 to_field 'date_range_isim', extract_xpath('./did/unitdate/@normal', to_text: false) do |_record, accumulator|
-  range = Arclight::YearRange.new
+  range = Arclight::OptionalYearRange.new
   next range.years if accumulator.blank?
 
   ranges = accumulator.map(&:to_s)
@@ -291,11 +300,6 @@ to_field 'acqinfo_ssim', extract_xpath('./acqinfo/*[local-name()!="head"]')
 to_field 'acqinfo_ssim', extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
 
 to_field 'language_ssim', extract_xpath('./did/langmaterial')
-to_field 'containers_ssim' do |record, accumulator|
-  record.xpath('./did/container').each do |node|
-    accumulator << [node.attribute('type'), node.text].join(' ').strip
-  end
-end
 
 SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_html_tesm", extract_xpath("./#{selector}/*[local-name()!='head']", to_text: false)
@@ -328,7 +332,9 @@ to_field 'components' do |record, accumulator, context|
   end
 
   child_components.each do |child_component|
-    output = component_indexer.map_record(child_component)
-    accumulator << output if output.keys.any?
+    if child_component.content.strip.length > 0
+        output = component_indexer.map_record(child_component)
+        accumulator << output if output.keys.any?
+    end
   end
 end
