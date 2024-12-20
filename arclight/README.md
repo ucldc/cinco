@@ -1,11 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+
+ruby 3.2
+rails 7.2
 
 * System dependencies
 
@@ -21,4 +19,10 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Indexing
+
+To run the indexer with our customizations use the following command from the arclight root:
+
+```
+bundle exec traject -I lib/ -u http://<solr_url>:8983/solr/blacklight-core -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
+```
