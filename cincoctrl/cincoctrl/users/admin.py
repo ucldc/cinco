@@ -2,6 +2,7 @@ from allauth.account.decorators import secure_admin_login
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
+from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 
 from .forms import UserAdminChangeForm
@@ -10,6 +11,9 @@ from .models import Repository
 from .models import RepositoryLink
 from .models import User
 from .models import UserRole
+
+# Un-register django group admin we're not using it
+admin.site.unregister(Group)
 
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
@@ -41,8 +45,6 @@ class UserAdmin(auth_admin.UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "groups",
-                    "user_permissions",
                 ),
             },
         ),
