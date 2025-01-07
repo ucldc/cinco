@@ -1,17 +1,17 @@
-import xml.etree.ElementTree as ET
-
 from django.core.exceptions import ValidationError
+
+from cincoctrl.findingaids.parser import EADParser
+from cincoctrl.findingaids.parser import EADParserError
 
 
 def validate_ead(file):
     try:
-        tree = ET.parse(file)
-        root = tree.getroot()
-        if root.find("./eadheader/eadid") is None:
-            raise ValidationError("Invalid EADID")
-        if root.find("./archdesc/did/unittitle") is None:
-            raise ValidationError("Title not found")
-        if root.find("./archdesc/did/unitid") is None:
-            raise ValidationError("Collection number not found")
-    except ET.ParseError:
-        raise ValidationError("Invalid XML file.") from None
+        parser = EADParser()
+        parser.parse_file(file)
+        parser.validate_required_fields()
+        parser.validate_component_titles()
+        if len(parser.errors) > 0:
+            # TODO: can we include all the error messages?
+            raise ValidationError(parser.errors[0]) from None
+    except EADParserError as e:
+        raise ValidationError(e.message) from None

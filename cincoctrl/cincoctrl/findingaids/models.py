@@ -1,5 +1,4 @@
 import uuid
-import xml.etree.ElementTree as ET
 
 from django.core.validators import FileExtensionValidator
 from django.db import models
@@ -13,6 +12,7 @@ from django.db.models import TextField
 from django.db.models import URLField
 from django.urls import reverse
 
+from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
 FILE_FORMATS = (
@@ -38,7 +38,8 @@ def get_record_type_label(t):
     for v, n in RECORD_TYPES:
         if t == v:
             return n
-    raise ValueError("Invalid record type")
+    msg = "Invalid record type"
+    raise ValueError(msg)
 
 
 class FindingAid(models.Model):
@@ -91,10 +92,9 @@ class FindingAid(models.Model):
 
     def extract_ead_fields(self):
         with self.ead_file.open("rb") as f:
-            root = ET.parse(f).getroot()
-        title_node = root.find("./archdesc/did/unittitle")
-        number_node = root.find("./archdesc/did/unitid")
-        return title_node.text, number_node.text
+            p = EADParser(f)
+            p.parse_file(f)
+        return p.extract_ead_fields()
 
 
 class SupplementaryFile(models.Model):
