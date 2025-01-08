@@ -1,0 +1,211 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Lambda function to start textract jobs from s3 uploads; sets up SNS and SQS
+  for textract notifications
+
+# After creating this stack, you'll need to open the Lambda function in the AWS
+# console and add the s3 trigger. If S3OutputBucket and S3InputBucket are the
+# same, be sure to limit the trigger to a specific prefix.
+
+Parameters:
+  Namespace:
+    Description: The namespace
+    Type: String
+
+  S3OutputBucket:
+    Description: The S3 bucket to store textract output
+    Type: String
+
+  S3OutputPrefix:
+    Description: The S3 prefix to store textract output
+    Type: String
+
+  S3InputBucket:
+    Description: The S3 bucket where files are uploaded
+    Type: String
+
+Resources:
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-execution-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonTextractFullAccess
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+        - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+        - !Ref LambdaLogsPolicy
+        - !Ref LambdaPassRolePolicy
+        - !Ref LambdaS3Policy
+
+  LambdaLogsPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-logs-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+            Resource: !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:*
+          - Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${Namespace}-start:*
+
+  LambdaS3Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-s3-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:ListBucket
+            Resource:
+              - !Sub arn:${AWS::Partition}:s3:::${S3InputBucket}/*
+              - !Sub arn:${AWS::Partition}:s3:::${S3InputBucket}
+          - Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:ListBucket
+            Resource:
+              - !Sub arn:${AWS::Partition}:s3:::${S3OutputBucket}/*
+              - !Sub arn:${AWS::Partition}:s3:::${S3OutputBucket}
+
+  LambdaPassRolePolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-passrole-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: iam:PassRole
+            Resource: !GetAtt PassedTextractRole.Arn
+            Condition:
+              StringEquals:
+                iam:PassedToService: textract.amazonaws.com
+
+  PassedTextractRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-textract-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: textract.amazonaws.com
+            Action: sts:AssumeRole
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+              ArnLike:
+                aws:SourceArn: !Sub arn:${AWS::Partition}:textract:*:${AWS::AccountId}:*
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonTextractServiceRole
+
+  TextractSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      # Name must be prepended with AmazonTextract
+      TopicName: AmazonTextractCincoTopic
+
+  TextractSQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub ${Namespace}-queue
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+
+  QueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: sns.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: !GetAtt TextractSQSQueue.Arn
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref TextractSNSTopic
+      Queues:
+        - !Ref TextractSQSQueue
+
+  TextractOutputSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: sqs
+      TopicArn: !Ref TextractSNSTopic
+      Endpoint: !GetAtt TextractSQSQueue.Arn
+
+  StartTextractLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${Namespace}-start
+      Description: A lambda function to start textract jobs from s3 uploads
+      Handler: index.lambda_handler
+      Runtime: python3.12
+      Environment:
+        Variables:
+          S3_OUTPUT_BUCKET: !Ref S3OutputBucket
+          S3_OUTPUT_PREFIX: !Ref S3OutputPrefix
+          SNS_TOPIC_ARN: !Ref TextractSNSTopic
+          TEXTRACT_SNS_ROLE: !GetAtt PassedTextractRole.Arn
+      LoggingConfig:
+        LogGroup: !Sub /aws/lambda/${Namespace}-start
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          import os
+
+          s3_bucket = os.environ.get("S3_OUTPUT_BUCKET")
+          s3_prefix = os.environ.get("S3_OUTPUT_PREFIX")
+          sns_topic_arn = os.environ.get("SNS_TOPIC_ARN")
+          textract_sns_role_arn = os.environ.get("TEXTRACT_SNS_ROLE")
+
+          def lambda_handler(event: dict[str, list[dict]], _):
+            textract = boto3.client("textract")
+
+            for record in event["Records"]:
+                bucket = record["s3"]["bucket"]["name"]
+                key = record["s3"]["object"]["key"]
+                etag = record["s3"]["object"]["eTag"]
+
+                # start the textract job
+                request = {
+                    "ClientRequestToken": etag,
+                    "DocumentLocation": {"S3Object": {"Bucket": bucket, "Name": key}},
+                    "JobTag": "supplemental-file",
+                    "NotificationChannel": {
+                        "SNSTopicArn": sns_topic_arn,
+                        "RoleArn": textract_sns_role_arn,
+                    },
+                    "OutputConfig": {"S3Bucket": s3_bucket, "S3Prefix": s3_prefix}
+                }
+                print(request)
+                resp = textract.start_document_text_detection(**request)
+
+                print(
+                    f"processing s3://{bucket}/{key} in textract job "
+                    f"{resp['JobId']}; find results in s3://{s3_bucket}/"
+                    f"{s3_prefix}/{resp['JobId']}"
+                )
+                return key, f"{s3_prefix}/{resp['JobId']}"
