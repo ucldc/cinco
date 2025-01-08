@@ -92,7 +92,7 @@ class FindingAid(models.Model):
 
     def extract_ead_fields(self):
         with self.ead_file.open("rb") as f:
-            p = EADParser(f)
+            p = EADParser()
             p.parse_file(f)
         return p.extract_ead_fields()
 

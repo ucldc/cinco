@@ -14,4 +14,4 @@ def validate_ead(file):
             # TODO: can we include all the error messages?
             raise ValidationError(parser.errors[0]) from None
     except EADParserError as e:
-        raise ValidationError(e.message) from None
+        raise ValidationError(str(e)) from None

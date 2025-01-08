@@ -160,13 +160,13 @@ class TestFindingAidModels:
         )
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
-        assert "Invalid XML file." in str(e)
+        assert "Could not parse XML file:" in str(e)
 
     def test_no_eadid(self):
         ead_file = SimpleUploadedFile("test.xml", TEST_NO_EADID.strip().encode("utf-8"))
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
-        assert "Invalid EADID" in str(e)
+        assert "Failed to parse EADID" in str(e)
 
     def test_no_unittitle(self):
         ead_file = SimpleUploadedFile(
@@ -175,7 +175,7 @@ class TestFindingAidModels:
         )
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
-        assert "Title not found" in str(e)
+        assert "Failed to parse Title" in str(e)
 
     def test_no_unitid(self):
         ead_file = SimpleUploadedFile(
@@ -184,4 +184,4 @@ class TestFindingAidModels:
         )
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
-        assert "Collection number not found" in str(e)
+        assert "Failed to parse Collection number" in str(e)

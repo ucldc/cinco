@@ -13,7 +13,8 @@ from .models import User
 from .models import UserRole
 
 # Un-register django group admin we're not using it
-admin.site.unregister(Group)
+if admin.site.is_registered(Group):
+    admin.site.unregister(Group)
 
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
