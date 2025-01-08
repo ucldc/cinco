@@ -1,6 +1,5 @@
 import json
 import os
-from collections.abc import Iterator
 
 import boto3
 from django.conf import settings
@@ -21,7 +20,7 @@ sqs_url = os.environ.get("SQS_URL")
 #   Message: dict (textract message)
 
 
-def get_queued_messages() -> Iterator[dict]:
+def get_queued_messages():
     """
     Poll the SQS queue for any messages.
     """
@@ -34,13 +33,16 @@ def get_queued_messages() -> Iterator[dict]:
     sqs_messages = response.get("Messages", [])
     for sqs_message in sqs_messages:
         sns_message = json.loads(sqs_message.pop("Body"))
-        textract_message = json.loads(sns_message.pop("Message"))
 
-        read_message(textract_message)
+        # if sns_message['TopicArn'] is AmazonTextract topic
+        textract_message = json.loads(sns_message.pop("Message"))
+        read_textract_message(textract_message)
+        # endif
+
         sqs.delete_message(QueueUrl=sqs_url, ReceiptHandle=sqs_message["ReceiptHandle"])
 
 
-def read_message(textract_message: dict) -> None:
+def read_textract_message(textract_message: dict) -> None:
     """
     Read the textract message off the SQS queue, find the SupplementaryFile
     with the same pdf_file location, & update the status and textract_output
@@ -53,8 +55,8 @@ def read_message(textract_message: dict) -> None:
 
     s3_obj = textract_message.get("DocumentLocation")
     pdf_file = f"s3://{s3_obj['S3Bucket']}/{s3_obj['S3ObjectName']}"
-
     supplementary_files = SupplementaryFile.objects.filter(pdf_file=pdf_file)
+
     if len(supplementary_files) == 1:
         supplementary_file = supplementary_files[0]
     else:
