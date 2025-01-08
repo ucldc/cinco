@@ -1,14 +1,14 @@
-import os
-import boto3
 import json
-from typing import Iterator
+import os
+from collections.abc import Iterator
+
+import boto3
+from django.conf import settings
 
 from cincoctrl.findingaids.models import SupplementaryFile
 
-
-s3_bucket = os.environ.get("S3_BUCKET")
-sqs_url = os.environ.get("SQS_ARN")
-
+s3_prefix = "textract-output"
+sqs_url = os.environ.get("SQS_URL")
 
 # SQS message structure:
 #   MessageId: str, ReceiptHandle: str, MD5OfBody: str
@@ -58,11 +58,12 @@ def read_message(textract_message: dict) -> None:
     if len(supplementary_files) == 1:
         supplementary_file = supplementary_files[0]
     else:
-        raise ValueError(f"Supplementary file not found for {pdf_file}")
+        error = f"Supplementary file not found for {pdf_file}"
+        raise ValueError(error)
 
     status = textract_message.get("Status")
     job_id = textract_message.get("JobId")
-    textract_output = f"s3://{s3_bucket}/textract-output/{job_id}"
+    textract_output = f"s3://{settings.AWS_STORAGE_BUCKET_NAME}/{s3_prefix}/{job_id}"
 
     supplementary_file.status = status
     supplementary_file.textract_output = textract_output
