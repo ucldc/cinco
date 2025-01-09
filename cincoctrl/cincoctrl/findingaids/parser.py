@@ -32,7 +32,12 @@ class EADParser:
 
     def validate_dtd(self):
         try:
-            self.dtd.validate(self.root)
+            if not self.dtd.validate(self.root):
+                warnings = [
+                    f"Could not validate dtd: {x}"
+                    for x in self.dtd.error_log.filter_from_errors()
+                ]
+                self.warnings = self.warnings + warnings
         except etree.XMLSyntaxError as e:
             self.warnings.append(f"Could not validate dtd: {e}")
 

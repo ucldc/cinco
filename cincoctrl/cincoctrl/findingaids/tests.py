@@ -10,6 +10,7 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 from cincoctrl.findingaids.views import home
 from cincoctrl.users.models import User
@@ -56,6 +57,12 @@ TEST_INVALID_XML = """
             <unitid>0000-0000</unitid>
         </did>
     </archdesc>
+"""
+
+INVALID_DTD = """
+<record>
+    <title>This is not EAD</title>
+</record>
 """
 
 TEST_NO_EADID = """
@@ -117,6 +124,106 @@ TEST_NO_UNITID = """
             </repository>
             <unittitle>Title of the EAD</unittitle>
         </did>
+    </archdesc>
+</ead>
+"""
+
+NO_COMP_TITLE = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+        <dsc type="combined">
+            <c01 level="series" id="x311358872">
+                <did>
+                </did>
+                <c02 level="item" id="m31133255">
+                    <did>
+                        <unittitle>Component 2 Title</unittitle>
+                    </did>
+                </c02>
+            </c01>
+        </dsc>
+    </archdesc>
+</ead>
+"""
+
+INVALID_DATERANGE = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+        <dsc type="combined">
+            <c01 level="series" id="x311358872">
+                <did>
+                    <unittitle>Component 1 Title</unittitle>
+                </did>
+                <c02 level="item" id="m31133255">
+                    <did>
+                        <unittitle>Component 2 Title</unittitle>
+                        <unitdate normal="1869/70">1869-70</unitdate>
+                    </did>
+                </c02>
+            </c01>
+        </dsc>
+    </archdesc>
+</ead>
+"""
+
+INVALID_DATEFORMAT = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+        <dsc type="combined">
+            <c01 level="series" id="x311358872">
+                <did>
+                    <unittitle>Component 1 Title</unittitle>
+                </did>
+                <c02 level="item" id="m31133255">
+                    <did>
+                        <unittitle>Component 2 Title</unittitle>
+                        <unitdate normal="29/10/1869">[October 29 1869?]</unitdate>
+                    </did>
+                </c02>
+            </c01>
+        </dsc>
     </archdesc>
 </ead>
 """
@@ -185,3 +292,31 @@ class TestFindingAidModels:
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Failed to parse Collection number" in str(e)
+
+    def test_invalid_dtd(self):
+        p = EADParser()
+        p.parse_string(INVALID_DTD)
+        p.validate_dtd()
+        assert len(p.warnings) == 1
+        assert "Could not validate dtd" in p.warnings[0]
+
+    def test_no_comp_title(self):
+        p = EADParser()
+        p.parse_string(NO_COMP_TITLE)
+        p.validate_component_titles()
+        assert len(p.errors) == 1
+        assert p.errors[0] == "No title for non-empty component: x311358872"
+
+    def test_bad_date_range(self):
+        p = EADParser()
+        p.parse_string(INVALID_DATERANGE)
+        p.validate_dates()
+        assert len(p.warnings) == 1
+        assert p.warnings[0] == "End year (70) before start year (1869)"
+
+    def test_invalid_dateformat(self):
+        p = EADParser()
+        p.parse_string(INVALID_DATEFORMAT)
+        p.validate_dates()
+        assert len(p.warnings) == 1
+        assert p.warnings[0] == "Invalid date format 29/10/1869"
