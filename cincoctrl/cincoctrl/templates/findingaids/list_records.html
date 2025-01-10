@@ -18,9 +18,9 @@
           {% endfor %}
         </ul>
         {% if record_type == 'express' %}
-          <a href="{% url 'findingaids:create_record_express' repository.code %}">Create Record Express</a>
+          <a href="{% url 'findingaids:create_record_express' repository.code %}" class="btn btn-primary">Create Record Express</a>
         {% else %}
-          <a href="{% url 'findingaids:upload_record' repository.code record_type %}">Create {% record_type_label record_type %}</a>
+          <a href="{% url 'findingaids:upload_record' repository.code record_type %}" class="btn btn-primary">Create {% record_type_label record_type %}</a>
         {% endif %}
       </div>
     </div>

@@ -91,7 +91,7 @@ class EADParser:
                         self.errors.append(f"No title for non-empty component: {cid}")
 
         for e in c:
-            if re.match(r"c\d\d", e.tag):
+            if e.tag is not etree.Comment and re.match(r"c\d\d", e.tag):
                 self.get_component_title(e)
 
     def get_element_value(self, e, path):

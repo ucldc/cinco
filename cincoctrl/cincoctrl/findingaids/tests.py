@@ -227,6 +227,39 @@ INVALID_DATEFORMAT = """
     </archdesc>
 </ead>
 """
+XML_COMMENTS = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+        <dsc type="combined">
+            <c01 level="series" id="x311358872">
+                <did>
+                    <unittitle>Component 1 Title</unittitle>
+                </did>
+                <c02 level="item" id="m31133255">
+                    <did>
+                        <unittitle>Component 2 Title</unittitle>
+                    </did>
+                </c02>
+                <!-- <c02 id="c02-1.1.1.1.1.1.1" level="file">-->
+            </c01>
+        </dsc>
+    </archdesc>
+</ead>
+"""
 
 
 class TestFindingAidHomeView:
@@ -322,3 +355,10 @@ class TestFindingAidModels:
         p.validate_dates()
         assert len(p.warnings) == 1
         assert p.warnings[0] == "Invalid date format 29/10/1869"
+
+    def test_xml_comments(self):
+        p = EADParser()
+        p.parse_string(XML_COMMENTS)
+        p.validate_component_titles()
+        assert len(p.errors) == 0
+        assert len(p.warnings) == 0

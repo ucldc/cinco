@@ -14,6 +14,10 @@ class FindingAidForm(ModelForm):
         model = FindingAid
         fields = ["ead_file"]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["ead_file"].required = True
+
 
 SuppFileInlineFormSet = inlineformset_factory(
     FindingAid,

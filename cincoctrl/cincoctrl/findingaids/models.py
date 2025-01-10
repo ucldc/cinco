@@ -103,20 +103,21 @@ class FindingAid(models.Model):
 
 @receiver(post_save, sender=FindingAid)
 def update_ead_warnings(sender, instance, created, **kwargs):
-    p = EADParser()
-    with instance.ead_file.open("rb") as f:
-        p.parse_file(f)
-    p.validate_dtd()
-    p.validate_dates()
-    warn_ids = []
-    for w in p.warnings:
-        warn, _ = ValidationWarning.objects.get_or_create(
-            finding_aid=instance,
-            message=w,
-        )
-        warn_ids.append(warn.pk)
-    # Delete any no-longer-relevant warnings
-    instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
+    if instance.ead_file.name:
+        p = EADParser()
+        with instance.ead_file.open("rb") as f:
+            p.parse_file(f)
+        p.validate_dtd()
+        p.validate_dates()
+        warn_ids = []
+        for w in p.warnings:
+            warn, _ = ValidationWarning.objects.get_or_create(
+                finding_aid=instance,
+                message=w,
+            )
+            warn_ids.append(warn.pk)
+        # Delete any no-longer-relevant warnings
+        instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
 class SupplementaryFile(models.Model):
