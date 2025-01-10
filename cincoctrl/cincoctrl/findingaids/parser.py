@@ -33,13 +33,23 @@ class EADParser:
     def validate_dtd(self):
         try:
             if not self.dtd.validate(self.root):
-                warnings = [
-                    f"Could not validate dtd: {x}"
-                    for x in self.dtd.error_log.filter_from_errors()
-                ]
-                self.warnings = self.warnings + warnings
+                pattern = re.compile(r"(.*), expecting (.*), got \((.*)\)")
+                for e in self.dtd.error_log.filter_from_errors():
+                    match = pattern.search(e.message)
+                    if match:
+                        expected = (
+                            re.sub("()*", "", match.group(2))
+                            .replace(",", "|")
+                            .split(" | ")
+                        )
+                        found = match.group(3).strip().split(" ")
+                        unexpected = ",".join(list(set(found) - set(expected)))
+                        msg = f"{match.group(1)}: unexpected element {unexpected}"
+                    else:
+                        msg = f"Could not validate dtd: {e.message}"[:255]
+                    self.warnings.append(msg)
         except etree.XMLSyntaxError as e:
-            self.warnings.append(f"Could not validate dtd: {e}")
+            self.warnings.append(f"Could not validate dtd: {e}"[:255])
 
     required_fields = [
         ("./eadheader/eadid", "EADID"),

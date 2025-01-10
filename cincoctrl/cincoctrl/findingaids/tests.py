@@ -298,7 +298,9 @@ class TestFindingAidModels:
         p.parse_string(INVALID_DTD)
         p.validate_dtd()
         assert len(p.warnings) == 1
-        assert "Could not validate dtd" in p.warnings[0]
+        assert (
+            p.warnings[0] == "Could not validate dtd: No declaration for element record"
+        )
 
     def test_no_comp_title(self):
         p = EADParser()

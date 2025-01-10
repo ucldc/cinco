@@ -26,7 +26,14 @@
             {% for f in object.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
         {% endif %}
-        <a href="{% url 'findingaids:update_record' object.repository.code object.pk %}">Update</a>
+        {% if object.validationwarning_set.exists %}
+        <ul class="bg-warning">
+          {% for w in object.validationwarning_set.all %}
+            <li>{{ w.message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <a href="{% url 'findingaids:update_record' object.repository.code object.pk %}" class="button">Update</a>
       </div>
     </div>
   </div>

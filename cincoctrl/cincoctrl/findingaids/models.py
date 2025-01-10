@@ -10,10 +10,14 @@ from django.db.models import IntegerField
 from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
+
+# from cincoctrl.findingaids.models import FindingAid
 
 FILE_FORMATS = (
     ("ead", "EAD"),
@@ -95,6 +99,24 @@ class FindingAid(models.Model):
             p = EADParser()
             p.parse_file(f)
         return p.extract_ead_fields()
+
+
+@receiver(post_save, sender=FindingAid)
+def update_ead_warnings(sender, instance, created, **kwargs):
+    p = EADParser()
+    with instance.ead_file.open("rb") as f:
+        p.parse_file(f)
+    p.validate_dtd()
+    p.validate_dates()
+    warn_ids = []
+    for w in p.warnings:
+        warn, _ = ValidationWarning.objects.get_or_create(
+            finding_aid=instance,
+            message=w,
+        )
+        warn_ids.append(warn.pk)
+    # Delete any no-longer-relevant warnings
+    instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
 class SupplementaryFile(models.Model):
@@ -183,3 +205,11 @@ class RevisionHistory(models.Model):
 
     def __str__(self):
         return f"{self.date_revised}: {self.note}"
+
+
+class ValidationWarning(models.Model):
+    finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
+    message = CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.finding_aid}: {self.message}"

@@ -117,26 +117,6 @@ class FindingAidCreateView(UserHasRepoAccessMixin, FindingAidMixin, CreateView):
 upload_record = FindingAidCreateView.as_view()
 
 
-class FindingAidCreateView(UserHasRepoAccessMixin, FindingAidMixin, CreateView):
-    model = FindingAid
-    form_class = FindingAidForm
-    template_name = "findingaids/form.html"
-    verb = "Upload"
-
-    def setup(self, request, *args, **kwargs):
-        super().setup(request, *args, **kwargs)
-        self.record_type = kwargs.get("record_type")
-
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        form.instance.repository = self.repository
-        form.instance.record_type = self.record_type
-        return super().form_valid(form)
-
-
-upload_record = FindingAidCreateView.as_view()
-
-
 class FindingAidUpdateView(UserHasRepoAccessMixin, FindingAidMixin, UpdateView):
     model = FindingAid
     form_class = FindingAidForm
