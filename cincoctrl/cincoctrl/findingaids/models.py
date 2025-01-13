@@ -35,6 +35,13 @@ RECORD_TYPES = (
     ("ead_pdf", "EAD with PDF"),
 )
 
+TEXTRACT_STATUSES = (
+    ("SUCCEEDED", "Succeeded"),
+    ("FAILED", "Failed"),
+    ("ERROR", "Error"),
+    ("IN_PROGRESS", "In Progress"),
+)
+
 
 def get_record_type_label(t):
     for v, n in RECORD_TYPES:
@@ -123,9 +130,24 @@ class SupplementaryFile(models.Model):
     pdf_file = FileField(upload_to="pdf/", validators=[FileExtensionValidator(["pdf"])])
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
+    textract_status = CharField(
+        max_length=50,
+        default="IN_PROGRESS",
+        choices=TEXTRACT_STATUSES,
+    )
+    textract_output = CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
+
+    # def save(self, *args, **kwargs):
+    # reset textract status and textract output if pdf_file changes
+
+    # potentially also trigger reindexing if textract_status changes
+    # or set something on the finding aid to indicate that it should
+    # be reindexed. Could also reindex in the management command that
+    # polls for textract messages - not sure where makes the most
+    # sense yet.
 
 
 class ExpressRecord(models.Model):
