@@ -6,7 +6,7 @@ parameters:
   ECRRepositoryName: cinco-solr
   Namespace: cinco-solr
   Branch: main
-  FilePath: Dockerfile.solr
+  FilePath: Dockerfile.solr|arclight/solr/*
 
 sceptre_user_data:
   build_spec: |-
