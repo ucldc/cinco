@@ -30,23 +30,42 @@ class EADParser:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
+    def parse_dtd_error(self, e):
+        pattern = re.compile(r"(.*), expecting \((.*)\), got \((.*)\)")
+        match = pattern.search(e.message)
+        if match:
+            allowed = []
+            required = []
+            for x in match.group(2).split(" , "):
+                if x.startswith("("):
+                    inner_text = re.findall(r"\((.*?)\)", x)
+                    if len(inner_text) > 0:
+                        innards = inner_text[0].split(" | ")
+                        allowed.extend(innards)
+                        if x.endswith("+"):
+                            required.extend(innards)
+                elif x.endswith(("*", "?")):
+                    allowed.append(x.strip("*").strip("?"))
+                else:
+                    allowed.append(x.strip("+"))
+                    required.append(x.strip("+"))
+            found = match.group(3).strip().split(" ")
+            unexpected = list(set(found) - set(allowed))
+            missing = list(set(required) - set(found))
+            msg = f"{match.group(1)}"
+            if len(unexpected) > 0:
+                msg += f" - unexpected element {','.join(unexpected)}"
+            if len(missing) > 0:
+                msg += f" - missing required elements {','.join(missing)}"
+        else:
+            msg = f"Could not validate dtd: {e.message}"[:255]
+        return msg
+
     def validate_dtd(self):
         try:
             if not self.dtd.validate(self.root):
-                pattern = re.compile(r"(.*), expecting (.*), got \((.*)\)")
                 for e in self.dtd.error_log.filter_from_errors():
-                    match = pattern.search(e.message)
-                    if match:
-                        expected = (
-                            re.sub("()*", "", match.group(2))
-                            .replace(",", "|")
-                            .split(" | ")
-                        )
-                        found = match.group(3).strip().split(" ")
-                        unexpected = ",".join(list(set(found) - set(expected)))
-                        msg = f"{match.group(1)}: unexpected element {unexpected}"
-                    else:
-                        msg = f"Could not validate dtd: {e.message}"[:255]
+                    msg = self.parse_dtd_error(e)
                     self.warnings.append(msg)
         except etree.XMLSyntaxError as e:
             self.warnings.append(f"Could not validate dtd: {e}"[:255])

@@ -17,8 +17,6 @@ from django.urls import reverse
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
-# from cincoctrl.findingaids.models import FindingAid
-
 FILE_FORMATS = (
     ("ead", "EAD"),
     ("marc", "MARC"),
@@ -79,7 +77,7 @@ class FindingAid(models.Model):
         if not self.ark:
             self.ark = uuid.uuid4()
         super().save(*args, **kwargs)
-        if self.record_type != "express":
+        if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
             super().save(*args, **kwargs)
 
@@ -113,7 +111,7 @@ def update_ead_warnings(sender, instance, created, **kwargs):
         for w in p.warnings:
             warn, _ = ValidationWarning.objects.get_or_create(
                 finding_aid=instance,
-                message=w,
+                message=w[:255],
             )
             warn_ids.append(warn.pk)
         # Delete any no-longer-relevant warnings
