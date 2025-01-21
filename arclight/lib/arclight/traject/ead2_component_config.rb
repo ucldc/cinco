@@ -7,11 +7,11 @@ require 'traject_plus'
 require 'traject_plus/macros'
 require 'arclight/level_label'
 require 'arclight/normalized_date'
-require 'arclight/normalized_component_title'
+require 'oac/normalized_component_title'
 require 'active_model/conversion' ## Needed for Arclight::Repository
 require 'active_support/core_ext/array/wrap'
 require 'arclight/digital_object'
-require 'arclight/optional_year_range'
+require 'oac/optional_year_range'
 require 'arclight/missing_id_strategy'
 require 'arclight/traject/nokogiri_namespaceless_reader'
 

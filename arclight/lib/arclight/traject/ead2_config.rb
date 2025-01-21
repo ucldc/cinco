@@ -12,7 +12,7 @@ require 'arclight/normalized_title'
 require 'active_model/conversion' ## Needed for Arclight::Repository
 require 'active_support/core_ext/array/wrap'
 require 'arclight/digital_object'
-require 'arclight/optional_year_range'
+require 'oac/optional_year_range'
 require 'arclight/repository'
 require 'arclight/traject/nokogiri_namespaceless_reader'
 
