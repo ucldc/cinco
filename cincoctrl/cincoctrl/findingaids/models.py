@@ -1,5 +1,4 @@
 import uuid
-import xml.etree.ElementTree as ET
 
 from django.core.validators import FileExtensionValidator
 from django.db import models
@@ -11,8 +10,11 @@ from django.db.models import IntegerField
 from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 
+from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
 FILE_FORMATS = (
@@ -38,7 +40,8 @@ def get_record_type_label(t):
     for v, n in RECORD_TYPES:
         if t == v:
             return n
-    raise ValueError("Invalid record type")
+    msg = "Invalid record type"
+    raise ValueError(msg)
 
 
 class FindingAid(models.Model):
@@ -74,7 +77,7 @@ class FindingAid(models.Model):
         if not self.ark:
             self.ark = uuid.uuid4()
         super().save(*args, **kwargs)
-        if self.record_type != "express":
+        if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
             super().save(*args, **kwargs)
 
@@ -91,10 +94,28 @@ class FindingAid(models.Model):
 
     def extract_ead_fields(self):
         with self.ead_file.open("rb") as f:
-            root = ET.parse(f).getroot()
-        title_node = root.find("./archdesc/did/unittitle")
-        number_node = root.find("./archdesc/did/unitid")
-        return title_node.text, number_node.text
+            p = EADParser()
+            p.parse_file(f)
+        return p.extract_ead_fields()
+
+
+@receiver(post_save, sender=FindingAid)
+def update_ead_warnings(sender, instance, created, **kwargs):
+    if instance.ead_file.name:
+        p = EADParser()
+        with instance.ead_file.open("rb") as f:
+            p.parse_file(f)
+        p.validate_dtd()
+        p.validate_dates()
+        warn_ids = []
+        for w in p.warnings:
+            warn, _ = ValidationWarning.objects.get_or_create(
+                finding_aid=instance,
+                message=w[:255],
+            )
+            warn_ids.append(warn.pk)
+        # Delete any no-longer-relevant warnings
+        instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
 class SupplementaryFile(models.Model):
@@ -183,3 +204,11 @@ class RevisionHistory(models.Model):
 
     def __str__(self):
         return f"{self.date_revised}: {self.note}"
+
+
+class ValidationWarning(models.Model):
+    finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
+    message = CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.finding_aid}: {self.message}"

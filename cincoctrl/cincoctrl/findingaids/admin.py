@@ -6,6 +6,7 @@ from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import RevisionHistory
 from cincoctrl.findingaids.models import SupplementaryFile
+from cincoctrl.findingaids.models import ValidationWarning
 
 
 class SupplementaryFileInline(admin.TabularInline):
@@ -27,6 +28,11 @@ class ExpressRecordSubjectInline(admin.TabularInline):
 
 class RevisionHistoryInline(admin.TabularInline):
     model = RevisionHistory
+
+
+@admin.register(ValidationWarning)
+class ValidationWarningAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(ExpressRecord)

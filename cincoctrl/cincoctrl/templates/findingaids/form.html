@@ -1,28 +1,25 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
 {% load record_tags %}
 
 {% block title %}
   {{ repository }}: {{ verb }} {% record_type_label record_type %}
 {% endblock title %}
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h2>{{ verb }} {% record_type_label record_type %}</h2>
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <table>
-            {% if finding_aid_form %}{{ finding_aid_form.as_table }}{% endif %}
-            {{ form.as_table }}
-            {% if formset %}
-              {{ formset.management_form }}
-              {{ formset.as_table }}
-            {% endif %}
-          </table>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    </div>
-  </div>
+    <h1>{{ verb }} {% record_type_label record_type %}</h1>
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if finding_aid_form %}{{ finding_aid_form|crispy }}{% endif %}
+        {{ form|crispy }}
+        {% if formset %}
+          {{ formset.management_form }}
+          {{ formset|crispy }}
+        {% endif %}
+        <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
