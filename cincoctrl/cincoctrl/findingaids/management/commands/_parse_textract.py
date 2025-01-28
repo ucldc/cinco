@@ -74,3 +74,25 @@ def read_textract_job(s3_bucket, s3_key):
 #         next_token = textract_response.get("NextToken", False)
 #         yield textract_response
 #         request = request.update({"NextToken": next_token})
+
+
+# def start_textract_job(s3_bucket, s3_key, output_bucket):
+#     # start the textract job
+#     client = boto3.client("textract")
+#     response = client.start_document_text_detection(
+#         DocumentLocation={"S3Object": {"Bucket": s3_bucket, "Name": s3_key}},
+#         # idempotent string used to prevent duplicate jobs
+#         # ClientRequestToken='string',
+#         # identifier used in the completion notice sent to SNS
+#         # JobTag='string',
+#         # notification channel to send job completion status
+#         # NotificationChannel={
+#         #     'SNSTopicArn': 'string',
+#         #     'RoleArn': 'string'
+#         # }
+#         # sets if the output goes to a user-defined bucket
+#         OutputConfig={"S3Bucket": output_bucket, "S3Prefix": "textract-output"},
+#         # encryption on the results
+#         # KMSKeyId='string'
+#     )
+#     return response["JobId"]
