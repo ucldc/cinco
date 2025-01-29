@@ -3,7 +3,20 @@
 # This Dockerfile.indexing is copied from arclight/Dockerfile, but is used
 # for running Traject:
 # docker build -t cinco-arclight-indexer . -f Dockerfile.indexing
-# docker run -d cinco-arclight-indexer bundle exec traject -I lib/ -u http://localhost:8983/solr/blacklight-core -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
+
+# docker run -d cinco-arclight-indexer \
+#     bundle exec traject -I lib/ \
+#         -u http://localhost:8983/solr/blacklight-core \
+#         -i xml -c lib/arclight/traject/ead2_config.rb \
+#         path/to/file.xml
+
+# docker run -d \
+#     -e S3_BUCKET=$S3_BUCKET \
+#     -e SOLR_URL=http://localhost:8983/solr/blacklight-core \
+#     -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+#     -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+#     -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN \
+#     cinco-arclight-indexer /rails/bin/index-from-s3 <finding_aid_id>
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.2.0
