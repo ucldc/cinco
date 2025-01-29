@@ -1,5 +1,4 @@
 import json
-import os
 
 import boto3
 from django.conf import settings
@@ -9,7 +8,7 @@ from django.core.management.base import CommandError
 from cincoctrl.findingaids.models import SupplementaryFile
 
 s3_prefix = "textract-output"
-sqs_url = os.environ.get("SQS_URL")
+sqs_url = settings.SQS_URL
 
 
 class Command(BaseCommand):

@@ -28,3 +28,4 @@ sceptre_user_data:
     - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
+    - SQS_URL: !stack_output stage/sqs.yaml::QueueUrl
