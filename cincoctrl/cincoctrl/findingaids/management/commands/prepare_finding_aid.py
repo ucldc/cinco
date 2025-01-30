@@ -13,9 +13,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("finding_aid_id", type=int)
+        parser.add_argument("s3_key", type=str)
 
     def handle(self, *args, **kwargs):
         finding_aid_id = kwargs["finding_aid_id"]
+        s3_key = kwargs["s3_key"]
         try:
             finding_aid = FindingAid.objects.get(pk=finding_aid_id)
         except FindingAid.DoesNotExist:
@@ -23,13 +25,13 @@ class Command(BaseCommand):
             raise CommandError(error_msg) from FindingAid.DoesNotExist
 
         self.stdout.write(f"Preparing finding aid {finding_aid.id} for indexing.")
-        prepared_finding_aid = self.prepare_finding_aid(finding_aid)
+        prepared_finding_aid = self.prepare_finding_aid(finding_aid, s3_key)
         self.stdout.write(
             f"Successfully prepared finding aid {finding_aid.id} for "
             f"indexing at {prepared_finding_aid}.",
         )
 
-    def prepare_finding_aid(self, finding_aid):
+    def prepare_finding_aid(self, finding_aid, s3_key):
         """
         Prepare the finding aid for indexing by
             1. copying the ead to an indexing directory in s3 or
@@ -39,20 +41,13 @@ class Command(BaseCommand):
         """
         s3_client = boto3.client("s3")
         bucket = settings.AWS_STORAGE_BUCKET_NAME
-        # finding_aid_version = f"{finding_aid.id}-{datetime.now().isoformat()}"
-        # use just the finding aid id for now, because we can't actually return
-        # values from an ECS Run Task command, so we can't pass the created version
-        # back to airflow to use in the indexing task
-        # this does mean that strange things could happen if the same finding aid
-        # is prepared for indexing multiple times in quick succession
-        finding_aid_version = finding_aid.id
 
         # if finding_aid.expressrecord:
         # else:
         s3_client.copy_object(
             Bucket=bucket,
             CopySource=f"{bucket}/{finding_aid.ead_file.name}",
-            Key=f"indexing/{finding_aid_version}/finding-aid.xml",
+            Key=f"{s3_key}/finding-aid.xml",
         )
 
         if finding_aid.supplementary_files.count() >= 1:
@@ -60,11 +55,11 @@ class Command(BaseCommand):
             extracted_text = self.get_textract_output(supplementary_files)
             s3_client.put_object(
                 Bucket=bucket,
-                Key=f"indexing/{finding_aid_version}/extracted-supplementary-files-text.txt",
+                Key=f"{s3_key}/extracted-supplementary-files-text.txt",
                 Body=extracted_text.encode("utf-8"),
             )
 
-        return f"indexing/{finding_aid_version}"
+        return s3_key
 
     def get_textract_output(self, supplementary_files):
         all_extracted_text = []
