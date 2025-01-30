@@ -469,6 +469,7 @@ DEPENDENCIES
   debug
   devise
   devise-guests (~> 0.8)
+  execjs
   importmap-rails
   jbuilder
   puma (>= 5.0)
