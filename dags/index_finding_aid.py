@@ -2,7 +2,8 @@ from datetime import datetime
 from airflow.decorators import dag, task
 from airflow.models.param import Param
 
-from cinco.cincoctrl_operator import CincoCtrlDockerOperator as CincoCtrlOperator
+from cinco.cincoctrl_operator import CincoCtrlOperator
+from cinco.arclight_operator import ArcLightOperator
 
 
 @dag(
@@ -38,15 +39,15 @@ def index_finding_aid():
     )
     prepare_finding_aid.set_upstream(s3_key)
 
-    # index_finding_aid = (
-    #     ArcLightOperator(
-    #         task_id="index_finding_aid",
-    #         finding_aid_id="{{ params.finding_aid_id }}",
-    #         s3_key=make_s3_key,
-    #         # on_failure_callback=notify_failure,
-    #         # on_success_callback=notify_success
-    #     )
-    # )
+    index_finding_aid_task = ArcLightOperator(
+        task_id="index_finding_aid",
+        finding_aid_id="{{ params.finding_aid_id }}",
+        s3_key=s3_key,
+        # on_failure_callback=notify_failure,
+        # on_success_callback=notify_success
+    )
+
+    s3_key >> prepare_finding_aid >> index_finding_aid_task
 
     # @task()
     # def cleanup_s3():

@@ -4,9 +4,9 @@
 # the EAD file from S3 to the local filesystem, and then runs the traject
 # process to index the file into Solr.
 
-# check that we have a finding aid ID
-if [ -z "$1" ]; then
-  echo "Usage: $0 <finding_aid_id>"
+# check that we have a finding aid ID and s3 key
+if [ -z "$2" ]; then
+  echo "Usage: $0 <finding_aid_id> <s3_key>"
   exit 1
 fi
 
@@ -23,13 +23,13 @@ if [ -z "$SOLR_URL" ]; then
 fi
 
 echo "Downloading Finding Aid ID: $1 to /tmp"
-aws s3 sync s3://$S3_BUCKET/indexing/$1 /tmp/$1
+aws s3 sync s3://$S3_BUCKET/$2 /tmp/$1
 
 echo "Indexing Finding Aid ID: $1"
 bundle exec traject -I lib/ \
     -u $SOLR_URL \
     -i xml -c lib/arclight/traject/ead2_config.rb \
-    /tmp/$1/ead.xml
+    /tmp/$1/finding-aid.xml
 
 echo "Finished indexing, cleaning up /tmp/$1"
 rm -rf /tmp/$1
