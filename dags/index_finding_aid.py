@@ -32,6 +32,7 @@ def index_finding_aid():
 
     prepare_finding_aid = CincoCtrlOperator(
         task_id="prepare_finding_aid",
+        manage_cmd="prepare_finding_aid",
         finding_aid_id="{{ params.finding_aid_id }}",
         s3_key=s3_key,
         # on_failure_callback=notify_failure,

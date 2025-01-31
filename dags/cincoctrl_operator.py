@@ -38,8 +38,12 @@ def get_awsvpc_config():
 
 
 class CincoCtrlEcsOperator(EcsRunTaskOperator):
-    def __init__(self, finding_aid_id, s3_key, **kwargs):
-        container_name = f"cinco-ctrl-prepare-finding-aid-{finding_aid_id}"
+    def __init__(self, manage_cmd, finding_aid_id=None, s3_key=None, **kwargs):
+        manage_args = []
+        if manage_cmd == "prepare_finding_aid":
+            manage_args = [finding_aid_id, s3_key]
+
+        container_name = f"cinco-ctrl-mgmt-{manage_cmd}-{'-'.join(manage_args)}"
         args = {
             "cluster": "cinco-stage",
             "launch_type": "FARGATE",
@@ -52,9 +56,8 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                         "command": [
                             "python",
                             "manage.py",
-                            "prepare_finding_aid",
-                            finding_aid_id,
-                            s3_key,
+                            manage_cmd,
+                            *manage_args,
                         ],
                     }
                 ]
@@ -84,7 +87,11 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
 
 
 class CincoCtrlDockerOperator(DockerOperator):
-    def __init__(self, finding_aid_id, s3_key, **kwargs):
+    def __init__(self, manage_cmd, finding_aid_id=None, s3_key=None, **kwargs):
+        manage_args = []
+        if manage_cmd == "prepare_finding_aid":
+            manage_args = [finding_aid_id, s3_key]
+
         mounts = [
             Mount(
                 source="/Users/awieliczka/Projects/cinco/cincoctrl",
@@ -107,7 +114,7 @@ class CincoCtrlDockerOperator(DockerOperator):
 
         container_image = "cincoctrl_local_django"
         container_version = "latest"
-        container_name = "cincoctrl_local_django_prep_finding_aid"
+        container_name = f"cincoctrl_local_django-{manage_cmd}-{'-'.join(manage_args)}"
 
         args = {
             "image": f"{container_image}:{container_version}",
@@ -115,9 +122,8 @@ class CincoCtrlDockerOperator(DockerOperator):
             "command": [
                 "python",
                 "manage.py",
-                "prepare_finding_aid",
-                finding_aid_id,
-                s3_key,
+                manage_cmd,
+                *manage_args,
             ],
             "network_mode": "bridge",
             "auto_remove": "force",

@@ -14,7 +14,7 @@ sqs_url = settings.SQS_URL
 class Command(BaseCommand):
     help = "Poll the SQS queue for any messages."
 
-    def handle(self):
+    def handle(self, *args, **kwargs):
         sqs = boto3.client("sqs")
         response = sqs.receive_message(
             QueueUrl=sqs_url,
