@@ -1,5 +1,6 @@
-import boto3
-from django.conf import settings
+from tempfile import TemporaryFile
+
+from django.core.files.storage import storages
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 
@@ -39,25 +40,23 @@ class Command(BaseCommand):
             3. combining the textract output from all supplementary files as available
             4. saving the extracted supplementary files text to S3
         """
-        s3_client = boto3.client("s3")
-        bucket = settings.AWS_STORAGE_BUCKET_NAME
 
         # if finding_aid.expressrecord:
         # else:
-        s3_client.copy_object(
-            Bucket=bucket,
-            CopySource=f"{bucket}/{finding_aid.ead_file.name}",
-            Key=f"{s3_key}/finding-aid.xml",
+        storages["default"].save(
+            f"{s3_key}/finding-aid.xml",
+            finding_aid.ead_file.file,
         )
 
-        if finding_aid.supplementary_files.count() >= 1:
-            supplementary_files = finding_aid.supplementary_files.all()
+        if finding_aid.supplementaryfile_set.count() >= 1:
+            supplementary_files = finding_aid.supplementaryfile_set.all()
             extracted_text = self.get_textract_output(supplementary_files)
-            s3_client.put_object(
-                Bucket=bucket,
-                Key=f"{s3_key}/extracted-supplementary-files-text.txt",
-                Body=extracted_text.encode("utf-8"),
-            )
+            with TemporaryFile() as full_text_file:
+                full_text_file.write(extracted_text.encode("utf-8"))
+                storages["default"].save(
+                    f"{s3_key}/extracted-supplementary-files-text.txt",
+                    full_text_file,
+                )
 
         return s3_key
 

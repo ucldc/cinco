@@ -30,6 +30,8 @@ def _read_textract_s3_output(bucket: str, key: str) -> Iterator[dict]:
     s3_pages = response.get("Contents", [])
 
     for s3_page in s3_pages:
+        if s3_page.get("Key").endswith(".s3_access_check"):
+            continue
         textract_response = client.get_object(Bucket=bucket, Key=s3_page.get("Key"))
         yield json.loads(textract_response.get("Body").read())
 

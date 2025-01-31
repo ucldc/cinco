@@ -279,4 +279,4 @@ SOCIALACCOUNT_FORMS = {"signup": "cincoctrl.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-SQS_URL = env("SQS_URL")
+SQS_URL = env("SQS_URL", default=None)
