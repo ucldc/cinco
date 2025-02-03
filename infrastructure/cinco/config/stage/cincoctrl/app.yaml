@@ -6,18 +6,18 @@ parameters:
   Namespace: cinco-ctrl
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output stage/ctrl-build.yaml::ECRRepository
+  ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
   ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
   ContainerCommand: "/start"
-  DBInstanceSecurityGroup: !stack_output stage/ctrl-db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
     - !stack_output stage/s3-access.yaml::Policy
   ContainerEnvironment:
-    - POSTGRES_HOST: !stack_output stage/ctrl-db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output stage/cincoctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable DB_USERNAME
@@ -28,4 +28,4 @@ sceptre_user_data:
     - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
-    - SQS_URL: !stack_output stage/sqs.yaml::QueueUrl
+    # - SQS_URL: !stack_output stage/sqs.yaml::QueueUrl

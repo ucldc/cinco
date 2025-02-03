@@ -54,7 +54,7 @@ sceptre --debug delete ctrl/ctrl.yaml
 
 > When updating stacks, be aware that some resource properties are immutable and, if updated, will require deleting and recreating the resource entirely. Property immutablity coupled with resource deletion protection can create unexpected results.
 
-> Sceptre resolvers can resolve parameter values like "!stack_output ctrl/db.yaml::RDSHostName", but "launching" a stack with a parameter value that references another stack will trigger updating that stack as well (and any stacks that stack may reference)! Be careful about lingering working branch changes.
+> Sceptre resolvers can resolve parameter values like "!stack_output cincoctrl/db.yaml::RDSHostName", but "launching" a stack with a parameter value that references another stack will trigger updating that stack as well (and any stacks that stack may reference)! Be careful about lingering working branch changes.
 
 Templates are in `infrastructure/cinco/templates` directory. The ecs-webapp.j2 template is diagramed here:
 
