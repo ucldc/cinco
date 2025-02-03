@@ -42,7 +42,6 @@ Resources:
           CidrIp: 0.0.0.0/0
       VpcId: !Ref 'VpcId'
 
-  # ignore cfn-lint error I3011
   EfsFileSystem:
     Type: AWS::EFS::FileSystem
     Properties:
@@ -52,10 +51,12 @@ Resources:
           Value: !Sub ${Namespace}-efs-volume
       BackupPolicy:
         Status: ENABLED
-      Encrypted: false
+      Encrypted: true
       LifecyclePolicies:
         - TransitionToIA: AFTER_30_DAYS
         - TransitionToPrimaryStorageClass: AFTER_1_ACCESS
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
 
   EfsAccessPoint:
     Type: AWS::EFS::AccessPoint
