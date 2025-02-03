@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  S3 Bucket with Access Policy
+
+Parameters:
+  BucketName:
+    Description: The name of the S3 bucket to create
+    Type: String
+
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${BucketName}-s3-access
+      Path: "/"
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: S3Access
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:ListBucket
+              - s3:DeleteObject
+            Resource:
+              - !Sub "arn:${AWS::Partition}:s3:::${BucketName}"
+              - !Sub "arn:${AWS::Partition}:s3:::${BucketName}/*"
+
+Outputs:
+  Bucket:
+    Description: The name of the S3 bucket
+    Value: !Ref Bucket
+  Policy:
+    Description: The ARN of the task role with s3 permissions
+    Value: !GetAtt Policy.PolicyArn
