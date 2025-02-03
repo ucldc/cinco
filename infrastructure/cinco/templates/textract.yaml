@@ -176,8 +176,8 @@ Resources:
           import boto3
           import os
 
-          s3_bucket = os.environ.get("S3_OUTPUT_BUCKET")
-          s3_prefix = os.environ.get("S3_OUTPUT_PREFIX")
+          output_bucket = os.environ.get("S3_OUTPUT_BUCKET")
+          output_prefix = os.environ.get("S3_OUTPUT_PREFIX")
           sns_topic_arn = os.environ.get("SNS_TOPIC_ARN")
           textract_sns_role_arn = os.environ.get("TEXTRACT_SNS_ROLE")
 
@@ -185,27 +185,35 @@ Resources:
             textract = boto3.client("textract")
 
             for record in event["Records"]:
-                bucket = record["s3"]["bucket"]["name"]
+                input_bucket = record["s3"]["bucket"]["name"]
                 key = record["s3"]["object"]["key"]
                 etag = record["s3"]["object"]["eTag"]
 
                 # start the textract job
                 request = {
                     "ClientRequestToken": etag,
-                    "DocumentLocation": {"S3Object": {"Bucket": bucket, "Name": key}},
+                    "DocumentLocation": {"S3Object": {"Bucket": input_bucket, "Name": key}},
                     "JobTag": "supplemental-file",
                     "NotificationChannel": {
                         "SNSTopicArn": sns_topic_arn,
                         "RoleArn": textract_sns_role_arn,
                     },
-                    "OutputConfig": {"S3Bucket": s3_bucket, "S3Prefix": s3_prefix}
+                    "OutputConfig": {"S3Bucket": output_bucket, "S3Prefix": output_prefix}
                 }
                 print(request)
                 resp = textract.start_document_text_detection(**request)
 
                 print(
-                    f"processing s3://{bucket}/{key} in textract job "
-                    f"{resp['JobId']}; find results in s3://{s3_bucket}/"
-                    f"{s3_prefix}/{resp['JobId']}"
+                    f"processing s3://{input_bucket}/{key} in textract job "
+                    f"{resp['JobId']}; find results in s3://{output_bucket}/"
+                    f"{output_prefix}/{resp['JobId']}"
                 )
-                return key, f"{s3_prefix}/{resp['JobId']}"
+                return key, f"{output_prefix}/{resp['JobId']}"
+
+Outputs:
+  LambdaFunction:
+    Description: The ARN of the lambda function
+    Value: !GetAtt StartTextractLambdaFunction.Arn
+  QueueUrl:
+    Description: The URL of the SQS queue
+    Value: !GetAtt TextractSQSQueue.Arn
