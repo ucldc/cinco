@@ -25,7 +25,7 @@ sceptre_user_data:
     - DJANGO_SETTINGS_MODULE: config.settings.stage
     - DJANGO_SECRET_KEY: !environment_variable DJANGO_SECRET_KEY
     - DJANGO_ADMIN_URL: !environment_variable DJANGO_ADMIN_URL
-    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET
+    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET_NAME
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
     # - SQS_URL: !stack_output stage/sqs.yaml::QueueUrl
