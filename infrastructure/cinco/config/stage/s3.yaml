@@ -1,5 +1,5 @@
 template:
-  path: s3-access-policy.yaml
+  path: s3.yaml
   type: file
 parameters:
   BucketName: !environment_variable S3_BUCKET_NAME
