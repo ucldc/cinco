@@ -2,7 +2,7 @@ template:
   path: efs.yaml
   type: file
 parameters:
-  Namespace: cinco-solr
+  Namespace: cinco-solr-stage
   VpcId: !environment_variable VPC_ID
   PrivateSubnetId1: !environment_variable PRIVATE_SUBNET_1
   PrivateSubnetId2: !environment_variable PRIVATE_SUBNET_2

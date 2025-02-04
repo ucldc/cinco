@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   ClusterName: !stack_output stage/cluster.yaml::ECSCluster
-  Namespace: cinco-solr-writer
+  Namespace: cinco-solr-writer-stage
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
