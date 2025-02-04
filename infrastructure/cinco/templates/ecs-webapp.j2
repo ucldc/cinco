@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description:
   ECS Web Application deployment - includes a Cluster, Task Definition, and Service, and an ALB
+  {# TODO: Add autoscaling group configuration or create a way to attach an
+           autoscaling group #}
 
 Parameters:
   Namespace:
@@ -25,21 +27,6 @@ Parameters:
     #}
     Type: String
     Default: 'public.ecr.aws/docker/library/httpd:2.4'
-  ContainerEntryPoint:
-    Description: The entry point for the container
-    Type: CommaDelimitedList
-    Default: 'sh,-c'
-  ContainerCommand:
-    Description: The command to run in the container
-    Type: CommaDelimitedList
-    Default: >-
-      /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
-      App</title> <style>body {margin-top: 40px; background-color:
-      #333;} </style> </head><body> <div
-      style=color:white;text-align:center> <h1>Amazon ECS Sample
-      App</h1> <h2>Congratulations!</h2> <p>Your application is now
-      running on a container in Amazon ECS.</p> </div></body></html>' >
-      /usr/local/apache2/htdocs/index.html && httpd-foreground"
   ContainerPort:
     Description: The port the container listens on, maps to 80 on the ECS host
     Type: Number
@@ -52,6 +39,16 @@ Parameters:
     Description: The number of tasks to run in the ECS service
     Type: Number
     Default: 1
+  Cpu:
+    Description: The amount of CPU to allocate to the container
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-cpu
+    Type: String
+    Default: '1024'
+  Memory:
+    Description: The amount of memory to allocate to the container
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-memory
+    Type: String
+    Default: '3072'
   SSLCertArn:
     Description: The ARN of the SSL certificate to use for the load balancer
     Type: String
@@ -61,8 +58,27 @@ Parameters:
     Description: The security group for the RDS instance
     Default: ""
 
-{# In addition to the CloudFormation Parameters listed above, this template also supports
-   the following sceptre_user_data parameters:
+{# In addition to the CloudFormation Parameters listed above, this template
+   also supports the following sceptre_user_data parameters:
+
+  ContainerEntryPoint:
+    Type: CommaDelimitedList
+    Description: The entry point for the container
+    Required: false - if not provided, no entry point will be set
+    Example: 'sh,-c'
+
+  ContainerCommand:
+    Type: CommaDelimitedList
+    Description: The command to run in the container
+    Required: false - if not provided, no command will be set
+    Example: >-
+      /bin/sh -c "echo '<html> <head> <title>Amazon ECS Sample
+      App</title> <style>body {margin-top: 40px; background-color:
+      #333;} </style> </head><body> <div
+      style=color:white;text-align:center> <h1>Amazon ECS Sample
+      App</h1> <h2>Congratulations!</h2> <p>Your application is now
+      running on a container in Amazon ECS.</p> </div></body></html>' >
+      /usr/local/apache2/htdocs/index.html && httpd-foreground"
 
   ContainerEnvironment:
     Type: a list of key-value pairs
@@ -70,6 +86,14 @@ Parameters:
       ContainerEnvironment:
         - ENV_VAR: value
     Required: false - if not provided, no environment variables will be set
+
+  ContainerSecrets:
+    Type: a list of key-value pairs, where value is a valid "ValueFrom"
+      (typically the arn of a secret), see AWS::ECS::TaskDefinition Secrets:
+      https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-secret.html
+    Description: environment secrets to set in the container, eg:
+      ContainerSecrets:
+        - SECRET_NAME: arn:aws:ssm:us-west-2:123456789012:parameter/my-secret
 
   HttpAccessList:
     Type: a list of security group ids
@@ -192,14 +216,26 @@ Resources:
               HostPort: !Ref ContainerPort
               Protocol: tcp
           Essential: true
-          EntryPoint: !Ref ContainerEntryPoint
-          Command: !Ref ContainerCommand
+          {% if sceptre_user_data and sceptre_user_data.ContainerEntryPoint is defined %}
+          EntryPoint: [ {{ sceptre_user_data.ContainerEntryPoint }} ]
+          {% endif %}
+          {% if sceptre_user_data and sceptre_user_data.ContainerCommand is defined %}
+          Command: [ {{ sceptre_user_data.ContainerCommand }} ]
+          {% endif %}
           {% if sceptre_user_data and sceptre_user_data.ContainerEnvironment is defined %}
           Environment:
             {% for env_var in sceptre_user_data.ContainerEnvironment %}
             {% for key, value in env_var.items() %}
             - Name: "{{ key }}"
               Value: "{{ value }}"
+            {% endfor %}
+            {% endfor %}
+          {% endif %}
+          {% if sceptre_user_data and sceptre_user_data.ContainerSecrets is defined %}
+            {% for secret_var in sceptre_user_data.ContainerSecrets %}
+            {% for key, value in secret_var.items() %}
+            - Name: "{{ key }}"
+              ValueFrom: "{{ value }}"
             {% endfor %}
             {% endfor %}
           {% endif %}
@@ -225,10 +261,10 @@ Resources:
       RuntimePlatform:
         CpuArchitecture: x86_64
         OperatingSystemFamily: LINUX
-      Cpu: '1024'
-      Memory: '3072'
+      Cpu: !Ref Cpu
+      Memory: !Ref Memory
 
-  SecurityGroup:
+  LoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Security Group for application load balancer
@@ -236,6 +272,7 @@ Resources:
       VpcId: !Ref 'VpcId'
       {% if sceptre_user_data and sceptre_user_data.HttpAccessList is defined %}
       SecurityGroupIngress:
+        {# TODO: update HttpAccessList datastructure to include Cidr or SecurityGroup #}
         {% for securitygroup in sceptre_user_data.HttpAccessList %}
         - Description: Allow HTTP access
           IpProtocol: tcp
@@ -259,7 +296,7 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
-      GroupId: !Ref SecurityGroup
+      GroupId: !Ref LoadBalancerSecurityGroup
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -271,7 +308,7 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
-      GroupId: !Ref SecurityGroup
+      GroupId: !Ref LoadBalancerSecurityGroup
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -289,7 +326,7 @@ Resources:
           IpProtocol: tcp
           FromPort: !Ref ContainerPort
           ToPort: !Ref ContainerPort
-          SourceSecurityGroupId: !GetAtt SecurityGroup.GroupId
+          SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
 
   DBInstanceSecurityGroupApplicationIngress:
     Type: "AWS::EC2::SecurityGroupIngress"
@@ -336,7 +373,7 @@ Resources:
       Type: application
       Name: !Sub ${Namespace}-alb
       SecurityGroups:
-        - !Ref SecurityGroup
+        - !Ref LoadBalancerSecurityGroup
       Subnets: !Ref SubnetIDs
 
   TargetGroup:
@@ -386,9 +423,9 @@ Outputs:
     Description: The ECS Task Definition
     Value: !Ref TaskDefinition
 
-  SecurityGroup:
+  LoadBalancerSecurityGroup:
     Description: The Security Group
-    Value: !Ref SecurityGroup
+    Value: !Ref LoadBalancerSecurityGroup
 
   ServiceSecurityGroup:
     Description: The Service Security Group

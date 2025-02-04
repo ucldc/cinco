@@ -9,11 +9,11 @@ parameters:
   ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
-  ContainerEntryPoint: "docker-entrypoint.sh"
-  ContainerCommand: "solr-foreground"
   HealthCheckPath: "/solr/#/"
 
 sceptre_user_data:
+  ContainerEntryPoint: "docker-entrypoint.sh"
+  ContainerCommand: "solr-foreground"
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
