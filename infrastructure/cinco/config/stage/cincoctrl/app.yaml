@@ -8,11 +8,11 @@ parameters:
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
-  ContainerEntryPoint: '/entrypoint'
   HealthCheckPath: '/'
-  ContainerCommand: "/start"
   DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
+  ContainerEntryPoint: '/entrypoint'
+  ContainerCommand: "/start"
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
     - !stack_output stage/s3.yaml::Policy
