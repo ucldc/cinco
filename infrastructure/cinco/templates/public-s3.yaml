@@ -13,8 +13,28 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref BucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        IgnorePublicAcls: false
+        BlockPublicPolicy: false
+        RestrictPublicBuckets: false
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "Allow Public Read of /static"
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource:
+              - !Sub "arn:aws:s3:::${BucketName}/static/*"
+              - !Sub "arn:aws:s3:::${BucketName}/media/*"
 
   Policy:
     Type: AWS::IAM::ManagedPolicy
