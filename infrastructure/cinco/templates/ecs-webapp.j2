@@ -343,7 +343,7 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
       HealthCheckPath: !Ref HealthCheckPath
-      Name: !Sub ${Namespace}-targetgroup
+      Name: !Sub ${Namespace}-tg
       Port: !Ref ContainerPort
       Protocol: HTTP
       TargetType: ip
