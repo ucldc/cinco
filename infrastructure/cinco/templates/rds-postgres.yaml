@@ -28,6 +28,8 @@ Resources:
       DBSubnetGroupName: !Sub ${Namespace}-rds-subnet-group
       DBSubnetGroupDescription: !Sub "Subnet group for ${Namespace} RDS"
       SubnetIds: !Ref SubnetIDs
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -55,7 +57,7 @@ Resources:
       EngineVersion: "16.3"
       EngineLifecycleSupport: open-source-rds-extended-support-disabled
       MultiAZ: false
-      DBInstanceIdentifier: cinco-ctrl
+      DBInstanceIdentifier: !Ref Namespace
       MasterUsername: !Ref DBUsername
       MasterUserPassword: !Ref DBPassword
       DBInstanceClass: db.t3.small
