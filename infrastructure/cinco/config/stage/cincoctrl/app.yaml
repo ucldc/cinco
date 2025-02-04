@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   ClusterName: !stack_output stage/cluster.yaml::ECSCluster
-  Namespace: cinco-ctrl
+  Namespace: cinco-ctrl-stage
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository

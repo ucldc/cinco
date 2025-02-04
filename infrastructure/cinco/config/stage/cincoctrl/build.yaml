@@ -4,7 +4,7 @@ template:
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   ECRRepositoryName: cinco/ctrl
-  Namespace: cinco-ctrl
+  Namespace: cinco-ctrl-stage
   Branch: main
   FilePath: cincoctrl/.*
 

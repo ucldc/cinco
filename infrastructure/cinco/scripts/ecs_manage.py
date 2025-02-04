@@ -55,7 +55,7 @@ def main(command: list[str] = ["migrate"]):
         overrides={
             "containerOverrides": [
                 {
-                    "name": "cinco-ctrl-container",
+                    "name": "cinco-ctrl-stage-container",
                     "command": ["python", "manage.py", *command],
                 }
             ]
@@ -91,8 +91,8 @@ def main(command: list[str] = ["migrate"]):
 
     # cloudwatch = boto3.client("logs", region_name="us-west-2")
     task_id = task_arn.split("/")[-1]
-    log_group_name = "/ecs/cinco-ctrl"
-    log_stream_name = f"ecs/cinco-ctrl-container/{task_id}"
+    log_group_name = "/ecs/cinco-ctrl-stage"
+    log_stream_name = f"ecs/cinco-ctrl-stage-container/{task_id}"
     return (
         f"aws logs tail {log_group_name} --log-stream-name-prefix "
         f"{log_stream_name} --region us-west-2"
