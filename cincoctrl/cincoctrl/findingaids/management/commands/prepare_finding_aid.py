@@ -44,7 +44,7 @@ class Command(BaseCommand):
         # if finding_aid.expressrecord:
         # else:
         storages["default"].save(
-            f"{s3_key}/finding-aid.xml",
+            f"indexing/{s3_key}/finding-aid.xml",
             finding_aid.ead_file.file,
         )
 
@@ -54,7 +54,7 @@ class Command(BaseCommand):
             with TemporaryFile() as full_text_file:
                 full_text_file.write(extracted_text.encode("utf-8"))
                 storages["default"].save(
-                    f"{s3_key}/extracted-supplementary-files-text.txt",
+                    f"indexing/{s3_key}/extracted-supplementary-files-text.txt",
                     full_text_file,
                 )
 
