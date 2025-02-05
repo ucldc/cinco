@@ -3,12 +3,12 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
-  ECRRepositoryName: cinco-solr
   Namespace: cinco-solr-stage
   Branch: main
   FilePath: Dockerfile.solr|arclight/solr/*
 
 sceptre_user_data:
+  ECRRepositoryName: cinco-solr
   build_spec: |-
     !Sub >-
               version: 0.2
