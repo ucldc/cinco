@@ -1,0 +1,19 @@
+template:
+  path: codebuild.j2
+  type: file
+parameters:
+  GitHubRepo: https://github.com/ucldc/cinco
+  Namespace: cinco-dags-deploy
+  Branch: main
+  FilePath: dags/.*
+
+sceptre_user_data:
+  build_spec: |-
+    !Sub >-
+              version: 0.2
+
+              phases:
+                build:
+                  commands:
+                    - aws s3 sync --exclude="*" --include="*.py" --delete ./dags s3://pad-airflow/dags/cinco/
+                    - aws s3 cp dags/.airflowignore s3://pad-airflow/dags/cinco/dags/.airflowignore
