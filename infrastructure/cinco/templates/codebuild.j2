@@ -7,9 +7,6 @@ Parameters:
   GitHubRepo:
     Description: The URL of the GitHub repository to pull code from
     Type: String
-  ECRRepositoryName:
-    Description: The name of the ECR repository to create
-    Type: String
   Namespace:
     Description: The namespace for the CodeBuild project
     Type: String
@@ -27,11 +24,13 @@ Parameters:
   #     env var CODEBUILD_SRC_DIR)
 
 Resources:
+  {% if sceptre_user_data and sceptre_user_data.ECRRepositoryName is defined %}
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: !Ref ECRRepositoryName
+      RepositoryName: {{ sceptre_user_data.ECRRepositoryName }}
     DeletionPolicy: Retain
+  {% endif %}
 
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -141,7 +140,9 @@ Resources:
           Status: ENABLED
           StreamName: build
 
+{% if sceptre_user_data and sceptre_user_data.ECRRepositoryName is defined %}
 Outputs:
   ECRRepository:
     Description: The ECR Repository
     Value: !GetAtt ECRRepository.RepositoryUri
+{% endif %}
