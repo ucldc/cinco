@@ -148,6 +148,20 @@ Resources:
       Queues:
         - !Ref TextractSQSQueue
 
+  QueueConsumerPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-queue-consumer-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - sqs:ReceiveMessage
+              - sqs:DeleteMessage
+              - sqs:GetQueueAttributes
+            Resource: !GetAtt TextractSQSQueue.Arn
+
   TextractOutputSubscription:
     Type: AWS::SNS::Subscription
     Properties:
@@ -191,7 +205,7 @@ Resources:
 
                 # start the textract job
                 request = {
-                    "ClientRequestToken": etag,
+                    # "ClientRequestToken": etag,
                     "DocumentLocation": {"S3Object": {"Bucket": input_bucket, "Name": key}},
                     "JobTag": "supplemental-file",
                     "NotificationChannel": {
@@ -216,4 +230,7 @@ Outputs:
     Value: !GetAtt StartTextractLambdaFunction.Arn
   QueueUrl:
     Description: The URL of the SQS queue
-    Value: !GetAtt TextractSQSQueue.Arn
+    Value: !GetAtt TextractSQSQueue.QueueUrl
+  QueueConsumerPolicyArn:
+    Description: The ARN of the queue consumer policy
+    Value: !Ref QueueConsumerPolicy
