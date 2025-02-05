@@ -48,7 +48,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
             "cluster": "cinco-stage",
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-ctrl-container",
+            "task_definition": "cinco-ctrl-stage-container",
             "overrides": {
                 "containerOverrides": [
                     {
@@ -63,7 +63,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            "awslogs_group": "cinco-ctrl",
+            "awslogs_group": "cinco-ctrl-stage",
             "awslogs_region": "us-west-2",
             "awslogs_stream_prefix": "ecs",
             "reattach": True,
