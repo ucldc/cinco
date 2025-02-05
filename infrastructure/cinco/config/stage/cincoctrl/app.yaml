@@ -16,6 +16,7 @@ sceptre_user_data:
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
     - !stack_output stage/s3.yaml::Policy
+    - !stack_output stage/textract.yaml::QueueConsumerPolicyArn
   ContainerEnvironment:
     - POSTGRES_HOST: !stack_output stage/cincoctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
