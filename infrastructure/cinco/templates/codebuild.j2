@@ -37,6 +37,12 @@ Resources:
     Properties:
       RoleName: !Sub ${Namespace}-codebuild
       Path: "/service-role/"
+      {% if sceptre_user_data and sceptre_user_data.CodeBuildPolicies is defined %}
+      {% for policy in sceptre_user_data.CodeBuildPolicies %}
+      ManagedPolicyArns:
+        - {{ policy }}
+      {% endfor %}
+      {% endif %}
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:

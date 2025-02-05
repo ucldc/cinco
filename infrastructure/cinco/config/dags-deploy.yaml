@@ -8,6 +8,8 @@ parameters:
   FilePath: dags/.*
 
 sceptre_user_data:
+  CodeBuildPolicies:
+    - arn:aws:iam::777968769372:policy/cinco-dags-sync
   build_spec: |-
     !Sub >-
               version: 0.2
