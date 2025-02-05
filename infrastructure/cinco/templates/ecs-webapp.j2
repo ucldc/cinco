@@ -148,6 +148,22 @@ Resources:
         - Name: containerInsights
           Value: disabled
 
+  ECSExecPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-ecs-exec-ssm-policy
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "ssmmessages:CreateControlChannel"
+              - "ssmmessages:CreateDataChannel"
+              - "ssmmessages:OpenControlChannel"
+              - "ssmmessages:OpenDataChannel"
+            Resource: "*"
+
   ECSTaskExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -160,6 +176,8 @@ Resources:
             Principal:
               Service: "ecs-tasks.amazonaws.com"
             Action: "sts:AssumeRole"
+      ManagedPolicyArns:
+        - !Ref ECSExecPolicy
       Policies:
         - PolicyName: !Sub ${Namespace}-ecs-policy
           PolicyDocument:
@@ -199,6 +217,7 @@ Resources:
                 aws:SourceAccount: !Ref AWS::AccountId
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        - !Ref ECSExecPolicy
         {% if sceptre_user_data and sceptre_user_data.TaskPolicies is defined %}
         {% for policy in sceptre_user_data.TaskPolicies %}
         - {{ policy }}
@@ -359,6 +378,7 @@ Resources:
             - !Ref ServiceSecurityGroup
           Subnets: !Ref SubnetIDs
       PlatformVersion: 'LATEST'
+      EnableExecuteCommand: true
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
