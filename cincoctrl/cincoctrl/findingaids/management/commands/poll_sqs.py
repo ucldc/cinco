@@ -59,13 +59,16 @@ class Command(BaseCommand):
         """
 
         s3_obj = textract_message.get("DocumentLocation")
-        pdf_file = f"s3://{s3_obj['S3Bucket']}/{s3_obj['S3ObjectName']}"
-        supplementary_files = SupplementaryFile.objects.filter(pdf_file=pdf_file)
+        s3_url = (
+            f"https://{s3_obj['S3Bucket']}.s3.amazonaws.com/{s3_obj['S3ObjectName']}"
+        )
+        pdf_file_name = s3_url.removeprefix(settings.MEDIA_URL)
+        supplementary_files = SupplementaryFile.objects.filter(pdf_file=pdf_file_name)
 
         if len(supplementary_files) == 1:
             supplementary_file = supplementary_files[0]
         else:
-            error = f"Supplementary file not found for {pdf_file}"
+            error = f"Supplementary file not found for {pdf_file_name} at {s3_url}"
             raise CommandError(error)
 
         status = textract_message.get("Status")
