@@ -92,13 +92,17 @@ class CincoCtrlDockerOperator(DockerOperator):
         if manage_cmd == "prepare_finding_aid":
             manage_args = [finding_aid_id, s3_key]
 
-        mounts = [
-            Mount(
-                source="/Users/awieliczka/Projects/cinco/cincoctrl",
-                target="/app",
-                type="bind",
-            )
-        ]
+        # set in startup.sh, path to cinco/cincoctrl on local
+        if os.environ.get("CINCO_MOUNT_CINCOCTRL"):
+            mounts = [
+                Mount(
+                    source=os.environ.get("CINCO_MOUNT_CINCOCTRL"),
+                    target="/app",
+                    type="bind",
+                )
+            ]
+        else:
+            mounts = None
 
         # load environment variables from cincoctrl application
         mwaa_local_mount = f"{os.environ.get('AIRFLOW_HOME')}/local_storage/"
