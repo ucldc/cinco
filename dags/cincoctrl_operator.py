@@ -15,26 +15,21 @@ from docker.types import Mount
 CONTAINER_EXECUTION_ENVIRONMENT = os.environ.get(
     "CONTAINER_EXECUTION_ENVIRONMENT", "docker"
 )
+PAD_AIRFLOW_STACK = "pad-airflow-mwaa"
 
 
-def get_awsvpc_config():
-    """
-    get public subnets and security group from cloudformation stack for use
-    with the ContentHarvestEcsOperator to run tasks in an ECS cluster
-    """
-    client = boto3.client("cloudformation", region_name="us-west-2")
-    awsvpcConfig = {"subnets": [], "securityGroups": [], "assignPublicIp": "ENABLED"}
-    cf_outputs = (
-        client.describe_stacks(StackName="pad-airflow-mwaa")
-        .get("Stacks", [{}])[0]
-        .get("Outputs", [])
-    )
-    for output in cf_outputs:
-        if output["OutputKey"] in ["PublicSubnet1", "PublicSubnet2"]:
-            awsvpcConfig["subnets"].append(output["OutputValue"])
-        if output["OutputKey"] == "SecurityGroup":
-            awsvpcConfig["securityGroups"].append(output["OutputValue"])
-    return awsvpcConfig
+def get_stack_output(stack, key):
+    stack_outputs = stack["Outputs"]
+    for stack_output in stack_outputs:
+        if stack_output["OutputKey"] == key:
+            return stack_output["OutputValue"]
+
+
+def get_stack(stack_name: str):
+    # get cluster, security groups from cinco_ctrl stack
+    cloudformation = boto3.client("cloudformation", region_name="us-west-2")
+    resp = cloudformation.describe_stacks(StackName=stack_name)
+    return resp["Stacks"][0]
 
 
 class CincoCtrlEcsOperator(EcsRunTaskOperator):
@@ -82,7 +77,19 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         # get_awsvpc_config(). Adding network configuration here in execute
         # rather than in initialization ensures that we only call
         # get_awsvpc_config() when the operator is actually run.
-        self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
+
+        pad_airflow = get_stack(PAD_AIRFLOW_STACK)
+
+        self.network_configuration = {
+            "awsvpcConfiguration": {
+                "subnets": [
+                    get_stack_output(pad_airflow, "PublicSubnet1"),
+                    get_stack_output(pad_airflow, "PublicSubnet2"),
+                ],
+                "securityGroups": [os.environ.get("CINCOCTRL_SECURITY_GROUP")],
+                "assignPublicIp": "ENABLED",
+            }
+        }
         return super().execute(context)
 
 
