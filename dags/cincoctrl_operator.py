@@ -125,7 +125,7 @@ class CincoCtrlDockerOperator(DockerOperator):
 
         container_image = "cincoctrl_local_django"
         container_version = "latest"
-        container_name = f"cincoctrl_local_django-{manage_cmd}-{'-'.join(manage_args)}"
+        container_name = "cincoctrl_local_django-managepy"
 
         args = {
             "image": f"{container_image}:{container_version}",
