@@ -14,7 +14,7 @@ from cinco.cincoctrl_operator import CincoCtrlOperator
     # on_success_callback=notify_dag_success,
 )
 def poll_message_queue():
-    poll_queue = CincoCtrlOperator(
+    poll_queue = CincoCtrlOperator(  # noqa: F841
         task_id="poll_queue",
         manage_cmd="poll_sqs",
         # on_failure_callback=notify_failure,
