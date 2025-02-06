@@ -43,12 +43,12 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         if manage_cmd == "prepare_finding_aid":
             manage_args = [finding_aid_id, s3_key]
 
-        container_name = f"cinco-ctrl-mgmt-{manage_cmd}-{'-'.join(manage_args)}"
+        container_name = "cinco-ctrl-stage-container"
         args = {
             "cluster": "cinco-stage",
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-ctrl-stage-container",
+            "task_definition": "cinco-ctrl-stage",
             "overrides": {
                 "containerOverrides": [
                     {
