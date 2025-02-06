@@ -25,6 +25,8 @@ class Command(BaseCommand):
         # SQS message structure: MessageId, ReceiptHandle, MD5OfBody,
         #   Body (dict, SNS message)
 
+        self.stdout.write(f"Found {len(sqs_messages)} messages in SQS queue.")
+
         for sqs_message in sqs_messages:
             sns_message = json.loads(sqs_message.pop("Body"))
             # SNS message structure: Type, MessageId, TopicArn, Timestamp,
