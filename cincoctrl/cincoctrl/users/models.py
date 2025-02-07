@@ -60,7 +60,7 @@ class Repository(models.Model):
     code = SlugField(unique=True)
     name = CharField(max_length=255)
     description = TextField(blank=True)
-    logo = ImageField()
+    logo = ImageField(upload_to="repo-logos/")
     building = CharField(max_length=255, blank=True)
     address1 = CharField(max_length=255, blank=True)
     address2 = CharField(max_length=255, blank=True)
