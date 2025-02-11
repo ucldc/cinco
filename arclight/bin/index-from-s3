@@ -22,8 +22,11 @@ if [ -z "$SOLR_URL" ]; then
   exit 1
 fi
 
-echo "Downloading Finding Aid ID: $1 to /tmp"
-aws s3 sync s3://$S3_BUCKET/media/indexing/$2 /tmp/$1
+echo "Downloading Finding Aid ID: $1 to /tmp/$1"
+# aws s3 sync s3://$S3_BUCKET/media/indexing/$2 /tmp/$1
+mkdir -p /tmp/$1
+curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$2/finding-aid.xml > /tmp/$1/finding-aid.xml
+curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$2/extracted-supplementary-files-text.txt > /tmp/$1/extracted-supplementary-files-text.txt
 
 echo "Indexing Finding Aid ID: $1"
 bundle exec traject -I lib/ \
