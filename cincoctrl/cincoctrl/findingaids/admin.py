@@ -42,3 +42,19 @@ class ExpressRecordAdmin(admin.ModelAdmin):
         ExpressRecordSubjectInline,
         RevisionHistoryInline,
     ]
+    search_fields = ["finding_aid__collection_title", "finding_aid__ark"]
+
+
+@admin.register(SupplementaryFile)
+class SupplementaryFileAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ExpressRecordSubject)
+class ExpressRecordSubjectAdmin(admin.ModelAdmin):
+    raw_id_fields = ("record",)
+
+
+@admin.register(ExpressRecordCreator)
+class ExpressRecordCreatorAdmin(admin.ModelAdmin):
+    raw_id_fields = ("record",)

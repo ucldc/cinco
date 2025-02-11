@@ -36,8 +36,10 @@ class Command(BaseCommand):
                     parser.validate_component_titles()
                     parser.validate_dates()
                     for e in parser.errors:
-                        print(f"{filename}\t{e}\tERROR")  # noqa: T201
+                        self.stdout.write(f"{filename}\t{e}\tERROR")
                     for w in parser.warnings:
-                        print(f"{filename}\t{w}\tWARNING")  # noqa: T201
+                        self.stdout.write(f"{filename}\t{w}\tWARNING")
+                    others = parser.parse_otherfindaids()
+                    self.stdout.write(others)
                 except EADParserError as e:
-                    print(f"{filename}\t{e}\tERROR")  # noqa: T201
+                    self.stdout.write(f"{filename}\t{e}\tERROR")

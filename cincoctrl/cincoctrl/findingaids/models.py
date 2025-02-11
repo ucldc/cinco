@@ -86,7 +86,7 @@ class FindingAid(models.Model):
         super().save(*args, **kwargs)
         if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
-            super().save(*args, **kwargs)
+            # super().save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:
         if self.record_type == "express":
@@ -127,6 +127,7 @@ def update_ead_warnings(sender, instance, created, **kwargs):
 
 class SupplementaryFile(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
+    title = CharField("Title", max_length=255)
     pdf_file = FileField(upload_to="pdf/", validators=[FileExtensionValidator(["pdf"])])
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)

@@ -68,6 +68,7 @@ class UserAdmin(auth_admin.UserAdmin):
 @admin.register(Repository)
 class RepositoryAdmin(admin.ModelAdmin):
     inlines = [RepositoryLinkInline]
+    search_fields = ["name", "code"]
 
 
 @admin.register(UserRole)

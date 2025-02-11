@@ -68,7 +68,7 @@ class Repository(models.Model):
     state = CharField(max_length=2, blank=True)
     country = CharField(max_length=2, blank=True)
     zipcode = CharField(max_length=15, blank=True)
-    phone = CharField(max_length=15, blank=True)
+    phone = CharField(max_length=255, blank=True)
     contact_email = EmailField(blank=True)
     aeon_url = URLField(blank=True)
     oclc_share = BooleanField(default=False)
