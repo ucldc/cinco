@@ -11,7 +11,6 @@ module Arclight
 
     def get_text
       filepath = File.join(directory, filename)
-      puts filepath
       if File.exist?(filepath)
         return File.read(filepath)
       else
