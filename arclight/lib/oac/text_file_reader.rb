@@ -1,22 +1,22 @@
 module Arclight
   class TextFileReader
     # @param `record`
-    def initialize(record)
-      @directory = ENV.fetch('TEXT_FILE_DIR', '/app/files/text/')
-
-      items = record.xpath('/ead/archdesc/otherfindaid/list/item')
-      @file_ids = items.map do |item|
-        href = item.xpath('./extref').attr("href").value
-        href.split("/")[-1].split(".")[0]
-      end
+    def initialize(base_file)
+      base_dir = base_file.split("/")[0...-1].join("/") + "/"
+      @directory = ENV.fetch('TEXT_FILE_DIR', base_dir)
+      @filename = ENV.fetch('TEXT_FILE_NAME', 'extracted-supplementary-files-text.txt')
     end
 
-    attr_reader :directory, :file_ids
+    attr_reader :directory, :filename
 
-    def get_texts
-      file_ids.map { |file_id|
-        File.read(File.join(directory, file_id + ".txt"))
-      }
+    def get_text
+      filepath = File.join(directory, filename)
+      puts filepath
+      if File.exist?(filepath)
+        return File.read(filepath)
+      else
+        return ""
+      end
     end
   end
 end

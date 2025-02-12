@@ -282,7 +282,7 @@ to_field 'sort_isi' do |_record, accumulator, _context|
 end
 
 to_field 'pdftext_tesim' do |record, accumulator|
-  accumulator.concat(settings['text_reader'].constantize.new(record).get_texts)
+  accumulator << settings['text_reader'].constantize.new(settings['command_line.filename']).get_text
 end
 
 # =============================
