@@ -1,8 +1,26 @@
 # syntax = docker/dockerfile:1
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t my-app .
-# docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
+# docker build -t cinco-arclight .
+
+# to run arclight server:
+# docker run -d -p 80:80 -p 443:443 \
+#     --name cinco-arclight-server \
+#     -e RAILS_MASTER_KEY=<value from config/master.key> \
+#     cinco-arclight
+
+# to run traject:
+# docker run -d cinco-arclight \
+#     bundle exec traject -I lib/ \
+#         -u http://localhost:8983/solr/blacklight-core \
+#         -i xml -c lib/arclight/traject/ead2_config.rb \
+#         path/to/file.xml
+
+# to run indexing from s3:
+# docker run -d \
+#     -e S3_BUCKET=$S3_BUCKET \
+#     -e SOLR_URL=http://localhost:8983/solr/blacklight-core \
+#     cinco-arclight /rails/bin/index-from-s3 <finding_aid_id>
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.2.0
