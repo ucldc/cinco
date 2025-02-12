@@ -86,7 +86,7 @@ class FindingAid(models.Model):
         super().save(*args, **kwargs)
         if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
-            kwargs.update({'force_insert': False})
+            kwargs.update({"force_insert": False})
             super().save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:
