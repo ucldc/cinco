@@ -16,6 +16,7 @@ class SupplementaryFileInline(admin.TabularInline):
 @admin.register(FindingAid)
 class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline]
+    search_fields = ["collection_title", "ark"]
 
 
 class ExpressRecordCreatorInline(admin.TabularInline):
