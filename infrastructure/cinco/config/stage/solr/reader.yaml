@@ -13,7 +13,7 @@ parameters:
 
 sceptre_user_data:
   ContainerEntryPoint: "docker-entrypoint.sh"
-  ContainerCommand: "solr-foreground"
+  ContainerCommand: [ "solr-foreground" ]
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
