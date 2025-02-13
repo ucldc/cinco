@@ -22,7 +22,8 @@ class CatalogController < ApplicationController
       'collection.q': '{!terms f=id v=$row._root_}',
       'collection.defType': 'lucene',
       'collection.fl': '*',
-      'collection.rows': 1
+      'collection.rows': 1,
+      fq: 'preview_ssi:false'
     }
 
     # Sets the indexed Solr field that will display with highlighted matches

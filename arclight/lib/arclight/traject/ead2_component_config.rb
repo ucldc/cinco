@@ -114,6 +114,10 @@ to_field 'unitdate_other_ssim', extract_xpath('./did/unitdate[not(@type)]')
 
 to_field 'unitid_ssm', extract_xpath('./did/unitid')
 
+to_field 'preview_ssi' do |_record, accumulator|
+  accumulator << settings[:root].output_hash['preview_ssi'][0]
+end
+
 to_field 'containers_ssim' do |record, accumulator|
     record.xpath('./did/container').each do |node|
       accumulator << [node.attribute('type'), node.text].join(' ').strip
