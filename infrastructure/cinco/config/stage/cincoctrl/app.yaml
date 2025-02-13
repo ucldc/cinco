@@ -12,7 +12,7 @@ parameters:
   DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: '/entrypoint'
-  ContainerCommand: "/start"
+  ContainerCommand: [ "/start" ]
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
     - !stack_output stage/s3.yaml::Policy
