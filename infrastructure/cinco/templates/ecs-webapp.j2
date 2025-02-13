@@ -624,6 +624,10 @@ Outputs:
     Description: The Load Balancer
     Value: !Ref LoadBalancer
 
+  LoadBalancerDNS:
+    Description: The DNS Name of the Load Balancer
+    Value: !GetAtt LoadBalancer.DNSName
+
   HttpListener:
     Description: The Http Listener
     Value: !Ref HttpListener
