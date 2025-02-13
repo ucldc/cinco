@@ -19,7 +19,7 @@
 # to run indexing from s3:
 # docker run -d \
 #     -e S3_BUCKET=$S3_BUCKET \
-#     -e SOLR_URL=http://localhost:8983/solr/blacklight-core \
+#     -e SOLR_WRITER=http://localhost:8983/solr/blacklight-core \
 #     cinco-arclight /rails/bin/index-from-s3 <finding_aid_id>
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
