@@ -15,6 +15,7 @@ require 'arclight/digital_object'
 require 'oac/optional_year_range'
 require 'arclight/repository'
 require 'arclight/traject/nokogiri_namespaceless_reader'
+require 'oac/text_file_reader'
 
 # rubocop:disable Style/MixinUsage
 extend TrajectPlus::Macros
@@ -61,6 +62,7 @@ settings do
   provide 'solr_writer.commit_on_close', 'true'
   provide 'repository', ENV.fetch('REPOSITORY_ID', nil)
   provide 'logger', Logger.new($stderr)
+  provide 'text_reader', 'Arclight::TextFileReader'
 end
 
 each_record do |_record, context|
@@ -277,6 +279,10 @@ end
 
 to_field 'sort_isi' do |_record, accumulator, _context|
   accumulator << 0
+end
+
+to_field 'pdftext_tesim' do |record, accumulator|
+  accumulator << settings['text_reader'].constantize.new(settings['command_line.filename']).get_text
 end
 
 # =============================
