@@ -271,7 +271,10 @@ Resources:
           EntryPoint: [ {{ sceptre_user_data.ContainerEntryPoint }} ]
           {% endif %}
           {% if sceptre_user_data and sceptre_user_data.ContainerCommand is defined %}
-          Command: [ {{ sceptre_user_data.ContainerCommand }} ]
+          Command:
+            {% for cmd in sceptre_user_data.ContainerCommand %}
+            - {{ cmd }}
+            {% endfor %}
           {% endif %}
           {% if sceptre_user_data and sceptre_user_data.ContainerEnvironment is defined %}
           Environment:
