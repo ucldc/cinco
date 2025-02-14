@@ -38,12 +38,12 @@ def get_awsvpc_config():
 
 class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(self, finding_aid_id, s3_key, **kwargs):
-        container_name = f"cinco-arclight-indexer-{finding_aid_id}"
+        container_name = "cinco-arclight-stage-container"
         args = {
             "cluster": "cinco-stage",
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-arclight-indexer-container",
+            "task_definition": "cinco-arclight-stage",
             "overrides": {
                 "containerOverrides": [
                     {
