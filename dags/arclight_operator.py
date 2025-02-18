@@ -16,6 +16,21 @@ CONTAINER_EXECUTION_ENVIRONMENT = os.environ.get(
 )
 
 
+def get_solr_writer_url():
+    """
+    get the url of the solr writer from the cloudformation stack
+    """
+    client = boto3.client("cloudformation", region_name="us-west-2")
+    cf_outputs = (
+        client.describe_stacks(StackName="cinco-stage-solr-writer")
+        .get("Stacks", [{}])[0]
+        .get("Outputs", [])
+    )
+    for output in cf_outputs:
+        if output["OutputKey"] == "LoadBalancerDNS":
+            return f"http://{output['OutputValue']}/solr/arclight"
+
+
 def get_awsvpc_config():
     """
     get public subnets and security group from cloudformation stack for use
@@ -77,6 +92,10 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         # rather than in initialization ensures that we only call
         # get_awsvpc_config() when the operator is actually run.
         self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
+        self.overrides["containerOverrides"][0]["environment"] = [
+            {"name": "SOLR_WRITER", "value": get_solr_writer_url()}
+        ]
+
         return super().execute(context)
 
 
