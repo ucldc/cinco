@@ -62,7 +62,7 @@ settings do
   provide 'solr_writer.commit_on_close', 'true'
   provide 'repository', ENV.fetch('REPOSITORY_ID', nil)
   provide 'logger', Logger.new($stderr)
-  provide 'text_reader', 'OAC::TextFileReader'
+  provide 'text_reader', 'Oac::TextFileReader'
 end
 
 each_record do |_record, context|
@@ -233,7 +233,7 @@ to_field 'dimensions_tesim', extract_xpath('/ead/archdesc/did/physdesc/dimension
 to_field 'genreform_ssim', extract_xpath('/ead/archdesc/controlaccess/genreform')
 
 to_field 'date_range_isim', extract_xpath('/ead/archdesc/did/unitdate/@normal', to_text: false) do |_record, accumulator|
-  range = OAC::OptionalYearRange.new
+  range = Oac::OptionalYearRange.new
   next range.years if accumulator.blank?
 
   ranges = accumulator.map(&:to_s)

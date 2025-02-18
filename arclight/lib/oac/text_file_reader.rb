@@ -1,4 +1,4 @@
-module OAC
+module Oac
   class TextFileReader
     # @param `record`
     def initialize(base_file)

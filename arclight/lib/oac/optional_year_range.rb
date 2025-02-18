@@ -2,7 +2,7 @@
 
 require 'arclight/year_range'
 
-module OAC
+module Oac
   # A range of years that handles gaps, such as [1999, 2000, 2002].
   # Primary usage is:
   # ```
