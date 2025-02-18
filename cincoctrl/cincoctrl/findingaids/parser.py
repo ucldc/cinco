@@ -30,6 +30,24 @@ class EADParser:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
+    def parse_arks(self):
+        eadid = self.root.find("./eadheader/eadid")
+        return eadid.attrib.get("identifier", None), eadid.attrib.get(
+            "{http://www.cdlib.org/path/}parent",
+            None,
+        )
+
+    def parse_otherfindaids(self):
+        others = []
+        for other in self.root.findall(".//otherfindaid"):
+            others.extend(
+                [
+                    {"href": ref.attrib["href"], "text": ref.text}
+                    for ref in other.findall(".//extref")
+                ],
+            )
+        return others
+
     def parse_dtd_error(self, e):
         pattern = re.compile(r"(.*), expecting \((.*)\), got \((.*)\)")
         match = pattern.search(e.message)

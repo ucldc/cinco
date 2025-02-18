@@ -162,3 +162,22 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](https://cookiecutter-django.readthedocs.io/en/latest/3-deployment/deployment-with-docker.html).
+
+### Management commands
+
+`import_repositories <filepath>` -  Imports repositories from an OAC4 export:
+```
+python ./manage.py dumpdata oac --natural-foreign --indent=4 > /tmp/repositories.json
+```
+`import_ead <url> (--docurl)` - Imports and EAD file from the given url. `--docurl` can be used to change the location that the command uses to download documents linked in the EAD (default: "https://cdn.calisphere.org").
+`import_record_express <filepath>` - Imports express records from an OAC4 export:
+```
+python ./manage.py dumpdata oac.institution collection_record --indent=4 > /tmp/record_express.json
+```
+`import_dublincore <filepath>` - Imports Creator and Subject terms to express records.
+```
+python ./manage.py dumpdata dublincore --indent=4 > /tmp/dublincore.json
+```
+
+`import_repositories` should be run before any of the other imports.
+`import_record_express` should be run before `import_dublincore`.
