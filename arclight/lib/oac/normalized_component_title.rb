@@ -2,7 +2,7 @@
 
 require 'arclight/exceptions'
 
-module OAC
+module Oac
   ##
   # A utility class to normalize titles, typically by joining
   # the title and date, e.g., "My Title, 1990-2000"
