@@ -9,6 +9,7 @@ parameters:
   ContainerImage: !stack_output stage/arclight/build.yaml::ECRRepository
   ContainerPort: 80
   HealthCheckPath: '/'
+  DBInstanceSecurityGroup: !stack_output stage/arclight/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: "/rails/bin/docker-entrypoint"
   ContainerCommand:
@@ -18,3 +19,5 @@ sceptre_user_data:
   ContainerEnvironment:
     - RAILS_MASTER_KEY: !environment_variable RAILS_MASTER_KEY
     - S3_BUCKET: !environment_variable S3_BUCKET_NAME
+    - POSTGRES_USER: !environment_variable ARCLIGHT_DB_USERNAME
+    - POSTGRES_PASSWORD: !environment_variable ARCLIGHT_DB_PASSWORD
