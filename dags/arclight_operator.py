@@ -28,7 +28,7 @@ def get_solr_writer_url():
     )
     for output in cf_outputs:
         if output["OutputKey"] == "LoadBalancerDNS":
-            return output["OutputValue"]
+            return f"http://{output['OutputValue']}"
 
 
 def get_awsvpc_config():
