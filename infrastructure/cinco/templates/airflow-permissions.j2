@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Cinco Airflow Permissions
+
+{# Parameters: #}
+  {# Stacks:
+    Type: String
+    Description: List of stacks to allow access to #}
+
+
+Resources:
+  Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: cinco-airflow-access
+      Path: "/"
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: "AllowLogs"
+            Effect: "Allow"
+            Action:
+              - "logs:CreateLogStream"
+              - "logs:CreateLogGroup"
+              - "logs:PutLogEvents"
+              - "logs:GetLogEvents"
+              - "logs:GetLogRecord"
+              - "logs:GetLogGroupFields"
+              - "logs:GetQueryResults"
+              - "logs:DescribeLogGroups"
+            Resource:
+              {# - "arn:aws:logs:us-west-2:777968769372:log-group:/ecs/cinco-ctrl-stage:*"
+              - "arn:aws:logs:us-west-2:777968769372:log-group:/ecs/cinco-arclight-stage:*" #}
+              {% for log_group in sceptre_user_data.logs %}
+              - !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:{{log_group}}:*
+              {% endfor %}
+          - Sid: "AllowDescribeCloudformation"
+            Effect: "Allow"
+            Action:
+              - cloudformation:DescribeStacks
+            Resource:
+              {# - arn:aws:cloudformation:us-west-2:777968769372:stack/cinco-stage-solr-writer/* #}
+              {% for stack_name in sceptre_user_data.stacks %}
+              - !Sub arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/{{stack_name}}/*
+              {% endfor %}
+
+Outputs:
+  Policy:
+    Description: The ARN of the task role with s3 permissions
+    Value: !GetAtt Policy.PolicyArn
