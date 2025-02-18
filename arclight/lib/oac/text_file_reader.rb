@@ -1,4 +1,4 @@
-module Arclight
+module OAC
   class TextFileReader
     # @param `record`
     def initialize(base_file)

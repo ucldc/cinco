@@ -26,7 +26,7 @@ settings do
   # provide 'depth' # the current nesting depth of the component
   provide 'component_traject_config', __FILE__
   provide 'date_normalizer', 'Arclight::NormalizedDate'
-  provide 'title_normalizer', 'Arclight::NormalizedComponentTitle'
+  provide 'title_normalizer', 'OAC::NormalizedComponentTitle'
   provide 'reader_class_name', 'Arclight::Traject::NokogiriNamespacelessReader'
   provide 'logger', Logger.new($stderr)
   provide 'component_identifier_format', '%<root_id>s_%<ref_id>s'
@@ -271,7 +271,7 @@ to_field 'digital_objects_ssm', extract_xpath('./dao|./did/dao', to_text: false)
 end
 
 to_field 'date_range_isim', extract_xpath('./did/unitdate/@normal', to_text: false) do |_record, accumulator|
-  range = Arclight::OptionalYearRange.new
+  range = OAC::OptionalYearRange.new
   next range.years if accumulator.blank?
 
   ranges = accumulator.map(&:to_s)
