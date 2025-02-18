@@ -96,6 +96,10 @@ to_field 'unitdate_bulk_ssim', extract_xpath('/ead/archdesc/did/unitdate[@type="
 to_field 'unitdate_inclusive_ssm', extract_xpath('/ead/archdesc/did/unitdate[@type="inclusive"]')
 to_field 'unitdate_other_ssim', extract_xpath('/ead/archdesc/did/unitdate[not(@type)]')
 
+to_field 'preview_ssi' do |_record, accumulator|
+  accumulator << settings.fetch(:preview, "false")
+end
+
 # All top-level docs treated as 'collection' for routing / display purposes
 to_field 'level_ssm' do |_record, accumulator|
   accumulator << 'collection'
