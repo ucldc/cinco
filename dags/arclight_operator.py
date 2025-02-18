@@ -61,12 +61,15 @@ def get_awsvpc_config():
 
 class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(self, finding_aid_id, s3_key, **kwargs):
+        cluster_name = "cinco-stage"
+        task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
+
         args = {
-            "cluster": "cinco-stage",
+            "cluster": cluster_name,
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-arclight-stage",
+            "task_definition": task_name,
             "overrides": {
                 "containerOverrides": [
                     {
@@ -80,7 +83,8 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            "awslogs_stream_prefix": "airflow",
+            "awslogs_group": f"/ecs/{task_name}",
+            "awslogs_stream_prefix": f"ecs/{container_name}",
             "awslogs_region": "us-west-2",
             "reattach": True,
             "number_logs_exception": 100,
@@ -102,7 +106,6 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         self.overrides["containerOverrides"][0]["environment"] = [
             {"name": "SOLR_WRITER", "value": get_solr_writer_url()}
         ]
-        self.overrides["awslogs_group"] = get_log_group()
         return super().execute(context)
 
 
