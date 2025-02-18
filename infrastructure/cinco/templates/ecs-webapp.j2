@@ -639,3 +639,7 @@ Outputs:
   TaskRole:
     Description: The Task Role - attach policies to this role to grant permissions to task containers
     Value: !Ref ECSTaskRole
+
+  LogGroup:
+    Description: The CloudWatch Log Group
+    Value: !Sub /ecs/${Namespace}
