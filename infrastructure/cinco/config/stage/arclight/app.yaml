@@ -1,0 +1,20 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-arclight-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/arclight/build.yaml::ECRRepository
+  ContainerPort: 80
+  HealthCheckPath: '/'
+sceptre_user_data:
+  ContainerEntryPoint: "/rails/bin/docker-entrypoint"
+  ContainerCommand:
+    - "./bin/rails"
+    - "server"
+  Description: "Arclight Web Application running in ECS"
+  ContainerEnvironment:
+    - RAILS_MASTER_KEY: !environment_variable RAILS_MASTER_KEY
+    - S3_BUCKET: !environment_variable S3_BUCKET_NAME
