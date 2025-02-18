@@ -24,7 +24,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.2.0
-FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
+FROM public.ecr.aws/docker/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
 WORKDIR /rails
