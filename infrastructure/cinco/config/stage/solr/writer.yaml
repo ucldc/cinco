@@ -30,5 +30,5 @@ sceptre_user_data:
     - !stack_output stage/solr/efs.yaml::EfsWriterPolicyArn
   HttpAccessList:
     - !stack_output stage/cincoctrl/app.yaml::ServiceSecurityGroup
-    # - !stack_output stage/arclight.yaml::ServiceSecurityGroup
+    - !stack_output stage/arclight/app.yaml::ServiceSecurityGroup
     # - !environment_variable PAD_AIRFLOW_SECURITY_GROUP
