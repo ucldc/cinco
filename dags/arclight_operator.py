@@ -16,19 +16,33 @@ CONTAINER_EXECUTION_ENVIRONMENT = os.environ.get(
 )
 
 
+def get_stack_outputs(stack_name):
+    """
+    get the outputs of a cloudformation stack
+    """
+    client = boto3.client("cloudformation", region_name="us-west-2")
+    cf_outputs = (
+        client.describe_stacks(StackName=stack_name)
+        .get("Stacks", [{}])[0]
+        .get("Outputs", [])
+    )
+    return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
+
+
+def get_log_group():
+    """
+    get the log group name for the arclight container
+    """
+    outputs = get_stack_outputs("cinco-stage-arclight-app")
+    return outputs["LogGroup"]
+
+
 def get_solr_writer_url():
     """
     get the url of the solr writer from the cloudformation stack
     """
-    client = boto3.client("cloudformation", region_name="us-west-2")
-    cf_outputs = (
-        client.describe_stacks(StackName="cinco-stage-solr-writer")
-        .get("Stacks", [{}])[0]
-        .get("Outputs", [])
-    )
-    for output in cf_outputs:
-        if output["OutputKey"] == "LoadBalancerDNS":
-            return f"http://{output['OutputValue']}"
+    outputs = get_stack_outputs("cinco-stage-solr-writer")
+    return f"http://{outputs['LoadBalancerDNS']}"
 
 
 def get_awsvpc_config():
@@ -36,18 +50,12 @@ def get_awsvpc_config():
     get public subnets and security group from cloudformation stack for use
     with the ContentHarvestEcsOperator to run tasks in an ECS cluster
     """
-    client = boto3.client("cloudformation", region_name="us-west-2")
-    awsvpcConfig = {"subnets": [], "securityGroups": [], "assignPublicIp": "ENABLED"}
-    cf_outputs = (
-        client.describe_stacks(StackName="pad-airflow-mwaa")
-        .get("Stacks", [{}])[0]
-        .get("Outputs", [])
-    )
-    for output in cf_outputs:
-        if output["OutputKey"] in ["PublicSubnet1", "PublicSubnet2"]:
-            awsvpcConfig["subnets"].append(output["OutputValue"])
-        if output["OutputKey"] == "SecurityGroup":
-            awsvpcConfig["securityGroups"].append(output["OutputValue"])
+    cf_outputs = get_stack_outputs("pad-airflow-mwaa")
+    awsvpcConfig = {
+        "subnets": [cf_outputs["PublicSubnet1"], cf_outputs["PublicSubnet2"]],
+        "securityGroups": [cf_outputs["SecurityGroup"]],
+        "assignPublicIp": "ENABLED",
+    }
     return awsvpcConfig
 
 
@@ -72,13 +80,12 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            # "awslogs_group": "cinco-arclight-indexer",
-            # "awslogs_region": "us-west-2",
-            # "awslogs_stream_prefix": "ecs",
-            # "reattach": True,
-            # "number_logs_exception": 100,
-            # "waiter_delay": 10,
-            # "waiter_max_attempts": 8640,
+            "awslogs_stream_prefix": "airflow",
+            "awslogs_region": "us-west-2",
+            "reattach": True,
+            "number_logs_exception": 100,
+            "waiter_delay": 10,
+            "waiter_max_attempts": 8640,
         }
         args.update(kwargs)
         super().__init__(**args)
@@ -95,7 +102,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         self.overrides["containerOverrides"][0]["environment"] = [
             {"name": "SOLR_WRITER", "value": get_solr_writer_url()}
         ]
-
+        self.overrides["awslogs_group"] = get_log_group()
         return super().execute(context)
 
 
