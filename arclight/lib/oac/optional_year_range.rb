@@ -2,7 +2,7 @@
 
 require 'arclight/year_range'
 
-module Arclight
+module OAC
   # A range of years that handles gaps, such as [1999, 2000, 2002].
   # Primary usage is:
   # ```
@@ -13,7 +13,7 @@ module Arclight
   # range.years => [1999, 2000, 2001, 2002, 2003, 2004, 2010]
   # range.to_s => '1999-2004, 2010'
   # ```
-  class OptionalYearRange < YearRange
+  class OptionalYearRange < Arclight::YearRange
 
     # @param [String] `dates` in the form YYYY/YYYY
     # @return [Array<Integer>] the set of years in the given range
