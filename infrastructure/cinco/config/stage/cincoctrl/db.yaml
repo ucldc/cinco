@@ -5,5 +5,5 @@ parameters:
   Namespace: cinco-ctrl-stage
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  DBUsername: !environment_variable DB_USERNAME
-  DBPassword: !environment_variable DB_PASSWORD
+  DBUsername: !environment_variable CINCOCTRL_DB_USERNAME
+  DBPassword: !environment_variable CINCOCTRL_DB_PASSWORD
