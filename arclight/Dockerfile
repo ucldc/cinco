@@ -4,9 +4,10 @@
 # docker build -t cinco-arclight .
 
 # to run arclight server:
-# docker run -d -p 80:80 -p 443:443 \
+# docker run -d -p 3000:3000 \
 #     --name cinco-arclight-server \
 #     -e RAILS_MASTER_KEY=<value from config/master.key> \
+#     -e SOLR_URL=http://host.docker.internal:8983/solr/arclight \
 #     cinco-arclight
 
 # to run traject:
