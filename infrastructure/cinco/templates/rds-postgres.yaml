@@ -4,6 +4,9 @@ Description:
   RDS Postgres Instance
 
 Parameters:
+  DBInstanceClass:
+    Description: The name of the DB instance class
+    Type: "String"
   DBUsername:
     Description: The master username for the RDS instance
     Type: "String"
@@ -60,7 +63,7 @@ Resources:
       DBInstanceIdentifier: !Ref Namespace
       MasterUsername: !Ref DBUsername
       MasterUserPassword: !Ref DBPassword
-      DBInstanceClass: db.t3.small
+      DBInstanceClass: !Ref DBInstanceClass
       StorageType: io2
       AllocatedStorage: 200
       Iops: 3000
