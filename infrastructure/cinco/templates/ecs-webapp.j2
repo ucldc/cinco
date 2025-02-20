@@ -343,6 +343,20 @@ Resources:
           CidrIp: "0.0.0.0/0"
       {% endif %}
 
+  {% if sceptre_user_data and sceptre_user_data.GrantHttpAccessFromThisServiceTo is defined %}
+  {% for grantor in sceptre_user_data.GrantHttpAccessFromThisServiceTo %}
+  ServiceSecurityGroupHttpIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Allow HTTP access
+      GroupId: {{ grantor }}
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      SourceSecurityGroupId: !GetAtt ServiceSecurityGroup.GroupId
+  {% endfor %}
+  {% endif %}
+
   {% if sceptre_user_data and sceptre_user_data.HttpAccessList is defined %}
   {% for securitygroup in sceptre_user_data.HttpAccessList %}
   SecurityGroupHttpsIngress{{ loop.index }}:
@@ -367,6 +381,21 @@ Resources:
       FromPort: 443
       ToPort: 443
       CidrIp: "0.0.0.0/0"
+  {% endif %}
+
+  {% if sceptre_user_data and sceptre_user_data.GrantHttpAccessFromThisServiceTo is defined %}
+  {% for grantor in sceptre_user_data.GrantHttpAccessFromThisServiceTo %}
+  ServiceSecurityGroupHttpsIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Condition: HasSSLCert
+    Properties:
+      Description: Allow HTTPs access
+      GroupId: {{ grantor }}
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+      SourceSecurityGroupId: !GetAtt ServiceSecurityGroup.GroupId
+  {% endfor %}
   {% endif %}
 
   ServiceSecurityGroup:
@@ -610,7 +639,7 @@ Outputs:
 
   LoadBalancerSecurityGroup:
     Description: The Security Group
-    Value: !Ref LoadBalancerSecurityGroup
+    Value: !GetAtt LoadBalancerSecurityGroup.GroupId
 
   ServiceSecurityGroup:
     Description: The Service Security Group

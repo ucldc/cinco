@@ -21,3 +21,6 @@ sceptre_user_data:
     - S3_BUCKET: !environment_variable S3_BUCKET_NAME
     - POSTGRES_USER: !environment_variable ARCLIGHT_DB_USERNAME
     - POSTGRES_PASSWORD: !environment_variable ARCLIGHT_DB_PASSWORD
+    - SOLR_URL: !stack_output stage/solr/reader.yaml::LoadBalancerDNSName
+  GrantHttpAccessFromThisServiceTo:
+    - !stack_output stage/solr/reader.yaml::LoadBalancerSecurityGroup
