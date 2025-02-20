@@ -80,10 +80,15 @@ end
 # ==================
 
 to_field 'id' do |record, accumulator|
-  id = record.at_xpath('/ead/eadheader/eadid')&.text
-  title = record.at_xpath('/ead/archdesc/did/unittitle')&.text
-  repository = settings['repository']
-  accumulator << settings['id_normalizer'].constantize.new(id, title: title, repository: repository).to_s
+  ark = settings.fetch('ark', false)
+  if ark
+    accumulator << ark
+  else
+    id = record.at_xpath('/ead/eadheader/eadid')&.text
+    title = record.at_xpath('/ead/archdesc/did/unittitle')&.text
+    repository = settings['repository']
+    accumulator << settings['id_normalizer'].constantize.new(id, title: title, repository: repository).to_s
+  end
 end
 
 to_field 'title_filing_ssi', extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
