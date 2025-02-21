@@ -390,7 +390,7 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPs access
-      GroupId: {{ sceptre_user_data.grantor }}
+      GroupId: {{ grantor }}
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
