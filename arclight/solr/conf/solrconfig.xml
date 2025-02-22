@@ -40,6 +40,10 @@
 
   <codecFactory class="solr.SchemaCodecFactory"/>
 
+  <indexConfig>
+    <lockType>simple</lockType>
+  </indexConfig>
+
   <schemaFactory class="ClassicIndexSchemaFactory"/>
 
 
