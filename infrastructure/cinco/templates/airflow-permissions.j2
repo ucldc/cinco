@@ -30,8 +30,8 @@ Resources:
               - "logs:GetQueryResults"
               - "logs:DescribeLogGroups"
             Resource:
-              {# - "arn:aws:logs:us-west-2:777968769372:log-group:/ecs/cinco-ctrl-stage:*"
-              - "arn:aws:logs:us-west-2:777968769372:log-group:/ecs/cinco-arclight-stage:*" #}
+              {# - "arn:aws:logs:region:acct:log-group:/ecs/cinco-ctrl-stage:*"
+              - "arn:aws:logs:region:acct:log-group:/ecs/cinco-arclight-stage:*" #}
               {% for log_group in sceptre_user_data.logs %}
               - !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:{{log_group}}:*
               {% endfor %}
@@ -40,7 +40,7 @@ Resources:
             Action:
               - cloudformation:DescribeStacks
             Resource:
-              {# - arn:aws:cloudformation:us-west-2:777968769372:stack/cinco-stage-solr-writer/* #}
+              {# - arn:aws:cloudformation:region:acct:stack/cinco-stage-solr/* #}
               {% for stack_name in sceptre_user_data.stacks %}
               - !Sub arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/{{stack_name}}/*
               {% endfor %}

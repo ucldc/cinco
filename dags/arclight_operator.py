@@ -41,8 +41,8 @@ def get_solr_writer_url():
     """
     get the url of the solr writer from the cloudformation stack
     """
-    outputs = get_stack_outputs("cinco-stage-solr-writer")
-    return f"http://{outputs['LoadBalancerDNS']}:8983/solr/arclight"
+    outputs = get_stack_outputs("cinco-stage-solr")
+    return f"http://{outputs['LoadBalancerDNS']}/solr/arclight"
 
 
 def get_awsvpc_config():
