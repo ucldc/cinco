@@ -7,5 +7,5 @@ sceptre_user_data:
     - !stack_output stage/cincoctrl/app.yaml::LogGroup
     - !stack_output stage/arclight/app.yaml::LogGroup
   stacks:
-    - cinco-stage-solr-writer
+    - cinco-stage-solr-solr
     - cinco-stage-arclight-app
