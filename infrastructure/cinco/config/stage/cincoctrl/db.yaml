@@ -2,7 +2,7 @@ template:
   path: rds-postgres.yaml
   type: file
 parameters:
-  DBInstanceClass: db.t3.small
+  DBInstanceClass: db.t4g.small
   Namespace: cinco-ctrl-stage
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
