@@ -7,22 +7,27 @@ from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import RevisionHistory
 from cincoctrl.findingaids.models import SupplementaryFile
+from cincoctrl.users.models import Repository
 
 
 class FindingAidForm(ModelForm):
     class Meta:
         model = FindingAid
-        fields = ["ead_file"]
+        fields = ["repository", "ead_file"]
+        labels = {"ead_file": "Choose XML File"}
 
     def __init__(self, *args, **kwargs):
+        qs = kwargs.pop("queryset", Repository.objects.none())
         super().__init__(*args, **kwargs)
         self.fields["ead_file"].required = True
+        self.fields["repository"].queryset = qs
+        # TODO: if count == 1 don't show
 
 
 SuppFileInlineFormSet = inlineformset_factory(
     FindingAid,
     SupplementaryFile,
-    fields=["pdf_file"],
+    fields=["title", "pdf_file"],
     extra=1,
 )
 
@@ -30,12 +35,36 @@ SuppFileInlineFormSet = inlineformset_factory(
 class ExpressFindingAidForm(ModelForm):
     class Meta:
         model = FindingAid
-        fields = ["collection_title", "collection_number"]
+        fields = ["repository", "collection_title", "collection_number"]
+
+    def __init__(self, *args, **kwargs):
+        qs = kwargs.pop("queryset", Repository.objects.none())
+        super().__init__(*args, **kwargs)
+        self.fields["repository"].queryset = qs
+        # TODO: if count == 1 don't show
 
 
 class ExpressRecordForm(ModelForm):
     class Meta:
         model = ExpressRecord
+        fields = [
+            "title_filing",
+            "date",
+            "start_year",
+            "end_year",
+            "extent",
+            "abstract",
+            "scopecontent",
+            "language",
+            "bioghist",
+            "accessrestrict",
+            "userestrict",
+            "preferred_citation",
+            "acqinfo",
+            "processing_information",
+            "author_statement",
+            "online_items_url",
+        ]
         exclude = ("finding_aid", "date_created", "date_updated")
 
 

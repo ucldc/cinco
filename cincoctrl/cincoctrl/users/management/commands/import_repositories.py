@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 
+import boto3
 from django.core.management.base import BaseCommand
 
 from cincoctrl.users.models import Repository
@@ -19,6 +20,12 @@ class Command(BaseCommand):
             help="the location of the file to import",
             type=str,
         )
+        parser.add_argument(
+            "-b",
+            "--bucket",
+            help="s3 bucket to fetch from",
+            type=str,
+        )
 
     # oclc_share = archivegrid_harvest or worldcat_harvest?
     # date_created = "created_at"
@@ -29,8 +36,15 @@ class Command(BaseCommand):
         filepath = options.get("filepath")
         p = re.compile(r"^\d{5}(?:[-\s]\d{4})?$")
 
-        with Path(filepath).open("r") as f:
-            data = json.load(f)
+        bucket = options.get("bucket", False)
+
+        if bucket:
+            client = boto3.client("s3")
+            obj = client.get_object(Bucket=bucket, Key=filepath)
+            data = json.loads(obj["Body"].read())
+        else:
+            with Path(filepath).open("r") as f:
+                data = json.load(f)
 
         cities = {}
         counties = {}

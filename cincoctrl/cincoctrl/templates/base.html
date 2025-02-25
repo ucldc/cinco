@@ -8,7 +8,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
       {% block title %}
-        cincoctrl
+        OAC Dashboard
       {% endblock title %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,33 +56,27 @@
                     aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}">cincoctrl</a>
+            <a class="navbar-brand" href="{% url 'home' %}">OAC Dashboard</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>
-                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about' %}">About</a>
+                  <a class="nav-link" href="{% url 'findingaids:submit_ead' %}">Submit a new EAD guide</a>
                 </li>
                 <li>
-                  <a class="nav-link" href="{% url 'findingaids:home' %}">Finding Aids</a>
+                  <a class="nav-link" href="{% url 'findingaids:create_record_express' %}">Create a new RecordEXPRESS guide</a>
                 </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:detail' request.user.pk %}">{% translate "My Profile" %}</a>
+                    <a class="nav-link" href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:detail' request.user.pk %}">{% translate "My Account" %}</a>
                   </li>
                   <li class="nav-item">
                     {# URL provided by django-allauth/account/urls.py #}
                     <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
                   </li>
                 {% else %}
-                  {% if ACCOUNT_ALLOW_REGISTRATION %}
-                    <li class="nav-item">
-                      {# URL provided by django-allauth/account/urls.py #}
-                      <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
-                    </li>
-                  {% endif %}
                   <li class="nav-item">
                     {# URL provided by django-allauth/account/urls.py #}
                     <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
@@ -105,11 +99,28 @@
             </div>
           {% endfor %}
         {% endif %}
+        <main>
         {% block main %}
+        <div class="py-5">
           {% block content %}
-            <p>Use this document as a way to quick start any new project.</p>
+            <p>Intro text to OAC Dashboard</p>
+            <h2>Useful guides</h2>
+            <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+            </ul>
           {% endblock content %}
+        </div>
         {% endblock main %}
+        </main>
+        <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">New support ticket</a></li>
+            <li class="list-inline-item"><a href="#">Subscribe to contributor mailing list</a></li>
+            <li class="list-inline-item"><a href="#">Privacy statement</a></li>
+            <li class="list-inline-item"><a href="#">Accessibility policy</a></li>
+          </ul>
+        </footer>
       </div>
     {% endblock body %}
     <!-- /container -->

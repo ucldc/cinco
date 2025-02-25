@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
-  {{ repository }}: {{ verb }} Express Record
+  {{ verb }} Express Record
 {% endblock title %}
 {% block content %}
   <div class="container">
@@ -12,15 +13,43 @@
         <h2>{{ verb }} Express Record</h2>
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <table>
-            {% if finding_aid_form %}{{ finding_aid_form.as_table }}{% endif %}
-            {{ form.as_table }}
-            {% for formset in formsets %}
-              {{ formset.management_form }}
-              {{ formset.as_table }}
-            {% endfor %}
-          </table>
-          <input type="submit" value="Submit" />
+          {{ form|crispy }}
+          {{ express_form|crispy }}
+
+          <p>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Revision History</h5>
+              <p>
+                {{ revision_formset.management_form }}
+                {{ revision_formset|crispy }}
+              </p>
+            </div>
+          </div>
+        </p>
+        <p>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Creators</h5>
+              <p>
+                {{ creator_formset.management_form }}
+                {{ creator_formset|crispy }}
+              </p>
+            </div>
+          </div>
+          </p>
+          <p>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Subject Headings</h5>
+              <p>
+                {{ subject_formset.management_form }}
+                {{ subject_formset|crispy }}
+              </p>
+            </div>
+          </div>
+        </p>
+          <input type="submit" value="Save Changes" class="btn btn-primary"/>
         </form>
       </div>
     </div>

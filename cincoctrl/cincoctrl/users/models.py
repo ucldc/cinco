@@ -54,6 +54,14 @@ class User(AbstractUser):
             role=role,
         ).exists()
 
+    def has_any_role(self):
+        return self.userrole_set.count() > 0
+
+    def repositories(self):
+        return Repository.objects.filter(
+            pk__in=self.userrole_set.values_list("repository__pk", flat=True),
+        )
+
 
 class Repository(models.Model):
     ark = CharField(max_length=255, unique=True)

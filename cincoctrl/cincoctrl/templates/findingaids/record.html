@@ -3,40 +3,69 @@
 {% load static %}
 
 {% block title %}
-  {{ object.repository }}: {{ object.collection_title }}
+  {{ object.record_type_label }}
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <h2>{{ object.collection_title }}</h2>
-        <ul>
-          <li>Collection Title: {{ object.collection_title }}</li>
-          <li>Collection Number: {{ object.collection_number }}</li>
-          <li>Ark: {{ object.ark }}</li>
-          <li>Repository: {{ object.repository }}</li>
-          <li>Created By: {{ object.created_by }}</li>
-          <li>Record type: {{ object.record_type }}</li>
-          <li>Status: {{ object.status }}</li>
-          <li>Date created: {{ object.date_created }}</li>
-          <li>Date updated: {{ object.date_updated }}</li>
-        </ul>
+        <h3>{{ object.record_type_label }} status report</h3>
+        <div class="card">
+          <div class="card-body">
+            <div>Collection Title: {{ object.collection_title }}</div>
+            <div>Collection Number: {{ object.collection_number }}</div>
+            <div>Ark: {{ object.ark }}</div>
+            <div>Repository: {{ object.repository }}</div>
+            <div>Created By: {{ object.created_by }}</div>
+            <div>Record type: {{ object.record_type }}</div>
+            <div>Status: {{ object.status }}</div>
+            <div>Date created: {{ object.date_created }}</div>
+            <div>Date updated: {{ object.date_updated }}</div>
+            {% if object.validationwarning_set.exists %}
+            <hr>
+            <div class="alert alert-warning" role="alert">
+              <p>{{ object.ead_file.name }} may have encoding that cannot be indexed or displayed, due to issues with the formatting.</p>
+              {% for w in object.validationwarning_set.all %}
+                <div>{{ w.message }}</div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
         {% if object.supplementaryfile_set.exists %}
+          <h3>Supplementary files</h3>
           <ul>
             {% for f in object.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
         {% endif %}
-        {% if object.validationwarning_set.exists %}
-        <h3>Validation Warnings</h3>
-        <ul class="bg-warning">
-          {% for w in object.validationwarning_set.all %}
-            <li>{{ w.message }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <div>
-          <a href="{% url 'findingaids:update_record' object.repository.code object.pk %}" class="btn btn-primary">Update</a>
+        {% if object.status == 'previewed' %}
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Preview successful</h4>
+          <p><a href="" class="btn btn-secondary">View Preview</a></p>
         </div>
+        {% elif object.status == 'published' %}
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Publication successful</h4>
+          <p><a href="" class="btn btn-secondary">View in OAC</a></p>
+        </div>
+        {% endif %}
+        <p>
+          <h3>Manage Submission</h3>
+          <div class="card">
+            <div class="card-body">
+              <a href="{% url 'findingaids:attach_pdf' object.pk %}" class="btn btn-primary">Attach PDFs</a>
+              {% if object.record_type == 'express' %}
+              <a href="{% url 'findingaids:update_record_express' object.pk %}" class="btn btn-primary">Edit Record</a>
+              {% else %}
+              <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update</a>
+              {% endif %}
+              {% if object.status == 'previewed' %}
+              <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish</a>
+              {% endif %}
+            </div>
+          </div>
+        </p>
       </div>
     </div>
   </div>

@@ -3,32 +3,13 @@
 {% load static %}
 
 {% block title %}
-  Cinco: Home
+  OAC Dashboard
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>Home</h2>
       </div>
     </div>
-    <ul>
-      {% for r in roles %}
-        <li>
-          {{ r.repository }}
-          <ul>
-            <li>
-              <a href="{% url 'findingaids:list_records' r.repository.code 'ead' %}">EAD</a>
-            </li>
-            <li>
-              <a href="{% url 'findingaids:list_records' r.repository.code 'ead_pdf' %}">EAD with PDF</a>
-            </li>
-            <li>
-              <a href="{% url 'findingaids:list_records' r.repository.code 'express' %}">Record Express</a>
-            </li>
-          </ul>
-        </li>
-      {% endfor %}
-    </ul>
   </div>
 {% endblock content %}
