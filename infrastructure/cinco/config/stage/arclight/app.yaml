@@ -28,5 +28,5 @@ sceptre_user_data:
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable ARCLIGHT_DB_USERNAME
     - POSTGRES_PASSWORD: !environment_variable ARCLIGHT_DB_PASSWORD
-  # GrantHttpAccessFromThisServiceTo:
-  #   - !stack_output stage/solr/solr.yaml::LoadBalancerSecurityGroup
+  GrantHttpAccessFromThisServiceTo:
+    - !stack_output stage/solr/solr.yaml::LoadBalancerSecurityGroup

@@ -12,6 +12,7 @@ parameters:
   HealthCheckPath: "/solr/#/"
 
 sceptre_user_data:
+  ApplicationType: internal
   ContainerEntryPoint: "docker-entrypoint.sh"
   ContainerCommand: [ "solr-foreground" ]
   Volumes:
