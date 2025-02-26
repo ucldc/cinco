@@ -57,6 +57,7 @@
               <a href="{% url 'findingaids:attach_pdf' object.pk %}" class="btn btn-primary">Attach PDFs</a>
               {% if object.record_type == 'express' %}
               <a href="{% url 'findingaids:update_record_express' object.pk %}" class="btn btn-primary">Edit Record</a>
+              <a href="{% url 'findingaids:view_record_express_xml' object.expressrecord.pk %}" class="btn btn-primary">Download XML</a>
               {% else %}
               <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update</a>
               {% endif %}

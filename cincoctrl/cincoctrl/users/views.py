@@ -13,6 +13,11 @@ class RepositoryListView(LoginRequiredMixin, ListView):
     model = Repository
     template_name = "users/repositories.yml"
 
+    def render_to_response(self, context, **response_kwargs):
+        response = super().render_to_response(context, **response_kwargs)
+        response["Content-Disposition"] = 'attachment; filename="repositories.yml"'
+        return response
+
 
 repository_list_view = RepositoryListView.as_view()
 

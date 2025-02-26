@@ -80,7 +80,9 @@
                 {{ object.abstract }}
             </abstract>
              <langmaterial>
-                <language langcode="{{object.language}}"/>
+                {% for language in object.languages %}
+                <language langcode="{{ language }}"/>
+                {% endfor %}
             </langmaterial>
         </did>
         <accessrestrict id="accessrestrict">

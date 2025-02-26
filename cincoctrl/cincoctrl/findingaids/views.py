@@ -208,23 +208,14 @@ class RecordExpressUpdateView(UserCanAccessRecordMixin, RecordExpressMixin, Upda
 update_record_express = RecordExpressUpdateView.as_view()
 
 
-class RecordExpressXMLView(UserCanAccessRecordMixin, DetailView):
+class RecordExpressXMLView(DetailView):
     model = ExpressRecord
     template_name = "findingaids/express_record.xml"
 
-    # TODO:
-    # response = HttpResponse(
-    #     content_type='text/xml'
-    #     headers={'Content-Disposition': 'attachment; filename="somefilename.xml"'},
-    # )
-
-    # # generate xml_data
-    # ...
-
-    # t = loader.get_template('my_template_name.xml')
-    # c = {'data': xml_data}
-    # response.write(t.render(c))
-    # return response
+    def render_to_response(self, context, **response_kwargs):
+        response = super().render_to_response(context, **response_kwargs)
+        response["Content-Disposition"] = 'attachment; filename="express_record.xml"'
+        return response
 
 
 view_record_express_xml = RecordExpressXMLView.as_view()
