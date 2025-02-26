@@ -3,8 +3,8 @@ template:
   type: file
 parameters:
   DBInstanceClass: db.t4g.small
-  Namespace: cinco-ctrl-stage
+  Namespace: cinco-arclight-stage
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  DBUsername: !environment_variable CINCOCTRL_DB_USERNAME
-  DBPassword: !environment_variable CINCOCTRL_DB_PASSWORD
+  DBUsername: !environment_variable ARCLIGHT_DB_USERNAME
+  DBPassword: !environment_variable ARCLIGHT_DB_PASSWORD

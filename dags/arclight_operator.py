@@ -16,34 +16,60 @@ CONTAINER_EXECUTION_ENVIRONMENT = os.environ.get(
 )
 
 
+def get_stack_outputs(stack_name):
+    """
+    get the outputs of a cloudformation stack
+    """
+    client = boto3.client("cloudformation", region_name="us-west-2")
+    cf_outputs = (
+        client.describe_stacks(StackName=stack_name)
+        .get("Stacks", [{}])[0]
+        .get("Outputs", [])
+    )
+    return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
+
+
+def get_log_group():
+    """
+    get the log group name for the arclight container
+    """
+    outputs = get_stack_outputs("cinco-stage-arclight-app")
+    return outputs["LogGroup"]
+
+
+def get_solr_writer_url():
+    """
+    get the url of the solr writer from the cloudformation stack
+    """
+    outputs = get_stack_outputs("cinco-stage-solr-solr")
+    return f"http://{outputs['LoadBalancerDNS']}/solr/arclight"
+
+
 def get_awsvpc_config():
     """
     get public subnets and security group from cloudformation stack for use
     with the ContentHarvestEcsOperator to run tasks in an ECS cluster
     """
-    client = boto3.client("cloudformation", region_name="us-west-2")
-    awsvpcConfig = {"subnets": [], "securityGroups": [], "assignPublicIp": "ENABLED"}
-    cf_outputs = (
-        client.describe_stacks(StackName="pad-airflow-mwaa")
-        .get("Stacks", [{}])[0]
-        .get("Outputs", [])
-    )
-    for output in cf_outputs:
-        if output["OutputKey"] in ["PublicSubnet1", "PublicSubnet2"]:
-            awsvpcConfig["subnets"].append(output["OutputValue"])
-        if output["OutputKey"] == "SecurityGroup":
-            awsvpcConfig["securityGroups"].append(output["OutputValue"])
+    cf_outputs = get_stack_outputs("pad-airflow-mwaa")
+    awsvpcConfig = {
+        "subnets": [cf_outputs["PublicSubnet1"], cf_outputs["PublicSubnet2"]],
+        "securityGroups": [cf_outputs["SecurityGroup"]],
+        "assignPublicIp": "ENABLED",
+    }
     return awsvpcConfig
 
 
 class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(self, finding_aid_id, s3_key, **kwargs):
-        container_name = f"cinco-arclight-indexer-{finding_aid_id}"
+        cluster_name = "cinco-stage"
+        task_name = "cinco-arclight-stage"
+        container_name = "cinco-arclight-stage-container"
+
         args = {
-            "cluster": "cinco-stage",
+            "cluster": cluster_name,
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-arclight-indexer-container",
+            "task_definition": task_name,
             "overrides": {
                 "containerOverrides": [
                     {
@@ -57,9 +83,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            "awslogs_group": "cinco-arclight-indexer",
+            "awslogs_group": f"/ecs/{task_name}",
+            "awslogs_stream_prefix": f"ecs/{container_name}",
             "awslogs_region": "us-west-2",
-            "awslogs_stream_prefix": "ecs",
             "reattach": True,
             "number_logs_exception": 100,
             "waiter_delay": 10,
@@ -77,6 +103,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         # rather than in initialization ensures that we only call
         # get_awsvpc_config() when the operator is actually run.
         self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
+        self.overrides["containerOverrides"][0]["environment"] = [
+            {"name": "SOLR_WRITER", "value": get_solr_writer_url()}
+        ]
         return super().execute(context)
 
 
