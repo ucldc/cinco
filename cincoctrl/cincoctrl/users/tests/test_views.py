@@ -6,7 +6,6 @@ from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponseRedirect
 from django.test import RequestFactory
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 
 from cincoctrl.users.models import User
 from cincoctrl.users.tests.factories import UserFactory
