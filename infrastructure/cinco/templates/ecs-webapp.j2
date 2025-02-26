@@ -61,6 +61,14 @@ Parameters:
 {# In addition to the CloudFormation Parameters listed above, this template
    also supports the following sceptre_user_data parameters:
 
+  ApplicationType:
+    Type: String
+    Description: The type of application, either internet-facing or internal
+    Required: false - if not provided, assume internet-facing
+    AllowedValues:
+      - internet-facing
+      - internal
+
   ContainerEntryPoint:
     Type: CommaDelimitedList
     Description: The entry point for the container
@@ -455,6 +463,9 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Type: application
+      {% if sceptre_user_data and sceptre_user_data.ApplicationType is defined %}
+      Scheme: {{ sceptre_user_data.ApplicationType }}
+      {% endif %}
       Name: !Sub ${Namespace}-alb
       SecurityGroups:
         - !Ref LoadBalancerSecurityGroup
