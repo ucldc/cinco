@@ -1,0 +1,47 @@
+{% load crispy_forms_tags %}
+<p>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ title }}</h5>
+      <p>
+        {{ formset.management_form }}
+        <div id="{{ name }}-formset-container">
+          {% for form in formset %}
+            <div class="{{ name }}-form-row">
+                <p>
+                  {{ form|crispy }}
+                </p>
+            </div>
+          {% endfor %}
+        </div>
+        <p>
+            <button type="button" id="{{ name }}-add-form" class="btn btn-primary">Add {{ name }}</button>
+        </p>
+      </p>
+    </div>
+  </div>
+</p>
+
+<script>
+  const {{name}}formContainer = document.getElementById('{{ name }}-formset-container');
+  const {{name}}addFormButton = document.getElementById('{{ name }}-add-form');
+  const {{name}}formTemplate = document.querySelector('.{{ name }}-form-row').cloneNode(true);
+  const {{name}}formCount = document.getElementById('id_{{ formset.prefix }}-TOTAL_FORMS');
+
+  {{name}}addFormButton.addEventListener('click', function() {
+    const newForm = {{name}}formTemplate.cloneNode(true);
+    const newFormIndex = {{name}}formCount.value;
+
+    newForm.innerHTML = newForm.innerHTML.replaceAll(`_set-0`, `_set-${newFormIndex}`)
+
+    {{name}}formContainer.appendChild(newForm);
+    {{name}}formCount.value = parseInt({{name}}formCount.value) + 1;
+  });
+
+//   {{name}}formContainer.addEventListener('click', function(event) {
+//     if (event.target.classList.contains('{{ name }}-delete-form')) {
+//       event.target.parentElement.remove();
+//       {{name}}formCount.value = parseInt({{name}}formCount.value) - 1;
+//     }
+//   });
+  </script>
