@@ -243,6 +243,8 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
         if not context["formset"].is_valid():
             return self.form_invalid(form)
 
+        context["formset"].save()
+
         return super().form_valid(form)
 
 

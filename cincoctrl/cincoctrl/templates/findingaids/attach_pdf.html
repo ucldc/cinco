@@ -13,19 +13,13 @@
         <div>Collection Number: {{ form.instance.collection_number }}</div>
         <div>ARK: {{ form.instance.ark }}</div>
     </p>
+    <p>
+        Manage how the supplemental PDFs display on the published collection guide.
+        Please click “Save” in order to push your changes to publication.
+    </p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <p>
-        {% for f in formset %}
-        <div class="card">
-            <div class="card-body">
-                {{ f.management_form }}
-                {{ f|crispy }}
-            </div>
-        </div>
-        {% endfor %}
-        </p>
-        <p>
+        {% include 'findingaids/includes/formset.html' with title="Supplmental PDFs" name="PDF" formset=formset%}
         <div class="control-group">
             <div class="controls">
               <button type="submit" class="btn btn-primary">Save Changes</button>

@@ -28,7 +28,7 @@ class FindingAidForm(ModelForm):
 SuppFileInlineFormSet = inlineformset_factory(
     FindingAid,
     SupplementaryFile,
-    fields=["title", "pdf_file"],
+    fields=["title", "order", "pdf_file"],
     extra=1,
 )
 

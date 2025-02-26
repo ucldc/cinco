@@ -120,6 +120,7 @@ class SupplementaryFile(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
     title = CharField("Title", max_length=255)
     pdf_file = FileField(upload_to="pdf/", validators=[FileExtensionValidator(["pdf"])])
+    order = IntegerField("Display sequence")
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
     textract_status = CharField(
