@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load record_tags %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   Manage Collection Guides
@@ -10,6 +11,15 @@
     <div class="row">
       <div class="col-sm-12">
         <h2>Collection Guides</h2>
+        <p>Add a RecordEXPRESS collection record to the Online Archive of California.</p>
+        <p>
+          <div class="col-sm-4">
+            <form method="get">
+              {{ filter.form|crispy }}
+              <button type="submit" class="btn btn-primary btn-sm">Filter Records</button>
+            </form>
+          </div>
+        </p>
         {% if records_page %}
           <table class="table table-striped">
             <thead>

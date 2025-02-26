@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import AccessMixin
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
@@ -7,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 
+from cincoctrl.findingaids.filters import FindingAidFilter
 from cincoctrl.findingaids.forms import CreatorInlineFormSet
 from cincoctrl.findingaids.forms import ExpressFindingAidForm
 from cincoctrl.findingaids.forms import ExpressRecordForm
@@ -14,20 +14,10 @@ from cincoctrl.findingaids.forms import FindingAidForm
 from cincoctrl.findingaids.forms import RevisionInlineFormSet
 from cincoctrl.findingaids.forms import SubjectInlineFormSet
 from cincoctrl.findingaids.forms import SuppFileInlineFormSet
+from cincoctrl.findingaids.mixins import UserCanAccessRecordMixin
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.users.mixins import UserHasAnyRoleMixin
-
-
-class UserCanAccessRecordMixin(AccessMixin):
-    def dispatch(self, request, *args, **kwargs):
-        f = FindingAid.objects.get(pk=kwargs.get("pk"))
-        if not request.user.is_authenticated or not request.user.has_repo_access(
-            f.repository.code,
-        ):
-            return self.handle_no_permission()
-
-        return super().dispatch(request, *args, **kwargs)
 
 
 class ManageRecordsView(UserHasAnyRoleMixin, ListView):
@@ -41,8 +31,14 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
         default_page = 1
         page = self.request.GET.get("page", default_page)
 
+        f = FindingAidFilter(
+            self.request.GET,
+            queryset=self.get_queryset(),
+            repo_qs=self.request.user.repositories(),
+        )
+
         items_per_page = 10
-        paginator = Paginator(self.get_queryset(), items_per_page)
+        paginator = Paginator(f.qs, items_per_page)
 
         try:
             records_page = paginator.page(page)
@@ -51,6 +47,7 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
         except EmptyPage:
             records_page = paginator.page(paginator.num_pages)
 
+        context["filter"] = f
         context["records_page"] = records_page
         return context
 
