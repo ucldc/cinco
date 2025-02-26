@@ -1,4 +1,7 @@
 from django.contrib.auth.mixins import AccessMixin
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+from django.core.paginator import Paginator
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -31,6 +34,25 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
     model = FindingAid
     template_name = "findingaids/list_records.html"
     context_object_name = "records"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        default_page = 1
+        page = self.request.GET.get("page", default_page)
+
+        items_per_page = 10
+        paginator = Paginator(self.get_queryset(), items_per_page)
+
+        try:
+            records_page = paginator.page(page)
+        except PageNotAnInteger:
+            records_page = paginator.page(default_page)
+        except EmptyPage:
+            records_page = paginator.page(paginator.num_pages)
+
+        context["records_page"] = records_page
+        return context
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -10,28 +10,55 @@
     <div class="row">
       <div class="col-sm-12">
         <h2>Collection Guides</h2>
-        <table class="table table-striped">
-          <thead>
-            <th>Collection Title</th>
-            <th>Collection Number</th>
-            <th>Repository</th>
-            <th>ARK</th>
-            <th>Submission Type</th>
-            <th>Date updated</th>
-            <th>Publication status</th>
-          </thead>
-          {% for record in records %}
-          <tr>
-            <td><a href="{{ record.get_absolute_url }}">{{ record.collection_title }}</a></td>
-            <td>{{ record.collection_number }}</td>
-            <td>{{ record.repository }}</td>
-            <td>{{ record.ark|slice:"-8:" }}</td>
-            <td>{{ record.record_type }}</td>
-            <td>{{ record.date_updated|date:"Y-m-d" }}</td>
-            <td>{{ record.status }}</td>
-          </tr>
-          {% endfor %}
-        </table>
+        {% if records_page %}
+          <table class="table table-striped">
+            <thead>
+              <th>Collection Title</th>
+              <th>Collection Number</th>
+              <th>Repository</th>
+              <th>ARK</th>
+              <th>Submission Type</th>
+              <th>Date updated</th>
+              <th>Publication status</th>
+            </thead>
+              {% for record in records_page %}
+              <tr>
+                <td><a href="{{ record.get_absolute_url }}">{{ record.collection_title }}</a></td>
+                <td>{{ record.collection_number }}</td>
+                <td>{{ record.repository }}</td>
+                <td>{{ record.ark|slice:"-8:" }}</td>
+                <td>{{ record.record_type }}</td>
+                <td>{{ record.date_updated|date:"Y-m-d" }}</td>
+                <td>{{ record.status }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+
+            {% if records_page.has_other_pages %}
+              <div class="btn-group" role="group" aria-label="Record pagination">
+                {% if records_page.has_previous %}
+                  <a href="?page={{ records_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                {% endif %}
+                {% for page_number in records_page.paginator.page_range %}
+                  {% if records_page.number == page_number %}
+                      <button class="btn btn-outline-primary active">
+                          <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                      </button>
+                  {% else %}
+                      <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                          {{ page_number }}
+                      </a>
+                  {% endif %}
+                {% endfor %}
+
+                {% if records_page.has_next %}
+                  <a href="?page={{ records_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <p>No records found</p>
+          {% endif %}
       </div>
     </div>
   </div>
