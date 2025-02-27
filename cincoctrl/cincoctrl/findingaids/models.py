@@ -130,6 +130,9 @@ class SupplementaryFile(models.Model):
     )
     textract_output = CharField(max_length=255, blank=True)
 
+    class Meta:
+        ordering = ["order", "pk"]
+
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
 
@@ -184,6 +187,9 @@ CREATOR_TYPES = (
 class Language(models.Model):
     code = CharField(max_length=3)
     name = CharField(max_length=255)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

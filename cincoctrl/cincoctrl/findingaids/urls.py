@@ -2,6 +2,7 @@ from django.urls import path
 
 from cincoctrl.findingaids.views import attach_pdf
 from cincoctrl.findingaids.views import create_record_express
+from cincoctrl.findingaids.views import language_autocomplete
 from cincoctrl.findingaids.views import manage_records_view
 from cincoctrl.findingaids.views import publish_record
 from cincoctrl.findingaids.views import submit_ead
@@ -12,6 +13,11 @@ from cincoctrl.findingaids.views import view_record_express_xml
 
 app_name = "findingaids"
 urlpatterns = [
+    path(
+        "language-autocomplete/",
+        view=language_autocomplete,
+        name="language-autocomplete",
+    ),
     path("records/manage/", view=manage_records_view, name="manage_records"),
     path("ead/submit/", view=submit_ead, name="submit_ead"),
     path("ead/<int:pk>/update", view=update_ead, name="update_ead"),

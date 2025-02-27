@@ -76,6 +76,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "django_filters",
+    "dal",
+    "dal_select2",
 ]
 
 LOCAL_APPS = [

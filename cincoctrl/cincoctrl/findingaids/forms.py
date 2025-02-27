@@ -1,3 +1,4 @@
+from dal.autocomplete import ModelSelect2Multiple
 from django.forms import ModelForm
 from django.forms import Textarea
 from django.forms import inlineformset_factory
@@ -70,6 +71,7 @@ class ExpressRecordForm(ModelForm):
             "extent": Textarea(attrs={"rows": 1}),
             "abstract": Textarea(attrs={"rows": 3}),
             "scopecontent": Textarea(attrs={"rows": 3}),
+            "language": ModelSelect2Multiple(url="findingaids:language-autocomplete"),
             "bioghist": Textarea(attrs={"rows": 3}),
             "accessrestrict": Textarea(attrs={"rows": 1}),
             "userestrict": Textarea(attrs={"rows": 1}),

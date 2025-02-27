@@ -1,3 +1,4 @@
+from dal.autocomplete import Select2QuerySetView
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
@@ -17,6 +18,7 @@ from cincoctrl.findingaids.forms import SuppFileInlineFormSet
 from cincoctrl.findingaids.mixins import UserCanAccessRecordMixin
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import Language
 from cincoctrl.users.mixins import UserHasAnyRoleMixin
 
 
@@ -259,3 +261,19 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
 
 attach_pdf = AttachPDFView.as_view()
+
+
+class LanguageAutocomplete(Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return Language.objects.none()
+
+        qs = Language.objects.all()
+
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs
+
+
+language_autocomplete = LanguageAutocomplete.as_view()
