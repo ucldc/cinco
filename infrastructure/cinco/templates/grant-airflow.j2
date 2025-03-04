@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Airflow Access to Cinco
+
+Resources:
+  Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: airflow-access-to-cinco
+      Path: "/"
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: "AllowLogs"
+            Effect: "Allow"
+            Action:
+              - "logs:CreateLogStream"
+              - "logs:CreateLogGroup"
+              - "logs:PutLogEvents"
+              - "logs:GetLogEvents"
+              - "logs:GetLogRecord"
+              - "logs:GetLogGroupFields"
+              - "logs:GetQueryResults"
+              - "logs:DescribeLogGroups"
+            Resource:
+              {% for log_group in sceptre_user_data.logs %}
+              - !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:{{log_group}}:*
+              {% endfor %}
+          - Sid: "AllowDescribeCloudformation"
+            Effect: "Allow"
+            Action:
+              - cloudformation:DescribeStacks
+            Resource:
+              {% for stack_name in sceptre_user_data.stacks %}
+              - !Sub arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/{{stack_name}}/*
+              {% endfor %}
+
+Outputs:
+  Policy:
+    Description: The ARN of the policy granting airflow access to Cinco logs and stacks
+    Value: !GetAtt Policy.PolicyArn
