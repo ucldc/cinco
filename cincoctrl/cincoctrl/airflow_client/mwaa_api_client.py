@@ -82,7 +82,7 @@ def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
 
 
 @mwaa_client
-def update_dag_run(job_trigger, client):
+def update_job_run(job_trigger, client):
     dag = job_trigger.dag_id
     dag_run_id = job_trigger.dag_run_id
 
