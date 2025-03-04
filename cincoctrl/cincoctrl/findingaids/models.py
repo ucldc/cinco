@@ -15,6 +15,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -114,6 +115,15 @@ def update_ead_warnings(sender, instance, created, **kwargs):
             warn_ids.append(warn.pk)
         # Delete any no-longer-relevant warnings
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
+
+
+@receiver(post_save, sender=FindingAid)
+def start_indexing_job(sender, instance, created, **kwargs):
+    trigger_dag(
+        "index_finding_aid",
+        {"finding_aid_id": instance.id},
+        related_model=instance,
+    )
 
 
 class SupplementaryFile(models.Model):
