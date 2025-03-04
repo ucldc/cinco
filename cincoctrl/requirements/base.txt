@@ -12,3 +12,5 @@ django-crispy-forms==2.3  # https://github.com/django-crispy-forms/django-crispy
 crispy-bootstrap5==2024.10  # https://github.com/django-crispy-forms/crispy-bootstrap5
 bs4==0.0.2
 lxml==5.3.0
+django-filter==25.1
+django-autocomplete-light==3.12.1

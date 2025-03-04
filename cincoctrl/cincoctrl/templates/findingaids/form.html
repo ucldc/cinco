@@ -4,18 +4,14 @@
 {% load record_tags %}
 
 {% block title %}
-  {{ repository }}: {{ verb }} {% record_type_label record_type %}
+  Submit a new EAD file
 {% endblock title %}
 {% block content %}
-    <h1>{{ verb }} {% record_type_label record_type %}</h1>
+    <h1>Submit a new EAD file</h1>
+    <p>Submit an EAD formatted collection guide to the Online Archive of California.</p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% if finding_aid_form %}{{ finding_aid_form|crispy }}{% endif %}
         {{ form|crispy }}
-        {% if formset %}
-          {{ formset.management_form }}
-          {{ formset|crispy }}
-        {% endif %}
         <div class="control-group">
             <div class="controls">
               <button type="submit" class="btn btn-primary">Submit</button>

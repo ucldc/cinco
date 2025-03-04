@@ -1,0 +1,58 @@
+{% load crispy_forms_tags %}
+<p>
+  {{ form.repository|as_crispy_field }}
+</p>
+<p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Collection Information</h5>
+    <p>
+      {{ form.collection_title|as_crispy_field }}
+      {{ form.collection_number|as_crispy_field }}
+      {{ express_form.title_filing|as_crispy_field }}
+      {{ express_form.date|as_crispy_field }}
+      {{ express_form.start_year|as_crispy_field }}
+      {{ express_form.end_year|as_crispy_field }}
+      {{ express_form.extent|as_crispy_field }}
+      {{ express_form.abstract|as_crispy_field }}
+      {{ express_form.scopecontent|as_crispy_field }}
+      {{ express_form.language|as_crispy_field }}
+      {{ express_form.bioghist|as_crispy_field }}
+    </p>
+  </div>
+</div>
+</p>
+<p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Access and Use Information</h5>
+        <p>
+        {{ express_form.accessrestrict|as_crispy_field }}
+        {{ express_form.userestrict|as_crispy_field }}
+        {{ express_form.preferred_citation|as_crispy_field }}
+        </p>
+    </div>
+</div>
+</p>
+<p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Processing and description notes</h5>
+        <p>
+        {{ express_form.acqinfo|as_crispy_field }}
+        {{ express_form.processing_information|as_crispy_field }}
+        {{ express_form.author_statement|as_crispy_field }}
+        </p>
+    </div>
+</div>
+</p>
+<p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Related Digital Collections</h5>
+        <p>
+        {{ express_form.online_items_url|as_crispy_field }}
+        </p>
+    </div>
+</div>
+</p>

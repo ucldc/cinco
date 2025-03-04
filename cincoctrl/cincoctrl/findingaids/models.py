@@ -7,6 +7,7 @@ from django.db.models import DateTimeField
 from django.db.models import FileField
 from django.db.models import ForeignKey
 from django.db.models import IntegerField
+from django.db.models import ManyToManyField
 from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
@@ -32,7 +33,6 @@ STATUSES = (
 RECORD_TYPES = (
     ("express", "Record Express"),
     ("ead", "EAD"),
-    ("ead_pdf", "EAD with PDF"),
 )
 
 TEXTRACT_STATUSES = (
@@ -41,14 +41,6 @@ TEXTRACT_STATUSES = (
     ("ERROR", "Error"),
     ("IN_PROGRESS", "In Progress"),
 )
-
-
-def get_record_type_label(t):
-    for v, n in RECORD_TYPES:
-        if t == v:
-            return n
-    msg = "Invalid record type"
-    raise ValueError(msg)
 
 
 class FindingAid(models.Model):
@@ -90,15 +82,13 @@ class FindingAid(models.Model):
             super().save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:
-        if self.record_type == "express":
-            return reverse(
-                "findingaids:view_record_express",
-                kwargs={"pk": self.expressrecord.pk, "repo_slug": self.repository.code},
-            )
         return reverse(
             "findingaids:view_record",
-            kwargs={"pk": self.id, "repo_slug": self.repository.code},
+            kwargs={"pk": self.pk},
         )
+
+    def record_type_label(self):
+        return "RecordEXPRESS" if self.record_type == "express" else "EAD"
 
     def extract_ead_fields(self):
         with self.ead_file.open("rb") as f:
@@ -130,6 +120,7 @@ class SupplementaryFile(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
     title = CharField("Title", max_length=255)
     pdf_file = FileField(upload_to="pdf/", validators=[FileExtensionValidator(["pdf"])])
+    order = IntegerField("Display sequence")
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
     textract_status = CharField(
@@ -138,6 +129,9 @@ class SupplementaryFile(models.Model):
         choices=TEXTRACT_STATUSES,
     )
     textract_output = CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["order", "pk"]
 
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
@@ -160,7 +154,7 @@ class ExpressRecord(models.Model):
     end_year = IntegerField(null=True, blank=True)
     extent = TextField("Extent of Collection")
     abstract = TextField()
-    language = CharField("Language of materials", max_length=3)
+    language = ManyToManyField("Language", blank=True)
     accessrestrict = TextField("Access Conditions")
     userestrict = TextField("Publication Rights", blank=True)
     acqinfo = TextField("Acquisition Information", blank=True)
@@ -178,8 +172,8 @@ class ExpressRecord(models.Model):
 
     def get_absolute_url(self) -> str:
         return reverse(
-            "findingaids:view_record_express",
-            kwargs={"pk": self.pk, "repo_slug": self.finding_aid.repository.code},
+            "findingaids:view_record",
+            kwargs={"pk": self.finding_aid.pk},
         )
 
 
@@ -188,6 +182,17 @@ CREATOR_TYPES = (
     ("famname", "Family"),
     ("corpname", "Organization"),
 )
+
+
+class Language(models.Model):
+    code = CharField(max_length=3)
+    name = CharField(max_length=255)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
 
 
 class ExpressRecordCreator(models.Model):

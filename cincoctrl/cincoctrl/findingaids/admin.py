@@ -4,6 +4,7 @@ from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import ExpressRecordCreator
 from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import RevisionHistory
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.findingaids.models import ValidationWarning
@@ -33,6 +34,11 @@ class RevisionHistoryInline(admin.TabularInline):
 
 @admin.register(ValidationWarning)
 class ValidationWarningAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
     pass
 
 

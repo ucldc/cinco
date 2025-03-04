@@ -80,7 +80,9 @@
                 {{ object.abstract }}
             </abstract>
              <langmaterial>
-                <language langcode="{{object.language}}"/>
+                {% for language in object.language %}
+                <language langcode="{{ language }}"/>
+                {% endfor %}
             </langmaterial>
         </did>
         <accessrestrict id="accessrestrict">
@@ -129,9 +131,9 @@
         <otherfindaid id="otherfindaid">
             <head>Additional collection guides</head>
             <list>
-            {% for supp_file in object.supplementaryfile_set.all %}
-              {{ supp_file.pdf_file }}
-            {% endfor %}
+                {% for supp_file in object.supplementaryfile_set.all %}
+                <item><extref href="{{ supp_file.pdf_file }}">{{ supp_file.title }}</extref></item>
+                {% endfor %}
             </list>
         </otherfindaid>
         {% endif %}

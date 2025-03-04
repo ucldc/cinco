@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 
+import boto3
 import requests
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.management.base import BaseCommand
@@ -32,6 +33,12 @@ class Command(BaseCommand):
             help="path to the export file",
             type=str,
         )
+        parser.add_argument(
+            "-b",
+            "--bucket",
+            help="s3 bucket to fetch from",
+            type=str,
+        )
 
     def get_year(self, s):
         p = r"\d{4}"
@@ -48,9 +55,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         filepath = options.get("filepath")
+        bucket = options.get("bucket", False)
 
-        with Path(filepath).open("r") as f:
-            data = json.load(f)
+        if bucket:
+            client = boto3.client("s3")
+            obj = client.get_object(Bucket=bucket, Key=filepath)
+            data = json.loads(obj["Body"].read())
+        else:
+            with Path(filepath).open("r") as f:
+                data = json.load(f)
 
         repos = {}
         for d in data:

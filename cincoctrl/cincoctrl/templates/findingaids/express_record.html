@@ -3,19 +3,21 @@
 {% load static %}
 
 {% block title %}
-  {{ object.finding_aid.repository }}: {{ object.finding_aid.collection_title }}
+  RecordEXPRESS: {{ object.collection_name }}
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>{{ object.finding_aid.collection_title }}</h2>
+        <h2>{{ object.collection_title }}</h2>
+        <h3>RecordEXPRESS status report</h3>
         <ul>
-          <li>Collection Title: {{ object.finding_aid.collection_title }}</li>
-          <li>Collection Number: {{ object.finding_aid.collection_number }}</li>
-          <li>Title Filing: {{ object.title_filing }}</li>
-          <li>Date (dacs): {{ object.date_dacs }}</li>
-          <li>Date (iso): {{ object.date_iso }}</li>
+          <li>Collection Title: {{ object.collection_title }}</li>
+          <li>Collection Number: {{ object.collection_number }}</li>
+          <li>Title Filing: {{ object.expressrecord.title_filing }}</li>
+          <li>Date: {{ object.expressrecord.date }}</li>
+          <li>Start year: {{ object.expressrecord.start_year }}</li>
+          <li>End year: {{ object.expressrecord.end_year }}</li>
           <li>Extent: {{ object.extent }}</li>
           <li>Language: {{ object.language }}</li>
           <li>Access Conditions: {{ object.accessrestrict }}</li>

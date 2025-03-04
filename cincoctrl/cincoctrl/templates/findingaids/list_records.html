@@ -1,27 +1,74 @@
 {% extends "base.html" %}
 
 {% load record_tags %}
+{% load crispy_forms_tags %}
 
 {% block title %}
-  {{ repository }}: List {% record_type_label record_type %} Records
+  Manage Collection Guides
 {% endblock title %}
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>List {% record_type_label record_type %} Records</h2>
-        <ul>
-          {% for r in records %}
-            <li>
-              <a href="{{ r.get_absolute_url }}">{{ r }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-        {% if record_type == 'express' %}
-          <a href="{% url 'findingaids:create_record_express' repository.code %}" class="btn btn-primary">Create Record Express</a>
-        {% else %}
-          <a href="{% url 'findingaids:upload_record' repository.code record_type %}" class="btn btn-primary">Create {% record_type_label record_type %}</a>
-        {% endif %}
+        <h2>Collection Guides</h2>
+        <p>Add a RecordEXPRESS collection record to the Online Archive of California.</p>
+        <p>
+          <div class="col-sm-4">
+            <form method="get">
+              {{ filter.form|crispy }}
+              <button type="submit" class="btn btn-primary btn-sm">Filter Records</button>
+            </form>
+          </div>
+        </p>
+        {% if records_page %}
+          <table class="table table-striped">
+            <thead>
+              <th>Collection Title</th>
+              <th>Collection Number</th>
+              <th>Repository</th>
+              <th>ARK</th>
+              <th>Submission Type</th>
+              <th>Date updated</th>
+              <th>Publication status</th>
+            </thead>
+              {% for record in records_page %}
+              <tr>
+                <td><a href="{{ record.get_absolute_url }}">{{ record.collection_title }}</a></td>
+                <td>{{ record.collection_number }}</td>
+                <td>{{ record.repository }}</td>
+                <td>{{ record.ark|slice:"-8:" }}</td>
+                <td>{{ record.record_type }}</td>
+                <td>{{ record.date_updated|date:"Y-m-d" }}</td>
+                <td>{{ record.status }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+
+            {% if records_page.has_other_pages %}
+              <div class="btn-group" role="group" aria-label="Record pagination">
+                {% if records_page.has_previous %}
+                  <a href="?page={{ records_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                {% endif %}
+                {% for page_number in records_page.paginator.page_range %}
+                  {% if records_page.number == page_number %}
+                      <button class="btn btn-outline-primary active">
+                          <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                      </button>
+                  {% else %}
+                      <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                          {{ page_number }}
+                      </a>
+                  {% endif %}
+                {% endfor %}
+
+                {% if records_page.has_next %}
+                  <a href="?page={{ records_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% else %}
+            <p>No records found</p>
+          {% endif %}
       </div>
     </div>
   </div>

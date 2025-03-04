@@ -1,12 +1,9 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import QuerySet
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic import ListView
-from django.views.generic import RedirectView
-from django.views.generic import UpdateView
 
 from cincoctrl.users.models import Repository
 from cincoctrl.users.models import User
@@ -15,6 +12,11 @@ from cincoctrl.users.models import User
 class RepositoryListView(LoginRequiredMixin, ListView):
     model = Repository
     template_name = "users/repositories.yml"
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super().render_to_response(context, **response_kwargs)
+        response["Content-Disposition"] = 'attachment; filename="repositories.yml"'
+        return response
 
 
 repository_list_view = RepositoryListView.as_view()
@@ -29,28 +31,10 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = User
-    fields = ["name"]
-    success_message = _("Information successfully updated")
-
-    def get_success_url(self) -> str:
-        assert self.request.user.is_authenticated  # type guard
-        return self.request.user.get_absolute_url()
-
-    def get_object(self, queryset: QuerySet | None = None) -> User:
-        assert self.request.user.is_authenticated  # type guard
-        return self.request.user
+class ChangePasswordView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy("detail")
+    template_name = "users/user_form.html"
 
 
-user_update_view = UserUpdateView.as_view()
-
-
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
-
-    def get_redirect_url(self) -> str:
-        return reverse("users:detail", kwargs={"pk": self.request.user.pk})
-
-
-user_redirect_view = UserRedirectView.as_view()
+user_change_password = ChangePasswordView.as_view()
