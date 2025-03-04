@@ -88,6 +88,13 @@ LOCAL_APPS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+AIRFLOW_JOB_MODEL = "findingaids.FindingAid"
+AIRFLOW_ENV_NAME = "pad-airflow-mwaa"
+# no trailing slash on AIRFLOW_ENV_URL
+AIRFLOW_ENV_URL = (
+    "https://7a8067cb-3b99-477e-a883-7e311175a9b4.c3.us-west-2.airflow.amazonaws.com"
+)
+
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
