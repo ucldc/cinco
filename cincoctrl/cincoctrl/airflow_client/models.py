@@ -21,6 +21,12 @@ class Job(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        if self.dag_run_id:
+            return f"{self.dag_id}: {self.display_date}"
+            # return f"{self.dag_id}: {self.dag_run_id}"
+        return "No dag_run_id, check rest api response for details"
+
     @property
     def dag_run_airflow_url(self):
         query = {"dag_run_id": self.dag_run_id}
@@ -29,17 +35,24 @@ class Job(models.Model):
             f"grid?&{urlencode(query)}&base_date="
         )
 
+    @property
+    @admin.display(description="Dag Run Logical Date", ordering="logical_date")
+    def display_date(self):
+        # logical date is in UTC time, display in local timezone
+        dt = self.logical_date.astimezone(timezone.get_current_timezone())
+        return timezone.datetime.strftime(dt, "%b %d, %Y, %-I:%M:%S %p %Z")
+
+    @property
+    @admin.display(description="Dag Run Logical Date", ordering="logical_date")
+    def utc_date(self):
+        return self.logical_date.strftime("%Y-%m-%d %H:%M:%S %Z")
+
 
 class JobTrigger(Job):
     """Model to track airflow job triggers"""
 
     rest_api_status_code = models.TextField(blank=True)
     rest_api_response = models.TextField(blank=True)
-
-    def __str__(self):
-        if self.dag_run_id:
-            return self.dag_run_id
-        return "No dag_run_id, check rest api response for details"
 
 
 def make_status_box(href, text, color):
@@ -77,21 +90,6 @@ class JobRun(Job):
         default="running",
         verbose_name="Manually update status",
     )
-
-    def __str__(self):
-        return f"{self.dag_id}: {self.display_date}"
-
-    @property
-    @admin.display(description="Dag Run Logical Date", ordering="logical_date")
-    def display_date(self):
-        # logical date is in UTC time, display in local timezone
-        dt = self.logical_date.astimezone(timezone.get_current_timezone())
-        return timezone.datetime.strftime(dt, "%b %d, %Y, %-I:%M:%S %p %Z")
-
-    @property
-    @admin.display(description="Dag Run Logical Date", ordering="logical_date")
-    def utc_date(self):
-        return self.logical_date.strftime("%Y-%m-%d %H:%M:%S %Z")
 
     @admin.display(description="Status", ordering="status")
     def display_status(self):
