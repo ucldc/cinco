@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models import CharField
@@ -119,10 +120,17 @@ def update_ead_warnings(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=FindingAid)
 def start_indexing_job(sender, instance, created, **kwargs):
+    ark_name = instance.ark.replace("/", ":")
     trigger_dag(
         "index_finding_aid",
-        {"finding_aid_id": instance.id},
+        {
+            "finding_aid_id": instance.id,
+            "repository_code": instance.repository.code,
+            "finding_aid_ark": instance.ark,
+            "preview_flag": instance.status == "previewed",
+        },
         related_model=instance,
+        dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
     )
 
 

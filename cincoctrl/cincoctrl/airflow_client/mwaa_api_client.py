@@ -1,8 +1,9 @@
 import json
 import logging
+from datetime import UTC
+from datetime import datetime
 
 import boto3
-import botocore
 from django.conf import settings
 
 from .exceptions import MWAAAPIError
@@ -30,33 +31,47 @@ def mwaa_client(func):
 
 
 @mwaa_client
-def trigger_dag(dag, dag_conf, client, related_model=None):
+def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
     request_params = {
         "Name": env_name,
         "Path": f"/dags/{dag}/dagRuns",
         "Method": "POST",
         "Body": {
             "conf": dag_conf,
-            "note": "Test dag run created by MWAA InvokeRestApi API",
+            "note": (
+                f"Triggered using InvokeRestApi from {settings.AIRFLOW_PROJECT_NAME}"
+            ),
         },
     }
+    if dag_run_prefix:
+        utc_dt = datetime.now(UTC).isoformat()
+        request_params["Body"]["dag_run_id"] = f"{dag_run_prefix}__{utc_dt}"
     try:
         resp = client.invoke_rest_api(**request_params)
-    except botocore.exceptions.ClientError as e:
+    except client.exceptions.RestApiServerException as e:
+        message = f"Error invoking REST API via boto: {e.response}, {request_params}"
+        logger.debug(message)
+        resp = e.response
+    except client.exceptions.ClientError as e:
         message = f"Error invoking REST API via boto: {e}, {request_params}"
         logger.exception(message)
         raise
 
     status_code = resp["RestApiStatusCode"]
+    dag_run_id = ""
+    logical_date = None
+    if isinstance(resp["RestApiResponse"], dict):
+        dag_run_id = resp["RestApiResponse"].get("dag_run_id")
+        logical_date = resp["RestApiResponse"].get("logical_date")
     job_trigger = JobTrigger(
         related_model=related_model,
         dag_id=dag,
         dag_run_conf=json.dumps(dag_conf),
         airflow_url=env_url,
-        dag_run_id=resp["RestApiResponse"].get("dag_run_id"),
-        logical_date=resp["RestApiResponse"].get("logical_date"),
+        dag_run_id=dag_run_id,
+        logical_date=logical_date,
         rest_api_status_code=status_code,
-        rest_api_response=json.dumps(resp["RestApiResponse"]),
+        rest_api_response=json.dumps(resp),
     )
     job_trigger.save()
 
@@ -78,7 +93,7 @@ def update_dag_run(job_trigger, client):
     }
     try:
         resp = client.invoke_rest_api(**request_params)
-    except botocore.exceptions.ClientError as e:
+    except client.exceptions.ClientError as e:
         message = f"Error invoking REST API via boto: {e}, {request_params}"
         logger.exception(message)
         raise
