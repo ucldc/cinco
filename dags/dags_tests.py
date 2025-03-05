@@ -6,7 +6,7 @@ from airflow.models import DagBag
 
 sys.path.append(".")
 
-DAGS_FOLDER = "."
+DAGS_FOLDER = "cinco"
 
 
 class CincoDagsTest(TestCase):
@@ -14,4 +14,5 @@ class CincoDagsTest(TestCase):
         return DagBag(dag_folder=DAGS_FOLDER, include_examples=False)
 
     def test_no_import_errors(self):
+        assert len(self.dag_bag().dags) == 3
         assert not self.dag_bag().import_errors
