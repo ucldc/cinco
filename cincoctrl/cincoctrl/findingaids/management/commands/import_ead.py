@@ -46,19 +46,18 @@ class Command(BaseCommand):
             for w in parser.warnings:
                 self.stdout.write(f"{filename}\t{w}\tWARNING")
             if len(parser.errors) == 0:
-                ead_file = SimpleUploadedFile(filename, r.content)
                 ark, parent_ark = parser.parse_arks()
                 repo = Repository.objects.get(ark=parent_ark)
-                if not ark or not FindingAid.objects.filter(ark=ark).exists():
-                    f = FindingAid.objects.create(
-                        repository=repo,
-                        ark=ark,
-                        ead_file=ead_file,
-                        record_type="ead",
-                    )
-                    f.save()
-                else:
-                    f = FindingAid.objects.get(ark=ark)
+
+                # create the finding aid without the file at first
+                f, _ = FindingAid.objects.get_or_create(
+                    repository=repo,
+                    ark=ark,
+                    record_type="ead"
+                )
+
+                # get and upload any supp files
+                urls = {}
                 for a in parser.parse_otherfindaids():
                     r = requests.get(
                         (doc_url + a["href"]),
@@ -67,10 +66,18 @@ class Command(BaseCommand):
                     )
                     sfilename = a["href"].split("/")[-1]
                     pdf_file = SimpleUploadedFile(sfilename, r.content)
-                    SupplementaryFile.objects.create(
+                    s = SupplementaryFile.objects.create(
                         finding_aid=f,
                         title=a["text"],
                         pdf_file=pdf_file,
                     )
+                    urls[a["href"]] = s.pdf_file.url
+                # update links in original EAD
+                parser.update_otherfindaids(urls)
+
+                # add the new ead file
+                ead_file = SimpleUploadedFile(filename, parser.to_string())
+                f.ead_file = ead_file
+                f.save()
         except EADParserError as e:
             self.stdout.write(f"{filename}\t{e}\tERROR")

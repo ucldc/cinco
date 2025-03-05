@@ -13,6 +13,7 @@ class EADParser:
     def __init__(self):
         self.warnings = []
         self.errors = []
+        self.ark_dir = None
         with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
             self.dtd = etree.DTD(StringIO(f.read()))
 
@@ -36,17 +37,42 @@ class EADParser:
             "{http://www.cdlib.org/path/}parent",
             None,
         )
+    
+    def set_ark_dir(self, ark):
+        a = ark.split("/")
+        self.ark_dir = f"/data/{a[1]}/{a[2][-2:]}/{a[2]}/files/"
+
+    def get_href(self, attribs):
+        if "href" in attribs:
+            return attribs["href"]
+        href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
+        if href and self.ark_dir:
+            href = self.ark_dir + href
+        return href
 
     def parse_otherfindaids(self):
         others = []
         for other in self.root.findall(".//otherfindaid"):
             others.extend(
                 [
-                    {"href": ref.attrib["href"], "text": ref.text}
+                    {"href": self.get_href(ref.attrib), "text": ref.text.strip()}
                     for ref in other.findall(".//extref")
                 ],
             )
         return others
+    
+    def update_otherfindaids(self, urls):
+        for other in self.root.findall(".//otherfindaid"):
+            for ref in other.findall(".//extref"):
+                if "{http://www.w3.org/1999/xlink}href" in ref.attrib:
+                    href = ref.attrib.pop("{http://www.w3.org/1999/xlink}href")
+                    ref.attrib.pop("{http://www.w3.org/1999/xlink}role")
+                else:
+                    href = ref.attrib["href"]
+                ref.attrib["href"] = urls[href]
+
+    def to_string(self):
+        return etree.tostring(self.root, encoding="unicode", pretty_print=True)
 
     def parse_dtd_error(self, e):
         pattern = re.compile(r"(.*), expecting \((.*)\), got \((.*)\)")
