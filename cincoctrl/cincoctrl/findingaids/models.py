@@ -76,7 +76,7 @@ class FindingAid(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.ark:
-            self.ark = uuid.uuid4()
+            self.ark = str(uuid.uuid4())
         super().save(*args, **kwargs)
         if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
