@@ -3,9 +3,12 @@ import re
 import pytest
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db.models.signals import post_save
+from django.test import TestCase
 
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import ValidationWarning
+from cincoctrl.findingaids.models import start_indexing_job
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 from cincoctrl.users.models import Repository
@@ -377,7 +380,17 @@ XML_COMMENTS = """
 """
 
 
-class TestFindingAidModels:
+class TestFindingAidModels(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        post_save.disconnect(start_indexing_job, sender=FindingAid)
+
+    @classmethod
+    def tearDownClass(cls):
+        post_save.connect(start_indexing_job, sender=FindingAid)
+        super().tearDownClass()
+
     def test_extract_ead(self):
         ead_file = SimpleUploadedFile("test.xml", TEST_XML.strip().encode("utf-8"))
         fa = FindingAid(ead_file=ead_file)
