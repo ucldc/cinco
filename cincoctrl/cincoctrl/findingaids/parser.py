@@ -37,16 +37,17 @@ class EADParser:
             "{http://www.cdlib.org/path/}parent",
             None,
         )
-    
+
     def set_ark_dir(self, ark):
         a = ark.split("/")
         self.ark_dir = f"/data/{a[1]}/{a[2][-2:]}/{a[2]}/files/"
 
     def get_href(self, attribs):
         if "href" in attribs:
-            return attribs["href"]
-        href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
-        if href and self.ark_dir:
+            href = attribs["href"]
+        else:
+            href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
+        if self.ark_dir and not self.ark_dir in href:
             href = self.ark_dir + href
         return href
 
@@ -60,15 +61,17 @@ class EADParser:
                 ],
             )
         return others
-    
+
     def update_otherfindaids(self, urls):
         for other in self.root.findall(".//otherfindaid"):
             for ref in other.findall(".//extref"):
-                if "{http://www.w3.org/1999/xlink}href" in ref.attrib:
-                    href = ref.attrib.pop("{http://www.w3.org/1999/xlink}href")
-                    ref.attrib.pop("{http://www.w3.org/1999/xlink}role")
-                else:
-                    href = ref.attrib["href"]
+                href = self.get_href(ref.attrib)
+                # remove any of the old junk if present
+                ref.attrib.pop("{http://www.w3.org/1999/xlink}href", None)
+                ref.attrib.pop("{http://www.w3.org/1999/xlink}role", None)
+                ref.attrib.pop("role", None)
+
+                # set the new url
                 ref.attrib["href"] = urls[href]
 
     def to_string(self):
