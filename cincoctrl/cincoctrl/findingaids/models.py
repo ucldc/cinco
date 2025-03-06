@@ -118,20 +118,27 @@ def update_ead_warnings(sender, instance, created, **kwargs):
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
-@receiver(post_save, sender=FindingAid)
+@receiver(post_save)
 def start_indexing_job(sender, instance, created, **kwargs):
-    ark_name = instance.ark.replace("/", ":")
-    trigger_dag(
-        "index_finding_aid",
-        {
-            "finding_aid_id": instance.id,
-            "repository_code": instance.repository.code,
-            "finding_aid_ark": instance.ark,
-            "preview_flag": instance.status == "previewed",
-        },
-        related_model=instance,
-        dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
-    )
+    if sender == FindingAid:
+        ark_name = instance.ark.replace("/", ":")
+        trigger_dag(
+            "index_finding_aid",
+            {
+                "finding_aid_id": instance.id,
+                "repository_code": instance.repository.code,
+                "finding_aid_ark": instance.ark,
+                "preview_flag": instance.status == "previewed",
+            },
+            related_model=instance,
+            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+        )
+    if sender in [SupplementaryFile, ExpressRecord]:
+        finding_aid = instance.finding_aid
+        post_save.send(sender=FindingAid, instance=finding_aid)
+    if sender in [ExpressRecordCreator, ExpressRecordSubject]:
+        finding_aid = instance.record.finding_aid
+        post_save.send(sender=FindingAid, instance=finding_aid)
 
 
 class SupplementaryFile(models.Model):
