@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models import CharField
@@ -15,6 +16,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -74,7 +76,7 @@ class FindingAid(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.ark:
-            self.ark = uuid.uuid4()
+            self.ark = str(uuid.uuid4())
         super().save(*args, **kwargs)
         if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
@@ -114,6 +116,22 @@ def update_ead_warnings(sender, instance, created, **kwargs):
             warn_ids.append(warn.pk)
         # Delete any no-longer-relevant warnings
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
+
+
+@receiver(post_save, sender=FindingAid)
+def start_indexing_job(sender, instance, created, **kwargs):
+    ark_name = instance.ark.replace("/", ":")
+    trigger_dag(
+        "index_finding_aid",
+        {
+            "finding_aid_id": instance.id,
+            "repository_code": instance.repository.code,
+            "finding_aid_ark": instance.ark,
+            "preview_flag": instance.status == "previewed",
+        },
+        related_model=instance,
+        dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+    )
 
 
 class SupplementaryFile(models.Model):
