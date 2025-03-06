@@ -8,7 +8,7 @@ parameters:
   SubnetIDs: !environment_variable SUBNET_IDS
   ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
-  HealthCheckPath: '/'
+  HealthCheckPath: '/accounts/login/'
   DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: '/entrypoint'
