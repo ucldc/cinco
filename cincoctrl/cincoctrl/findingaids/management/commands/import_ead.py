@@ -9,6 +9,7 @@ from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.parser import EADParserError
 from cincoctrl.users.models import Repository
 
+
 class URLError(Exception):
     def __init__(self, message):
         self.message = message
@@ -56,7 +57,8 @@ class Command(BaseCommand):
         if href.startswith("https://oac.cdlib.org/"):
             return href.replace("https://oac.cdlib.org/", doc_url)
         if href.startswith("http"):
-            raise URLError(f"Can't download external document {href}")
+            msg = f"Can't download external document {href}"
+            raise URLError(msg)
         if ark_dir and not ark_dir in href:
             href = ark_dir + href
         return doc_url + href
