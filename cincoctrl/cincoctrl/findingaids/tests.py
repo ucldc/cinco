@@ -466,18 +466,12 @@ class TestFindingAidModels:
         assert ark == "ark:/00000/a00000a0"
         assert parent_ark == "ark:/00000/aa0a00000a"
 
-    def test_set_ark_dir(self):
-        p = EADParser()
-        p.set_ark_dir("ark:/12345/ab67cd89ef")
-        assert p.ark_dir == "/data/12345/ef/ab67cd89ef/files/"
-
     def test_parse_otherfindaids1(self):
         p = EADParser()
         p.parse_string(OTHER1)
-        p.set_ark_dir("ark:/12345/ab67cd89ef")
         others = p.parse_otherfindaids()
         assert len(others) == 1
-        assert others[0]["href"] == "/data/12345/ef/ab67cd89ef/files/original.pdf"
+        assert others[0]["href"] == "original.pdf"
         assert others[0]["text"] == "Original Title"
 
     def test_parse_otherfindaids2(self):

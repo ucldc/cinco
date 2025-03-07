@@ -41,15 +41,25 @@ class Command(BaseCommand):
         parser.validate_dates()
         return parser
 
-    def process_supp_files(self, parser, doc_url, finding_aid):
+    def get_ark_dir(self, ark):
+        a = ark.split("/")
+        return f"/data/{a[1]}/{a[2][-2:]}/{a[2]}/files/"
+
+    def normalize_pdf_href(self, href, doc_url, ark_dir):
+        if href.startswith(doc_url):
+            return href
+        elif href.startswith("http"):
+            pass
+        elif ark_dir and not ark_dir in href:
+            href = ark_dir + href
+        return doc_url + href
+
+    def process_supp_files(self, parser, doc_url, ark_dir, finding_aid):
         # get and upload any supp files
         urls = {}
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
-                url = (
-                    a["href"] if a["href"].startswith("http") else (doc_url + a["href"])
-                )
-                url = url.replace("https://oac.cdlib.org", doc_url)
+                url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
                 r = requests.get(
                     url,
                     allow_redirects=True,
@@ -87,7 +97,7 @@ class Command(BaseCommand):
 
             ark, parent_ark = parser.parse_arks()
             repo = Repository.objects.get(ark=parent_ark)
-            parser.set_ark_dir(ark)
+            ark_dir = self.get_ark_dir(ark)
 
             if FindingAid.objects.filter(ark=ark).exists():
                 self.stdout.write(f"Abort: {ark} already exists")
@@ -100,7 +110,7 @@ class Command(BaseCommand):
                 record_type="ead",
             )
 
-            self.process_supp_files(parser, doc_url, f)
+            self.process_supp_files(parser, doc_url, ark_dir, f)
 
             # add the new ead file
             ead_file = SimpleUploadedFile(

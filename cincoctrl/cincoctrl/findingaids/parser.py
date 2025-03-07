@@ -13,7 +13,6 @@ class EADParser:
     def __init__(self):
         self.warnings = []
         self.errors = []
-        self.ark_dir = None
         with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
             self.dtd = etree.DTD(StringIO(f.read()))
 
@@ -38,17 +37,11 @@ class EADParser:
             None,
         )
 
-    def set_ark_dir(self, ark):
-        a = ark.split("/")
-        self.ark_dir = f"/data/{a[1]}/{a[2][-2:]}/{a[2]}/files/"
-
     def get_href(self, attribs):
         if "href" in attribs:
             href = attribs["href"]
         else:
             href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
-        if self.ark_dir and not self.ark_dir in href and not href.startswith("http"):
-            href = self.ark_dir + href
         return href
 
     def parse_otherfindaids(self):
