@@ -9,6 +9,11 @@ from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.parser import EADParserError
 from cincoctrl.users.models import Repository
 
+class URLError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
 
 class Command(BaseCommand):
     """Import a single EAD file and any supplemental files"""
@@ -48,8 +53,10 @@ class Command(BaseCommand):
     def normalize_pdf_href(self, href, doc_url, ark_dir):
         if href.startswith(doc_url):
             return href
+        elif href.startswith("https://oac.cdlib.org/"):
+            return href.replace("https://oac.cdlib.org/", doc_url)
         elif href.startswith("http"):
-            pass
+            raise URLError(f"Can't download external document {href}")
         elif ark_dir and not ark_dir in href:
             href = ark_dir + href
         return doc_url + href
@@ -78,6 +85,8 @@ class Command(BaseCommand):
                 urls[a["href"]] = s.pdf_file.url
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
+            except URLError as e:
+                self.stdout.write(e.message)
 
         # update links in original EAD
         if len(urls) > 0:
