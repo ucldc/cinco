@@ -53,11 +53,11 @@ class Command(BaseCommand):
     def normalize_pdf_href(self, href, doc_url, ark_dir):
         if href.startswith(doc_url):
             return href
-        elif href.startswith("https://oac.cdlib.org/"):
+        if href.startswith("https://oac.cdlib.org/"):
             return href.replace("https://oac.cdlib.org/", doc_url)
-        elif href.startswith("http"):
+        if href.startswith("http"):
             raise URLError(f"Can't download external document {href}")
-        elif ark_dir and not ark_dir in href:
+        if ark_dir and not ark_dir in href:
             href = ark_dir + href
         return doc_url + href
 
