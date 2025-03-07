@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -8,15 +10,14 @@ from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 from cincoctrl.users.models import Repository
 
-
 OTHER1 = """
-<ead xmlns:xlink="http://www.w3.org/1999/xlink" 
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<ead xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="urn:isbn:1-931666-22-9
      http://www.loc.gov/ead/ead.xsd">
     <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
         langencoding="iso639-2b" repositoryencoding="iso15511">
-        <eadid xmlns:cdlpath="http://www.cdlib.org/path/" 
+        <eadid xmlns:cdlpath="http://www.cdlib.org/path/"
                countrycode="us"
                identifier="ark:/00000/a00000a0"
                mainagencycode="repo_code"
@@ -39,10 +40,10 @@ OTHER1 = """
         <otherfindaid id="comp_id_otherfindaid">
             <head>Additional Collection Guide</head>
             <p>
-                All items from this collection are available in this 
+                All items from this collection are available in this
                 <extref xlink:href="original.pdf" xlink:role="http://oac.cdlib.org/arcrole/supplemental">
                     Original Title
-                </extref> 
+                </extref>
                 document.
             </p>
         </otherfindaid>
@@ -70,7 +71,11 @@ OTHER2 = """
         <otherfindaid id="otherfindaid">
             <head>Additional collection guides</head>
             <list>
-                <item><extref href="/data/00000/00/a0a00a01/files/original.pdf">Original Title</extref></item>
+                <item>
+                    <extref href="/data/00000/00/a0a00a01/files/original.pdf">
+                        Original Title
+                    </extref>
+                </item>
             </list>
         </otherfindaid>
     </archdesc>
@@ -488,16 +493,23 @@ class TestFindingAidModels:
         p.parse_string(OTHER1)
         urls = {"original.pdf": "https://pdf.test/AAAAAAAA.pdf"}
         p.update_otherfindaids(urls)
-        out = p.to_string()
+        out = p.to_string().decode("utf-8")
         assert '<extref href="https://pdf.test/AAAAAAAA.pdf">' in out
 
     def test_update_otherfindaids2(self):
         p = EADParser()
         p.parse_string(OTHER2)
-        urls = {"/data/00000/00/a0a00a01/files/original.pdf": "https://pdf.test/AAAAAAAA.pdf"}
+        urls = {
+            "/data/00000/00/a0a00a01/files/original.pdf": "https://pdf.test/AAAAAAAA.pdf",
+        }
         p.update_otherfindaids(urls)
-        out = p.to_string()
-        assert '<item><extref href="https://pdf.test/AAAAAAAA.pdf">Original Title</extref></item>' in out
+        out = p.to_string().decode("utf-8")
+        out = re.sub(r"\s+", " ", out)
+        result = (
+            '<item> <extref href="https://pdf.test/AAAAAAAA.pdf">'
+            " Original Title </extref> </item> </list>"
+        )
+        assert result in out
 
     @pytest.mark.django_db
     def test_validation_warnings(self):

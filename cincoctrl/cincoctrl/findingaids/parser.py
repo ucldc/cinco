@@ -47,7 +47,7 @@ class EADParser:
             href = attribs["href"]
         else:
             href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
-        if self.ark_dir and not self.ark_dir in href:
+        if self.ark_dir and not self.ark_dir in href and not href.startswith("http"):
             href = self.ark_dir + href
         return href
 
@@ -75,7 +75,12 @@ class EADParser:
                 ref.attrib["href"] = urls[href]
 
     def to_string(self):
-        return etree.tostring(self.root, encoding="unicode", pretty_print=True)
+        return etree.tostring(
+            self.root,
+            encoding="utf-8",
+            pretty_print=True,
+            xml_declaration=True,
+        )
 
     def parse_dtd_error(self, e):
         pattern = re.compile(r"(.*), expecting \((.*)\), got \((.*)\)")

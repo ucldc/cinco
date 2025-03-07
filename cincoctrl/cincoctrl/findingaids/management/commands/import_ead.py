@@ -45,21 +45,30 @@ class Command(BaseCommand):
         # get and upload any supp files
         urls = {}
         for order, a in enumerate(parser.parse_otherfindaids()):
-            r = requests.get(
-                (doc_url + a["href"]),
-                allow_redirects=True,
-                timeout=30,
-            )
-            r.raise_for_status()
-            sfilename = a["href"].split("/")[-1]
-            pdf_file = SimpleUploadedFile(sfilename, r.content)
-            s = SupplementaryFile.objects.create(
-                finding_aid=finding_aid,
-                title=a["text"],
-                pdf_file=pdf_file,
-                order=order,
-            )
-            urls[a["href"]] = s.pdf_file.url
+            try:
+                url = (
+                    a["href"] if a["href"].startswith("http") else (doc_url + a["href"])
+                )
+                url = url.replace("https://oac.cdlib.org", doc_url)
+                r = requests.get(
+                    url,
+                    allow_redirects=True,
+                    timeout=30,
+                    stream=True,
+                )
+                r.raise_for_status()
+                sfilename = a["href"].split("/")[-1]
+                pdf_file = SimpleUploadedFile(sfilename, r.content)
+                s = SupplementaryFile.objects.create(
+                    finding_aid=finding_aid,
+                    title=a["text"],
+                    pdf_file=pdf_file,
+                    order=order,
+                )
+                urls[a["href"]] = s.pdf_file.url
+            except requests.exceptions.HTTPError:
+                self.stdout.write(f"Supp file {a['href']} not found")
+
         # update links in original EAD
         if len(urls) > 0:
             parser.update_otherfindaids(urls)
@@ -96,7 +105,7 @@ class Command(BaseCommand):
             # add the new ead file
             ead_file = SimpleUploadedFile(
                 filename,
-                parser.to_string().encode(encoding="utf-8"),
+                parser.to_string(),
             )
             f.ead_file = ead_file
             f.save()
