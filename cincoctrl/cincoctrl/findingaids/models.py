@@ -13,6 +13,7 @@ from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
 from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 
@@ -133,9 +134,17 @@ def start_indexing_job(sender, instance, created, **kwargs):
             related_model=instance,
             dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
         )
-    if sender in [SupplementaryFile, ExpressRecord]:
+    if sender == ExpressRecord:
         finding_aid = instance.finding_aid
         post_save.send(sender=FindingAid, instance=finding_aid)
+    if sender == SupplementaryFile:
+        if (
+            hasattr(instance, "_trigger_indexing_job")
+            and instance._trigger_indexing_job  # noqa: SLF001
+        ):
+            finding_aid = instance.finding_aid
+            post_save.send(sender=FindingAid, instance=finding_aid)
+            del instance._trigger_indexing_job  # noqa: SLF001
     if sender in [ExpressRecordCreator, ExpressRecordSubject]:
         finding_aid = instance.record.finding_aid
         post_save.send(sender=FindingAid, instance=finding_aid)
@@ -161,14 +170,20 @@ class SupplementaryFile(models.Model):
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
 
-    # def save(self, *args, **kwargs):
-    # reset textract status and textract output if pdf_file changes
 
-    # potentially also trigger reindexing if textract_status changes
-    # or set something on the finding aid to indicate that it should
-    # be reindexed. Could also reindex in the management command that
-    # polls for textract messages - not sure where makes the most
-    # sense yet.
+@receiver(pre_save, sender=SupplementaryFile)
+def pre_save(sender, instance, **kwargs):
+    if instance.pk:
+        previous_instance = SupplementaryFile.objects.get(pk=instance.pk)
+        # reset textract status and textract output if pdf_file changes
+        if previous_instance.pdf_file != instance.pdf_file:
+            instance.textract_status = "IN_PROGRESS"
+            instance.textract_output = ""
+            # get rid of the old textract output in the index
+            instance._trigger_indexing_job = True  # noqa: SLF001
+        # if the textract status is updated to SUCCEEDED, trigger indexing
+        if instance.textract_status == "SUCCEEDED":
+            instance._trigger_indexing_job = True  # noqa: SLF001
 
 
 class ExpressRecord(models.Model):
