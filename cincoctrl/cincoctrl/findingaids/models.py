@@ -129,7 +129,7 @@ def start_indexing_job(sender, instance, created, **kwargs):
                 "finding_aid_id": instance.id,
                 "repository_code": instance.repository.code,
                 "finding_aid_ark": instance.ark,
-                "preview_flag": instance.status == "previewed",
+                "preview": instance.status == "previewed",
             },
             related_model=instance,
             dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
