@@ -110,7 +110,8 @@ class Command(BaseCommand):
                 filename = fields["filename"]
                 f = FindingAid.objects.get(ark=ark)
                 doc_url = f"https://cdn.calisphere.org/data/13030/{ark[-2]}/{ark}/files/{filename}"
-                r = requests.get(doc_url, allow_redirects=True, timeout=30)
+                r = requests.get(doc_url, allow_redirects=True, timeout=30, stream=True)
+                r.raise_for_status()
                 pdf_file = SimpleUploadedFile(filename, r.content)
                 SupplementaryFile.objects.create(
                     finding_aid=f,
