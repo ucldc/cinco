@@ -310,11 +310,11 @@ class TestFindingAidModels(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        post_save.disconnect(start_indexing_job, sender=FindingAid)
+        post_save.disconnect(start_indexing_job)
 
     @classmethod
     def tearDownClass(cls):
-        post_save.connect(start_indexing_job, sender=FindingAid)
+        post_save.connect(start_indexing_job)
         super().tearDownClass()
 
     def test_extract_ead(self):
