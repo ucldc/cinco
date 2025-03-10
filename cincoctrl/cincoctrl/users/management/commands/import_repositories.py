@@ -85,11 +85,15 @@ class Command(BaseCommand):
                     "phone": f["phone"] if f["phone"] else "",
                     "contact_email": f["email"] if f["email"] else "",
                     "aeon_url": f["aeon_URL"] if f["aeon_URL"] else "",
+                    "oclc_share": f["archivegrid_harvest"],
+                    "latitude": f["latitude"],
+                    "longitude": f["longitude"],
                 }
 
                 r, _ = Repository.objects.get_or_create(ark=f["ark"], defaults=defaults)
                 link, _ = RepositoryLink.objects.get_or_create(
                     repository=r,
                     url=f["url"],
+                    text="Website",
                 )
                 link.save()

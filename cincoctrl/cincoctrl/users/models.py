@@ -6,6 +6,7 @@ from django.db.models import BooleanField
 from django.db.models import CharField
 from django.db.models import DateTimeField
 from django.db.models import EmailField
+from django.db.models import FloatField
 from django.db.models import ForeignKey
 from django.db.models import ImageField
 from django.db.models import SlugField
@@ -80,6 +81,8 @@ class Repository(models.Model):
     contact_email = EmailField(blank=True)
     aeon_url = URLField(blank=True)
     oclc_share = BooleanField(default=False)
+    latitude = FloatField(null=True, blank=True)
+    longitude = FloatField(null=True, blank=True)
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
 
