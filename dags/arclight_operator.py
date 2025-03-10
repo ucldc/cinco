@@ -60,11 +60,28 @@ def get_awsvpc_config():
 
 
 class ArcLightEcsOperator(EcsRunTaskOperator):
-    def __init__(self, finding_aid_id, s3_key, **kwargs):
+    def __init__(
+        self,
+        finding_aid_id,
+        s3_key,
+        repository_code,
+        finding_aid_ark,
+        preview,
+        **kwargs,
+    ):
         cluster_name = "cinco-stage"
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
+        command = [
+            "bin/index-from-s3",
+            finding_aid_id,
+            s3_key,
+            repository_code,
+            finding_aid_ark,
+        ]
+        if preview:
+            command.append("--preview")
         args = {
             "cluster": cluster_name,
             "launch_type": "FARGATE",
@@ -74,11 +91,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 "containerOverrides": [
                     {
                         "name": container_name,
-                        "command": [
-                            "bin/index-from-s3",
-                            finding_aid_id,
-                            s3_key,
-                        ],
+                        "command": command,
                     }
                 ]
             },
@@ -110,7 +123,15 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
 
 
 class ArcLightDockerOperator(DockerOperator):
-    def __init__(self, finding_aid_id, s3_key, **kwargs):
+    def __init__(
+        self,
+        finding_aid_id,
+        s3_key,
+        repository_code,
+        finding_aid_ark,
+        preview,
+        **kwargs,
+    ):
         mounts = [
             Mount(
                 source="/Users/awieliczka/Projects/cinco/arclight/bin",
@@ -122,15 +143,19 @@ class ArcLightDockerOperator(DockerOperator):
         container_image = "cinco-arclight-indexer"
         container_version = "latest"
         container_name = f"cinco-arclight-indexer-{finding_aid_id}"
-
+        command = [
+            "bin/index-from-s3",
+            finding_aid_id,
+            s3_key,
+            repository_code,
+            finding_aid_ark,
+        ]
+        if preview:
+            command.append("--preview")
         args = {
             "image": f"{container_image}:{container_version}",
             "container_name": container_name,
-            "command": [
-                "bin/index-from-s3",
-                finding_aid_id,
-                s3_key,
-            ],
+            "command": command,
             "network_mode": "bridge",
             "auto_remove": "force",
             "mounts": mounts,
