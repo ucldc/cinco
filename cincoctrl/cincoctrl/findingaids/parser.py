@@ -156,6 +156,10 @@ class EADParser:
 
         for e in c:
             if e.tag is not etree.Comment and re.match(r"c\d\d", e.tag):
+                if e.attrib.get("level", "") == "collection":
+                    self.errors.append(
+                        f"Components cannot have level=collection: {cid}",
+                    )
                 self.get_component_title(e)
 
     def get_element_value(self, e, path):
