@@ -13,7 +13,16 @@ from cinco.arclight_operator import ArcLightOperator
     catchup=False,
     params={
         "finding_aid_id": Param(
-            None, description="The ID of the Finding Aid in CincoCtrl"
+            "", type="integer", description="The ID of the Finding Aid in CincoCtrl"
+        ),
+        "repository_code": Param(
+            "", type="string", description="The repository code for the Finding Aid"
+        ),
+        "finding_aid_ark": Param(
+            "", type="string", description="The ARK of the Finding Aid"
+        ),
+        "preview": Param(
+            False, type="boolean", description="Whether the Finding Aid is in preview"
         ),
     },
     tags=["cinco"],
@@ -44,6 +53,9 @@ def index_finding_aid():
         task_id="index_finding_aid",
         finding_aid_id="{{ params.finding_aid_id }}",
         s3_key=s3_key,
+        repository_code="{{ params.repository_code }}",
+        finding_aid_ark="{{ params.finding_aid_ark }}",
+        preview="{{ params.preview }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )

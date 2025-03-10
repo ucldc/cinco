@@ -1,51 +1,27 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Description:
-  Cinco Airflow Permissions
-
-{# Parameters: #}
-  {# Stacks:
-    Type: String
-    Description: List of stacks to allow access to #}
-
+  Cinco Access to Airflow
 
 Resources:
   Policy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: cinco-airflow-access
+      ManagedPolicyName: cinco-access-to-airflow
       Path: "/"
       PolicyDocument:
         Version: 2012-10-17
         Statement:
-          - Sid: "AllowLogs"
+          - Sid: "AllowMwaaRestApiAccess"
             Effect: "Allow"
             Action:
-              - "logs:CreateLogStream"
-              - "logs:CreateLogGroup"
-              - "logs:PutLogEvents"
-              - "logs:GetLogEvents"
-              - "logs:GetLogRecord"
-              - "logs:GetLogGroupFields"
-              - "logs:GetQueryResults"
-              - "logs:DescribeLogGroups"
+              - "airflow:InvokeRestApi"
             Resource:
-              {# - "arn:aws:logs:region:acct:log-group:/ecs/cinco-ctrl-stage:*"
-              - "arn:aws:logs:region:acct:log-group:/ecs/cinco-arclight-stage:*" #}
-              {% for log_group in sceptre_user_data.logs %}
-              - !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:{{log_group}}:*
-              {% endfor %}
-          - Sid: "AllowDescribeCloudformation"
-            Effect: "Allow"
-            Action:
-              - cloudformation:DescribeStacks
-            Resource:
-              {# - arn:aws:cloudformation:region:acct:stack/cinco-stage-solr/* #}
-              {% for stack_name in sceptre_user_data.stacks %}
-              - !Sub arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/{{stack_name}}/*
-              {% endfor %}
+              - !Sub arn:${AWS::Partition}:airflow:${AWS::Region}:${AWS::AccountId}:role/pad-airflow-mwaa/Admin
+
+{# https://docs.aws.amazon.com/mwaa/latest/userguide/access-mwaa-apache-airflow-rest-api.html#granting-access-MWAA-Enhanced-REST-API #}
 
 Outputs:
   Policy:
-    Description: The ARN of the task role with s3 permissions
+    Description: The ARN of the policy with invoke rest api airflow permissions
     Value: !GetAtt Policy.PolicyArn

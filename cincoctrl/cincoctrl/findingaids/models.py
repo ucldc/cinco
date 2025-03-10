@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models import CharField
@@ -12,9 +13,11 @@ from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
 from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -74,7 +77,7 @@ class FindingAid(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.ark:
-            self.ark = uuid.uuid4()
+            self.ark = str(uuid.uuid4())
         super().save(*args, **kwargs)
         if self.record_type != "express" and self.ead_file.name:
             self.collection_title, self.collection_number = self.extract_ead_fields()
@@ -116,6 +119,37 @@ def update_ead_warnings(sender, instance, created, **kwargs):
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
+@receiver(post_save)
+def start_indexing_job(sender, instance, created, **kwargs):
+    if sender == FindingAid:
+        ark_name = instance.ark.replace("/", ":")
+        trigger_dag(
+            "index_finding_aid",
+            {
+                "finding_aid_id": instance.id,
+                "repository_code": instance.repository.code,
+                "finding_aid_ark": instance.ark,
+                "preview": instance.status == "previewed",
+            },
+            related_model=instance,
+            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+        )
+    if sender == ExpressRecord:
+        finding_aid = instance.finding_aid
+        post_save.send(sender=FindingAid, instance=finding_aid)
+    if sender == SupplementaryFile:
+        if (
+            hasattr(instance, "_trigger_indexing_job")
+            and instance._trigger_indexing_job  # noqa: SLF001
+        ):
+            finding_aid = instance.finding_aid
+            post_save.send(sender=FindingAid, instance=finding_aid)
+            del instance._trigger_indexing_job  # noqa: SLF001
+    if sender in [ExpressRecordCreator, ExpressRecordSubject]:
+        finding_aid = instance.record.finding_aid
+        post_save.send(sender=FindingAid, instance=finding_aid)
+
+
 class SupplementaryFile(models.Model):
     finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
     title = CharField("Title", max_length=255)
@@ -136,14 +170,20 @@ class SupplementaryFile(models.Model):
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
 
-    # def save(self, *args, **kwargs):
-    # reset textract status and textract output if pdf_file changes
 
-    # potentially also trigger reindexing if textract_status changes
-    # or set something on the finding aid to indicate that it should
-    # be reindexed. Could also reindex in the management command that
-    # polls for textract messages - not sure where makes the most
-    # sense yet.
+@receiver(pre_save, sender=SupplementaryFile)
+def pre_save(sender, instance, **kwargs):
+    if instance.pk:
+        previous_instance = SupplementaryFile.objects.get(pk=instance.pk)
+        # reset textract status and textract output if pdf_file changes
+        if previous_instance.pdf_file != instance.pdf_file:
+            instance.textract_status = "IN_PROGRESS"
+            instance.textract_output = ""
+            # get rid of the old textract output in the index
+            instance._trigger_indexing_job = True  # noqa: SLF001
+        # if the textract status is updated to SUCCEEDED, trigger indexing
+        if instance.textract_status == "SUCCEEDED":
+            instance._trigger_indexing_job = True  # noqa: SLF001
 
 
 class ExpressRecord(models.Model):

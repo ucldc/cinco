@@ -1,11 +1,3 @@
 template:
   path: airflow-permissions.j2
   type: file
-
-sceptre_user_data:
-  logs:
-    - !stack_output stage/cincoctrl/app.yaml::LogGroup
-    - !stack_output stage/arclight/app.yaml::LogGroup
-  stacks:
-    - cinco-stage-solr-solr
-    - cinco-stage-arclight-app
