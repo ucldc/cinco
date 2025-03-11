@@ -134,17 +134,9 @@ def start_indexing_job(sender, instance, created, **kwargs):
             related_model=instance,
             dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
         )
-    if sender == ExpressRecord:
+    if sender in [ExpressRecord, SupplementaryFile]:
         finding_aid = instance.finding_aid
         post_save.send(sender=FindingAid, instance=finding_aid)
-    if sender == SupplementaryFile:
-        if (
-            hasattr(instance, "_trigger_indexing_job")
-            and instance._trigger_indexing_job  # noqa: SLF001
-        ):
-            finding_aid = instance.finding_aid
-            post_save.send(sender=FindingAid, instance=finding_aid)
-            del instance._trigger_indexing_job  # noqa: SLF001
     if sender in [ExpressRecordCreator, ExpressRecordSubject]:
         finding_aid = instance.record.finding_aid
         post_save.send(sender=FindingAid, instance=finding_aid)
@@ -179,11 +171,6 @@ def pre_save(sender, instance, **kwargs):
         if previous_instance.pdf_file != instance.pdf_file:
             instance.textract_status = "IN_PROGRESS"
             instance.textract_output = ""
-            # get rid of the old textract output in the index
-            instance._trigger_indexing_job = True  # noqa: SLF001
-        # if the textract status is updated to SUCCEEDED, trigger indexing
-        if instance.textract_status == "SUCCEEDED":
-            instance._trigger_indexing_job = True  # noqa: SLF001
 
 
 class ExpressRecord(models.Model):
