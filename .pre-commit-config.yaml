@@ -40,6 +40,7 @@ repos:
           --ignore, TRY003,
           --ignore, DJ006,
           --ignore, S320,
+	  --ignore, E713,
           --exclude, dags/poll_message_queue.py
         ]
       # Formatter

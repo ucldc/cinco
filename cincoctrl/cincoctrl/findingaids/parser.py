@@ -37,16 +37,43 @@ class EADParser:
             None,
         )
 
+    def get_href(self, attribs):
+        if "href" in attribs:
+            href = attribs["href"]
+        else:
+            href = attribs.get("{http://www.w3.org/1999/xlink}href", None)
+        return href
+
     def parse_otherfindaids(self):
         others = []
         for other in self.root.findall(".//otherfindaid"):
             others.extend(
                 [
-                    {"href": ref.attrib["href"], "text": ref.text}
+                    {"href": self.get_href(ref.attrib), "text": ref.text.strip()}
                     for ref in other.findall(".//extref")
                 ],
             )
         return others
+
+    def update_otherfindaids(self, urls):
+        for other in self.root.findall(".//otherfindaid"):
+            for ref in other.findall(".//extref"):
+                href = self.get_href(ref.attrib)
+                # remove any of the old junk if present
+                ref.attrib.pop("{http://www.w3.org/1999/xlink}href", None)
+                ref.attrib.pop("{http://www.w3.org/1999/xlink}role", None)
+                ref.attrib.pop("role", None)
+
+                # set the new url
+                ref.attrib["href"] = urls[href]
+
+    def to_string(self):
+        return etree.tostring(
+            self.root,
+            encoding="utf-8",
+            pretty_print=True,
+            xml_declaration=True,
+        )
 
     def parse_dtd_error(self, e):
         pattern = re.compile(r"(.*), expecting \((.*)\), got \((.*)\)")
@@ -129,6 +156,10 @@ class EADParser:
 
         for e in c:
             if e.tag is not etree.Comment and re.match(r"c\d\d", e.tag):
+                if e.attrib.get("level", "") == "collection":
+                    self.errors.append(
+                        f"Components cannot have level=collection: {cid}",
+                    )
                 self.get_component_title(e)
 
     def get_element_value(self, e, path):

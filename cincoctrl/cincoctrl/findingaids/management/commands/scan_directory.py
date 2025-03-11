@@ -39,7 +39,5 @@ class Command(BaseCommand):
                         self.stdout.write(f"{filename}\t{e}\tERROR")
                     for w in parser.warnings:
                         self.stdout.write(f"{filename}\t{w}\tWARNING")
-                    others = parser.parse_otherfindaids()
-                    self.stdout.write(others)
                 except EADParserError as e:
                     self.stdout.write(f"{filename}\t{e}\tERROR")
