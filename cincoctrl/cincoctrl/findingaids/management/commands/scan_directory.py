@@ -27,7 +27,12 @@ class Command(BaseCommand):
         for link in page_text.find_all("a"):
             filename = link["href"]
             if filename and filename.endswith(".xml") and not filename.startswith("._"):
-                r = requests.get(url + filename, allow_redirects=True, timeout=30)
+                r = requests.get(
+                    url + filename,
+                    allow_redirects=True,
+                    stream=True,
+                    timeout=30,
+                )
                 try:
                     parser = EADParser()
                     parser.parse_string(r.content)
