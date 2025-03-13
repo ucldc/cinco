@@ -1,4 +1,6 @@
 from dal.autocomplete import ModelSelect2Multiple
+from django.core.exceptions import ValidationError
+from django.forms import HiddenInput
 from django.forms import ModelForm
 from django.forms import Textarea
 from django.forms import inlineformset_factory
@@ -23,7 +25,9 @@ class FindingAidForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["ead_file"].required = True
         self.fields["repository"].queryset = qs
-        # TODO: if count == 1 don't show
+        if qs.count() == 1:
+            self.fields["repository"].widget = HiddenInput()
+            self.fields["repository"].initial = qs.first()
 
 
 SuppFileInlineFormSet = inlineformset_factory(
@@ -43,7 +47,9 @@ class ExpressFindingAidForm(ModelForm):
         qs = kwargs.pop("queryset", Repository.objects.none())
         super().__init__(*args, **kwargs)
         self.fields["repository"].queryset = qs
-        # TODO: if count == 1 don't show
+        if qs.count() == 1:
+            self.fields["repository"].widget = HiddenInput()
+            self.fields["repository"].initial = qs.first()
 
 
 class ExpressRecordForm(ModelForm):
@@ -81,6 +87,17 @@ class ExpressRecordForm(ModelForm):
             "author_statement": Textarea(attrs={"rows": 1}),
             "online_items_url": Textarea(attrs={"rows": 1}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_year = cleaned_data.get("start_year")
+        end_year = cleaned_data.get("end_year")
+
+        if end_year and start_year and start_year > end_year:
+            msg = "Start year must be before end year"
+            raise ValidationError(msg)
+
+        return cleaned_data
 
 
 CreatorInlineFormSet = inlineformset_factory(
