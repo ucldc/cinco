@@ -27,10 +27,11 @@ class Command(BaseCommand):
             type=str,
         )
 
-    # oclc_share = archivegrid_harvest or worldcat_harvest?
-    # date_created = "created_at"
-    # date_updated = "updated_at
-    # RepositoryLink  = "url" default text?
+    def get_aeon_url(self, aeon_url):
+        url_parts = aeon_url.split("?")
+        aeon_request_url = url_parts[0] if len(url_parts) > 0 else ""
+        aeon_mapping = url_parts[1] if len(url_parts) > 1 else ""
+        return aeon_request_url, aeon_mapping
 
     def handle(self, *args, **options):
         filepath = options.get("filepath")
@@ -72,6 +73,11 @@ class Command(BaseCommand):
                     name = f"{parent['fields']['name']}, {f['name']}"
                 else:
                     name = f["name"]
+
+                aeon_request_url, aeon_mapping = self.get_aeon_url(
+                    f.get("aeon_URL", ""),
+                )
+
                 defaults = {
                     "state": "CA",
                     "country": "US",
@@ -84,7 +90,8 @@ class Command(BaseCommand):
                     "zipcode": zipcode,
                     "phone": f["phone"] if f["phone"] else "",
                     "contact_email": f["email"] if f["email"] else "",
-                    "aeon_url": f["aeon_URL"] if f["aeon_URL"] else "",
+                    "aeon_request_url": aeon_request_url,
+                    "aeon_request_mappings": aeon_mapping,
                     "oclc_share": f["archivegrid_harvest"],
                     "latitude": f["latitude"],
                     "longitude": f["longitude"],

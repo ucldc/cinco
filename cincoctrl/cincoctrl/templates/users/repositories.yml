@@ -10,5 +10,9 @@
         <div class="al-repository-street-address-address1">{{ r.address1 }}</div>{% endif %}{% if r.address2 %}
         <div class="al-repository-street-address-address2">{{ r.address2 }}</div>{% endif %}
         <div class="al-repository-street-address-city_state_zip_country">{{ r.get_state_line }}</div>
-    thumbnail_url: "{{ r.logo }}"
+    thumbnail_url: "{{ r.logo }}"{% if r.aeon_request_url %}
+    request_types:
+        aeon_web_ead:
+            request_url: {{ r.aeon_request_url }}
+            request_mappings: {{ r.aeon_request_mappings }}{% endif %}
 {% endfor %}
