@@ -92,7 +92,7 @@ class Command(BaseCommand):
         if finding_aid.supplementaryfile_set.exists():
             parser.update_otherfindaids(
                 [
-                    {"url": f.pdf_file.url, "text": f.text}
+                    {"url": f.pdf_file.url, "text": f.title}
                     for f in finding_aid.supplementaryfile_set.all()
                 ],
             )
