@@ -498,23 +498,25 @@ class TestFindingAidModels(TestCase):
     def test_update_otherfindaids1(self):
         p = EADParser()
         p.parse_string(OTHER1)
-        urls = {"original.pdf": "https://pdf.test/AAAAAAAA.pdf"}
+        urls = [{"url": "https://pdf.test/AAAAAAAA.pdf", "text": "Title 1"}]
         p.update_otherfindaids(urls)
         out = p.to_string().decode("utf-8")
-        assert '<extref href="https://pdf.test/AAAAAAAA.pdf">' in out
+        result = (
+            '<list><item><extref href="https://pdf.test/AAAAAAAA.pdf">'
+            "Title 1</extref></item></list></otherfindaid>"
+        )
+        assert result in out
 
     def test_update_otherfindaids2(self):
         p = EADParser()
         p.parse_string(OTHER2)
-        urls = {
-            "/data/00000/00/a0a00a01/files/original.pdf": "https://pdf.test/AAAAAAAA.pdf",
-        }
+        urls = [{"url": "https://pdf.test/AAAAAAAA.pdf", "text": "Original Title"}]
         p.update_otherfindaids(urls)
         out = p.to_string().decode("utf-8")
         out = re.sub(r"\s+", " ", out)
         result = (
-            '<item> <extref href="https://pdf.test/AAAAAAAA.pdf">'
-            " Original Title </extref> </item> </list>"
+            '<list> <item><extref href="https://pdf.test/AAAAAAAA.pdf">'
+            "Original Title</extref></item></list>"
         )
         assert result in out
 

@@ -65,7 +65,6 @@ class Command(BaseCommand):
 
     def process_supp_files(self, parser, doc_url, ark_dir, finding_aid):
         # get and upload any supp files
-        urls = {}
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
                 url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
@@ -78,21 +77,25 @@ class Command(BaseCommand):
                 r.raise_for_status()
                 sfilename = a["href"].split("/")[-1]
                 pdf_file = SimpleUploadedFile(sfilename, r.content)
-                s = SupplementaryFile.objects.create(
+                SupplementaryFile.objects.create(
                     finding_aid=finding_aid,
                     title=a["text"],
                     pdf_file=pdf_file,
                     order=order,
                 )
-                urls[a["href"]] = s.pdf_file.url
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
                 self.stdout.write(e.message)
 
         # update links in original EAD
-        if len(urls) > 0:
-            parser.update_otherfindaids(urls)
+        if finding_aid.supplementaryfile_set.exists():
+            parser.update_otherfindaids(
+                [
+                    {"url": f.pdf_file.url, "text": f.text}
+                    for f in finding_aid.supplementaryfile_set.all()
+                ],
+            )
 
     def import_ead(self, url, filename, doc_url):
         r = requests.get(url, allow_redirects=True, timeout=30)

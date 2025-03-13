@@ -16,16 +16,25 @@ class EADParser:
         with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
             self.dtd = etree.DTD(StringIO(f.read()))
 
+    def strip_namespace(self, node):
+        for element in node.iter():
+            if hasattr(element.tag, "find"):
+                i = element.tag.find("}")
+                if i >= 0:
+                    element.tag = element.tag[i + 1 :]
+        etree.cleanup_namespaces(node)
+        return node
+
     def parse_file(self, xml_file):
         try:
-            self.root = etree.parse(xml_file).getroot()
+            self.root = self.strip_namespace(etree.parse(xml_file).getroot())
         except etree.XMLSyntaxError as e:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
     def parse_string(self, xml_str):
         try:
-            self.root = etree.fromstring(xml_str)
+            self.root = self.strip_namespace(etree.fromstring(xml_str))
         except etree.XMLSyntaxError as e:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
@@ -55,17 +64,37 @@ class EADParser:
             )
         return others
 
-    def update_otherfindaids(self, urls):
-        for other in self.root.findall(".//otherfindaid"):
-            for ref in other.findall(".//extref"):
-                href = self.get_href(ref.attrib)
-                # remove any of the old junk if present
-                ref.attrib.pop("{http://www.w3.org/1999/xlink}href", None)
-                ref.attrib.pop("{http://www.w3.org/1999/xlink}role", None)
-                ref.attrib.pop("role", None)
+    def remove_extrefs(self, other):
+        for item in other.findall(".//item"):
+            item.getparent().remove(item)
+        for extref in other.findall(".//extref"):
+            extref.getparent().remove(extref)
 
-                # set the new url
-                ref.attrib["href"] = urls[href]
+    def get_otherlist(self):
+        other = self.root.find(".//otherfindaid")
+        if other is None:
+            archdesc = self.root.find(".//archdesc")
+            other = etree.SubElement(archdesc, "otherfindaid")
+            other.attrib["id"] = "otherfindaid"
+            head = etree.SubElement(other, "head")
+            head.text = "Additional collection guides"
+        else:
+            self.remove_extrefs(other)
+        item_list = other.find("./list")
+        if item_list is None:
+            item_list = etree.SubElement(other, "list")
+        return item_list
+
+    def update_otherfindaids(self, supp_files):
+        item_list = self.get_otherlist()
+        for f in supp_files:
+            self.add_findingaid_link(item_list, f["url"], f["text"])
+
+    def add_findingaid_link(self, other_list, href, text):
+        item = etree.SubElement(other_list, "item")
+        extref = etree.SubElement(item, "extref")
+        extref.attrib["href"] = href
+        extref.text = text
 
     def to_string(self):
         return etree.tostring(
