@@ -18,12 +18,18 @@ class Command(BaseCommand):
             help="the location to scan",
             type=str,
         )
+        parser.add_argument(
+            "--validate_dtd",
+            action="store_true",
+            help="run the dtd validation check",
+        )
 
     def handle(self, *args, **options):
         url = options.get("url")
-
+        validate_dtd = options.get("validate_dtd", False)
         page = requests.get(url, timeout=30)
         page_text = bs4.BeautifulSoup(page.text, "html.parser")
+        parser = EADParser()
         for link in page_text.find_all("a"):
             filename = link["href"]
             if filename and filename.endswith(".xml") and not filename.startswith("._"):
@@ -34,9 +40,11 @@ class Command(BaseCommand):
                     timeout=30,
                 )
                 try:
-                    parser = EADParser()
+                    parser.errors.clear()
+                    parser.warnings.clear()
                     parser.parse_string(r.content)
-                    parser.validate_dtd()
+                    if validate_dtd:
+                        parser.validate_dtd()
                     parser.validate_required_fields()
                     parser.validate_component_titles()
                     parser.validate_dates()
