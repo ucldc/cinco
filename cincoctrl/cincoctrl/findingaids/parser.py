@@ -13,8 +13,6 @@ class EADParser:
     def __init__(self):
         self.warnings = []
         self.errors = []
-        with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
-            self.dtd = etree.DTD(StringIO(f.read()))
 
     def strip_namespace(self, node):
         for element in node.iter():
@@ -136,9 +134,12 @@ class EADParser:
         return msg
 
     def validate_dtd(self):
+        with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
+            dtd = etree.DTD(StringIO(f.read()))
+
         try:
-            if not self.dtd.validate(self.root):
-                for e in self.dtd.error_log.filter_from_errors():
+            if not dtd.validate(self.root):
+                for e in dtd.error_log.filter_from_errors():
                     msg = self.parse_dtd_error(e)
                     self.warnings.append(msg)
         except etree.XMLSyntaxError as e:
