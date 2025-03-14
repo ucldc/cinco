@@ -80,7 +80,7 @@
                 {{ object.abstract }}
             </abstract>
              <langmaterial>
-                {% for language in object.language %}
+                {% for language in object.language.all() %}
                 <language langcode="{{ language }}"/>
                 {% endfor %}
             </langmaterial>
