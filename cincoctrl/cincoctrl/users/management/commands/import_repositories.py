@@ -33,6 +33,14 @@ class Command(BaseCommand):
         aeon_mapping = url_parts[1] if len(url_parts) > 1 else ""
         return aeon_request_url, aeon_mapping
 
+    def get_institution_name(self, institutions, f):
+        if f["parent_institution"]:
+            parent = institutions[f["parent_institution"]]
+            name = f"{parent['fields']['name']}, {f['name']}"
+        else:
+            name = f["name"]
+        return name
+
     def handle(self, *args, **options):
         filepath = options.get("filepath")
         p = re.compile(r"^\d{5}(?:[-\s]\d{4})?$")
@@ -68,21 +76,16 @@ class Command(BaseCommand):
             elif len(zipcode) > 0 and not re.match(p, zipcode):
                 self.stdout.write(f"ERROR\tinvalid zip ({zipcode})\t{f['name']}")
             else:
-                if f["parent_institution"]:
-                    parent = institutions[f["parent_institution"]]
-                    name = f"{parent['fields']['name']}, {f['name']}"
-                else:
-                    name = f["name"]
-
                 aeon_request_url, aeon_mapping = self.get_aeon_url(
                     f.get("aeon_URL", ""),
                 )
 
+                oclc_share = f.get("archivegrid_harvest", False)
                 defaults = {
                     "state": "CA",
                     "country": "US",
                     "code": code,
-                    "name": name,
+                    "name": self.get_institution_name(institutions, f),
                     "address1": f["address1"] if f["address1"] else "",
                     "address2": f["address2"] if f["address2"] else "",
                     "city": cities[f["city"]]["fields"]["name"],
@@ -92,7 +95,7 @@ class Command(BaseCommand):
                     "contact_email": f["email"] if f["email"] else "",
                     "aeon_request_url": aeon_request_url,
                     "aeon_request_mappings": aeon_mapping,
-                    "oclc_share": f["archivegrid_harvest"],
+                    "oclc_share": oclc_share if oclc_share is not None else False,
                     "latitude": f["latitude"],
                     "longitude": f["longitude"],
                 }
