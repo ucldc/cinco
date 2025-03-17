@@ -39,10 +39,18 @@ class EADParser:
 
     def parse_arks(self):
         eadid = self.root.find("./eadheader/eadid")
-        return eadid.attrib.get("identifier", None), eadid.attrib.get(
+        parent_ark = eadid.attrib.get(
             "{http://www.cdlib.org/path/}parent",
             None,
         )
+        if "identifier" in eadid.attrib:
+            ark = eadid.attrib["identifier"]
+        else:
+            ark_url = eadid.attrib.get("url", "")
+            m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]{8})", ark_url)
+            if m:
+                ark = m.group(0)
+        return ark, parent_ark
 
     def get_href(self, attribs):
         if "href" in attribs:
