@@ -33,6 +33,11 @@ class Command(BaseCommand):
             type=str,
         )
         parser.add_argument(
+            "-r",
+            "--repo-ark",
+            type=str,
+        )
+        parser.add_argument(
             "--directory",
             action="store_true",
             help="if the url points to an entire directory rather than a single EAD",
@@ -41,7 +46,6 @@ class Command(BaseCommand):
     def validate_ead(self, filename, text):
         parser = EADParser()
         parser.parse_string(text)
-        parser.validate_dtd()
         parser.validate_required_fields()
         parser.validate_component_titles()
         parser.validate_dates()
@@ -65,7 +69,6 @@ class Command(BaseCommand):
 
     def process_supp_files(self, parser, doc_url, ark_dir, finding_aid):
         # get and upload any supp files
-        urls = {}
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
                 url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
@@ -78,23 +81,27 @@ class Command(BaseCommand):
                 r.raise_for_status()
                 sfilename = a["href"].split("/")[-1]
                 pdf_file = SimpleUploadedFile(sfilename, r.content)
-                s = SupplementaryFile.objects.create(
+                SupplementaryFile.objects.create(
                     finding_aid=finding_aid,
                     title=a["text"],
                     pdf_file=pdf_file,
                     order=order,
                 )
-                urls[a["href"]] = s.pdf_file.url
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
                 self.stdout.write(e.message)
 
         # update links in original EAD
-        if len(urls) > 0:
-            parser.update_otherfindaids(urls)
+        if finding_aid.supplementaryfile_set.exists():
+            parser.update_otherfindaids(
+                [
+                    {"url": f.pdf_file.url, "text": f.title}
+                    for f in finding_aid.supplementaryfile_set.all()
+                ],
+            )
 
-    def import_ead(self, url, filename, doc_url):
+    def import_ead(self, url, filename, doc_url, repo_ark):
         r = requests.get(url, allow_redirects=True, timeout=30)
         r.raise_for_status()
 
@@ -107,6 +114,8 @@ class Command(BaseCommand):
                 return
 
             ark, parent_ark = parser.parse_arks()
+            if repo_ark:
+                parent_ark = repo_ark
             repo = Repository.objects.get(ark=parent_ark)
             ark_dir = self.get_ark_dir(ark)
 
@@ -139,6 +148,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         url = options.get("url")
         doc_url = options.get("doc_url", "https://cdn.calisphere.org")
+        repo_ark = options.get("repo_ark")
         is_directory = options.get("directory", False)
 
         if is_directory:
@@ -151,7 +161,7 @@ class Command(BaseCommand):
                     and filename.endswith(".xml")
                     and not filename.startswith("._")
                 ):
-                    self.import_ead(url + filename, filename, doc_url)
+                    self.import_ead(url + filename, filename, doc_url, repo_ark)
         else:
             filename = url.split("/")[-1]
-            self.import_ead(url, filename, doc_url)
+            self.import_ead(url, filename, doc_url, repo_ark)

@@ -1,4 +1,5 @@
 from dal.autocomplete import Select2QuerySetView
+from django.core.files.base import ContentFile
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
@@ -19,6 +20,7 @@ from cincoctrl.findingaids.mixins import UserCanAccessRecordMixin
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import Language
+from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.users.mixins import UserHasAnyRoleMixin
 
 
@@ -257,7 +259,25 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
         context["formset"].save()
 
-        return super().form_valid(form)
+        is_valid = super().form_valid(form)
+        if is_valid:
+            fa = form.instance
+            with fa.ead_file.open("rb") as x:
+                content = x.read()
+            parser = EADParser()
+            parser.parse_string(content)
+            parser.update_otherfindaids(
+                [
+                    {"url": f.pdf_file.url, "text": f.title}
+                    for f in fa.supplementaryfile_set.all()
+                ],
+            )
+            fa.ead_file = ContentFile(
+                parser.to_string(),
+                name=fa.ead_file.name,
+            )
+            fa.save()
+        return is_valid
 
 
 attach_pdf = AttachPDFView.as_view()
