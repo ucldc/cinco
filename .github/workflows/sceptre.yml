@@ -1,0 +1,34 @@
+name: sceptre check
+
+on:
+  pull_request:
+    branches: ['master', 'main']
+
+  push:
+    branches: ['*']
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # install sceptre
+      - name: Install sceptre
+        run: pip install sceptre
+      # install sceptre
+      - name: Dump prod files
+        run: cd infrastructure/cinco && sceptre dump all --to-file
+      - name: Run checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+            directory: ./sceptre/.dump/

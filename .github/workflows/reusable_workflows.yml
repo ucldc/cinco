@@ -1,0 +1,23 @@
+name: Reusable workflow example
+
+on:
+  workflow_call:
+    inputs:
+      directory:
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  sceptre_dummp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # install sceptre
+      - name: Install sceptre
+        run: pip install sceptre
+      - name: Dump sceptre files
+        run: cd ${{inputs.directory}} && sceptre dump all --to-file

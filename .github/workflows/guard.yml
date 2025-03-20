@@ -1,0 +1,34 @@
+name: sceptre check with guard
+
+on:
+  pull_request:
+    branches: ['master', 'main']
+
+  push:
+    branches: ['*']
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    permissions:
+      # only required when create-review is true
+      pull-requests: write
+      # only required for workflows in private repositories
+      contents: read
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+      - uses: ucldc/cinco/.github/workflows/reusable-workflow.yml@${{ github.head_ref }}
+        with:
+            directory: ./infrastructure/cinco/
+
+
+      - name: CloudFormation Guard validate
+        uses: aws-cloudformation/cloudformation-guard@action-v0.0.5
+        with:
+          rules: './infrastructure/cinco/load-balancer.guard'
+          data: './infrastructure/cinco/.dump'
