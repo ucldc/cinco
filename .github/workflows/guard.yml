@@ -22,9 +22,16 @@ jobs:
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
-      - uses: ucldc/cinco/.github/workflows/reusable-workflow.yml@${{ github.head_ref }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-            directory: ./infrastructure/cinco/
+          python-version: '3.12'
+      # install sceptre
+      - name: Install sceptre
+        run: pip install sceptre
+      # install sceptre
+      - name: Dump prod files
+        run: cd infrastructure/cinco && sceptre dump all --to-file
 
 
       - name: CloudFormation Guard validate

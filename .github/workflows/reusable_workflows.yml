@@ -9,7 +9,7 @@ on:
         default: "."
 
 jobs:
-  sceptre_dummp:
+  sceptre_dump:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python
