@@ -1,0 +1,15 @@
+
+let listener_resources = Resources.*[
+    Type == "AWS::ElasticLoadBalancingV2::Listener"
+]
+
+when %listener_resources !empty {
+    %listener_resources {
+        Properties {
+            when SslPolicy !empty {
+                SslPolicy in ['ELBSecurityPolicy-TLS13-1-2-2021-06']
+            }
+
+        }
+    }
+}

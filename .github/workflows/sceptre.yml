@@ -27,7 +27,7 @@ jobs:
         run: pip install sceptre
       # install sceptre
       - name: Dump prod files
-        run: cd infrastructure/cinco && sceptre dump all --to-file
+        run: cd infrastructure/cinco && sceptre dump all --to-file stage
       - name: Run checkov
         uses: bridgecrewio/checkov-action@master
         with:
