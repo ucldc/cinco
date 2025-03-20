@@ -89,12 +89,16 @@ class Repository(models.Model):
 
     class Meta:
         verbose_name_plural = "repositories"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
 
     def get_state_line(self):
         return f"{self.city}, {self.state} {self.zipcode}, {self.country}"
+
+    def description_no_space(self):
+        return self.description.replace("\r\n", " ").replace("\n", " ").strip()
 
 
 class RepositoryLink(models.Model):
