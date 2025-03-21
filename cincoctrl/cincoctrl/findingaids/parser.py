@@ -25,13 +25,15 @@ class EADParser:
 
     def parse_file(self, xml_file):
         try:
-            self.root = self.strip_namespace(etree.parse(xml_file).getroot())
+            self.xml_tree = etree.parse(xml_file)
+            self.root = self.strip_namespace(self.xml_tree.getroot())
         except etree.XMLSyntaxError as e:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
     def parse_string(self, xml_str):
         try:
+            self.xml_tree = None
             self.root = self.strip_namespace(etree.fromstring(xml_str))
         except etree.XMLSyntaxError as e:
             msg = f"Could not parse XML file: {e}"
@@ -141,17 +143,23 @@ class EADParser:
             msg = f"Could not validate dtd: {e.message}"[:255]
         return msg
 
-    def validate_dtd(self):
-        with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
-            dtd = etree.DTD(StringIO(f.read()))
+    def has_dtd(self):
+        return (
+            self.xml_tree is not None and self.xml_tree.docinfo.internalDTD is not None
+        )
 
-        try:
-            if not dtd.validate(self.root):
-                for e in dtd.error_log.filter_from_errors():
-                    msg = self.parse_dtd_error(e)
-                    self.warnings.append(msg)
-        except etree.XMLSyntaxError as e:
-            self.warnings.append(f"Could not validate dtd: {e}"[:255])
+    def validate_dtd(self):
+        if self.has_dtd():
+            with Path("cincoctrl/findingaids/files/ead2002.dtd").open("r") as f:
+                dtd = etree.DTD(StringIO(f.read()))
+
+            try:
+                if not dtd.validate(self.root):
+                    for e in dtd.error_log.filter_from_errors():
+                        msg = self.parse_dtd_error(e)
+                        self.warnings.append(msg)
+            except etree.XMLSyntaxError as e:
+                self.warnings.append(f"Could not validate dtd: {e}"[:255])
 
     required_fields = [
         ("./eadheader/eadid", "EADID"),

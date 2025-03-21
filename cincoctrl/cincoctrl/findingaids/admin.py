@@ -4,6 +4,7 @@ from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import ExpressRecordCreator
 from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import IndexingHistory
 from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import RevisionHistory
 from cincoctrl.findingaids.models import SupplementaryFile
@@ -66,3 +67,8 @@ class ExpressRecordSubjectAdmin(admin.ModelAdmin):
 @admin.register(ExpressRecordCreator)
 class ExpressRecordCreatorAdmin(admin.ModelAdmin):
     raw_id_fields = ("record",)
+
+
+@admin.register(IndexingHistory)
+class IndexingHistoryAdmin(admin.ModelAdmin):
+    pass

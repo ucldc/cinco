@@ -8,8 +8,8 @@ from django.test import TestCase
 
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import ValidationWarning
-from cincoctrl.findingaids.models import start_indexing_job
 from cincoctrl.findingaids.parser import EADParser
+from cincoctrl.findingaids.signals import start_indexing_job
 from cincoctrl.findingaids.validators import validate_ead
 from cincoctrl.users.models import Repository
 
@@ -128,7 +128,8 @@ TEST_INVALID_XML = """
     </archdesc>
 """
 
-INVALID_DTD = """
+INVALID_NO_DTD = """
+<?xml version="1.0" encoding="utf-8"?>
 <record>
     <title>This is not EAD</title>
 </record>
@@ -136,6 +137,10 @@ INVALID_DTD = """
 
 INVALID_DTD1 = """
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ead PUBLIC
+    "+//ISBN 1-931666-00-8//DTD ead.dtd
+    (Encoded Archival Description (EAD) Version 2002)//EN"
+    "ead.dtd">
 <record>
     <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
         langencoding="iso639-2b" repositoryencoding="iso15511">
@@ -158,6 +163,10 @@ INVALID_DTD1 = """
 
 INVALID_DTD2 = """
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ead PUBLIC
+    "+//ISBN 1-931666-00-8//DTD ead.dtd
+    (Encoded Archival Description (EAD) Version 2002)//EN"
+    "ead.dtd">
 <ead>
     <eadheader>
         <eadid countrycode="US" mainagencycode="repo_code">0000_0001.xml</eadid>
@@ -391,58 +400,50 @@ class TestFindingAidModels(TestCase):
         post_save.connect(start_indexing_job)
         super().tearDownClass()
 
+    def get_ead_file(self, filename, xml_str):
+        return SimpleUploadedFile(filename, xml_str.strip().encode("utf-8"))
+
     def test_extract_ead(self):
-        ead_file = SimpleUploadedFile("test.xml", TEST_XML.strip().encode("utf-8"))
+        ead_file = self.get_ead_file("test.xml", TEST_XML)
         fa = FindingAid(ead_file=ead_file)
         title, number = fa.extract_ead_fields()
         assert title == "Title of the EAD"
         assert number == "0000-0000"
 
     def test_validate_ead(self):
-        ead_file = SimpleUploadedFile("test.xml", TEST_XML.strip().encode("utf-8"))
+        ead_file = self.get_ead_file("test.xml", TEST_XML)
         validate_ead(ead_file)
 
     def test_invalid_xml(self):
-        ead_file = SimpleUploadedFile(
-            "test.xml",
-            TEST_INVALID_XML.strip().encode("utf-8"),
-        )
+        ead_file = self.get_ead_file("test.xml", TEST_INVALID_XML)
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Could not parse XML file:" in str(e)
 
     def test_no_eadid(self):
-        ead_file = SimpleUploadedFile("test.xml", TEST_NO_EADID.strip().encode("utf-8"))
+        ead_file = self.get_ead_file("test.xml", TEST_NO_EADID)
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Failed to parse EADID" in str(e)
 
     def test_no_unittitle(self):
-        ead_file = SimpleUploadedFile(
-            "test.xml",
-            TEST_NO_UNITTITLE.strip().encode("utf-8"),
-        )
+        ead_file = self.get_ead_file("test.xml", TEST_NO_UNITTITLE)
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Failed to parse Title" in str(e)
 
     def test_no_unitid(self):
-        ead_file = SimpleUploadedFile(
-            "test.xml",
-            TEST_NO_UNITID.strip().encode("utf-8"),
-        )
+        ead_file = self.get_ead_file("test.xml", TEST_NO_UNITID)
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Failed to parse Collection number" in str(e)
 
-    def test_invalid_dtd(self):
+    def test_invalid_no_dtd(self):
+        ead_file = self.get_ead_file("test.xml", INVALID_NO_DTD)
         p = EADParser()
-        p.parse_string(INVALID_DTD)
+        p.parse_file(ead_file)
         p.validate_dtd()
-        assert len(p.warnings) == 1
-        assert (
-            p.warnings[0] == "Could not validate dtd: No declaration for element record"
-        )
+        assert len(p.warnings) == 0
 
     def test_no_comp_title(self):
         p = EADParser()
