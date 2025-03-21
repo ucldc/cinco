@@ -73,7 +73,10 @@ def pre_save(sender, instance, **kwargs):
 def update_status(sender, instance, created, **kwargs):
     if instance.status == "succeeded":
         f = instance.related_model
-        dag_conf = json.loads(instance.dag_run_conf)
+        # dag_run_conf attached on JobRun is kind of wonky
+        # the one in JobTrigger seems more reliable
+        # not sure why they both have this field
+        dag_conf = json.loads(instance.job_trigger.dag_run_conf)
         IndexingHistory.objects.create(finding_aid=f, status="success")
         f.status = "previewed" if dag_conf["preview"] else "published"
         f.save()
