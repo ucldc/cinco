@@ -1,8 +1,10 @@
 from tempfile import TemporaryFile
 
+from django.core.files.base import ContentFile
 from django.core.files.storage import storages
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from django.template.loader import render_to_string
 
 from cincoctrl.findingaids.models import FindingAid
 
@@ -41,11 +43,18 @@ class Command(BaseCommand):
             4. saving the extracted supplementary files text to S3
         """
 
-        # if finding_aid.expressrecord:
-        # else:
+        if finding_aid.record_type == "ead":
+            ead_file = finding_aid.ead_file.file
+        else:
+            record = render_to_string(
+                "findingaids/express_record.xml",
+                context={"object": finding_aid.expressrecord},
+            )
+            ead_file = ContentFile(record)
+
         storages["default"].save(
             f"indexing/{s3_key}/finding-aid.xml",
-            finding_aid.ead_file.file,
+            ead_file,
         )
 
         if finding_aid.supplementaryfile_set.count() >= 1:
