@@ -215,8 +215,3 @@ sentry_sdk.init(
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-ARCLIGHT_URL = (
-    "http://cinco-arclight-stage-alb-672619287.us-west-2.elb.amazonaws.com/catalog/"
-)
-ENABLE_AIRFLOW = True
