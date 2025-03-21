@@ -40,15 +40,33 @@
           </ul>
         {% endif %}
         {% if object.status == 'previewed' %}
-        <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">Preview successful</h4>
-          <p><a href="" class="btn btn-secondary">View Preview</a></p>
-        </div>
+        <p>
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Preview successful</h4>
+            <p><a href="{{ object.public_url }}" class="btn btn-success">View Preview</a></p>
+          </div>
+        </p>
         {% elif object.status == 'published' %}
-        <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">Publication successful</h4>
-          <p><a href="" class="btn btn-secondary">View in OAC</a></p>
-        </div>
+        <p>
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Publication successful</h4>
+            <p><a href="{{ object.public_url }}" class="btn btn-success">View in OAC</a></p>
+          </div>
+        </p>
+        {% endif %}
+        {% if object.indexinghistory_set.exists %}
+        <p>
+          <h3>Indexing History</h3>
+          <div class="card">
+            <div class="card-body">
+              <ul>
+              {% for h in object.indexinghistory_set.all %}
+                <li>{{ h }}</li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </p>
         {% endif %}
         <p>
           <h3>Manage Submission</h3>

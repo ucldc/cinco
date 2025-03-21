@@ -8,8 +8,8 @@ from django.test import TestCase
 
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import ValidationWarning
-from cincoctrl.findingaids.models import start_indexing_job
 from cincoctrl.findingaids.parser import EADParser
+from cincoctrl.findingaids.signals import start_indexing_job
 from cincoctrl.findingaids.validators import validate_ead
 from cincoctrl.users.models import Repository
 

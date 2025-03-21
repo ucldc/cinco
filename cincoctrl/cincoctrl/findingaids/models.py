@@ -12,12 +12,8 @@ from django.db.models import ManyToManyField
 from django.db.models import OneToOneField
 from django.db.models import TextField
 from django.db.models import URLField
-from django.db.models.signals import post_save
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.urls import reverse
 
-from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -31,6 +27,11 @@ STATUSES = (
     ("previewed", "Previewed"),
     ("published", "Published"),
     ("updated", "Updated"),
+)
+
+INDEXING_STATUSES = (
+    ("success", "Success"),
+    ("failed", "Failed"),
 )
 
 RECORD_TYPES = (
@@ -99,47 +100,28 @@ class FindingAid(models.Model):
             p.parse_file(f)
         return p.extract_ead_fields()
 
-
-@receiver(post_save, sender=FindingAid)
-def update_ead_warnings(sender, instance, created, **kwargs):
-    if instance.ead_file.name:
-        p = EADParser()
-        with instance.ead_file.open("rb") as f:
-            p.parse_file(f)
-        p.validate_dtd()
-        p.validate_dates()
-        warn_ids = []
-        for w in p.warnings:
-            warn, _ = ValidationWarning.objects.get_or_create(
-                finding_aid=instance,
-                message=w[:255],
-            )
-            warn_ids.append(warn.pk)
-        # Delete any no-longer-relevant warnings
-        instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
+    def public_url(self):
+        return f"{settings.ARCLIGHT_URL}{self.ark}"
 
 
-@receiver(post_save)
-def start_indexing_job(sender, instance, created, **kwargs):
-    if sender == FindingAid:
-        ark_name = instance.ark.replace("/", ":")
-        trigger_dag(
-            "index_finding_aid",
-            {
-                "finding_aid_id": instance.id,
-                "repository_code": instance.repository.code,
-                "finding_aid_ark": instance.ark,
-                "preview": instance.status == "previewed",
-            },
-            related_model=instance,
-            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
-        )
-    if sender in [ExpressRecord, SupplementaryFile]:
-        finding_aid = instance.finding_aid
-        post_save.send(sender=FindingAid, instance=finding_aid)
-    if sender in [ExpressRecordCreator, ExpressRecordSubject]:
-        finding_aid = instance.record.finding_aid
-        post_save.send(sender=FindingAid, instance=finding_aid)
+class IndexingHistory(models.Model):
+    finding_aid = ForeignKey("FindingAid", on_delete=models.CASCADE)
+    date = DateTimeField(auto_now_add=True)
+    status = CharField(
+        max_length=10,
+        choices=INDEXING_STATUSES,
+        blank=True,
+    )  # system set
+    message = CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-date"]
+
+    def __str__(self):
+        s = f"Indexing {self.status} on {self.date.strftime("%Y-%m-%d %H:%M:%S")}"
+        if len(self.message):
+            s += f": {self.message}"
+        return s
 
 
 class SupplementaryFile(models.Model):
@@ -161,16 +143,6 @@ class SupplementaryFile(models.Model):
 
     def __str__(self):
         return f"{self.finding_aid} / {self.pdf_file}"
-
-
-@receiver(pre_save, sender=SupplementaryFile)
-def pre_save(sender, instance, **kwargs):
-    if instance.pk:
-        previous_instance = SupplementaryFile.objects.get(pk=instance.pk)
-        # reset textract status and textract output if pdf_file changes
-        if previous_instance.pdf_file != instance.pdf_file:
-            instance.textract_status = "IN_PROGRESS"
-            instance.textract_output = ""
 
 
 class ExpressRecord(models.Model):
