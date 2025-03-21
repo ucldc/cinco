@@ -97,7 +97,7 @@ class Repository(models.Model):
     def get_state_line(self):
         return f"{self.city}, {self.state} {self.zipcode}, {self.country}"
 
-    def description_no_space(self):
+    def description_no_newlines(self):
         return self.description.replace("\r\n", " ").replace("\n", " ").strip()
 
 
