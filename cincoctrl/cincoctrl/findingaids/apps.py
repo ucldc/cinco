@@ -8,4 +8,4 @@ class FindingaidsConfig(AppConfig):
     verbose_name = _("Finding Aids")
 
     def ready(self):
-        pass
+        from cincoctrl.findingaids import signals  # noqa: F401
