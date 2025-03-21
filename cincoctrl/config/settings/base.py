@@ -292,3 +292,5 @@ SOCIALACCOUNT_FORMS = {"signup": "cincoctrl.users.forms.UserSocialSignupForm"}
 # Your stuff...
 # ------------------------------------------------------------------------------
 SQS_URL = env("SQS_URL", default=None)
+ARCLIGHT_URL = env("ARCLIGHT_URL", default="")
+ENABLE_AIRFLOW = env("ENABLE_AIRFLOW", default=True)

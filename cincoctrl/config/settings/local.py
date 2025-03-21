@@ -65,5 +65,3 @@ INSTALLED_APPS += ["django_extensions"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-ARCLIGHT_URL = "http://localhost:3000/catalog/"
-ENABLE_AIRFLOW = False
