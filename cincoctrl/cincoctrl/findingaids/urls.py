@@ -4,6 +4,7 @@ from cincoctrl.findingaids.views import attach_pdf
 from cincoctrl.findingaids.views import create_record_express
 from cincoctrl.findingaids.views import language_autocomplete
 from cincoctrl.findingaids.views import manage_records_view
+from cincoctrl.findingaids.views import preview_record
 from cincoctrl.findingaids.views import publish_record
 from cincoctrl.findingaids.views import submit_ead
 from cincoctrl.findingaids.views import update_ead
@@ -37,6 +38,7 @@ urlpatterns = [
         name="update_record_express",
     ),
     path("records/<int:pk>/", view=view_record, name="view_record"),
-    path("records/<int:pk>/queued", view=publish_record, name="publish_record"),
+    path("records/<int:pk>/published", view=publish_record, name="publish_record"),
+    path("records/<int:pk>/previewed", view=preview_record, name="preview_record"),
     path("records/<int:pk>/attach", view=attach_pdf, name="attach_pdf"),
 ]
