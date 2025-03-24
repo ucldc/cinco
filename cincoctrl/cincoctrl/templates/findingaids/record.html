@@ -39,6 +39,20 @@
             {% for f in object.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
         {% endif %}
+        {% if object.indexinghistory_set.exists %}
+        <p>
+          <h3>Indexing History</h3>
+          <div class="card">
+            <div class="card-body">
+              <ul>
+              {% for h in object.indexinghistory_set.all %}
+                <li>{{ h }}</li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </p>
+        {% endif %}
         {% if object.status == 'previewed' %}
         <p>
           <div class="alert alert-success" role="alert">
@@ -54,20 +68,6 @@
           </div>
         </p>
         {% endif %}
-        {% if object.indexinghistory_set.exists %}
-        <p>
-          <h3>Indexing History</h3>
-          <div class="card">
-            <div class="card-body">
-              <ul>
-              {% for h in object.indexinghistory_set.all %}
-                <li>{{ h }}</li>
-              {% endfor %}
-              </ul>
-            </div>
-          </div>
-        </p>
-        {% endif %}
         <p>
           <h3>Manage Submission</h3>
           <div class="card">
@@ -80,6 +80,9 @@
               <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update</a>
               {% endif %}
               {% if object.status == 'previewed' %}
+              <a href="{% url 'findingaids:preview_record' object.pk %}" class="btn btn-primary">Preview</a>
+              {% endif %}
+              {% if object.status == 'previewed' or object.status == 'published' %}
               <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish</a>
               {% endif %}
             </div>

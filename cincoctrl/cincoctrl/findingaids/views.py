@@ -3,6 +3,7 @@ from django.core.files.base import ContentFile
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
+from django.db.models.signals import post_save
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -227,12 +228,29 @@ view_record_express_xml = RecordExpressXMLView.as_view()
 
 class PublishRecordView(UserCanAccessRecordMixin, DetailView):
     model = FindingAid
-    template_name = "findingaids/record_published.html"
+    template_name = "findingaids/queued.html"
 
-    # TODO: add logic to do the enqueuing
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
+        obj.status = "published"
+        obj.save()
+        return obj
 
 
 publish_record = PublishRecordView.as_view()
+
+
+class PreviewRecordView(UserCanAccessRecordMixin, DetailView):
+    model = FindingAid
+    template_name = "findingaids/queued.html"
+
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
+        post_save.send(FindingAid, instance=obj, created=False)
+        return obj
+
+
+preview_record = PreviewRecordView.as_view()
 
 
 class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
