@@ -34,7 +34,7 @@ export REPOSITORY_ID=$3
 
 # if --preview is provided, set preview flag to true
 # otherwise set to false
-if [ "$6" == "--preview" ]; then
+if [ "$5" == "--preview" ]; then
   echo "Setting Preview Environment Variable"
   export PREVIEW=true
 else
