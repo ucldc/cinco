@@ -27,7 +27,7 @@
              </titlestmt>
              <publicationstmt>
                  <publisher>{{ object.finding_aid.repository.name }}</publisher>
-                 <date>{{ object.date_dacs }}</date>
+                 <date>{{ object.date }}</date>
              </publicationstmt>
          </filedesc>
         {% if object.revisionhistory_set.exists %}
@@ -50,9 +50,9 @@
      <archdesc level="collection" id="archdesc">
          <did id="did">
              <head>Descriptive Summary</head>
-             <unittitle label="Title">{{ object.collection_title }}</unittitle>
-             <unitdate {% if object.date_iso %}normal="{{ object.date_iso }}"{% endif %} label="Dates">
-                {{ object.date_dacs }}
+             <unittitle label="Title">{{ object.finding_aid.collection_title }}</unittitle>
+             <unitdate {% if object.normal_date %}normal="{{ object.normal_date }}"{% endif %} label="Dates">
+                {{ object.date }}
             </unitdate>
              <unitid label="Collection Number" repositorycode="{{ instance.finding_aid.repository.code }}" countrycode="US">
                 {{ object.finding_aid.collection_number }}
@@ -89,10 +89,12 @@
             <head>Access</head>
             <p>{{ object.accessrestrict }}</p>
         </accessrestrict>
+        {% if object.userestrict %}
         <userestrict id="userestrict">
             <head>Publication Rights</head>
             <p>{{ object.userestrict }}</p>
         </userestrict>
+        {% endif %}
         <prefercite id="prefercite">
             <head>Preferred Citation</head>
             <p>
@@ -103,10 +105,12 @@
             {% endif %}
             </p>
         </prefercite>
+        {% if object.acqinfo %}
         <acqinfo id="acqinfo">
             <head>Acquisition Information</head>
             <p>{{ object.acqinfo }}</p>
         </acqinfo>
+        {% endif %}
         {% if object.bioghist %}
         <bioghist id="bioghist">
             <head>Biography/Administrative History</head>
@@ -127,7 +131,7 @@
                 {% endif %}
             {% endfor %}
         </controlaccess>
-        {% if object.findingaid.supplementaryfile_set.exists %}
+        {% if object.finding_aid.supplementaryfile_set.exists %}
         <otherfindaid id="otherfindaid">
             <head>Additional collection guides</head>
             <list>
