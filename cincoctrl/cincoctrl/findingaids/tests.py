@@ -4,9 +4,12 @@ import pytest
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models.signals import post_save
+from django.template.loader import render_to_string
 from django.test import TestCase
 
+from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import ValidationWarning
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.signals import start_indexing_job
@@ -554,3 +557,33 @@ class TestFindingAidModels(TestCase):
         fa.save()
         warnings = ValidationWarning.objects.filter(finding_aid=fa)
         assert warnings.count() == 0
+
+    @pytest.mark.django_db
+    def test_record_express_template(self):
+        repo = Repository.objects.create(
+            ark="0000",
+            code="repo1",
+            name="Repository 1",
+        )
+        eng = Language.objects.create(code="eng", name="English")
+        f = FindingAid.objects.create(
+            repository=repo,
+            collection_title="Test Collection",
+            collection_number="COLL_NUM",
+        )
+        e = ExpressRecord.objects.create(
+            finding_aid=f,
+            title_filing="Test Title",
+            date="1999",
+            extent="Extent of Collection",
+            abstract="This is the abstract",
+            accessrestrict="Access Restrictions",
+            scopecontent="Scope and Content",
+        )
+        e.language.add(eng)
+
+        record = render_to_string(
+            "findingaids/express_record.xml",
+            context={"object": e},
+        )
+        assert '<language langcode="eng"/>' in record

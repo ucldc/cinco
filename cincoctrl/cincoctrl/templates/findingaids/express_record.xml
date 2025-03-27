@@ -61,7 +61,7 @@
                  {% for c in object.expressrecordcreator_set.all %}
                  <{{c.creator_type}}>{{c.value}}</{{c.creator_type}}>
                  {% endfor %}
-\             </origination>
+            </origination>
              <physdesc label="Extent">
                 <extent>{{object.extent}}</extent>
              </physdesc>
@@ -80,8 +80,8 @@
                 {{ object.abstract }}
             </abstract>
              <langmaterial>
-                {% for language in object.language.all() %}
-                <language langcode="{{ language }}"/>
+                {% for language in object.language.all %}
+                <language langcode="{{ language.code }}"/>
                 {% endfor %}
             </langmaterial>
         </did>
