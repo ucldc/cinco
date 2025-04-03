@@ -14,6 +14,7 @@ from django.db.models import TextField
 from django.db.models import URLField
 from django.urls import reverse
 
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -111,6 +112,20 @@ class FindingAid(models.Model):
             self.status = "queued_publish"
         else:
             self.status = "queued_preview"
+        self.save()
+        if settings.ENABLE_AIRFLOW:
+            ark_name = self.ark.replace("/", ":")
+            trigger_dag(
+                "index_finding_aid",
+                {
+                    "finding_aid_id": self.id,
+                    "repository_code": self.repository.code,
+                    "finding_aid_ark": self.ark,
+                    "preview": self.status == "queued_preview",
+                },
+                related_model=self,
+                dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+            )
 
 
 class IndexingHistory(models.Model):

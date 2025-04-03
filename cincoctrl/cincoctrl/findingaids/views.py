@@ -99,11 +99,8 @@ class FindingAidCreateView(UserHasAnyRoleMixin, CreateView):
             form.instance.collection_title, form.instance.collection_number = (
                 self.extract_ead_fields(self.request.FILES["ead_file"])
             )
-        is_valid = super().form_valid(form)
-        if is_valid:
-            self.object.queue_index()
-            self.object.save()
-        return is_valid
+        form.instance.queue_index()
+        return super().form_valid(form)
 
 
 submit_ead = FindingAidCreateView.as_view()
@@ -125,11 +122,8 @@ class FindingAidUpdateView(UserCanAccessRecordMixin, UpdateView):
             form.instance.collection_title, form.instance.collection_number = (
                 self.extract_ead_fields(self.request.FILES["ead_file"])
             )
-        is_valid = super().form_valid(form)
-        if is_valid:
-            self.object.queue_index()
-            self.object.save()
-        return is_valid
+        self.object.queue_index()
+        return super().form_valid(form)
 
 
 update_ead = FindingAidUpdateView.as_view()
@@ -199,10 +193,8 @@ class RecordExpressMixin:
             subject_formset.save()
             revision_formset.instance = expressrecord
             revision_formset.save()
-            r = super().form_valid(form)
             self.object.queue_index()
-            self.object.save()
-            return r
+            return super().form_valid(form)
 
         return self.form_invalid(form)
 
@@ -264,7 +256,6 @@ class PublishRecordView(UserCanAccessRecordMixin, DetailView):
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
         obj.queue_index(force_publish=True)
-        obj.save()
         return obj
 
 
@@ -278,7 +269,6 @@ class PreviewRecordView(UserCanAccessRecordMixin, DetailView):
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
         obj.queue_index()
-        obj.save()
         return obj
 
 
@@ -309,27 +299,24 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
         context["formset"].save()
 
-        is_valid = super().form_valid(form)
-        if is_valid:
-            fa = form.instance
-            if fa.ead_file.name:
-                with fa.ead_file.open("rb") as x:
-                    content = x.read()
-                parser = EADParser()
-                parser.parse_string(content)
-                parser.update_otherfindaids(
-                    [
-                        {"url": f.pdf_file.url, "text": f.title}
-                        for f in fa.supplementaryfile_set.all()
-                    ],
-                )
-                fa.ead_file = ContentFile(
-                    parser.to_string(),
-                    name=fa.ead_file.name,
-                )
-            fa.queue_index()
-            fa.save()
-        return is_valid
+        fa = form.instance
+        if fa.ead_file.name:
+            with fa.ead_file.open("rb") as x:
+                content = x.read()
+            parser = EADParser()
+            parser.parse_string(content)
+            parser.update_otherfindaids(
+                [
+                    {"url": f.pdf_file.url, "text": f.title}
+                    for f in fa.supplementaryfile_set.all()
+                ],
+            )
+            fa.ead_file = ContentFile(
+                parser.to_string(),
+                name=fa.ead_file.name,
+            )
+        fa.queue_index()
+        return super().form_valid(form)
 
 
 attach_pdf = AttachPDFView.as_view()
