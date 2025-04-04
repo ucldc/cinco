@@ -73,6 +73,8 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
+        print(f"ArclightECSOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}")
+
         command = [
             "bin/index-from-s3",
             finding_aid_id,
@@ -80,8 +82,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
             repository_code,
             finding_aid_ark,
         ]
-        if preview:
+        if preview == "True":
             command.append("--preview")
+
         args = {
             "cluster": cluster_name,
             "launch_type": "FARGATE",
@@ -132,6 +135,7 @@ class ArcLightDockerOperator(DockerOperator):
         preview,
         **kwargs,
     ):
+
         mounts = [
             Mount(
                 source="/Users/awieliczka/Projects/cinco/arclight/bin",
@@ -139,6 +143,8 @@ class ArcLightDockerOperator(DockerOperator):
                 type="bind",
             )
         ]
+
+        print(f"ArclightDockerOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}")
 
         container_image = "cinco-arclight-indexer"
         container_version = "latest"
@@ -150,7 +156,7 @@ class ArcLightDockerOperator(DockerOperator):
             repository_code,
             finding_aid_ark,
         ]
-        if preview:
+        if preview == "True":
             command.append("--preview")
         args = {
             "image": f"{container_image}:{container_version}",
