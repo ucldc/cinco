@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+    </archdesc>
+</ead>

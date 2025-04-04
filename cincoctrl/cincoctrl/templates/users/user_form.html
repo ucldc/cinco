@@ -7,9 +7,7 @@
 {% endblock title %}
 {% block content %}
   <h1>Change Password</h1>
-  <form class="form-horizontal"
-        method="post"
-        action="{% url 'users:detail' user.pk %}">
+  <form class="form-horizontal" method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <div class="control-group">

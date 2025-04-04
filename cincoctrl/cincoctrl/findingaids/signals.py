@@ -1,15 +1,8 @@
-import json
-
-from django.conf import settings
 from django.db.models.signals import post_save
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 from cincoctrl.airflow_client.models import JobRun
-from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
-from cincoctrl.findingaids.models import ExpressRecord
-from cincoctrl.findingaids.models import ExpressRecordCreator
-from cincoctrl.findingaids.models import ExpressRecordSubject
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import IndexingHistory
 from cincoctrl.findingaids.models import SupplementaryFile
@@ -36,29 +29,6 @@ def update_ead_warnings(sender, instance, created, **kwargs):
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
 
 
-@receiver(post_save)
-def start_indexing_job(sender, instance, created, **kwargs):
-    if sender == FindingAid and settings.ENABLE_AIRFLOW:
-        ark_name = instance.ark.replace("/", ":")
-        trigger_dag(
-            "index_finding_aid",
-            {
-                "finding_aid_id": instance.id,
-                "repository_code": instance.repository.code,
-                "finding_aid_ark": instance.ark,
-                "preview": instance.status != "published",
-            },
-            related_model=instance,
-            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
-        )
-    if sender in [ExpressRecord, SupplementaryFile]:
-        finding_aid = instance.finding_aid
-        post_save.send(sender=FindingAid, instance=finding_aid, created=created)
-    if sender in [ExpressRecordCreator, ExpressRecordSubject]:
-        finding_aid = instance.record.finding_aid
-        post_save.send(sender=FindingAid, instance=finding_aid, created=created)
-
-
 @receiver(pre_save, sender=SupplementaryFile)
 def pre_save(sender, instance, **kwargs):
     if instance.pk:
@@ -71,17 +41,26 @@ def pre_save(sender, instance, **kwargs):
 
 @receiver(post_save, sender=JobRun)
 def update_status(sender, instance, created, **kwargs):
+    current_status = instance.related_model.status
+    updated_status = current_status
     if instance.status == "succeeded":
-        f = instance.related_model
-        # dag_run_conf attached on JobRun is kind of wonky
-        # the one in JobTrigger seems more reliable
-        # not sure why they both have this field
-        dag_conf = json.loads(instance.job_trigger.dag_run_conf)
-        IndexingHistory.objects.create(finding_aid=f, status="success")
-        f.status = "previewed" if dag_conf["preview"] else "published"
-        f.save()
+        IndexingHistory.objects.create(
+            finding_aid=instance.related_model,
+            status="success",
+        )
+        if current_status == "queued_preview":
+            updated_status = "previewed"
+        elif current_status == "queued_publish":
+            updated_status = "published"
     elif instance.status == "failed":
         IndexingHistory.objects.create(
             finding_aid=instance.related_model,
             status="failed",
         )
+        if current_status == "queued_preview":
+            updated_status = "preview_error"
+        elif current_status == "queued_publish":
+            updated_status = "publish_error"
+
+    if current_status != updated_status:
+        instance.related_model.save()

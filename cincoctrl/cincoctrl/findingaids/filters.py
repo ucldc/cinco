@@ -9,7 +9,7 @@ class FindingAidFilter(django_filters.FilterSet):
         model = FindingAid
         fields = {
             "repository": ["exact"],
-            "collection_title": ["contains"],
+            "collection_title": ["icontains"],
         }
 
     def __init__(self, *args, **kwargs):

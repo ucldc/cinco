@@ -14,6 +14,7 @@ from django.db.models import TextField
 from django.db.models import URLField
 from django.urls import reverse
 
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
 
@@ -23,10 +24,13 @@ FILE_FORMATS = (
 )
 
 STATUSES = (
-    ("imported", "Imported"),
+    ("started", "Started"),
+    ("queued_preview", "Queued for Preview"),
     ("previewed", "Previewed"),
+    ("preview_error", "Preview Error"),
+    ("queued_publish", "Queued for Publication"),
     ("published", "Published"),
-    ("updated", "Updated"),
+    ("publish_error", "Publication Error"),
 )
 
 INDEXING_STATUSES = (
@@ -67,11 +71,14 @@ class FindingAid(models.Model):
     record_type = CharField(max_length=10, choices=RECORD_TYPES)  # system-set
     status = CharField(
         max_length=50,
-        default="imported",
+        default="started",
         choices=STATUSES,
     )  # system-set
     date_created = DateTimeField(auto_now_add=True)  # auto-assigned
     date_updated = DateTimeField(auto_now=True)  # auto-updated
+
+    class Meta:
+        ordering = ["collection_title"]
 
     def __str__(self):
         return self.collection_title
@@ -79,11 +86,8 @@ class FindingAid(models.Model):
     def save(self, *args, **kwargs):
         if not self.ark:
             self.ark = str(uuid.uuid4())
+
         super().save(*args, **kwargs)
-        if self.record_type != "express" and self.ead_file.name:
-            self.collection_title, self.collection_number = self.extract_ead_fields()
-            kwargs.update({"force_insert": False})
-            super().save(*args, **kwargs)
 
     def get_absolute_url(self) -> str:
         return reverse(
@@ -102,6 +106,26 @@ class FindingAid(models.Model):
 
     def public_url(self):
         return f"{settings.ARCLIGHT_URL}{self.ark}"
+
+    def queue_index(self, *, force_publish=False):
+        if force_publish or "publish" in self.status:
+            self.status = "queued_publish"
+        else:
+            self.status = "queued_preview"
+        self.save()
+        if settings.ENABLE_AIRFLOW:
+            ark_name = self.ark.replace("/", ":")
+            trigger_dag(
+                "index_finding_aid",
+                {
+                    "finding_aid_id": self.id,
+                    "repository_code": self.repository.code,
+                    "finding_aid_ark": self.ark,
+                    "preview": self.status == "queued_preview",
+                },
+                related_model=self,
+                dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+            )
 
 
 class IndexingHistory(models.Model):
@@ -153,7 +177,7 @@ class ExpressRecord(models.Model):
     end_year = IntegerField(null=True, blank=True)
     extent = TextField("Extent of Collection")
     abstract = TextField()
-    language = ManyToManyField("Language", blank=True)
+    language = ManyToManyField("Language")
     accessrestrict = TextField("Access Conditions")
     userestrict = TextField("Publication Rights", blank=True)
     acqinfo = TextField("Acquisition Information", blank=True)
@@ -174,6 +198,11 @@ class ExpressRecord(models.Model):
             "findingaids:view_record",
             kwargs={"pk": self.finding_aid.pk},
         )
+
+    def normal_date(self):
+        if self.start_year and self.end_year:
+            return f"{self.start_year}/{self.end_year}"
+        return self.start_year
 
 
 CREATOR_TYPES = (

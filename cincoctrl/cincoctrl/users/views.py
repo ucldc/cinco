@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
@@ -33,8 +33,10 @@ user_detail_view = UserDetailView.as_view()
 
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy("detail")
     template_name = "users/user_form.html"
+
+    def get_success_url(self):
+        return reverse("users:detail", kwargs={"pk": self.request.user.pk})
 
 
 user_change_password = ChangePasswordView.as_view()

@@ -10,14 +10,8 @@ def test_detail(user: User):
 
 
 def test_change_password(user: User):
-    assert (
-        reverse("users:change_password", kwargs={"pk": user.pk})
-        == f"/users/{user.pk}/changepassword/"
-    )
-    assert (
-        resolve(f"/users/{user.pk}/changepassword/").view_name
-        == "users:change_password"
-    )
+    assert reverse("users:change_password") == "/users/changepassword/"
+    assert resolve("/users/changepassword/").view_name == "users:change_password"
 
 
 def test_repositories(user: User):

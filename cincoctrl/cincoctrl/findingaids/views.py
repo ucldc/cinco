@@ -3,7 +3,6 @@ from django.core.files.base import ContentFile
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
-from django.db.models.signals import post_save
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -83,9 +82,24 @@ class FindingAidCreateView(UserHasAnyRoleMixin, CreateView):
         kwargs["queryset"] = self.request.user.repositories()
         return kwargs
 
+    def extract_ead_fields(self, uploaded_file):
+        file_content = b""
+        for chunk in uploaded_file.chunks():
+            file_content += chunk
+        # reset file pointer for file save
+        uploaded_file.seek(0)
+        p = EADParser()
+        p.parse_string(file_content)
+        return p.extract_ead_fields()
+
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         form.instance.record_type = "ead"
+        if "ead_file" in self.request.FILES:
+            form.instance.collection_title, form.instance.collection_number = (
+                self.extract_ead_fields(self.request.FILES["ead_file"])
+            )
+        form.instance.queue_index()
         return super().form_valid(form)
 
 
@@ -102,6 +116,14 @@ class FindingAidUpdateView(UserCanAccessRecordMixin, UpdateView):
         kwargs = super().get_form_kwargs(*args, **kwargs)
         kwargs["queryset"] = self.request.user.repositories()
         return kwargs
+
+    def form_valid(self, form):
+        if "ead_file" in self.request.FILES:
+            form.instance.collection_title, form.instance.collection_number = (
+                self.extract_ead_fields(self.request.FILES["ead_file"])
+            )
+        self.object.queue_index()
+        return super().form_valid(form)
 
 
 update_ead = FindingAidUpdateView.as_view()
@@ -171,6 +193,7 @@ class RecordExpressMixin:
             subject_formset.save()
             revision_formset.instance = expressrecord
             revision_formset.save()
+            self.object.queue_index()
             return super().form_valid(form)
 
         return self.form_invalid(form)
@@ -232,8 +255,7 @@ class PublishRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
-        obj.status = "published"
-        obj.save()
+        obj.queue_index(force_publish=True)
         return obj
 
 
@@ -246,7 +268,7 @@ class PreviewRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
-        post_save.send(FindingAid, instance=obj, created=False)
+        obj.queue_index()
         return obj
 
 
@@ -277,9 +299,8 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
         context["formset"].save()
 
-        is_valid = super().form_valid(form)
-        if is_valid:
-            fa = form.instance
+        fa = form.instance
+        if fa.ead_file.name:
             with fa.ead_file.open("rb") as x:
                 content = x.read()
             parser = EADParser()
@@ -294,8 +315,8 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
                 parser.to_string(),
                 name=fa.ead_file.name,
             )
-            fa.save()
-        return is_valid
+        fa.queue_index()
+        return super().form_valid(form)
 
 
 attach_pdf = AttachPDFView.as_view()
