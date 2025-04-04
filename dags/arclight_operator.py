@@ -73,7 +73,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
-        print(f"ArclightECSOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}")
+        print(
+            f"ArclightECSOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
+        )
 
         command = [
             "bin/index-from-s3",
@@ -135,7 +137,6 @@ class ArcLightDockerOperator(DockerOperator):
         preview,
         **kwargs,
     ):
-
         mounts = [
             Mount(
                 source="/Users/awieliczka/Projects/cinco/arclight/bin",
@@ -144,7 +145,9 @@ class ArcLightDockerOperator(DockerOperator):
             )
         ]
 
-        print(f"ArclightDockerOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}")
+        print(
+            f"ArclightDockerOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
+        )
 
         container_image = "cinco-arclight-indexer"
         container_version = "latest"
