@@ -73,7 +73,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
-        print(
+        self.log.info(
             f"ArclightECSOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
         )
 
@@ -145,7 +145,7 @@ class ArcLightDockerOperator(DockerOperator):
             )
         ]
 
-        print(
+        self.log.info(
             f"ArclightDockerOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
         )
 
