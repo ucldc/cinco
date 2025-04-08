@@ -121,7 +121,9 @@ class FindingAid(models.Model):
                     "finding_aid_id": self.id,
                     "repository_code": self.repository.code,
                     "finding_aid_ark": self.ark,
-                    "preview": self.status == "queued_preview",
+                    "preview": (
+                        "preview" if self.status == "queued_preview" else "publish"
+                    ),
                 },
                 related_model=self,
                 dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
