@@ -22,7 +22,7 @@ from cinco.arclight_operator import ArcLightOperator
             "", type="string", description="The ARK of the Finding Aid"
         ),
         "preview": Param(
-            False, type="boolean", description="Whether the Finding Aid is in preview"
+            "publish", type="string", description="Either preview or publish"
         ),
     },
     tags=["cinco"],

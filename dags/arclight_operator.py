@@ -73,19 +73,14 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
-        self.log.info(
-            f"ArclightECSOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
-        )
-
         command = [
             "bin/index-from-s3",
             finding_aid_id,
             s3_key,
             repository_code,
             finding_aid_ark,
+            preview,
         ]
-        if preview == "True":
-            command.append("--preview")
 
         args = {
             "cluster": cluster_name,
@@ -145,10 +140,6 @@ class ArcLightDockerOperator(DockerOperator):
             )
         ]
 
-        self.log.info(
-            f"ArclightDockerOperator called with: {finding_aid_id} {repository_code} {finding_aid_ark} {preview}"
-        )
-
         container_image = "cinco-arclight-indexer"
         container_version = "latest"
         container_name = f"cinco-arclight-indexer-{finding_aid_id}"
@@ -158,9 +149,8 @@ class ArcLightDockerOperator(DockerOperator):
             s3_key,
             repository_code,
             finding_aid_ark,
+            preview,
         ]
-        if preview == "True":
-            command.append("--preview")
         args = {
             "image": f"{container_image}:{container_version}",
             "container_name": container_name,

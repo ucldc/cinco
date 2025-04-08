@@ -32,9 +32,8 @@ curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$2/extracted-s
 echo "Setting Repository Code Environment Variable"
 export REPOSITORY_ID=$3
 
-# if --preview is provided, set preview flag to true
-# otherwise set to false
-if [ "$5" == "--preview" ]; then
+# Preview arg will either be "preview" or "publish"
+if [ "$5" == "preview" ]; then
   echo "Setting Preview Environment Variable"
   export PREVIEW=true
 else
