@@ -1,3 +1,4 @@
+import logging
 import uuid
 
 from django.conf import settings
@@ -17,6 +18,8 @@ from django.urls import reverse
 from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
+
+logger = logging.getLogger(__name__)
 
 FILE_FORMATS = (
     ("ead", "EAD"),
@@ -110,9 +113,14 @@ class FindingAid(models.Model):
     def queue_index(self, *, force_publish=False):
         if force_publish or "publish" in self.status:
             self.status = "queued_publish"
+            action = "publish"
         else:
             self.status = "queued_preview"
+            action = "preview"
         self.save()
+
+        logger.info("queue index for %s: %s", self.ark, action)
+
         if settings.ENABLE_AIRFLOW:
             ark_name = self.ark.replace("/", ":")
             trigger_dag(
@@ -121,9 +129,7 @@ class FindingAid(models.Model):
                     "finding_aid_id": self.id,
                     "repository_code": self.repository.code,
                     "finding_aid_ark": self.ark,
-                    "preview": (
-                        "preview" if self.status == "queued_preview" else "publish"
-                    ),
+                    "preview": action,
                 },
                 related_model=self,
                 dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",

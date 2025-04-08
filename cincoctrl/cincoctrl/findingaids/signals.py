@@ -63,5 +63,5 @@ def update_status(sender, instance, created, **kwargs):
             updated_status = "publish_error"
 
     if current_status != updated_status:
-        instance.related_model = updated_status
+        instance.related_model.status = updated_status
         instance.related_model.save()
