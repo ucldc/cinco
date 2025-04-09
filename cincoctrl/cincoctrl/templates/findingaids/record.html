@@ -79,10 +79,10 @@
               {% else %}
               <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update</a>
               {% endif %}
-              {% if object.status == 'previewed' %}
+              {% if object.status == 'started' or object.status == 'previewed' or object.status == 'preview_error' %}
               <a href="{% url 'findingaids:preview_record' object.pk %}" class="btn btn-primary">Preview</a>
               {% endif %}
-              {% if object.status == 'previewed' or object.status == 'published' %}
+              {% if object.status == 'previewed' or object.status == 'published' or object.status == 'publish_error' %}
               <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish</a>
               {% endif %}
             </div>
