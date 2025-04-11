@@ -72,3 +72,5 @@ gem "devise"
 gem "devise-guests", "~> 0.8"
 gem "blacklight-locale_picker"
 gem "execjs"
+
+gem "lograge", "~> 0.14.0"
