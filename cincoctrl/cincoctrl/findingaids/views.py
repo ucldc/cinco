@@ -71,12 +71,7 @@ class RecordDetailView(UserCanAccessRecordMixin, DetailView):
 view_record = RecordDetailView.as_view()
 
 
-class FindingAidCreateView(UserHasAnyRoleMixin, CreateView):
-    model = FindingAid
-    form_class = FindingAidForm
-    template_name = "findingaids/form.html"
-    verb = "Submit"
-
+class EADMixin:
     def get_form_kwargs(self, *args, **kwargs):
         kwargs = super().get_form_kwargs(*args, **kwargs)
         kwargs["queryset"] = self.request.user.repositories()
@@ -93,8 +88,6 @@ class FindingAidCreateView(UserHasAnyRoleMixin, CreateView):
         return p.extract_ead_fields()
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        form.instance.record_type = "ead"
         if "ead_file" in self.request.FILES:
             form.instance.collection_title, form.instance.collection_number = (
                 self.extract_ead_fields(self.request.FILES["ead_file"])
@@ -103,27 +96,26 @@ class FindingAidCreateView(UserHasAnyRoleMixin, CreateView):
         return super().form_valid(form)
 
 
+class FindingAidCreateView(EADMixin, UserHasAnyRoleMixin, CreateView):
+    model = FindingAid
+    form_class = FindingAidForm
+    template_name = "findingaids/form.html"
+    verb = "Submit"
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.record_type = "ead"
+        return super().form_valid(form)
+
+
 submit_ead = FindingAidCreateView.as_view()
 
 
-class FindingAidUpdateView(UserCanAccessRecordMixin, UpdateView):
+class FindingAidUpdateView(EADMixin, UserCanAccessRecordMixin, UpdateView):
     model = FindingAid
     form_class = FindingAidForm
     template_name = "findingaids/form.html"
     verb = "Update"
-
-    def get_form_kwargs(self, *args, **kwargs):
-        kwargs = super().get_form_kwargs(*args, **kwargs)
-        kwargs["queryset"] = self.request.user.repositories()
-        return kwargs
-
-    def form_valid(self, form):
-        if "ead_file" in self.request.FILES:
-            form.instance.collection_title, form.instance.collection_number = (
-                self.extract_ead_fields(self.request.FILES["ead_file"])
-            )
-        self.object.queue_index()
-        return super().form_valid(form)
 
 
 update_ead = FindingAidUpdateView.as_view()

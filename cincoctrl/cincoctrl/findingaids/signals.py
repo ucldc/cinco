@@ -39,6 +39,12 @@ def pre_save(sender, instance, **kwargs):
             instance.textract_output = ""
 
 
+@receiver(post_save, sender=SupplementaryFile)
+def trigger_reindex(sender, instance, created, **kwargs):
+    if instance.textract_status == "SUCCEEDED" and instance.textract_output:
+        instance.finding_aid.queue_index()
+
+
 @receiver(post_save, sender=JobRun)
 def update_status(sender, instance, created, **kwargs):
     current_status = instance.related_model.status
