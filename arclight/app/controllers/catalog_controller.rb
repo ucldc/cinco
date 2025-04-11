@@ -419,5 +419,16 @@ class CatalogController < ApplicationController
 
     # Group header values
     config.add_group_header_field 'abstract_or_scope', accessor: true, truncate: true, helper_method: :render_html_tags
+
+
+
+    ############ OAC CUSTOMIZATIONS #########
+
+
+    # Disable Bookmarks across the interface
+    config.index.document_actions.delete(:bookmark)
+    config.show.document_actions.delete(:bookmark)
+    config.navbar.partials.delete(:bookmark)
+
   end
 end
