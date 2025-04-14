@@ -14,5 +14,5 @@
     request_types:
         aeon_web_ead:
             request_url: {{ r.aeon_request_url }}
-            request_mappings: {{ r.aeon_request_mappings|safe }}{% endif %}
+            request_mappings: {{ r.aeon_request_mappings|safe }}ead_url{% endif %}
 {% endfor %}
