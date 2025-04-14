@@ -1,5 +1,9 @@
 en:
   blacklight:
+    header_links:
+      home: Home
+      repositories: Contributing Institutions
+      about: About
     search:
       fields:
         abstract: Abstract
@@ -59,3 +63,10 @@ en:
           place: Place
           subject: Subject
           access: Access
+  arclight:
+    repositories: Contributing Institutions
+    routes:
+      repositories: Contributing Institutions
+    views:
+      repositories:
+        title: Contributing Institutions
