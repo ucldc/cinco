@@ -13,15 +13,6 @@ from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.users.models import Repository
 
-# author_statement = TextField(blank=True)
-# preferred_citation = TextField(blank=True)
-# processing_information = TextField(blank=True)
-
-# date_created = DateTimeField(auto_now_add=True)
-# date_updated = DateTimeField(auto_now=True)
-# "created_at": "2012-05-14T15:18:11",
-# "updated_at": "2022-10-06T13:42:18",
-
 
 class Command(BaseCommand):
     """Import records express collections from export"""
@@ -76,6 +67,8 @@ class Command(BaseCommand):
             "scopecontent": fields["scopecontent"],
             "bioghist": fields["bioghist"],
             "online_items_url": fields["online_items_url"],
+            "date_created": fields["created_at"],
+            "date_updated": fields["updated_at"],
         }
         if start_year:
             kwargs["start_year"] = int(start_year)
@@ -86,7 +79,7 @@ class Command(BaseCommand):
             lang = Language.objects.get(code=fields["language"])
             e.language.add(lang)
 
-    def import_supp_file(self, ark, filename, fields):
+    def import_supp_file(self, fields):
         ark = fields["collection_record"]
         filename = fields["filename"]
         if not FindingAid.objects.filter(ark=ark).exists():
