@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand
 
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
+from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.users.models import Repository
 
@@ -53,6 +54,74 @@ class Command(BaseCommand):
         end_year = self.get_year(x[1]) if len(x) > 1 else None
         return start_year, end_year
 
+    def import_finding_aid(self, repo_ark, ark, fields):
+        repo = Repository.objects.get(ark=repo_ark)
+        start_year, end_year = self.get_start_end_years(fields["date_iso"])
+        if FindingAid.objects.filter(ark=ark).exists():
+            return
+        f = FindingAid.objects.create(
+            ark=ark,
+            repository=repo,
+            collection_title=fields["title"],
+            collection_number=fields["local_identifier"],
+            record_type="express",
+        )
+        kwargs = {
+            "title_filing": fields["title_filing"],
+            "date": fields["date_dacs"],
+            "extent": fields["extent"],
+            "accessrestrict": fields["accessrestrict"],
+            "userestrict": fields["userestrict"],
+            "acqinfo": fields["acqinfo"],
+            "scopecontent": fields["scopecontent"],
+            "bioghist": fields["bioghist"],
+            "online_items_url": fields["online_items_url"],
+        }
+        if start_year:
+            kwargs["start_year"] = int(start_year)
+        if end_year:
+            kwargs["end_year"] = int(end_year)
+        e = ExpressRecord.objects.create(finding_aid=f, **kwargs)
+        if Language.objects.filter(code=fields["language"]).exists():
+            lang = Language.objects.get(code=fields["language"])
+            e.language.add(lang)
+
+    def import_supp_file(self, ark, filename, fields):
+        ark = fields["collection_record"]
+        filename = fields["filename"]
+        if not FindingAid.objects.filter(ark=ark).exists():
+            self.stdout.write(
+                self.style.ERROR(
+                    f"ERROR\t{ark}\t\trecord not found\t{filename}",
+                ),
+            )
+        else:
+            ark_tail = ark.split("/")[-1]
+            f = FindingAid.objects.get(ark=ark)
+            doc_url = f"https://cdn.calisphere.org/data/13030/{ark[-2:]}/{ark_tail}/files/{filename}"
+            try:
+                r = requests.get(
+                    doc_url,
+                    allow_redirects=True,
+                    timeout=30,
+                    stream=True,
+                )
+                r.raise_for_status()
+                pdf_file = SimpleUploadedFile(filename, r.content)
+                order = f.supplementaryfile_set.count()
+                SupplementaryFile.objects.create(
+                    finding_aid=f,
+                    title=fields["label"],
+                    pdf_file=pdf_file,
+                    order=order,
+                )
+            except requests.exceptions.HTTPError:
+                self.stdout.write(
+                    self.style.ERROR(
+                        f"ERROR\t{ark}\t\tsupp file {doc_url} not found",
+                    ),
+                )
+
     def handle(self, *args, **options):
         filepath = options.get("filepath")
         bucket = options.get("bucket", False)
@@ -75,46 +144,10 @@ class Command(BaseCommand):
             if d["model"] == "collection_record.collectionrecord":
                 repo_ark = repos[fields["publisher"]]
                 if Repository.objects.filter(ark=repo_ark).exists():
-                    repo = Repository.objects.get(ark=repo_ark)
-                    start_year, end_year = self.get_start_end_years(fields["date_iso"])
-                    f = FindingAid.objects.create(
-                        ark=d["pk"],
-                        repository=repo,
-                        collection_title=fields["title"],
-                        collection_number=fields["local_identifier"],
-                        record_type="express",
-                    )
-                    kwargs = {
-                        "title_filing": fields["title_filing"],
-                        "date": fields["date_dacs"],
-                        "extent": fields["extent"],
-                        "language": fields["language"],
-                        "accessrestrict": fields["accessrestrict"],
-                        "userestrict": fields["userestrict"],
-                        "acqinfo": fields["acqinfo"],
-                        "scopecontent": fields["scopecontent"],
-                        "bioghist": fields["bioghist"],
-                        "online_items_url": fields["online_items_url"],
-                    }
-                    if start_year:
-                        kwargs["start_year"] = int(start_year)
-                    if end_year:
-                        kwargs["end_year"] = int(end_year)
-                    ExpressRecord.objects.create(finding_aid=f, **kwargs)
+                    self.import_finding_aid(repo_ark, d["pk"], fields)
                 else:
                     self.stdout.write(
-                        self.style.ERROR(f"ERROR: no repository with ark {repo_ark}"),
+                        self.style.ERROR(f"ERROR\t{d["pk"]}\t{repo_ark}\tmissing repo"),
                     )
             elif d["model"] == "collection_record.supplementalfile":
-                ark = fields["collection_record"]
-                filename = fields["filename"]
-                f = FindingAid.objects.get(ark=ark)
-                doc_url = f"https://cdn.calisphere.org/data/13030/{ark[-2]}/{ark}/files/{filename}"
-                r = requests.get(doc_url, allow_redirects=True, timeout=30, stream=True)
-                r.raise_for_status()
-                pdf_file = SimpleUploadedFile(filename, r.content)
-                SupplementaryFile.objects.create(
-                    finding_aid=f,
-                    title=fields["label"],
-                    pdf_file=pdf_file,
-                )
+                self.import_supp_file(fields)
