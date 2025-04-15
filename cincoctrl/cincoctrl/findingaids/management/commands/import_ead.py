@@ -107,6 +107,8 @@ class Command(BaseCommand):
 
         try:
             parser = self.validate_ead(filename, r.content)
+            if parser.is_record_express():
+                return
             if len(parser.errors) > 0:
                 self.stdout.write(f"Failed to import {filename}")
                 for e in parser.errors:

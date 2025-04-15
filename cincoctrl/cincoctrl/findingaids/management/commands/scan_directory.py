@@ -43,6 +43,8 @@ class Command(BaseCommand):
                     parser.errors.clear()
                     parser.warnings.clear()
                     parser.parse_string(r.content)
+                    if parser.is_record_express():
+                        continue
                     if validate_dtd:
                         parser.validate_dtd()
                     parser.validate_required_fields()

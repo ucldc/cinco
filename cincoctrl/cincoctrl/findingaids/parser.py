@@ -161,6 +161,10 @@ class EADParser:
             except etree.XMLSyntaxError as e:
                 self.warnings.append(f"Could not validate dtd: {e}"[:255])
 
+    def is_record_express(self):
+        author = self.root.find("./eadheader/filedesc/titlestmt/author")
+        return author is not None and author.text and "RecordEXPRESS" in author.text
+
     required_fields = [
         ("./eadheader/eadid", "EADID"),
         ("./archdesc/did/unittitle", "Title"),
