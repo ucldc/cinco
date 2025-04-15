@@ -1,5 +1,5 @@
 import { Application } from "@hotwired/stimulus"
-
+import bootstrap from "bootstrap"
 const application = Application.start()
 
 // Configure Stimulus development experience

@@ -6,3 +6,15 @@ require_relative "config/application"
 Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task' unless Rails.env.production?
+
+
+
+desc 'Seed ArcLight fixture data'
+task seed: :environment do
+  Dir.glob("spec/fixtures/*.xml") do |ead_file_name|
+    repo_code = ead_file_name.split("/").last.split("::").first
+    ENV["REPOSITORY_ID"] = repo_code
+    res= system("bundle", "exec", "traject", "-I", "lib/", "-u", "http://127.0.0.1:8983/solr/blacklight-core", "-i", "xml", "-c", "lib/arclight/traject/ead2_config.rb", ead_file_name, exception: true)
+    puts res
+  end
+end

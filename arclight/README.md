@@ -1,4 +1,4 @@
-# README
+# OAC Arclight - Public front end for OAC
 
 * Ruby version
 

@@ -314,3 +314,7 @@ arclight/public/assets
 
 # Ignore master key for decrypting credentials and more.
 arclight/config/master.key
+
+
+# Sceptre dumo files
+.dump/
