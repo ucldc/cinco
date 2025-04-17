@@ -13,6 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         triggered_jobs = JobTrigger.objects.filter(dag_run_id__isnull=False).exclude(
             jobrun__status=JobRun.SUCCEEDED,
+            jobrun__status=JobRun.FAILED,
         )
         self.stdout.write(f"Found {triggered_jobs.count()} triggered jobs.")
 
