@@ -11,8 +11,9 @@ class Command(BaseCommand):
     help = "Poll Airflow API for Dag Run Status Changes."
 
     def handle(self, *args, **kwargs):
-        triggered_jobs = JobTrigger.objects.filter(dag_run_id__isnull=False).exclude(
-            jobrun__status=JobRun.SUCCEEDED,
+        triggered_jobs = JobTrigger.objects.filter(
+            dag_run_id__isnull=False,
+            jobrun__status=JobRun.RUNNING,
         )
         self.stdout.write(f"Found {triggered_jobs.count()} triggered jobs.")
 
