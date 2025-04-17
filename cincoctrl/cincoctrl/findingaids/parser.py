@@ -50,8 +50,7 @@ class EADParser:
         else:
             ark_url = eadid.attrib.get("url", "")
             m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]{8})", ark_url)
-            if m:
-                ark = m.group(0)
+            ark = m.group(0) if m else None
         return ark, parent_ark
 
     def get_href(self, attribs):
@@ -161,6 +160,10 @@ class EADParser:
             except etree.XMLSyntaxError as e:
                 self.warnings.append(f"Could not validate dtd: {e}"[:255])
 
+    def is_record_express(self):
+        author = self.root.find("./eadheader/filedesc/titlestmt/author")
+        return author is not None and author.text and "RecordEXPRESS" in author.text
+
     required_fields = [
         ("./eadheader/eadid", "EADID"),
         ("./archdesc/did/unittitle", "Title"),
@@ -175,7 +178,15 @@ class EADParser:
     def extract_ead_fields(self):
         title_node = self.root.find("./archdesc/did/unittitle")
         number_node = self.root.find("./archdesc/did/unitid")
-        return title_node.text, number_node.text
+        title = (
+            etree.tostring(title_node, encoding="utf-8", method="text").decode().strip()
+        )
+        number = (
+            etree.tostring(number_node, encoding="utf-8", method="text")
+            .decode()
+            .strip()
+        )
+        return title, number
 
     def validate_component_titles(self):
         comps = self.root.findall(".//c01")

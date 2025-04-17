@@ -20,6 +20,7 @@ class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline]
     search_fields = ["collection_title", "ark"]
     list_display = ("collection_title", "collection_number", "ark", "repository")
+    list_filter = ["repository"]
 
 
 class ExpressRecordCreatorInline(admin.TabularInline):
