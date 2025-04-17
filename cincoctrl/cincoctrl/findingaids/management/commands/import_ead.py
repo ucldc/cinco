@@ -125,11 +125,14 @@ class Command(BaseCommand):
                 self.stdout.write(f"Abort: {ark} already exists")
                 return
 
+            title, number = parser.extract_ead_fields()
             # create the finding aid without the file at first
             f, _ = FindingAid.objects.get_or_create(
                 repository=repo,
                 ark=ark,
                 record_type="ead",
+                collection_title=title,
+                collection_number=number,
             )
 
             self.process_supp_files(parser, doc_url, ark_dir, f)
