@@ -4,7 +4,7 @@ from pathlib import Path
 
 import boto3
 import requests
-from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 
 from cincoctrl.findingaids.models import ExpressRecord
@@ -79,6 +79,19 @@ class Command(BaseCommand):
             lang = Language.objects.get(code=fields["language"])
             e.language.add(lang)
 
+    def download_pdf(self, url, filename):
+        response = requests.get(
+            url,
+            stream=True,
+            headers={"Accept": "application/pdf"},
+            timeout=30,
+        )
+        response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+        file_content = b""
+        for chunk in response.iter_content(chunk_size=None):
+            file_content += chunk
+        return ContentFile(file_content, name=filename)
+
     def import_supp_file(self, fields):
         ark = fields["collection_record"]
         filename = fields["filename"]
@@ -92,15 +105,19 @@ class Command(BaseCommand):
             ark_tail = ark.split("/")[-1]
             f = FindingAid.objects.get(ark=ark)
             doc_url = f"https://cdn.calisphere.org/data/13030/{ark[-2:]}/{ark_tail}/files/{filename}"
+            cleaned_name = filename[:-4].replace(" ", "_")
+            ch = ["(", ")", "'", ","]
+            for c in ch:
+                cleaned_name = cleaned_name.replace(c, "")
+
+            if f.supplementaryfile_set.filter(
+                title=fields["label"],
+                pdf_file__contains=cleaned_name,
+            ).exists():
+                # file has already been imported: Abort
+                return
             try:
-                r = requests.get(
-                    doc_url,
-                    allow_redirects=True,
-                    timeout=30,
-                    stream=True,
-                )
-                r.raise_for_status()
-                pdf_file = SimpleUploadedFile(filename, r.content)
+                pdf_file = self.download_pdf(doc_url, filename)
                 order = f.supplementaryfile_set.count()
                 SupplementaryFile.objects.create(
                     finding_aid=f,
