@@ -135,7 +135,7 @@
         <otherfindaid id="otherfindaid">
             <head>Additional collection guides</head>
             <list>
-                {% for supp_file in object.supplementaryfile_set.all %}
+                {% for supp_file in object.finding_aid.supplementaryfile_set.all %}
                 <item><extref href="{{ supp_file.pdf_file }}">{{ supp_file.title }}</extref></item>
                 {% endfor %}
             </list>

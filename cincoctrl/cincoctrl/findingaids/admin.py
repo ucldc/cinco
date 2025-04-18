@@ -57,7 +57,7 @@ class ExpressRecordAdmin(admin.ModelAdmin):
 
 @admin.register(SupplementaryFile)
 class SupplementaryFileAdmin(admin.ModelAdmin):
-    pass
+    ordering = ("finding_aid", "order")
 
 
 @admin.register(ExpressRecordSubject)
