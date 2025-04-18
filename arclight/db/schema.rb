@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_213613) do
     t.binary "title"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["document_id"], name: "index_bookmarks_on_document_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+    t.index [ "document_id" ], name: "index_bookmarks_on_document_id"
+    t.index [ "user_id" ], name: "index_bookmarks_on_user_id"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_213613) do
     t.string "user_type"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["user_id"], name: "index_searches_on_user_id"
+    t.index [ "user_id" ], name: "index_searches_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_213613) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "guest", default: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index [ "email" ], name: "index_users_on_email", unique: true
+    t.index [ "reset_password_token" ], name: "index_users_on_reset_password_token", unique: true
   end
 end

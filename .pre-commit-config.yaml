@@ -53,6 +53,14 @@ repos:
         files: "admin/cincoctrl/"
       - id: djlint-django
         files: "admin/cincoctrl/"
+  - repo: https://github.com/rubocop/rubocop
+    rev: v1.75.1
+    hooks:
+      - id: rubocop
+        language: ruby
+        additional_dependencies:
+          - rubocop-rails-omakase
+          - rubocop-rspec
 
 # sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
 ci:
