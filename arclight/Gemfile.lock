@@ -356,6 +356,8 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    rubocop-rspec (3.4.0)
+      rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -486,6 +488,7 @@ DEPENDENCIES
   rails (~> 7.2.2)
   rsolr (>= 1.0, < 3)
   rubocop-rails-omakase
+  rubocop-rspec
   sassc-rails (~> 2.1)
   selenium-webdriver
   solr_wrapper (>= 0.3)
