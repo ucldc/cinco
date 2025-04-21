@@ -49,7 +49,7 @@ class Command(BaseCommand):
             record = render_to_string(
                 "findingaids/express_record.xml",
                 context={"object": finding_aid.expressrecord},
-            ).encode('utf-8')
+            ).encode("utf-8")
             ead_file = ContentFile(record)
 
         storages["default"].save(
