@@ -7,6 +7,7 @@ from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.parser import EADParserError
+from cincoctrl.findingaids.utils import download_pdf
 from cincoctrl.users.models import Repository
 
 
@@ -72,15 +73,8 @@ class Command(BaseCommand):
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
                 url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
-                r = requests.get(
-                    url,
-                    allow_redirects=True,
-                    timeout=30,
-                    stream=True,
-                )
-                r.raise_for_status()
                 sfilename = a["href"].split("/")[-1]
-                pdf_file = SimpleUploadedFile(sfilename, r.content)
+                pdf_file = download_pdf(url, sfilename)
                 SupplementaryFile.objects.create(
                     finding_aid=finding_aid,
                     title=a["text"],
