@@ -132,11 +132,12 @@
             {% endfor %}
         </controlaccess>
         {% if object.finding_aid.supplementaryfile_set.exists %}
+        {% load static %}
         <otherfindaid id="otherfindaid">
             <head>Additional collection guides</head>
             <list>
                 {% for supp_file in object.finding_aid.supplementaryfile_set.all %}
-                <item><extref href="{{ supp_file.pdf_file }}">{{ supp_file.title }}</extref></item>
+                <item><extref href="{% get_media_prefix %}{{ supp_file.pdf_file }}">{{ supp_file.title }}</extref></item>
                 {% endfor %}
             </list>
         </otherfindaid>
