@@ -15,7 +15,7 @@ class Command(BaseCommand):
         triggered_jobs = JobTrigger.objects.filter(
             dag_run_id__isnull=False,
         ).exclude(
-            Q(jobrun__status=JobRun.SUCCEEDED) | Q(jobrun_status=JobRun.FAILED)
+            Q(jobrun__status=JobRun.SUCCEEDED) | Q(jobrun_status=JobRun.FAILED),
         )
         self.stdout.write(f"Found {triggered_jobs.count()} triggered jobs.")
 
