@@ -6,7 +6,7 @@ from cinco.cincoctrl_operator import CincoCtrlOperator
 
 @dag(
     dag_id="poll_message_queue",
-    schedule="@hourly",
+    schedule="*/10 * * * *",
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["cinco"],
