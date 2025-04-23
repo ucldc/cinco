@@ -1,5 +1,6 @@
 import botocore
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 
 from cincoctrl.airflow_client.exceptions import MWAAAPIError
 from cincoctrl.airflow_client.models import JobRun
@@ -13,7 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         triggered_jobs = JobTrigger.objects.filter(
             dag_run_id__isnull=False,
-            jobrun__status=JobRun.RUNNING,
+        ).exclude(
+            Q(jobrun__status=JobRun.SUCCEEDED) | Q(jobrun_status=JobRun.FAILED),
         )
         self.stdout.write(f"Found {triggered_jobs.count()} triggered jobs.")
 
