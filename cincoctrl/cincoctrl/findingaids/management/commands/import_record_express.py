@@ -10,6 +10,7 @@ from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import SupplementaryFile
+from cincoctrl.findingaids.utils import clean_filename
 from cincoctrl.findingaids.utils import download_pdf
 from cincoctrl.users.models import Repository
 
@@ -92,11 +93,7 @@ class Command(BaseCommand):
             ark_tail = ark.split("/")[-1]
             f = FindingAid.objects.get(ark=ark)
             doc_url = f"https://cdn.calisphere.org/data/13030/{ark[-2:]}/{ark_tail}/files/{filename}"
-            cleaned_name = filename[:-4].replace(" ", "_")
-            ch = ["(", ")", "'", ","]
-            for c in ch:
-                cleaned_name = cleaned_name.replace(c, "")
-
+            cleaned_name = clean_filename(filename)
             if f.supplementaryfile_set.filter(
                 title=fields["label"],
                 pdf_file__contains=cleaned_name,

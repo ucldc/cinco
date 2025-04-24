@@ -14,3 +14,11 @@ def download_pdf(url, filename):
     for chunk in response.iter_content(chunk_size=None):
         file_content += chunk
     return ContentFile(file_content, name=filename)
+
+
+def clean_filename(filename):
+    cleaned_name = filename[:-4].replace(" ", "_")
+    ch = ["(", ")", "'", ","]
+    for c in ch:
+        cleaned_name = cleaned_name.replace(c, "")
+    return cleaned_name

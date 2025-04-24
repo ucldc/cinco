@@ -7,6 +7,7 @@ from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.parser import EADParserError
+from cincoctrl.findingaids.utils import clean_filename
 from cincoctrl.findingaids.utils import download_pdf
 from cincoctrl.users.models import Repository
 
@@ -74,13 +75,18 @@ class Command(BaseCommand):
             try:
                 url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
                 sfilename = a["href"].split("/")[-1]
-                pdf_file = download_pdf(url, sfilename)
-                SupplementaryFile.objects.create(
-                    finding_aid=finding_aid,
+                cleaned_name = clean_filename(sfilename)
+                if not finding_aid.supplementaryfile_set.filter(
                     title=a["text"],
-                    pdf_file=pdf_file,
-                    order=order,
-                )
+                    pdf_file__contains=cleaned_name,
+                ).exists():
+                    pdf_file = download_pdf(url, sfilename)
+                    SupplementaryFile.objects.create(
+                        finding_aid=finding_aid,
+                        title=a["text"],
+                        pdf_file=pdf_file,
+                        order=order,
+                    )
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
@@ -141,6 +147,7 @@ class Command(BaseCommand):
             self.stdout.write(f"Successfully imported {ark}")
             for s in f.supplementaryfile_set.all():
                 self.stdout.write(f"\tImported: {s}")
+            f.queue_index(force_publish=True)
         except EADParserError as e:
             self.stdout.write(f"{filename}\t{e}\tERROR")
 
