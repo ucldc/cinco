@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<ead>
+    <eadheader langencoding="iso639-2b" scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601">
+        <eadid countrycode="us" mainagencycode="CaOlAAM">00004</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Guide to the Stephens Family Papers</titleproper>
+                <titleproper type="filing">Stephens Family Papers</titleproper>
+                <author>Stephens Family Papers</author>
+            </titlestmt>
+            <publicationstmt>
+                <publisher>African American Museum &amp; Library at Oakland</publisher>
+                <address>
+                    <addressline>659 14th Street</addressline>
+                    <addressline>Oakland, California 94612</addressline>
+                    <addressline>Phone: (510) 637-0198</addressline>
+                    <addressline>Fax: (510) 637-0204</addressline>
+                    <addressline>Email: aamlo@oaklandlibrary.org</addressline>
+                    <addressline>URL: http://www.oaklandlibrary.org/locations/african-american-museum-library-oakland</addressline>
+                </address>
+                <date>&#x00A9; 2013</date>
+                <p>African American Museum &amp; Library at Oakland. All rights reserved.</p>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid created by Sean Heyliger. Machine-readable finding aid derived from MS Word. Date of source: <date normal="20130307">March 7, 2013.</date></creation>
+            <langusage>Finding aid written in:
+                <language langcode="eng" scriptcode="latn">English</language>
+            </langusage>
+            <descrules>Finding aid prepared using
+                <title render="italic">Describing Archives: a Content Standard</title>
+            </descrules>
+        </profiledesc>
+    </eadheader>
+    <frontmatter>
+        <titlepage>
+            <titleproper>Guide to the Stephens Family Papers</titleproper>
+            <num>Collection number: MS 5</num>
+            <publisher>African American Museum &amp; Library at Oakland
+                <lb/>Oakland, California</publisher>
+            <list type="deflist">
+                <defitem>
+                    <label>Processed by:</label>
+                    <item>Stephens Family Papers</item>
+                </defitem>
+                <defitem>
+                    <label>Date Completed:</label>
+                    <item>06/17/1995</item>
+                </defitem>
+                <defitem>
+                    <label>Encoded by:</label>
+                    <item>Sean Heyliger</item>
+                </defitem>
+            </list>
+            <p>&#x00A9; 2013 African American Museum &amp; Library at Oakland. All rights reserved.</p>
+        </titlepage>
+    </frontmatter>
+    <archdesc level="collection">
+        <did>
+            <head>Descriptive Summary</head>
+            <unittitle label="Title">Stephens Family papers</unittitle>
+            <unitdate type="inclusive" label="Dates">1896-1952</unitdate>
+            <unitid label="Collection number" repositorycode="CaOlAAM" countrycode="US">MS 5</unitid>
+            <physdesc label="Collection Size">
+                <extent>.25 linear feet</extent>
+                <extent>(1 box + 1 oversized box)</extent>
+            </physdesc>
+            <repository label="Repository">
+                <corpname>African American Museum &amp; Library at Oakland (Oakland, Calif.)</corpname>
+                <address>
+                    <addressline>Oakland, CA 94612</addressline>
+                </address>
+            </repository>
+            <abstract label="Abstract">The Stephens Family Papers consists of photographs and
+                ephemera documenting Stephens Restaurant, Virginia's winning entry in a 1915 newspaper contest, and Virginia Stephens Coker's achievements as a lawyer.</abstract>
+            <langmaterial label="Languages">
+                Languages represented in the collection:
+                <language langcode="eng">English</language>
+            </langmaterial>
+        </did>
+        <accessrestrict>
+            <head>Access</head>
+            <p>No access restrictions. Collection is open to the public.</p>
+        </accessrestrict>
+        <accessrestrict>
+            <head>Access Restrictions</head>
+            <p>Materials are for use in-library only, non-circulating.</p>
+        </accessrestrict>
+        <userestrict>
+            <head>Publication Rights</head>
+            <p>Permission to publish from the Stephens Family Papers must be obtained from the African American Museum &amp; Library at Oakland.</p>
+        </userestrict>
+        <prefercite>
+            <head>Preferred Citation</head>
+            <p>Stephens Family papers, MS 5, African American Museum &amp; Library at Oakland, Oakland Public Library. Oakland, California.</p>
+        </prefercite>
+        <acqinfo>
+            <head>Acquisition Information</head>
+            <p>No donor information available. Originally part of the Northern California
+                Center for Afro-American History and Life Collection.</p>
+        </acqinfo>
+        <bioghist>
+            <head>Biography / Administrative History</head>
+            <p>William Stephens was born in 1870 in Accomack County, Virginia. He moved out
+                to California while still a child and attended school in Oakland and San
+                Francisco. After graduation, he completed coursework at Heald College before
+                taking a job with the Southern Pacific Railway in 1886. Beginning as a Sleeping
+                Car Porter, he worked his way up to a clerkship under H.E. Huntington, assistant
+                to the company's President. </p>
+            <p>In 1898, Stephens resigned from Southern Pacific and took a position with the
+                Crocker family, traveling with them throughout the United States, Canada, and
+                Mexico. Through these travels, Stephens learned about the hotel
+                and restaurant business. In 1901, he married Pauline Logan of California, a
+                granddaughter of Peter Burnett, the first governor of the State of California.
+                Pauline gave birth to one daughter, Virginia, on April 7, 1903. Due to his
+                daughter's health problems as a young girl, Stephens resigned from his post with
+                the Crockers and began working at an Oakland social club. He moved on from
+                this position in 1915 to manage the Club House at the Hotel Del Monte Golf and
+                Country Club in Monterey County. </p>
+            <p>Eventually Stephens opened his own restaurant in Oakland. Known as Stephens'
+                Restaurant, it grew from small quarters into a large establishment seating over 200 people, occupying three locations near Lake Merritt. During the 1920s and 1930s, the restaurant enjoyed great success and was usually filled to capacity. Stephens took great delight in employing African American high school and college students so they could earn money for their education. On source implies that William died in 1932, but this information has not been verified.</p>
+            <p>Stephen's daughter, Virginia, won acclaim at the age of fourteen when
+                her name "Jewel City" was selected for the Panama-Pacific International
+                Exposition buildings in a competition sponsored by the San Francisco Call-Post.
+                After receiving a Bachelor of Science from the University of California at Berkeley
+                in 1924, she became the first African American woman to receive a law degree from University of California Berkeley's Boalt School of Law in 1929. While at Berkeley, Virginia also helped Ida L. Jackson found Rho Chapter in
+                1921 and Alpha Nu Omega, a graduate chapter of Alpha Kappa Alpha. These
+                were among the first Greek sororities for African American women west of
+                the Mississippi. </p>
+            <p>Virginia married attorney George Coker (1906-1970). The Cokers helped tutor
+                African American students for the State bar exams. After working in private
+                practice for ten years, Virginia received an appointment as Attorney in the State Office of the Legislature Council in Sacramento in May, 1939. In this capacity, she helped with drafting and amending legislative bills, and worked under four different legislative councils: Fred Wood, Ralph N. Kleps, Angus C. Morrison, and George Murphy. Upon her retirement in 1966, Virginia had attained the position of Deputy of the Indexing Section. Virginia died in Sacramento on February 11, 1986.</p>
+        </bioghist>
+        <bioghist>
+            <head>Chronology</head>
+            <p>Significant events: </p>
+        </bioghist>
+        <bioghist>
+            <head>Chronology</head>
+            <chronlist>
+                <chronitem>
+                    <date>1870</date>
+                    <event>William Stephens born</event>
+                </chronitem>
+                <chronitem>
+                    <date>1901</date>
+                    <event>William Stephens marries Pauline Logan </event>
+                </chronitem>
+                <chronitem>
+                    <date>1903</date>
+                    <event>Virginia Stephens born, April 7 </event>
+                </chronitem>
+                <chronitem>
+                    <date>1915</date>
+                    <event> Virginia's "Jewel City" entry wins San Francisco Call-Post
+                        competition for the Panama-Pacific International Exposition </event>
+                </chronitem>
+                <chronitem>
+                    <date>1921</date>
+                    <event>Virginia helps found Alpha Kappa Alpha Rho Chapter, the first
+                        graduate chapter of AKA west of the Mississippi</event>
+                </chronitem>
+                <chronitem>
+                    <date>1929</date>
+                    <event>Virginia is the first African-American woman to graduate from
+                        University of California at Berkeley Boalt School of Law, May 15 </event>
+                </chronitem>
+                <chronitem>
+                    <date>1929</date>
+                    <event>Virginia becomes the African-American woman admitted to the
+                        State Bar of California, October </event>
+                </chronitem>
+                <chronitem>
+                    <date>1986</date>
+                    <event>Virginia dies, February 11 </event>
+                </chronitem>
+            </chronlist>
+        </bioghist>
+        <scopecontent>
+            <head>Scope and Content of Collection</head>
+            <p>The Stephens Family Papers consist of photographs and ephemera documenting Stephens Restaurant, Virginia's winning entry in a 1915 newspaper contest, and Virginia's achievements as a lawyer. Menus, tape receipts, and photographs from the restaurant provide a glimpse into one of Oakland's busiest establishments. The papers also include a typescript draft of a letter William wrote in 1931 regarding opposition to his purchase of a house in Oakland, an example of unfair housing practices common to the era. Virginia's materials include the letter of congratulations she received upon winning the Panama-Pacific International Exposition naming contest, middle school report cards, her law school graduation announcement, and several State bar membership certificates.</p>
+        </scopecontent>
+        <arrangement>
+            <head>Arrangement</head>
+            <p>I. Virginia Stephens Coker
+                II. William Stephens
+                III. Stephens Restaurant</p>
+        </arrangement>
+        <controlaccess>
+            <head>Indexing Terms</head>
+            <p>The following terms have been used to index the description of this collection in
+                the library's online public access catalog.</p>
+            <subject source="lcsh">African American business enterprises.</subject>
+            <subject source="lcsh">Minority women lawyers.</subject>
+            <geogname source="lcsh">Oakland (Calif.)--History.</geogname>
+        </controlaccess>
+        <dsc type="in-depth">
+            <head>Collection Contents</head>
+            <c01 level="series">
+                <did>
+                    <unittitle>Virginia Stephens Coker</unittitle>
+                </did>
+                <scopecontent>
+                    <head>Series Scope and Content Summary</head>
+                    <p>This series contains items related to Virginia Stephens Coker's winning entry for the Panama-Pacific Exposition, her graduation from Boalt School of Law, and her membership in the California State Bar Association.</p>
+                </scopecontent>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cb30ceeed-aa97-485b-b300-942b342ad176"/>
+                        <unittitle>Letter from Charles C. Moore to Virginia Stephens re: "Jewel City"</unittitle>
+                        <unitdate type="inclusive">1915-11-16</unitdate>
+                        <container type="box-folder" label="Box">1:1</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C8a9f2464-da02-4505-a8a1-ff01b65e03cd"/>
+                        <unittitle>Photograph of Panama-Pacific Exposition</unittitle>
+                        <unitdate type="inclusive">1915</unitdate>
+                        <container type="box-folder" label="Box">1:1</container>
+                    </did>
+                </c02>
+                <c02 level="file">
+                    <did>
+                        <unittitle>Report cards, Pacific Grove School</unittitle>
+                    </did>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cb927e74c-c755-4e51-9c7b-3b464c062896"/>
+                            <unittitle>Pacific Grove School report of Virginia Stephens for the school year 1914-15-16</unittitle>
+                            <unitdate type="inclusive">1914</unitdate>
+                            <container type="box-folder" label="Box ">1:1</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cdafe72ec-453c-4455-a9a9-dbe474f40bcc"/>
+                            <unittitle>Pacific Grove School report of Virginia Stephens for the school year 1916-17-18</unittitle>
+                            <unitdate type="inclusive">1916</unitdate>
+                            <container type="box-folder" label="Box ">1:1</container>
+                        </did>
+                    </c03>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C0f8c6422-fe7d-4c61-9064-c07c8a1a5d64"/>
+                        <unittitle>Virginia Stephens invitation to the School of Jurisprudence of the University of California commencement exercises</unittitle>
+                        <unitdate type="inclusive">1929</unitdate>
+                        <container type="box-folder" label="Box ">1:1</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cb1499486-73de-43d8-bf36-92ceaa9cc985"/>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>State Bar of California membership certificates</unittitle>
+                        <unitdate>1929-1952</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <unittitle>California State Legislature resolution relative to the retirement of Virginia Coker</unittitle>
+                        <unitdate type="inclusive">1966</unitdate>
+                        <container type="box-folder" label="Box">OM21</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>Blank letterhead</unittitle>
+                        <unitdate>undated</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cc726cff2-1bf5-4778-b3db-3a5bb34f2fca"/>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>Portrait of Virginia Stephens Coker</unittitle>
+                        <unitdate>1929</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>Portrait of Virginia Stephens Coker</unittitle>
+                        <unitdate>1915</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cac71f553-c435-4495-9de0-ffb29e1fb204"/>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>Portrait of Virginia Stephens Coker</unittitle>
+                        <unitdate>undated</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C9cbfcbc5-29ca-4c65-ae7c-ef60ba03f916"/>
+                        <container type="box-folder" label= "Box " >1:1</container>
+                        <unittitle>Portrait of Buster Johnson (first cousin), inscribed <emph render="doublequote">To Virginia and Pauline from Buster</emph></unittitle>
+                        <unitdate>undated</unitdate>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <container type="box-folder" label= "Box " >OM21</container>
+                        <unittitle>Portrait of Douglas Fairbanks, inscribed <emph render="doublequote">To Miss Virginia Stephens with very best wishes Douglas Fairbanks</emph></unittitle>
+                        <unitdate>1920</unitdate>
+                    </did>
+                </c02>
+            </c01>
+            <c01 level="series">
+                <did>
+                    <unittitle>William Stephens</unittitle>
+                </did>
+                <scopecontent>
+                    <head>Series Scope and Content Summary</head>
+                    <p>This series consists of personal portraits and correspondence regarding
+                        opposition to William's purchase of a house in Oakland.</p>
+                </scopecontent>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C2d8f93d6-15f9-4727-b33c-bedf4e3d08ce"/>
+                        <unittitle>Letter from J.S. Francis, re: civil rights bill</unittitle>
+                        <unitdate type="inclusive">1896</unitdate>
+                        <container type="box-folder" label="Box ">1:2</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cf4e9ac8b-c2e5-4ad5-8c4a-3476d3fbf8d0"/>
+                        <unittitle>Letter from William Stephens to G.E. Sheldon, re: housing discrimination</unittitle>
+                        <unitdate type="inclusive">1931</unitdate>
+                        <container type="box-folder" label="Box ">1:2</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cf799c79c-6bbb-403e-9741-8e75f875b568"/>
+                        <unittitle>Portrait of Pauline Stephens</unittitle>
+                        <unitdate type="inclusive">1896</unitdate>
+                        <container type="box-folder" label="Box ">1:2</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Ca325071c-0471-4706-9584-b016d2239699"/>
+                        <unittitle>Portrait of William Stephens</unittitle>
+                        <unitdate type="inclusive">1901</unitdate>
+                        <container type="box-folder" label="Box">1:2</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C5243cd2e-c0e9-47e8-aa4a-b0110750d371"/>
+                        <unittitle>Portrait of William Stephens</unittitle>
+                        <unitdate type="inclusive">undated</unitdate>
+                        <container type="box-folder" label="Box ">1:2</container>
+                    </did>
+                </c02>
+            </c01>
+            <c01 level="series">
+                <did>
+                    <unittitle>Stephens Restaurant </unittitle>
+                </did>
+                <scopecontent>
+                    <head>Series Scope and Content Summary</head>
+                    <p>Ephemera and photographs relating to William Stephen's restaurant enterprise.</p>
+                </scopecontent>
+                <c02 level="file">
+                    <did>
+                        <unittitle>Lease</unittitle>
+                        <unitdate type="inclusive">1925</unitdate>
+                        <container type="box-folder" label="Box ">1:3</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cc8b40351-01c7-4897-bc18-8b3a61a0cf66"/>
+                        <unittitle>Advertisement for Stephens' Restaurant</unittitle>
+                        <unitdate type="inclusive">undated</unitdate>
+                        <container type="box-folder" label="Box ">1:4</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <unittitle>Business cards</unittitle>
+                    </did>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C2f50c6a5-5828-482b-ae83-5ff0f332ac54"/>
+                            <unittitle>Stephens' Restaurant business card</unittitle>
+                            <unitdate type="inclusive">undated</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C27ad24e9-4124-45c4-b0fb-817d30a1e8a1"/>
+                            <unittitle>Stephens' Restaurant business card</unittitle>
+                            <unitdate type="inclusive">undated</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C694c3d0a-6541-491a-8681-560e48db57b5"/>
+                            <unittitle>Stephens' Restaurant business card</unittitle>
+                            <unitdate type="inclusive">1924</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                </c02>
+                <c02 level="file">
+                    <did>
+                        <unittitle>Menus</unittitle>
+                    </did>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C4fdf2b02-6aca-4b21-83f4-9145e64a9070"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1931-08-05</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C1fef7ce6-75c1-42c1-a1e7-654c3ca3b274"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1933-09-04</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C31983542-0380-446a-854e-9371738d07e2"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1933-09-08</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C0e29d63d-dd40-45ae-b9c6-ff1b6d3600ad"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1933-11-05</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Ce2b7ff6d-e9df-49ca-ae68-d3fc708007f9"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1933-11-11</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C190d6c7f-164d-4521-a23a-965599656624"/>
+                            <unittitle>Stephens' Restaurant menu</unittitle>
+                            <unitdate type="inclusive">1934-10-09</unitdate>
+                            <container type="box-folder" label="Box ">1:3</container>
+                        </did>
+                    </c03>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <unittitle>Blank letterhead</unittitle>
+                        <unitdate type="inclusive">undated</unitdate>
+                        <container type="box-folder" label="Box ">1:3</container>
+                    </did>
+                </c02>
+                <c02 level="item">
+                    <did>
+                        <container type="box-folder" label= "Box " >1:3</container>
+                        <unittitle>Tape receipts</unittitle>
+                        <unitdate>1926</unitdate>
+                    </did>
+                </c02>
+                <c02 level="file">
+                    <did>
+                        <unittitle>Photographs</unittitle>
+                    </did>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C10ab6ec8-fcd3-4f48-8396-fae7cfed2963"/>
+                            <unittitle>Interior of Stephens' Restaurant [002]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C40410e5d-bcc3-41de-98e4-d4a26277ee45"/>
+                            <unittitle>Interior of Stephens' Restaurant [003]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cabafaab6-5c22-4af5-ac97-a2a2c154d986"/>
+                            <unittitle>Interior of Stephens' Restaurant [005]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C79996c43-08fc-4a4f-8a5d-0435a6749464"/>
+                            <unittitle> William Stephens (right) and employee inside Stephens' Restaurant [009]</unittitle>
+                            <unitdate type="inclusive">circa 1920s</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C341f135b-20c3-4abb-8175-dbef8bcb23f2"/>
+                            <unittitle>W.T. Rawleigh Co. employees farewell dinner to manager C.M. Cooper at Stephens' Restaurant [010]</unittitle>
+                            <unitdate type="inclusive">1930-01-16</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7Cdef5845f-c53c-4cb0-a1d0-aea22595944e"/>
+                            <unittitle> Interior of Stephens' Restaurant [013]</unittitle>
+                            <unitdate type="inclusive">undated</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C8eacf851-d832-409c-a0dc-6cd47c00e3a9"/>
+                            <unittitle> Stephens' Restaurant dance parlor [014]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C0913dbde-d772-44c0-8062-8f90140ea443"/>
+                            <unittitle>Exterior of Stephens' Restaurant, corner of 2nd Ave. and E. 12th St. [200 International Blvd.] Oakland, California [015]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C4aa44b07-2b0c-4147-9082-a7276210e40f"/>
+                            <unittitle>Group of men standing in front of Stephens' Restaurant &amp; Lunch Room [016]</unittitle>
+                            <unitdate type="inclusive">circa 1920s</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C2d6a6954-e0a1-45c6-ae56-5c5a8f0fcbdd"/>
+                            <unittitle>Exterior of Stephens' Restaurant, corner of 2nd Ave. and E. 14th St. [200 International Blvd] Oakland, California [017]</unittitle>
+                            <unitdate type="inclusive">circa 1925</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C00cbf864-5468-4c27-a12d-a08c61dbe4bd"/>
+                            <unittitle> Collage of photographs, William Stephens and Stephens' Restaurant [020]</unittitle>
+                            <unitdate type="inclusive">circa 1920s</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                    <c03 level="item">
+                        <did>
+                            <dao role="http://oac.cdlib.org/arcrole/link/" href="https://oakland.access.preservica.com/file/sdb%3AdigitalFile%7C5b65a866-3af9-45d4-9e34-fadc030fd89a"/>
+                            <unittitle>Group of men standing in front of Stephens' Restaurant &amp; Lunch Room [021]</unittitle>
+                            <unitdate type="inclusive">circa 1920s</unitdate>
+                            <container type="box-folder" label="Box ">1:4</container>
+                        </did>
+                    </c03>
+                </c02>
+            </c01>
+        </dsc>
+    </archdesc>
+</ead>

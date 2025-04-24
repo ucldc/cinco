@@ -1,25 +1,30 @@
-# README
+# OAC Arclight - Public front end for OAC
 
-* Ruby version
+The
 
-ruby 3.2
-rails 7.2
 
-* System dependencies
+## Getting started
 
-* Configuration
+You'll need Ruby available, the version specificed in (.ruby-version)[.ruby-version]. You probably want to manage yourt rubies with a tool like rbenv
 
-* Database creation
+You'll also need to create a file in the config directory named `master.key` with a shared value that can be provided to you by another developer on the team.
 
-* Database initialization
+On those dependencies are satified, run the following commands:
+```
+# install dependenices
+bundle
 
-* How to run the test suite
+# run db migrations
+bundle exec rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+# start solr
+docker compose up -d
 
-* Deployment instructions
+# start the rails server
+bundle exec rails s
+```
 
-* Indexing
+## Indexing
 
 To run the indexer with our customizations use the following command from the arclight root:
 
@@ -36,3 +41,15 @@ Settings can be added to the index command with `-s name=value`
 `REPOSITORY_ID` - Must be set to Repository.code (from cincoctrl) to add to a repository in arclight (no default)
 `TEXT_FILE_NAME` - May be set to change the name of the the file that contains extracted text (default: `extracted-supplementary-files-text.txt`)
 `TEXT_FILE_DIR` - May be set to change the directory where the text file is located (default: same directory as the XML)
+
+## Running the tests
+
+We test the application with [rspec](https://rspec.info/).
+
+`bundle exec spec` will run all of the rspec tests.
+
+`bundle exec spec spec/components/my_component_spec.rb` will run just the tsts in that file.
+
+## Linting
+
+We run rubocop as part of the pre-commit configuration. By default, it only runs on the diff between the current commit and the previous commit. If you need to to run on the entire codebase, you can run it manually with `bundle exec rubocop -a`
