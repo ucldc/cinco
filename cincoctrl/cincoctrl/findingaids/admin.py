@@ -20,7 +20,7 @@ class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline]
     search_fields = ["collection_title", "ark"]
     list_display = ("collection_title", "collection_number", "ark", "repository")
-    list_filter = ["repository"]
+    list_filter = ["status"]
 
 
 class ExpressRecordCreatorInline(admin.TabularInline):
@@ -58,6 +58,7 @@ class ExpressRecordAdmin(admin.ModelAdmin):
 @admin.register(SupplementaryFile)
 class SupplementaryFileAdmin(admin.ModelAdmin):
     ordering = ("finding_aid", "order")
+    list_filter = ["textract_status"]
 
 
 @admin.register(ExpressRecordSubject)
