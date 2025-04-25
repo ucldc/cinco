@@ -7,6 +7,8 @@ from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import SupplementaryFile
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.parser import EADParserError
+from cincoctrl.findingaids.utils import clean_filename
+from cincoctrl.findingaids.utils import download_pdf
 from cincoctrl.users.models import Repository
 
 
@@ -72,21 +74,19 @@ class Command(BaseCommand):
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
                 url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
-                r = requests.get(
-                    url,
-                    allow_redirects=True,
-                    timeout=30,
-                    stream=True,
-                )
-                r.raise_for_status()
                 sfilename = a["href"].split("/")[-1]
-                pdf_file = SimpleUploadedFile(sfilename, r.content)
-                SupplementaryFile.objects.create(
-                    finding_aid=finding_aid,
+                cleaned_name = clean_filename(sfilename)
+                if not finding_aid.supplementaryfile_set.filter(
                     title=a["text"],
-                    pdf_file=pdf_file,
-                    order=order,
-                )
+                    pdf_file__contains=cleaned_name,
+                ).exists():
+                    pdf_file = download_pdf(url, sfilename)
+                    SupplementaryFile.objects.create(
+                        finding_aid=finding_aid,
+                        title=a["text"],
+                        pdf_file=pdf_file,
+                        order=order,
+                    )
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
@@ -147,6 +147,7 @@ class Command(BaseCommand):
             self.stdout.write(f"Successfully imported {ark}")
             for s in f.supplementaryfile_set.all():
                 self.stdout.write(f"\tImported: {s}")
+            f.queue_index(force_publish=True)
         except EADParserError as e:
             self.stdout.write(f"{filename}\t{e}\tERROR")
 
