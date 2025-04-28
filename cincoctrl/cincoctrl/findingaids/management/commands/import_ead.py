@@ -73,20 +73,21 @@ class Command(BaseCommand):
         # get and upload any supp files
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
-                url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
-                sfilename = a["href"].split("/")[-1]
-                cleaned_name = clean_filename(sfilename)
-                if not finding_aid.supplementaryfile_set.filter(
-                    title=a["text"],
-                    pdf_file__contains=cleaned_name,
-                ).exists():
-                    pdf_file = download_pdf(url, sfilename)
-                    SupplementaryFile.objects.create(
-                        finding_aid=finding_aid,
+                if a["href"] is not None:
+                    url = self.normalize_pdf_href(a["href"], doc_url, ark_dir)
+                    sfilename = a["href"].split("/")[-1]
+                    cleaned_name = clean_filename(sfilename)
+                    if not finding_aid.supplementaryfile_set.filter(
                         title=a["text"],
-                        pdf_file=pdf_file,
-                        order=order,
-                    )
+                        pdf_file__contains=cleaned_name,
+                    ).exists():
+                        pdf_file = download_pdf(url, sfilename)
+                        SupplementaryFile.objects.create(
+                            finding_aid=finding_aid,
+                            title=a["text"],
+                            pdf_file=pdf_file,
+                            order=order,
+                        )
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
@@ -131,8 +132,8 @@ class Command(BaseCommand):
                 repository=repo,
                 ark=ark,
                 record_type="ead",
-                collection_title=title,
-                collection_number=number,
+                collection_title=title[:255],
+                collection_number=number[:255],
             )
 
             self.process_supp_files(parser, doc_url, ark_dir, f)
@@ -167,7 +168,11 @@ class Command(BaseCommand):
                     and filename.endswith(".xml")
                     and not filename.startswith("._")
                 ):
-                    self.import_ead(url + filename, filename, doc_url, repo_ark)
+                    try:
+                        self.import_ead(url + filename, filename, doc_url, repo_ark)
+                    except Exception as e:  # noqa: BLE001
+                        # catch and output any random errors so it doesn't abort import
+                        self.stdout.write(f"{filename}\tUnexpected error: {e}\tERROR")
         else:
             filename = url.split("/")[-1]
             self.import_ead(url, filename, doc_url, repo_ark)
