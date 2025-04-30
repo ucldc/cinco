@@ -42,7 +42,6 @@
 
   <schemaFactory class="ClassicIndexSchemaFactory"/>
 
-
   <dataDir>${solr.blacklight-core.data.dir:}</dataDir>
 
   <requestDispatcher handleSelect="true" >
@@ -330,11 +329,21 @@
   Good settings while we are doing all indexing one at a time
 
   -->
-  <autoCommit>
-    <maxDocs>1000</maxDocs>
-    <maxTime>3000</maxTime>
-    <maxSize>512m</maxSize>
-    <openSearcher>false</openSearcher>
-  </autoCommit>
+  <updateHandler class="solr.DirectUpdateHandler2">
+    <updateLog>
+      <str name="dir">${solr.ulog.dir:}</str>
+    </updateLog>
+
+    <autoCommit>
+      <maxTime>60000</maxTime>
+      <maxDocs>10000</maxDocs>
+      <maxSize>512m</maxSize>
+    </autoCommit>
+
+    <!-- for bulk updates disable soft commits -->
+    <autoSoftCommit>
+      <maxTime>-1</maxTime>
+    </autoSoftCommit>
+  </updateHandler>
 
 </config>
