@@ -42,8 +42,24 @@
 
   <schemaFactory class="ClassicIndexSchemaFactory"/>
 
-
   <dataDir>${solr.blacklight-core.data.dir:}</dataDir>
+
+  <updateHandler class="solr.DirectUpdateHandler2">
+    <updateLog>
+        <str name="dir">${solr.ulog.dir:}</str>
+    </updateLog>
+
+    <autoCommit>
+      <maxTime>60000</maxTime>
+      <maxDocs>10000</maxDocs>
+      <maxSize>512m</maxSize>
+    </autoCommit>
+
+      <!-- for bulk updates disable soft commits -->
+      <autoSoftCommit>
+        <maxTime>-1</maxTime>
+      </autoSoftCommit>
+  </updateHandler>
 
   <requestDispatcher handleSelect="true" >
     <requestParsers enableRemoteStreaming="false" multipartUploadLimitInKB="2048" />
