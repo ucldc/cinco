@@ -329,21 +329,16 @@
   Good settings while we are doing all indexing one at a time
 
   -->
-  <updateHandler class="solr.DirectUpdateHandler2">
-    <updateLog>
-      <str name="dir">${solr.ulog.dir:}</str>
-    </updateLog>
 
-    <autoCommit>
-      <maxTime>60000</maxTime>
-      <maxDocs>10000</maxDocs>
-      <maxSize>512m</maxSize>
-    </autoCommit>
+  <autoCommit>
+    <maxTime>5000</maxTime>
+    <maxDocs>10000</maxDocs>
+    <maxSize>512m</maxSize>
+    <openSearcher>false</openSearcher>
+  </autoCommit>
 
-    <!-- for bulk updates disable soft commits -->
-    <autoSoftCommit>
-      <maxTime>-1</maxTime>
-    </autoSoftCommit>
-  </updateHandler>
-
+  <!-- make results available after 10 minutes -->
+  <autoSoftCommit>
+    <maxTime>600000</maxTime>
+  </autoSoftCommit>
 </config>
