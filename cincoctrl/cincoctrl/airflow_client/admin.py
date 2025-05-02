@@ -91,39 +91,31 @@ class JobRunAdmin(admin.ModelAdmin):
         "dag_run_airflow_url",
         "dag_run_conf",
         "job_trigger",
-        "status",
         "display_status",
     )
     fieldsets = (
         (
-            "Trigger Request Information",
+            "Job Run",
             {
                 "fields": (
                     "dag_id",
                     "dag_run_conf",
                     "related_model",
-                    "dag_run_airflow_url",
-                ),
-            },
-        ),
-        (
-            "Trigger Response Information",
-            {
-                "fields": (
                     "dag_run_id",
                     "logical_date",
-                    "rest_api_status_code",
-                    "rest_api_response",
+                    "dag_run_airflow_url",
+                    "display_status",
+                    "status",
                 ),
             },
         ),
         (
-            "Job Run Information",
+            "Trigger Information",
             {
                 "fields": (
                     "job_trigger",
-                    "status",
-                    "display_status",
+                    "rest_api_status_code",
+                    "rest_api_response",
                 ),
             },
         ),
