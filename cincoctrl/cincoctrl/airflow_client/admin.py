@@ -35,7 +35,7 @@ class JobTriggerAdmin(admin.ModelAdmin):
         "dag_run_id",
         "logical_date",
         "rest_api_response",
-        "airflow_url",
+        "dag_run_airflow_url",
         "dag_run_conf",
     )
     fieldsets = (
@@ -46,7 +46,7 @@ class JobTriggerAdmin(admin.ModelAdmin):
                     "dag_id",
                     "dag_run_conf",
                     "related_model",
-                    "airflow_url",
+                    "dag_run_airflow_url",
                 ),
             },
         ),
@@ -64,15 +64,67 @@ class JobTriggerAdmin(admin.ModelAdmin):
     )
 
 
-# @admin.register(JobRun)
-# class JobRunAdmin(admin.ModelAdmin):
-#     list_display = ("__str__", "display_status", "related_model")
-#     readonly_fields = (
-#         *list_display,
-#         "dag_id",
-#         "dag_run_id",
-#         "logical_date",
-#         "airflow_url",
-#         "dag_run_conf",
-#         "job_trigger",
-#     )
+@admin.register(JobRun)
+class JobRunAdmin(admin.ModelAdmin):
+    def rest_api_status_code(self, obj):
+        if obj.job_trigger:
+            return obj.job_trigger.rest_api_status_code
+        return "-"
+
+    def rest_api_response(self, obj):
+        if obj.job_trigger:
+            return obj.job_trigger.rest_api_response
+        return "-"
+
+    list_display = (
+        "__str__",
+        "display_status",
+        "related_model",
+    )
+    readonly_fields = (
+        "rest_api_status_code",
+        "related_model",
+        "dag_id",
+        "dag_run_id",
+        "logical_date",
+        "rest_api_response",
+        "dag_run_airflow_url",
+        "dag_run_conf",
+        "job_trigger",
+        "status",
+        "display_status",
+    )
+    fieldsets = (
+        (
+            "Trigger Request Information",
+            {
+                "fields": (
+                    "dag_id",
+                    "dag_run_conf",
+                    "related_model",
+                    "dag_run_airflow_url",
+                ),
+            },
+        ),
+        (
+            "Trigger Response Information",
+            {
+                "fields": (
+                    "dag_run_id",
+                    "logical_date",
+                    "rest_api_status_code",
+                    "rest_api_response",
+                ),
+            },
+        ),
+        (
+            "Job Run Information",
+            {
+                "fields": (
+                    "job_trigger",
+                    "status",
+                    "display_status",
+                ),
+            },
+        ),
+    )
