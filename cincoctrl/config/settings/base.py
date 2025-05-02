@@ -89,7 +89,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 AIRFLOW_PROJECT_NAME = "cincoctrl"
-AIRFLOW_JOB_MODEL = "findingaids.FindingAid"
+AIRFLOW_JOB_RELATED_MODEL = "findingaids.FindingAid"
 AIRFLOW_ENV_NAME = "pad-airflow-mwaa"
 # no trailing slash on AIRFLOW_ENV_URL
 AIRFLOW_ENV_URL = (

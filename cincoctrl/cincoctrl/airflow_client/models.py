@@ -6,10 +6,15 @@ from django.db import models
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 
+if "AIRFLOW_PRESERVE_JOB_TRIGGER" in dir(settings):
+    PRESERVE_TRIGGER = settings.AIRFLOW_PRESERVE_JOB_TRIGGER
+else:
+    PRESERVE_TRIGGER = False
+
 
 class Job(models.Model):
     related_model = models.ForeignKey(
-        settings.AIRFLOW_JOB_MODEL,
+        settings.AIRFLOW_JOB_RELATED_MODEL,
         on_delete=models.CASCADE,
     )
     dag_id = models.CharField(max_length=255)
