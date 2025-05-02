@@ -83,9 +83,9 @@ def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
 
 
 @mwaa_client
-def update_job_run(job_trigger, client):
-    dag = job_trigger.dag_id
-    dag_run_id = job_trigger.dag_run_id
+def update_job_run(job: JobTrigger | JobRun, client: boto3.client):
+    dag = job.dag_id
+    dag_run_id = job.dag_run_id
 
     request_params = {
         "Name": env_name,
@@ -111,7 +111,7 @@ def update_job_run(job_trigger, client):
             job_status = JobRun.SUCCEEDED
 
     job_run, created = JobRun.objects.get_or_create(
-        related_model=job_trigger.related_model,
+        related_model=job.related_model,
         dag_id=dag,
         dag_run_conf=json.dumps(resp["RestApiResponse"].get("conf")),
         airflow_url=env_url,
@@ -119,10 +119,11 @@ def update_job_run(job_trigger, client):
         logical_date=resp["RestApiResponse"]["logical_date"],
     )
 
-    if PRESERVE_TRIGGER:
-        job_run.job_trigger = job_trigger
-    else:
-        job_trigger.delete()
+    if isinstance(job, JobTrigger):
+        if PRESERVE_TRIGGER:
+            job_run.job_trigger = job
+        else:
+            job.delete()
 
     job_run.status = job_status
     job_run.save()
