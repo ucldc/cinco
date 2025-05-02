@@ -32,6 +32,21 @@ class Job(models.Model):
             # return f"{self.dag_id}: {self.dag_run_id}"
         return "No dag_run_id, check rest api response for details"
 
+    def _key(self):
+        return (
+            self.dag_run_id,
+            self.dag_id,
+            self.logical_date,
+        )
+
+    def __eq__(self, other):
+        if isinstance(other, Job):
+            return self._key() == other._key()
+        return False
+
+    def __hash__(self):
+        return hash(self._key())
+
     @property
     def dag_run_airflow_url(self):
         query = {"dag_run_id": self.dag_run_id}
