@@ -71,3 +71,12 @@ def update_status(sender, instance, created, **kwargs):
     if current_status != updated_status:
         instance.related_model.status = updated_status
         instance.related_model.save()
+
+
+@receiver(post_save, sender=JobRun)
+def remove_old_job_runs(sender, instance, created, **kwargs):
+    if instance.status == JobRun.SUCCEEDED:
+        # Remove other job runs for the same finding aid
+        JobRun.objects.filter(
+            related_model=instance.related_model,
+        ).exclude(pk=instance.pk).delete()
