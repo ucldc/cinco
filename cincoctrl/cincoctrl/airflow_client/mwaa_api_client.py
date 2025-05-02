@@ -7,6 +7,7 @@ import boto3
 from django.conf import settings
 
 from .exceptions import MWAAAPIError
+from .models import PRESERVE_TRIGGER
 from .models import JobRun
 from .models import JobTrigger
 
@@ -112,12 +113,17 @@ def update_job_run(job_trigger, client):
     job_run, created = JobRun.objects.get_or_create(
         related_model=job_trigger.related_model,
         dag_id=dag,
-        dag_run_conf=resp["RestApiResponse"].get("conf"),
+        dag_run_conf=json.dumps(resp["RestApiResponse"].get("conf")),
         airflow_url=env_url,
         dag_run_id=dag_run_id,
         logical_date=resp["RestApiResponse"]["logical_date"],
-        job_trigger=job_trigger,
     )
+
+    if PRESERVE_TRIGGER:
+        job_run.job_trigger = job_trigger
+    else:
+        job_trigger.delete()
+
     job_run.status = job_status
     job_run.save()
 
