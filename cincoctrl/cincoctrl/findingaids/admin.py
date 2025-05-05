@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from cincoctrl.airflow_client.models import JobRun
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import ExpressRecordCreator
 from cincoctrl.findingaids.models import ExpressRecordSubject
@@ -15,9 +16,15 @@ class SupplementaryFileInline(admin.TabularInline):
     model = SupplementaryFile
 
 
+class JobRunInline(admin.TabularInline):
+    model = JobRun
+    extra = 0
+    raw_id_fields = ("related_model",)
+
+
 @admin.register(FindingAid)
 class FindingAidAdmin(admin.ModelAdmin):
-    inlines = [SupplementaryFileInline]
+    inlines = [SupplementaryFileInline, JobRunInline]
     search_fields = ["collection_title", "ark"]
     list_display = ("collection_title", "collection_number", "ark", "repository")
     list_filter = ["status"]
