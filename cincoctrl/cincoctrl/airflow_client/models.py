@@ -25,6 +25,7 @@ class Job(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ["-logical_date"]
 
     def __str__(self):
         if self.dag_run_id:
@@ -98,6 +99,9 @@ class JobRun(Job):
         (SUCCEEDED, "succeeded"),
         (FAILED, "failed"),
     )
+    # this is a foreign key instead of a 1:1 to allow for a new job run
+    # to be created if the job is re-run via airflow's UI without creating
+    # a new job trigger. (more a consideration for rikolti than cinco)
     job_trigger = models.ForeignKey(
         JobTrigger,
         blank=True,

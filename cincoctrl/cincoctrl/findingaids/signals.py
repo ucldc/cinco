@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -75,8 +76,17 @@ def update_status(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=JobRun)
 def remove_old_job_runs(sender, instance, created, **kwargs):
-    if instance.status == JobRun.SUCCEEDED:
-        # Remove other job runs for the same finding aid
+    # Find most recent successful job run for the same finding aid
+    recent_success = (
         JobRun.objects.filter(
             related_model=instance.related_model,
-        ).exclude(pk=instance.pk).delete()
+            status=JobRun.SUCCEEDED,
+        )
+        .order_by("-logical_date")
+        .first()
+    )
+
+    # Remove other job runs for the same finding aid
+    JobRun.objects.filter(
+        related_model=instance.related_model,
+    ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()
