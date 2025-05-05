@@ -11,6 +11,7 @@
                 <form class="search-query-form" action="/catalog" accept-charset="UTF-8" method="get">
                     <div class="input-group">
                         <input value="all_fields" autocomplete="off" type="hidden" name="search_field" id="search_field">
+                        <input value="true"  name="group" id="group" type="hidden">
                         <label class="sr-only visually-hidden" for="q">search for</label>
                         <auto-complete src="/catalog/suggest" for="autocomplete-popup" class="search-autocomplete-wrapper rounded-left rounded-start">
                             <input placeholder="Search collections" class="search-q q form-control rounded-left rounded-start" aria-label="search for" aria-autocomplete="list" aria-controls="autocomplete-popup" type="search" name="q" id="q" role="combobox" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" spellcheck="false">
