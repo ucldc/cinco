@@ -20,6 +20,22 @@ class JobRunInline(admin.TabularInline):
     model = JobRun
     extra = 0
     raw_id_fields = ("related_model",)
+    fields = (
+        "dag_run_id",
+        "display_status",
+        "dag_run_conf",
+        "logical_date",
+        "dag_id",
+        "job_trigger",
+    )
+    readonly_fields = (
+        "dag_run_id",
+        "display_status",
+        "dag_run_conf",
+        "logical_date",
+        "dag_id",
+        "job_trigger",
+    )
 
 
 @admin.register(FindingAid)
