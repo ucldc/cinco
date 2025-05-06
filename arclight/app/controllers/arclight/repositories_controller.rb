@@ -12,7 +12,7 @@ module Arclight
             search_service = Blacklight.repository_class.new(blacklight_config)
             @response = search_service.search(
             q: "level_ssim:Collection repository_ssim:\"#{@repository.name}\"",
-            fq: "preview_ssi:false",
+            fq: "preview_ssi:false", # ensure previewed items don't show it non-search item lists
             rows: 100
             )
             @collections = @response.documents
@@ -32,7 +32,7 @@ module Arclight
             results = search_service.search(
             q: "level_ssim:Collection",
             'facet.field': "repository_ssim",
-            fq: "preview_ssi:false",
+            fq: "preview_ssi:false", # exclude previewed finding aids from collections counts
             rows: 0
             )
             Hash[*results.facet_fields["repository_ssim"]]
