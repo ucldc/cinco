@@ -67,6 +67,7 @@ en:
     repositories: Contributing Institutions
     routes:
       repositories: Contributing Institutions
+      collections: Search Results
     views:
       repositories:
         title: Contributing Institutions

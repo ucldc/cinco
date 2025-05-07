@@ -1,0 +1,30 @@
+<% if repository %>
+  <div class="al-repository-card">
+  <h1 class="h3">
+  <span class="al-repository-content-icon blacklight-icons blacklight-icons-repository">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0V0z"></path>
+        <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"></path>
+    </svg>
+  </span>
+    <%= repository.name %>
+    </h1>
+    <div class="al-repository-contact px-2 mb-4">
+        <address class="text-break">
+            <div class="al-repository-street-address">
+                <small>
+                    <%= repository.location %>
+                    <%= repository.contact %>
+                </small>
+            </div>
+        </address>
+    </div>
+    <% if repository.description.length > 0 %>
+    <div class="mb-5">
+        <%= repository.description %>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render Blacklight::ConstraintsComponent.new(**@kwargs) %>
