@@ -4,6 +4,7 @@ module Arclight
     class RepositoriesController < ApplicationController
         def index
             @repositories = Arclight::Repository.all
+            @repository_list = @repositories.group_by { |r| r.name[0] }
             load_collection_counts
         end
 
