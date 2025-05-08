@@ -1,0 +1,13 @@
+template:
+  path: efs-access-point.j2
+  type: file
+parameters:
+  EfsFileSystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+sceptre_user_data:
+  EFSAccessPoints:
+    - path: /var/solr/follower-1
+      user: 8983
+      group: 8983
+    - path: /var/solr/follower-2
+      user: 8983
+      group: 8983
