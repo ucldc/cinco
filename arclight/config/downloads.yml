@@ -11,15 +11,15 @@
 #
 sample_unitid:
   pdf:
-    href: 'http://example.com/sample.pdf'
+    href: ''
     size: '1.23MB'
   ead:
-    href: 'http://example.com/sample.xml'
+    href: 'https://cinco-stage.s3.amazonaws.com/media/ead/%{eadid}'
     size: 123456
     # size_accessor: 'level'
 default:
   disabled: true
   pdf:
-    template: 'http://example.com/%{unitid}.pdf'
+    template: ''
   ead:
-    template: 'http://example.com/%{unitid}.xml'
+    template: 'https://cinco-stage.s3.amazonaws.com/media/ead/%{eadid}'
