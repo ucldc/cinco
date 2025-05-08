@@ -31,4 +31,3 @@ services:
     depends_on:
       solr_leader:
         condition: service_healthy
-
