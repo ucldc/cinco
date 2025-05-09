@@ -60,11 +60,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'findingaids:submit_ead' %}">Submit a new EAD guide</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="{% url 'findingaids:create_record_express' %}">Create a new RecordEXPRESS guide</a>
-                </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>
