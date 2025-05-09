@@ -9,8 +9,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>Collection Guides</h2>
-        <p>Add a RecordEXPRESS collection record to the Online Archive of California.</p>
+        <h2>Manage Collection Guides</h2>
+        <p>This page includes a list of collection guides that have been submitted for your repository. If you’d like to edit, update, or publish a submission, please use the table below to find your collection guide. You can also use this list to attach PDF files to submitted collection guides.</p>
         <p>
           <div class="col-sm-4">
             <form method="get">
@@ -19,7 +19,15 @@
             </form>
           </div>
         </p>
+        <h3>Add a new collection guide</h3>
+        <p>
+          + <a href="{% url 'findingaids:submit_ead' %}">Submit a new EAD file</a>
+        </p>
+        <p>
+          + <a  href="{% url 'findingaids:create_record_express' %}">Create a new RecordEXPRESS guide</a>
+        </p>
         {% if records_page %}
+        <h3>Your collection guides</h3>
           <table class="table table-striped">
             <thead>
               <th>Collection Title</th>
