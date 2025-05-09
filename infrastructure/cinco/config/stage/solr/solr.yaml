@@ -10,6 +10,10 @@ parameters:
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/#/"
+  # old container must be stopped before new one is started,
+  # otherwise we get an error about index dir locking from Solr
+  ServiceTaskMaximumPercent: 100
+  ServiceTaskMinimumHealthyPercent: 0
 
 sceptre_user_data:
   ApplicationType: internal
