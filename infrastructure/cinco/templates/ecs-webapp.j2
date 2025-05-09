@@ -57,6 +57,16 @@ Parameters:
     Type: String
     Description: The security group for the RDS instance
     Default: ""
+  ServiceTaskMaximumPercent:
+    Description: An upper limit on the number of your service's tasks that are allowed in the RUNNING or PENDING
+      state during a deployment, as a percentage of the desiredCount
+    Type: Number
+    Default: 200
+  ServiceTaskMinimumHealthyPercent:
+    Description: a lower limit on the number of your service's tasks that must remain in the RUNNING state during a deployment,
+      as a percentage of the desiredCount
+    Type: Number
+    Default: 100
 
 {# In addition to the CloudFormation Parameters listed above, this template
    also supports the following sceptre_user_data parameters:
@@ -452,8 +462,8 @@ Resources:
       PlatformVersion: 'LATEST'
       EnableExecuteCommand: true
       DeploymentConfiguration:
-        MaximumPercent: 200
-        MinimumHealthyPercent: 100
+        MaximumPercent: !Ref ServiceTaskMaximumPercent
+        MinimumHealthyPercent: !Ref ServiceTaskMinimumHealthyPercent
         DeploymentCircuitBreaker:
           Enable: true
           Rollback: true
