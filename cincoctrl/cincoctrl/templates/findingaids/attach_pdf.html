@@ -14,11 +14,11 @@
     </p>
     <p>
         Manage how the supplemental PDFs display on the published collection guide.
-        Please click “Save” in order to push your changes to publication.
+        Please click "Save" in order to push your changes to publication.
     </p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% include 'findingaids/includes/formset.html' with title="Supplmental PDFs" name="PDF" formset=formset%}
+        {% include 'findingaids/includes/formset.html' with title="Supplemental PDFs" name="PDF" formset=formset%}
         <div class="control-group">
             <div class="controls">
               <button type="submit" class="btn btn-primary">Save Changes</button>
