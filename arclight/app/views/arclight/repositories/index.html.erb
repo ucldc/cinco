@@ -5,5 +5,23 @@
 
 <div class="al-repositories">
   <% @page_title = t('arclight.views.repositories.title') %>
-  <%= render @repositories %>
+
+  <div class="mt-4 mb-4 sticky-top bg-white border-bottom">
+    <ul class="nav">
+      <% @repository_list.each do |a, r|  %>
+        <li class="nav-item h5">
+          <a class="nav-link active" href="#<%= a %>"><%= a %></a>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+
+  <div class="container">
+  <% @repository_list.each do |a, r|  %>
+    <a name="<%= a %>" >
+      <h2 class="h4 mt-4 mb-4"><%= a %></h2>
+    </a>
+    <%= render r %>
+  <% end %>
+  </div>
 </div>

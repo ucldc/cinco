@@ -4,18 +4,19 @@ module Arclight
     class RepositoriesController < ApplicationController
         def index
             @repositories = Arclight::Repository.all
+            @repository_list = @repositories.group_by { |r| r.name[0] }
             load_collection_counts
         end
 
         def show
-            @repository = Arclight::Repository.find_by!(slug: params[:id])
-            search_service = Blacklight.repository_class.new(blacklight_config)
-            @response = search_service.search(
-            q: "level_ssim:Collection repository_ssim:\"#{@repository.name}\"",
-            fq: "preview_ssi:false", # ensure previewed items don't show it non-search item lists
-            rows: 100
+            repository = Arclight::Repository.find_by!(slug: params[:id])
+            url = search_action_url(
+                f: {
+                  repository: [ repository.name ],
+                  level: [ "Collection" ]
+                }
             )
-            @collections = @response.documents
+            redirect_to url
         end
 
         private

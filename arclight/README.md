@@ -46,9 +46,9 @@ Settings can be added to the index command with `-s name=value`
 
 We test the application with [rspec](https://rspec.info/).
 
-`bundle exec spec` will run all of the rspec tests.
+`bundle exec rspec` will run all of the rspec tests.
 
-`bundle exec spec spec/components/my_component_spec.rb` will run just the tsts in that file.
+`bundle exec rspec spec/components/my_component_spec.rb` will run just the tsts in that file.
 
 ## Linting
 

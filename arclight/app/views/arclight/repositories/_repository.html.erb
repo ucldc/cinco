@@ -1,31 +1,28 @@
-<div class="mb-3 mx-auto al-repository">
-  <div class="container">
+<div class="al-repository border-0 border-bottom mb-2 py-2">
     <div class='row'>
-      <div class="col-sm-12 col-lg-10 py-3 al-repository-information">
+      <div class=" al-repository-information">
         <%= content_tag(params[:id] == repository.slug ? :h1 : :h2, class: 'h5 mb-3 repo-name') do %>
-        <%= link_to_unless(params[:id] == repository.slug, repository.name, arclight_engine.repository_path(repository.slug)) %>
+        <%= link_to(t(repository.name), repository_collections_path(repository)) %>
         <% end %>
         <div class='row no-gutters justify-content-center'>
           <div class='col-sm al-repository-contact'>
             <address class="text-break">
-              <div class="mb-3 al-repository-street-address">
-                <%= repository.location %>
+              <div class="al-repository-street-address">
+                <small><%= repository_location_to_city(repository.location) %></small>
               </div>
             </address>
           </div>
 
           <% if on_repositories_index? %>
-          <div class='col-sm text-center al-repository-extra'>
+          <div class='col-sm text-left al-repository-extra'>
             <div class='mb-1'>
+              <small>
               <%= t(:'arclight.views.repositories.number_of_collections', count: repository.collection_count) %>
+              </small>
             </div>
-            <% if repository.collection_count&.positive? %>
-            <%= link_to(t(:'arclight.views.repositories.view_more'), arclight_engine.repository_path(repository.slug), class: 'btn btn-secondary btn-sm') %>
-            <% end %>
           </div>
           <% end %>
         </div>
       </div>
     </div>
-  </div>
 </div>
