@@ -24,6 +24,7 @@ services:
       - "8984:8983"
     environment:
       - REPLICATION_ROLE=follower
+      - SOLR_LEADER_URL=http://solr_leader:8983/solr/arclight
     healthcheck:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
