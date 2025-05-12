@@ -5,9 +5,12 @@ en:
       repositories: Contributing Institutions
       about: About
     search:
+      start_over:  Clear search
+      facets:
+        title: Refine your search
       fields:
         abstract: Abstract
-        creators: Creator
+        creators: Creators
         extent: Extent
         language: Language
         prefercite: Preferred citation
@@ -55,14 +58,13 @@ en:
 
         facet:
           collection: Collection
-          creator: Creator
+          creator: Creators
           date_range: Date range
           level: Level
           names: Names
-          repository: Repository
-          place: Place
-          subject: Subject
-          access: Access
+          repository: Institution
+          place: Places
+          subject: Subjects
   arclight:
     repositories: Contributing Institutions
     routes:
