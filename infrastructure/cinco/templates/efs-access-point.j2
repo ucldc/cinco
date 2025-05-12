@@ -35,3 +35,10 @@ Resources:
           Permissions: "0755"
         Path: {{ access_point.path }}
   {% endfor %}
+
+Outputs:
+  {% for access_point in sceptre_user_data.EFSAccessPoints %}
+  EfsAccessPointId{{ loop.index }}:
+    Description: The ID of EFS access point {{ loop.index }}
+    Value: !Ref EfsAccessPoint{{ loop.index }}
+  {% endfor %}
