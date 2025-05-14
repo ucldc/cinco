@@ -9,8 +9,7 @@ parameters:
   ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
-  HealthCheckPath: "/solr/#/"
-  #HealthCheckPath: "/solr/arclight/admin/ping"
+  HealthCheckPath: "/solr/arclight/admin/ping"
   # old container must be stopped before new one is started,
   # otherwise we get an error about index dir locking from Solr
   ServiceTaskMaximumPercent: 100
@@ -35,15 +34,17 @@ sceptre_user_data:
     - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
   ContainerEnvironment:
     - REPLICATION_ROLE: leader
-  # ServiceConnectConfiguration:
-  #   Enabled: true
-  #   Services:
-  #     - DiscoveryName: solr_leader
-  #       ClientAliases:
-  #         - Port: 8983
-  #       PortName: solr
   ContainerPortName: solr
   ContainerPortAppProtocol: http
+  ServiceConnectConfiguration:
+    Enabled: true
+    Services:
+      - PortName: solr
+        DiscoveryName: solr_leader
+        ClientAliases:
+          - Port: 8983
+            DnsName: solr_leader.cinco-stage
+        IngressPortOverride: 8984
   # This healthcheck is a bit more specific than the target group healthcheck
   # HealthCheck:
   #   Command:
