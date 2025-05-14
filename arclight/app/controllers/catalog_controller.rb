@@ -49,14 +49,14 @@ class CatalogController < ApplicationController
 
     config.header_component = HeaderComponent
     config.add_results_document_tool(:online, component: Arclight::OnlineStatusIndicatorComponent)
-    #config.add_results_document_tool(:arclight_bookmark_control, component: Arclight::BookmarkComponent)
+    # config.add_results_document_tool(:arclight_bookmark_control, component: Arclight::BookmarkComponent)
 
     config.add_results_collection_tool(:group_toggle)
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
-    #config.add_results_collection_tool(:view_type_group)
+    # config.add_results_collection_tool(:view_type_group)
 
-    #config.add_nav_action(:bookmark, partial: "blacklight/nav/bookmark", if: :render_bookmarks_control?)
+    # config.add_nav_action(:bookmark, partial: "blacklight/nav/bookmark", if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: "blacklight/nav/search_history")
 
     # solr field configuration for search results/index views
@@ -138,6 +138,9 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation
     #  (note: It is case sensitive when searching values)
 
+    config.add_facet_field "access", query: {
+      online: { label: "Online access", fq: "has_online_content_ssim:true" }
+    }, component: OnlineContentFacetComponent
     config.add_facet_field "repository", field: "repository_ssim", limit: 10
     config.add_facet_field "collection", field: "collection_ssim", limit: 10
     config.add_facet_field "creators", field: "creator_ssim", limit: 10
@@ -145,7 +148,7 @@ class CatalogController < ApplicationController
     config.add_facet_field "names", field: "names_ssim", limit: 10
     config.add_facet_field "places", field: "geogname_ssim", limit: 10
     config.add_facet_field "access_subjects", field: "access_subjects_ssim", limit: 10
-    config.add_facet_field "level", field: "level_ssim", limit: 10
+    config.add_facet_field "level", field: "level_ssim", limit: 10, component: HiddenFacetComponent
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -162,10 +165,6 @@ class CatalogController < ApplicationController
     config.add_index_field "creator", accessor: true, component: Arclight::IndexMetadataFieldComponent
     config.add_index_field "abstract_or_scope", accessor: true, truncate: true, repository_context: true, helper_method: :render_html_tags, component: Arclight::IndexMetadataFieldComponent
     config.add_index_field "breadcrumbs", accessor: :itself, component: Arclight::SearchResultBreadcrumbsComponent, compact: { count: 2 }
-
-    config.add_facet_field "access", query: {
-      online: { label: "Online access", fq: "has_online_content_ssim:true" }
-    }
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
