@@ -67,6 +67,11 @@ Parameters:
       as a percentage of the desiredCount
     Type: Number
     Default: 100
+  HealthCheckGracePeriodSeconds:
+    Description: The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing,
+      VPC Lattice, and container health checks after a task has first started.
+    Type: Number
+    Default: 0
 
 {# In addition to the CloudFormation Parameters listed above, this template
    also supports the following sceptre_user_data parameters:
@@ -501,6 +506,7 @@ Resources:
       ServiceConnectConfiguration:
         {{ sceptre_user_data.ServiceConnectConfiguration }}
       {% endif %}
+      HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
     DependsOn: HttpListener
 
   LoadBalancer:
