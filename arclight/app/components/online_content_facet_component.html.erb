@@ -1,0 +1,16 @@
+<div id="facet-digital_content" class="<%='facet-limit-active' if @facet_field.active? %> mb-4">
+    <div class="card-body d-flex align-items-center justify-content-between">
+        <div class="form-check form-switch">
+        <a href="<%= facet_toggle_url %>">
+            <% if @facet_field.active? %>
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Show only items with online content</label>
+            <% else %>
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Show only items with online content</label>
+            <% end %>
+        </a>
+      </div>
+    </div>
+</div>
+<h3 class="h5">Filter</h3>
