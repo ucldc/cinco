@@ -22,7 +22,8 @@ class CatalogController < ApplicationController
       'collection.q': "{!terms f=id v=$row._root_}",
       'collection.defType': "lucene",
       'collection.fl': "*",
-      'collection.rows': 1
+      'collection.rows': 1,
+      fq: "preview_ssi:false"
     }
 
     # Sets the indexed Solr field that will display with highlighted matches
@@ -189,34 +190,22 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
     config.add_search_field "all_fields", label: "All Fields" do |field|
       field.include_in_simple_select = true
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
-      }
     end
 
     config.add_search_field "within_collection" do |field|
       field.include_in_simple_select = false
-      field.solr_parameters = {
-        fq: "-level_ssim:Collection"
-      }
     end
 
     # Field-based searches. We have registered handlers in the Solr configuration
     # so we have Blacklight use the `qt` parameter to invoke them
     config.add_search_field "keyword", label: "Keyword" do |field|
       field.qt = "search" # default
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
-      }
     end
     config.add_search_field "name", label: "Name" do |field|
       field.qt = "search"
       field.solr_parameters = {
         qf:  "${qf_name}",
         pf:  "${pf_name}"
-      }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
       }
     end
     config.add_search_field "place", label: "Place" do |field|
@@ -225,18 +214,12 @@ class CatalogController < ApplicationController
         qf:  "${qf_place}",
         pf:  "${pf_place}"
       }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
-      }
     end
     config.add_search_field "subject", label: "Subject" do |field|
       field.qt = "search"
       field.solr_parameters = {
         qf:  "${qf_subject}",
         pf:  "${pf_subject}"
-      }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
       }
     end
     config.add_search_field "title", label: "Title" do |field|
@@ -245,9 +228,6 @@ class CatalogController < ApplicationController
         qf:  "${qf_title}",
         pf:  "${pf_title}"
       }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
-      }
     end
     config.add_search_field "container", label: "Container" do |field|
       field.qt = "search"
@@ -255,18 +235,12 @@ class CatalogController < ApplicationController
         qf:  "${qf_container}",
         pf:  "${pf_container}"
       }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
-      }
     end
     config.add_search_field "identifier", label: "Identifier" do |field|
       field.qt = "search"
       field.solr_parameters = {
         qf:  "${qf_identifier}",
         pf:  "${pf_identifier}"
-      }
-      field.solr_parameters = {
-        fq: "preview_ssi:false"
       }
     end
 
