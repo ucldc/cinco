@@ -15,12 +15,12 @@ class Command(BaseCommand):
     help = "Prepare the specified finding aid for indexing."
 
     def add_arguments(self, parser):
-        parser.add_argument("finding_aid_id", type=int)
-        parser.add_argument("s3_key", type=str)
+        parser.add_argument("--finding-aid-id", type=int)
+        parser.add_argument("--s3-key", type=str)
 
     def handle(self, *args, **kwargs):
-        finding_aid_id = kwargs["finding_aid_id"]
-        s3_key = kwargs["s3_key"]
+        finding_aid_id = kwargs["finding-aid-id"]
+        s3_key = kwargs["s3-key"]
         try:
             finding_aid = FindingAid.objects.get(pk=finding_aid_id)
         except FindingAid.DoesNotExist:
