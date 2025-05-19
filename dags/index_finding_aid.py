@@ -51,6 +51,7 @@ def index_finding_aid():
 
     index_finding_aid_task = ArcLightOperator(
         task_id="index_finding_aid",
+        arclight_command="bin/index-from-s3",
         finding_aid_id="{{ params.finding_aid_id }}",
         s3_key=s3_key,
         repository_code="{{ params.repository_code }}",

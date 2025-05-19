@@ -62,25 +62,27 @@ def get_awsvpc_config():
 class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(
         self,
-        finding_aid_id,
-        s3_key,
-        repository_code,
-        finding_aid_ark,
-        preview,
+        arclight_command,
         **kwargs,
     ):
         cluster_name = "cinco-stage"
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
-        command = [
-            "bin/index-from-s3",
-            finding_aid_id,
-            s3_key,
-            repository_code,
-            finding_aid_ark,
-            preview,
-        ]
+        if arclight_command == "bin/index-from-s3":
+            command = [
+                arclight_command,
+                kwargs["finding_aid_id"],
+                kwargs["s3_key"],
+                kwargs["repository_code"],
+                kwargs["finding_aid_ark"],
+                kwargs["preview"],
+            ]
+        elif arclight_command == "bin/bulk-index-from-s3":
+            command = [
+                arclight_command,
+                kwargs["s3_key"],
+            ]
 
         args = {
             "cluster": cluster_name,
@@ -125,11 +127,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
 class ArcLightDockerOperator(DockerOperator):
     def __init__(
         self,
-        finding_aid_id,
-        s3_key,
-        repository_code,
-        finding_aid_ark,
-        preview,
+        arclight_command,
         **kwargs,
     ):
         mounts = [
@@ -142,15 +140,23 @@ class ArcLightDockerOperator(DockerOperator):
 
         container_image = "cinco-arclight-indexer"
         container_version = "latest"
-        container_name = f"cinco-arclight-indexer-{finding_aid_id}"
-        command = [
-            "bin/index-from-s3",
-            finding_aid_id,
-            s3_key,
-            repository_code,
-            finding_aid_ark,
-            preview,
-        ]
+        container_name = "cinco-arclight-stage-container"
+
+        if arclight_command == "bin/index-from-s3":
+            command = [
+                arclight_command,
+                kwargs["finding_aid_id"],
+                kwargs["s3_key"],
+                kwargs["repository_code"],
+                kwargs["finding_aid_ark"],
+                kwargs["preview"],
+            ]
+        elif arclight_command == "bin/bulk-index-from-s3":
+            command = [
+                arclight_command,
+                kwargs["s3_key"],
+            ]
+
         args = {
             "image": f"{container_image}:{container_version}",
             "container_name": container_name,

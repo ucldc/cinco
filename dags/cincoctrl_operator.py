@@ -33,10 +33,22 @@ def get_stack(stack_name: str):
 
 
 class CincoCtrlEcsOperator(EcsRunTaskOperator):
-    def __init__(self, manage_cmd, finding_aid_id=None, s3_key=None, **kwargs):
+    def __init__(self, manage_cmd, **kwargs):
         manage_args = []
         if manage_cmd == "prepare_finding_aid":
-            manage_args = [finding_aid_id, s3_key]
+            manage_args = [
+                "--finding-aid-id",
+                kwargs["finding_aid_id"],
+                "--s3-key",
+                kwargs["s3_key"],
+            ]
+        elif manage_cmd == "bulk_prep_finding_aids":
+            manage_args = [
+                "--repository",
+                kwargs["repository_id"],
+                "--s3-key",
+                kwargs["s3_key"],
+            ]
 
         container_name = "cinco-ctrl-stage-container"
         args = {
@@ -94,10 +106,22 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
 
 
 class CincoCtrlDockerOperator(DockerOperator):
-    def __init__(self, manage_cmd, finding_aid_id=None, s3_key=None, **kwargs):
+    def __init__(self, manage_cmd, **kwargs):
         manage_args = []
         if manage_cmd == "prepare_finding_aid":
-            manage_args = [finding_aid_id, s3_key]
+            manage_args = [
+                "--finding-aid-id",
+                kwargs["finding_aid_id"],
+                "--s3-key",
+                kwargs["s3_key"],
+            ]
+        elif manage_cmd == "bulk_prep_finding_aids":
+            manage_args = [
+                "--repository",
+                kwargs["repository_id"],
+                "--s3-key",
+                kwargs["s3_key"],
+            ]
 
         # set in startup.sh, path to cinco/cincoctrl on local
         if os.environ.get("CINCO_MOUNT_CINCOCTRL"):
