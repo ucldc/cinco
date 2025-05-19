@@ -41,7 +41,7 @@ module Arclight
 
     # Overrides blacklight search state so we can exclude some parameters from being passed into the SearchState
     def search_state
-      @search_state ||= search_state_class.new(params.except('hierarchy', 'nest_path'), blacklight_config, self)
+      @search_state ||= search_state_class.new(params.except("hierarchy", "nest_path"), blacklight_config, self)
     end
   end
 end
