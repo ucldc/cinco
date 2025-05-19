@@ -1,0 +1,57 @@
+#!/bin/bash -e
+
+# This script takes as an argument the ID of a finding aid, downloads
+# the EAD file from S3 to the local filesystem, and then runs the traject
+# process to index the file into Solr.
+
+# check that we have an s3 key
+if [ -z "$1" ]; then
+  echo "Usage: $0 <s3_prefix>"
+  exit 1
+fi
+
+# check that the S3_BUCKET environment variable is set
+if [ -z "$S3_BUCKET" ]; then
+  echo "The S3_BUCKET environment variable must be set"
+  exit 1
+fi
+
+# check that the SOLR_WRITER environment variable is set
+if [ -z "$SOLR_WRITER" ]; then
+  echo "The SOLR_WRITER environment variable must be set"
+  exit 1
+fi
+
+echo "Downloading Contents of S3 Prefix $1 to /tmp/$1"
+aws s3 sync s3://$S3_BUCKET/media/indexing/$1 /tmp/$1
+# mkdir -p /tmp/$1
+# curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$1/finding-aid.xml > /tmp/$1/finding-aid.xml
+# curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$1/extracted-supplementary-files-text.txt > /tmp/$1/extracted-supplementary-files-text.txt
+
+# for every folder in /tmp/$1,
+#  1. source /tmp/$1/<folder>/indexing_env.sh &
+#  2. run traject command referenceing /tmp/$1/<folder>/finding-aid.xml
+
+for folder in /tmp/$1/*; do
+  if [ -d "$folder" ]; then
+    echo "Running indexing for $folder"
+    source $folder/indexing_env.sh
+    # run traject command referenceing /tmp/$1/<folder>/finding-aid.xml
+    echo "Indexing Finding Aid: $FINDING_AID_ID, Repository Code: $REPOSITORY_ID, Finding Aid ARK: $FINDING_AID_ARK, Preview: $PREVIEW"
+    bundle exec traject -I lib/ \
+        -u $SOLR_WRITER \
+        -i xml -c lib/arclight/traject/ead2_config.rb \
+        $folder/finding-aid.xml \
+        -s ark=$FINDING_AID_ARK \
+        -s preview=$PREVIEW &
+    unset REPOSITORY_ID
+    unset FINDING_AID_ID
+    unset FINDING_AID_ARK
+    unset PREVIEW
+    echo "Finished indexing $FINDING_AID_ID"
+  fi
+done
+wait
+
+echo "Finished indexing, cleaning up /tmp/$1"
+rm -rf /tmp/$1
