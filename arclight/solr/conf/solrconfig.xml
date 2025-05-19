@@ -305,11 +305,13 @@
     <lst name="suggester">
       <str name="name">mySuggester</str>
       <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
+      <str name="dictionaryImpl">DocumentDictionaryFactory</str>
       <str name="indexPath">suggester_infix_dir</str>
       <str name="highlight">false</str>
       <str name="suggestAnalyzerFieldType">text</str>
       <str name="buildOnCommit">true</str>
       <str name="field">suggest</str>
+      <str name="contextField">preview_ssi</str>
     </lst>
   </searchComponent>
 
@@ -318,6 +320,7 @@
       <str name="suggest">true</str>
       <str name="suggest.count">5</str>
       <str name="suggest.dictionary">mySuggester</str>
+      <str name="suggest.cfq">false</str>
     </lst>
     <arr name="components">
       <str>suggest</str>
