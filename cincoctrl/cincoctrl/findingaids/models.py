@@ -110,7 +110,7 @@ class FindingAid(models.Model):
     def public_url(self):
         return f"{settings.ARCLIGHT_URL}{self.ark}"
 
-    def queue_index(self, *, force_publish=False):
+    def queue_status(self, *, force_publish=False):
         if force_publish or "publish" in self.status:
             self.status = "queued_publish"
             action = "publish"
@@ -119,6 +119,11 @@ class FindingAid(models.Model):
             action = "preview"
         self.save()
 
+        logger.info("update status for %s: %s", self.ark, self.status)
+        return action
+
+    def queue_index(self, *, force_publish=False):
+        action = self.queue_status(force_publish=force_publish)
         logger.info("queue index for %s: %s", self.ark, action)
 
         if settings.ENABLE_AIRFLOW:

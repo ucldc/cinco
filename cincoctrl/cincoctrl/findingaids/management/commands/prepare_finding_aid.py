@@ -40,8 +40,10 @@ def prepare_finding_aid(finding_aid, s3_key):
     Prepare the finding aid for indexing by
         1. copying the ead to an indexing directory in s3 or
         2. rendering an attached express record and saving to s3
-        3. combining the textract output from all supplementary files as available
-        4. saving the extracted supplementary files text to S3
+        3. creating an indexing_env.sh file with the finding aid id, repository id,
+           finding aid ark, and action (publish or preview)
+        4. combining the textract output from all supplementary files as available
+        5. saving the extracted supplementary files text to S3
     """
 
     if finding_aid.record_type == "ead":
@@ -56,6 +58,19 @@ def prepare_finding_aid(finding_aid, s3_key):
     storages["default"].save(
         f"indexing/{s3_key}/finding-aid.xml",
         ead_file,
+    )
+
+    preview = finding_aid.status == "queued_preview"
+    indexing_env = (
+        f"export FINDING_AID_ID={finding_aid.id}\n"
+        f"export REPOSITORY_ID={finding_aid.repository.code}\n"
+        f"export FINDING_AID_ARK={finding_aid.ark}\n"
+        f"export PREVIEW={preview}\n"
+    )
+
+    storages["default"].save(
+        f"indexing/{s3_key}/indexing_env.sh",
+        ContentFile(indexing_env.encode("utf-8")),
     )
 
     if finding_aid.supplementaryfile_set.count() >= 1:
