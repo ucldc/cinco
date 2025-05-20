@@ -1,6 +1,8 @@
+import boto3
 from datetime import datetime
 from airflow.decorators import dag, task
 from airflow.models.param import Param
+from airflow.models import Variable
 
 from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
@@ -40,16 +42,18 @@ def index_finding_aids_by_repository():
     bulk_index_task = ArcLightOperator(
         task_id="bulk_index_task",
         s3_key=s3_key,
-        arclight_command="bin/bulk-index-from-s3",
+        arclight_command="bulk-index-from-s3",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
 
-    s3_key >> bulk_prep_task >> bulk_index_task
+    @task()
+    def cleanup_s3():
+        s3 = boto3.resource("s3")
+        bucket = s3.Bucket(Variable.get("CINCO_S3_BUCKET"))
+        bucket.objects.filter(Prefix=f"media/{make_s3_key}").delete()
 
-    # @task()
-    # def cleanup_s3():
-    #     boto3.client("s3").delete_object(Bucket="", Key=make_s3_key)
+    s3_key >> bulk_prep_task >> bulk_index_task >> cleanup_s3()
 
 
 index_finding_aids_by_repository = index_finding_aids_by_repository()

@@ -142,16 +142,16 @@ class ArcLightDockerOperator(DockerOperator):
         container_version = "latest"
         container_name = "cinco-arclight-stage-container"
 
-        if arclight_command == "bin/index-from-s3":
+        if arclight_command == "index-from-s3":
             command = [
-                arclight_command,
+                f"bin/{arclight_command}",
                 kwargs["finding_aid_id"],
                 kwargs["s3_key"],
                 kwargs["repository_code"],
                 kwargs["finding_aid_ark"],
                 kwargs["preview"],
             ]
-        elif arclight_command == "bin/bulk-index-from-s3":
+        elif arclight_command == "bulk-index-from-s3":
             command = [
                 arclight_command,
                 kwargs["s3_key"],
