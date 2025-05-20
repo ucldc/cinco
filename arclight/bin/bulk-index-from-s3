@@ -23,10 +23,7 @@ if [ -z "$SOLR_WRITER" ]; then
 fi
 
 echo "Downloading Contents of S3 Prefix $1 to /tmp/$1"
-aws s3 sync s3://$S3_BUCKET/media/indexing/$1 /tmp/$1
-# mkdir -p /tmp/$1
-# curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$1/finding-aid.xml > /tmp/$1/finding-aid.xml
-# curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/indexing/$1/extracted-supplementary-files-text.txt > /tmp/$1/extracted-supplementary-files-text.txt
+aws s3 sync s3://$S3_BUCKET/media/$1 /tmp/$1
 
 # for every folder in /tmp/$1,
 #  1. source /tmp/$1/<folder>/indexing_env.sh &

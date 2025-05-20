@@ -56,7 +56,7 @@ def prepare_finding_aid(finding_aid, s3_key):
         ead_file = ContentFile(record)
 
     storages["default"].save(
-        f"indexing/{s3_key}/finding-aid.xml",
+        f"{s3_key}/finding-aid.xml",
         ead_file,
     )
 
@@ -69,7 +69,7 @@ def prepare_finding_aid(finding_aid, s3_key):
     )
 
     storages["default"].save(
-        f"indexing/{s3_key}/indexing_env.sh",
+        f"{s3_key}/indexing_env.sh",
         ContentFile(indexing_env.encode("utf-8")),
     )
 
@@ -79,7 +79,7 @@ def prepare_finding_aid(finding_aid, s3_key):
         with TemporaryFile() as full_text_file:
             full_text_file.write(extracted_text.encode("utf-8"))
             storages["default"].save(
-                f"indexing/{s3_key}/extracted-supplementary-files-text.txt",
+                f"{s3_key}/extracted-supplementary-files-text.txt",
                 full_text_file,
             )
 
