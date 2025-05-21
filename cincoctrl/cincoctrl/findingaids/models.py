@@ -136,7 +136,7 @@ class FindingAid(models.Model):
                     "finding_aid_ark": self.ark,
                     "preview": action,
                 },
-                related_model=self,
+                related_models=[self],
                 dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
             )
 

@@ -32,7 +32,7 @@ def mwaa_client(func):
 
 
 @mwaa_client
-def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
+def trigger_dag(dag, dag_conf, client, related_models=None, dag_run_prefix=None):
     request_params = {
         "Name": env_name,
         "Path": f"/dags/{dag}/dagRuns",
@@ -65,7 +65,6 @@ def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
         dag_run_id = resp["RestApiResponse"].get("dag_run_id")
         logical_date = resp["RestApiResponse"].get("logical_date")
     job_trigger = JobTrigger(
-        related_model=related_model,
         dag_id=dag,
         dag_run_conf=json.dumps(dag_conf),
         airflow_url=env_url,
@@ -75,6 +74,7 @@ def trigger_dag(dag, dag_conf, client, related_model=None, dag_run_prefix=None):
         rest_api_response=json.dumps(resp),
     )
     job_trigger.save()
+    job_trigger.related_models.set(related_models)
 
     if job_trigger.rest_api_status_code != 200:  # noqa: PLR2004
         raise MWAAAPIError(request_params, status_code, resp["RestApiResponse"])
@@ -111,13 +111,14 @@ def update_job_run(job: JobTrigger | JobRun, client: boto3.client):
             job_status = JobRun.SUCCEEDED
 
     job_run, created = JobRun.objects.get_or_create(
-        related_model=job.related_model,
         dag_id=dag,
         dag_run_conf=json.dumps(resp["RestApiResponse"].get("conf")),
         airflow_url=env_url,
         dag_run_id=dag_run_id,
         logical_date=resp["RestApiResponse"]["logical_date"],
     )
+    if created:
+        job_run.related_models.set(job.related_models.all())
 
     if isinstance(job, JobTrigger):
         if PRESERVE_TRIGGER:
