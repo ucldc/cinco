@@ -1,3 +1,5 @@
+"""Use cincoctrl manage.py bulk index finding aids instead of this"""
+
 import boto3
 from datetime import datetime
 from airflow.decorators import dag, task
