@@ -15,11 +15,6 @@ else:
 class Job(models.Model):
     related_models = models.ManyToManyField(
         settings.AIRFLOW_JOB_RELATED_MODEL,
-        related_name="related_%(class)s",
-    )
-    related_model = models.ForeignKey(
-        settings.AIRFLOW_JOB_RELATED_MODEL,
-        on_delete=models.CASCADE,
     )
     dag_id = models.CharField(max_length=255)
     dag_run_conf = models.TextField(blank=True)
