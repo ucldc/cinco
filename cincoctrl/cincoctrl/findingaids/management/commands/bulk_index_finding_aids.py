@@ -1,7 +1,3 @@
-"""
-Use bulk_index_finding_aids instead of this method.
-"""
-
 import logging
 from datetime import UTC
 from datetime import datetime
@@ -11,8 +7,8 @@ from django.core.management.base import BaseCommand
 from django.db.models import QuerySet
 
 from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
-from cincoctrl.findingaids.management.commands.prepare_finding_aid import (
-    prepare_finding_aid,
+from cincoctrl.findingaids.management.commands._prepare_for_indexing import (
+    bulk_prep_finding_aids,
 )
 from cincoctrl.findingaids.models import FindingAid
 
@@ -44,7 +40,6 @@ class Command(BaseCommand):
             metavar="finding-aid-id",
             help="List of Finding Aid IDs to prepare for indexing",
         )
-        # Add s3_key as a named, required argument of type str
         parser.add_argument(
             "-s3",
             "--s3-key",
@@ -55,7 +50,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
-        s3_key = kwargs["s3-key"]
+        s3_key = kwargs.get("s3-key")
         repository_id = kwargs.get("repository")
         finding_aid_ids = kwargs.get("finding-aid-ids")
 
@@ -64,20 +59,16 @@ class Command(BaseCommand):
         elif finding_aid_ids:
             finding_aids = FindingAid.objects.filter(id__in=finding_aid_ids)
 
-        bulk_prep_finding_aids(finding_aids, s3_key)
-
-
-def bulk_prep_finding_aids(finding_aids, s3_key):
-    for finding_aid in finding_aids:
-        prepare_finding_aid(
-            finding_aid,
-            f"{s3_key}/{finding_aid.id}",
+        self.stdout.write(
+            f"Bulk indexing {finding_aids.count()} finding aids",
         )
+        bulk_index_finding_aids(finding_aids, s3_key)
 
 
-def bulk_index_finding_aids(finding_aids: QuerySet):
-    now_str = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S")
-    s3_key = f"indexing/bulk/{now_str}"
+def bulk_index_finding_aids(finding_aids: QuerySet, s3_key=None):
+    if not s3_key:
+        now_str = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S")
+        s3_key = f"indexing/bulk/{now_str}"
 
     for finding_aid in finding_aids:
         finding_aid.queue_status()
@@ -89,5 +80,5 @@ def bulk_index_finding_aids(finding_aids: QuerySet):
             "bulk_index_finding_aids",
             {"s3_key": s3_key},
             related_models=finding_aids,
-            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk_{now_str}",
+            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
         )
