@@ -48,30 +48,31 @@ def trigger_reindex(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=JobRun)
 def update_status(sender, instance, created, **kwargs):
-    current_status = instance.related_model.status
-    updated_status = current_status
-    if instance.status == "succeeded":
-        IndexingHistory.objects.create(
-            finding_aid=instance.related_model,
-            status="success",
-        )
-        if current_status == "queued_preview":
-            updated_status = "previewed"
-        elif current_status == "queued_publish":
-            updated_status = "published"
-    elif instance.status == "failed":
-        IndexingHistory.objects.create(
-            finding_aid=instance.related_model,
-            status="failed",
-        )
-        if current_status == "queued_preview":
-            updated_status = "preview_error"
-        elif current_status == "queued_publish":
-            updated_status = "publish_error"
+    for related_model in instance.related_models.all():
+        current_status = related_model.status
+        updated_status = current_status
+        if instance.status == "succeeded":
+            IndexingHistory.objects.create(
+                finding_aid=related_model,
+                status="success",
+            )
+            if current_status == "queued_preview":
+                updated_status = "previewed"
+            elif current_status == "queued_publish":
+                updated_status = "published"
+        elif instance.status == "failed":
+            IndexingHistory.objects.create(
+                finding_aid=related_model,
+                status="failed",
+            )
+            if current_status == "queued_preview":
+                updated_status = "preview_error"
+            elif current_status == "queued_publish":
+                updated_status = "publish_error"
 
-    if current_status != updated_status:
-        instance.related_model.status = updated_status
-        instance.related_model.save()
+        if current_status != updated_status:
+            related_model.status = updated_status
+            related_model.save()
 
 
 @receiver(post_save, sender=JobRun)
@@ -79,7 +80,7 @@ def remove_old_job_runs(sender, instance, created, **kwargs):
     # Find most recent successful job run for the same finding aid
     recent_success = (
         JobRun.objects.filter(
-            related_model=instance.related_model,
+            related_models=instance.related_model,
             status=JobRun.SUCCEEDED,
         )
         .order_by("-logical_date")
@@ -88,6 +89,6 @@ def remove_old_job_runs(sender, instance, created, **kwargs):
 
     # Remove older job runs for the same finding aid
     JobRun.objects.filter(
-        related_model=instance.related_model,
+        related_models=instance.related_model,
         logical_date__lt=recent_success.logical_date,
     ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()
