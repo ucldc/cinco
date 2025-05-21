@@ -13,6 +13,10 @@ else:
 
 
 class Job(models.Model):
+    related_models = models.ManyToManyField(
+        settings.AIRFLOW_JOB_RELATED_MODEL,
+        related_name="related_%(class)s",
+    )
     related_model = models.ForeignKey(
         settings.AIRFLOW_JOB_RELATED_MODEL,
         on_delete=models.CASCADE,
