@@ -1,10 +1,18 @@
-from django.core.management.base import BaseCommand
-from django.core.management.base import CommandError
+import logging
+from datetime import UTC
+from datetime import datetime
 
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from django.db.models import QuerySet
+
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.management.commands.prepare_finding_aid import (
     prepare_finding_aid,
 )
 from cincoctrl.findingaids.models import FindingAid
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -43,30 +51,39 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
-        s3_key = kwargs["s3_key"]
-        repository_id = kwargs["repository"]
-        finding_aid_ids = kwargs["finding-aid-ids"]
+        s3_key = kwargs["s3-key"]
+        repository_id = kwargs.get("repository")
+        finding_aid_ids = kwargs.get("finding-aid-ids")
+
         if repository_id:
-            finding_aid_ids = FindingAid.objects.filter(
-                repository_id=repository_id,
-            ).values_list("id", flat=True)
-            if not finding_aid_ids:
-                error_msg = f"No finding aids found for repository {repository_id}."
-                raise CommandError(error_msg)
+            finding_aids = FindingAid.objects.filter(repository_id=repository_id)
+        elif finding_aid_ids:
+            finding_aids = FindingAid.objects.filter(id__in=finding_aid_ids)
 
-        for finding_aid_id in finding_aid_ids:
-            try:
-                finding_aid = FindingAid.objects.get(pk=finding_aid_id)
-            except FindingAid.DoesNotExist:
-                error_msg = f"Finding aid {finding_aid_id} does not exist."
-                raise CommandError(error_msg) from FindingAid.DoesNotExist
+        bulk_prep_finding_aids(finding_aids, s3_key)
 
-            self.stdout.write(f"Preparing finding aid {finding_aid.id} for indexing.")
-            prepared_finding_aid = prepare_finding_aid(
-                finding_aid,
-                f"{s3_key}/{finding_aid.id}",
-            )
-            self.stdout.write(
-                f"Successfully prepared finding aid {finding_aid.id} for "
-                f"indexing at {prepared_finding_aid}.",
-            )
+
+def bulk_prep_finding_aids(finding_aids, s3_key):
+    for finding_aid in finding_aids:
+        prepare_finding_aid(
+            finding_aid,
+            f"{s3_key}/{finding_aid.id}",
+        )
+
+
+def bulk_index_finding_aids(finding_aids: QuerySet):
+    now_str = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S")
+    s3_key = f"indexing/bulk/{now_str}"
+
+    for finding_aid in finding_aids:
+        finding_aid.queue_status()
+
+    if settings.ENABLE_AIRFLOW:
+        logger.info("bulk indexing %s finding aids", finding_aids.count())
+        bulk_prep_finding_aids(finding_aids, s3_key)
+        trigger_dag(
+            "bulk_index_finding_aids",
+            {"s3_key": s3_key},
+            related_models=finding_aids,
+            dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk_{now_str}",
+        )
