@@ -1,4 +1,7 @@
+from django.conf import settings
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 from .models import JobRun
 from .models import JobTrigger
@@ -6,11 +9,29 @@ from .models import JobTrigger
 # Register your models here.
 
 
-class JobRunInlineAdmin(admin.StackedInline):
+def _link_related_models(related_models):
+    model = settings.AIRFLOW_JOB_RELATED_MODEL.lower().replace(".", "_")
+    links = []
+    for related_model in related_models:
+        change_url = reverse(f"admin:{model}_change", args=(related_model.pk,))
+        link_str = f'<a href="{change_url}">{related_model!s}</a>'
+        links.append(link_str)
+    return mark_safe(", ".join(links))  # noqa: S308
+
+
+def _abbrev_related_models(related_models):
+    if related_models.all().count() > 1:
+        return {str(related_models.first())} + "..."
+    if related_models.all().count() == 1:
+        return str(related_models.first())
+    return "-"
+
+
+class JobRunInlineAdmin(admin.TabularInline):
     model = JobRun
     extra = 0
     max_num = 0
-    fields = ("display_status", "related_model")
+    fields = ("dag_run_id", "logical_date", "display_status")
     readonly_fields = fields
 
 
@@ -21,16 +42,24 @@ class JobTriggerAdmin(admin.ModelAdmin):
             return obj.jobrun_set.all().first().display_status()
         return "No Job Run"
 
+    @admin.display(description="Related Models")
+    def abbrev_related_models(self, obj):
+        return _abbrev_related_models(obj.related_models)
+
+    @admin.display(description="Related Models")
+    def link_related_models(self, obj):
+        return _link_related_models(obj.related_models.all())
+
     list_display = (
         "__str__",
         "rest_api_status_code",
-        "related_model",
+        "abbrev_related_models",
         "job_run_status",
     )
     inlines = [JobRunInlineAdmin]
     readonly_fields = (
         "rest_api_status_code",
-        "related_model",
+        "link_related_models",
         "dag_id",
         "dag_run_id",
         "logical_date",
@@ -45,7 +74,7 @@ class JobTriggerAdmin(admin.ModelAdmin):
                 "fields": (
                     "dag_id",
                     "dag_run_conf",
-                    "related_model",
+                    "link_related_models",
                     "dag_run_airflow_url",
                 ),
             },
@@ -76,14 +105,22 @@ class JobRunAdmin(admin.ModelAdmin):
             return obj.job_trigger.rest_api_response
         return "-"
 
+    @admin.display(description="Related Models")
+    def abbrev_related_models(self, obj):
+        return _abbrev_related_models(obj.related_models)
+
+    @admin.display(description="Related Models")
+    def link_related_models(self, obj):
+        return _link_related_models(obj.related_models.all())
+
     list_display = (
         "__str__",
         "display_status",
-        "related_model",
+        "abbrev_related_models",
     )
     readonly_fields = (
         "rest_api_status_code",
-        "related_model",
+        "link_related_models",
         "dag_id",
         "dag_run_id",
         "logical_date",
@@ -100,7 +137,7 @@ class JobRunAdmin(admin.ModelAdmin):
                 "fields": (
                     "dag_id",
                     "dag_run_conf",
-                    "related_model",
+                    "link_related_models",
                     "dag_run_id",
                     "logical_date",
                     "dag_run_airflow_url",

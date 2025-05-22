@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 from cincoctrl.airflow_client.models import JobRun
 from cincoctrl.findingaids.models import ExpressRecord
@@ -17,9 +19,32 @@ class SupplementaryFileInline(admin.TabularInline):
 
 
 class JobRunInline(admin.TabularInline):
-    model = JobRun
+    def dag_run_id(self, obj):
+        change_url = reverse(
+            "admin:airflow_client_jobrun_change",
+            args=(obj.jobrun_id,),
+        )
+        link_str = f'<a href="{change_url}">{obj.jobrun.dag_run_id}</a>'
+        return mark_safe(link_str)  # noqa: S308
+
+    def display_status(self, obj):
+        return obj.jobrun.display_status()
+
+    def dag_run_conf(self, obj):
+        return obj.jobrun.dag_run_conf
+
+    def logical_date(self, obj):
+        return obj.jobrun.logical_date
+
+    def dag_id(self, obj):
+        return obj.jobrun.dag_id
+
+    def job_trigger(self, obj):
+        return obj.jobrun.job_trigger
+
+    model = JobRun.related_models.through
     extra = 0
-    raw_id_fields = ("related_model",)
+    max_num = 0
     fields = (
         "dag_run_id",
         "display_status",
