@@ -63,6 +63,11 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(
         self,
         arclight_command,
+        finding_aid_id=None,
+        s3_key=None,
+        repository_code=None,
+        finding_aid_ark=None,
+        preview=None,
         **kwargs,
     ):
         cluster_name = "cinco-stage"
@@ -72,16 +77,16 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         if arclight_command == "bin/index-from-s3":
             command = [
                 arclight_command,
-                kwargs["finding_aid_id"],
-                kwargs["s3_key"],
-                kwargs["repository_code"],
-                kwargs["finding_aid_ark"],
-                kwargs["preview"],
+                finding_aid_id,
+                s3_key,
+                repository_code,
+                finding_aid_ark,
+                preview,
             ]
         elif arclight_command == "bin/bulk-index-from-s3":
             command = [
                 arclight_command,
-                kwargs["s3_key"],
+                s3_key,
             ]
 
         args = {
@@ -128,6 +133,11 @@ class ArcLightDockerOperator(DockerOperator):
     def __init__(
         self,
         arclight_command,
+        finding_aid_id=None,
+        s3_key=None,
+        repository_code=None,
+        finding_aid_ark=None,
+        preview=None,
         **kwargs,
     ):
         mounts = [
@@ -145,16 +155,16 @@ class ArcLightDockerOperator(DockerOperator):
         if arclight_command == "index-from-s3":
             command = [
                 f"bin/{arclight_command}",
-                kwargs["finding_aid_id"],
-                kwargs["s3_key"],
-                kwargs["repository_code"],
-                kwargs["finding_aid_ark"],
-                kwargs["preview"],
+                finding_aid_id,
+                s3_key,
+                repository_code,
+                finding_aid_ark,
+                preview,
             ]
         elif arclight_command == "bulk-index-from-s3":
             command = [
                 arclight_command,
-                kwargs["s3_key"],
+                s3_key,
             ]
 
         args = {
