@@ -48,11 +48,16 @@ class Command(BaseCommand):
             type=str,
             help="s3 key location for storing the bundle",
         )
+        parser.add_argument(
+            "--force-publish",
+            action="store_true",
+        )
 
     def handle(self, *args, **kwargs):
-        s3_key = kwargs.get("s3-key")
+        s3_key = kwargs.get("s3_key")
         repository_id = kwargs.get("repository")
-        finding_aid_ids = kwargs.get("finding-aid-ids")
+        finding_aid_ids = kwargs.get("finding_aid_ids")
+        force_publish = kwargs.get("force_publish")
 
         if repository_id:
             finding_aids = FindingAid.objects.filter(repository_id=repository_id)
@@ -62,16 +67,16 @@ class Command(BaseCommand):
         self.stdout.write(
             f"Bulk indexing {finding_aids.count()} finding aids",
         )
-        bulk_index_finding_aids(finding_aids, s3_key)
+        bulk_index_finding_aids(finding_aids, force_publish, s3_key)
 
 
-def bulk_index_finding_aids(finding_aids: QuerySet, s3_key=None):
+def bulk_index_finding_aids(finding_aids: QuerySet, force_publish, s3_key=None):
     if not s3_key:
         now_str = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S")
         s3_key = f"indexing/bulk/{now_str}"
 
     for finding_aid in finding_aids:
-        finding_aid.queue_status()
+        finding_aid.queue_status(force_publish)
 
     if settings.ENABLE_AIRFLOW:
         logger.info("bulk indexing %s finding aids", finding_aids.count())
