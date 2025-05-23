@@ -18,7 +18,7 @@ parameters:
 
 sceptre_user_data:
   ApplicationType: internal
-  ContainerEntryPoint: "/docker-entrypoint.sh"
+  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
