@@ -36,7 +36,7 @@
     solr_leader.cinco-stage:8984/solr and solr_leader.cinco-prod:8984
     are the ECS Service Connect DNS names for the cinco solr leader containers
   -->
-  <str name="allowUrls">${solr.allowUrls:solr_leader.cinco-stage:8984/solr,solr_leader.cinco-prod:8984}</str>
+  <str name="allowUrls">${solr.allowUrls:solr_leader.cinco-stage:8984/solr,solr_leader.cinco-prod:8984,local_dev_solr_leader:8983}</str>
   <str name="hideStackTrace">${solr.hideStackTrace:false}</str>
 
   <solrcloud>
