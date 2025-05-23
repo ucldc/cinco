@@ -13,5 +13,8 @@ else
     echo "REPLICATION_ROLE env var not set; skipping configuration for solr index replication."
 fi
 
+# Run helper script to initialize an empty solr
+init-var-solr
+
 # create and start solr core
 exec solr-precreate arclight /opt/solr/server/solr/configsets/arclight
