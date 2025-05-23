@@ -1,0 +1,38 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-solr-follower-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerPort: 8983
+  ContainerCount: 1
+  HealthCheckPath: "/solr/#/"
+  ServiceTaskMaximumPercent: 200
+  ServiceTaskMinimumHealthyPercent: 100
+
+sceptre_user_data:
+  ApplicationType: internal
+  ContainerEntryPoint: "docker-entrypoint.sh"
+  ContainerCommand: [ "solr-foreground" ]
+  Volumes:
+    - Name: "cinco-solr-follower-efs-volume"
+      EFSVolumeConfiguration:
+        FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+        AuthorizationConfig:
+          AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId1
+          IAM: ENABLED
+        TransitEncryption: ENABLED
+  ContainerMountPoints:
+    - SourceVolume: "cinco-solr-follower-efs-volume"
+      ContainerPath: "/var/solr/follower"
+  TaskPolicies:
+    - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+  ContainerEnvironment:
+    - REPLICATION_ROLE: follower
+    - SOLR_LEADER_URL: !sub
+      - "http://{solr_url}/solr/{core_name}"
+      - solr_url: !stack_output stage/solr/solr.yaml::LoadBalancerDNS
+        core_name: arclight

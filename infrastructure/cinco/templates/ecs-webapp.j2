@@ -57,6 +57,21 @@ Parameters:
     Type: String
     Description: The security group for the RDS instance
     Default: ""
+  ServiceTaskMaximumPercent:
+    Description: An upper limit on the number of your service's tasks that are allowed in the RUNNING or PENDING
+      state during a deployment, as a percentage of the desiredCount
+    Type: Number
+    Default: 200
+  ServiceTaskMinimumHealthyPercent:
+    Description: a lower limit on the number of your service's tasks that must remain in the RUNNING state during a deployment,
+      as a percentage of the desiredCount
+    Type: Number
+    Default: 100
+  HealthCheckGracePeriodSeconds:
+    Description: The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing,
+      VPC Lattice, and container health checks after a task has first started.
+    Type: Number
+    Default: 0
 
 {# In addition to the CloudFormation Parameters listed above, this template
    also supports the following sceptre_user_data parameters:
@@ -169,6 +184,20 @@ Parameters:
         threshold: int - the 4xx threshold for the alarm
         period: int - the period for the alarm
         evaluation_periods: int - the number of periods to evaluate
+
+  ServiceConnectConfiguration:
+
+  ContainerPortName:
+    Description: task port name, needed for Service Connect configuration
+    Type: String
+    Default: ""
+    Required: false
+  ContainerPortAppProtocol:
+    Description: task port mapping app protocol, needed for Service Connect configuration
+    Type: String
+    Default: ""
+    Required: false
+
   #}
 
 Conditions:
@@ -274,6 +303,12 @@ Resources:
             - ContainerPort: !Ref ContainerPort
               HostPort: !Ref ContainerPort
               Protocol: tcp
+              {% if sceptre_user_data and sceptre_user_data.ContainerPortName is defined %}
+              Name: {{ sceptre_user_data.ContainerPortName }}
+              {% endif %}
+              {% if sceptre_user_data and sceptre_user_data.ContainerPortAppProtocol is defined %}
+              AppProtocol: {{ sceptre_user_data.ContainerPortAppProtocol }}
+              {% endif %}
           Essential: true
           {% if sceptre_user_data and sceptre_user_data.ContainerEntryPoint is defined %}
           EntryPoint: [ {{ sceptre_user_data.ContainerEntryPoint }} ]
@@ -418,6 +453,16 @@ Resources:
           FromPort: !Ref ContainerPort
           ToPort: !Ref ContainerPort
           SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
+        {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined %}
+        {% if sceptre_user_data.ServiceConnectConfiguration.Services[0]
+           and sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride is defined %}
+        - Description: Allow access on Service Connect IngressPortOverride
+          IpProtocol: tcp
+          FromPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
+          ToPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
+          SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
+        {% endif %}
+        {% endif %}
 
   DBInstanceSecurityGroupApplicationIngress:
     Type: "AWS::EC2::SecurityGroupIngress"
@@ -452,11 +497,16 @@ Resources:
       PlatformVersion: 'LATEST'
       EnableExecuteCommand: true
       DeploymentConfiguration:
-        MaximumPercent: 200
-        MinimumHealthyPercent: 100
+        MaximumPercent: !Ref ServiceTaskMaximumPercent
+        MinimumHealthyPercent: !Ref ServiceTaskMinimumHealthyPercent
         DeploymentCircuitBreaker:
           Enable: true
           Rollback: true
+      {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined %}
+      ServiceConnectConfiguration:
+        {{ sceptre_user_data.ServiceConnectConfiguration }}
+      {% endif %}
+      HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
     DependsOn: HttpListener
 
   LoadBalancer:

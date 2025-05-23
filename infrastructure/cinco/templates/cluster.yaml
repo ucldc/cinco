@@ -18,6 +18,8 @@ Resources:
       ClusterSettings:
         - Name: containerInsights
           Value: disabled
+      ServiceConnectDefaults:
+        Namespace: !Ref Namespace
 
 Outputs:
   ECSCluster:

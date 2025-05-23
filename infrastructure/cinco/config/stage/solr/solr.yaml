@@ -9,12 +9,16 @@ parameters:
   ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
-  HealthCheckPath: "/solr/#/"
+  HealthCheckPath: "/solr/arclight/admin/ping"
+  # old container must be stopped before new one is started,
+  # otherwise we get an error about index dir locking from Solr
+  ServiceTaskMaximumPercent: 100
+  ServiceTaskMinimumHealthyPercent: 0
+  HealthCheckGracePeriodSeconds: 300
 
 sceptre_user_data:
   ApplicationType: internal
-  ContainerEntryPoint: "docker-entrypoint.sh"
-  ContainerCommand: [ "solr-foreground" ]
+  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
@@ -28,6 +32,28 @@ sceptre_user_data:
       ContainerPath: "/var/solr"
   TaskPolicies:
     - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+  ContainerEnvironment:
+    - REPLICATION_ROLE: leader
+  ContainerPortName: solr
+  ContainerPortAppProtocol: http
+  ServiceConnectConfiguration:
+    Enabled: true
+    Services:
+      - PortName: solr
+        DiscoveryName: solr_leader
+        ClientAliases:
+          - Port: 8983
+            DnsName: solr_leader.cinco-stage
+        IngressPortOverride: 8984
+  # This healthcheck is a bit more specific than the target group healthcheck
+  # HealthCheck:
+  #   Command:
+  #     - "CMD-SHELL"
+  #     - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1" # TODO check that all cores are healthy
+  #   StartPeriod: 15
+  #   Interval: 10
+  #   Timeout: 5
+  #   Retries: 3
   # HttpAccessList:
   #   - !stack_output stage/cincoctrl/app.yaml::ServiceSecurityGroup
   #   # - !stack_output stage/arclight/app.yaml::ServiceSecurityGroup
