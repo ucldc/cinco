@@ -21,7 +21,7 @@ def _link_related_models(related_models):
 
 def _abbrev_related_models(related_models):
     if related_models.all().count() > 1:
-        return {str(related_models.first())} + "..."
+        return str(related_models.first()) + "..."
     if related_models.all().count() == 1:
         return str(related_models.first())
     return "-"
