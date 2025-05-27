@@ -15,8 +15,8 @@ class Command(BaseCommand):
         parser.add_argument("--s3-key", type=str)
 
     def handle(self, *args, **kwargs):
-        finding_aid_id = kwargs["finding-aid-id"]
-        s3_key = kwargs["s3-key"]
+        finding_aid_id = kwargs["finding_aid_id"]
+        s3_key = kwargs["s3_key"]
         try:
             finding_aid = FindingAid.objects.get(pk=finding_aid_id)
         except FindingAid.DoesNotExist:
