@@ -69,7 +69,7 @@
               {% endif %}
               {% if object.status == 'previewed' or object.status == 'published' or object.status == 'publish_error' %}
               <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish to OAC</a>
-              {% endif %}        
+              {% endif %}
         {% if object.status == 'previewed' %}
         <p>
           <div class="alert alert-success" role="alert">
