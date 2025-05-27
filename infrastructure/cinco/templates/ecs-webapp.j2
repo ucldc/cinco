@@ -185,8 +185,12 @@ Parameters:
         period: int - the period for the alarm
         evaluation_periods: int - the number of periods to evaluate
 
-  ServiceConnectConfiguration:
+  AdditionalServiceSecurityGroupIngressRules:
 
+  LoadBalancer:
+
+  ServiceConnectConfiguration:
+    #Description
   ContainerPortName:
     Description: task port name, needed for Service Connect configuration
     Type: String
@@ -361,6 +365,7 @@ Resources:
       Cpu: !Ref Cpu
       Memory: !Ref Memory
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -385,6 +390,7 @@ Resources:
           ToPort: 80
           CidrIp: "0.0.0.0/0"
       {% endif %}
+  {% endif %}
 
   {% if sceptre_user_data and sceptre_user_data.GrantHttpAccessFromThisServiceTo is defined %}
   {% for grantor in sceptre_user_data.GrantHttpAccessFromThisServiceTo %}
@@ -407,7 +413,11 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
+      {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+      GroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+      {% else %}
       GroupId: !Ref LoadBalancerSecurityGroup
+      {% endif %}
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -419,7 +429,11 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
+      {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+      GroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+      {% else %}
       GroupId: !Ref LoadBalancerSecurityGroup
+      {% endif %}
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -452,15 +466,24 @@ Resources:
           IpProtocol: tcp
           FromPort: !Ref ContainerPort
           ToPort: !Ref ContainerPort
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          SourceSecurityGroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+          {% else %}
           SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
-        {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined %}
+          {% endif %}
+        {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined
+          and sceptre_user_data.ServiceConnectConfiguration.Services is defined %}
         {% if sceptre_user_data.ServiceConnectConfiguration.Services[0]
            and sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride is defined %}
         - Description: Allow access on Service Connect IngressPortOverride
           IpProtocol: tcp
           FromPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
           ToPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          SourceSecurityGroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+          {% else %}
           SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
+          {% endif %}
         {% endif %}
         {% endif %}
         {% if sceptre_user_data and sceptre_user_data.AdditionalServiceSecurityGroupIngressRules is defined %}
@@ -496,7 +519,11 @@ Resources:
         - ContainerName: !Sub ${Namespace}-container
           ContainerPort: !Ref ContainerPort
           LoadBalancerName: !Ref AWS::NoValue
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          TargetGroupArn: {{ sceptre_user_data.LoadBalancer.TargetGroup }}
+          {% else %}
           TargetGroupArn: !Ref TargetGroup
+          {% endif %}
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
@@ -516,8 +543,11 @@ Resources:
         {{ sceptre_user_data.ServiceConnectConfiguration }}
       {% endif %}
       HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
+    {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
     DependsOn: HttpListener
+    {% endif %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
@@ -567,6 +597,7 @@ Resources:
       Certificates:
         - CertificateArn: !Ref SSLCertArn
       SslPolicy: ELBSecurityPolicy-2016-08
+  {% endif %}
 
   {% with sceptre_user_data=sceptre_user_data|default({}) %}
   {% with alarm_config=sceptre_user_data.alarm_config|default({}) %}
@@ -633,6 +664,7 @@ Resources:
           Value: !If [CreateCluster, !Ref ECSCluster, !Ref ClusterName]
   {% endwith %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   {% with fivexx_alarm=alarm_config.fivexx|default({}) %}
   CloudWatchALB5xxAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -663,7 +695,9 @@ Resources:
         - Name: LoadBalancer
           Value: !GetAtt LoadBalancer.LoadBalancerFullName
   {% endwith %}
+  {% endif %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   {% if alarm_config.fourxx is defined %}
   CloudWatchALB4xxAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -694,6 +728,7 @@ Resources:
         - Name: LoadBalancer
           Value: !GetAtt LoadBalancer.LoadBalancerFullName
   {% endif %}
+  {% endif %}
 
   {% endwith %}
   {% endwith %}
@@ -707,9 +742,11 @@ Outputs:
     Description: The ECS Task Definition
     Value: !Ref TaskDefinition
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancerSecurityGroup:
     Description: The Security Group
     Value: !GetAtt LoadBalancerSecurityGroup.GroupId
+  {% endif %}
 
   ServiceSecurityGroup:
     Description: The Service Security Group
@@ -719,6 +756,7 @@ Outputs:
     Description: The ECS Service
     Value: !Ref ECSService
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancer:
     Description: The Load Balancer
     Value: !Ref LoadBalancer
@@ -727,6 +765,10 @@ Outputs:
     Description: The DNS Name of the Load Balancer
     Value: !GetAtt LoadBalancer.DNSName
 
+  LoadBalancerFullName:
+    Description: The full name of the Load Balancer
+    Value: !GetAtt LoadBalancer.LoadBalancerFullName
+
   HttpListener:
     Description: The Http Listener
     Value: !Ref HttpListener
@@ -734,6 +776,11 @@ Outputs:
   TargetGroup:
     Description: The Target Group
     Value: !Ref TargetGroup
+
+  TargetGroupFullName:
+    Description: The Target Group
+    Value: !GetAtt TargetGroup.TargetGroupFullName
+  {% endif %}
 
   TaskRole:
     Description: The Task Role - attach policies to this role to grant permissions to task containers
