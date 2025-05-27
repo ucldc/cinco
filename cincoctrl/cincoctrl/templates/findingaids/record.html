@@ -9,19 +9,19 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>{{ object.collection_title }}</h2>
-        <h3>{{ object.record_type_label }} status report</h3>
+        <h1>{{ object.collection_title }}</h1>
+        <h2>{{ object.record_type_label }} Status Report</h2>
         <div class="card">
           <div class="card-body">
-            <div>Collection Title: {{ object.collection_title }}</div>
-            <div>Collection Number: {{ object.collection_number }}</div>
-            <div>Ark: {{ object.ark }}</div>
-            <div>Repository: {{ object.repository }}</div>
-            <div>Created By: {{ object.created_by }}</div>
-            <div>Record type: {{ object.record_type }}</div>
-            <div>Status: {{ object.status }}</div>
-            <div>Date created: {{ object.date_created }}</div>
-            <div>Date updated: {{ object.date_updated }}</div>
+            <div><b>Collection Title:</b> {{ object.collection_title }}</div>
+            <div><b>Collection Number:</b> {{ object.collection_number }}</div>
+            <div><b>ARK:</b> {{ object.ark }}</div>
+            <div><b>Repository:</b> {{ object.repository }}</div>
+            <div><b>Created By:</b> {{ object.created_by }}</div>
+            <div><b>Record Type:</b> {{ object.record_type }}</div>
+            <div><b>Status:</b> {{ object.status }}</div>
+            <div><b>Date Created:</b> {{ object.date_created }}</div>
+            <div><b>Date Updated:</b> {{ object.date_updated }}</div>
             {% if object.validationwarning_set.exists %}
             <hr>
             <div class="alert alert-warning" role="alert">
@@ -34,7 +34,7 @@
           </div>
         </div>
         {% if object.supplementaryfile_set.exists %}
-          <h3>Supplementary files</h3>
+          <h3>Supplementary PDF Files</h3>
           <ul>
             {% for f in object.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
@@ -53,22 +53,7 @@
           </div>
         </p>
         {% endif %}
-        {% if object.status == 'previewed' %}
-        <p>
-          <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Preview successful</h4>
-            <p><a href="{{ object.public_url }}" class="btn btn-success">View Preview</a></p>
-          </div>
-        </p>
-        {% elif object.status == 'published' %}
-        <p>
-          <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Publication successful</h4>
-            <p><a href="{{ object.public_url }}" class="btn btn-success">View in OAC</a></p>
-          </div>
-        </p>
-        {% endif %}
-        <p>
+       <p>
           <h3>Manage Submission</h3>
           <div class="card">
             <div class="card-body">
@@ -77,14 +62,31 @@
               <a href="{% url 'findingaids:update_record_express' object.pk %}" class="btn btn-primary">Edit Record</a>
               <a href="{% url 'findingaids:view_record_express_xml' object.expressrecord.pk %}" class="btn btn-primary">Download XML</a>
               {% else %}
-              <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update</a>
+              <a href="{% url 'findingaids:update_ead' object.pk %}" class="btn btn-primary">Update EAD</a>
               {% endif %}
               {% if object.status == 'started' or object.status == 'previewed' or object.status == 'preview_error' %}
-              <a href="{% url 'findingaids:preview_record' object.pk %}" class="btn btn-primary">Preview</a>
+              <a href="{% url 'findingaids:preview_record' object.pk %}" class="btn btn-primary">Generate Preview</a>
               {% endif %}
               {% if object.status == 'previewed' or object.status == 'published' or object.status == 'publish_error' %}
-              <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish</a>
-              {% endif %}
+              <a href="{% url 'findingaids:publish_record' object.pk %}" class="btn btn-primary">Publish to OAC</a>
+              {% endif %}        
+        {% if object.status == 'previewed' %}
+        <p>
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Preview Status: Successful</h4>
+            <p>This collection guide can be previewed. This collection is not published in OAC.</p>
+            <p><a href="{{ object.public_url }}" class="btn btn-success">View Preview</a></p>
+          </div>
+        </p>
+        {% elif object.status == 'published' %}
+        <p>
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Publication Status: Successful</h4>
+            <p>This collection guide has been indexed and is now published in OAC.</p>
+            <p><a href="{{ object.public_url }}" class="btn btn-success">View in OAC</a></p>
+          </div>
+        </p>
+        {% endif %}
             </div>
           </div>
         </p>
