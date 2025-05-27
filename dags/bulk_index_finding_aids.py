@@ -1,3 +1,13 @@
+"""
+The bulk_index_finding_aids dag only has 2 tasks - the arclight indexing
+task and the s3 cleanup task. For the arclight indexing task, I was
+unable to take the approach where we pass multiple finding aids to the
+same traject command, since there are other variables required
+(repository id, ark, preview flag). Instead, I wrote a new script that
+iterates through all the finding-aid-supplemental-file-indexing-env-bundles
+in a given bulk job, and runs the traject command for each one.
+"""
+
 import boto3
 from datetime import datetime
 from airflow.decorators import dag, task
