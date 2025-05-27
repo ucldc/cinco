@@ -9,30 +9,30 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>{{ object.collection_title }}</h2>
-        <h3>RecordEXPRESS status report</h3>
+        <h1>{{ object.collection_title }}</h1>
+        <h2>RecordEXPRESS Status Report</h2>
         <ul>
-          <li>Collection Title: {{ object.collection_title }}</li>
-          <li>Collection Number: {{ object.collection_number }}</li>
-          <li>Title Filing: {{ object.expressrecord.title_filing }}</li>
-          <li>Date: {{ object.expressrecord.date }}</li>
-          <li>Start year: {{ object.expressrecord.start_year }}</li>
-          <li>End year: {{ object.expressrecord.end_year }}</li>
-          <li>Extent: {{ object.extent }}</li>
-          <li>Language: {{ object.language }}</li>
-          <li>Access Conditions: {{ object.accessrestrict }}</li>
-          <li>Publication Rights: {{ object.userestrict }}</li>
-          <li>Preferred Citation: {{ object.preferred_citation }}</li>
-          <li>Acquisition Information: {{ object.acqinfo }}</li>
-          <li>Scope and Content of Collection: {{ object.scopecontent }}</li>
-          <li>Biography/Administrative History: {{ object.bioghist }}</li>
-          <li>Ark: {{ object.finding_aid.ark }}</li>
-          <li>Repository: {{ object.finding_aid.repository }}</li>
-          <li>Created By: {{ object.finding_aid.created_by }}</li>
-          <li>Record type: {{ object.finding_aid.record_type }}</li>
-          <li>Status: {{ object.finding_aid.status }}</li>
-          <li>Date created: {{ object.finding_aid.date_created }}</li>
-          <li>Date updated: {{ object.finding_aid.date_updated }}</li>
+          <li><b>Collection Title:</b> {{ object.collection_title }}</li>
+          <li><b>Collection Number:</b> {{ object.collection_number }}</li>
+          <li><b>Title Filing:</b> {{ object.expressrecord.title_filing }}</li>
+          <li><b>Date:</b> {{ object.expressrecord.date }}</li>
+          <li><b>Start Year:</b> {{ object.expressrecord.start_year }}</li>
+          <li><b>End Year:</b> {{ object.expressrecord.end_year }}</li>
+          <li><b>Extent:</b> {{ object.extent }}</li>
+          <li><b>Language:</b> {{ object.language }}</li>
+          <li><b>Access Conditions:</b> {{ object.accessrestrict }}</li>
+          <li><b>Publication Rights:</b> {{ object.userestrict }}</li>
+          <li><b>Preferred Citation:</b> {{ object.preferred_citation }}</li>
+          <li><b>Acquisition Information:</b> {{ object.acqinfo }}</li>
+          <li><b>Scope and Content of Collection:</b> {{ object.scopecontent }}</li>
+          <li><b>Biography/Administrative History:</b> {{ object.bioghist }}</li>
+          <li><b>ARK:</b> {{ object.finding_aid.ark }}</li>
+          <li><b>Repository:</b> {{ object.finding_aid.repository }}</li>
+          <li><b>Created By:</b> {{ object.finding_aid.created_by }}</li>
+          <li><b>Record type:</b> {{ object.finding_aid.record_type }}</li>
+          <li><b>Status:</b> {{ object.finding_aid.status }}</li>
+          <li><b>Date Created:</b> {{ object.finding_aid.date_created }}</li>
+          <li><b>Date Updated:</b> {{ object.finding_aid.date_updated }}</li>
         </ul>
         {% if object.expressrecordcreator_set.exists %}
           <h3>Creators</h3>
@@ -53,7 +53,7 @@
           </ul>
         {% endif %}
         {% if object.findingaid.supplementaryfile_set.exists %}
-          <h3>Supplementary Files</h3>
+          <h3>Supplementary PDF Files</h3>
           <ul>
             {% for f in object.findingaid.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
