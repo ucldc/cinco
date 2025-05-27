@@ -9,7 +9,7 @@ parameters:
   ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
-  HealthCheckPath: "/solr/#/"
+  HealthCheckPath: "/solr/arclight/admin/ping"
   ServiceTaskMaximumPercent: 100
   ServiceTaskMinimumHealthyPercent: 0
   HealthCheckGracePeriodSeconds: 300
