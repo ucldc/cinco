@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <h1>{{ verb }} RecordEXPRESS</h1>
-        <p>Add a RecordEXPRESS collection record to the Online Archive of California. If you need to update or replace an existing collection guide, please go to the "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page.</p>
+        <p>{{ verb }} a RecordEXPRESS collection record in the Online Archive of California.</p>
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% include 'findingaids/includes/express_form.html' %}
