@@ -12,10 +12,8 @@ class Command(BaseCommand):
     help = "Poll Airflow API for Dag Run Status Changes."
 
     def handle(self, *args, **kwargs):
-        triggers = (
-            JobTrigger.objects.filter(dag_run_id__isnull=False).exclude(
-                Q(jobrun__status=JobRun.SUCCEEDED) | Q(jobrun__status=JobRun.FAILED),
-            ),
+        triggers = JobTrigger.objects.filter(dag_run_id__isnull=False).exclude(
+            Q(jobrun__status=JobRun.SUCCEEDED) | Q(jobrun__status=JobRun.FAILED),
         )
         runs = JobRun.objects.exclude(status=JobRun.SUCCEEDED).exclude(
             status=JobRun.FAILED,
