@@ -46,10 +46,14 @@ sceptre_user_data:
             DnsName: solr_leader.cinco-stage
         IngressPortOverride: 8984
   AdditionalServiceSecurityGroupIngressRules:
-    - description: Allow access from solr-follower-1 containers
+    - description: Allow access from solr-follower-1 container
       from_port: 8984
       to_port: 8984
       security_group_id: !stack_output stage/solr/solr-follower-1.yaml::ServiceSecurityGroup
+    - description: Allow access from solr-follower-2 container
+      from_port: 8984
+      to_port: 8984
+      security_group_id: !stack_output stage/solr/solr-follower-2.yaml::ServiceSecurityGroup
   # This healthcheck is a bit more specific than the target group healthcheck
   # HealthCheck:
   #   Command:

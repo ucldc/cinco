@@ -40,8 +40,8 @@ sceptre_user_data:
     Enabled: true
     Services:
       - PortName: solr
-        DiscoveryName: solr_follower
+        DiscoveryName: solr_follower_1
         ClientAliases:
           - Port: 8983
-            DnsName: solr_follower.cinco-stage
+            DnsName: solr_follower_1.cinco-stage
         IngressPortOverride: 8984

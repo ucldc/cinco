@@ -1,0 +1,52 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-solr-follower-2-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerPort: 8983
+  ContainerCount: 1
+  HealthCheckPath: "/solr/arclight/admin/ping"
+  ServiceTaskMaximumPercent: 100
+  ServiceTaskMinimumHealthyPercent: 0
+  HealthCheckGracePeriodSeconds: 300
+
+sceptre_user_data:
+  ApplicationType: internal
+  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
+  Volumes:
+  - Name: "cinco-solr-follower-2-efs-volume"
+    EFSVolumeConfiguration:
+      FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+      AuthorizationConfig:
+        AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId2
+        IAM: ENABLED
+      TransitEncryption: ENABLED
+  ContainerMountPoints:
+  - SourceVolume: "cinco-solr-follower-2-efs-volume"
+    ContainerPath: "/var/solr"
+  TaskPolicies:
+  - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+  ContainerEnvironment:
+  - REPLICATION_ROLE: follower
+  - SOLR_LEADER_URL: http://solr_leader.cinco-stage:8983/solr/arclight/replication
+  ContainerPortName: solr
+  ContainerPortAppProtocol: http
+  ServiceConnectConfiguration:
+    Enabled: true
+    Services:
+    - PortName: solr
+      DiscoveryName: solr_follower_2
+      ClientAliases:
+      - Port: 8983
+        DnsName: solr_follower_2.cinco-stage
+      IngressPortOverride: 8984
+  LoadBalancer:
+    LoadBalancer: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancer
+    LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
+    TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
+    TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
+    LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
