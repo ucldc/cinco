@@ -10,29 +10,38 @@ parameters:
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/#/"
-  ServiceTaskMaximumPercent: 200
-  ServiceTaskMinimumHealthyPercent: 100
+  ServiceTaskMaximumPercent: 100
+  ServiceTaskMinimumHealthyPercent: 0
+  HealthCheckGracePeriodSeconds: 300
 
 sceptre_user_data:
   ApplicationType: internal
-  ContainerEntryPoint: "docker-entrypoint.sh"
-  ContainerCommand: [ "solr-foreground" ]
-  Volumes:
-    - Name: "cinco-solr-follower-efs-volume"
-      EFSVolumeConfiguration:
-        FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
-        AuthorizationConfig:
-          AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId1
-          IAM: ENABLED
-        TransitEncryption: ENABLED
-  ContainerMountPoints:
-    - SourceVolume: "cinco-solr-follower-efs-volume"
-      ContainerPath: "/var/solr/follower"
+  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
+  #ContainerEntryPoint: '"tail", "-f", "/dev/null"'
+  # Volumes:
+  #   - Name: "cinco-solr-follower-efs-volume"
+  #     EFSVolumeConfiguration:
+  #       FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+  #       AuthorizationConfig:
+  #         AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId1
+  #         IAM: ENABLED
+  #       TransitEncryption: ENABLED
+  # ContainerMountPoints:
+  #   - SourceVolume: "cinco-solr-follower-efs-volume"
+  #     ContainerPath: "/var/solr"
   TaskPolicies:
     - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
   ContainerEnvironment:
     - REPLICATION_ROLE: follower
-    - SOLR_LEADER_URL: !sub
-      - "http://{solr_url}/solr/{core_name}"
-      - solr_url: !stack_output stage/solr/solr.yaml::LoadBalancerDNS
-        core_name: arclight
+    - SOLR_LEADER_URL: http://solr_leader.cinco-stage:8983/solr/arclight/replication
+  ContainerPortName: solr
+  ContainerPortAppProtocol: http
+  ServiceConnectConfiguration:
+    Enabled: true
+    Services:
+      - PortName: solr
+        DiscoveryName: solr_follower
+        ClientAliases:
+          - Port: 8983
+            DnsName: solr_follower.cinco-stage
+        IngressPortOverride: 8984
