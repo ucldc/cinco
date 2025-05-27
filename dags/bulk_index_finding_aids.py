@@ -43,10 +43,14 @@ def bulk_index_finding_aids():
     )
 
     @task()
-    def cleanup_s3():
+    def cleanup_s3(params=None):
         s3 = boto3.resource("s3")
-        bucket = s3.Bucket(Variable.get("CINCO_S3_BUCKET"))
-        bucket.objects.filter(Prefix="media/{{ params.s3_key }}").delete()
+        bucket_name = Variable.get("CINCO_S3_BUCKET")
+        prefix = f"media/{params.get('s3_key')}"
+        print(f"Deleting objects in {bucket_name} at {prefix}")
+        bucket = s3.Bucket(bucket_name)
+        delete_results = bucket.objects.filter(Prefix=prefix).delete()
+        print(delete_results)
 
     bulk_index_task >> cleanup_s3()
 
