@@ -74,6 +74,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         task_name = "cinco-arclight-stage"
         container_name = "cinco-arclight-stage-container"
 
+        command = []
         if arclight_command == "bin/index-from-s3":
             command = [
                 arclight_command,
@@ -152,6 +153,7 @@ class ArcLightDockerOperator(DockerOperator):
         container_version = "latest"
         container_name = "cinco-arclight-stage-container"
 
+        command = []
         if arclight_command == "index-from-s3":
             command = [
                 f"bin/{arclight_command}",
