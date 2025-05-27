@@ -64,12 +64,12 @@ def index_finding_aid():
     )
 
     @task()
-    def cleanup_s3():
+    def cleanup_s3(s3_key):
         s3 = boto3.resource("s3")
         bucket = s3.Bucket(Variable.get("CINCO_S3_BUCKET"))
         bucket.objects.filter(Prefix=f"media/{s3_key}").delete()
 
-    s3_key >> prepare_finding_aid >> index_finding_aid_task >> cleanup_s3()
+    s3_key >> prepare_finding_aid >> index_finding_aid_task >> cleanup_s3(s3_key)
 
 
 index_finding_aid = index_finding_aid()
