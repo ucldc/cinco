@@ -98,7 +98,7 @@ def bulk_index_finding_aids(finding_aids: QuerySet, force_publish, s3_key=None):
         s3_key = f"indexing/bulk/{now_str}"
 
     for finding_aid in finding_aids:
-        finding_aid.queue_status(force_publish)
+        finding_aid.queue_status(force_publish=force_publish)
 
     if settings.ENABLE_AIRFLOW:
         logger.info("bulk indexing %s finding aids", finding_aids.count())
