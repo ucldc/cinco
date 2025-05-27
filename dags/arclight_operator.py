@@ -75,18 +75,18 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         container_name = "cinco-arclight-stage-container"
 
         command = []
-        if arclight_command == "bin/index-from-s3":
+        if arclight_command == "index-from-s3":
             command = [
-                arclight_command,
+                f"bin/{arclight_command}",
                 finding_aid_id,
                 s3_key,
                 repository_code,
                 finding_aid_ark,
                 preview,
             ]
-        elif arclight_command == "bin/bulk-index-from-s3":
+        elif arclight_command == "bulk-index-from-s3":
             command = [
-                arclight_command,
+                f"bin/{arclight_command}",
                 s3_key,
             ]
 
@@ -165,7 +165,7 @@ class ArcLightDockerOperator(DockerOperator):
             ]
         elif arclight_command == "bulk-index-from-s3":
             command = [
-                arclight_command,
+                f"bin/{arclight_command}",
                 s3_key,
             ]
 
