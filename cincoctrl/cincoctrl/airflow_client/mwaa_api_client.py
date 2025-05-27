@@ -39,7 +39,9 @@ def trigger_dag(dag, dag_conf, client, related_models=None, dag_run_prefix=None)
         "Method": "POST",
         "Body": {
             "conf": dag_conf,
-            "note": (f"Triggered using InvokeRestApi from {settings.PROJECT_NAME}"),
+            "note": (
+                f"Triggered using InvokeRestApi from {settings.AIRFLOW_PROJECT_NAME}"
+            ),
         },
     }
     if dag_run_prefix:
