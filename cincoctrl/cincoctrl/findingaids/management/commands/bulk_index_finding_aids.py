@@ -1,3 +1,26 @@
+"""
+To kick off a bulk indexing job, run:
+    python manage.py bulk_index_finding_aids
+
+Arguments:
+--finding-aid-ids: a list of finding aid ids to index. one of
+    either --finding-aid-ids or --repository-id is required
+--repository-id: will index all finding aids related to this
+    repository, either this, or a list of finding aid ids is required
+--s3-key: [optional] s3 key to customize where the job's working
+    files are stored, will use {settings.AWS_STORAGE_BUCKET_NAME}/media/
+    (defined in django settings), followed by {s3_key}, by default:
+    {AWS_STORAGE_BUCKET_NAME}/media/indexing/bulk/{now}
+--force-publish: [optional] if True, will force publish all finding aids,
+    default is False.
+
+Constructs a queryset from the list of ids or the repository id, sets
+the status field on each finding aid, creates the
+finding-aid-supplemental-file-indexing-env-bundle for each finding aid,
+and triggers the bulk_index_finding_aids dag with the s3 prefix of the
+job's working files as the argument.
+"""
+
 import logging
 from datetime import UTC
 from datetime import datetime
@@ -44,7 +67,6 @@ class Command(BaseCommand):
             "-s3",
             "--s3-key",
             nargs=1,
-            required=True,
             type=str,
             help="s3 key location for storing the bundle",
         )
