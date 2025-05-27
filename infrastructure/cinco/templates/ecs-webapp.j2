@@ -88,7 +88,7 @@ Parameters:
     Type: CommaDelimitedList
     Description: The entry point for the container
     Required: false - if not provided, no entry point will be set
-    Example: 'sh,-c'
+    Example: '"sh", "-c"'
 
   ContainerCommand:
     Type: CommaDelimitedList
@@ -462,6 +462,15 @@ Resources:
           ToPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
           SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
         {% endif %}
+        {% endif %}
+        {% if sceptre_user_data and sceptre_user_data.AdditionalServiceSecurityGroupIngressRules is defined %}
+        {% for ingress_rule in sceptre_user_data.AdditionalServiceSecurityGroupIngressRules %}
+        - Description: {{ ingress_rule.description }}
+          IpProtocol: tcp
+          FromPort: {{ ingress_rule.from_port }}
+          ToPort: {{ ingress_rule.to_port }}
+          SourceSecurityGroupId: {{ ingress_rule.security_group_id }}
+        {% endfor %}
         {% endif %}
 
   DBInstanceSecurityGroupApplicationIngress:
