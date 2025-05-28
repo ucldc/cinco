@@ -77,18 +77,19 @@ def update_status(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=JobRun)
 def remove_old_job_runs(sender, instance, created, **kwargs):
-    # Find most recent successful job run for the same finding aid
-    recent_success = (
-        JobRun.objects.filter(
-            related_models=instance.related_model,
-            status=JobRun.SUCCEEDED,
+    for related_model in instance.related_models:
+        # Find most recent successful job run for the same finding aid
+        recent_success = (
+            JobRun.objects.filter(
+                related_models__id=related_model.id,
+                status=JobRun.SUCCEEDED,
+            )
+            .order_by("-logical_date")
+            .first()
         )
-        .order_by("-logical_date")
-        .first()
-    )
 
-    # Remove older job runs for the same finding aid
-    JobRun.objects.filter(
-        related_models=instance.related_model,
-        logical_date__lt=recent_success.logical_date,
-    ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()
+        # Remove older job runs for the same finding aid
+        JobRun.objects.filter(
+            related_models__id=related_model.id,
+            logical_date__lt=recent_success.logical_date,
+        ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()
