@@ -89,10 +89,19 @@ class Command(BaseCommand):
         self.stdout.write(
             f"Bulk indexing {finding_aids.count()} finding aids",
         )
-        bulk_index_finding_aids(finding_aids, force_publish, s3_key)
+        bulk_index_finding_aids(
+            finding_aids,
+            force_publish=force_publish,
+            s3_key=s3_key,
+        )
 
 
-def bulk_index_finding_aids(finding_aids: QuerySet, force_publish, s3_key=None):
+def bulk_index_finding_aids(
+    finding_aids: QuerySet,
+    *,
+    force_publish: bool = False,
+    s3_key: str | None = None,
+):
     if not s3_key:
         now_str = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S")
         s3_key = f"indexing/bulk/{now_str}"
@@ -103,9 +112,10 @@ def bulk_index_finding_aids(finding_aids: QuerySet, force_publish, s3_key=None):
     if settings.ENABLE_AIRFLOW:
         logger.info("bulk indexing %s finding aids", finding_aids.count())
         bulk_prep_finding_aids(finding_aids, s3_key)
-        trigger_dag(
+        return trigger_dag(
             "bulk_index_finding_aids",
             {"s3_key": s3_key},
             related_models=finding_aids,
             dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
         )
+    return "Airflow not enabled"
