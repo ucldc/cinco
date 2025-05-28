@@ -350,6 +350,10 @@ Resources:
           {% if sceptre_user_data and sceptre_user_data.ContainerMountPoints is defined %}
           MountPoints: {{ sceptre_user_data.ContainerMountPoints }}
           {% endif %}
+          {% if sceptre_user_data and sceptre_user_data.ContainerHealthCheck is defined %}
+          HealthCheck:
+            {{ sceptre_user_data.ContainerHealthCheck }}
+          {% endif %}
       {% if sceptre_user_data and sceptre_user_data.Volumes is defined %}
       Volumes: {{ sceptre_user_data.Volumes }}
       {% endif %}

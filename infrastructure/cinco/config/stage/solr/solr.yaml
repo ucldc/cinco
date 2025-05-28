@@ -54,15 +54,14 @@ sceptre_user_data:
       from_port: 8984
       to_port: 8984
       security_group_id: !stack_output stage/solr/solr-follower-2.yaml::ServiceSecurityGroup
-  # This healthcheck is a bit more specific than the target group healthcheck
-  # HealthCheck:
-  #   Command:
-  #     - "CMD-SHELL"
-  #     - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1" # TODO check that all cores are healthy
-  #   StartPeriod: 15
-  #   Interval: 10
-  #   Timeout: 5
-  #   Retries: 3
+  ContainerHealthCheck: |-
+    Command:
+                  - "CMD-SHELL"
+                  - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1"
+                StartPeriod: 15
+                Interval: 10
+                Timeout: 5
+                Retries: 3
   # HttpAccessList:
   #   - !stack_output stage/cincoctrl/app.yaml::ServiceSecurityGroup
   #   # - !stack_output stage/arclight/app.yaml::ServiceSecurityGroup
