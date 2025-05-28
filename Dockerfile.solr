@@ -3,6 +3,7 @@ FROM public.ecr.aws/docker/library/solr:9.6.1
 USER root
 RUN apt-get update && \
   apt-get -y install --no-install-recommends \
+  jq \
   python3 \
   python3-pip
 
