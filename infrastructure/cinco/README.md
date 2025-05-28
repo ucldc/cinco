@@ -59,3 +59,41 @@ sceptre --debug delete ctrl/ctrl.yaml
 Templates are in `infrastructure/cinco/templates` directory. The ecs-webapp.j2 template is diagramed here:
 
 ![Infrastructure Diagram for ecs-webapp template](infrastructure/cinco/ecs-webapp-template.png)
+
+### Notes on Solr setup
+
+Using Solr standalone instead of Solr Cloud saves us the hassle of running ZooKeeper; however, the fact that Solr standalone is designed to be deployed as a pet rather than as cattle makes makes deployment in ECS a bit of a hassle. The big gotcha with running Solr standalone: spinning up a 2nd instance of the same index that writes to the same disk as the 1st will cause Solr to throw an index directory locking error. *A given Solr ECS service can run one and only one copy of the ECS task at a time.* This means that we cannot do blue-green/rolling deploys, and instead must always stop the existing container before starting a new one; replacing a Solr application/container version will always cause downtime.
+
+#### Index Replication
+
+We are using Solr [index replication](https://solr.apache.org/guide/solr/latest/deployment-guide/user-managed-index-replication.html).
+
+We currently have 3 solr services running, e.g. in stage:
+
+- cinco-solr-stage-service - the solr leader instance
+- cinco-solr-follower-stage-1-service - the first follower instance
+- cinco-solr-follower-stage-2-service - the second follower instance
+
+The leader instance functions as the "writer" instance. Indexing work is done here. The follower instances are configured to be kept in sync with the leader, and they function as "reader" instances. The arclight application gets its data from the followers. The only difference between the first and second follower containers is that they write their data to different disk spaces.
+
+The solr containers are configured as leader or follower (or neither) on startup via the `solr-replication-config.py` script. This is run as part of the docker entrypoint script: `cinco-docker-entrypoint.sh`.
+
+#### Configuring allowUrls
+
+When using index replication, Solr requires that you either add the leader URL to `allowUrls` in `solr.xml`, or set `-Dsolr.disable.allowUrls=true` to disable URL allow-list checks.
+
+The first option ended up being the least onerous. The modified `solr.xml` file is copied into the Docker image during build (see `Dockerfile.solr`).
+
+We are using ECS ServiceConnect for communication between the leader and follower containers, which gives us a stable leader URL.
+
+#### Updating Solr
+
+We have deployed each of the 2 solr follower containers to its own ECS service. This allows us to update them individually and avoid both being down at the same time. TODO: automate this using CodePipeline.
+
+Unfortunately, there can by definition be only one Solr leader. This means that any updates necessitating task replacement will cause downtime.
+
+#### Load balancers
+
+The 2 follower containers are targets of the same target group on the same load balancer. This load balancer is created as part of the `cinco-stage-solr-solr-follower-1` CloudFormation stack. Its details are then passed in to the `solr-follower-2` template as parameters. Somewhat unintuitively, then, the `cinco-solr-follower-1-stage-alb` alb serves as the load balancer for both followers.
+
+The solr leader is fronted by its own load balancer.

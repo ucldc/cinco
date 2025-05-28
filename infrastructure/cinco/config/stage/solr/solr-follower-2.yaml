@@ -45,8 +45,9 @@ sceptre_user_data:
       ClientAliases:
       - Port: 8983
         DnsName: solr_follower_2.cinco-stage
+      # We have to specify an ingress port override, otherwise the target group healthcheck fails
       IngressPortOverride: 8984
-  # The solr_follower_2 container will be registered as a target of the same target group as the solr_follower_2 container
+  # The solr_follower_2 container is registered with the same target group as the solr_follower_1 container
   LoadBalancer:
     LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
     TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup

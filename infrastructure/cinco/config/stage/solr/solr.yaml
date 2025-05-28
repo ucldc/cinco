@@ -44,6 +44,7 @@ sceptre_user_data:
         ClientAliases:
           - Port: 8983
             DnsName: solr_leader.cinco-stage
+        # We have to specify an ingress port override, otherwise the target group healthcheck fails
         IngressPortOverride: 8984
   AdditionalServiceSecurityGroupIngressRules:
     - description: Allow access from solr-follower-1 container
