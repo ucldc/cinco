@@ -77,7 +77,7 @@ def update_status(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=JobRun)
 def remove_old_job_runs(sender, instance, created, **kwargs):
-    for related_model in instance.related_models:
+    for related_model in instance.related_models.all():
         # Find most recent successful job run for the same finding aid
         recent_success = (
             JobRun.objects.filter(
