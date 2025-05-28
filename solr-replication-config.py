@@ -2,7 +2,7 @@
 Update solrconfig.xml for index replication
 See https://solr.apache.org/guide/solr/latest/deployment-guide/user-managed-index-replication.html
 
-This script is pretty dumb, and simply inserts the relevant configuration before the last line
+This script is pretty crude, and simply inserts the relevant configuration before the last line
 of the solrconfig.xml file
 """
 

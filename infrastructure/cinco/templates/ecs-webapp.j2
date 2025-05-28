@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Description:
-  ECS Web Application deployment - includes a Cluster, Task Definition, and Service, and an ALB
+  ECS Web Application deployment - includes a Cluster, Task Definition, Service, and optional ALB
   {# TODO: Add autoscaling group configuration or create a way to attach an
            autoscaling group #}
 
@@ -186,16 +186,37 @@ Parameters:
         evaluation_periods: int - the number of periods to evaluate
 
   AdditionalServiceSecurityGroupIngressRules:
+    Description: security group ingress rules to add to the service security group
+                 in addition to the template defaults
+    Type: list of dicts containing description, from_port, to_port and security_group_id
+    Required: false
+    Example:
+        - description: Allow access from solr service connect sidecar container
+          from_port: 8984
+          to_port: 8984
+          security_group_id: 1234abcdef_sg
 
   LoadBalancer:
+    Description: details for an existing load balancer with which to associate the ECS service
+    Type: A dict containing LoadBalancerFullName, TargetGroup, TargetGroupFullName, LoadBalancerSecurityGroup
+    Required: false - if not provided, a load balancer will be created as part of this stack
+    Example:
+      LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
+      TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
+      TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
+      LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
 
   ServiceConnectConfiguration:
-    #Description
+    Description: AWS::ECS::Service ServiceConnectConfiguration
+    Type: see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html
+    Required: false
+
   ContainerPortName:
     Description: task port name, needed for Service Connect configuration
     Type: String
     Default: ""
     Required: false
+
   ContainerPortAppProtocol:
     Description: task port mapping app protocol, needed for Service Connect configuration
     Type: String

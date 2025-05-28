@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# Run script to configure as leader/follower for solr index replication
 if [ "$REPLICATION_ROLE" != "" ]; then
     python3 /solr-replication-config.py
     if [[ "$?" != 0 ]]; then

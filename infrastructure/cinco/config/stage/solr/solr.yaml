@@ -54,6 +54,7 @@ sceptre_user_data:
       from_port: 8984
       to_port: 8984
       security_group_id: !stack_output stage/solr/solr-follower-2.yaml::ServiceSecurityGroup
+  # This healthcheck is more accurate than the target group healthcheck
   ContainerHealthCheck: |-
     Command:
                   - "CMD-SHELL"

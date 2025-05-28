@@ -10,6 +10,8 @@ parameters:
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
+  # old container must be stopped before new one is started,
+  # otherwise we get an error about index dir locking from Solr
   ServiceTaskMaximumPercent: 100
   ServiceTaskMinimumHealthyPercent: 0
   HealthCheckGracePeriodSeconds: 300
@@ -44,12 +46,13 @@ sceptre_user_data:
       - Port: 8983
         DnsName: solr_follower_2.cinco-stage
       IngressPortOverride: 8984
+  # The solr_follower_2 container will be registered as a target of the same target group as the solr_follower_2 container
   LoadBalancer:
-    LoadBalancer: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancer
     LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
     TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
     TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
     LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
+  # This healthcheck is more accurate than the target group healthcheck
   ContainerHealthCheck: |-
     Command:
                   - "CMD-SHELL"
