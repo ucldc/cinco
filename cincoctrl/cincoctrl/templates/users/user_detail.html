@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2>{{ object.name }}</h2>
+        <h1>{{ object.name }}</h1>
       </div>
     </div>
     {% if object == request.user %}
@@ -18,13 +18,13 @@
       <div class="row">
         <div class="col-sm-12">
           <div>
-            Name: {{ object.full_name }}
+            <b>Name:</b> {{ object.name }}
           </div>
           <div>
-            Email: {{ object.email }}
+            <b>Email:</b> {{ object.email }}
           </div>
           <div>
-            Repositories:
+            <b>Repositories:</b>
             <ul>
               {% for r in object.repositories %}
                 <li>{{ r }}</li>
