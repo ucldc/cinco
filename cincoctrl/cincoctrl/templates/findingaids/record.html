@@ -19,7 +19,7 @@
             <div><b>Repository:</b> {{ object.repository }}</div>
             <div><b>Created By:</b> {{ object.created_by }}</div>
             <div><b>Record Type:</b> {{ object.record_type }}</div>
-            <div><b>Status:</b> {{ object.status }}</div>
+            <div><b>Publication Status:</b> {{ object.status }}</div>
             <div><b>Date Created:</b> {{ object.date_created }}</div>
             <div><b>Date Updated:</b> {{ object.date_updated }}</div>
             {% if object.validationwarning_set.exists %}
@@ -34,10 +34,16 @@
           </div>
         </div>
         {% if object.supplementaryfile_set.exists %}
+       <p>
           <h3>Supplementary PDF Files</h3>
+          <div class="card">
+            <div class="card-body">
           <ul>
             {% for f in object.supplementaryfile_set.all %}<li>{{ f }}</li>{% endfor %}
           </ul>
+            </div>
+          </div>
+        </p>
         {% endif %}
         {% if object.indexinghistory_set.exists %}
         <p>
