@@ -15,9 +15,9 @@
   {{ form.repository|as_crispy_field }}
 </p>
 <p>
+<h2 class="card-title">Collection Information</h2>
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Collection Information</h5>
     <p>
       {{ form.collection_title|as_crispy_field }}
       {{ form.collection_number|as_crispy_field }}
@@ -35,9 +35,9 @@
 </div>
 </p>
 <p>
+<h2 class="card-title">Access and Use Information</h2>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Access and Use Information</h5>
         <p>
         {{ express_form.accessrestrict|as_crispy_field }}
         {{ express_form.userestrict|as_crispy_field }}
@@ -47,9 +47,9 @@
 </div>
 </p>
 <p>
+<h2 class="card-title">Processing and Description Notes</h2>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Processing and description notes</h5>
         <p>
         {{ express_form.acqinfo|as_crispy_field }}
         {{ express_form.processing_information|as_crispy_field }}
@@ -59,9 +59,9 @@
 </div>
 </p>
 <p>
+<h2 class="card-title">Related Digital Collections</h2>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Related Digital Collections</h5>
         <p>
         {{ express_form.online_items_url|as_crispy_field }}
         </p>
