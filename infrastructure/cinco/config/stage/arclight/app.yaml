@@ -21,7 +21,8 @@ sceptre_user_data:
     - S3_BUCKET: !environment_variable S3_BUCKET_NAME
     - SOLR_URL: !sub
       - "http://{solr_url}/solr/{core_name}"
-      - solr_url: !stack_output stage/solr/solr.yaml::LoadBalancerDNS
+      # The load balancer for both followers is created as part of the solr-follower-1 stack
+      - solr_url: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerDNS
         core_name: arclight
     - POSTGRES_HOST: !stack_output stage/arclight/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432

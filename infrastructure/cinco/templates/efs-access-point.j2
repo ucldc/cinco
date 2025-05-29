@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: One or more EFS Access Points, to be associated with an existing EFS file system.
+
+Parameters:
+    EfsFileSystemId:
+        Description: The ID of the EFS file system to which the access point(s) will be added.
+        Type: String
+
+{# In addition to the CloudFormation Parameters listed above, this template
+   also supports the following sceptre_user_data parameter:
+  EFSAccessPoints:
+    Type: a list of EFS access points
+    Description: For each access point, provide a root path, a posix user, and a posix group, e.g.:
+      - path: /my/path
+        user: 900
+        group: 0
+    Required: true
+#}
+
+Resources:
+
+  {% for access_point in sceptre_user_data.EFSAccessPoints %}
+  EfsAccessPoint{{ loop.index }}:
+    Type: AWS::EFS::AccessPoint
+    Properties:
+      FileSystemId: !Ref EfsFileSystemId
+      PosixUser:
+        Uid: {{ access_point.user }}
+        Gid: {{ access_point.group }}
+      RootDirectory:
+        CreationInfo:
+          OwnerUid: {{ access_point.user }}
+          OwnerGid: {{ access_point.group }}
+          Permissions: "0755"
+        Path: {{ access_point.path }}
+  {% endfor %}
+
+Outputs:
+  {% for access_point in sceptre_user_data.EFSAccessPoints %}
+  EfsAccessPointId{{ loop.index }}:
+    Description: The ID of EFS access point {{ loop.index }}
+    Value: !Ref EfsAccessPoint{{ loop.index }}
+  {% endfor %}

@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Description:
-  ECS Web Application deployment - includes a Cluster, Task Definition, and Service, and an ALB
+  ECS Web Application deployment - includes a Cluster, Task Definition, Service, and optional ALB
   {# TODO: Add autoscaling group configuration or create a way to attach an
            autoscaling group #}
 
@@ -57,6 +57,21 @@ Parameters:
     Type: String
     Description: The security group for the RDS instance
     Default: ""
+  ServiceTaskMaximumPercent:
+    Description: An upper limit on the number of your service's tasks that are allowed in the RUNNING or PENDING
+      state during a deployment, as a percentage of the desiredCount
+    Type: Number
+    Default: 200
+  ServiceTaskMinimumHealthyPercent:
+    Description: a lower limit on the number of your service's tasks that must remain in the RUNNING state during a deployment,
+      as a percentage of the desiredCount
+    Type: Number
+    Default: 100
+  HealthCheckGracePeriodSeconds:
+    Description: The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing,
+      VPC Lattice, and container health checks after a task has first started.
+    Type: Number
+    Default: 0
 
 {# In addition to the CloudFormation Parameters listed above, this template
    also supports the following sceptre_user_data parameters:
@@ -73,7 +88,7 @@ Parameters:
     Type: CommaDelimitedList
     Description: The entry point for the container
     Required: false - if not provided, no entry point will be set
-    Example: 'sh,-c'
+    Example: '"sh", "-c"'
 
   ContainerCommand:
     Type: CommaDelimitedList
@@ -169,6 +184,45 @@ Parameters:
         threshold: int - the 4xx threshold for the alarm
         period: int - the period for the alarm
         evaluation_periods: int - the number of periods to evaluate
+
+  AdditionalServiceSecurityGroupIngressRules:
+    Description: security group ingress rules to add to the service security group
+                 in addition to the template defaults
+    Type: list of dicts containing description, from_port, to_port and security_group_id
+    Required: false
+    Example:
+        - description: Allow access from solr service connect sidecar container
+          from_port: 8984
+          to_port: 8984
+          security_group_id: 1234abcdef_sg
+
+  LoadBalancer:
+    Description: details for an existing load balancer with which to associate the ECS service
+    Type: A dict containing LoadBalancerFullName, TargetGroup, TargetGroupFullName, LoadBalancerSecurityGroup
+    Required: false - if not provided, a load balancer will be created as part of this stack
+    Example:
+      LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
+      TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
+      TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
+      LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
+
+  ServiceConnectConfiguration:
+    Description: AWS::ECS::Service ServiceConnectConfiguration
+    Type: see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html
+    Required: false
+
+  ContainerPortName:
+    Description: task port name, needed for Service Connect configuration
+    Type: String
+    Default: ""
+    Required: false
+
+  ContainerPortAppProtocol:
+    Description: task port mapping app protocol, needed for Service Connect configuration
+    Type: String
+    Default: ""
+    Required: false
+
   #}
 
 Conditions:
@@ -274,6 +328,12 @@ Resources:
             - ContainerPort: !Ref ContainerPort
               HostPort: !Ref ContainerPort
               Protocol: tcp
+              {% if sceptre_user_data and sceptre_user_data.ContainerPortName is defined %}
+              Name: {{ sceptre_user_data.ContainerPortName }}
+              {% endif %}
+              {% if sceptre_user_data and sceptre_user_data.ContainerPortAppProtocol is defined %}
+              AppProtocol: {{ sceptre_user_data.ContainerPortAppProtocol }}
+              {% endif %}
           Essential: true
           {% if sceptre_user_data and sceptre_user_data.ContainerEntryPoint is defined %}
           EntryPoint: [ {{ sceptre_user_data.ContainerEntryPoint }} ]
@@ -311,6 +371,10 @@ Resources:
           {% if sceptre_user_data and sceptre_user_data.ContainerMountPoints is defined %}
           MountPoints: {{ sceptre_user_data.ContainerMountPoints }}
           {% endif %}
+          {% if sceptre_user_data and sceptre_user_data.ContainerHealthCheck is defined %}
+          HealthCheck:
+            {{ sceptre_user_data.ContainerHealthCheck }}
+          {% endif %}
       {% if sceptre_user_data and sceptre_user_data.Volumes is defined %}
       Volumes: {{ sceptre_user_data.Volumes }}
       {% endif %}
@@ -326,6 +390,7 @@ Resources:
       Cpu: !Ref Cpu
       Memory: !Ref Memory
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -350,6 +415,7 @@ Resources:
           ToPort: 80
           CidrIp: "0.0.0.0/0"
       {% endif %}
+  {% endif %}
 
   {% if sceptre_user_data and sceptre_user_data.GrantHttpAccessFromThisServiceTo is defined %}
   {% for grantor in sceptre_user_data.GrantHttpAccessFromThisServiceTo %}
@@ -372,7 +438,11 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
+      {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+      GroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+      {% else %}
       GroupId: !Ref LoadBalancerSecurityGroup
+      {% endif %}
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -384,7 +454,11 @@ Resources:
     Condition: HasSSLCert
     Properties:
       Description: Allow HTTPS access
+      {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+      GroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+      {% else %}
       GroupId: !Ref LoadBalancerSecurityGroup
+      {% endif %}
       IpProtocol: tcp
       FromPort: 443
       ToPort: 443
@@ -417,7 +491,35 @@ Resources:
           IpProtocol: tcp
           FromPort: !Ref ContainerPort
           ToPort: !Ref ContainerPort
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          SourceSecurityGroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+          {% else %}
           SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
+          {% endif %}
+        {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined
+          and sceptre_user_data.ServiceConnectConfiguration.Services is defined %}
+        {% if sceptre_user_data.ServiceConnectConfiguration.Services[0]
+           and sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride is defined %}
+        - Description: Allow access on Service Connect IngressPortOverride
+          IpProtocol: tcp
+          FromPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
+          ToPort: {{ sceptre_user_data.ServiceConnectConfiguration.Services[0].IngressPortOverride }}
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          SourceSecurityGroupId: {{ sceptre_user_data.LoadBalancer.LoadBalancerSecurityGroup }}
+          {% else %}
+          SourceSecurityGroupId: !GetAtt LoadBalancerSecurityGroup.GroupId
+          {% endif %}
+        {% endif %}
+        {% endif %}
+        {% if sceptre_user_data and sceptre_user_data.AdditionalServiceSecurityGroupIngressRules is defined %}
+        {% for ingress_rule in sceptre_user_data.AdditionalServiceSecurityGroupIngressRules %}
+        - Description: {{ ingress_rule.description }}
+          IpProtocol: tcp
+          FromPort: {{ ingress_rule.from_port }}
+          ToPort: {{ ingress_rule.to_port }}
+          SourceSecurityGroupId: {{ ingress_rule.security_group_id }}
+        {% endfor %}
+        {% endif %}
 
   DBInstanceSecurityGroupApplicationIngress:
     Type: "AWS::EC2::SecurityGroupIngress"
@@ -442,7 +544,11 @@ Resources:
         - ContainerName: !Sub ${Namespace}-container
           ContainerPort: !Ref ContainerPort
           LoadBalancerName: !Ref AWS::NoValue
+          {% if sceptre_user_data and sceptre_user_data.LoadBalancer is defined %}
+          TargetGroupArn: {{ sceptre_user_data.LoadBalancer.TargetGroup }}
+          {% else %}
           TargetGroupArn: !Ref TargetGroup
+          {% endif %}
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
@@ -452,13 +558,21 @@ Resources:
       PlatformVersion: 'LATEST'
       EnableExecuteCommand: true
       DeploymentConfiguration:
-        MaximumPercent: 200
-        MinimumHealthyPercent: 100
+        MaximumPercent: !Ref ServiceTaskMaximumPercent
+        MinimumHealthyPercent: !Ref ServiceTaskMinimumHealthyPercent
         DeploymentCircuitBreaker:
           Enable: true
           Rollback: true
+      {% if sceptre_user_data and sceptre_user_data.ServiceConnectConfiguration is defined %}
+      ServiceConnectConfiguration:
+        {{ sceptre_user_data.ServiceConnectConfiguration }}
+      {% endif %}
+      HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
+    {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
     DependsOn: HttpListener
+    {% endif %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
@@ -508,6 +622,7 @@ Resources:
       Certificates:
         - CertificateArn: !Ref SSLCertArn
       SslPolicy: ELBSecurityPolicy-2016-08
+  {% endif %}
 
   {% with sceptre_user_data=sceptre_user_data|default({}) %}
   {% with alarm_config=sceptre_user_data.alarm_config|default({}) %}
@@ -574,6 +689,7 @@ Resources:
           Value: !If [CreateCluster, !Ref ECSCluster, !Ref ClusterName]
   {% endwith %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   {% with fivexx_alarm=alarm_config.fivexx|default({}) %}
   CloudWatchALB5xxAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -604,7 +720,9 @@ Resources:
         - Name: LoadBalancer
           Value: !GetAtt LoadBalancer.LoadBalancerFullName
   {% endwith %}
+  {% endif %}
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   {% if alarm_config.fourxx is defined %}
   CloudWatchALB4xxAlarm:
     Type: AWS::CloudWatch::Alarm
@@ -635,6 +753,7 @@ Resources:
         - Name: LoadBalancer
           Value: !GetAtt LoadBalancer.LoadBalancerFullName
   {% endif %}
+  {% endif %}
 
   {% endwith %}
   {% endwith %}
@@ -648,9 +767,11 @@ Outputs:
     Description: The ECS Task Definition
     Value: !Ref TaskDefinition
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancerSecurityGroup:
     Description: The Security Group
     Value: !GetAtt LoadBalancerSecurityGroup.GroupId
+  {% endif %}
 
   ServiceSecurityGroup:
     Description: The Service Security Group
@@ -660,6 +781,7 @@ Outputs:
     Description: The ECS Service
     Value: !Ref ECSService
 
+  {% if sceptre_user_data and sceptre_user_data.LoadBalancer is not defined %}
   LoadBalancer:
     Description: The Load Balancer
     Value: !Ref LoadBalancer
@@ -668,6 +790,10 @@ Outputs:
     Description: The DNS Name of the Load Balancer
     Value: !GetAtt LoadBalancer.DNSName
 
+  LoadBalancerFullName:
+    Description: The full name of the Load Balancer
+    Value: !GetAtt LoadBalancer.LoadBalancerFullName
+
   HttpListener:
     Description: The Http Listener
     Value: !Ref HttpListener
@@ -675,6 +801,11 @@ Outputs:
   TargetGroup:
     Description: The Target Group
     Value: !Ref TargetGroup
+
+  TargetGroupFullName:
+    Description: The Target Group
+    Value: !GetAtt TargetGroup.TargetGroupFullName
+  {% endif %}
 
   TaskRole:
     Description: The Task Role - attach policies to this role to grant permissions to task containers

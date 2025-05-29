@@ -1,6 +1,18 @@
 FROM public.ecr.aws/docker/library/solr:9.6.1
 
-# Copy arclight/solr directory to /opt/solr/server/solr/configsets/arclight
-COPY arclight/solr /opt/solr/server/solr/configsets/arclight
+USER root
+RUN apt-get update && \
+  apt-get -y install --no-install-recommends \
+  jq \
+  python3 \
+  python3-pip
 
-CMD ["solr-precreate", "arclight", "/opt/solr/server/solr/configsets/arclight"]
+USER solr
+
+COPY --chown=solr:solr arclight/solr/conf /opt/solr/server/solr/configsets/arclight/conf
+COPY --chown=solr:solr arclight/solr/solr.xml /opt/solr/server/solr/solr.xml
+
+COPY --chmod=744 --chown=solr:solr cinco-docker-entrypoint.sh /cinco-docker-entrypoint.sh
+COPY --chmod=744 --chown=solr:solr solr-replication-config.py /solr-replication-config.py
+
+CMD /cinco-docker-entrypoint.sh
