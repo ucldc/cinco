@@ -1,8 +1,8 @@
 {% load crispy_forms_tags %}
 <p>
+<h2 class="card-title">{{ title }}</h2>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{ title }}</h5>
       <p>
         {{ formset.management_form }}
         <div id="{{ name }}-formset-container">
@@ -15,7 +15,7 @@
           {% endfor %}
         </div>
         <p>
-            <button type="button" id="{{ name }}-add-form" class="btn btn-primary">Add {{ name }}</button>
+            <button type="button" id="{{ name }}-add-form" class="btn btn-primary">+ Add another {{ name }}</button>
         </p>
       </p>
     </div>
