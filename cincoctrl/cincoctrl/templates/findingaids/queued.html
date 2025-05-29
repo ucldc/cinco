@@ -10,11 +10,20 @@
   <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h2>{{ object.collection_title }}</h2>
-            <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Queued for: {% if object.status == "queued_publish" %}Publication{% else %}Preview{% endif %}</h4>
-            </div>
-            <a href="{% url 'findingaids:view_record' object.pk %}">Return to finding aid</a>
+        <h1>{{ object.collection_title }}</h1>
+        <h2>{% if object.status == "queued_publish" %}Publication{% else %}Preview{% endif %} Status</h2>
+          <div class="card">
+            <div class="card-body">
+              <div><b>Collection Title:</b> {{ object.collection_title }}</div>
+              <div><b>Collection Number:</b> {{ object.collection_number }}</div>
+              <div><b>ARK:</b> {{ object.ark }}</div>
+              <div><b>Repository:</b> {{ object.repository }}</div>
+              <div class="alert alert-success" role="alert">
+                  <h4 class="alert-heading">Queued for {% if object.status == "queued_publish" %}publication{% else %}preview{% endif %}</h4>
+              </div>
+          </div>
+        </div>
+            <p>Return to the <a href="{% url 'findingaids:view_record' object.pk %}">{{ object.collection_title }} status report</a> page to {% if object.status == "queued_publish" %}view{% else %}preview{% endif %} the collection guide in OAC.</p>
         </div>
     </div>
   </div>
