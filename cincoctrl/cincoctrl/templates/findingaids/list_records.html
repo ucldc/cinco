@@ -18,6 +18,8 @@
         <p>
           + <a  href="{% url 'findingaids:create_record_express' %}">Create a new RecordEXPRESS guide</a>
         </p>
+{% if records_page %}
+<h2>Your collection guides</h2>
         <p>
           <div class="col-sm-4">
             <form method="get">
@@ -26,8 +28,6 @@
             </form>
           </div>
         </p>
-        {% if records_page %}
-        <h2>Your collection guides</h2>
           <table class="table table-striped">
             <thead>
               <th>Collection Title</th>
@@ -35,8 +35,8 @@
               <th>Repository</th>
               <th>ARK</th>
               <th>Submission Type</th>
-              <th>Date updated</th>
-              <th>Publication status</th>
+              <th>Date Updated</th>
+              <th>Publication Status</th>
             </thead>
               {% for record in records_page %}
               <tr>
