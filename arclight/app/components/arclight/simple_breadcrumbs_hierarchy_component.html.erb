@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+  <% parents_under_collection.each do |parent| %>
+    <li class="breadcrumb-item breadcrumb-item-1">
+      <span class="breadcrumb-text"><%= link_to parent.label, solr_document_path(parent.id) %></span>
+    </li>
+  <% end %>
+  <li class="breadcrumb-item breadcrumb-item-1">
+    <span class="breadcrumb-text"><%= @presenter.heading %></span>
+  </li>
+</ol>
