@@ -21,7 +21,7 @@ module Arclight
     end
 
     def document_section_path(section)
-      [document_path, section_anchor(section)].join
+      [ document_path, section_anchor(section) ].join
     end
 
     def section_label(section)

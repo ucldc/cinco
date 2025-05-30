@@ -14,6 +14,5 @@ module Arclight
     end
 
     attr_reader :collection, :parents_under_collection
-
   end
 end
