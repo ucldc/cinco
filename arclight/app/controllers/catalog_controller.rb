@@ -79,6 +79,7 @@ class CatalogController < ApplicationController
     config.show.embed_component = Arclight::EmbedComponent
     config.show.access_component = Arclight::AccessComponent
     config.show.online_status_component = Arclight::OnlineStatusIndicatorComponent
+    config.show.document_header_component = Arclight::BlankComponent
     config.show.display_type_field = "level_ssm"
     # config.show.thumbnail_field = 'thumbnail_path_ss'
     config.show.document_presenter_class = Arclight::ShowPresenter
