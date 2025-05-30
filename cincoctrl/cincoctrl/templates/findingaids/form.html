@@ -3,11 +3,11 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-  Submit an EAD file
+  {{ verb }} an EAD file
 {% endblock title %}
 {% block content %}
-    <h1>Submit an EAD file</h1>
-    <p>Submit an EAD formatted collection guide to the Online Archive of California. If you need to update or replace an existing collection guide, please go to the "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page.</p>
+    <h1>{{ verb }} an EAD file</h1>
+    <p>{{ verb }} an EAD collection guide. If you are <b>submitting an updated EAD file</b>, please ensure you have selected the existing collection guide through your repository’s "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page.</p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
