@@ -3548,7 +3548,7 @@ casdam:
         <div class="al-repository-street-address-city_state_zip_country">San Diego, CA 92101, US</div>
     thumbnail_url: ""
 csdca:
-    name: "San Diego City Clerk&#x27;s Archives"
+    name: "San Diego City Clerk's Archives"
     description: "City of San Diego, Office of the City Clerk-Archives"
     contact_html: |
         <div class="al-repository-contact-phone">(619) 236-7216</div>
