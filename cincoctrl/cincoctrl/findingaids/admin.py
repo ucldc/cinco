@@ -1,8 +1,13 @@
 from django.contrib import admin
+from django.contrib import messages
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from cincoctrl.airflow_client.models import JobRun
+from cincoctrl.airflow_client.models import JobTrigger
+from cincoctrl.findingaids.management.commands.bulk_index_finding_aids import (
+    bulk_index_finding_aids,
+)
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import ExpressRecordCreator
 from cincoctrl.findingaids.models import ExpressRecordSubject
@@ -69,6 +74,22 @@ class FindingAidAdmin(admin.ModelAdmin):
     search_fields = ["collection_title", "ark"]
     list_display = ("collection_title", "collection_number", "ark", "repository")
     list_filter = ["status"]
+    actions = ["bulk_index_action"]
+
+    @admin.action(description="Bulk index selected finding aids")
+    def bulk_index_action(self, request, queryset):
+        job_trigger = bulk_index_finding_aids(queryset)
+
+        message = job_trigger
+        if isinstance(job_trigger, JobTrigger):
+            change_url = reverse(
+                "admin:airflow_client_jobtrigger_change",
+                args=(job_trigger.id,),
+            )
+            link_str = f'Job <a href="{change_url}">{job_trigger}</a> triggered'
+            message = mark_safe(link_str)  # noqa: S308
+
+        self.message_user(request, message, messages.SUCCESS)
 
 
 class ExpressRecordCreatorInline(admin.TabularInline):

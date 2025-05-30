@@ -105,7 +105,7 @@ class JobRun(Job):
         JobTrigger,
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
     )
     status = models.CharField(
         choices=STATUS_CHOICES,
