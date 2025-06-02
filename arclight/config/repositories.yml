@@ -3564,17 +3564,6 @@ calaong:
             request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 34.031025
     longitude: -118.281545
-@@@@@oac.xml:
-    name: "Online Archive of California"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-info"><a href="http://www.oac.cdlib.org/">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">OAC @ CDL, 415 Twentieth Street, 4th Floor</div>
-        <div class="al-repository-street-address-city_state_zip_country">Oakland, CA 94612-2901, US</div>
-    thumbnail_url: ""
-    latitude: 37.8085421616
-    longitude: -122.267441154
 con:
     name: "Ontario City Library, Robert E. Ellingwood Model Colony History Room"
     description: "The library&#x27;s collections cover the history of Ontario and the western region of San Bernardino County.The Model Colony History Room was established in the Ontario City Library in 1970. The room contains non-circulating materials concerning the social, economic and governmental history of Ontario and the western region of San Bernardino County.Materials available in the Model Colony History Room include: manuscripts, photographs, documents, maps, local school yearbooks, news clippings, Ontario city directories, and phone books. Many of these materials date back to 1882 when George Chaffey and William Chaffey founded Ontario, the &quot;Model Colony.&quot;"
