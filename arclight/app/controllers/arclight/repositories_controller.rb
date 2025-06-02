@@ -8,6 +8,10 @@ module Arclight
             load_collection_counts
         end
 
+        def map
+            @repositories = Arclight::Repository.all
+        end
+
         def show
             repository = Arclight::Repository.find_by!(slug: params[:id])
             url = search_action_url(
