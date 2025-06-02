@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: "arclight/repositories#index"
   concern :searchable, Blacklight::Routes::Searchable.new
 
+  get "/map/", to: "arclight/repositories#map"
+
   resource :catalog, only: [], as: "catalog", path: "/catalog", controller: "catalog" do
     concerns :searchable
   end
