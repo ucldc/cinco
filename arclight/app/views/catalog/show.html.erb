@@ -1,0 +1,50 @@
+<% content_for(:container_header) do -%>
+  <div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <%= render Arclight::RepositoryBreadcrumbComponent.new(document: @document) %>
+        </ol>
+      </nav>
+  </div>
+
+  <div class="text-left container py-4">
+    <%= content_tag :h1, class: 'h3' do %>
+        <span aria-hidden="true"><%= blacklight_icon :collection, classes: 'al-collection-content-icon' %></span>
+        <%= @document.collection_name %>
+    <% end %>
+    <div class="row py-4">
+        <% if @document.online_content? %>
+        <div class="col">
+            Items available online
+        </div>
+        <% end %>
+        <div class="col">
+            <a href="">Printable Guide [HTML]</a>
+        </div>
+        <div class="col">
+            <%= render 'arclight/requests', document: @document %>
+        </div>
+    </div>
+
+    <div class="w-50 row py-4">
+        <search>
+            <form class="search-query-form" action="/catalog" accept-charset="UTF-8" method="get">
+                <div class="input-group">
+                    <input value="<%= @document.normalized_title %>" type="hidden" name="f[collection][]" id="f[collection][]">
+                    <input value="all_fields" type="hidden" name="search_field" id="search_field">
+                    <label class="sr-only visually-hidden" for="q">search for</label>
+                    <input placeholder="Search this collection" class="search-q q form-control rounded-left rounded-start" aria-label="search for" type="search" name="q" id="q" role="combobox" aria-expanded="false">
+                    <%= render 'search_button_component' %>
+                </div>
+            </form>
+        </search>
+    </div>
+</div>
+<% end %>
+
+<%= render 'show_main_content' %>
+
+<% content_for(:sidebar) do %>
+  <% presenter = document_presenter(@document) %>
+  <%= render presenter.view_config.sidebar_component.new(presenter: presenter) %>
+<% end %>
