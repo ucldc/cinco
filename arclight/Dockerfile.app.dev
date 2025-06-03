@@ -1,0 +1,31 @@
+FROM ruby:3.2.0
+
+RUN apt-get update -qq && \
+    apt-get install -y \
+    bash \
+    build-essential \
+    git \
+    libxml2-dev \
+    libxslt-dev \
+    nodejs \
+    shared-mime-info \
+    sqlite3 \
+    tzdata \
+    yarn
+
+RUN mkdir /app
+WORKDIR /app
+
+RUN gem update --system && \
+  gem install bundler && \
+  bundle config build.nokogiri --use-system-libraries
+
+COPY . .
+
+RUN bundle install
+
+RUN rake db:migrate
+
+EXPOSE 3000
+
+CMD ["/app/docker-dev-entrypoint.sh"]
