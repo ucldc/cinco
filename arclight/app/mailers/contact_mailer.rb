@@ -3,6 +3,6 @@ class ContactMailer < ApplicationMailer
     default to: "oac-feedback-l@listserv.ucop.edu"
 
     def test(email)
-        mail(:reply_to => email, :subject => "Hello World!")
+        mail(reply_to: email, subject: "Hello World!")
     end
 end
