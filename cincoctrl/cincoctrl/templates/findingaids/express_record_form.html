@@ -4,22 +4,22 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-  {{ verb }} RecordEXPRESS
+  {{ verb }} a RecordEXPRESS Guide
 {% endblock title %}
 
 {% block content %}
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1>{{ verb }} RecordEXPRESS</h1>
-        <p>{{ verb }} a RecordEXPRESS collection record in the Online Archive of California.</p>
+        <h1>{{ verb }} a RecordEXPRESS Guide</h1>
+        <p>{{ verb }} a RecordEXPRESS collection guide in the Online Archive of California.</p>
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% include 'findingaids/includes/express_form.html' %}
-          {% include 'findingaids/includes/formset.html' with title="Revision History" name="history" formset=revision_formset%}
+          {% include 'findingaids/includes/formset.html' with title="Revision History" name="revision note" formset=revision_formset%}
           {% include 'findingaids/includes/formset.html' with title="Creators" name="creator" formset=creator_formset%}
           {% include 'findingaids/includes/formset.html' with title="Subject Headings" name="subject" formset=subject_formset%}
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">{{ verb }}</button>
         </form>
       </div>
     </div>
