@@ -84,12 +84,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address => "email-smtp.us-west-2.amazonaws.com",
-      :port => 587, # Port 25 is throttled on AWS
-      :user_name => "AKIAYGS4EYAT22ZFYBWD",
-      :password => Rails.application.credentials.dig(:aws_ses_password),
-      :authentication => :login,
-      :enable_starttls_auto => true
+      address: "email-smtp.us-west-2.amazonaws.com",
+      port: 587, # Port 25 is throttled on AWS
+      user_name: "AKIAYGS4EYAT22ZFYBWD",
+      password: Rails.application.credentials.dig(:aws_ses_password),
+      authentication: :login,
+      enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
