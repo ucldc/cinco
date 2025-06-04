@@ -35,7 +35,17 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "email-smtp.us-west-2.amazonaws.com",
+      :port => 587, # Port 25 is throttled on AWS
+      :user_name => "AKIAYGS4EYAT22ZFYBWD",
+      :password => Rails.application.credentials.dig(:aws_ses_password),
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
