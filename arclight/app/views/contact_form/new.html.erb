@@ -1,0 +1,19 @@
+<%= form_with scope: :contact_form, url: contact_form_index_path, method: :post, local: true, class: "container" do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :message %>
+    <%= form.text_area :message, class: "form-control" %>
+  </div>
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>
