@@ -3,17 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-  {{ verb }} an EAD file
+  {{ verb }} an EAD File
 {% endblock title %}
 {% block content %}
-    <h1>{{ verb }} an EAD file</h1>
-    <p>{{ verb }} an EAD collection guide. If you are <b>submitting an updated EAD file</b>, please ensure you have selected the existing collection guide through your repository’s "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page.</p>
+    <h1>{{ verb }} an EAD File</h1>
+    <p>{{ verb }} an EAD collection guide. If you are submitting a revised EAD file, please ensure you have selected the existing collection guide through your repository’s "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page.</p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
         <div class="control-group">
             <div class="controls">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">{{ verb }}</button>
             </div>
         </div>
     </form>
