@@ -8,16 +8,17 @@
 
 {% block content %}
     <h1>Attach Supplemental PDF Files</h1>
+    <p>
+        Add or replace supplemental PDF files to this collection guide.
+    </p>
       <div class="card">
         <div class="card-body">
           <div><b>Collection Title:</b> {{ form.instance.collection_title }}</div>
           <div><b>Collection Number:</b> {{ form.instance.collection_number }}</div>
           <div><b>ARK:</b> {{ form.instance.ark }}</div>
+          <div><b>Repository:</b> {{ form.instance.repository }}</div>
         </div>
       </div>
-    <p>
-        Add or replace supplemental PDF files to this collection guide.
-    </p>
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% include 'findingaids/includes/formset.html' with title="Supplemental PDF Files" name="PDF" formset=formset%}
