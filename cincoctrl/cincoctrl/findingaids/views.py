@@ -77,6 +77,11 @@ class EADMixin:
         kwargs["queryset"] = self.request.user.repositories()
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["verb"] = self.verb
+        return context
+
     def extract_ead_fields(self, uploaded_file):
         file_content = b""
         for chunk in uploaded_file.chunks():
