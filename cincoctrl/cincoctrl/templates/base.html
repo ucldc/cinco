@@ -98,11 +98,19 @@
         {% block main %}
         <div class="py-5">
           {% block content %}
-            <p>Intro text to OAC Dashboard</p>
-            <h2>Useful guides</h2>
+            <h1>OAC Dashboard</h1>
+             <p>Welcome to your OAC Dashboard, {{ object.name }}! The dashboard is where you can submit, manage, and publish collection guides. Ready to get started? Go to the "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page for options to create or update your guides.</p>
+            <h2>Quick start guides</h2>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
+             <li>How to <a href="https://help.oac.cdlib.org/support/solutions/articles/9000049980">submit or update an EAD file</a></li>
+             <li>How to <a href="https://help.oac.cdlib.org/support/solutions/articles/9000049981">create or update a RecordEXPRESS guide</a></li>
+             <li>How to <a href="https://help.oac.cdlib.org/support/solutions/articles/9000093762">attach supplemental PDF files</a></li>
+            </ul>
+            <h2>Additional resources</h2>
+            <ul>
+              <li><a href="https://help.oac.cdlib.org/">OAC/Calisphere Contributor Help Center</a></li>
+              <li>View your collection's <a href="https://help.oac.cdlib.org/support/solutions/folders/9000199152">usage statistics</a></li>
+              <li>Subscribe to our <a href="http://eepurl.com/hxzENj">contributor mailing list</a></li>
             </ul>
           {% endblock content %}
         </div>
@@ -110,10 +118,9 @@
         </main>
         <footer class="my-5 pt-5 text-body-secondary text-center text-small">
           <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">New support ticket</a></li>
-            <li class="list-inline-item"><a href="#">Subscribe to contributor mailing list</a></li>
-            <li class="list-inline-item"><a href="#">Privacy statement</a></li>
-            <li class="list-inline-item"><a href="#">Accessibility policy</a></li>
+            <li class="list-inline-item"><a href="https://help.oac.cdlib.org/support/tickets/new">Contact Us</a></li>
+            <li class="list-inline-item"><a href="https://cdlib.org/about/policies-and-guidelines/privacy-statement/">Privacy Statement</a></li>
+            <li class="list-inline-item"><a href="https://www.cdlib.org/about/accessibility.html">Accessibility Policy</a></li>
           </ul>
         </footer>
       </div>

@@ -20,10 +20,10 @@
               <div><b>Repository:</b> {{ object.repository }}</div>
               <div class="alert alert-success" role="alert">
                   <h4 class="alert-heading">Queued for {% if object.status == "queued_publish" %}publication{% else %}preview{% endif %}</h4>
+                  <p>Return to the <a href="{% url 'findingaids:view_record' object.pk %}">{{ object.collection_title }} status report</a> page to {% if object.status == "queued_publish" %}view{% else %}preview{% endif %} the collection guide in OAC.</p>
               </div>
           </div>
         </div>
-            <p>Return to the <a href="{% url 'findingaids:view_record' object.pk %}">{{ object.collection_title }} status report</a> page to {% if object.status == "queued_publish" %}view{% else %}preview{% endif %} the collection guide in OAC.</p>
         </div>
     </div>
   </div>
