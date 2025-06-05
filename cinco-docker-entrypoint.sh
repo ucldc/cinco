@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Remove lock file. This can stick around if solr was not shut down properly.
+if [ -f "/var/solr/data/arclight/data/index/write.lock" ]; then
+    rm /var/solr/data/arclight/data/index/write.lock
+fi
+
 # Run script to configure as leader/follower for solr index replication
 if [ "$REPLICATION_ROLE" != "" ]; then
     python3 /solr-replication-config.py
