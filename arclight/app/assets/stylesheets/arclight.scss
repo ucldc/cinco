@@ -1,5 +1,26 @@
+$orange: #be4b1b;
+$teal: #04768a;
+
 $breadcrumb-divider: quote("»");
 $logo-image: image_url('arclight/logo.png') !default;
 @import 'bootstrap';
 @import 'blacklight/blacklight';
 @import 'arclight/application';
+
+:root {
+    --bs-link-color: #04768a;
+    --bs-link-color-rgb: 4,118,138;
+    --bs-link-hover-color: #016058;
+    --bs-link-hover-color-rgb: 1,96,88;
+}
+
+.btn-primary {
+    --bs-btn-disabled-bg: var(--bs-link-color);
+    --bs-btn-bg: var(--bs-link-color);
+    --bs-btn-border-color: var(--bs-link-color);
+    --bs-btn-disabled-border-color: var(--bs-link-color);
+    --bs-btn-hover-bg: #026664;
+    --bs-btn-active-border-color:  #015b4B;
+    --bs-btn-hover-border-color: var(--bs-link-hover-color);
+    --bs-btn-active-bg:  var(--bs-link-hover-color);
+}
