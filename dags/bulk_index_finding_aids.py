@@ -27,7 +27,13 @@ from cinco.arclight_operator import ArcLightOperator
             "",
             type="string",
             description="The s3_key where all the indexable finding aids are stored",
-        )
+        ),
+        "version": Param(
+            "stage",
+            type="enum",
+            enum=["stage", "prod"],
+            description="The version of ArcLight to run",
+        ),
     },
     tags=["cinco"],
     # on_failure_callback=notify_dag_failure,
@@ -38,21 +44,25 @@ def bulk_index_finding_aids():
         task_id="bulk_index_task",
         s3_key="{{ params.s3_key }}",
         arclight_command="bulk-index-from-s3",
+        version="{{ params.version }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
 
     @task()
-    def cleanup_s3(params=None):
+    def cleanup_s3(s3_key, version="stage"):
         s3 = boto3.resource("s3")
-        bucket_name = Variable.get("CINCO_S3_BUCKET")
-        prefix = f"media/{params.get('s3_key')}"
+        if version == "prod":
+            bucket_name = Variable.get("CINCO_S3_BUCKET_PROD")
+        else:
+            bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
+        prefix = f"media/{s3_key}"
         print(f"Deleting objects in {bucket_name} at {prefix}")
         bucket = s3.Bucket(bucket_name)
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
-    bulk_index_task >> cleanup_s3()
+    bulk_index_task >> cleanup_s3("{{ params.s3_key }}", version="{{ params.version }}")
 
 
 bulk_index_finding_aids = bulk_index_finding_aids()
