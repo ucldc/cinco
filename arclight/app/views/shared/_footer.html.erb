@@ -1,1 +1,27 @@
-Testinggggg....
+<footer>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6">
+            <%= image_tag('arclight/logo.png', alt: "OAC Logo", class: "img-fluid mb-3") %>
+            <p>The Online Archive of California is a service of the UC Libraries, powered by the California Digital Library.</p>
+        </div>
+        <div class="col-md-3">
+            <ul class="list-unstyled">
+                <li><%= link_to 'Home', { controller: 'arclight/repositories', action: 'home' } %></li>
+                <li><%= link_to 'About OAC', about_path %></li>
+                <li><%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %></li>
+                <li><%= link_to 'FAQs', faqs_path %></li>
+                <li><%= link_to 'Help', help_path %></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="list-unstyled">
+                <li><%= link_to 'Terms of Use', termsofuse_path %></li>
+                <li><%= link_to 'Privacy Statement', privacy_path %></li>
+                <li><%= link_to 'Accessibility', accessibility_path %></li>
+                <li><%= link_to 'Contact Us', '' %></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</footer>
