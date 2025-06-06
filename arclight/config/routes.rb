@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"
 
-  root to: "static_pages#home"
+  root to: "arclight/repositories#map"
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [], as: "catalog", path: "/catalog", controller: "catalog" do
