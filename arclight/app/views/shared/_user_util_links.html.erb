@@ -1,4 +1,4 @@
-<%= link_to t('blacklight.header_links.home'), { controller: '/static_pages', action: 'home' }, class: 'nav-item nav-link' %>
+<%= link_to t('blacklight.header_links.home'), { controller: 'arclight/repositories', action: 'map' }, class: 'nav-item nav-link' %>
 <%= link_to t('blacklight.header_links.repositories'), { controller: 'arclight/repositories', action: 'index' }, class: 'nav-item nav-link' %>
 <%= link_to t('blacklight.header_links.about'), { controller: '/static_pages', action: 'about' }, class: 'nav-item nav-link' %>
 <%= link_to t('blacklight.header_links.help'), { controller: '/static_pages', action: 'help' }, class: 'nav-item nav-link help' %>

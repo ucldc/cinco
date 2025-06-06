@@ -1,0 +1,27 @@
+.home-banner {
+    height: 400px;
+    background-image: url("https://alkuwaiti.com/wp-content/uploads/2020/05/Hero-Banner-Placeholder-Dark-1024x480.png");
+    background-size: cover;
+    background-position: center center;
+}
+.home-image {
+    height: 300px;
+    background-image: url("https://alkuwaiti.com/wp-content/uploads/2020/05/Hero-Banner-Placeholder-Dark-1024x480.png");
+    background-size: cover;
+    background-position: center center;
+}
+.home-textbox, .calisphere-banner {
+    border: 1px solid #B8C4C4;
+    background-color: #F6F6F6
+}
+#home-map {
+    height: 100%;
+}
+.calisphere-thumbnail {
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+.calisphere-logo {
+    width: 250px;
+    height: 70px;
+}
