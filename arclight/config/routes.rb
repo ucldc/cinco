@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get "/about", to: "about", controller: "static_pages"
+  get "/help", to: "help", controller: "static_pages"
+  get "/repositories/", to: "arclight/repositories#index"
+  get "/map/", to: "arclight/repositories#map"
+
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"
 
-  root to: "arclight/repositories#index"
+  root to: "static_pages#home"
   concern :searchable, Blacklight::Routes::Searchable.new
-
-  get "/map/", to: "arclight/repositories#map"
 
   resource :catalog, only: [], as: "catalog", path: "/catalog", controller: "catalog" do
     concerns :searchable
