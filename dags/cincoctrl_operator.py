@@ -34,7 +34,13 @@ def get_stack(stack_name: str):
 
 class CincoCtrlEcsOperator(EcsRunTaskOperator):
     def __init__(
-        self, manage_cmd, finding_aid_id=None, s3_key=None, repository_id=None, **kwargs
+        self,
+        manage_cmd,
+        finding_aid_id=None,
+        s3_key=None,
+        repository_id=None,
+        version="stage",
+        **kwargs,
     ):
         manage_args = []
         if manage_cmd == "prepare_finding_aid":
@@ -52,12 +58,22 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 s3_key,
             ]
 
+        if version == "prod":
+            container_name = "cinco-ctrl-prod-container"
+            ecs_names = {
+                "cluster": "cinco-prod",
+                "task_definition": "cinco-ctrl-prod",
+            }
+        else:  # default to stage
+            container_name = "cinco-ctrl-stage-container"
+            ecs_names = {
+                "cluster": "cinco-stage",
+                "task_definition": "cinco-ctrl-stage",
+            }
         container_name = "cinco-ctrl-stage-container"
         args = {
-            "cluster": "cinco-stage",
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": "cinco-ctrl-stage",
             "overrides": {
                 "containerOverrides": [
                     {
@@ -80,6 +96,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
             # "waiter_delay": 10,
             # "waiter_max_attempts": 8640,
         }
+        args.update(ecs_names)
         args.update(kwargs)
         super().__init__(**args)
 
@@ -109,7 +126,13 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
 
 class CincoCtrlDockerOperator(DockerOperator):
     def __init__(
-        self, manage_cmd, finding_aid_id=None, s3_key=None, repository_id=None, **kwargs
+        self,
+        manage_cmd,
+        finding_aid_id=None,
+        s3_key=None,
+        repository_id=None,
+        version="stage",
+        **kwargs,
     ):
         manage_args = []
         if manage_cmd == "prepare_finding_aid":
