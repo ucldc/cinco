@@ -31,6 +31,12 @@ from cinco.arclight_operator import ArcLightOperator
         "preview": Param(
             "publish", type="string", description="Either preview or publish"
         ),
+        "version": Param(
+            "stage",
+            type="enum",
+            enum=["stage", "prod"],
+            description="The version of CincoCtrl and ArcLight to run",
+        ),
     },
     tags=["cinco"],
     # on_failure_callback=notify_dag_failure,
@@ -51,6 +57,7 @@ def index_finding_aid():
         manage_cmd="prepare_finding_aid",
         finding_aid_id="{{ params.finding_aid_id }}",
         s3_key=s3_key,
+        version="{{ params.version }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
@@ -65,21 +72,30 @@ def index_finding_aid():
         finding_aid_ark="{{ params.finding_aid_ark }}",
         eadid="{{ params.eadid }}",
         preview="{{ params.preview }}",
+        version="{{ params.version }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
 
     @task()
-    def cleanup_s3(s3_key):
+    def cleanup_s3(s3_key, version="stage"):
         s3 = boto3.resource("s3")
-        bucket_name = Variable.get("CINCO_S3_BUCKET")
+        if version == "prod":
+            bucket_name = Variable.get("CINCO_S3_BUCKET_PROD")
+        else:
+            bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
         prefix = f"media/{s3_key}"
         print(f"Deleting objects in {bucket_name} at {prefix}")
         bucket = s3.Bucket(bucket_name)
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
-    s3_key >> prepare_finding_aid >> index_finding_aid_task >> cleanup_s3(s3_key)
+    (
+        s3_key
+        >> prepare_finding_aid
+        >> index_finding_aid_task
+        >> cleanup_s3(s3_key, version="{{ params.version }}")
+    )
 
 
 index_finding_aid = index_finding_aid()
