@@ -69,11 +69,17 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         finding_aid_ark=None,
         eadid=None,
         preview=None,
+        version="stage",
         **kwargs,
     ):
-        cluster_name = "cinco-stage"
-        task_name = "cinco-arclight-stage"
-        container_name = "cinco-arclight-stage-container"
+        if version == "prod":
+            cluster_name = "cinco-prod"
+            task_name = "cinco-arclight-prod"
+            container_name = "cinco-arclight-prod-container"
+        else:  # default to stage
+            cluster_name = "cinco-stage"
+            task_name = "cinco-arclight-stage"
+            container_name = "cinco-arclight-stage-container"
 
         command = []
         if arclight_command == "index-from-s3":
@@ -142,6 +148,7 @@ class ArcLightDockerOperator(DockerOperator):
         finding_aid_ark=None,
         eadid=None,
         preview=None,
+        version="stage",
         **kwargs,
     ):
         mounts = [
