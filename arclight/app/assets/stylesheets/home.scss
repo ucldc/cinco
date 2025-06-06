@@ -19,9 +19,11 @@
     min-height: 400px;
 }
 .calisphere-thumbnail {
-    width: 70px;
+    max-height: 90px;
+    min-height: 70px;
     aspect-ratio: 1/1;
 }
 .calisphere-logo {
     max-height: 70px;
+    min-height: 60px;
 }
