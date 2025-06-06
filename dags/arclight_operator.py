@@ -29,19 +29,19 @@ def get_stack_outputs(stack_name):
     return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
 
 
-def get_log_group():
+def get_log_group(stack_name="stage"):
     """
     get the log group name for the arclight container
     """
-    outputs = get_stack_outputs("cinco-stage-arclight-app")
+    outputs = get_stack_outputs(f"cinco-{stack_name}-arclight-app")
     return outputs["LogGroup"]
 
 
-def get_solr_writer_url():
+def get_solr_writer_url(stack_name="stage"):
     """
     get the url of the solr writer from the cloudformation stack
     """
-    outputs = get_stack_outputs("cinco-stage-solr-solr")
+    outputs = get_stack_outputs(f"cinco-{stack_name}-solr-solr")
     return f"http://{outputs['LoadBalancerDNS']}/solr/arclight"
 
 
@@ -133,7 +133,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         # get_awsvpc_config() when the operator is actually run.
         self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
         self.overrides["containerOverrides"][0]["environment"] = [
-            {"name": "SOLR_WRITER", "value": get_solr_writer_url()}
+            {"name": "SOLR_WRITER", "value": get_solr_writer_url("stage")}
         ]
         return super().execute(context)
 
