@@ -16,4 +16,8 @@ class StaticPagesController < ApplicationController
 
   def accessibility
   end
+
+  def home
+    @repositories = Arclight::Repository.all
+  end
 end
