@@ -24,3 +24,8 @@ $logo-image: image_url('arclight/logo.png') !default;
     --bs-btn-hover-border-color: var(--bs-link-hover-color);
     --bs-btn-active-bg:  var(--bs-link-hover-color);
 }
+
+.nav-container { padding: 0; }
+.nav { width: 100% }
+.help { margin-left: auto; background-color: $orange; color: white }
+.help:hover, .help:focus { color: white; background-color: #bb3500 }
