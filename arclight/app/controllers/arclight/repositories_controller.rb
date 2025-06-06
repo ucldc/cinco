@@ -8,7 +8,7 @@ module Arclight
             load_collection_counts
         end
 
-        def map
+        def home
             @repositories = Arclight::Repository.all
         end
 
