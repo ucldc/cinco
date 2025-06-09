@@ -8,20 +8,23 @@
     <%= form.text_area :message, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :user_category %>
-    <%= form.text_field :user_category, class: "form-control" %>
+    <%= form.label "How would you best describe yourself?" %>
+    <%= form.select :user_category, [["K-12 teacher or librarian", "K12T"], ["K-12 student", "K12S"],
+      ["College student", "CLG"], ["Graduate student", "GRAD"], ["Faculty or academic researcher", "FAC"],
+      ["Archivist or librarian", "LIB"], ["Genealogist or family researcher", "GENE"], ["Other", "OTHER"]]
+    %>
   </div>
   <div class="form-group">
-    <%= form.label :user_category_other_description %>
-    <%= form.text_field :user_category_other_description, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :sender_name %>
+    <%= form.label "Tell us in your own words" %>
     <%= form.text_field :sender_name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :sender_email %>
-    <%= form.text_field :sender_email, class: "form-control" %>
+    <%= form.label "Name" %>
+    <%= form.text_field :sender_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label "Email" %>
+    <%= form.email_field :sender_email, class: "form-control" %>
   </div>
 
   <%= form.submit "Submit", class: "btn btn-primary" %>
