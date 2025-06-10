@@ -1,0 +1,21 @@
+<search>
+  <%= form_with url: @url, local: true, method: @method, class: @classes.join(' '), scope: @prefix, role: 'search', **@form_options do |f| %>
+    <%= render Blacklight::HiddenSearchStateComponent.new(params: @params) %>
+    <div class="input-group">
+
+      <%= f.hidden_field :search_field, value: search_fields.first.last %>
+
+      <%= f.label @query_param, scoped_t('search.label'), class: 'visually-hidden' %>
+      <% if autocomplete_path.present? %>
+        <auto-complete src="<%= autocomplete_path %>" for="autocomplete-popup" class="search-autocomplete-wrapper form-control <%= rounded_border_class %>">
+          <%= f.search_field @query_param, value: @q, placeholder: @placeholder_text, class: "search-q q form-control #{rounded_border_class}", autofocus: @autofocus, aria: { label: scoped_t('search.label'), autocomplete: 'list', controls: 'autocomplete-popup' }  %>
+          <ul id="autocomplete-popup" class="dropdown-menu" role="listbox" aria-label="<%= scoped_t('search.label') %>" hidden></ul>
+        </auto-complete>
+      <% else %>
+        <%= f.search_field @query_param, value: @q, placeholder: @placeholder_text, class: "search-q q form-control #{rounded_border_class}", autofocus: @autofocus, aria: { label: scoped_t('search.label') }  %>
+      <% end %>
+
+      <%= search_button || render(Blacklight::SearchButtonComponent.new(id: "#{@prefix}search", text: "")) %>
+    </div>
+  <% end %>
+</search>

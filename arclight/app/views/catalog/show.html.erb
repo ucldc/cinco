@@ -25,20 +25,7 @@
             <%= render 'arclight/requests', document: @document %>
         </div>
     </div>
-
-    <div class="w-50 row py-4">
-        <search>
-            <form class="search-query-form" action="/catalog" accept-charset="UTF-8" method="get">
-                <div class="input-group">
-                    <input value="<%= @document.normalized_title %>" type="hidden" name="f[collection][]" id="f[collection][]">
-                    <input value="all_fields" type="hidden" name="search_field" id="search_field">
-                    <label class="sr-only visually-hidden" for="q">search for</label>
-                    <input placeholder="Search this collection" class="search-q q form-control rounded-left rounded-start" aria-label="search for" type="search" name="q" id="q" role="combobox" aria-expanded="false">
-                    <%= render 'search_button_component' %>
-                </div>
-            </form>
-        </search>
-    </div>
+    <%= render Oac::SearchDocumentComponent.new(document: @document) %>
 </div>
 <% end %>
 
