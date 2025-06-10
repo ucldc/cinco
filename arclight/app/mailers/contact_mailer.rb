@@ -1,7 +1,6 @@
 class ContactMailer < ApplicationMailer
     default from: "oac-feedback-l@ucop.edu"
-    #default to: "oac-feedback-l@listserv.ucop.edu"
-    default to: "barbara.hui@ucop.edu"
+    default to: "oac-feedback-l@listserv.ucop.edu"
 
     def contact_email(subject, message, user_category, user_category_other_description, sender_name, sender_email)
         formatted_message = "Subject: #{subject}\n\n" \
@@ -13,7 +12,7 @@ class ContactMailer < ApplicationMailer
 
         mail(
             reply_to: sender_email,
-            subject: subject,
+            subject: "[OAC Feedback] #{subject}",
             body: formatted_message
         )
     end
