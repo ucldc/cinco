@@ -193,6 +193,12 @@ class EADParser:
         for c in comps:
             self.get_component_title(c)
 
+    def validate_component_level(self, c, cid):
+        if c.attrib.get("level", "") == "collection":
+            self.errors.append(
+                f"Components cannot have level=collection: {cid}",
+            )
+
     def get_component_title(self, c):
         cid = c.attrib.get("id", c.tag)
         # if we have a unittitle or unitdate in this component we're good
@@ -211,12 +217,10 @@ class EADParser:
                         # not empty but no title info, indexing will fail
                         self.errors.append(f"No title for non-empty component: {cid}")
 
+        self.validate_component_level(c, cid)
+
         for e in c:
             if e.tag is not etree.Comment and re.match(r"c\d\d", e.tag):
-                if e.attrib.get("level", "") == "collection":
-                    self.errors.append(
-                        f"Components cannot have level=collection: {cid}",
-                    )
                 self.get_component_title(e)
 
     def get_element_value(self, e, path):
