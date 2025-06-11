@@ -148,7 +148,6 @@ class Command(BaseCommand):
             self.stdout.write(f"Successfully imported {ark}")
             for s in f.supplementaryfile_set.all():
                 self.stdout.write(f"\tImported: {s}")
-            f.queue_index(force_publish=True)
         except EADParserError as e:
             self.stdout.write(f"{filename}\t{e}\tERROR")
 
