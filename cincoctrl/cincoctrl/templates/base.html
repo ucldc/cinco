@@ -99,7 +99,7 @@
         <div class="py-5">
           {% block content %}
             <h1>OAC Dashboard</h1>
-             <p>Welcome to your OAC Dashboard, {{ object.name }}! The dashboard is where you can submit, manage, and publish collection guides. Ready to get started? Go to the "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page for options to create or update your guides.</p>
+             <p>Welcome to your OAC Dashboard! The dashboard is where you can submit, manage, and publish collection guides. Ready to get started? Go to the "<a href="{% url 'findingaids:manage_records' %}">Manage Collection Guides</a>" page for options to create or update your guides.</p>
             <h2>Quick start guides</h2>
             <ul>
              <li>How to <a href="https://help.oac.cdlib.org/support/solutions/articles/9000049980">submit or update an EAD file</a></li>
@@ -110,6 +110,8 @@
             <ul>
               <li><a href="https://help.oac.cdlib.org/">OAC/Calisphere Contributor Help Center</a></li>
               <li>View your collection's <a href="https://help.oac.cdlib.org/support/solutions/folders/9000199152">usage statistics</a></li>
+              <li>Check whether your EAD file is valid with the <a href="https://saa-sdt.github.io/eas-validator/">EAS Validation Tool</a> (choose schema version: EAD 2002)</li>
+              <li>Tips on how to <a href="https://www.ucop.edu/electronic-accessibility/web-developers/create-accessible-pdfs.html">create accessible PDFs</a></li>
               <li>Subscribe to our <a href="http://eepurl.com/hxzENj">contributor mailing list</a></li>
             </ul>
           {% endblock content %}
