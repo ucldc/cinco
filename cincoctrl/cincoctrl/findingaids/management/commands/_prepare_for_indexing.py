@@ -51,7 +51,7 @@ def prepare_finding_aid(finding_aid, s3_key):
         ead_file,
     )
 
-    preview = "false" if finding_aid.status == "queued_preview" else "true"
+    preview = "true" if finding_aid.status == "queued_preview" else "false"
     indexing_env = (
         f"export FINDING_AID_ID={finding_aid.id}\n"
         f"export REPOSITORY_ID={finding_aid.repository.code}\n"
