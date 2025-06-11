@@ -170,22 +170,22 @@ class EADParser:
         ("./archdesc/did/unitid", "Collection number"),
     ]
 
+    def node_to_string(self, node):
+        return etree.tostring(node, encoding="utf-8", method="text").decode().strip()
+
     def validate_required_fields(self):
         for field, label in self.required_fields:
-            if self.root.find(field) is None:
+            node = self.root.find(field)
+            if node is None:
                 self.errors.append(f"Failed to parse {label}")
+            elif len(self.node_to_string(node)) == 0:
+                self.errors.append(f"No value in {label}")
 
     def extract_ead_fields(self):
         title_node = self.root.find("./archdesc/did/unittitle")
         number_node = self.root.find("./archdesc/did/unitid")
-        title = (
-            etree.tostring(title_node, encoding="utf-8", method="text").decode().strip()
-        )
-        number = (
-            etree.tostring(number_node, encoding="utf-8", method="text")
-            .decode()
-            .strip()
-        )
+        title = self.node_to_string(title_node)
+        number = self.node_to_string(number_node)
         return title, number
 
     def validate_component_titles(self):

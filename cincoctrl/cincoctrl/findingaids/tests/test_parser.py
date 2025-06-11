@@ -326,6 +326,7 @@ XML_COMMENTS = """
     </archdesc>
 </ead>
 """
+
 COLLECTION_LEVEL = """
 <ead>
     <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
@@ -352,6 +353,27 @@ COLLECTION_LEVEL = """
                 </did>
             </c01>
         </dsc>
+    </archdesc>
+</ead>
+"""
+
+EMPTY_FIELDS = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code"></eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
     </archdesc>
 </ead>
 """
@@ -485,3 +507,10 @@ class TestParser(TestCase):
         p.validate_component_titles()
         assert len(p.errors) == 1
         assert p.errors[0] == "Components cannot have level=collection: aspace_ref1_1aa"
+
+    def test_empty_required_fields(self):
+        p = EADParser()
+        p.parse_string(EMPTY_FIELDS)
+        p.validate_required_fields()
+        assert len(p.errors) == 1
+        assert p.errors[0] == "No value in EADID"
