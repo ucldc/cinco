@@ -173,6 +173,10 @@ class EADParser:
     def node_to_string(self, node):
         return etree.tostring(node, encoding="utf-8", method="text").decode().strip()
 
+    def update_eadid(self, filename):
+        node = self.root.find("./eadheader/eadid")
+        node.text = filename
+
     def validate_required_fields(self):
         for field, label in self.required_fields:
             node = self.root.find(field)
