@@ -86,6 +86,7 @@ class Repository(models.Model):
     longitude = FloatField(null=True, blank=True)
     date_created = DateTimeField(auto_now_add=True)
     date_updated = DateTimeField(auto_now=True)
+    auto_index = BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = "repositories"
