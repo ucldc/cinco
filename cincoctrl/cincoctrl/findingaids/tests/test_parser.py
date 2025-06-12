@@ -327,6 +327,57 @@ XML_COMMENTS = """
 </ead>
 """
 
+COLLECTION_LEVEL = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code">0000_0000.xml</eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+        <dsc type="combined" id="dsc-1.2.10" score="0" C-ORDER="1" MAX-C-ORDER="1">
+            <c01 id="aspace_ref1_1aa" level="collection" score="1" C-ORDER="1">
+                <did>
+                    <unittitle>Papers</unittitle>
+                    <unitdate datechar="creation">1908-1926</unitdate>
+                    <physdesc id="aspace_1" label="Description note">(1 box)</physdesc>
+                </did>
+            </c01>
+        </dsc>
+    </archdesc>
+</ead>
+"""
+
+EMPTY_FIELDS = """
+<ead>
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" repositoryencoding="iso15511">
+        <eadid countrycode="US" mainagencycode="repo_code"></eadid>
+    </eadheader>
+    <archdesc level="collection">
+        <did>
+            <langmaterial>
+                <language langcode="eng">English</language>
+            </langmaterial>
+            <repository>
+                <corpname>Test Library</corpname>
+            </repository>
+            <unittitle>Title of the EAD</unittitle>
+            <unitid>0000-0000</unitid>
+        </did>
+    </archdesc>
+</ead>
+"""
+
 
 class TestParser(TestCase):
     def get_ead_file(self, filename, xml_str):
@@ -449,3 +500,17 @@ class TestParser(TestCase):
             "Original Title</extref></item></list>"
         )
         assert result in out
+
+    def test_invalid_collection_level(self):
+        p = EADParser()
+        p.parse_string(COLLECTION_LEVEL)
+        p.validate_component_titles()
+        assert len(p.errors) == 1
+        assert p.errors[0] == "Components cannot have level=collection: aspace_ref1_1aa"
+
+    def test_empty_required_fields(self):
+        p = EADParser()
+        p.parse_string(EMPTY_FIELDS)
+        p.validate_required_fields()
+        assert len(p.errors) == 1
+        assert p.errors[0] == "No value in EADID"

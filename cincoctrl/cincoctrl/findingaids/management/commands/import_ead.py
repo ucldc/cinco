@@ -138,6 +138,8 @@ class Command(BaseCommand):
 
             self.process_supp_files(parser, doc_url, ark_dir, f)
 
+            parser.update_eadid(filename)
+
             # add the new ead file
             ead_file = SimpleUploadedFile(
                 filename,
@@ -148,7 +150,6 @@ class Command(BaseCommand):
             self.stdout.write(f"Successfully imported {ark}")
             for s in f.supplementaryfile_set.all():
                 self.stdout.write(f"\tImported: {s}")
-            f.queue_index(force_publish=True)
         except EADParserError as e:
             self.stdout.write(f"{filename}\t{e}\tERROR")
 
