@@ -123,22 +123,23 @@ class FindingAid(models.Model):
         return action
 
     def queue_index(self, *, force_publish=False):
-        action = self.queue_status(force_publish=force_publish)
-        logger.info("queue index for %s: %s", self.ark, action)
+        if self.repository.auto_index:
+            action = self.queue_status(force_publish=force_publish)
+            logger.info("queue index for %s: %s", self.ark, action)
 
-        if settings.ENABLE_AIRFLOW:
-            ark_name = self.ark.replace("/", ":")
-            trigger_dag(
-                "index_finding_aid",
-                {
-                    "finding_aid_id": self.id,
-                    "repository_code": self.repository.code,
-                    "finding_aid_ark": self.ark,
-                    "preview": action,
-                },
-                related_models=[self],
-                dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
-            )
+            if settings.ENABLE_AIRFLOW:
+                ark_name = self.ark.replace("/", ":")
+                trigger_dag(
+                    "index_finding_aid",
+                    {
+                        "finding_aid_id": self.id,
+                        "repository_code": self.repository.code,
+                        "finding_aid_ark": self.ark,
+                        "preview": action,
+                    },
+                    related_models=[self],
+                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
+                )
 
 
 class IndexingHistory(models.Model):
