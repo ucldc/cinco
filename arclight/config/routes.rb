@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get "/about", to: "about", controller: "static_pages"
   get "/help", to: "help", controller: "static_pages"
-  get "/faqs", to: "faqs", controller: "static_pages"
   get "/termsofuse", to: "termsofuse", controller: "static_pages"
   get "/privacy", to: "privacy", controller: "static_pages"
   get "/example", to: "example", controller: "static_pages"

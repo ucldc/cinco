@@ -18,17 +18,12 @@ crumb :termsofuse do
   parent :root
 end
 
-crumb :faqs do
-  link "FAQs", faqs_path
+crumb :help do
+  link "FAQs", help_path
   parent :root
 end
 
 crumb :overview do
   link "Overview", overview_path
-  parent :root
-end
-
-crumb :help do
-  link "Help", help_path
   parent :root
 end
