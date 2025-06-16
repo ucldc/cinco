@@ -17,3 +17,8 @@ crumb :faqs do
   link "FAQs", faqs_path
   parent :root
 end
+
+crumb :overview do
+  link "Overview", overview_path
+  parent :root
+end

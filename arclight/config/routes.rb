@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/termsofuse", to: "termsofuse", controller: "static_pages"
   get "/privacy", to: "privacy", controller: "static_pages"
   get "/accessibility", to: "accessibility", controller: "static_pages"
+  get "/overview", to: "overview", controller: "static_pages"
 
   get "/repositories/", to: "arclight/repositories#index"
 
