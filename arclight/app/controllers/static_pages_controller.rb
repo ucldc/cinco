@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
-  def accessibility
+  def example
   end
 
   def overview

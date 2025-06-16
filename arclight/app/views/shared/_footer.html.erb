@@ -11,14 +11,14 @@
                 <li><%= link_to 'About OAC', about_path %></li>
                 <li><%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %></li>
                 <li><%= link_to 'FAQs', faqs_path %></li>
-                <li><%= link_to 'Help', help_path %></li>
+                <%#= link_to 'Help', help_path %>
             </ul>
         </div>
         <div class="col-md-3">
             <ul class="list-unstyled">
                 <li><%= link_to 'Terms of Use', termsofuse_path %></li>
                 <li><%= link_to 'Privacy Statement', privacy_path %></li>
-                <li><%= link_to 'Accessibility', accessibility_path %></li>
+                <li><%= link_to 'Accessibility', 'https://cdlib.org/about/policies-and-guidelines/accessibility/' %></li>
                 <li><%= link_to 'Contact Us', '' %></li>
             </ul>
         </div>

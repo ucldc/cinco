@@ -1,3 +1,8 @@
+crumb :example do
+  link "Example Static Page", example_path
+  parent :root
+end
+
 crumb :about do
   link "About OAC", about_path
   parent :root
@@ -20,11 +25,6 @@ end
 
 crumb :overview do
   link "Overview", overview_path
-  parent :root
-end
-
-crumb :accessibility do
-  link "Accessibility", accessibility_path
   parent :root
 end
 
