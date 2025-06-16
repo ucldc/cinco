@@ -12,3 +12,8 @@ crumb :termsofuse do
   link "Terms of Use", termsofuse_path
   parent :root
 end
+
+crumb :faqs do
+  link "FAQs", faqs_path
+  parent :root
+end
