@@ -33,7 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: 36px; line-height: 1.4; }
 h2 { font-size: 28px; line-height: 1.35; }
 h3 { font-size: 20px; }
+
 a { text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; color: $teal; }
+a:focus { outline: 2px solid $teal; outline-offset: 2px; }
+p a, dd a { text-decoration: underline; }
+p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $teal; }
 
 .nav { width: 100% }
 .help { margin-left: auto; background-color: $orange; color: white }
