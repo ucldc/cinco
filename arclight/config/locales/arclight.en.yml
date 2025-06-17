@@ -4,7 +4,7 @@ en:
       home: Home
       repositories: Contributing Institutions
       about: About
-      help: What are Collection Guides?
+      overview: What are Collection Guides?
     search:
       start_over:  Clear search
       facets:

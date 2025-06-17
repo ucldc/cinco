@@ -2,9 +2,6 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def faqs
-  end
-
   def help
   end
 
@@ -14,7 +11,10 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
-  def accessibility
+  def example
+  end
+
+  def overview
   end
 
   def home
