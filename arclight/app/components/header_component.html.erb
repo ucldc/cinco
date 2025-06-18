@@ -1,11 +1,11 @@
 <header>
-  <nav class="navbar navbar-expand-md topbar" aria-label="Main navigation">
+  <nav class="cdl-search-navbar navbar navbar-expand-md topbar" aria-label="Main navigation">
     <div class="container">
-      <a class="mb-0 navbar-brand navbar-logo" href="/">OAC</a>
+      <a class="mb-0 navbar-brand navbar-logo cdl-navbar-logo" href="/">OAC</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#user-util-collapse" data-bs-target="#user-util-collapse" aria-controls="user-util-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="col-6" id="search-col">
+      <div class="col-6 align-self-end" id="search-col">
          <div role="navigation" aria-label="Search">
             <%= search_bar %>
          </div>
@@ -13,7 +13,7 @@
   </nav>
 </header>
 <div class="container d-flex">
-    <nav class="nav border">
+    <nav class="nav border cdl-main-navbar">
         <%= render 'shared/user_util_links' %>
     </nav>
 </div>

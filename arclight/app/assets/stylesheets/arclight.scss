@@ -2,7 +2,8 @@ $orange: #be4b1b;
 $teal: #04768a;
 
 $breadcrumb-divider: quote("»");
-$logo-image: image_url('arclight/logo.png') !default;
+$logo-image: image_url('arclight/logo.svg') !default;
+
 @import 'bootstrap';
 @import 'blacklight/blacklight';
 @import 'arclight/application';
@@ -26,11 +27,32 @@ $logo-image: image_url('arclight/logo.png') !default;
     --bs-btn-active-bg:  var(--bs-link-hover-color);
 }
 
+.cdl-search-navbar {
+    --bs-navbar-padding-y: 1.25rem;
+}
+.cdl-navbar-logo {
+    background-size: 285px 86px;
+    width: 285px;
+    height: 86px;
+    background-position: center left;
+}
+.cdl-main-navbar {
+    margin-bottom: 1rem;
+}
+.al-search-breadcrumb {
+    margin-bottom: 1.75rem;
+}
+
+.search-q::placeholder {
+    color: $teal;
+    font-weight: 300;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: Source Sans 3;
     color: #01334d;
 }
-h1 { font-size: 36px; line-height: 1.4; }
+h1 { font-size: 36px; line-height: 1.4; font-weight: 400; }
 h2 { font-size: 28px; line-height: 1.35; }
 h3 { font-size: 20px; }
 
