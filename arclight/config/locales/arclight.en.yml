@@ -60,7 +60,7 @@ en:
         facet:
           collection: Collection
           creator: Creators
-          date_range: Date range
+          date_range: Date Range
           level: Level
           names: Names
           repository: Institution
