@@ -24,7 +24,7 @@ module Arclight
       params["f[repository][]"] = repository.name
       params.delete("f[level][]")
       Oac::SearchBarComponent.new(
-        placeholder_text: "Search this repository",
+        placeholder_text: "Search this institution",
         url: helpers.search_action_url,
         params: params
       )

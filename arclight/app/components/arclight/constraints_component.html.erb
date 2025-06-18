@@ -1,6 +1,6 @@
 <% if repository %>
   <div class="al-repository-card">
-  <h1 class="h3">
+  <h1>
   <span class="al-repository-content-icon blacklight-icons blacklight-icons-repository">
     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
         <path fill="none" d="M0 0h24v24H0V0z"></path>
@@ -25,9 +25,14 @@
     </div>
     <% end %>
   </div>
-  <div class="w-50 mb-4">
-    <%= search_bar %>
-  </div>
+  <div class="cdl-repository-constraints">
+    <div class="w-50 mb-4">
+      <%= search_bar %>
+    </div>
 <% end %>
 
 <%= render Blacklight::ConstraintsComponent.new(**@kwargs) %>
+
+<% if repository %>
+  </div>
+<% end %>
