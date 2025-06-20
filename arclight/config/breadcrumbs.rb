@@ -27,3 +27,8 @@ crumb :overview do
   link "Overview", overview_path
   parent :root
 end
+
+crumb :contact do
+  link "Contact Us", contact_form_index_path
+  parent :root
+end
