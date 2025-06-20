@@ -1,0 +1,37 @@
+<div class="title-container">
+  <%= content_tag :h5 do %>
+    <%= document.normalized_title %>
+  <% end %>
+</div>
+
+<%= render StaticFindingAid::MetadataSectionComponent.with_collection(component_metadata_partials,
+             metadata_attr: { layout: StaticFindingAid::MetadataFieldLayoutComponent },
+             presenter: presenter) unless document.collection?  %>
+
+<%= embed %>
+
+<div id="<%= "metadata-#{document.id}"%>">
+  <h2 class="sr-only visually-hidden"><%= t 'arclight.views.show.context' %></h2>
+  <%= render StaticFindingAid::MetadataSectionComponent.with_collection(metadata_partials,
+                metadata_attr: { layout: StaticFindingAid::MetadataFieldLayoutComponent },
+                presenter: presenter, heading: true) %>
+</div>
+
+
+<%= access %>
+
+<% if document.children? %>
+<div id="<%= "content-#{document.id}" %> >
+  <h2 class="al-show-sub-heading"><%= t 'arclight.views.show.contents' %></h2>
+  <%= helpers.turbo_frame_tag "al-hierarchy-#{document.id}-document", loading: 'lazy', src: helpers.hierarchy_solr_document_path(id: document.id, paginate: true, key: '-document', per_page: 50) %>
+</div>
+<% end %>
+
+<% for child in document_tree.children %>
+
+<%= render (self.class).new(document: child.document, presenter: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
+
+ <% component.with_title(as: 'h4', classes: '', link_to_document: false, actions: false) %>
+
+ <% end %>
+<% end %>
