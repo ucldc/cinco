@@ -24,6 +24,7 @@ job's working files as the argument.
 import logging
 from datetime import UTC
 from datetime import datetime
+import math
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -64,11 +65,27 @@ class Command(BaseCommand):
             help="List of Finding Aid IDs to prepare for indexing",
         )
         parser.add_argument(
+            "--status",
+            nargs="?",
+            default=None,
+            type=str,
+            metavar="STATUS",
+            help="Specify the status of the Finding aids to prepare for indexing",
+        )
+        parser.add_argument(
             "-s3",
             "--s3-key",
             nargs=1,
             type=str,
             help="s3 key location for storing the bundle",
+        )
+        parser.add_argument(
+            "--max-num-records",
+            nargs="?",
+            default=None,
+            type=int,
+            metavar="max-num-records",
+            help="max number of finding aids in each indexing job",
         )
         parser.add_argument(
             "--force-publish",
@@ -78,7 +95,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         s3_key = kwargs.get("s3_key")
         repository_id = kwargs.get("repository")
+        status = kwargs.get("status")
         finding_aid_ids = kwargs.get("finding_aid_ids")
+        max_num_records = kwargs.get("max_num_records")
         force_publish = kwargs.get("force_publish")
 
         if repository_id:
@@ -86,14 +105,36 @@ class Command(BaseCommand):
         elif finding_aid_ids:
             finding_aids = FindingAid.objects.filter(id__in=finding_aid_ids)
 
-        self.stdout.write(
-            f"Bulk indexing {finding_aids.count()} finding aids",
-        )
-        bulk_index_finding_aids(
-            finding_aids,
-            force_publish=force_publish,
-            s3_key=s3_key,
-        )
+        if status:
+            finding_aids = finding_aids.filter(status=status)
+
+        count = finding_aids.count()
+
+        if max_num_records and count > max_num_records:
+            num_groups = math.ceil(count / max_num_records)
+            batch_size = math.ceil(count / num_groups)
+            for start in range(0, count, batch_size):
+                end = start + batch_size
+                batch = finding_aids[start:end]
+
+                self.stdout.write(
+                    f"Bulk indexing batch of {batch.count()} finding aids",
+                )
+                bulk_index_finding_aids(
+                    batch,
+                    force_publish=force_publish,
+                    s3_key=s3_key,
+                )
+        else:
+            self.stdout.write(
+                f"Bulk indexing {finding_aids.count()} finding aids",
+            )
+            bulk_index_finding_aids(
+                finding_aids,
+                force_publish=force_publish,
+                s3_key=s3_key,
+            )
+
 
 
 def bulk_index_finding_aids(
