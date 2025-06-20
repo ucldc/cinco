@@ -15,19 +15,19 @@ Rails.application.routes.draw do
   root to: "home", controller: "static_pages"
   concern :searchable, Blacklight::Routes::Searchable.new
 
-  resource :catalog, only: [], as: "catalog", path: "/catalog", controller: "catalog" do
+  resource :catalog, only: [], as: "catalog", path: "/findaid", controller: "catalog" do
     concerns :searchable
   end
   devise_for :users
 
-  get "/static/:id", to: "static_finding_aids#show"
-  get "/static", to: "static_finding_aids#index"
+  get "/findaid/static/:id", to: "static_finding_aid#show", as: "static_finding_aid"
+  get "/findaid", to: "static_finding_aid#index"
 
 
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  resources :solr_documents, only: [ :show ], path: "/catalog", controller: "catalog" do
+  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog" do
   concerns :hierarchy
     concerns :exportable
   end
