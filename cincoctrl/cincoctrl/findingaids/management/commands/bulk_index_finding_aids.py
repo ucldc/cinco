@@ -22,9 +22,9 @@ job's working files as the argument.
 """
 
 import logging
+import math
 from datetime import UTC
 from datetime import datetime
-import math
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -134,7 +134,6 @@ class Command(BaseCommand):
                 force_publish=force_publish,
                 s3_key=s3_key,
             )
-
 
 
 def bulk_index_finding_aids(
