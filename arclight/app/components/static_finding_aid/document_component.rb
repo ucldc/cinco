@@ -11,5 +11,9 @@ module StaticFindingAid
     def document_tree
       @document_tree
     end
+
+    def should_render_field?(field_config, *args)
+      true
+    end
   end
 end
