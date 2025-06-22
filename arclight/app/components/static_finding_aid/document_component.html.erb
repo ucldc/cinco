@@ -18,12 +18,12 @@
 </div>
 
 
-<%= access %>
+<%= access if document.collection? %>
 
 <% if document.children? %>
 <div id="<%= "content-#{document.id}" %> >
   <h2 class="al-show-sub-heading"><%= t 'arclight.views.show.contents' %></h2>
-  <%= helpers.turbo_frame_tag "al-hierarchy-#{document.id}-document", loading: 'lazy', src: helpers.hierarchy_solr_document_path(id: document.id, paginate: true, key: '-document', per_page: 50) %>
+  <%= helpers.turbo_frame_tag "al-hierarchy-#{document.id}-document", loading: 'lazy', src: helpers.hierarchy_solr_document_path(id: document.id, paginate: false, key: '-document') %>
 </div>
 <% end %>
 
