@@ -25,14 +25,11 @@
     </div>
     <% end %>
   </div>
-  <div class="cdl-repository-constraints">
-    <div class="w-50 mb-4">
-      <%= search_bar %>
-    </div>
 <% end %>
 
-<%= render Blacklight::ConstraintsComponent.new(**@kwargs) %>
-
-<% if repository %>
+<div class="cdl-constraints">
+  <div class="w-50 mb-4">
+    <%= search_bar %>
   </div>
-<% end %>
+  <%= render Blacklight::ConstraintsComponent.new(**@kwargs) %>
+</div>
