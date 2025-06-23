@@ -10,7 +10,7 @@ class HeaderComponent < Arclight::HeaderComponent
         params = helpers.search_state.params_for_search.except(:qt, :q, :f)
         params[:group] = true
         Oac::SearchBarComponent.new(
-          placeholder_text: "Search over 60,000 collection guides",
+          placeholder_text: I18n.t("oac.search.placeholder_text"),
           url: helpers.search_action_url,
           params: params,
           autocomplete_path: "/catalog/suggest"

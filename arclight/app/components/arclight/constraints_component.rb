@@ -40,7 +40,7 @@ module Arclight
       elsif params[:f] && params[:f][:collection]
         placeholder_text = "Search this collection"
       else
-        placeholder_text = "Search over 60,000 collection guides"
+        placeholder_text = I18n.t("oac.search.placeholder_text")
       end
 
       Oac::SearchBarComponent.new(
