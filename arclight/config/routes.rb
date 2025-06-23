@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   get "/about", to: "about", controller: "static_pages"
   get "/help", to: "help", controller: "static_pages"
-  get "/termsofuse", to: "termsofuse", controller: "static_pages"
+  get "/terms", to: "termsofuse", controller: "static_pages", as: "termsofuse"
   get "/privacy", to: "privacy", controller: "static_pages"
   get "/example", to: "example", controller: "static_pages"
   get "/overview", to: "overview", controller: "static_pages"
 
-  get "/repositories/", to: "arclight/repositories#index"
-  get "/repositories/:id", to: "arclight/repositories#show", as: "repository"
+  get "/institutions/", to: "arclight/repositories#index"
+  get "/institutions/:id", to: "arclight/repositories#show", as: "repository"
 
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"
@@ -36,7 +36,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contact_form, only: %i[new create]
+  namespace :contact_form, path: "/contact", as: "contact_form" do
+    get "/", action: :new, as: ""
+    post "/create", action: :create, as: "create"
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
