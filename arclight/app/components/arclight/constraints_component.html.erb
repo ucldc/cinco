@@ -24,6 +24,9 @@
         <%= repository.description %>
     </div>
     <% end %>
+    <div class="mb-5">
+      <%= link_to("Browse all collection guides from " + repository.name, helpers.repository_collections_path(repository)) %>
+    </div>
   </div>
 <% end %>
 
