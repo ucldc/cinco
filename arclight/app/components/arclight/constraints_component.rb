@@ -20,11 +20,31 @@ module Arclight
 
     def search_bar_component
       params = helpers.search_state.params_for_search.except(:qt)
-      params[:group] = true
-      params["f[repository][]"] = repository.name
-      params.delete("f[level][]")
+      params = params.dup
+
+      # Remove Level: Collection filter if it exists
+      if params[:f] && params[:f][:level] == [ "Collection" ]
+          params[:f].delete(:level)
+          params.delete(:f) if params[:f].empty?
+          # If we're removing the level filter, we can assume we're
+          # searching from a canned repository search results set,
+          # and we want to "reset" canned parameters to the search
+          # bar defaults - Group by Collection & Sort by Relevance
+          params[:group] = true
+          params.delete(:sort)
+        # params[:sort] = "score desc, title_sort asc"
+      end
+
+      if params[:f] && params[:f][:repository]
+        placeholder_text = "Search this institution"
+      elsif params[:f] && params[:f][:collection]
+        placeholder_text = "Search this collection"
+      else
+        placeholder_text = "Search over 60,000 collection guides"
+      end
+
       Oac::SearchBarComponent.new(
-        placeholder_text: "Search this institution",
+        placeholder_text: placeholder_text,
         url: helpers.search_action_url,
         params: params
       )
