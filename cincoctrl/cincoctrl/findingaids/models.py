@@ -110,6 +110,12 @@ class FindingAid(models.Model):
     def public_url(self):
         return f"{settings.ARCLIGHT_URL}{self.ark}"
 
+    @property
+    def eadid(self):
+        if self.ead_file:
+            return self.ead_file.name
+        return self.collection_number
+
     def queue_status(self, *, force_publish=False):
         if force_publish or "publish" in self.status:
             self.status = "queued_publish"
@@ -135,6 +141,7 @@ class FindingAid(models.Model):
                         "finding_aid_id": self.id,
                         "repository_code": self.repository.code,
                         "finding_aid_ark": self.ark,
+                        "eadid": self.eadid,
                         "preview": action,
                     },
                     related_models=[self],

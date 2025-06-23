@@ -67,6 +67,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         s3_key=None,
         repository_code=None,
         finding_aid_ark=None,
+        eadid=None,
         preview=None,
         **kwargs,
     ):
@@ -82,6 +83,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 s3_key,
                 repository_code,
                 finding_aid_ark,
+                eadid,
                 preview,
             ]
         elif arclight_command == "bulk-index-from-s3":
@@ -138,6 +140,7 @@ class ArcLightDockerOperator(DockerOperator):
         s3_key=None,
         repository_code=None,
         finding_aid_ark=None,
+        eadid=None,
         preview=None,
         **kwargs,
     ):
@@ -161,6 +164,7 @@ class ArcLightDockerOperator(DockerOperator):
                 s3_key,
                 repository_code,
                 finding_aid_ark,
+                eadid,
                 preview,
             ]
         elif arclight_command == "bulk-index-from-s3":
