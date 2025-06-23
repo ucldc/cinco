@@ -10,7 +10,7 @@
     <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <a href="/institutions/">the institution’s page</a> to find their contact information, such as phone number and email address.</p>
     <p>Use this form only if you have technical problems, questions, or general comments about the Online Archive of California.</p>
 
-    <%= form_with scope: :contact_form, url: contact_form_index_path, method: :post, local: true, class: "container" do |form| %>
+    <%= form_with scope: :contact_form, url: contact_form_create_path, method: :post, local: true, class: "container" do |form| %>
       <div class="form-group">
         <%= form.label "Name" %>
         <%= form.text_field :sender_name, class: "form-control" %>
