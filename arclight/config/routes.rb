@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/overview", to: "overview", controller: "static_pages"
 
   get "/repositories/", to: "arclight/repositories#index"
+  get "/repositories/:id", to: "arclight/repositories#show", as: "repository"
 
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"

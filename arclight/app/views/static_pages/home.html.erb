@@ -106,7 +106,7 @@
     marker.bindPopup(`
         <%= r.name %><br/>
         <%= r.location %>
-        <%= link_to("Browse collections", repository_collections_path(r)) %>
+        <%= link_to("Browse collections", repository_path(:id => r.slug)) %>
     `);
     <% end %>
 </script>
