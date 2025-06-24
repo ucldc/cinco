@@ -106,3 +106,40 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .facet-limit-active {
     border-color: inherit;
 }
+
+.paginate-section {
+    margin-bottom: 1rem;
+}
+
+.sort-pagination {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.al-grouped-repository a {
+    color: $teal;
+}
+
+.al-grouped-results .al-grouped-title-bar {
+    background-color: inherit !important;
+}
+
+.al-grouped-results .grouped-documents {
+    margin: 12px 0 12px 50px;
+}
+
+.al-grouped-title-bar h3 {
+    display: block;
+}
+
+.al-document-extent {
+    border: 0;
+    border-radius: 0;
+    background-color: #e7e4e3;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.al-document-abstract-or-scope {
+    max-width: initial;
+}
