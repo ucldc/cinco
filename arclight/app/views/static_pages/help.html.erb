@@ -4,8 +4,8 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Frequently Asked Questions</h1>
-<p>The OAC is a website that provides free public access to detailed descriptions of primary source collections (artwork, manuscripts, papers, historic photographs, and so on) maintained by more than <a href="/institutions>350 libraries, special collections, archives, historical societies, and museums</a> throughout California -- including collections maintained by the 10 University of California (UC) campuses.</p>
-<p>The Online Archive of California is a service of the <a href="https://libraries.universityofcalifornia.edu/">University of California Libraries</a>, developed and maintained by the <a href="https://cdlib.org/">California Digital Library</a>.</p>
+<p>The OAC is a website that provides free public access to detailed descriptions of primary source collections (artwork, manuscripts, papers, historic photographs, and so on) maintained by more than <%= link_to '350 libraries, special collections, archives, historical societies, and museums', { controller: 'arclight/repositories', action: 'index' } %> throughout California -- including collections maintained by the 10 University of California (UC) campuses.</p>
+<p>The Online Archive of California is a service of the <%= link_to 'University of California Libraries', 'https://libraries.universityofcalifornia.edu/' %>, developed and maintained by the <%= link_to 'California Digital Library', 'https://cdlib.org/' %>.</p>
 <p>Below are some frequently asked questions about finding, using, and obtaining more information about these materials.</p>
 
     <ul>
@@ -64,8 +64,14 @@
     <p>You can discover the contents of the archives, libraries, and museum collections, their physical location, and their contact information.</p>
     <p>The OAC does not own, store, or house any of the materials described in the collection guides.</p>
 
-    <p><strong>Collection guides</strong><br/>
-The OAC provides access to more than 60,000 online collection guides (also known as "<a href="https://dictionary.archivists.org/entry/finding-aid.html">finding aids</a>"). They describe the items in collections and how they were gathered or created. They also identify the collection's location, and may provide additional information such as detailed descriptions, histories, and biographies. You can use these to browse, locate resources, or view selected items digitally.</p>
+    <dl>
+    <dt>Collection guides</dt>
+    <dd>The OAC provides access to more than 60,000 online collection guides (also known as "<%= link_to 'finding aids', 'https://dictionary.archivists.org/entry/finding-aid.html' %>"). They describe the items in collections and how they were gathered or created. They also identify the collection's location, and may provide additional information such as detailed descriptions, histories, and biographies. You can use these to browse, locate resources, or view selected items digitally.</dd>
+    <dt>Contributing institutions</dt>
+    <dd>The OAC partners with more than <%= link_to '350 libraries, special collections, archives, historical societies, and museums', { controller: 'arclight/repositories', action: 'index' } %> throughout California. Select “Contributing Institutions” from the top navigation bar to view and scroll through an A-Z list of all the OAC contributing institutions.</dd>
+    <dd>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be directed to the institution that contributed the materials or the guide. The OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</dd>
+    <dd>The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</dd>
+    </dl>
 
     <p><strong>Contributing institutions</strong><br/>
 The OAC partners with more than <a href="/institutions">350 libraries, special collections, archives, historical societies, and museums</a> throughout California. Select “Contributing Institutions” from the top navigation bar to view and scroll through an A-Z list of all the OAC contributing institutions.</p>
@@ -90,7 +96,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <h3 id="advanced">Why do some collection guides have advanced search, viewing, sharing/saving, and table of contents features, while others don't?</h3>
 
-    <p>This is a technical limitation due to file formats. The OAC currently supports two collection guide formats: 1) <a href="https://www.loc.gov/marc/">Machine Readable Cataloging (MARC)</a> records and 2) files encoded in <a href="https://www.loc.gov/ead/.">Encoded Archival Description (EAD)</a>. We are able to provide additional options for interacting with the EAD files, but not the MARC records.</p>
+    <p>This is a technical limitation due to file formats. The OAC currently supports two collection guide formats: 1) <%= link_to 'Machine Readable Cataloging', 'https://www.loc.gov/marc/' %> (MARC) records and 2) files encoded in <%= link_to 'Encoded Archival Description', 'https://www.loc.gov/ead/' %> (EAD). We are able to provide additional options for interacting with the EAD files, but not the MARC records.</p>
 
     <p>The OAC accepts both kinds of formats--and will continue to work to support more--because we believe it is better to provide some information about a collection than nothing at all.</p>
 
@@ -106,7 +112,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <h3 id="online">How do I see online versions of the items?</h3>
     <p>Collection guides provide detailed descriptions of the items in a collection, and make it easy to  locate individual objects. Selected items have been digitally scanned, and may be available for immediate online viewing through the links provided by contributing institutions. If a collection includes online versions of items, the collection guide will provide the option to “Show only online content.” You may also refine search results to "Show only items with online content."</p>
-    <p>When online content is available, contributing institutions will provide a link so you may view the digital objects. The digital objects are not available for viewing directly within the OAC website; these links will point to a digital collections platform, often the contributing partner’s website, or a digital collections website, such as <a href="https://calisphere.org">Calisphere</a>.</p>
+    <p>When online content is available, contributing institutions will provide a link so you may view the digital objects. The digital objects are not available for viewing directly within the OAC website; these links will point to a digital collections platform, often the contributing partner’s website, or a digital collections website, such as <%= link_to 'Calisphere', 'https://calisphere.org' %>.</p>
 
     <h3 id="digitized">The items I'm interested in aren't available online. Why aren't all the items digitized?</h3>
 
@@ -154,7 +160,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>When citing or referring to a collection guide in OAC, please use the permalink located near the top of the page, that begins with <strong>https://oac.cdlib.org/findaid/ark:/13030/#####</strong>. Check the guide to see if the collection guide includes a “Preferred Citation.” If it does, use that citation when referencing particular items in the collection.</p>
 
-    <p>For additional recommendations on citing materials in archival collections, see the <a href="https://apastyle.apa.org/style-grammar-guidelines/references/archival">APA Style</a> and <a href="https://style.mla.org/citing-materials-physical-archives/">MLA Style Center</a>.</p>
+    <p>For additional recommendations on citing materials in archival collections, see the <%= link_to 'APA Style', 'https://apastyle.apa.org/style-grammar-guidelines/references/archival' %> and <%= link_to 'MLA Style Center', 'https://style.mla.org/citing-materials-physical-archives/' %>.</p>
 
  		<p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
@@ -176,13 +182,13 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <h3 id="appraisal">I have an item I would like appraised. Can you help me?</h3>
 
-    <p>The OAC does not offer appraisal services.  Such services are provided by specialized businesses such as auction houses and antiquarian booksellers. You may wish to consult your local library for specialized collecting guides and catalogs. You can find contact information for specialists to authenticate or appraise your item through professional organizations such as the <a href="https://www.appraisers.org/">American Society of Appraisers</a> and the <a href="https://www.abaa.org/">Antiquarian Booksellers Association of America</a>.</p>
+    <p>The OAC does not offer appraisal services.  Such services are provided by specialized businesses such as auction houses and antiquarian booksellers. You may wish to consult your local library for specialized collecting guides and catalogs. You can find contact information for specialists to authenticate or appraise your item through professional organizations such as the <%= link_to 'American Society of Appraisers', 'https://www.appraisers.org/' %> and the <%= link_to 'Antiquarian Booksellers Association of America', 'https://www.abaa.org' %>.</p>
 
     <h3 id="photographs">I have some historic photographs and documents. Can I put them in the OAC?</h3>
 
     <p>At this time, we can only accept items from institutions. You may consider contacting one of the <a href="/institutions">OAC's current contributing institutions</a>, or your local historical society or library.</p>
 
-    <p>See the <a href="https://www2.archivists.org/publications/brochures">Society of American Archivists' free brochure series</a> for useful tips on donating materials to an archive.</p>
+    <p>See the <%= link_to 'Society of American Archivists%27 free brochure series', 'https://www2.archivists.org/publications/brochures' %> for useful tips on donating materials to an archive.</p>
 
     <p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
@@ -196,14 +202,14 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
     <p>If you have information about an item or collection on this site that is not represented in the metadata or would like to help correct an error, please <a href="/contact">contact us</a>.</p>
 
     <h3 id="story">I found something great in OAC! Can I share my story?</h3>
-    <p>Yes! If this site has helped you advance your research, complete a project, find something meaningful, or do anything else that’s important to you, <a href="/contact">we'd love to hear about it</a>. Stories like yours help us obtain additional funding so we can continue to grow and improve OAC.</p>
+    <p>Yes! If this site has helped you advance your research, complete a project, find something meaningful, or do anything else that’s important to you, <%= link_to "we'd love to hear about it", contact_form_path %>. Stories like yours help us obtain additional funding so we can continue to grow and improve OAC.</p>
 
     <h3 id="improvements">Can I suggest improvements to the site?</h3>
     <p>We are always on the lookout for new ways to enhance the user experience in OAC. Feel free to <a href="/contact">contact us</a> with feature requests, ideas, and yes—even complaints. We’ll try our best to address these in our ongoing development of the site.</p>
 
     <h2 id="library">I represent a California library, archive, museum, or other institution that wants to join the OAC. What's my first step?</h2>
 
-    <p>Please see <a href="https://help.oac.cdlib.org/support/solutions/articles/9000049975-become-a-contributor">How to Join the OAC as a Contributing Member</a> for more information.</p>
+    <p>Please see <%= link_to 'How to Join the OAC as a Contributing Member', 'https://help.oac.cdlib.org/support/solutions/articles/9000049975-become-a-contributor' %> for more information.</p>
 
     <p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
