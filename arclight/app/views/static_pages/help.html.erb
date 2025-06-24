@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Frequently Asked Questions</h1>
-<p>The OAC is a website that provides free public access to detailed descriptions of primary source collections (artwork, manuscripts, papers, historic photographs, and so on) maintained by more than <a href="/institutions>350 libraries, special collections, archives, historical societies, and museums</a> throughout California -- including collections maintained by the 10 University of California (UC) campuses.</p>
+<p>The OAC is a website that provides free public access to detailed descriptions of primary source collections (artwork, manuscripts, papers, historic photographs, and so on) maintained by more than <%= link_to '350 libraries, special collections, archives, historical societies, and museums', { controller: 'arclight/repositories', action: 'index' } %> throughout California -- including collections maintained by the 10 University of California (UC) campuses.</p>
 <p>The Online Archive of California is a service of the <a href="https://libraries.universityofcalifornia.edu/">University of California Libraries</a>, developed and maintained by the <a href="https://cdlib.org/">California Digital Library</a>.</p>
 <p>Below are some frequently asked questions about finding, using, and obtaining more information about these materials.</p>
 
-    <ul>
+    <ul class="list-unstyled">
       <li><strong><a href="#oac">What kind of information can I find on the OAC website?</a></strong></li>
     </ul>
     <ul>
@@ -64,13 +64,14 @@
     <p>You can discover the contents of the archives, libraries, and museum collections, their physical location, and their contact information.</p>
     <p>The OAC does not own, store, or house any of the materials described in the collection guides.</p>
 
-    <p><strong>Collection guides</strong><br/>
-The OAC provides access to more than 60,000 online collection guides (also known as "<a href="https://dictionary.archivists.org/entry/finding-aid.html">finding aids</a>"). They describe the items in collections and how they were gathered or created. They also identify the collection's location, and may provide additional information such as detailed descriptions, histories, and biographies. You can use these to browse, locate resources, or view selected items digitally.</p>
-
-    <p><strong>Contributing institutions</strong><br/>
-The OAC partners with more than <a href="/institutions">350 libraries, special collections, archives, historical societies, and museums</a> throughout California. Select “Contributing Institutions” from the top navigation bar to view and scroll through an A-Z list of all the OAC contributing institutions.</p>
-    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be directed to the institution that contributed the materials or the guide. The OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
-    <p>The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</p>
+    <dl>
+    <dt>Collection guides</dt>
+    <dd>The OAC provides access to more than 60,000 online collection guides (also known as "<a href="https://dictionary.archivists.org/entry/finding-aid.html">finding aids</a>"). They describe the items in collections and how they were gathered or created. They also identify the collection's location, and may provide additional information such as detailed descriptions, histories, and biographies. You can use these to browse, locate resources, or view selected items digitally.</dd>
+    <dt>Contributing institutions</dt>
+    <dd>The OAC partners with more than <%= link_to '350 libraries, special collections, archives, historical societies, and museums', { controller: 'arclight/repositories', action: 'index' } %> throughout California. Select “Contributing Institutions” from the top navigation bar to view and scroll through an A-Z list of all the OAC contributing institutions.</dd>
+    <dd>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be directed to the institution that contributed the materials or the guide. The OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</dd>
+    <dd>The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</dd>
+    </dl>
 
     <p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
@@ -114,7 +115,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>To learn more about a particular item, or to learn how you can see it, or to find out if a particular item can be digitized and made available online, please contact the contributing institution directly. A link to contact information is included at the top of every collection guide.</p>
 
-    <p><a href="#contact">Find contributor information on a collection guide</a>.</p>
+    <p>Find <a href="#contact">contributor information</a> on a collection guide.</p>
 
     <h3 id="physical">I see the item I'm interested in is available online, but for my research I need to see the physical object. How can I find out more about it?</h3>
 
@@ -122,7 +123,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>To find out how you can access a particular item, contact the contributing institution directly. A link to contact information is included at the top of every collection guide.</p>
 
-    <p><a href="#contact">Find contributor information on a collection guide</a>.</p>
+    <p>Find <a href="#contact">contributor information</a> on a collection guide.</p>
 
     <p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
@@ -142,13 +143,13 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>The materials in the OAC are intended to be used for research, teaching, and private study. All items may be protected by the U.S. Copyright Law (Title 17, U.S.C.). Usage of some items may also be subject to additional restrictions imposed by the copyright owner and/or the institution.</p>
 
-    <p>See the <a href="/terms">Terms of Use</a> page for details.</p>
+    <p>See the <%= link_to 'Terms of Use', termsofuse_path %> page for details.</p>
 
     <p><i>The OAC does not own or house any of the materials described in the collection guides.</i></p>
 
     <p><strong>Please contact the institution that houses the collection</strong> for information about the copyright status of a particular digital image or text, or for permission to publish or obtain a reproduction of a particular collection item. A link to contact information is included at the top of every collection guide.</p>
 
-    <p><a href="#guide">Learn more about using collection guides</a>.</p>
+    <p>Learn more about <a href="#guide">using collection guides</a>.</p>
 
     <h3 id="cite">I want to cite an image or text in my paper or presentation. What's the proper form?</h3>
 
@@ -166,7 +167,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>Please address all questions and requests about items in a specific collection to the institution that houses the collection. A link to contact information is included at the top of every collection guide.</p>
 
-    <p><a href="#guide">Learn more about using collection guides</a>.</p>
+    <p>Learn more about <a href="#guide">using collection guides</a>.</p>
 
     <p>For general questions, we suggest contacting your local library reference desk.</p>
 
@@ -180,7 +181,7 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <h3 id="photographs">I have some historic photographs and documents. Can I put them in the OAC?</h3>
 
-    <p>At this time, we can only accept items from institutions. You may consider contacting one of the <a href="/institutions">OAC's current contributing institutions</a>, or your local historical society or library.</p>
+    <p>At this time, we can only accept items from institutions. You may consider contacting one of the <%= link_to 'OAC's current contributing institutions', { controller: 'arclight/repositories', action: 'index' } %>, or your local historical society or library.</p>
 
     <p>See the <a href="https://www2.archivists.org/publications/brochures">Society of American Archivists' free brochure series</a> for useful tips on donating materials to an archive.</p>
 
@@ -192,14 +193,16 @@ The OAC partners with more than <a href="/institutions">350 libraries, special c
 
     <p>The descriptions of items in the OAC -- or "metadata" -- are provided by the contributing institutions. Metadata is cataloging information that describes identifiable features -- dates, names, event or topic, location, subject, etc. -- of the primary source records to help researchers discover, situate, and interpret these materials in the context in which they were created. They generally follow established descriptive and cataloging best practices, and actively work to ensure that the metadata is accurate, uses inclusive language, and provides essential historical context to help with interpretation of primary sources.</p>
     <p>However, cultural heritage organizations often have limited documentation and resources available to further investigate individual items beyond the identifiable features in the sources themselves. For this reason, even significant details such as the item’s title, exact age, creator, or copyright status may not be present in the metadata record. Metadata can also reflect biases and may include culturally insensitive terminology, due to how it was originally sourced, created, described, or cataloged.</p>
-    <p>We welcome additional information about the primary sources described in OAC. Learn more <a href="/overview">about the collection guides in OAC</a>, including how primary source records are described; how shared community values and standards guide access to historical materials; how we strive to provide responsible access to primary sources--and how you can help!</p>
-    <p>If you have information about an item or collection on this site that is not represented in the metadata or would like to help correct an error, please <a href="/contact">contact us</a>.</p>
+    <p>We welcome additional information about the primary sources described in OAC. Learn more <%= link_to 'about the collection guides in OAC', overview_path %>, including how primary source records are described; how shared community values and standards guide access to historical materials; how we strive to provide responsible access to primary sources--and how you can help!</p>
+    <p>If you have information about an item or collection on this site that is not represented in the metadata or would like to help correct an error, please <%= link_to 'contact us', contact_form_path %>.</p>
 
     <h3 id="story">I found something great in OAC! Can I share my story?</h3>
-    <p>Yes! If this site has helped you advance your research, complete a project, find something meaningful, or do anything else that’s important to you, <a href="/contact">we'd love to hear about it</a>. Stories like yours help us obtain additional funding so we can continue to grow and improve OAC.</p>
+    <p>Yes! If this site has helped you advance your research, complete a project, find something meaningful, or do anything else that’s important to you, <%= link_to 'we'd love to hear about it', contact_form_path %>. Stories like yours help us obtain additional funding so we can continue to grow and improve OAC.</p>
 
     <h3 id="improvements">Can I suggest improvements to the site?</h3>
-    <p>We are always on the lookout for new ways to enhance the user experience in OAC. Feel free to <a href="/contact">contact us</a> with feature requests, ideas, and yes—even complaints. We’ll try our best to address these in our ongoing development of the site.</p>
+    <p>We are always on the lookout for new ways to enhance the user experience in OAC. Feel free to <%= link_to 'contact us', contact_form_path %> with feature requests, ideas, and yes—even complaints. We’ll try our best to address these in our ongoing development of the site.</p>
+
+    <p style="text-indent:2em;"><a href="#top">back to top</a></p>
 
     <h2 id="library">I represent a California library, archive, museum, or other institution that wants to join the OAC. What's my first step?</h2>
 
