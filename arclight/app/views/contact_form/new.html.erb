@@ -7,7 +7,7 @@
 
     <h1>Contact the Online Archive of California</h1>
     <p>Please note the California Digital Library, which maintains the Online Archive of California, does not own the items or collections on the site and has no further information about them.</p>
-    <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <a href="/institutions/">the institution’s page</a> to find their contact information, such as phone number and email address.</p>
+    <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <%= link_to "the institution's page", { controller: 'arclight/repositories', action: 'index' } %> to find their contact information, such as phone number and email address.</p>
     <p>Use this form only if you have technical problems, questions, or general comments about the Online Archive of California.</p>
 
     <%= form_with scope: :contact_form, url: contact_form_create_path, method: :post, local: true, class: "container" do |form| %>
@@ -31,7 +31,7 @@
       <div>
             <p>[ RECAPTCHA HERE ]</p>
       </div>
-<p>*Messages about items or collections submitted through this page may be forwarded to the contributing institution, as noted in our <a href="/privacy/">Privacy Statement</a>.</p>
+<p>*Messages about items or collections submitted through this page may be forwarded to the contributing institution, as noted in our <%= link_to 'Privacy Statement', privacy_path %>.</p>
       <%= form.submit "Submit", class: "btn btn-primary" %>
     <% end %>
 
@@ -46,7 +46,7 @@
 
     <div class="card p-4 mb-4">
       <h2>Contact information</h2>
-      <p>The OAC is a service of the University of California Libraries, developed and maintained by the <a href="https://cdlib.org/">California Digital Library</a>.</p>
+      <p>The OAC is a service of the <%= link_to 'University of California Libraries', 'https://libraries.universityofcalifornia.edu/' %>, developed and maintained by the <%= link_to 'California Digital Library', 'https://cdlib.org/' %>.</p>
       <p>
 California Digital Library<br/>
 Office of the President, University of California<br/>
