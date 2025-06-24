@@ -71,6 +71,9 @@ en:
     routes:
       repositories: Contributing Institutions
       collections: Search Results
+    truncation:
+      view_more: show more
+      view_less: show less
     views:
       repositories:
         title: Contributing Institutions

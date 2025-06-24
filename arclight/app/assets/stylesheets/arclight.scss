@@ -141,3 +141,29 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     text-align: left;
     white-space: normal;
 }
+
+.truncator.truncated button {
+    float: right;
+}
+
+.truncator .view-more, .truncator .view-less {
+    color: $teal;
+}
+
+.truncator .icon::after {
+    content: none;
+}
+
+.truncator .icon::before {
+    content: "\f067"; /* FontAwesome plus */
+    content: "+";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.truncator.expanded .icon::before {
+    content: "\f068"; /* FontAwesome minus */
+    content: "-";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
