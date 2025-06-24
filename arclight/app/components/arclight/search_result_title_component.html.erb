@@ -1,15 +1,17 @@
 <header class="documentHeader row" data-document-id="<%= @document.id %>">
-  <h3 class="index_title document-title-heading col">
-    <%= helpers.link_to_document @document, counter: @counter %>
-  </h3>
+  <div class="row">
+    <h3 class="index_title document-title-heading col">
+      <%= helpers.link_to_document @document, counter: @counter %>
+    </h3>
 
-  <%= tag.div class: 'al-document-container col-sm-auto text-muted' do %>
-    <%= @document.containers.join(', ') %>
-  <% end if @document.containers.present? %>
+    <%= tag.div class: 'al-document-container col-sm-auto text-muted' do %>
+      <%= @document.containers.join(', ') %>
+    <% end if @document.containers.present? %>
 
-  <% actions.each do |action| %>
-    <%= action %>
-  <% end %>
+    <% actions.each do |action| %>
+      <%= action %>
+    <% end %>
+  </div>
 
   <% @document.extent.each do |extent| %>
     <%= tag.div extent, class: 'oac-document-extent col-sm-auto badge' unless compact? %>
