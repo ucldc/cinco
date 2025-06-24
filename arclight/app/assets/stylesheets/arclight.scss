@@ -128,11 +128,11 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     margin: 12px 0 12px 50px;
 }
 
-.al-grouped-title-bar h3 {
+.oac-grouped-title {
     display: block;
 }
 
-.al-document-extent {
+.oac-document-extent {
     border: 0;
     border-radius: 0;
     background-color: #e7e4e3;
@@ -140,6 +140,4 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     line-height: 1.4;
 }
 
-.al-document-abstract-or-scope {
-    max-width: initial;
-}
+.al-grouped-results .al-document-abstract-or-scope { max-width: initial !important; }
