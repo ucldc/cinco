@@ -7,7 +7,7 @@
 
     <h1>Contact the Online Archive of California</h1>
     <p>Please note the California Digital Library, which maintains the Online Archive of California, does not own the items or collections on the site and has no further information about them.</p>
-    <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <%= link_to 'the institution's page', { controller: 'arclight/repositories', action: 'index' } %> to find their contact information, such as phone number and email address.</p>
+    <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <a href="/institutions/">the institution’s page</a> to find their contact information, such as phone number and email address.</p>
     <p>Use this form only if you have technical problems, questions, or general comments about the Online Archive of California.</p>
 
     <%= form_with scope: :contact_form, url: contact_form_create_path, method: :post, local: true, class: "container" do |form| %>
@@ -39,9 +39,9 @@
   <div class="col-md-4">
     <div class="card p-4 mb-4">
       <h2>How can we help you?</h2>
-      <p>Our <%= link_to 'FAQ page', help_path %> contains search tips and answers to many frequently asked questions, such as how to find more information about an item or collection.</p>
-      <p><strong>Copyright and permissions:</strong> If you're wondering about permissions and what you can do with items you find in the OAC, a good starting point is the <%= link_to 'terms of use', termsofuse_path %>.</p>
-      <p><strong>Do you know something we don't?</strong> We welcome additional information about the primary sources described in OAC. Learn more <%= link_to 'about the collection guides', overview_path %> in OAC and how we strive to provide responsible access to primary sources--and how you can help!</p>
+      <p>Our <a href="/help/">FAQ page</a> contains search tips and answers to many frequently asked questions, such as how to find more information about an item or collection.</p>
+      <p><strong>Copyright and permissions:</strong> If you're wondering about permissions and what you can do with items you find in the OAC, a good starting point is the <a href="/terms/">terms of use</a>.</p>
+      <p><strong>Do you know something we don't?</strong> We welcome additional information about the primary sources described in OAC. Learn more <a href="/overview/">about the collection guides</a> in OAC and how we strive to provide responsible access to primary sources--and how you can help!</p>
     </div>
 
     <div class="card p-4 mb-4">
