@@ -17,9 +17,9 @@ module Arclight
             url = search_action_url(
                 f: {
                   repository: [ repository.name ],
-                  level: [ "Collection" ],
-                  sort: "title_sort asc"
-                }
+                  level: [ "Collection" ]
+                },
+                sort: "title_sort asc"
             )
             redirect_to url
         end
