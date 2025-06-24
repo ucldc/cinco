@@ -3,10 +3,23 @@
     <div class='col-md-12'>
       <% if document.repository_config.present? %>
         <div class='al-grouped-repository breadcrumb-links'>
+          <span class="al-repository-content-icon blacklight-icons blacklight-icons-repository">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24">
+                  <path fill="none" d="M0 0h24v24H0V0z"></path>
+                  <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"></path>
+              </svg>
+          </span>
           <%= link_to(document.repository_config.name, helpers.arclight_engine.repository_path(document.repository_config.slug)) %>
         </div>
       <% end %>
-      <h3><%= helpers.link_to_document document %></h3>
+      <h3>
+        <span class="blacklight-icons blacklight-icons-collection">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+            <path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"></path>
+          </svg>
+        </span>
+        <%= helpers.link_to_document document %>
+      </h3>
       <% document.extent.each do |extent| %>
         <%= tag.span extent, class: 'al-document-extent badge' unless compact? %>
       <% end %>
