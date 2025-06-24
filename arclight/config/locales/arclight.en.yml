@@ -74,6 +74,11 @@ en:
     views:
       repositories:
         title: Contributing Institutions
+      index:
+        top_group_results:
+          one: Showing top %{count} result.
+          other: Showing top %{count} results.
+        all_group_results: View all %{count}
   oac:
     search:
       placeholder_text: Search over 60,000 collection guides
