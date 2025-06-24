@@ -150,18 +150,18 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     color: $teal;
 }
 
-.truncator .icon::after {
+.truncator .icon::before {
     content: none;
 }
 
-.truncator .icon::before {
+.truncator .view-more::before {
     content: "\f067"; /* FontAwesome plus */
     content: "+";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
 }
 
-.truncator.expanded .icon::before {
+.truncator.expanded .view-less::before {
     content: "\f068"; /* FontAwesome minus */
     content: "-";
     font-family: "Font Awesome 6 Free";
