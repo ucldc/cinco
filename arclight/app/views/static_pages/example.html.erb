@@ -4,9 +4,35 @@
 
 <div class="row">
   <div class="col-md-8">
-    <h1>Example Page</h1>
-    <p class="lead text-muted">This is an example of the lead text paragraph class.</p>
-    <p>Find me in app/views/static_pages/example.html.erb</p>
+    <h1>h1: Example Page Heading</h1>
+    <p class="lead text-muted">This is an example of applying the "lead" and "text-muted" paragraph classes.</p>
+    <p>And this is an example of a normal paragraph. You can find this example page in the source code at <strong>app/views/static_pages/example.html.erb</strong>. Here's an example of a link within a paragraph: <a href="https://google.com">Google</a>. Links get an underline when they're part of a paragraph or part of a definition list's description, but otherwise don't get an underline (like in the list below).</p>
+    <h2>h2: Common Internal Links</h2>
+    <p>Here's a list of common internal links in the Rails template language:</p>
+    <ul class="list-unstyled">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'About OAC', about_path %></li>
+      <li><%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %></li>
+      <li><%= link_to 'FAQs', help_path %></li>
+      <li><%= link_to 'Terms of Use', termsofuse_path %></li>
+      <li><%= link_to 'Privacy Statement', privacy_path %></li>
+      <li><%= link_to 'Accessibility', 'https://cdlib.org/about/policies-and-guidelines/accessibility/' %></li>
+      <li><%= link_to 'Contact Us', new_contact_form_path %></li>
+    </ul>
+    <h2>h2: Definition List Example</h2>
+    <p>This page is also a nice place to demonstrate a definition list style. Definition lists are used on the finding aid pages are are comprised of a term (dt) and a description (dd). Links in the description (dd) are underlined like links in paragraphs.</p>
+    <dl>
+    <dt>Term 1</dt>
+    <dd>Description for term 1. This is a link in a description: <a href="https://example.com">Example Link</a>.</dd>
+    <dt><a href="#">Creator</a></dt>
+    <dd>Links in the dt (definition list term) don't get an underline, like the linked Creator in this example.</dd>
+    </dl>
+    <h2>h2: Headings List</h2>
+    <h3>h3: Example Heading</h3>
+    <h4>h4: Example Heading</h4>
+    <h5>h5: Example Heading</h5>
+    <h6>h6: Example Heading</h6>
+    <p>Headings are used to organize content on the page. The h1 is the main title, and subsequent headings (h2, h3, etc.) are used for subheadings.</p>
   </div>
   <div class="col-md-4">
     <div class="card p-4 mb-4">
