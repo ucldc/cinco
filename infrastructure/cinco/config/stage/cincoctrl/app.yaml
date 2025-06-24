@@ -31,3 +31,8 @@ sceptre_user_data:
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
     - SQS_URL: !stack_output stage/textract.yaml::QueueUrl
+    - CDL_ARK_NAAN: !environment_variable CDL_ARK_NAAN
+    - CDL_ARK_SHOULDER: !environment_variable CDL_ARK_SHOULDER
+    - EZID_ENDPOINT: !environment_variable EZID_ENDPOINT
+    - EZID_USERNAME: !environment_variable EZID_USERNAME
+    - EZID_PASSWORD: !environment_variable EZID_PASSWORD
