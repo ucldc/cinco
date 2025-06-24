@@ -1,0 +1,16 @@
+<header class="documentHeader row" data-document-id="<%= @document.id %>">
+  <h3 class="index_title document-title-heading col">
+    <%= helpers.link_to_document @document, counter: @counter %>
+  </h3>
+
+  <% @document.extent.each do |extent| %>
+    <%= tag.div extent, class: 'oac-document-extent badge' unless compact? %>
+  <% end %>
+  <%= tag.div class: 'al-document-container text-muted' do %>
+    <%= @document.containers.join(', ') %>
+  <% end if @document.containers.present? %>
+
+  <% actions.each do |action| %>
+    <%= action %>
+  <% end %>
+</header>

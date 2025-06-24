@@ -138,6 +138,10 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     background-color: #e7e4e3 !important;
     font-weight: normal !important;
     line-height: 1.4 !important;
+    color: #000;
+    font-size: 0.875rem;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    text-align: left;
+    white-space: normal;
 }
-
-.al-grouped-results .al-document-abstract-or-scope { max-width: initial !important; }
