@@ -129,15 +129,15 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 }
 
 .oac-grouped-title {
-    display: block;
+    display: block !important;
 }
 
 .oac-document-extent {
-    border: 0;
-    border-radius: 0;
-    background-color: #e7e4e3;
-    font-weight: normal;
-    line-height: 1.4;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background-color: #e7e4e3 !important;
+    font-weight: normal !important;
+    line-height: 1.4 !important;
 }
 
 .al-grouped-results .al-document-abstract-or-scope { max-width: initial !important; }
