@@ -3,14 +3,16 @@
     <%= helpers.link_to_document @document, counter: @counter %>
   </h3>
 
-  <% @document.extent.each do |extent| %>
-    <%= tag.div extent, class: 'oac-document-extent badge' unless compact? %>
-  <% end %>
-  <%= tag.div class: 'al-document-container text-muted' do %>
+  <%= tag.div class: 'al-document-container col-sm-auto text-muted' do %>
     <%= @document.containers.join(', ') %>
   <% end if @document.containers.present? %>
 
   <% actions.each do |action| %>
     <%= action %>
   <% end %>
+
+  <% @document.extent.each do |extent| %>
+    <%= tag.div extent, class: 'oac-document-extent col-sm-auto badge' unless compact? %>
+  <% end %>
+
 </header>
