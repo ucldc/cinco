@@ -5,7 +5,7 @@
   <div class="col-md-8">
     <h1>Privacy Statement</h1>
 
-    <p>The California Digital Library (CDL) values your privacy. For a detailed description of what information we collect from visitors to this website and how it is used and managed, please see the <a href="https://cdlib.org/about/policies-and-guidelines/privacy-statement/">CDL Privacy Statement</a>.</p>
+    <p>The California Digital Library (CDL) values your privacy. For a detailed description of what information we collect from visitors to this website and how it is used and managed, please see the <%= link_to 'CDL Privacy Statement', 'https://cdlib.org/about/policies-and-guidelines/privacy-statement/' %>.</p>
 
     <h2>Addendum</h2>
 
@@ -15,7 +15,7 @@
 
     <p>The content on this website is contributed by cultural heritage institutions across California. We provide our contributors aggregate reports of usage statistics on the content they have submitted, currently derived from web server logs.</p>
 
-    <p>Questions about items and collections should be directed to their contributing institutions. Visit <a href="/institutions/">the institution's page</a> for more information. Messages about items or collections submitted through the site <a href="/contact/">Contact Us</a> page may be forwarded to the contributing institution. Your contact information will be included so staff at the contributing institution may follow up with you directly if needed.</p>
+    <p>Questions about items and collections should be directed to their contributing institutions. Visit <%= link_to "the institution's page", { controller: 'arclight/repositories', action: 'index' } %> for more information. Messages about items or collections submitted through the site <%= link_to 'Contact Us', contact_form_path %> page may be forwarded to the contributing institution. Your contact information will be included so staff at the contributing institution may follow up with you directly if needed.</p>
 
     <h3>Third Party APIs</h3>
 
