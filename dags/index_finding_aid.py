@@ -23,6 +23,11 @@ from cinco.arclight_operator import ArcLightOperator
         "finding_aid_ark": Param(
             "", type="string", description="The ARK of the Finding Aid"
         ),
+        "eadid": Param(
+            "",
+            type="string",
+            description="If present the filename in s3 elese the collection number",
+        ),
         "preview": Param(
             "publish", type="string", description="Either preview or publish"
         ),
@@ -58,6 +63,7 @@ def index_finding_aid():
         s3_key=s3_key,
         repository_code="{{ params.repository_code }}",
         finding_aid_ark="{{ params.finding_aid_ark }}",
+        eadid="{{ params.eadid }}",
         preview="{{ params.preview }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success

@@ -94,7 +94,9 @@ end
 to_field "title_filing_ssi", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_tesim", extract_xpath("/ead/archdesc/did/unittitle")
-to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
+to_field "ead_ssi" do |_record, accumulator|
+  accumulator << settings.fetch(:eadid, "")
+end
 
 to_field "unitdate_ssm", extract_xpath("/ead/archdesc/did/unitdate")
 to_field "unitdate_bulk_ssim", extract_xpath('/ead/archdesc/did/unitdate[@type="bulk"]')

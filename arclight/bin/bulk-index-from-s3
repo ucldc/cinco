@@ -40,10 +40,12 @@ for folder in /tmp/$1/*; do
         -i xml -c lib/arclight/traject/ead2_config.rb \
         $folder/finding-aid.xml \
         -s ark=$FINDING_AID_ARK \
+        -s eadid=$EADID \
         -s preview=$PREVIEW &
     unset REPOSITORY_ID
     unset FINDING_AID_ID
     unset FINDING_AID_ARK
+    unset EADID
     unset PREVIEW
     echo "Finished indexing $FINDING_AID_ID"
   fi
