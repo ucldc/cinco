@@ -112,6 +112,20 @@ Cookiecutter django also allows development without using docker.  After initial
 
 [Local development instructions](https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally.html)
 
+### Test ARK minting
+
+If you need to test ark minting for finding aids, set `DISABLE_ARK_MINTING` to False in config/settings/local.py
+
+Also set the following env vars:
+
+```
+CDL_ARK_NAAN=99999              # testing naan
+CDL_ARK_SHOULDER=fk4            # testing shoulder
+EZID_ENDPOINT=https://ezid.cdlib.org
+EZID_USERNAME=                  # ask for username
+EZID_PASSWORD=                  # ask for password
+```
+
 # Basic Commands
 
 ### Setting Up Your Users

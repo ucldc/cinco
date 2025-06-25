@@ -66,3 +66,4 @@ INSTALLED_APPS += ["django_extensions"]
 # Your stuff...
 # ------------------------------------------------------------------------------
 ENABLE_AIRFLOW = False
+DISABLE_ARK_MINTING = True

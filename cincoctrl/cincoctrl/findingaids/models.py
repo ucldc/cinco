@@ -1,5 +1,7 @@
 import logging
+import urllib.request as urlreq
 import uuid
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.core.validators import FileExtensionValidator
@@ -87,12 +89,96 @@ class FindingAid(models.Model):
         return self.collection_title
 
     def save(self, *args, **kwargs):
-        if not self.ark:
-            self.ark = str(uuid.uuid4())
+        if not self.ark or not self.ark.startswith(f"ark:/{settings.CDL_ARK_NAAN}/"):
+            if settings.DISABLE_ARK_MINTING:
+                self.ark = str(uuid.uuid4())
+            else:
+                self.ark = self.mint_cdl_ark()
 
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self) -> str:
+    def mint_cdl_ark(self):
+        ark = None
+
+        # mint a new ARK
+        path = f"shoulder/ark:/{settings.CDL_ARK_NAAN}/{settings.CDL_ARK_SHOULDER}"
+        response = self.post_to_ezid(path)
+        if response.startswith("success:"):
+            ark = response.split("success: ")[1]
+            logger.info("Minted new ARK: %s", ark)
+        else:
+            msg = f"ARK minting request failed for path {path}: {response}"
+            logger.error(msg)
+            raise self.EzidApiError(msg)
+
+        # update the new ezid record with target url, owner
+        if ark:
+            path = f"/id/{ark}"
+            target_url = f"http://content.cdlib.org/{ark}"
+            owner = "cdldsc"
+            data = f"_target: {target_url}\n_owner: {owner}"
+            response = self.post_to_ezid(path, data)
+            if response.startswith("success:"):
+                logger.info("Updated ARK: %s", ark)
+            else:
+                msg = (
+                    f"ARK update request failed for path `{path}`"
+                    f"with data `{data}`"
+                    f"Response was: {response}"
+                )
+                logger.error(msg)
+                raise self.EzidApiError(msg)
+
+        return ark
+
+    class EzidHTTPErrorProcessor(urlreq.HTTPErrorProcessor):
+        """Error Processor, required to let 201 responses pass"""
+
+        def http_response(self, request, response):
+            if response.code == 201:  # noqa: PLR2004
+                my_return = response
+            else:
+                my_return = urlreq.HTTPErrorProcessor.http_response(
+                    self,
+                    request,
+                    response,
+                )
+            return my_return
+
+        https_response = http_response
+
+    class EzidApiError(Exception):
+        """EZID API error"""
+
+    def post_to_ezid(self, path, data=None):
+        opener = urlreq.build_opener(self.EzidHTTPErrorProcessor())
+        ezid_handler = urlreq.HTTPBasicAuthHandler()
+        ezid_handler.add_password(
+            "EZID",
+            settings.EZID_ENDPOINT,
+            settings.EZID_USERNAME,
+            settings.EZID_PASSWORD,
+        )
+        opener.add_handler(ezid_handler)
+
+        url = urljoin(settings.EZID_ENDPOINT, path)
+        request = urlreq.Request(url)  # noqa: S310
+        request.get_method = lambda: "POST"
+        if data:
+            request.add_header("Content-Type", "text/plain; charset=UTF-8")
+            request.data = data.encode("UTF-8")
+
+        try:
+            connection = opener.open(request)
+            return connection.read().decode("UTF-8")
+        except urlreq.HTTPError as ezid_error:
+            if ezid_error.fp is not None:
+                response = ezid_error.fp.read().decode("utf-8")
+                if not response.endswith("\n"):
+                    response += "\n"
+            return response
+
+    def get_absolute_url(self) -> str:  # noqa: DJ012
         return reverse(
             "findingaids:view_record",
             kwargs={"pk": self.pk},
