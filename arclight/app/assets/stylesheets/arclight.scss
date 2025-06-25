@@ -177,3 +177,8 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .documents-list article.document dl.document-metadata dd ol {
     margin-bottom: 0;
 }
+.al-grouped-title-bar .blacklight-icons svg {
+    fill: var(--al-content-icon-color);
+    height: 1rem;
+    width: 1rem;
+}
