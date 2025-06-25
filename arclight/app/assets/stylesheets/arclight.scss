@@ -167,3 +167,13 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
 }
+
+.documents-list article.document dl.document-metadata:last-of-type {
+    margin-bottom: 0;
+}
+.documents-list article.document dl.document-metadata dd:last-of-type {
+    margin-bottom: 0;
+}
+.documents-list article.document dl.document-metadata dd ol {
+    margin-bottom: 0;
+}
