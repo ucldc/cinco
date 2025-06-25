@@ -46,7 +46,7 @@ bundle exec traject -I lib/ \
     -i xml -c lib/arclight/traject/ead2_config.rb \
     /tmp/$1/finding-aid.xml \
     -s ark=$4 \
-    -s eadid=$5 \
+    -s eadid="$5" \
     -s preview=$PREVIEW \
 
 unset REPOSITORY_ID
