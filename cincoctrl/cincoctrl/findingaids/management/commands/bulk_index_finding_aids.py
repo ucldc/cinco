@@ -111,11 +111,12 @@ class Command(BaseCommand):
         count = finding_aids.count()
 
         if max_num_records and count > max_num_records:
+            id_list = list(finding_aids.values_list("pk", flat=True))
             num_groups = math.ceil(count / max_num_records)
             batch_size = math.ceil(count / num_groups)
             for start in range(0, count, batch_size):
                 end = start + batch_size
-                batch = finding_aids[start:end]
+                batch = FindingAid.objects.filter(pk__in=id_list[start:end])
 
                 self.stdout.write(
                     f"Bulk indexing batch of {batch.count()} finding aids",
