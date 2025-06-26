@@ -92,6 +92,10 @@ class Command(BaseCommand):
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
                 self.stdout.write(e.message)
+            except requests.exceptions.ConnectionError as e:
+                self.stdout.write(e.message)
+            except requests.exceptions.Timeout as e:
+                self.stdout.write(e.message)
 
         # update links in original EAD
         if finding_aid.supplementaryfile_set.exists():
