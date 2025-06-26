@@ -61,7 +61,7 @@ class Command(BaseCommand):
         if href.startswith(doc_url):
             return href
         if href.startswith("https://oac.cdlib.org/"):
-            return href.replace("https://oac.cdlib.org/", doc_url)
+            return href.replace("https://oac.cdlib.org", doc_url)
         if href.startswith("http"):
             msg = f"Can't download external document {href}"
             raise URLError(msg)
