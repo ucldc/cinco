@@ -165,7 +165,6 @@ class EADParser:
         return author is not None and author.text and "RecordEXPRESS" in author.text
 
     required_fields = [
-        ("./eadheader/eadid", "EADID"),
         ("./archdesc/did/unittitle", "Title"),
         ("./archdesc/did/unitid", "Collection number"),
     ]

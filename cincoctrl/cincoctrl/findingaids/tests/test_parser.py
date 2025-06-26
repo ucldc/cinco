@@ -371,8 +371,8 @@ EMPTY_FIELDS = """
             <repository>
                 <corpname>Test Library</corpname>
             </repository>
-            <unittitle>Title of the EAD</unittitle>
-            <unitid>0000-0000</unitid>
+            <unittitle></unittitle>
+            <unitid></unitid>
         </did>
     </archdesc>
 </ead>
@@ -399,12 +399,6 @@ class TestParser(TestCase):
         with pytest.raises(ValidationError) as e:
             validate_ead(ead_file)
         assert "Could not parse XML file:" in str(e)
-
-    def test_no_eadid(self):
-        ead_file = self.get_ead_file("test.xml", TEST_NO_EADID)
-        with pytest.raises(ValidationError) as e:
-            validate_ead(ead_file)
-        assert "Failed to parse EADID" in str(e)
 
     def test_no_unittitle(self):
         ead_file = self.get_ead_file("test.xml", TEST_NO_UNITTITLE)
@@ -512,5 +506,6 @@ class TestParser(TestCase):
         p = EADParser()
         p.parse_string(EMPTY_FIELDS)
         p.validate_required_fields()
-        assert len(p.errors) == 1
-        assert p.errors[0] == "No value in EADID"
+        assert len(p.errors) == 2  # noqa: PLR2004
+        assert p.errors[0] == "No value in Title"
+        assert p.errors[1] == "No value in Collection number"

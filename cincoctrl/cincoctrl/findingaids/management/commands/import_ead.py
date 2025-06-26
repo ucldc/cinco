@@ -142,8 +142,6 @@ class Command(BaseCommand):
 
             self.process_supp_files(parser, doc_url, ark_dir, f)
 
-            parser.update_eadid(filename)
-
             # add the new ead file
             ead_file = SimpleUploadedFile(
                 filename,
