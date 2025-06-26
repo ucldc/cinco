@@ -39,19 +39,25 @@ class EADParser:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
-    def parse_arks(self):
+    def parse_parent_ark(self):
         eadid = self.root.find("./eadheader/eadid")
-        parent_ark = eadid.attrib.get(
+        return eadid.attrib.get(
             "{http://www.cdlib.org/path/}parent",
             None,
         )
+
+    def parse_ark(self):
+        eadid = self.root.find("./eadheader/eadid")
         if "identifier" in eadid.attrib:
             ark = eadid.attrib["identifier"]
+        elif eadid.text and eadid.text.startswith("ark:/"):
+            ark = eadid.text
         else:
             ark_url = eadid.attrib.get("url", "")
             m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]{8})", ark_url)
             ark = m.group(0) if m else None
-        return ark, parent_ark
+
+        return ark
 
     def get_href(self, attribs):
         if "href" in attribs:
@@ -190,7 +196,8 @@ class EADParser:
         number_node = self.root.find("./archdesc/did/unitid")
         title = self.node_to_string(title_node)
         number = self.node_to_string(number_node)
-        return title, number
+        ark = self.parse_ark()
+        return title, number, ark
 
     def validate_component_titles(self):
         comps = self.root.findall(".//c01")
