@@ -89,6 +89,11 @@ class FindingAid(models.Model):
         return self.collection_title
 
     def save(self, *args, **kwargs):
+        # if updating, override ark found in EAD file with
+        # the current value of ark in the database
+        if self.pk is not None:
+            self.ark = FindingAid.objects.get(id=self.pk).ark
+        # mint a new CDL ark
         if not self.ark or not self.ark.startswith(f"ark:/{settings.CDL_ARK_NAAN}/"):
             if settings.DISABLE_ARK_MINTING:
                 self.ark = str(uuid.uuid4())
