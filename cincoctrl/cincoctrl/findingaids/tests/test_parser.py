@@ -386,9 +386,10 @@ class TestParser(TestCase):
     def test_extract_ead(self):
         ead_file = self.get_ead_file("test.xml", TEST_XML)
         fa = FindingAid(ead_file=ead_file)
-        title, number = fa.extract_ead_fields()
+        title, number, ark = fa.extract_ead_fields()
         assert title == "Title of the EAD"
         assert number == "0000-0000"
+        assert ark is None
 
     def test_validate_ead(self):
         ead_file = self.get_ead_file("test.xml", TEST_XML)
@@ -456,7 +457,8 @@ class TestParser(TestCase):
     def test_parse_arks(self):
         p = EADParser()
         p.parse_string(OTHER1)
-        ark, parent_ark = p.parse_arks()
+        ark = p.parse_ark()
+        parent_ark = p.parse_parent_ark()
         assert ark == "ark:/00000/a00000a0"
         assert parent_ark == "ark:/00000/aa0a00000a"
 

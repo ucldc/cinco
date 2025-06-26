@@ -94,9 +94,11 @@ class EADMixin:
 
     def form_valid(self, form):
         if "ead_file" in self.request.FILES:
-            form.instance.collection_title, form.instance.collection_number = (
-                self.extract_ead_fields(self.request.FILES["ead_file"])
-            )
+            (
+                form.instance.collection_title,
+                form.instance.collection_number,
+                form.instance.ark,
+            ) = self.extract_ead_fields(self.request.FILES["ead_file"])
         form.instance.queue_index()
         return super().form_valid(form)
 

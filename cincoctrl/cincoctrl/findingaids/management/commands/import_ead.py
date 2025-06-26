@@ -116,17 +116,16 @@ class Command(BaseCommand):
                     self.stdout.write(f"\t{filename}\t{e}\tERROR")
                 return
 
-            ark, parent_ark = parser.parse_arks()
+            parent_ark = parser.parse_parent_ark()
             if repo_ark:
                 parent_ark = repo_ark
             repo = Repository.objects.get(ark=parent_ark)
-            ark_dir = self.get_ark_dir(ark)
 
+            title, number, ark = parser.extract_ead_fields()
             if FindingAid.objects.filter(ark=ark).exists():
                 self.stdout.write(f"Abort: {ark} already exists")
                 return
 
-            title, number = parser.extract_ead_fields()
             # create the finding aid without the file at first
             f, _ = FindingAid.objects.get_or_create(
                 repository=repo,
@@ -136,6 +135,7 @@ class Command(BaseCommand):
                 collection_number=number[:255],
             )
 
+            ark_dir = self.get_ark_dir(ark)
             self.process_supp_files(parser, doc_url, ark_dir, f)
 
             parser.update_eadid(filename)
