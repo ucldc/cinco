@@ -1,11 +1,11 @@
 <nav class="al-sidebar-navigation-context sidebar-section" aria-labelledby="collection-nav">
   <h2 id="collection-nav"><%= t('arclight.views.show.context_nav.title') %></h2>
-    <div>
-      <p><b><%= t('.collection_id') %>:</b> <%= @document.collection_id %></p>
-      <p><b><%= t('.last_indexed') %>:</b> <%= @document.last_indexed.strftime('%F') %></p>
+    <div class="card p-3 mb-3">
+      <p><b><%= t('arclight.views.show.collection_id') %>:</b> <%= @document.collection_id %></p>
+      <p><b><%= t('arclight.views.show.last_indexed') %>:</b> <%= @document.last_indexed.strftime('%F') %></p>
     </div>
   <h3>Jump to</h3>
-  <ul class='nav flex-column'>
+  <ul class='nav flex-column ps-3'>
     <% partials.each do |section| %>
       <% next unless has_section?(section) %>
       <li class='nav-item'>
