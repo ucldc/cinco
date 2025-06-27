@@ -184,6 +184,10 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .blacklight-icons svg {
     fill: var(--al-content-icon-color);
 }
+a .blacklight-icons svg, .btn .blacklight-icons svg {
+    fill: currentColor;
+}
+
 .al-grouped-title-bar .blacklight-icons svg,
 .oac-collection-search-header .blacklight-icons-repository svg,
 .breadcrumb .blacklight-icons-repository svg {
@@ -205,8 +209,6 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     width: 1rem;
     height: 1rem;
 }
-a .blacklight-icons svg { fill: $teal; }
-a:hover .blacklight-icons svg, a:focus .blacklight-icons svg { fill: $dark-teal; }
 
 .card {
     border-radius: 0;
