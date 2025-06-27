@@ -68,7 +68,7 @@ en:
           subject: Subjects
   arclight:
     collection_info_component:
-      online_items: Some items available online
+      online_items: Digital items available
     repositories: Contributing Institutions
     routes:
       repositories: Contributing Institutions
@@ -90,6 +90,7 @@ en:
           title: Collection Overview
         online_content:
           link_text: View only results with digital items
+        has_content: Collection Contents
   oac:
     search:
       placeholder_text: Search over 60,000 collection guides
