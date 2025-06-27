@@ -1,0 +1,9 @@
+<% if parsed_files = document.ead_file %>
+  <% aeon_web_ead ||= Arclight::Requests::AeonWebEad.new(document, parsed_files.href) %>
+  <% aeon_web_ead_url = aeon_web_ead&.url %>
+
+  <span aria-hidden="true"><%= blacklight_icon :envelope, classes: 'oac-envelope-icon' %></span>
+  <%= link_to aeon_web_ead_url do %>
+    Request items <%= blacklight_icon :arrow_up_right, classes: 'oac-arrow-up-right-icon' %>
+  <% end %>
+<% end %>
