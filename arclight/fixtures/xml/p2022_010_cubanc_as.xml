@@ -1,0 +1,587 @@
+<ns0:ead xmlns:ns0="urn:isbn:1-931666-22-9" xmlns:ns2="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd">
+    <ns0:eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511">
+        <ns0:eadid countrycode="US" mainagencycode="US-cubanc">p2022_010_cubanc_as.xml</ns0:eadid>
+        <ns0:filedesc>
+            <ns0:titlestmt>
+                <ns0:titleproper>Finding Aid to the Ayako Nakauchi Kataoka Family Photograph Collection
+				</ns0:titleproper>
+                <ns0:titleproper type="filing">Kataoka (Ayako Nakauchi) Family Photograph Collection</ns0:titleproper>
+                <ns0:author>Bancroft Library Staff</ns0:author>
+            </ns0:titlestmt>
+            <ns0:publicationstmt>
+                <ns0:publisher>The Bancroft Library</ns0:publisher>
+                <ns0:p id="logostmt">
+                    <ns0:extref ns2:actuate="onLoad" ns2:href="http://digitalassets.lib.berkeley.edu/findingaids/ucb/images/ucseal.gif" ns2:show="embed" ns2:type="simple" />
+                </ns0:p>
+                <ns0:p>
+                    <ns0:date>October 2021</ns0:date>
+                </ns0:p>
+                <ns0:address>
+                    <ns0:addressline>The Bancroft Library</ns0:addressline>
+                    <ns0:addressline>University of California</ns0:addressline>
+                    <ns0:addressline>Berkeley, CA 94720-6000</ns0:addressline>
+                    <ns0:addressline>bancref@library.berkeley.edu</ns0:addressline>
+                    <ns0:addressline>URL: <ns0:extptr ns2:href="http://www.lib.berkeley.edu/libraries/bancroft-library" ns2:show="new" ns2:title="http://www.lib.berkeley.edu/libraries/bancroft-library" ns2:type="simple" />
+                    </ns0:addressline>
+                </ns0:address>
+            </ns0:publicationstmt>
+        </ns0:filedesc>
+        <ns0:profiledesc>
+            <ns0:creation>This finding aid was produced using ArchivesSpace on <ns0:date>2021-10-14 14:21:19 -0700</ns0:date>.</ns0:creation>
+            <ns0:langusage>Description is written in: <ns0:language langcode="eng" scriptcode="Latn">English, Latin script</ns0:language>.</ns0:langusage>
+            <ns0:descrules>DACS</ns0:descrules>
+        </ns0:profiledesc>
+    </ns0:eadheader>
+    <ns0:archdesc level="collection">
+        <ns0:did>
+            <ns0:repository>
+                <ns0:corpname>The Bancroft Library</ns0:corpname>
+            </ns0:repository>
+            <ns0:unittitle>Ayako Nakauchi Kataoka family photograph collection</ns0:unittitle>
+            <ns0:origination audience="internal" label="Creator">
+                <ns0:persname role="cre" rules="local">Kataoka, Ayako</ns0:persname>
+            </ns0:origination>
+            <ns0:unitid>BANC PIC 2022.010</ns0:unitid>
+            <ns0:physdesc altrender="whole">
+                <ns0:extent altrender="materialtype spaceoccupied">1800 photographs</ns0:extent>
+                <ns0:extent altrender="carrier"> in 11 albums, 1 box and 2 oversize folders</ns0:extent>
+                <ns0:physfacet>: chiefly gelatin silver prints and color prints</ns0:physfacet>
+                <ns0:dimensions>; various sizes</ns0:dimensions>
+            </ns0:physdesc>
+            <ns0:unitdate datechar="creation" normal="1900/1995" type="inclusive">approximately 1900-1995</ns0:unitdate>
+            <ns0:abstract id="aspace_3a365f5a4ab8f78c43729f4dc62eaee6">Collection documents multiple generations of the family of Ayako Kataoka (née Nakauchi) (1917-1995), a Japanese American woman born in Los Angeles who was interned in the Heart Mountain Relocation Center during World War II.</ns0:abstract>
+            <ns0:physloc label="Physical Location" id="aspace_d2f2d9b8a0867f148970214c73b595ff">Many Bancroft Library collections are stored off-site and advance notice may be required for use.
+			For current information on the location of these materials, please consult the library's online catalog.</ns0:physloc>
+            <ns0:langmaterial>
+                <ns0:language langcode="mul">Multiple languages</ns0:language>
+				.    </ns0:langmaterial>
+        </ns0:did>
+        <ns0:accessrestrict id="aspace_becb8a632662d5480a3dd63658b33a58">
+            <ns0:head>Conditions Governing Access</ns0:head>
+            <ns0:p>Negatives (NEG(5x7) box 1): UNPROCESSED. UNAVAILABLE FOR USE.</ns0:p>
+        </ns0:accessrestrict>
+        <ns0:acqinfo id="aspace_7a3ed64d8ed32497c3e39b75eb53aa93">
+            <ns0:head>Immediate Source of Acquisition</ns0:head>
+            <ns0:p>The Ayako Nakauchi Kataoka Family Photograph Collection was purchased by The Bancroft Library from James Arsenault and Company in 2021.</ns0:p>
+        </ns0:acqinfo>
+        <ns0:prefercite id="aspace_2cd7ca8ea5ec7f0e2c031aa212e8e87f">
+            <ns0:head>Preferred Citation</ns0:head>
+            <ns0:p>[Identification of item], Ayako Nakauchi Kataoka family photograph collection, BANC PIC 2022.010, The Bancroft Library, University of California, Berkeley.</ns0:p>
+        </ns0:prefercite>
+        <ns0:scopecontent id="aspace_43298e33ade14c9351749633adbca4fa">
+            <ns0:head>Scope and Content</ns0:head>
+            <ns0:p>Collection documents multiple generations of the family of Ayako Kataoka (née Nakauchi) (1917-1995), a Japanese American woman born in Los Angeles who was interned in the Heart Mountain Relocation Center during World War II. Collection includes snapshots, portraits, photograph albums, postcards and other materials. Individuals depicted include Ayako, her husband Takeo Kataoka (1917-1984), her father Tamotsu Nakauchi (1888-1968) and mother Kaneju Miyaji Nakauchi (1890-1958), her twin daughters Kimiye and Kikuye Kataoka (b. 1957), and numerous other family members, friends and associates. Most photograph albums contain snapshots of everyday activities, family life and socialy outings, and studio portraits of family and friends. One album (vol. 2) documents Ayako's life during her internment at Heart Mountain Relocation Center (Wyoming). Another album (vol. 11) is dedicated to glamour portraits of movie stars, mostly from Japan in the 1940s through 1960s. Collection also includes material pertaining to Ayako's daughter Kimiye, the last family member to own the collection. Collection includes many photographs taken by the studio of Tōyō Miyatake, including a panoramic group photograph taken at the 1958 funeral of Ayako's mother in Los Angeles (shelved in --G folder).</ns0:p>
+        </ns0:scopecontent>
+        <ns0:userestrict id="aspace_39dcf0347bb50cf6d23ae8bb0e58ce0b">
+            <ns0:head>Conditions Governing Use</ns0:head>
+            <ns0:p>Some materials in these collections may be protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, the reproduction of some materials may be restricted by terms of University of California gift or purchase agreements, donor restrictions, privacy and publicity rights, licensing and trademarks. Transmission or reproduction of materials protected by copyright beyond that allowed by fair use requires the written permission of the copyright owners. Works not in the public domain cannot be commercially exploited without permission of the copyright owner. Responsibility for any use rests exclusively with the user. For additional information about the University of California, Berkeley Library's permissions policy please see:  http://www.lib.berkeley.edu/about/permissions-policies</ns0:p>
+        </ns0:userestrict>
+        <ns0:controlaccess>
+            <ns0:subject authfilenumber="n85050128" source="lcnaf">Heart Mountain Relocation Center (Wyo.) -- Photographs</ns0:subject>
+            <ns0:subject authfilenumber="sh85069603" source="lcsh">Japanese Americans -- California -- Los Angeles -- Photographs</ns0:subject>
+            <ns0:subject authfilenumber="sh85069600" source="lcsh">Japanese American families -- California -- Los Angeles -- Photographs</ns0:subject>
+            <ns0:subject authfilenumber="sh85148273" source="lcsh">World War, 1939-1945 -- Japanese Americans -- Photographs</ns0:subject>
+            <ns0:subject authfilenumber="sh 85069606" source="lcsh">Japanese Americans Forced removal and internment, 1942-1945 -- Photographs</ns0:subject>
+            <ns0:subject authfilenumber="sh85088027" source="lcsh">Motion picture actors and actresses -- Portraits</ns0:subject>
+            <ns0:subject source="lcsh">Japanese Americans -- Portraits</ns0:subject>
+        </ns0:controlaccess>
+        <ns0:dsc>
+            <ns0:c01 id="aspace_9870bf1269a4b51fe8e28d16de7697ee" level="series">
+                <ns0:did>
+                    <ns0:unittitle>Photograph albums</ns0:unittitle>
+                </ns0:did>
+                <ns0:c02 id="aspace_81ce01b7f4e540a73b020d13d67fa06a" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 1</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--fALB v.1</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">185 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1930/1940" type="inclusive">approximately 1930-1940</ns0:unitdate>
+                        <ns0:container id="aspace_1f4ecb15ab817645f00e77f36d3bcec3" label="Graphic Materials" type="Volume">1 (fALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_eb00776731b4e33b2aafcb1f6440ded9">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Chiefly studio portraits of friends of Ayako, many of them inscribed to her. Also includes studio portraits of Ayako, and a few snapshots depicting friends and leisure outings.</ns0:p>
+                    </ns0:scopecontent>
+                    <ns0:odd id="aspace_4237b377fd40229aba6481c2d2de8e34">
+                        <ns0:head>Note</ns0:head>
+                        <ns0:p>Identified photographers: Tōyō Miyatake; Izuo.</ns0:p>
+                    </ns0:odd>
+                </ns0:c02>
+                <ns0:c02 id="aspace_3e9103efd9f03159302cb3bee73304d6" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 2</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.2</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">115 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1943/1945" type="inclusive">1943-1945</ns0:unitdate>
+                        <ns0:container id="aspace_1353c0d9b4278849e01fad7f83d6b196" label="Graphic Materials" type="Volume">2 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_39e64dd5c3bbf7f1d108d37d1abf761a">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Chiefly snapshots pertaining to Ayako's internment at Heart Mountain Relocation Center, Wyoming, during World War II. Well-captioned throughout, the album documents Ayako's friends, family and other internees, most of whom are identified by name. Views includes individuals, groups and camp buildings. Also includes a few views taken during outings from the camp to Basin and perhaps other nearby locations. Also includes a few postcards. Many leaves are lacking previously mounted photographs and postcards.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_77992600e33d3ef82d9ec4c7a3563161" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 3</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.3</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">180 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1900/1968" type="inclusive">approximately 1900-1968</ns0:unitdate>
+                        <ns0:container id="aspace_eb63f77ebf840d49bf4bf93f6ab0224b" label="Graphic Materials" type="Volume">3 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_45ba918cba0cfe1b32229fce5ff9a3f8">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Studio portraits and snapshots chiefly pertaining to the youth and early years of the marriage of Ayako's parents, Tamotsu Nakauchi and Kaneju Nakauchi. Some portraits predate the couple's departure from Japan. Later snapshots include homes and domestic scenes (pets, plants, gardening, etc.)</ns0:p>
+                    </ns0:scopecontent>
+                    <ns0:odd id="aspace_490ef5aab64dc1a1c986b9d949d7c7e6">
+                        <ns0:head>Note</ns0:head>
+                        <ns0:p>Identified photographers: Motoyoshi (San Francisco), Harry Shirao (Hollywood).</ns0:p>
+                    </ns0:odd>
+                </ns0:c02>
+                <ns0:c02 id="aspace_d05c66869a9e18b1140e58ca29cc0e33" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 4</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--fALB v.4</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">100 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1934/1968" type="inclusive">approximately 1934-1968</ns0:unitdate>
+                        <ns0:container id="aspace_260853250030aa522afae92252f4ec3d" label="Graphic Materials" type="Volume">4 (fALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_8a8ca12730cdd01d3de2ee6ad4314bd8">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Album chiefly pertains to the funerals of Ayako's mother Kaneju Nakauchi (d. 1958) and father Tamotsu Nakauchi (1968). Also includes at least two scenes from the funeral of Masayuki Nakauchi, Ayako's brother who died in infancy in 1934. Also includes snapshots of family homes, pets, plants, friends, etc.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_32710489d7cf0fc86a9a8ce8654597c3" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 5</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--fALB v.5</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">335 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1935/1968" type="inclusive">approximately 1935-1968</ns0:unitdate>
+                        <ns0:container id="aspace_c1b298b194183ff9f2a0e27120e4bded" label="Graphic Materials" type="Volume">5 (fALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_2eafa076f9e7083443e78de7e86bf2ca">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Album of snapshots and portraits pertaining to various periods of Ayako's life, including social and religious group portraits taken in Los Angeles in the 1930s and 1940s; domestic scenes of her parents' home; and many views of her parents' garden taken in 1958 and 1968 (the death years of her mother and father, respectively).</ns0:p>
+                    </ns0:scopecontent>
+                    <ns0:odd id="aspace_ad6fdf27cb8735ad0bac3c71db9381c7">
+                        <ns0:head>Note</ns0:head>
+                        <ns0:p>Identified photographers: Tōyō Miyatake, Imada (Los Angeles), Izuo, Shirao (Hollywood), Tanaka Studio (Los Angeles).</ns0:p>
+                    </ns0:odd>
+                </ns0:c02>
+                <ns0:c02 id="aspace_fb23ffdecaf346b1de6b9eef8cd87319" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 6</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.6</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">125 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1960/1970" type="inclusive">approximately 1960-1970</ns0:unitdate>
+                        <ns0:container id="aspace_37e69f4a8116056d0fca3cd364fc3f9e" label="Graphic Materials" type="Volume">6 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_898a3db9c2e19e410662987cc3c61d1d">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Snapshots taken at Disneyland, Grand Canyon, Hearst Castle and other Kataoka family tourist destinations in California and the Western U.S.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_2387a04888767c2c7ea29a880047479a" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 7</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.7</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">100 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1968/1972" type="inclusive">approximately 1968-1972</ns0:unitdate>
+                        <ns0:container id="aspace_c3b1fea1fa5f542134f60105451a453b" label="Graphic Materials" type="Volume">7 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_75ff728a180fda20b1d96ca937574abd">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Snapshots taken at Yosemite National Park and perhaps other Kataoka family outing locations in the Sierra Nevada.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_1cab7cabcf552d1806b59587f3183aaf" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 8</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--fALB v.8</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">100 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1970/1975" type="inclusive">approximately 1970-1975</ns0:unitdate>
+                        <ns0:container id="aspace_ddcb0ebb642064ec8721154c5655da45" label="Graphic Materials" type="Volume">8 (fALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_f4f57e099ff6293dfd9860758c43c756">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Snapshots taken during family outings in the mountains during winter and at Disneyland. Also includes snapshots of pupils and teachers at middle and/or high school – perhaps friends and associates of Kimiye Kataoka and/or her sister Kikuye.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_ffbd32c07dce5d3f40f5752c73196395" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 9</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.9</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">90 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1960/1970" type="inclusive">approximately 1960-1970</ns0:unitdate>
+                        <ns0:container id="aspace_90a57845605ff3f324212ec7a88d8899" label="Graphic Materials" type="Volume">9 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_919b6cb0c8429610717b4db787a1de68">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Snapshots of Kataoka family pets.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_4b51b7b2217b462ad0a3a1cfb1380d96" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 10</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--fALB v.10</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">40 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1951/1995" type="inclusive">approximately 1951-1995</ns0:unitdate>
+                        <ns0:container id="aspace_4dccc6b38a3dd00d0074d19424e41af3" label="Graphic Materials" type="Volume">10 (fALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_031e17fe8c6e78eae955ae8b3c8bd1f9">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Album pertaining to Ayako and her husband Takeo Kataoka, likely compiled after Ayako's death. Includes portraits and snapshots of the couple, copies of each of their death certificates, a copy of their marriage certificate, and ephemera pertaining to Takeo's funeral and memorial services.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+                <ns0:c02 id="aspace_9d226bd129384e907603fe9cfe7eafa8" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Volume 11</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--ALB v.11</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">100 items</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1930/1965" type="inclusive">approximately 1930-1965</ns0:unitdate>
+                        <ns0:container id="aspace_d4eecd2063a64a79979f3773cbd28bf9" label="Graphic Materials" type="Volume">11 (ALB)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_aeae3d7f19799495c35942175f4d68d6">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Chiefly commercial portraits of Japanese movie stars (including Kinuyo Tanaka) and other celebrities, and a few American celebrities. Also includes commercial postcards of views in Japan.</ns0:p>
+                    </ns0:scopecontent>
+                </ns0:c02>
+            </ns0:c01>
+            <ns0:c01 id="aspace_b2f5ab3294cc3454a9bd3cc0cec5e623" level="series">
+                <ns0:did>
+                    <ns0:unittitle>Other photographs</ns0:unittitle>
+                </ns0:did>
+                <ns0:c02 id="aspace_0f8a44151c35f5d1efc1a7ec7e8517b5" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Portraits, snapshots and other pictorial materials</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--PIC</ns0:unitid>
+                    </ns0:did>
+                    <ns0:c03 id="aspace_cb5b4dfc0758d9d7e23964dae503bdda" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Ayako Nakauchi Kataoka: studio portraits</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">7 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:unitdate datechar="creation" normal="1925/1940" type="inclusive">approximately 1925-1940</ns0:unitdate>
+                            <ns0:container id="aspace_3bdf1cdd30d54de53c8e7cd2eb0cc0eb" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_2c0eb978de32c3aafd242914fe35a3b2" parent="aspace_3bdf1cdd30d54de53c8e7cd2eb0cc0eb" type="folder">1</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_fd3afb22225ce3484008bf5c72853384">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Studio portraits of Ayako, a few including her parents and siblings.</ns0:p>
+                        </ns0:scopecontent>
+                        <ns0:odd id="aspace_77dc66d018c1f034dc7bddb950195d52">
+                            <ns0:head>Note</ns0:head>
+                            <ns0:p>Identified photographer: Tōyō Miyatake</ns0:p>
+                        </ns0:odd>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_34cd7f263ee38fa6afc94522414216e0" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Ayako Nakauchi Kataoka and family: snapshots</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">80 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_9314a6e760c1c931d2694b2fd086b34a" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_1bfc55019c94559c2776a9e6e828b436" parent="aspace_9314a6e760c1c931d2694b2fd086b34a" type="folder">2</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_d16e7d859819ab246e32a0e77f272c72">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Snapshots depicting Ayako with various family members.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_6ff65619ca204b912620f23b3f629f29" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Leaves from unidentified album</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">50 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_438522bc50c687924fe32229897b3260" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_9002009b03f0dabde6accd290ff0b921" parent="aspace_438522bc50c687924fe32229897b3260" type="folder">3</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_578c967304f7eb05fa51da2c741afa94">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>2 leaves from an unidentified photograph album, likely compiled by Ayako, containing very small photographic prints, probably from the 1930s. Leaves include hand-written captions. Some photographs are missing.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_6f36f1cee121ae26cd6dc059a1e25e05" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Miscellaneous studio portraits (mounted)</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">4 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_ee7a0d1ed8f515b2b95e14ca59ed8837" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_0d9986ed05f0787bd1b093b3f4076900" parent="aspace_ee7a0d1ed8f515b2b95e14ca59ed8837" type="folder">4</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_d907fe90880af9b962811f652cc6bbc9">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Studio portraits: Masayuki Nakauchi, Ayako's brother who died in infancy in 1934; Ayako's daughter Kikuye Kataoka shortly after her birth; Ayako's niece Karen; and Helen Yamamoto.</ns0:p>
+                        </ns0:scopecontent>
+                        <ns0:odd id="aspace_b9c616a921fa86f2a531bdaf78377936">
+                            <ns0:head>Note</ns0:head>
+                            <ns0:p>Identified photographers: Tōyō Miyatake, Nursery Identi-Foto Co., Inc. and J. Edmund Watson Studios.</ns0:p>
+                        </ns0:odd>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_59c76be5062d8f798cd3f6992126d651" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Miscellaneous studio portraits (unmounted)</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">6 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_74f3b8d72a1ce280629be1bef01b30e7" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_a5076172460bd45e8304f79b2ece833a" parent="aspace_74f3b8d72a1ce280629be1bef01b30e7" type="folder">5</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_ef18654669ba209132c8394fadf77f13">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Studio portraits of various friends/associates of Ayako.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_afa2d118b41dd8ac09238644f9804f91" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Miscellaneous snasphots</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">50 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_ae0f0264589bdc46c48b1c13482faf15" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_e8b901ce6465962ec7b4f00db3d57500" parent="aspace_ae0f0264589bdc46c48b1c13482faf15" type="folder">6</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_910b2be885704b2904ecf5adc76ec6c5">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Snapshots of friends, associates, travels, pets, etc. Includes one snapshot of actor Errol Flynn.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_a59b54bb2f0dc590ee0218d0b6d27c0a" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Miscellaneous snasphots (small)</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">50 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_f505f39d9994740049ce45461bf7993d" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_65cb5a82363a4becf9eb77823d120020" parent="aspace_f505f39d9994740049ce45461bf7993d" type="folder">7</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_e9246b3fb121b7d3809f41f9a66d843b">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Smaller format snapshots of friends, associates, travels, pets, etc.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_6a7e4ab1199ea85b61e243ac0fb1ccd6" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kimiye Kataoka</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">50 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_58325198cb3264a5dcc5c447d9ff7987" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_71447ea21f55e2d21da1231ad25a6977" parent="aspace_58325198cb3264a5dcc5c447d9ff7987" type="folder">8</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_f08a3f883c52d4b975fbf4bd7cb85619">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Snapshots and portraits pertaining to Ayako's daughter Kimiye Kataoka.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_6ab968951e2158adac5a7a4bf53a5d4a" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kimiye Kataoka: friends</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">13 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_e366adfa6cd096a2ee8a493ec4534d85" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_9b043e4c52306e58476c52be64a140fa" parent="aspace_e366adfa6cd096a2ee8a493ec4534d85" type="folder">9</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_e5f09e49202322388f2c1ce16e5f767c">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Middle school and/or high school portraits of friends of Kimiye Kataoka.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_c9b6238f3d83ff3f3f3df276bcb2ef26" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kimiye Kataoka: Osmond family, pen pal correspondence and a letter</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">5 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_4f1f1b5aaf0b702e9e707fc5a369c32f" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_4054ab91a298cc45302b218bedde3033" parent="aspace_4f1f1b5aaf0b702e9e707fc5a369c32f" type="folder">10</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_b72bb04d05507f21639e3070a1cf0110">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Fan memorabilia pertaining to the Osmond family collected by Kimiye Kataoka, much of it including correspondence from other fans; snapshots of an Osmond family concert; other pen pal correspondence of Kimiye Kataoka from her youth; and a letter to her written from a friend in 1999.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_dc0496e6edd28f7b3062177681e45961" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kimiye and Kikuye Kataoka</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">35 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_7a541287ab29b7fab54ef64e9e142fe1" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_751139bbfb1615556d94f4dbbda1a59c" parent="aspace_7a541287ab29b7fab54ef64e9e142fe1" type="folder">11</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_51eff4cc546a97d8c188d8500fde6769">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Snapshots depicting Ayako's daughters, twin sisters Kimiye and Kikuye Kataoka during their childhood.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_73f331e5537798d412317bdd6e00cb66" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kimiye and Kikuye Kataoka (small)</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">40 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_20718865c60984fcfe842e35869fd35b" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_25bda2085d15fe08fe1e223dddd274d7" parent="aspace_20718865c60984fcfe842e35869fd35b" type="folder">12</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_53061915ca1dfaf013ed7cf461f3f846">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Smaller format snapshots depicting Ayako's daughters, twin sisters Kimiye and Kikuye Kataoka, during their childhood.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_f26ec5b37ed7fcbc445598970e876ea3" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Kikuye Kataoka</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">5 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_9eed6d4d71e7eaad82ce510f4c706772" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_9e3a2295cce89735f83703337460a5ab" parent="aspace_9eed6d4d71e7eaad82ce510f4c706772" type="folder">13</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_061713bd9121ac992720316a829a2901">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Childhood portraits of Ayako's daughter Kikuye Kataoka.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_33bb9f185c37e5755288ab7f3a9aa20f" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Mary Jane Kataoka</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">1 photograph</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_bc75c065637d30a8d01ef4856b5314e3" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_0bfd0418edc60a75c6ef16464ebb3204" parent="aspace_bc75c065637d30a8d01ef4856b5314e3" type="folder">14</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_a0e310c565c2233606443ac74c10e5c1">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Portrait of Mary Jane Kataoka (born 1955) taken when 6 weeks old.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_257ddacfa32a1dce2ae629b7ee2e0e54" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Materials removed from albums</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">5 photographs</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_bef74c768abd8693bd3a3238f357aa88" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_bff3ca9053092bbaee1e977687f9c14d" parent="aspace_bef74c768abd8693bd3a3238f357aa88" type="folder">15</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_d475f9644f5ff10cc185f779d9838858">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Photographs and papers that were found laid in loosely to various albums in the collection. All are marked with the volume and location where they were found.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_9b471bcb6ab145b61ffe4112e8a5e176" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Postcards, greeting cards, miscellaneous ephemera</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">30 items</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_9add2f88ba2cc636bf6b94059c3d1e0a" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_ce51bc10b51fffcfe9fe4c9256342b8d" parent="aspace_9add2f88ba2cc636bf6b94059c3d1e0a" type="folder">16</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_2073acb78fd2273da48b08efc1405f00">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Chiefly unused postcards, many from the Mirage resort in Las Vegas, most of which pertain to entertainers Siegfried and Roy and their tigers; other miscellaneous postcards, souvenirs, etc.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                    <ns0:c03 id="aspace_03c0892142b724b8b82d599c0ac10955" level="file">
+                        <ns0:did>
+                            <ns0:unittitle>Realia</ns0:unittitle>
+                            <ns0:physdesc altrender="whole">
+                                <ns0:extent altrender="materialtype spaceoccupied">15 items</ns0:extent>
+                            </ns0:physdesc>
+                            <ns0:container id="aspace_adc7b821761dff8feb0b132139ec8f20" label="Graphic Materials" type="PIC_box">1</ns0:container>
+                            <ns0:container id="aspace_bdc9f805cff8a648b2c82f33db840153" parent="aspace_adc7b821761dff8feb0b132139ec8f20" type="folder">17</ns0:container>
+                        </ns0:did>
+                        <ns0:scopecontent id="aspace_334817b69f44d4b283c25c8e144227e8">
+                            <ns0:head>Scope and Content</ns0:head>
+                            <ns0:p>Hospital identification name beads for twins Kikuye and Kimiye ("Kataoka A" and "Kataoka B"); a small, flat Japanese doll wearing a kimono; and 12 O.P.A. (Office of Price Administration) World War II ration tokens.</ns0:p>
+                        </ns0:scopecontent>
+                    </ns0:c03>
+                </ns0:c02>
+                <ns0:c02 id="aspace_10e42f44f14b5871352fc2419fab809d" level="file">
+                    <ns0:did>
+                        <ns0:unittitle>Oversize portraits</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--AX</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">3 photographs</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1940/1984" type="inclusive">1940-1984</ns0:unitdate>
+                        <ns0:container id="aspace_787bea965efc442fc8f2f8ca5c951e3d" label="Graphic Materials" type="oversize_folder">--AX</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_4b25a881b5d2b8bb5f43ae209a705f7a">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Group portrait taken at the funeral of Takeo Kataoka, 1984, in front of the Ivy Chapel, Evergreen Cemetery, Los Angeles (2 copies); wedding portrait of Fred and Louise Morimoto, 1940.</ns0:p>
+                    </ns0:scopecontent>
+                    <ns0:odd id="aspace_295a3749ad0be3182183eafdd1d427a1">
+                        <ns0:head>Note</ns0:head>
+                        <ns0:p>Photographer: Tōyō Miyatake</ns0:p>
+                    </ns0:odd>
+                </ns0:c02>
+                <ns0:c02 id="aspace_93454e5f1b3c45e050095320a8bf205b" level="item">
+                    <ns0:did>
+                        <ns0:unittitle>[Group portrait, funeral of Kaneju Nakauchi, Evergreen Cemetery, Los Angeles]</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--G</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">1 photograph</ns0:extent>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1958/1958">1958</ns0:unitdate>
+                        <ns0:container id="aspace_c386d5a7cc59b118a306bdd935bd8cad" label="Graphic Materials" type="oversize_folder">--G</ns0:container>
+                    </ns0:did>
+                    <ns0:odd id="aspace_f6bd6f8f22eb0b5375711f8082d34516">
+                        <ns0:head>Note</ns0:head>
+                        <ns0:p>Photographer: Tōyō Miyatake</ns0:p>
+                    </ns0:odd>
+                </ns0:c02>
+                <ns0:c02 id="aspace_084b7bfe3a39a5edb442b5b2fc6e6ddf" level="subseries">
+                    <ns0:did>
+                        <ns0:unittitle>Negatives</ns0:unittitle>
+                        <ns0:unitid>BANC PIC 2022.010--NEG(5x7)</ns0:unitid>
+                        <ns0:physdesc altrender="whole">
+                            <ns0:extent altrender="materialtype spaceoccupied">300 photographs</ns0:extent>
+                            <ns0:extent altrender="carrier"> in 1 box</ns0:extent>
+                            <ns0:physfacet>: color film negatives</ns0:physfacet>
+                            <ns0:dimensions>; various sizes and formats</ns0:dimensions>
+                        </ns0:physdesc>
+                        <ns0:unitdate datechar="creation" normal="1960/1995" type="inclusive">approximately 1960-1995</ns0:unitdate>
+                        <ns0:container id="aspace_178fe4abb30499bf0351b90be9774f05" label="Graphic Materials" type="neg_box">1 (5x7)</ns0:container>
+                    </ns0:did>
+                    <ns0:scopecontent id="aspace_11a09ee93ec0e78d90cba2307ef0f99a">
+                        <ns0:head>Scope and Content</ns0:head>
+                        <ns0:p>Miscellaneous color snapshot negatives, taken during the final decades of Ayako's life, most of which are duplicated among the prints.</ns0:p>
+                    </ns0:scopecontent>
+                    <ns0:accessrestrict id="aspace_e91bbcacf00f7d7ad34301392b1484d2">
+                        <ns0:head>Conditions Governing Access</ns0:head>
+                        <ns0:p>Negatives (NEG(5x7) box 1): UNPROCESSED. UNAVAILABLE FOR USE.</ns0:p>
+                    </ns0:accessrestrict>
+                </ns0:c02>
+            </ns0:c01>
+        </ns0:dsc>
+    </ns0:archdesc>
+</ns0:ead>
