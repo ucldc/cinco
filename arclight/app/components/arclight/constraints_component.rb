@@ -14,6 +14,10 @@ module Arclight
       @repository ||= helpers.repository_faceted_on
     end
 
+    def collection
+      @collection ||= helpers.collection_faceted_on(controller.search_service)
+    end
+
     def search_bar
       render search_bar_component
     end

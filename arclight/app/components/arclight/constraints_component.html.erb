@@ -9,7 +9,7 @@
   </span>
     <%= repository.name %>
     </h1>
-    <div class="al-repository-contact px-2 mb-4">
+    <div class="al-repository-contact px-2 mb-3">
         <address class="text-break">
             <div class="al-repository-street-address">
                 <small>
@@ -20,7 +20,7 @@
         </address>
     </div>
     <% if repository.description.length > 0 %>
-    <div class="mb-5">
+    <div class="mb-3">
         <%= repository.description %>
     </div>
     <% end %>
@@ -28,6 +28,53 @@
       <%= link_to("Browse all collection guides from " + repository.name, repository_path(:id => repository.slug)) %>
     </div>
   </div>
+<% end %>
+<% if collection %>
+  <% if collection.repository_config.present? %>
+    <div class="row oac-collection-search-header">
+      <div class="col-md-12 px-2">
+        <div class="oac-repo breadcrumb-links">
+          <span class="al-repository-content-icon blacklight-icons blacklight-icons-repository">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                  <path fill="none" d="M0 0h24v24H0V0z"></path>
+                  <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"></path>
+              </svg>
+          </span>
+          <%= link_to(collection.repository_config.name, helpers.arclight_engine.repository_path(collection.repository_config.slug)) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row oac-collection-search-header">
+    <div class="col">
+      <h1 class="oac-grouped-title">
+        <span class="blacklight-icons blacklight-icons-collection">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+            <path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"></path>
+          </svg>
+        </span>
+        <%= helpers.link_to_document collection %>
+      </h1>
+      <% collection.extent.each do |extent| %>
+        <%= tag.div extent, class: 'oac-document-extent badge' %>
+      <% end %>
+      <dl>
+        <dt class="visually-hidden">Abstract Or Scope</dt>
+        <dd class="col oac-document-abstract-or-scope truncator" data-controller="arclight-truncate">
+          <div class="content" data-arclight-truncate-target="content">
+            <%= collection.abstract_or_scope.html_safe %>
+          </div>
+          <button name="button" type="button" class="btn btn-sm btn-link px-0" data-action="click->arclight-truncate#trigger">
+            <span class="view-more">show more</span>
+            <span class="view-less">show less</span>
+            <span class="icon"></span>
+          </button>
+        </dd>
+      </dl>
+    </div>
+  </div>
+
 <% end %>
 
 <div class="cdl-constraints">
