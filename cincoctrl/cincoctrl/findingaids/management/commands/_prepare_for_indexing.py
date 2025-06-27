@@ -56,7 +56,7 @@ def prepare_finding_aid(finding_aid, s3_key):
         f"export FINDING_AID_ID={finding_aid.id}\n"
         f"export REPOSITORY_ID={finding_aid.repository.code}\n"
         f"export FINDING_AID_ARK={finding_aid.ark}\n"
-        f"export EADID={finding_aid.eadid}\n"
+        f"export EADID='{finding_aid.eadid}'\n"
         f"export PREVIEW={preview}\n"
     )
 
