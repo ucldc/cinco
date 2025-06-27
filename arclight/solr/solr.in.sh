@@ -32,7 +32,9 @@
 #SOLR_START_WAIT="$SOLR_STOP_WAIT"
 
 # Increase Java Heap as needed to support your indexing / query needs
-SOLR_HEAP="1536m"
+# Set to 50% of memory configured for solr containers in infrastructure/cinco/<env>/solr/solr.yaml,
+#   solr-follower-1.yaml and solr-follower-2.yaml
+SOLR_HEAP="2048m"
 
 # Expert: If you want finer control over memory options, specify them directly
 # Comment out SOLR_HEAP if you are using this though, that takes precedence
