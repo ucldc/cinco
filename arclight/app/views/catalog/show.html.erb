@@ -19,7 +19,7 @@
         </div>
         <% end %>
         <div class="col">
-            <a href="">Printable Guide [HTML]</a>
+            <a href="<%= static_finding_aid_path @document.id %>">Printable Guide [HTML]</a>
         </div>
         <div class="col">
             <%= render 'arclight/requests', document: @document %>
