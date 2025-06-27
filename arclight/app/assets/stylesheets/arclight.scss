@@ -16,6 +16,8 @@ $logo-image: image_url('arclight/logo.svg') !default;
     --bs-link-color-rgb: 4,118,138;
     --bs-link-hover-color: #016058;
     --bs-link-hover-color-rgb: 1,96,88;
+    --al-hierarchy-view-expand-icon: url('blacklight/caretright.svg');
+    --al-hierarchy-view-collapse-icon: url('blacklight/caretdown.svg');
 }
 
 .btn-primary {
@@ -231,4 +233,12 @@ h1 .blacklight-icons-collection svg {
     font-size: 0.85rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
+}
+
+.index_title{
+    flex-grow: 1;
+}
+.al-number-of-children-badge {
+    float: right;
+    margin-top: 2px;
 }
