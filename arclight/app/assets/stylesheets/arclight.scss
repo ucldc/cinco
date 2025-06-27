@@ -150,20 +150,21 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     color: $teal;
 }
 
-.truncator .icon::before {
+.truncator .icon::before, .truncator.expanded .icon::before {
     content: none;
 }
 
+
 .truncator .view-more::before {
     content: "\f067"; /* FontAwesome plus */
-    content: "+";
+    content: "+ ";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
 }
 
 .truncator.expanded .view-less::before {
     content: "\f068"; /* FontAwesome minus */
-    content: "-";
+    content: "- ";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
 }
@@ -177,11 +178,33 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .documents-list article.document dl.document-metadata dd ol {
     margin-bottom: 0;
 }
-.al-grouped-title-bar .blacklight-icons svg {
+.blacklight-icons svg {
+    fill: var(--al-content-icon-color);
+}
+.al-grouped-title-bar .blacklight-icons svg,
+.oac-collection-search-header .blacklight-icons-repository svg {
     fill: var(--al-content-icon-color);
     height: 1rem;
     width: 1rem;
 }
 .card {
     border-radius: 0;
+}
+.oac-collection-search-header .oac-repo {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+.oac-collection-search-header .blacklight-icons-collection svg {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 7px;
+}
+.oac-collection-search-header .oac-document-extent {
+    margin-bottom: 0.5rem;
+}
+
+.oac-document-abstract-or-scope {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
 }

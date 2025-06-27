@@ -16,4 +16,18 @@ module ApplicationHelper
       location_html
     end
   end
+
+  def collection_faceted_on(search_service)
+    collections = search_state.filter("collection").values
+    return nil if collections.empty? or not collections.one?
+
+    response, documents = search_service.search_results
+
+    if response.grouped?
+      collection_hash = response.grouped.first.group["groups"].first["doclist"]["docs"].first["collection"]["docs"].first
+    else
+      collection_hash = response.documents.first["collection"]["docs"].first
+    end
+    collection = ::SolrDocument.new(collection_hash)
+  end
 end
