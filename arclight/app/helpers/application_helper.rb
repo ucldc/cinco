@@ -23,10 +23,14 @@ module ApplicationHelper
 
     response, documents = search_service.search_results
 
-    if response.grouped?
+    if response.grouped? and response.grouped.first.group["groups"].present?
       collection_hash = response.grouped.first.group["groups"].first["doclist"]["docs"].first["collection"]["docs"].first
-    else
+    elsif response.documents.present?
       collection_hash = response.documents.first["collection"]["docs"].first
+    else
+      # TODO: When there are no search results, but a Collection filter
+      # has been selected, we should still be able to display the Collection.
+      return nil
     end
     collection = ::SolrDocument.new(collection_hash)
   end
