@@ -85,7 +85,9 @@ en:
           other: Showing top %{count} results.
         all_group_results: View all %{count}
       show:
-        collection_id: 'Identifier/Collection Number'
+        collection_id: Identifier/Collection Number
+        context_nav:
+          title: Collection Overview
         online_content:
           link_text: View only results with digital items
   oac:

@@ -31,6 +31,18 @@
 </div>
 <% end %>
 
+<% if @document.online_content? %>
+<div class="card p-3 mb-4">
+    <p><strong>Some materials from this collection are available online.</strong></p>
+    <div>
+    <span aria-hidden="true"><%= blacklight_icon :online, classes: 'oac-online-content-icon' %></span>
+    <a href="<%= search_action_path(f: { collection: [@document.collection_name], access: ['online'] }) %>">
+        Go to online content
+    </a>
+    </div>
+</div>
+<% end %>
+
 <%= render 'show_main_content' %>
 
 <% content_for(:sidebar) do %>
