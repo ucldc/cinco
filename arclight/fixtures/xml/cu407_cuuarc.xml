@@ -1,0 +1,418 @@
+<ead>
+    <eadheader scriptencoding="iso15924" repositoryencoding="iso15511" relatedencoding="marc" countryencoding="iso3166-1" audience="internal" dateencoding="iso8601" langencoding="iso639-2b">
+        <eadid identifier="ark:/13030/kt2h4nc4bk" mainagencycode="CU-BANC" publicid="-//University of California, Berkeley::Bancroft Library::University Archives//TEXT (US::CU-BANC::CU-407::Student materials relating to University High School)//EN" countrycode="us">cu407_cuuarc.xml</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Guide to the Student Materials Relating to University High School, <date>ca. 1923-1987</date>
+                </titleproper>
+                <titleproper type="filing">Student Materials Relating to University High School</titleproper>
+                <author>Processed by The Bancroft Library staff</author>
+            </titlestmt>
+            <publicationstmt>
+                <publisher>University Archives.</publisher>
+                <address>
+                    <addressline>The Bancroft Library</addressline>
+                    <addressline>University of California, Berkeley</addressline>
+                    <addressline>Berkeley, California, 94720-6000</addressline>
+                    <addressline>Phone: (510) 642-2933</addressline>
+                    <addressline>Fax: (510) 642-7589</addressline>
+                    <addressline>Email: uarchive@library.berkeley.edu</addressline>
+                    <addressline>URL: http://www.lib.berkeley.edu/BANC/UARC</addressline>
+                </address>
+                <date>© 1999</date>
+                <p>The Regents of the University of California. All rights reserved.</p>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Text converted and initial EAD tagging provided by Apex Data Services,
+<date>July 1999.</date>
+Supplementary encoding and revision supplied by X.</creation>
+            <langusage>Description is in <language langcode="eng" scriptcode="latn">English.</language>
+            </langusage>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date>February 5, 2005</date>
+                <item>EAD v1.0 finding aid converted to EAD 2002 using UC Berkeley's eadv1to2002.pl perl script.</item>
+            </change>
+            <change>
+                <date>February 5, 2005</date>
+                <item>EAD v2002 finding aid upgraded to OAC BPG 2.0 using UC Berkeley's bpgifier.pl perl script.</item>
+                <item>Significant changes include:</item>
+                <item>Replaced all instances of @entityref with @href</item>
+                <item>Reordered many top-level elements for consistency, grouping several into two new descgrp elements</item>
+                <item>Changed many top-level element heads for consistency</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <frontmatter>
+        <titlepage>
+            <titleproper>Guide to the Student Materials Relating to University High School, <date>ca. 1923-1987</date>
+            </titleproper>
+            <num>Collection number: CU-407</num>
+            <publisher>University Archives, The Bancroft Library<lb />
+                <extptr show="embed" actuate="onload" href="http://digitalassets.lib.berkeley.edu/findingaids/ucb/images/ucseal.gif" />
+                <lb />
+University of California, Berkeley<lb />
+Berkeley, California</publisher>
+            <list type="simple">
+                <head>Contact Information:</head>
+                <item>University Archives</item>
+                <item>The Bancroft Library</item>
+                <item>University of California, Berkeley</item>
+                <item>Berkeley, California, 94720-6000</item>
+                <item>Phone: (510) 642-2933</item>
+                <item>Fax: (510) 642-7589</item>
+                <item>Email: uarchive@library.berkeley.edu</item>
+                <item>URL: http://www.lib.berkeley.edu/BANC/UARC/</item>
+            </list>
+            <list type="deflist">
+                <defitem>
+                    <label>Processed by:</label>
+                    <item>The Bancroft Library staff</item>
+                </defitem>
+            </list>
+            <p>© 1999 The Regents of the University of California. All rights reserved.</p>
+        </titlepage>
+    </frontmatter>
+    <archdesc level="collection">
+        <did>
+            <head>Collection Summary</head>
+            <unittitle label="Collection Title">Student materials relating to University High School,  </unittitle>
+            <unitdate type="inclusive">ca. 1923-1987</unitdate>
+            <unitid repositorycode="CU-BANC" label="Collection Number" countrycode="us">CU-407</unitid>
+            <physdesc label="Extent">
+                <extent> 5 boxes, 17 vols., (7 linear ft.)</extent>
+            </physdesc>
+            <repository label="Repository">The
+<corpname>Bancroft Library. University Archives.</corpname>
+                <address>
+                    <addressline>Berkeley, California 94720-6000</addressline>
+                </address>
+            </repository>
+            <physloc label="Physical Location">For current information on the location of these materials, please consult the Library's online catalog.</physloc>
+            <abstract label="Abstract">Includes student body council minutes, student publications, student scrapbooks, memorabilia, and reunion materials.</abstract>
+            <langmaterial label="Languages Represented">
+                <language langcode="eng">English</language>
+            </langmaterial>
+        </did>
+        <descgrp>
+            <head>Information for Researchers</head>
+            <accessrestrict>
+                <head>Access</head>
+                <p>Collection is open for research.</p>
+            </accessrestrict>
+            <userestrict>
+                <head>Publication Rights</head>
+                <p>Copyright has not been assigned to The Bancroft Library. All requests for permission to publish or quote from manuscripts must be submitted in writing to the Head of Public Services. Permission for publication is given on behalf of The Bancroft Library as the owner of the physical items and is not intended to include or imply permission of the copyright holder, which must also be obtained by the reader.</p>
+            </userestrict>
+            <prefercite>
+                <head>Preferred Citation</head>
+                <p>[Identification of item], Student materials relating to University High School, CU-407, University Archives, The Bancroft Library, University of California, Berkeley.</p>
+            </prefercite>
+        </descgrp>
+        <bioghist>
+            <head>Brief History</head>
+            <p>University High School was a six year secondary school located in Oakland from 1914 to 1946. The school was comprised of a Junior High of seventh, eighth and ninth grades, and a Senior High of tenth, eleventh and twelfth grades. The Board of Education of the City of Oakland and the Education Department of the University of California maintained and operated the school, which functioned as a state training school for secondary teachers. University High was located at 48th and Webster Streets in Oakland from 1914 to 1922; in 1922 a new school was built at 5714 Grove Street. Classes were conducted there until 1946, when, due to declining enrollment, the school was closed.</p>
+        </bioghist>
+        <scopecontent>
+            <head>Scope and Content</head>
+            <p>The collection consists of minute books and scrapbooks of school organizations, school publications, and memorabilia (plaques, a trophy, photographs and a school banner). Included are scrapbooks concerning 1950, 1955, 1960 and 1986 class reunions, and local newspaper clippings about University High written between 1984-1986, as well as lists of alumni compiled in 1986 and 1987.</p>
+            <p>The school yearbook, <title actuate="onrequest">The Cub </title>and the <title actuate="onrequest">Daily Uni, </title>University High's daily newspaper, are housed separately in University Archives.</p>
+        </scopecontent>
+        <dsc type="in-depth">
+            <head>Container List</head>
+            <c01 level="series" id="c000001">
+                <did>
+                    <unittitle>Minute Books and School-Initiated Publications</unittitle>
+                </did>
+                <c02 id="c000002">
+                    <did>
+                        <container type="box">1</container>
+                        <container type="folder">1</container>
+                        <unittitle>Minutes of the Student Body Council Meetings, <unitdate>1923-1926</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000003">
+                    <did>
+                        <container type="folder">2</container>
+                        <unittitle>Minutes of the Student Body Council Meetings, <unitdate>1926-1928</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000004">
+                    <did>
+                        <container type="folder">3</container>
+                        <unittitle>Minutes of the Student Body Council Meetings, <unitdate>1929-1931</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000005">
+                    <did>
+                        <container type="folder">4</container>
+                        <unittitle>Minutes of the Student Body Council Meetings, <unitdate>1931-1934</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000006">
+                    <did>
+                        <container type="folder">5</container>
+                        <unittitle>Autograph Book, <unitdate>1931-1940</unitdate>
+                        </unittitle>
+                    </did>
+                    <scopecontent>
+                        <p>Signatures of speakers at University High, 1931-1940</p>
+                    </scopecontent>
+                </c02>
+                <c02 id="c000007">
+                    <did>
+                        <container type="folder">6</container>
+                        <unittitle>U.H.S. Record, <unitdate>1925</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000008">
+                    <did>
+                        <container type="folder">7</container>
+                        <unittitle>U.H.S. Directory, <unitdate>Spring Semester, 1930</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000009">
+                    <did>
+                        <container type="folder">8</container>
+                        <unittitle>U.H.S. Directory, <unitdate>Janurary, 1932</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+            </c01>
+            <c01 level="series" id="c000010">
+                <did>
+                    <unittitle>Publications of University High School, Newspaper clippings, Alumni lists</unittitle>
+                </did>
+                <c02 id="c000011">
+                    <did>
+                        <container type="box">2</container>
+                        <container type="folder">1</container>
+                        <unittitle>Cub Tracks, <unitdate>Oct. 1925; January, April, 1926</unitdate>
+                        </unittitle>
+                    </did>
+                    <scopecontent>
+                        <p>A literary magazine.</p>
+                    </scopecontent>
+                </c02>
+                <c02 id="c000012">
+                    <did>
+                        <container type="folder">2</container>
+                        <unittitle>Cub Tracks, <unitdate>June, October, 1926; January, April, 1927</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000013">
+                    <did>
+                        <container type="folder">3</container>
+                        <unittitle>Cub Tracks, <unitdate>June, October, December, 1927</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000014">
+                    <did>
+                        <container type="folder">4</container>
+                        <unittitle>Cub Tracks, <unitdate>March, October, December, 1928</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000015">
+                    <did>
+                        <unittitle>The Lookout, <unitdate>February, 1928</unitdate>
+                        </unittitle>
+                    </did>
+                    <scopecontent>
+                        <p>A literary magazine of the Junior High.</p>
+                    </scopecontent>
+                </c02>
+                <c02 id="c000016">
+                    <did>
+                        <container type="folder">5</container>
+                        <unittitle>
+                            <emph render="italic">The Spade </emph>(Yearbook) <unitdate>June, 1938; June, 1940</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000017">
+                    <did>
+                        <container type="folder">6</container>
+                        <unittitle>Miscellaneous</unittitle>
+                    </did>
+                    <c03 id="c000018">
+                        <did>
+                            <unittitle>Program: "The Dramatic Workshop at University High School Presents Four One-Act Plays, Friday Evening, <unitdate>May 4, 1926."</unitdate>
+                            </unittitle>
+                        </did>
+                    </c03>
+                    <c03 id="c000019">
+                        <did>
+                            <unittitle>Program: "The Builder," <unitdate>June 9, 1933. </unitdate>Commencement Ceremony of the Class of <unitdate>June 1933.</unitdate>
+                            </unittitle>
+                        </did>
+                    </c03>
+                    <c03 id="c000020">
+                        <did>
+                            <unittitle>Schedule of classes, <unitdate>Spring, 1940</unitdate>
+                            </unittitle>
+                        </did>
+                    </c03>
+                </c02>
+                <c02 id="c000021">
+                    <did>
+                        <container type="folder">7</container>
+                        <unittitle>Newspaper clippings, <unitdate>1984-1986</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000022">
+                    <did>
+                        <container type="folder">8</container>
+                        <unittitle>Listings (Names, addresses, telephone numbers) of University High School Alumni.</unittitle>
+                    </did>
+                    <scopecontent>
+                        <p>List 1 compiled 5/15/86. Supplement compiled 2/7/87</p>
+                    </scopecontent>
+                </c02>
+            </c01>
+            <c01 level="series" id="c000023">
+                <did>
+                    <unittitle>Memorabilia</unittitle>
+                </did>
+                <c02 id="c000024">
+                    <did>
+                        <container type="box">3</container>
+                        <container type="folder">1</container>
+                        <unittitle>Loose Scrapbook pages, Girls' League Federation</unittitle>
+                    </did>
+                </c02>
+                <c02 id="c000025">
+                    <did>
+                        <container type="folder">2</container>
+                        <unittitle>Elizabeth Chappel, Class of June, 1920 Albert Ehrgott, Jr., Class of 1920</unittitle>
+                        <physdesc>Photographs.</physdesc>
+                    </did>
+                </c02>
+                <c02 id="c000026">
+                    <did>
+                        <container type="folder">3</container>
+                        <unittitle>"For Scholarship-Sportsmanship and Proficiency in Athletics," <unitdate>1922-1926 1927-1941</unitdate>
+                        </unittitle>
+                        <physdesc>2 plaques.</physdesc>
+                    </did>
+                </c02>
+                <c02 id="c000027">
+                    <did>
+                        <container type="folder">4</container>
+                        <unittitle>"Sportsmanship," <unitdate>1943-1946</unitdate>
+                        </unittitle>
+                        <physdesc>1 plaque.</physdesc>
+                    </did>
+                </c02>
+                <c02 id="c000028">
+                    <did>
+                        <container type="box">4</container>
+                        <unittitle>Perpetual Trophy, "High School Tennis League, Boys, City of Oakland, California," <unitdate>1920-1926</unitdate>
+                        </unittitle>
+                    </did>
+                </c02>
+            </c01>
+            <c01 level="series" id="c000029">
+                <did>
+                    <unittitle>School Banner</unittitle>
+                </did>
+                <c02 id="c000030">
+                    <did>
+                        <container type="box">5</container>
+                        <unittitle>Banner donated by the Class of 1932. With signatures.</unittitle>
+                    </did>
+                </c02>
+            </c01>
+        </dsc>
+        <c01 level="series" id="c000031">
+            <did>
+                <unittitle>Scrapbooks</unittitle>
+            </did>
+            <c02 id="c000032">
+                <did>
+                    <container type="volume">v. 1-6</container>
+                    <unittitle>Social Affairs, <unitdate>1938-1943</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000033">
+                <did>
+                    <container type="volume">v. 7</container>
+                    <unittitle>Scrapbook of the W.B. Society, <unitdate>1923-1932</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000034">
+                <did>
+                    <container type="volume">v. 8</container>
+                    <unittitle>Autograph book of graduating class members, <unitdate>1925-1946</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000035">
+                <did>
+                    <container type="volume">v. 9</container>
+                    <unittitle>Student Activities, <unitdate>1937-1942</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000036">
+                <did>
+                    <container type="volume">v. 10</container>
+                    <unittitle>The Who's Who Committee, <unitdate>1937-1943</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000037">
+                <did>
+                    <container type="volume">v. 11</container>
+                    <unittitle>Scrapbook of the Class of 1938</unittitle>
+                </did>
+            </c02>
+            <c02 id="c000038">
+                <did>
+                    <container type="volume">v. 12</container>
+                    <unittitle>Girls' League Post-Mortem, <unitdate>Fall, 1942</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000039">
+                <did>
+                    <container type="volume">v. 13</container>
+                    <unittitle>University High School Finance Committee, <unitdate>1940-1943</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+            <c02 id="c000040">
+                <did>
+                    <container type="volume">v. 14-15</container>
+                    <unittitle>Scrapbooks of Irene Mlejnek, <unitdate>1942-1944 and 1942-1946 </unitdate>Student at University High</unittitle>
+                </did>
+            </c02>
+            <c02 id="c000041">
+                <did>
+                    <container type="volume">v. 16</container>
+                    <unittitle>Scrapbook concerning 1950, 1955 and 1960 reunions</unittitle>
+                </did>
+            </c02>
+            <c02 id="c000042">
+                <did>
+                    <container type="volume">v. 17</container>
+                    <unittitle>Scrapbook concerning reunion for the years <unitdate>1918-1946, </unitdate>held on <unitdate>May 3, 1986</unitdate>
+                    </unittitle>
+                </did>
+            </c02>
+        </c01>
+    </archdesc>
+</ead>

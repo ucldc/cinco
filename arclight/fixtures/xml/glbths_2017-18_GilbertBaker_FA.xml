@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead>
+     <eadheader langencoding="iso639-2b" scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601">
+         <eadid xmlns:cdlpath="http://www.cdlib.org/path/" countrycode="us" identifier="ark:/13030/c8z60w01" mainagencycode="CSfGLHS" publicid="2002-41" cdlpath:parent="ark:/13030/tf8j49p7c9">2002-41</eadid>
+         <filedesc id="filedesc">
+             <titlestmt>
+                 <titleproper>Gilbert Baker flag collection</titleproper>
+                 <titleproper type="filing">Baker (Gilbert) Flag Collection</titleproper>
+                 <author>Finding aid created by GLBT Historical Society staff using RecordEXPRESS</author>
+             </titlestmt>
+             <publicationstmt>
+                 <publisher>GLBT Historical Society</publisher>
+                 <address>
+                     <addressline>989 Market Street, Lower Level</addressline>
+
+                     <addressline>San Francisco, California 94103</addressline>
+
+                     <addressline>(415) 777-5455</addressline>
+
+
+                     <addressline>reference@glbthistory.org</addressline>
+
+
+                     <addressline>http://www.glbthistory.org/</addressline>
+
+                 </address>
+                 <date>2024</date>
+             </publicationstmt>
+         </filedesc>
+     </eadheader>
+     <archdesc level="collection" id="archdesc">
+         <did id="did">
+             <head>Descriptive Summary</head>
+             <unittitle label="Title">Gilbert Baker flag collection</unittitle>
+             <unitdate label="Dates">circa 1978-2002</unitdate>
+             <unitid label="Collection Number" repositorycode="CSfGLHS" countrycode="US">2002-41</unitid>
+             <origination label="Creator/Collector">
+
+                 <persname>Baker, Gilbert</persname>
+
+
+
+             </origination>
+             <physdesc label="Extent"><extent>4.8 linear feet</extent>
+             </physdesc>
+
+             <repository label="Repository">
+                 <corpname>GLBT Historical Society</corpname>
+                 <address>
+                     <addressline>San Francisco, California 94103</addressline>
+                 </address>
+             </repository>
+             <abstract label="Abstract">Gilbert Baker was an artist, gay rights activist, and designer of the rainbow flag as a symbol for LGBTQ pride. Baker donated 4 signed oversize rainbow flags backed on white canvas to GLBTHS. The collection also includes Baker’s silkscreens from the Gay Pride celebrations in 1978-1979 and matted photographs from a Rainbow Flag Exhibit from 2002 at GLBTHS.</abstract>
+             <langmaterial><language langcode="eng"/></langmaterial>
+        </did>
+        <accessrestrict id="accessrestrict"><head>Access</head><p>Collection is open for research. </p></accessrestrict>
+        <userestrict id="userestrict"><head>Publication Rights</head><p/></userestrict>
+        <prefercite id="prefercite"><head>Preferred Citation</head><p>[Identification of item]. Gilbert Baker flag collection. Collection Number: 2002-41. GLBT Historical Society</p></prefercite>
+        <acqinfo id="acqinfo"><head>Acquisition Information</head><p/></acqinfo>
+
+        <scopecontent id="scopecontent"><head>Scope and Content of Collection</head><p>Gilbert Baker was an artist, gay rights activist, and designer of the rainbow flag as a symbol for LGBTQ pride. Baker donated 4 signed oversize rainbow flags backed on white canvas to GLBTHS. The collection also includes Baker’s silkscreens from the Gay Pride celebrations in 1978-1979 and matted photographs from a Rainbow Flag Exhibit from 2002 at GLBTHS. GSSO linked terms: http://purl.obolibrary.org/obo/GSSO_000374; http://purl.obolibrary.org/obo/GSSO_001021; http://purl.obolibrary.org/obo/GSSO_004299</p></scopecontent>
+        <controlaccess id="controlaccess">
+            <head>Indexing Terms</head>
+
+                <subject>Pride parades</subject>
+
+                <subject>Gay men</subject>
+
+                <subject>Drag</subject>
+
+
+
+
+
+
+
+
+
+        </controlaccess>
+
+        <otherfindaid id="otherfindaid">
+            <head>Additional collection guides</head>
+            <list>
+
+            <item><extref href="https://cinco-stage.s3.amazonaws.com/media/pdf/glbths_2017-18_GilbertBaker_FA_y33pIpO.pdf">Guide to the Gilbert Baker Papers</extref></item></list>
+        </otherfindaid>
+
+    </archdesc>
+</ead>
