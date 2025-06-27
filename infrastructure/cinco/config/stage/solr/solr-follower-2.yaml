@@ -14,7 +14,7 @@ parameters:
   # otherwise we get an error about index dir locking from Solr
   ServiceTaskMaximumPercent: 100
   ServiceTaskMinimumHealthyPercent: 0
-  HealthCheckGracePeriodSeconds: 300
+  HealthCheckGracePeriodSeconds: 600
 
 sceptre_user_data:
   ApplicationType: internal
