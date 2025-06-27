@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Source Sans 3;
     color: #01334d;
 }
-h1 { font-size: 36px; line-height: 1.4; font-weight: 400; margin-bottom: 1rem; }
+h1, h1.h3 { font-size: 36px; line-height: 1.4; font-weight: 400; margin-bottom: 1rem; }
 h2 { font-size: 28px; line-height: 1.35; }
 h3 { font-size: 20px; }
 
@@ -77,6 +77,9 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .help { margin-left: auto; background-color: $orange; color: white }
 .help:hover, .help:focus { color: white; background-color: #bb3500 }
 
+.breadcrumb-links a {
+    color: $teal;
+}
 
 .cdl-constraints {
     background-color: #f6f6f6;
@@ -182,11 +185,29 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     fill: var(--al-content-icon-color);
 }
 .al-grouped-title-bar .blacklight-icons svg,
-.oac-collection-search-header .blacklight-icons-repository svg {
+.oac-collection-search-header .blacklight-icons-repository svg,
+.breadcrumb .blacklight-icons-repository svg {
     fill: var(--al-content-icon-color);
     height: 1rem;
     width: 1rem;
+    margin-bottom: .2rem;
 }
+.oac-online-content-icon svg,
+.oac-printer-icon svg,
+.oac-envelope-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.oac-arrow-up-right-icon svg {
+    width: 1rem;
+    height: 1rem;
+}
+a .blacklight-icons svg { fill: $teal; }
+a:hover .blacklight-icons svg, a:focus .blacklight-icons svg { fill: $dark-teal; }
+
 .card {
     border-radius: 0;
 }
@@ -194,7 +215,8 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     font-size: 0.875rem;
     margin-bottom: 0.75rem;
 }
-.oac-collection-search-header .blacklight-icons-collection svg {
+.oac-collection-search-header .blacklight-icons-collection svg,
+h1 .blacklight-icons-collection svg {
     width: 36px;
     height: 36px;
     margin-bottom: 7px;
