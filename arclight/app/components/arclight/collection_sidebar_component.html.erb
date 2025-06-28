@@ -1,7 +1,7 @@
 <nav class="al-sidebar-navigation-context sidebar-section" aria-labelledby="collection-nav">
   <h2 id="collection-nav"><%= t('arclight.views.show.context_nav.title') %></h2>
     <div class="card p-3 mb-3">
-      <p><b><%= t('arclight.views.show.collection_id') %>:</b> <%= @document.collection_id %></p>
+      <p><b><%= t('arclight.views.show.collection_id') %>:</b> <%= @document["unitid_tesim"] %></p>
       <p><b><%= t('arclight.views.show.last_indexed') %>:</b> <%= @document.last_indexed.strftime('%F') %></p>
     </div>
   <h3>Jump to</h3>
