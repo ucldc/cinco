@@ -16,10 +16,9 @@
             <% params_for_search = search_state.params_for_search.except(:qt, :q, :f) %>
             <% params_for_search[:group] = true %>
             <%= render Oac::SearchBarComponent.new(
-                placeholder_text: I18n.t("oac.search.placeholder_text"),
+                placeholder_text: "Search collection guides",
                 url: search_action_url,
-                params: params_for_search,
-                autocomplete_path: "/catalog/suggest"
+                params: params_for_search
             ) %>
         </div>
         </div>
@@ -49,7 +48,7 @@
     </div>
 </div>
 
-<div class="container home">
+<div class="container home calisphere-banner-wrapper">
     <a href="https://calisphere.org">
     <div class="row mb-4 p-4 calisphere-banner">
         <div class="col-xl-auto col-lg-8 col-md-6 col-sm-auto">
