@@ -302,3 +302,15 @@ h1 .blacklight-icons-collection svg {
 .footer-container {
     border-top: 1px solid var(--bs-border-color);
 }
+
+.catalog_startOverLink {
+    order: 99;
+    background-color: #f6f6f6;
+    color:rgba(80, 82, 82, 1);
+    border: 1px solid rgba(80, 82, 82, 1);
+}
+.catalog_startOverLink:hover {
+    background-color: #bb2d3b;
+    color:white;
+    border: 1px solid #bb2d3b;
+}
