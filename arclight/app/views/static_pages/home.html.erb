@@ -27,30 +27,29 @@
             <a class="caption" href="">LeConte Family Papers / UC Berkeley, Bancroft Library</a>
         </p>
     </div>
+</div>
 
-    <div class="row mb-4 gx-5">
-        <div class="col-md-4">
-            <div class="row mb-3 home-textbox">
-                <div class="col p-4">
-                    <h2>
-                        OAC is your gateway to detailed descriptions of the unique
-                        holdings of over 350 archival institutions throughout the state.
-                    </h2>
-                    <%= link_to("Browse all contributing institutions", { controller: 'arclight/repositories', action: 'index' }, class: 'btn btn-primary') %>
-                </div>
-            </div>
-            <div class="row mb-md-0 mb-3 home-image" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
-                <p class="text-end align-self-end">
-                    <a class="caption" href="">Item Title / Los Angeles Public Library</a>
-                </p>
-            </div>
+<div class="home mb-4">
+    <div class="grid">
+        <div class="g-col-md-4 g-col-12 home-textbox p-4">
+            <h2>
+            OAC is your gateway to detailed descriptions of the unique
+            holdings of over 350 archival institutions throughout the state.
+            </h2>
+            <%= link_to("Browse all contributing institutions", { controller: 'arclight/repositories', action: 'index' }, class: 'btn btn-primary') %>
         </div>
-        <div class="col-md-8">
-            <div class="row" id="home-map">
-            </div>
+        <div class="g-col-md-8 g-col-12" style="grid-row: span 2;">
+            <div id="home-map"></div>
+        </div>
+        <div class="g-col-md-4 g-col-12 home-image p-4" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
+            <p>
+                <a class="caption" href="">Item Title / Los Angeles Public Library</a>
+            </p>
         </div>
     </div>
+</div>
 
+<div class="container home">
     <a href="https://calisphere.org">
     <div class="row mb-4 p-4 calisphere-banner">
         <div class="col-xl-auto col-lg-8 col-md-6 col-sm-auto">
