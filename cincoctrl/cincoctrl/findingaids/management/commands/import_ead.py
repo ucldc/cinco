@@ -61,7 +61,7 @@ class Command(BaseCommand):
         if href.startswith(doc_url):
             return href
         if href.startswith("https://oac.cdlib.org/"):
-            return href.replace("https://oac.cdlib.org/", doc_url)
+            return href.replace("https://oac.cdlib.org", doc_url)
         if href.startswith("http"):
             msg = f"Can't download external document {href}"
             raise URLError(msg)
@@ -91,6 +91,10 @@ class Command(BaseCommand):
             except requests.exceptions.HTTPError:
                 self.stdout.write(f"Supp file {a['href']} not found")
             except URLError as e:
+                self.stdout.write(e.message)
+            except requests.exceptions.ConnectionError as e:
+                self.stdout.write(e.message)
+            except requests.exceptions.Timeout as e:
                 self.stdout.write(e.message)
 
         # update links in original EAD
@@ -137,8 +141,6 @@ class Command(BaseCommand):
 
             ark_dir = self.get_ark_dir(ark)
             self.process_supp_files(parser, doc_url, ark_dir, f)
-
-            parser.update_eadid(filename)
 
             # add the new ead file
             ead_file = SimpleUploadedFile(
