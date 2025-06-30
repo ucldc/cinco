@@ -29,7 +29,9 @@
             <%= render 'arclight/requests', document: @document %>
         </div>
     </div>
-    <%= render Oac::SearchDocumentComponent.new(document: @document) %>
+    <div class="oac-finding-aid-search">
+        <%= render Oac::SearchDocumentComponent.new(document: @document) %>
+    </div>
 </div>
 <% end %>
 
