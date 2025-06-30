@@ -48,6 +48,10 @@ $logo-image: image_url('arclight/logo.svg') !default;
 .cdl-main-navbar {
     margin-bottom: 1rem;
 }
+.cdl-main-navbar .nav-link {
+    font-size: 20px;
+}
+
 .al-search-breadcrumb {
     margin-bottom: 1.75rem;
 }
