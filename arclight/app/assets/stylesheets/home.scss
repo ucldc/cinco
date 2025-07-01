@@ -20,7 +20,7 @@
     background-color: lightgray;
     height: 400px;
     background-size: cover;
-    background-position: center bottom;
+    background-position: top center, center bottom -65px;
     border: 1px solid var(--bs-border-color);
 }
 .home-banner h1 {
