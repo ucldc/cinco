@@ -1,5 +1,5 @@
 $orange: #be4b1b;
-$teal: #04768a;
+$teal: rgb(4, 118, 138);
 $dark-teal: #016058;
 $enable-cssgrid: true;
 
@@ -330,4 +330,14 @@ h1 .blacklight-icons-collection svg {
 }
 .cdl-search-navbar .btn-primary svg {
     fill: #fff;
+}
+.form-check-input:focus, .form-control:focus, .input-group > .search-autocomplete-wrapper:focus {
+    border-color: $teal;
+    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
+}
+.nav-link:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
+}
+.btn:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
 }
