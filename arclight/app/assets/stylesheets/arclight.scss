@@ -48,12 +48,59 @@ $logo-image: image_url('arclight/logo.svg') !default;
         height: 86px;
     }
 }
+
+
 .cdl-navbar-logo {
     background-position: center left;
     background-size: 200px 60px;
     width: 200px;
     height: 60px;
 }
+.collection-sidebar {
+    // make like a col-12
+    flex: 0 0 auto;
+    width: 100%;
+
+    border: 0;
+    padding: 0 calc(var(--bs-gutter-x) * .5);
+    margin-top: -1rem;
+    margin-bottom: .5rem;
+}
+
+.sidebar-toggler {
+    width: 100%;
+    border-radius: 0;
+    text-align: right;
+}
+
+#sidebar {
+    border: 1px solid #dee2e6;
+}
+.sidebar-section {
+    margin-left: 0;
+}
+.sidebar-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+@media (min-width: 992px) {
+    .collection-sidebar {
+        // make like a col-lg-4
+        flex: 0 0 auto;
+        width: 33.33333333%;
+
+        padding-right: 1rem;
+        border-right: 1px solid #dee2e6;
+        margin-top: var(--bs-gutter-y);
+    }
+    .collection-sidebar .navbar {
+        padding: 0;
+    }
+    #sidebar { border: 0; }
+    .sidebar-section { margin-left: 1rem; }
+}
+
 .cdl-main-navbar {
     margin-bottom: 1rem;
 }

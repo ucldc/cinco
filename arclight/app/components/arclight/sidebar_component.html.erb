@@ -1,9 +1,20 @@
-<div class="offcanvas-lg offcanvas-start p-3 p-lg-1" tabindex="-1" id="sidebar">
-  <%= render (blacklight_config.show.show_tools_component || Blacklight::Document::ShowToolsComponent).new(document: document) %>
-  <%= collection_sidebar %>
-  <div id="collection-context" class="sidebar-section">
-    <h2><%= t('arclight.views.show.has_content') %></h2>
-    <%= render Arclight::OnlineContentFilterComponent.new(document: document) %>
-    <%= turbo_frame_tag "al-hierarchy-#{document.root}", loading: 'lazy', src: hierarchy_solr_document_path(id: document.root, nest_path: @document.nest_path, hierarchy: true) %>
+
+<nav class="navbar navbar-expand-lg">
+  <button class="navbar-toggler sidebar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle finding aid sidebar navigation">
+  <div class="row">
+    <div class="col-auto align-self-center">Menu</div>
+    <div class="col"><span class="navbar-toggler-icon"></span></div>
   </div>
-</div>
+  </button>
+  <div class="collapse navbar-collapse p-3 p-lg-1" tabindex="-1" id="sidebar">
+    <div style="display: block;">
+    <%= render (blacklight_config.show.show_tools_component || Blacklight::Document::ShowToolsComponent).new(document: document) %>
+    <%= collection_sidebar %>
+    <div id="collection-context" class="sidebar-section">
+      <h2><%= t('arclight.views.show.has_content') %></h2>
+      <%= render Arclight::OnlineContentFilterComponent.new(document: document) %>
+      <%= turbo_frame_tag "al-hierarchy-#{document.root}", loading: 'lazy', src: hierarchy_solr_document_path(id: document.root, nest_path: @document.nest_path, hierarchy: true) %>
+    </div>
+    </div>
+  </div>
+</nav>
