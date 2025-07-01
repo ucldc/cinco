@@ -18,10 +18,11 @@
         rgba(255, 255, 255, 0.80) 100%
     ), url('arclight/homepage/featured_images/01.png');
     background-color: lightgray;
-    height: 400px;
+    min-height: 400px;
     background-size: cover;
     background-position: top center, center bottom -65px;
     border: 1px solid var(--bs-border-color);
+    padding: 1.5rem;
 }
 .home-banner h1 {
     font-weight: 700;

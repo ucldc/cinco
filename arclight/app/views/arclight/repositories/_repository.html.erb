@@ -5,7 +5,7 @@
           <%= link_to(repository.name, repository_path(:id => repository.slug)) %>
         <% end %>
         <div class='row no-gutters justify-content-center'>
-          <div class='col-sm al-repository-contact'>
+          <div class='col al-repository-contact'>
             <address class="text-break">
               <div class="al-repository-street-address">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256"><path d="M184,72a56,56,0,1,0-64,55.42V232a8,8,0,0,0,16,0V127.42A56.09,56.09,0,0,0,184,72Zm-56,40a40,40,0,1,1,40-40A40,40,0,0,1,128,112Z"></path></svg>
@@ -15,7 +15,7 @@
           </div>
 
           <% if on_repositories_index? %>
-          <div class='col-sm text-left al-repository-extra'>
+          <div class='col text-left al-repository-extra'>
             <div class='mb-1'>
               <small>
               <%= t(:'arclight.views.repositories.number_of_collections', count: repository.collection_count) %>

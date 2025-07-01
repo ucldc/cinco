@@ -34,16 +34,25 @@ $logo-image: image_url('arclight/logo.svg') !default;
 .sidenav {
     --bl-facet-active-bg: #04768a;
     --bl-facet-active-item-color: #04768a;
+    --bl-facets-smallish-padding: 0 1rem;
+    --bl-facets-smallish-border-radius: 0;
 }
 
 .cdl-search-navbar {
     --bs-navbar-padding-y: 1.25rem;
 }
+@media (min-width: 768px) {
+    .cdl-navbar-logo {
+        background-size: 285px 86px;
+        width: 285px;
+        height: 86px;
+    }
+}
 .cdl-navbar-logo {
-    background-size: 285px 86px;
-    width: 285px;
-    height: 86px;
     background-position: center left;
+    background-size: 200px 60px;
+    width: 200px;
+    height: 60px;
 }
 .cdl-main-navbar {
     margin-bottom: 1rem;
