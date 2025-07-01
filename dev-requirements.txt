@@ -1,2 +1,2 @@
 sceptre==4.5.3
-cfn-lint==1.36.1
+cfn-lint==1.37.0
