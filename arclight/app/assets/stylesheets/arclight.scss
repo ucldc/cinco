@@ -314,3 +314,20 @@ h1 .blacklight-icons-collection svg {
     color:white;
     border: 1px solid #bb2d3b;
 }
+
+.cdl-search-navbar #search-nav search {
+    width: 100%;
+}
+.cdl-search-navbar .navbar-toggler {
+    border: 0;
+    // padding: 0;
+}
+.cdl-search-navbar .navbar-toggler:focus {
+    box-shadow: none;
+}
+.cdl-search-navbar .navbar-toggler-icon {
+    margin: 5px 0;
+}
+.cdl-search-navbar .btn-primary svg {
+    fill: #fff;
+}
