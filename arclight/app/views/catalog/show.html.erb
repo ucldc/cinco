@@ -1,4 +1,7 @@
 <% content_for(:container_header) do -%>
+  <div class="d-none" id="matomo-repo" data-repo-slug="<%= @document.repository_config.slug %>"></div>
+  <div class="d-none" id="matomo-collection" data-ark="<%= @document.id %>"></div>
+
   <div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

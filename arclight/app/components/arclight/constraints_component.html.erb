@@ -1,5 +1,9 @@
 <% if collection %>
   <% if collection.repository_config.present? %>
+    <%# Matomo tracking for repository slug %>
+    <div class="d-none" id="matomo-repo" data-repo-slug="<%= collection.repository_config.slug %>"></div>
+    <div class="d-none" id="matomo-collection" data-ark="<%= collection.id %>"></div>
+
     <div class="row oac-collection-search-header">
       <div class="col-md-12 px-2">
         <div class="oac-repo breadcrumb-links">
@@ -44,6 +48,9 @@
     </div>
   </div>
 <% elsif repository %>
+  <%# Matomo tracking for repository slug %>
+  <div class="d-none" id="matomo-repo" data-repo-slug="<%= repository.slug %>"></div>
+
   <div class="al-repository-card">
   <h1>
   <span class="al-repository-content-icon blacklight-icons blacklight-icons-repository">
