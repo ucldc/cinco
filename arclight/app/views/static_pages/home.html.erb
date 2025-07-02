@@ -1,9 +1,13 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+<% if controller.action_name == 'home' %>
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
+<% end %>
+<% end %>
 
 <div class="container home">
     <div class="row mb-4 pt-3 pt-md-0 home-banner">
@@ -87,6 +91,10 @@
         popupAnchor:  [1, -34]
     });
     <% @repositories.each do |r|  %>
+    <% next unless r.latitude && r.longitude %>
+    <% next if r.latitude == "0" || r.longitude == "0" %>
+    <% next if r.latitude == "None" || r.longitude == "None" %>
+
     var marker = L.marker([<%= r.latitude %>, <%= r.longitude %>], {icon: tealIcon}).addTo(map);
     marker.bindPopup(`
         <%= r.name %><br/>
