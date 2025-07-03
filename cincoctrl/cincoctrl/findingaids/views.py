@@ -41,7 +41,7 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
             repo_qs=self.request.user.repositories(),
         )
 
-        items_per_page = 10
+        items_per_page = 25
         paginator = Paginator(f.qs, items_per_page)
 
         try:
@@ -53,6 +53,8 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
 
         context["filter"] = f
         context["records_page"] = records_page
+        sep = "&" if len(self.request.GET) > 0 else "?"
+        context["base_page_url"] = f"{self.request.get_full_path()}{sep}"
         return context
 
     def get_queryset(self):
