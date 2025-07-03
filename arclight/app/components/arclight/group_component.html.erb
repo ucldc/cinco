@@ -24,7 +24,7 @@
       </span>
     </div>
     <div class="col">
-      <h3 class="oac-grouped-title"><%= helpers.link_to_document document %></h3>
+      <h3 class="d-block"><%= helpers.link_to_document document %></h3>
       <% document.extent.each do |extent| %>
         <%= tag.div extent, class: 'oac-document-extent badge' unless compact? %>
       <% end %>

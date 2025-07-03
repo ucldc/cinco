@@ -1,14 +1,16 @@
+@import 'colors';
+
 .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
-    color: #505252;
+    color: $home-headings;
 }
 .home .search-query-form .btn-primary {
-    --bs-link-color: #be4b1b;
-    --bs-link-hover-color: #bb3500;
-    --bs-btn-hover-bg: #bb3500;
+    --bs-link-color: #{ $orange };
+    --bs-link-hover-color: #{ $dark-orange };
+    --bs-btn-hover-bg: #{ $dark-orange };
 }
 
 .home .search-query-form input::placeholder {
-    color: rgba(80, 82, 82, 1);
+    color: $home-headings;
 }
 
 .home-banner {
@@ -27,7 +29,7 @@
 .home-banner h1 {
     font-weight: 700;
     font-size: 2.25em;
-    color: rgba(80, 82, 82, 1);
+    color: $home-headings;
 }
 .home-image {
     height: 300px;
@@ -46,7 +48,7 @@
 
 .home-textbox, .calisphere-banner {
     border: 1px solid #B8C4C4;
-    background-color: #F6F6F6
+    background-color: $search-grey-background;
 }
 #home-map {
     height: 100%;
