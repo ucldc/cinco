@@ -55,6 +55,10 @@ $dark-orange: #bb3500;
     }
 }
 
+#footer-container {
+    border-top: 1px solid var(--bs-border-color);
+}
+
 @media (min-width: 768px) {
     #main-navbar {
         border: 0;

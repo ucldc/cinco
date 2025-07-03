@@ -1,17 +1,21 @@
+
+// Bootstrap variables - include before importing bootstrap
+$enable-cssgrid: true; // used on homepage
+$breadcrumb-divider: quote("»");
+@import 'bootstrap';
+
+// Blacklight variables - include before importing blacklight
+$logo-image: image_url('arclight/logo.svg') !default;
+@import 'blacklight/blacklight';
+
+@import 'arclight/application';
+@import 'home';
+
 $orange: #be4b1b;
 $dark-orange: #bb3500;
 
 $teal: rgb(4, 118, 138);
 $dark-teal: #016058;
-$enable-cssgrid: true;
-
-$breadcrumb-divider: quote("»");
-$logo-image: image_url('arclight/logo.svg') !default;
-
-@import 'bootstrap';
-@import 'blacklight/blacklight';
-@import 'arclight/application';
-@import 'home';
 
 :root {
     --bs-link-color: #04768a;
@@ -40,60 +44,12 @@ $logo-image: image_url('arclight/logo.svg') !default;
     --bl-facets-smallish-border-radius: 0;
 }
 
-@import 'header';
-
-.collection-sidebar {
-    // make like a col-12
-    flex: 0 0 auto;
-    width: 100%;
-
-    border: 0;
-    padding: 0 calc(var(--bs-gutter-x) * .5);
-    margin-top: -1rem;
-    margin-bottom: .5rem;
-}
-
-.sidebar-toggler {
-    width: 100%;
-    border-radius: 0;
-    text-align: right;
-}
-
-#sidebar {
-    border: 1px solid #dee2e6;
-}
-.sidebar-section {
-    margin-left: 0;
-}
-.sidebar-section:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-@media (min-width: 992px) {
-    .collection-sidebar {
-        // make like a col-lg-4
-        flex: 0 0 auto;
-        width: 33.33333333%;
-
-        padding-right: 1rem;
-        border-right: 1px solid #dee2e6;
-        margin-top: var(--bs-gutter-y);
-    }
-    .collection-sidebar .navbar {
-        padding: 0;
-    }
-    #sidebar { border: 0; }
-    .sidebar-section { margin-left: 1rem; }
-}
+@import 'header-footer';
+@import 'finding-aid';
 
 
 .al-search-breadcrumb {
     margin-bottom: 1.75rem;
-}
-
-.al-repository-card .al-repository-contact {
-    border-left: 1px solid rgba(184, 196, 196, 1)
 }
 
 .search-q::placeholder {
@@ -121,74 +77,12 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     color: $teal;
 }
 
-.oac-finding-aid-search {
-    background-color: #f6f6f6;
-    padding: 0 1.5rem;
-}
-
-.cdl-constraints {
-    background-color: #f6f6f6;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.cdl-constraints #appliedParams {
-    margin-bottom: 0 !important;
-}
-
-.cdl-constraints .constraint-value {
-    background-color: white;
-    color: $teal;
-}
-
-.cdl-constraints .constraint-value:hover {
-    background-color: $teal;
-    color: white;
-}
-
 .form-check-input:checked {
     background-color: $teal;
     border-color: $teal;
 }
 
-.facet-limit-active {
-    border-color: inherit;
-}
-
-.paginate-section {
-    margin-bottom: 1rem;
-}
-
-.sort-pagination {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-}
-
-.al-grouped-repository a {
-    color: $teal;
-}
-
-.al-grouped-results .al-grouped-title-bar {
-    background-color: inherit !important;
-}
-
-.oac-grouped-title {
-    display: block !important;
-}
-
-.oac-document-extent {
-    border: 0 !important;
-    border-radius: 0 !important;
-    background-color: #e7e4e3 !important;
-    font-weight: normal !important;
-    line-height: 1.4 !important;
-    color: #000;
-    font-size: 0.875rem;
-    margin: 0;
-    padding: 0.25rem 0.5rem;
-    text-align: left;
-    white-space: normal;
-}
+@import 'search';
 
 .truncator.truncated button {
     float: right;
@@ -201,7 +95,6 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
 .truncator .icon::before, .truncator.expanded .icon::before {
     content: none;
 }
-
 
 .truncator .view-more::before {
     content: "\f067"; /* FontAwesome plus */
@@ -217,22 +110,12 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     font-weight: 900;
 }
 
-.documents-list article.document dl.document-metadata:last-of-type {
-    margin-bottom: 0;
-}
-.documents-list article.document dl.document-metadata dd:last-of-type {
-    margin-bottom: 0;
-}
-.documents-list article.document dl.document-metadata dd ol {
-    margin-bottom: 0;
-}
 .blacklight-icons svg {
     fill: var(--al-content-icon-color);
 }
 a .blacklight-icons svg, .btn .blacklight-icons svg {
     fill: currentColor;
 }
-
 .al-grouped-title-bar .blacklight-icons svg,
 .oac-collection-search-header .blacklight-icons-repository svg,
 .breadcrumb .blacklight-icons-repository svg {
@@ -241,114 +124,13 @@ a .blacklight-icons svg, .btn .blacklight-icons svg {
     width: 1rem;
     margin-bottom: .2rem;
 }
-.oac-online-content-icon svg,
-.oac-printer-icon svg,
-.oac-envelope-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.1rem;
-    margin-bottom: 0.2rem;
-}
-
-.oac-arrow-up-right-icon svg {
-    width: 1rem;
-    height: 1rem;
-}
-
 .card {
     border-radius: 0;
-}
-.oac-collection-search-header .oac-repo {
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-}
-.oac-collection-search-header .blacklight-icons-collection svg,
-h1 .blacklight-icons-collection svg {
-    width: 36px;
-    height: 36px;
-    margin-bottom: 7px;
-}
-.oac-collection-search-header .oac-document-extent {
-    margin-bottom: 0.5rem;
-}
-
-.oac-document-abstract-or-scope {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
-
-.index_title{
-    flex-grow: 1;
 }
 .al-number-of-children-badge {
     float: right;
     margin-top: 2px;
 }
-
-#embed {
-    padding: 1rem;
-    margin-bottom: 3rem;
-
-    // copy .card styles from Bootstrap, remove border-radius
-    --bs-card-spacer-y: 1rem;
-    --bs-card-spacer-x: 1rem;
-    --bs-card-title-spacer-y: 0.5rem;
-    --bs-card-title-color: ;
-    --bs-card-subtitle-color: ;
-    --bs-card-border-width: var(--bs-border-width);
-    --bs-card-border-color: var(--bs-border-color-translucent);
-    --bs-card-border-radius: var(--bs-border-radius);
-    --bs-card-box-shadow: ;
-    --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
-    --bs-card-cap-padding-y: 0.5rem;
-    --bs-card-cap-padding-x: 1rem;
-    --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
-    --bs-card-cap-color: ;
-    --bs-card-height: ;
-    --bs-card-color: ;
-    --bs-card-bg: var(--bs-body-bg);
-    --bs-card-img-overlay-padding: 1rem;
-    --bs-card-group-margin: 0.75rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0px;
-    height: var(--bs-card-height);
-    color: var(--bs-body-color);
-    overflow-wrap: break-word;
-    background-color: var(--bs-card-bg);
-    background-clip: border-box;
-    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-}
-
-#embed a::before {
-    content: url('blacklight/online.svg');
-    fill: var(--al-content-icon-color);
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.3rem;
-    margin-bottom: 0.2rem;
-    vertical-align: middle;
-}
-
-.footer-container {
-    border-top: 1px solid var(--bs-border-color);
-}
-
-.catalog_startOverLink {
-    order: 99;
-    background-color: #f6f6f6;
-    color:rgba(80, 82, 82, 1);
-    border: 1px solid rgba(80, 82, 82, 1);
-}
-.catalog_startOverLink:hover {
-    background-color: #bb2d3b;
-    color:white;
-    border: 1px solid #bb2d3b;
-}
-
 .form-check-input:focus, .form-control:focus, .input-group > .search-autocomplete-wrapper:focus {
     border-color: $teal;
     box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
