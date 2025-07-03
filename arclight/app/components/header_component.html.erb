@@ -3,6 +3,9 @@
     <nav class="cdl-search-navbar navbar navbar-expand-md topbar" aria-label="Search navigation">
       <a class="mb-0 navbar-brand navbar-logo cdl-navbar-logo" href="/">OAC</a>
       <div class="col"></div>
+      <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#main-nav" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle top level navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <% if controller.action_name != 'home' %>
       <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#search-nav" data-bs-target="#search-nav" aria-controls="search-nav" aria-expanded="false" aria-label="Toggle search">
         <!-- <span class="navbar-toggler-icon"></span> -->
@@ -14,9 +17,6 @@
         </span>
       </button>
       <% end %>
-      <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#main-nav" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle top level navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <% if controller.action_name != 'home' %>
       <div class="col-md-6 col-12 mt-3 mt-md-0 align-self-end" id="search-col">
          <div class="collapse navbar-collapse" id="search-nav" role="navigation" aria-label="Search">
