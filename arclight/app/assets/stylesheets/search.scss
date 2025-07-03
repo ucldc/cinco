@@ -1,12 +1,12 @@
-$teal: rgb(4, 118, 138);
+@import 'colors';
 
 // SEARCH HEADER / CONSTRAINTS COMPONENT
 
 .al-repository-card .al-repository-contact {
-    border-left: 1px solid rgba(184, 196, 196, 1)
+    border-left: 1px solid #b8c4c4
 }
 .oac-constraints {
-    background-color: #f6f6f6;
+    background-color: $search-grey-background;
     padding: 1.5rem;
     margin-bottom: 2rem;
 }

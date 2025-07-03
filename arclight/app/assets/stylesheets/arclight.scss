@@ -11,17 +11,14 @@ $logo-image: image_url('arclight/logo.svg') !default;
 @import 'arclight/application';
 @import 'home';
 
-$orange: #be4b1b;
-$dark-orange: #bb3500;
-
-$teal: rgb(4, 118, 138);
-$dark-teal: #016058;
+@import 'colors';
 
 :root {
-    --bs-link-color: #04768a;
-    --bs-link-color-rgb: 4,118,138;
-    --bs-link-hover-color: #016058;
-    --bs-link-hover-color-rgb: 1,96,88;
+    --oac-teal-rgb: #{ $teal-rgb };
+    --bs-link-color: #{ $teal };
+    --bs-link-color-rgb: #{ $teal-rgb };
+    --bs-link-hover-color: #{ $dark-teal };
+    --bs-link-hover-color-rgb: #{ $dark-teal-rgb };
     --al-hierarchy-view-expand-icon: url('blacklight/caretright.svg');
     --al-hierarchy-view-collapse-icon: url('blacklight/caretdown.svg');
 }
@@ -31,15 +28,15 @@ $dark-teal: #016058;
     --bs-btn-bg: var(--bs-link-color);
     --bs-btn-border-color: var(--bs-link-color);
     --bs-btn-disabled-border-color: var(--bs-link-color);
-    --bs-btn-hover-bg: #026664;
-    --bs-btn-active-border-color:  #015b4B;
+    --bs-btn-hover-bg: #{ $dark-teal };
+    --bs-btn-active-border-color:  #{ $dark-teal };
     --bs-btn-hover-border-color: var(--bs-link-hover-color);
     --bs-btn-active-bg:  var(--bs-link-hover-color);
 }
 
 .sidenav {
-    --bl-facet-active-bg: #04768a;
-    --bl-facet-active-item-color: #04768a;
+    --bl-facet-active-bg: #{ $teal };
+    --bl-facet-active-item-color: #{ $teal };
     --bl-facets-smallish-padding: 0 1rem;
     --bl-facets-smallish-border-radius: 0;
 }
@@ -59,7 +56,7 @@ $dark-teal: #016058;
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Source Sans 3;
-    color: #01334d;
+    color: $headings-color;
 }
 h1, h1.h3 { font-size: 36px; line-height: 1.4; font-weight: 400; margin-bottom: 1rem; }
 h2 { font-size: 28px; line-height: 1.35; }
@@ -131,11 +128,11 @@ a .blacklight-icons svg, .btn .blacklight-icons svg {
 }
 .form-check-input:focus, .form-control:focus, .input-group > .search-autocomplete-wrapper:focus {
     border-color: $teal;
-    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
 .nav-link:focus-visible {
-    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
 .btn:focus-visible {
-    box-shadow: 0 0 0 0.25rem rgba(4, 118, 138, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
