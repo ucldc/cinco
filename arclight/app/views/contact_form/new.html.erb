@@ -10,21 +10,35 @@
     <p>Questions about items and collections -- including requests for duplication, permissions, or more information -- should be directed to their contributing institutions. Visit <%= link_to "the institution's page", { controller: 'arclight/repositories', action: 'index' } %> to find their contact information, such as phone number and email address.</p>
     <p>Use this form only if you have technical problems, questions, or general comments about the Online Archive of California.</p>
 
-    <%= form_with scope: :contact_form, url: contact_form_create_path, method: :post, local: true, class: "container" do |form| %>
+    <%= form_with scope: :contact_form, url: contact_form_create_path, method: :post, local: true do |form| %>
       <div class="form-group">
-        <%= form.label "Name" %>
+        <%= form.label :sender_name do %>
+          Name:<span class="red">*</span>
+        <% end %>
         <%= form.text_field :sender_name, class: "form-control", :required => true %>
       </div>
       <div class="form-group">
-        <%= form.label "Email" %>
+        <%= form.label :sender_email do %>
+          Email:<span class="red">*</span>
+        <% end %>
         <%= form.email_field :sender_email, class: "form-control", :required => true %>
       </div>
       <div class="form-group">
-        <%= form.label "Verify Email" %>
+        <%= form.label :sender_verify_email do %>
+          Verify Email:<span class="red">*</span>
+        <% end %>
         <%= form.email_field :sender_verify_email, class: "form-control", :required => true %>
       </div>
       <div class="form-group">
-        <%= form.label :message %>
+        <%= form.label :referrer do %>
+          Referral URL:
+        <% end %>
+        <%= form.text_field :referrer, class: "form-control psuedo-readonly", :value => CGI.unescape(request.referrer.to_s) %>
+      </div>
+      <div class="form-group">
+        <%= form.label :message do %>
+          Message:<span class="red">*</span>
+        <% end %>
         <%= form.text_area :message, class: "form-control", :required => true %>
       </div>
       <%# TODO: insert recaptcha %>
