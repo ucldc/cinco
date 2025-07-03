@@ -41,6 +41,14 @@ $logo-image: image_url('arclight/logo.svg') !default;
 .cdl-search-navbar {
     --bs-navbar-padding-y: 1.25rem;
 }
+
+.cdl-navbar-logo {
+    background-position: center left;
+    background-size: 200px 60px;
+    width: 200px;
+    height: 60px;
+}
+
 @media (min-width: 768px) {
     .cdl-navbar-logo {
         background-size: 285px 86px;
@@ -49,13 +57,6 @@ $logo-image: image_url('arclight/logo.svg') !default;
     }
 }
 
-
-.cdl-navbar-logo {
-    background-position: center left;
-    background-size: 200px 60px;
-    width: 200px;
-    height: 60px;
-}
 .collection-sidebar {
     // make like a col-12
     flex: 0 0 auto;
@@ -377,6 +378,9 @@ h1 .blacklight-icons-collection svg {
 .cdl-search-navbar .navbar-toggler {
     border: 0;
     // padding: 0;
+}
+.cdl-search-navbar .navbar-toggler:last-of-type {
+    padding-right:0;
 }
 .cdl-search-navbar .navbar-toggler:focus {
     box-shadow: none;
