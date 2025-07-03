@@ -16,9 +16,9 @@
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% include 'findingaids/includes/express_form.html' %}
-          {% include 'findingaids/includes/formset.html' with title="Revision History" name="revision note" formset=revision_formset%}
-          {% include 'findingaids/includes/formset.html' with title="Creators" name="creator" formset=creator_formset%}
-          {% include 'findingaids/includes/formset.html' with title="Subject Headings" name="subject" formset=subject_formset%}
+          {% include 'findingaids/includes/formset.html' with title="Revision History" name="revision note" label="revision" formset=revision_formset%}
+          {% include 'findingaids/includes/formset.html' with title="Creators" name="creator" label="creator" formset=creator_formset%}
+          {% include 'findingaids/includes/formset.html' with title="Subject Headings" name="subject" label="subject" formset=subject_formset%}
           <button type="submit" class="btn btn-primary">{{ verb }}</button>
         </form>
       </div>
