@@ -54,7 +54,7 @@
             {% if records_page.has_other_pages %}
               <div class="btn-group" role="group" aria-label="Record pagination">
                 {% if records_page.has_previous %}
-                  <a href="?page={{ records_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                  <a href="{{ base_page_url }}page={{ records_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
                 {% endif %}
                 {% for page_number in records_page.paginator.page_range %}
                   {% if records_page.number == page_number %}
@@ -62,14 +62,14 @@
                           <span>{{ page_number }} <span class="sr-only">(current)</span></span>
                       </button>
                   {% else %}
-                      <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                      <a href="{{ base_page_url }}page={{ page_number }}" class="btn btn-outline-primary">
                           {{ page_number }}
                       </a>
                   {% endif %}
                 {% endfor %}
 
                 {% if records_page.has_next %}
-                  <a href="?page={{ records_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                  <a href="{{ base_page_url }}page={{ records_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
                 {% endif %}
               </div>
             {% endif %}
