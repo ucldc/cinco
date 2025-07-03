@@ -5,21 +5,21 @@ $teal: rgb(4, 118, 138);
 .al-repository-card .al-repository-contact {
     border-left: 1px solid rgba(184, 196, 196, 1)
 }
-.cdl-constraints {
+.oac-constraints {
     background-color: #f6f6f6;
     padding: 1.5rem;
     margin-bottom: 2rem;
 }
-.cdl-constraints #appliedParams {
+.oac-constraints #appliedParams {
     margin-bottom: 0 !important;
 }
 
-.cdl-constraints .constraint-value {
+.oac-constraints .constraint-value {
     background-color: white;
     color: $teal;
 }
 
-.cdl-constraints .constraint-value:hover {
+.oac-constraints .constraint-value:hover {
     background-color: $teal;
     color: white;
 }

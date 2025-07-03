@@ -46,7 +46,7 @@ $dark-teal: #016058;
 
 @import 'header-footer';
 @import 'finding-aid';
-
+@import 'search';
 
 .al-search-breadcrumb {
     margin-bottom: 1.75rem;
@@ -81,8 +81,6 @@ p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $te
     background-color: $teal;
     border-color: $teal;
 }
-
-@import 'search';
 
 .truncator.truncated button {
     float: right;
