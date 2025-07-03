@@ -1,14 +1,16 @@
 <header>
   <div class="container">
-    <nav class="navbar" aria-label="Search navigation" id="main-navbar">
-      <a class="mb-3 navbar-brand navbar-logo cdl-navbar-logo" href="/">OAC</a>
+    <nav class="navbar" aria-label="Search and top-level navigation" id="main-navbar">
+      <a class="mb-3 navbar-brand navbar-logo" href="/">OAC</a>
 
-      <nav class="navbar-expand-md" aria-label="Top level navigation" id="toggle-nav">
-        <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#main-nav" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle top level navigation">
+      <!-- TODO: not sure what the aria-label for this should be,
+                 or if it should be aria-hidden="true" -->
+      <nav class="navbar-expand-md" aria-label="Togglers" id="header-toggle">
+        <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#top-level-nav" data-bs-target="#top-level-nav" aria-controls="top-level-nav" aria-expanded="false" aria-label="Toggle top-level navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <% if controller.action_name != 'home' %>
-        <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#search-nav" data-bs-target="#search-nav" aria-controls="search-nav" aria-expanded="false" aria-label="Toggle search">
+        <button class="navbar-toggler navbar-toggler-right align-self-end" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#search-nav" data-bs-target="#search-nav" aria-controls="search-nav" aria-expanded="false" aria-label="Toggle global search">
           <!-- <span class="navbar-toggler-icon"></span> -->
           <span class="blacklight-icons blacklight-icons-search btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
@@ -21,15 +23,15 @@
       </nav>
 
       <% if controller.action_name != 'home' %>
-      <nav class="navbar-expand-md col-12 col-md-6 align-self-end" aria-label="Search navigation">
+      <nav class="navbar-expand-md col-12 col-md-6 align-self-end" aria-label="Global search">
         <div class="collapse navbar-collapse" id="search-nav">
           <%= search_bar %>
         </div>
       </nav>
       <% end %>
 
-      <nav class="nav navbar-expand-md" aria-label="Main navigation">
-        <div class="cdl-main-navbar collapse navbar-collapse border" id="main-nav">
+      <nav class="nav navbar-expand-md" aria-label="Top-level navigation">
+        <div class="collapse navbar-collapse border" id="top-level-nav">
           <%= render 'shared/user_util_links' %>
         </div>
       </nav>
