@@ -1,3 +1,5 @@
+@import 'colors';
+
 .collection-sidebar {
     // make like a col-12
     flex: 0 0 auto;
@@ -24,7 +26,7 @@
 // TODO: #sidebar appears on search results pages too,
 // so this should be more specific
 #sidebar {
-    border: 1px solid #dee2e6;
+    border: 1px solid $border-color;
 }
 
 @media (min-width: 992px) {
@@ -34,7 +36,7 @@
         width: 33.33333333%;
 
         padding-right: 1rem;
-        border-right: 1px solid #dee2e6;
+        border-right: 1px solid $border-color;
         margin-top: var(--bs-gutter-y);
     }
     .collection-sidebar .navbar {
@@ -46,7 +48,7 @@
 }
 
 .oac-finding-aid-search {
-    background-color: #f6f6f6;
+    background-color: $search-grey-background;
     padding: 0 1.5rem;
 }
 .oac-arrow-up-right-icon svg {
