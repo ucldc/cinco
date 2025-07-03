@@ -57,7 +57,7 @@ class EADParser:
             ark = eadid.text
 
         if ark:
-            m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]{8})", ark)
+            m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]+)", ark)
             ark = m.group(0) if m else None
 
         return ark

@@ -18,7 +18,7 @@ OTHER1 = """
         langencoding="iso639-2b" repositoryencoding="iso15511">
         <eadid xmlns:cdlpath="http://www.cdlib.org/path/"
                countrycode="us"
-               identifier="ark:/00000/a00000a0"
+               identifier="ark:/00000/a00000a0bb"
                mainagencycode="repo_code"
                publicid="0000_0000"
                cdlpath:parent="ark:/00000/aa0a00000a">
@@ -453,7 +453,7 @@ class TestParser(TestCase):
         p.parse_string(OTHER1)
         ark = p.parse_ark()
         parent_ark = p.parse_parent_ark()
-        assert ark == "ark:/00000/a00000a0"
+        assert ark == "ark:/00000/a00000a0bb"
         assert parent_ark == "ark:/00000/aa0a00000a"
 
     def test_parse_otherfindaids1(self):
