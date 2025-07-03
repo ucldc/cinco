@@ -38,10 +38,6 @@ $logo-image: image_url('arclight/logo.svg') !default;
     --bl-facets-smallish-border-radius: 0;
 }
 
-.cdl-search-navbar {
-    --bs-navbar-padding-y: 1.25rem;
-}
-
 .cdl-navbar-logo {
     background-position: center left;
     background-size: 200px 60px;
@@ -54,6 +50,7 @@ $logo-image: image_url('arclight/logo.svg') !default;
         background-size: 285px 86px;
         width: 285px;
         height: 86px;
+        margin-bottom: 1.25rem;
     }
 }
 
@@ -102,9 +99,6 @@ $logo-image: image_url('arclight/logo.svg') !default;
     .sidebar-section { margin-left: 1rem; }
 }
 
-.cdl-main-navbar {
-    margin-bottom: 1rem;
-}
 .cdl-main-navbar .nav-link {
     font-size: 19px;
 }
@@ -372,23 +366,38 @@ h1 .blacklight-icons-collection svg {
     border: 1px solid #bb2d3b;
 }
 
-.cdl-search-navbar #search-nav search {
-    width: 100%;
+#main-navbar {
+    --bs-navbar-padding-y: 0rem;
+    margin: 1.25rem 0;
+    border-bottom: 1px solid var(--bs-border-color);
 }
-.cdl-search-navbar .navbar-toggler {
+
+@media (min-width: 768px) {
+    #main-navbar {
+        border: 0;
+    }
+    #search-nav {
+        margin-bottom: 1.25rem;
+    }
+}
+
+.navbar-expand-md .navbar-collapse.show { margin-bottom: 1rem; }
+
+#search-nav search { width: 100%; }
+#toggle-nav .navbar-toggler {
     border: 0;
-    // padding: 0;
 }
-.cdl-search-navbar .navbar-toggler:last-of-type {
-    padding-right:0;
+#toggle-nav .navbar-toggler:last-of-type {
+    padding-right: 0;
 }
-.cdl-search-navbar .navbar-toggler:focus {
+
+#toggle-nav .navbar-toggler:focus {
     box-shadow: none;
 }
-.cdl-search-navbar .navbar-toggler-icon {
+#toggle-nav .navbar-toggler-icon {
     margin: 5px 0;
 }
-.cdl-search-navbar .btn-primary svg {
+#toggle-nav .btn-primary svg {
     fill: #fff;
 }
 .form-check-input:focus, .form-control:focus, .input-group > .search-autocomplete-wrapper:focus {
