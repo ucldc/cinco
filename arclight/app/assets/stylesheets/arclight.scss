@@ -67,6 +67,63 @@ $logo-image: image_url('arclight/logo.svg') !default;
 @import 'finding-aid';
 @import 'search';
 
+// ************************** //
+// ******** HEADINGS ******** //
+// ************************** //
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Source Sans 3;
+    color: $headings-color;
+}
+h1, h1.h3 {
+    // I don't know why arclight uses h1.h3, but it does.
+    font-size: 36px;
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+h2 {
+    font-size: 28px;
+    line-height: 1.35;
+}
+h3 {
+    font-size: 20px;
+}
+
+// *************************** //
+// ********** LINKS ********** //
+// *************************** //
+
+a {
+    text-decoration: none;
+}
+a:hover, a:focus {
+    text-decoration: underline;
+}
+a:focus {
+    outline: 2px solid var(--bs-link-hover-color);
+    outline-offset: 2px;
+}
+p a, dd a {
+    text-decoration: underline;
+}
+p a:hover, p a:focus,
+dd a:hover, dd a:focus {
+    text-decoration: none;
+}
+// arclight makes these black, turn them back into normal link color
+.breadcrumb-links a {
+    color: var(--bs-link-color);
+}
+.breadcrumb-links a:hover, .breadcrumb-links a:focus {
+    color: var(--bs-link-hover-color);
+}
+
+// ************************** //
+// ********** SITE ********** //
+// ************************** //
+
+// this is the site breadcrumb, despite the name
 .al-search-breadcrumb {
     margin-bottom: 1.75rem;
 }
@@ -76,56 +133,30 @@ $logo-image: image_url('arclight/logo.svg') !default;
     font-weight: 300;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: Source Sans 3;
-    color: $headings-color;
-}
-h1, h1.h3 { font-size: 36px; line-height: 1.4; font-weight: 400; margin-bottom: 1rem; }
-h2 { font-size: 28px; line-height: 1.35; }
-h3 { font-size: 20px; }
-
-a { text-decoration: none; }
-a:hover, a:focus { text-decoration: underline; color: $teal; }
-a:focus { outline: 2px solid $teal; outline-offset: 2px; }
-p a, dd a { text-decoration: underline; }
-p a:hover, p a:focus, dd a:hover, dd a:focus { text-decoration: none; color: $teal; }
+.card { border-radius: 0; }
 
 .nav { width: 100% }
 
-.breadcrumb-links a {
-    color: $teal;
+.nav-link:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
 
-.form-check-input:checked {
-    background-color: $teal;
-    border-color: $teal;
+.btn:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
 
-.truncator.truncated button {
+.red {
+    color: red;
+}
+
+.al-number-of-children-badge {
     float: right;
+    margin-top: 2px;
 }
 
-.truncator .view-more, .truncator .view-less {
-    color: $teal;
-}
-
-.truncator .icon::before, .truncator.expanded .icon::before {
-    content: none;
-}
-
-.truncator .view-more::before {
-    content: "\f067"; /* FontAwesome plus */
-    content: "+ ";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-}
-
-.truncator.expanded .view-less::before {
-    content: "\f068"; /* FontAwesome minus */
-    content: "- ";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-}
+// *************************** //
+// ********** ICONS ********** //
+// *************************** //
 
 .blacklight-icons svg {
     fill: var(--al-content-icon-color);
@@ -141,30 +172,57 @@ a .blacklight-icons svg, .btn .blacklight-icons svg {
     width: 1rem;
     margin-bottom: .2rem;
 }
-.card {
-    border-radius: 0;
-}
-.al-number-of-children-badge {
+
+// *************************** //
+// ******** TRUNCATOR ******** //
+// *************************** //
+
+.truncator.truncated button {
     float: right;
-    margin-top: 2px;
 }
+
+.truncator .view-more, .truncator .view-less {
+    color: var(--bs-link-color);
+}
+
+.truncator .icon::before, .truncator.expanded .icon::before {
+    content: none;
+}
+
+// TODO: svg content? No phosphor icon for +/- w/out a background
+.truncator .view-more::before {
+    content: "\f067"; /* FontAwesome plus */
+    content: "+ ";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.truncator.expanded .view-less::before {
+    content: "\f068"; /* FontAwesome minus */
+    content: "- ";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+// *************************** //
+// ********** FORMS ********** //
+// *************************** //
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-check-input:checked {
+    background-color: $teal;
+    border-color: $teal;
+}
+
 .form-check-input:focus, .form-control:focus, .input-group > .search-autocomplete-wrapper:focus {
     border-color: $teal;
     box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
 }
-.nav-link:focus-visible {
-    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
-}
-.btn:focus-visible {
-    box-shadow: 0 0 0 0.25rem rgba(var(--oac-teal-rgb), 0.25);
-}
-.red {
-    color: red;
-}
-.form-group {
-    margin-bottom: 1rem;
-}
-.psuedo-readonly {
+
+input.psuedo-readonly {
     background-color: #e9ecef;
     opacity: 1;
 }
