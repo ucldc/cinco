@@ -46,16 +46,19 @@ each_record do |_record, context|
   ).name
 end
 
-to_field "id" do |record, accumulator|
-  ark = settings.fetch("ark", SecureRandom.uuid)
-  accumulator << ark
+to_field "id_ssm", extract_marc("110a")
+
+to_field "id"  do |_record, accumulator, context|
+  id = context.output_hash["id_ssm"]&.first
+  id = SecureRandom.uuid if id.blank?
+  accumulator << id
 end
 
-to_field "title_ssm", extract_marc("245a")
-to_field "title_tesim", extract_marc("245a")
-to_field "ead_ssi" do |_record, accumulator|
-  accumulator << settings.fetch(:eadid, SecureRandom.uuid)
-end
+to_field "title_ssm", extract_marc("110a")
+to_field "title_tesim", extract_marc("110a")
+to_field "ead_ssi", extract_marc("099a")
+to_field "title_stmt_ssm", extract_marc("245a")
+
 
 to_field "unitdate_ssm", extract_marc("245f")
 
@@ -74,7 +77,12 @@ end
 
 to_field "normalized_date_ssm", extract_marc("245f")
 
-to_field "normalized_title_ssm", extract_marc("245a")
+to_field "normalized_title_ssm" do |_record, accumulator, context|
+  title = context.output_hash["title_ssm"]&.first
+  date = context.output_hash["normalized_date_ssm"]&.first
+  title_stmt = context.output_hash["title_stmt_ssm"]&.first
+  accumulator << [ title_stmt, title, date ].compact.join(" ").to_s
+end
 
 to_field "collection_title_tesim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
@@ -147,26 +155,61 @@ to_field "dimensions_tesim", extract_marc("300c")
 to_field "genreform_ssim", extract_marc("655")
 
 to_field "materialspec_tesim", extract_marc("254")
+to_field "materialspec_html_tesm", extract_marc("254")
+
 to_field "abstract_tesim", extract_marc("520a")
+to_field "abstract_html_tesm", extract_marc("520a")
+
 to_field "physloc_tesim", extract_marc("852z")
+to_field "physloc_html_tesm", extract_marc("852z")
 
 to_field "accessrestrict_tesim", extract_marc("506a14")
+to_field "accessrestrict_html_tesim", extract_marc("506a14")
+
 to_field "accruals_tesim", extract_marc("584a10")
+to_field "accruals_html_tesim", extract_marc("584a10")
+
 to_field "altformavail_tesim", extract_marc("530a9")
+to_field "altformavail_html_tesim", extract_marc("530a9")
+
 to_field "arrangement_tesim", extract_marc("351a4")
+to_field "arrangement_html_tesim", extract_marc("351a4")
+
 to_field "bibliography_tesim", extract_marc("581a11")
+to_field "bibliography_html_tesim", extract_marc("581a11")
+
 to_field "bioghist_tesim", extract_marc("545a2")
+to_field "bioghist_html_tesim", extract_marc("545a2")
+
 to_field "custodhist_tesim", extract_marc("561a16")
+to_field "custodhist_html_tesim", extract_marc("561a16")
 
 to_field "odd_tesim", extract_marc("500a5")
+to_field "odd_html_tesim", extract_marc("500a5")
+
 to_field "originalsloc_tesim", extract_marc("535")
+to_field "originalsloc_html_tesim", extract_marc("535")
+
 to_field "otherfindaid_tesim", extract_marc("555a8")
+to_field "otherfindaid_html_tesim", extract_marc("555a8")
+
 to_field "phystech_tesim", extract_marc("538")
+to_field "phystech_html_tesim", extract_marc("538")
+
 to_field "prefercite_tesim", extract_marc("524a18")
+to_field "prefercite_html_tesim", extract_marc("524a18")
+
 to_field "processinfo_tesim", extract_marc("583a20")
+to_field "processinfo_html_tesim", extract_marc("583a20")
+
 to_field "userestrict_tesim", extract_marc("540a15")
+to_field "userestrict_html_tesim", extract_marc("540a15")
+
 to_field "corpname_tesim", extract_marc("610")
+to_field "corpname_html_tesim", extract_marc("610")
+
 to_field "famname_tesim", extract_marc("600")
+to_field "famname_html_tesim", extract_marc("600")
 
 # count all descendant components from the top-level
 to_field "total_component_count_is", first_only do |record, accumulator|
