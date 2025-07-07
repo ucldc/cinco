@@ -80,6 +80,8 @@
       <%= link_to("Browse all collection guides from " + repository.name, repository_path(:id => repository.slug)) %>
     </div>
   </div>
+<% else %>
+  <h1>Search results for "<%= params[:q] %>"</h1>
 <% end %>
 
 <div class="oac-constraints">
