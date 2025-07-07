@@ -11,27 +11,49 @@ $logo-image: image_url('arclight/logo.svg') !default;
 @import 'arclight/application';
 @import 'home';
 
-@import 'colors';
 
 :root {
     --oac-teal-rgb: #{ $teal-rgb };
     --bs-link-color: #{ $teal };
     --bs-link-color-rgb: #{ $teal-rgb };
-    --bs-link-hover-color: #{ $dark-teal };
-    --bs-link-hover-color-rgb: #{ $dark-teal-rgb };
+    --bs-link-hover-color: #{ $darken-teal-2 };
+    --bs-link-hover-color-rgb: #{ $darken-teal-2-rgb };
     --al-hierarchy-view-expand-icon: url('blacklight/caretright.svg');
     --al-hierarchy-view-collapse-icon: url('blacklight/caretdown.svg');
 }
 
 .btn-primary {
-    --bs-btn-disabled-bg: var(--bs-link-color);
-    --bs-btn-bg: var(--bs-link-color);
-    --bs-btn-border-color: var(--bs-link-color);
-    --bs-btn-disabled-border-color: var(--bs-link-color);
-    --bs-btn-hover-bg: #{ $dark-teal };
-    --bs-btn-active-border-color:  #{ $dark-teal };
-    --bs-btn-hover-border-color: var(--bs-link-hover-color);
-    --bs-btn-active-bg:  var(--bs-link-hover-color);
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #{ $teal };
+    --bs-btn-border-color: #{ $teal };
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #{ $darken-teal-1 };
+    --bs-btn-hover-border-color: #{ $darken-teal-2 };
+    --bs-btn-focus-shadow-rgb: 31,152,173;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #{ $darken-teal-2 };
+    --bs-btn-active-border-color:  #{ $darken-teal-3 };
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #{ $teal };
+    --bs-btn-disabled-border-color: #{ $teal };
+}
+
+.btn-orange {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #{ $orange };
+    --bs-btn-border-color: #{ $orange };
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #{ $darken-orange-1 };
+    --bs-btn-hover-border-color: #{ $darken-orange-2 };
+    --bs-btn-focus-shadow-rgb: 49,123,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #{ $darken-orange-2 };
+    --bs-btn-active-border-color:  #{ $darken-orange-3 };
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #{ $orange };
+    --bs-btn-disabled-border-color: #{ $orange };
 }
 
 .sidenav {
