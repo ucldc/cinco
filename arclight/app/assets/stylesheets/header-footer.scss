@@ -43,14 +43,12 @@
     .nav-link {
         font-size: 19px;
     }
-    .help {
+    .collection-guides-help {
         margin-left: auto;
-        background-color: $orange;
-        color: white
-    }
-    .help:hover, .help:focus {
-        color: white;
-        background-color: $dark-orange;
+        font-size: 19px !important;
+        padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+        border: 0;
+        border-radius: 0;
     }
 }
 
