@@ -5,9 +5,9 @@
     <div class="card-body">
       <p>
         {{ formset.management_form }}
-        <div id="{{ name }}-formset-container">
+        <div id="{{ label }}-formset-container">
           {% for form in formset %}
-            <div class="{{ name }}-form-row">
+            <div class="{{ label }}-form-row">
                 <p>
                   {{ form|crispy }}
                 </p>
@@ -15,7 +15,7 @@
           {% endfor %}
         </div>
         <p>
-            <button type="button" id="{{ name }}-add-form" class="btn btn-primary">+ Add another {{ name }}</button>
+            <button type="button" id="{{ label }}-add-form" class="btn btn-primary">+ Add another {{ name }}</button>
         </p>
       </p>
     </div>
@@ -23,25 +23,18 @@
 </p>
 
 <script>
-  const {{name}}formContainer = document.getElementById('{{ name }}-formset-container');
-  const {{name}}addFormButton = document.getElementById('{{ name }}-add-form');
-  const {{name}}formTemplate = document.querySelector('.{{ name }}-form-row').cloneNode(true);
-  const {{name}}formCount = document.getElementById('id_{{ formset.prefix }}-TOTAL_FORMS');
+  const {{label}}formContainer = document.getElementById('{{ label }}-formset-container');
+  const {{label}}addFormButton = document.getElementById('{{ label }}-add-form');
+  const {{label}}formTemplate = document.querySelector('.{{ label }}-form-row').cloneNode(true);
+  const {{label}}formCount = document.getElementById('id_{{ formset.prefix }}-TOTAL_FORMS');
 
-  {{name}}addFormButton.addEventListener('click', function() {
-    const newForm = {{name}}formTemplate.cloneNode(true);
-    const newFormIndex = {{name}}formCount.value;
+  {{label}}addFormButton.addEventListener('click', function() {
+    const newForm = {{label}}formTemplate.cloneNode(true);
+    const newFormIndex = {{label}}formCount.value;
 
     newForm.innerHTML = newForm.innerHTML.replaceAll(`_set-0`, `_set-${newFormIndex}`)
 
-    {{name}}formContainer.appendChild(newForm);
-    {{name}}formCount.value = parseInt({{name}}formCount.value) + 1;
+    {{label}}formContainer.appendChild(newForm);
+    {{label}}formCount.value = parseInt({{label}}formCount.value) + 1;
   });
-
-//   {{name}}formContainer.addEventListener('click', function(event) {
-//     if (event.target.classList.contains('{{ name }}-delete-form')) {
-//       event.target.parentElement.remove();
-//       {{name}}formCount.value = parseInt({{name}}formCount.value) - 1;
-//     }
-//   });
-  </script>
+</script>
