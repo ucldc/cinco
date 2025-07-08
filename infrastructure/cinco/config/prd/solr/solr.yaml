@@ -2,11 +2,11 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
-  Namespace: cinco-solr-stage
+  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  Namespace: cinco-solr-prd
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerImage: !stack_output prd/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
@@ -24,16 +24,16 @@ sceptre_user_data:
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
-        FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+        FilesystemId: !stack_output prd/solr/efs.yaml::EfsFileSystemId
         AuthorizationConfig:
-          AccessPointId: !stack_output stage/solr/efs.yaml::EfsAccessPointId
+          AccessPointId: !stack_output prd/solr/efs.yaml::EfsAccessPointId
           IAM: ENABLED
         TransitEncryption: ENABLED
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-efs-volume"
       ContainerPath: "/var/solr"
   TaskPolicies:
-    - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+    - !stack_output prd/solr/efs.yaml::EfsReaderPolicyArn
   ContainerEnvironment:
     - REPLICATION_ROLE: leader
   ContainerPortName: solr
@@ -45,18 +45,18 @@ sceptre_user_data:
         DiscoveryName: solr_leader
         ClientAliases:
           - Port: 8983
-            DnsName: solr_leader.cinco-stage
+            DnsName: solr_leader.cinco-prd
         # We have to specify an ingress port override, otherwise the target group healthcheck fails
         IngressPortOverride: 8984
   AdditionalServiceSecurityGroupIngressRules:
     - description: Allow access from solr-follower-1 container
       from_port: 8984
       to_port: 8984
-      security_group_id: !stack_output stage/solr/solr-follower-1.yaml::ServiceSecurityGroup
+      security_group_id: !stack_output prd/solr/solr-follower-1.yaml::ServiceSecurityGroup
     - description: Allow access from solr-follower-2 container
       from_port: 8984
       to_port: 8984
-      security_group_id: !stack_output stage/solr/solr-follower-2.yaml::ServiceSecurityGroup
+      security_group_id: !stack_output prd/solr/solr-follower-2.yaml::ServiceSecurityGroup
   # This healthcheck is more accurate than the target group healthcheck
   ContainerHealthCheck: |-
     Command:
@@ -67,6 +67,6 @@ sceptre_user_data:
                 Timeout: 5
                 Retries: 3
   # HttpAccessList:
-  #   - !stack_output stage/cincoctrl/app.yaml::ServiceSecurityGroup
-  #   # - !stack_output stage/arclight/app.yaml::ServiceSecurityGroup
+  #   - !stack_output prd/cincoctrl/app.yaml::ServiceSecurityGroup
+  #   # - !stack_output prd/arclight/app.yaml::ServiceSecurityGroup
   #   # - !environment_variable PAD_AIRFLOW_SECURITY_GROUP

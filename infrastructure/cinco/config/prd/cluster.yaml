@@ -2,4 +2,4 @@ template:
   path: cluster.yaml
   type: file
 parameters:
-  Namespace: cinco-stage
+  Namespace: cinco-prd

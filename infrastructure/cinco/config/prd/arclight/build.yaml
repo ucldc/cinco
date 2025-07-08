@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
-  Namespace: cinco-arclight-stage
+  Namespace: cinco-arclight-prd
   Branch: main
   FilePath: arclight/.*
 
@@ -24,4 +24,4 @@ sceptre_user_data:
                     - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
                 # post_build:
                 #   commands:
-                #     - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
+                #     - aws ecs update-service --cluster cinco-prd --service cinco-arclight-prd-service --force-new-deployment

@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
-  Namespace: cinco-ctrl-stage
+  Namespace: cinco-ctrl-prd
   Branch: main
   FilePath: cincoctrl/.*
 
@@ -30,4 +30,4 @@ sceptre_user_data:
                     - chmod +x $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py collectstatic --no-input
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py migrate --no-input
-                    - aws ecs update-service --cluster cinco-stage --service cinco-ctrl-stage-service --force-new-deployment
+                    - aws ecs update-service --cluster cinco-prd --service cinco-ctrl-stage-service --force-new-deployment
