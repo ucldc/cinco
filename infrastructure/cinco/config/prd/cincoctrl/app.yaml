@@ -17,7 +17,7 @@ sceptre_user_data:
   TaskPolicies:
     - !stack_output prd/s3.yaml::Policy
     - !stack_output prd/textract.yaml::QueueConsumerPolicyArn
-    - !stack_output prd/airflow-permissions.yaml::Policy
+    - !stack_output_external pad-airflow-access-permissions::Policy
   ContainerEnvironment:
     - POSTGRES_HOST: !stack_output prd/cincoctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
