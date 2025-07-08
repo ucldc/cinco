@@ -1,0 +1,38 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-ctrl-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
+  ContainerPort: 5000
+  HealthCheckPath: '/accounts/login/'
+  DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
+sceptre_user_data:
+  ContainerEntryPoint: '/entrypoint'
+  ContainerCommand: [ "/start" ]
+  Description: "CincoCtrl Web Application running in ECS"
+  TaskPolicies:
+    - !stack_output stage/s3.yaml::Policy
+    - !stack_output stage/textract.yaml::QueueConsumerPolicyArn
+    - !stack_output stage/airflow-permissions.yaml::Policy
+  ContainerEnvironment:
+    - POSTGRES_HOST: !stack_output stage/cincoctrl/db.yaml::RDSHostName
+    - POSTGRES_PORT: 5432
+    - POSTGRES_DB: postgres
+    - POSTGRES_USER: !environment_variable CINCOCTRL_DB_USERNAME
+    - POSTGRES_PASSWORD: !environment_variable CINCOCTRL_DB_PASSWORD
+    - DJANGO_SETTINGS_MODULE: config.settings.stage
+    - DJANGO_SECRET_KEY: !environment_variable DJANGO_SECRET_KEY
+    - DJANGO_ADMIN_URL: !environment_variable DJANGO_ADMIN_URL
+    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET_NAME
+    - WEB_CONCURRENCY: 4
+    - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
+    - SQS_URL: !stack_output stage/textract.yaml::QueueUrl
+    - CDL_ARK_NAAN: !environment_variable CDL_ARK_NAAN
+    - CDL_ARK_SHOULDER: !environment_variable CDL_ARK_SHOULDER
+    - EZID_ENDPOINT: !environment_variable EZID_ENDPOINT
+    - EZID_USERNAME: !environment_variable EZID_USERNAME
+    - EZID_PASSWORD: !environment_variable EZID_PASSWORD
