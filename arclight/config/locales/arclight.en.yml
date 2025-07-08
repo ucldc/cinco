@@ -79,6 +79,10 @@ en:
     views:
       repositories:
         title: Contributing Institutions
+        number_of_collections:
+          one: 1 collection guide
+          other: "%{count} collection guides"
+          zero: No collection guides
       index:
         top_group_results:
           one: Showing top %{count} result.
