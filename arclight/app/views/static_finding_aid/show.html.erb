@@ -21,7 +21,7 @@
         <ul class="list-unstyled">
             <li class="static_link">
                 <a href="<%= solr_document_path @document.id %>">
-                    <%= request.base_url %><%= solr_document_path @document.id %>
+                    <%= request.base_url %><%= CGI.unescape(solr_document_path @document.id) %>
                 </a>
             </li>
              <% if @document.online_content? %>

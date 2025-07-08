@@ -15,13 +15,15 @@ Rails.application.routes.draw do
   root to: "home", controller: "static_pages"
   concern :searchable, Blacklight::Routes::Searchable.new
 
-  resource :catalog, only: [], as: "catalog", path: "/findaid", controller: "catalog" do
+  resource :catalog, only: [], as: "catalog", path: "/search", controller: "catalog" do
     concerns :searchable
   end
   devise_for :users
 
-  get "/findaid/static/:id", to: "static_finding_aid#show", as: "static_finding_aid"
-  get "/findaid", to: "static_finding_aid#index"
+  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid"
+  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
+
+  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
 
 
   concern :exportable, Blacklight::Routes::Exportable.new
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   concerns :hierarchy
     concerns :exportable
   end
+
 
   resources :bookmarks, only: [ :index, :update, :create, :destroy ] do
     concerns :exportable
