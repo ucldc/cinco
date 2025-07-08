@@ -7,11 +7,11 @@ RSpec.describe Oac::FindingAidTreeNode do
   let(:id) { 'test_id' }
   let(:first_hierarchy_response) {
     ActiveSupport::HashWithIndifferentAccess.new(
-      { "docs": [ { id: 1 }, { id: 2 }, { id: 3 } ] })
+      { "docs": [ { id: "1a" }, { id: "2a" }, { id: "3a" } ] })
   }
   let(:second_hierarchy_response) {
     ActiveSupport::HashWithIndifferentAccess.new(
-      { "docs": [ { id: 4 }, { id: 5 }, { id: 6 } ] }
+      { "docs": [ { id: "4a" }, { id: "5a" }, { id: "6a" } ] }
     )
   }
   let(:empty_hierarchy_response) {
