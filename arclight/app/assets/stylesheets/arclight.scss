@@ -20,6 +20,7 @@ $logo-image: image_url('arclight/logo.svg') !default;
     --bs-link-hover-color-rgb: #{ $darken-teal-2-rgb };
     --al-hierarchy-view-expand-icon: url('blacklight/caretright.svg');
     --al-hierarchy-view-collapse-icon: url('blacklight/caretdown.svg');
+    --al-content-icon-color: #{ $definition-term-color };
 }
 
 .btn-primary {
@@ -174,15 +175,18 @@ dd a:hover, dd a:focus {
 // *************************** //
 
 .blacklight-icons svg {
-    fill: var(--al-content-icon-color);
+    fill: $definition-term-color;
+    // fill: var(--al-content-icon-color);
 }
 a .blacklight-icons svg, .btn .blacklight-icons svg {
+    // fill: $definition-term-color;
     fill: currentColor;
 }
 .al-grouped-title-bar .blacklight-icons svg,
 .oac-collection-search-header .blacklight-icons-repository svg,
 .breadcrumb .blacklight-icons-repository svg {
-    fill: var(--al-content-icon-color);
+    fill: $definition-term-color;
+    // fill: var(--al-content-icon-color);
     height: 1rem;
     width: 1rem;
     margin-bottom: .2rem;
