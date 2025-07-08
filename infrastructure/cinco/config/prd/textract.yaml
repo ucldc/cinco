@@ -1,0 +1,8 @@
+template:
+  path: textract.yaml
+  type: file
+parameters:
+  Namespace: cinco-textract-stage
+  S3OutputBucket: !environment_variable S3_BUCKET_NAME
+  S3OutputPrefix: textract-output
+  S3InputBucket: !environment_variable S3_BUCKET_NAME

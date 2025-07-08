@@ -1,0 +1,33 @@
+template:
+  path: codebuild.j2
+  type: file
+parameters:
+  GitHubRepo: https://github.com/ucldc/cinco
+  Namespace: cinco-ctrl-stage
+  Branch: main
+  FilePath: cincoctrl/.*
+
+sceptre_user_data:
+  ECRRepositoryName: cinco-ctrl
+  BuildEnvironment:
+    - SUBNET_IDS: !environment_variable SUBNET_IDS
+  build_spec: |-
+    !Sub >-
+              version: 0.2
+
+              phases:
+                install:
+                  runtime-versions:
+                    python: 3.12
+                build:
+                  commands:
+                    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
+                    - docker build -t cinco-ctrl cincoctrl --file cincoctrl/compose/production/django/Dockerfile
+                    - docker tag cinco-ctrl:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-ctrl:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-ctrl:latest
+                post_build:
+                  commands:
+                    - chmod +x $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py collectstatic --no-input
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py migrate --no-input
+                    - aws ecs update-service --cluster cinco-stage --service cinco-ctrl-stage-service --force-new-deployment

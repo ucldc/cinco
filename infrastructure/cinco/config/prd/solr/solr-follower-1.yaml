@@ -1,0 +1,61 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-solr-follower-1-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerPort: 8983
+  ContainerCount: 1
+  HealthCheckPath: "/solr/arclight/admin/ping"
+  # old container must be stopped before new one is started,
+  # otherwise we get an error about index dir locking from Solr
+  ServiceTaskMaximumPercent: 100
+  ServiceTaskMinimumHealthyPercent: 0
+  HealthCheckGracePeriodSeconds: 600
+  Cpu: 2048
+  Memory: 4096 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this
+
+sceptre_user_data:
+  ApplicationType: internal
+  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
+  #ContainerEntryPoint: '"tail", "-f", "/dev/null"' # for debugging
+  Volumes:
+    - Name: "cinco-solr-follower-efs-volume"
+      EFSVolumeConfiguration:
+        FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+        AuthorizationConfig:
+          AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId1
+          IAM: ENABLED
+        TransitEncryption: ENABLED
+  ContainerMountPoints:
+    - SourceVolume: "cinco-solr-follower-efs-volume"
+      ContainerPath: "/var/solr"
+  TaskPolicies:
+    - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+  ContainerEnvironment:
+    - REPLICATION_ROLE: follower
+    - SOLR_LEADER_URL: http://solr_leader.cinco-stage:8983/solr/arclight/replication
+  ContainerPortName: solr
+  ContainerPortAppProtocol: http
+  ServiceConnectConfiguration:
+    Enabled: true
+    Services:
+      - PortName: solr
+        DiscoveryName: solr_follower_1
+        ClientAliases:
+          - Port: 8983
+            DnsName: solr_follower_1.cinco-stage
+        # We have to specify an ingress port override, otherwise the target group healthcheck fails
+        IngressPortOverride: 8984
+  # This healthcheck is more accurate than the target group healthcheck
+  ContainerHealthCheck: |-
+    Command:
+                  - "CMD-SHELL"
+                  - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1"
+                StartPeriod: 15
+                Interval: 10
+                Timeout: 5
+                Retries: 3

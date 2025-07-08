@@ -1,0 +1,33 @@
+template:
+  path: ecs-webapp.j2
+  type: file
+parameters:
+  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  Namespace: cinco-arclight-stage
+  VpcId: !environment_variable VPC_ID
+  SubnetIDs: !environment_variable SUBNET_IDS
+  ContainerImage: !stack_output stage/arclight/build.yaml::ECRRepository
+  ContainerPort: 3000
+  HealthCheckPath: '/'
+  DBInstanceSecurityGroup: !stack_output stage/arclight/db.yaml::RDSSecurityGroup
+sceptre_user_data:
+  ContainerEntryPoint: "/rails/bin/docker-entrypoint"
+  ContainerCommand:
+    - "./bin/rails"
+    - "server"
+  Description: "Arclight Web Application running in ECS"
+  ContainerEnvironment:
+    - RAILS_MASTER_KEY: !environment_variable RAILS_MASTER_KEY
+    - S3_BUCKET: !environment_variable S3_BUCKET_NAME
+    - SOLR_URL: !sub
+      - "http://{solr_url}/solr/{core_name}"
+      # The load balancer for both followers is created as part of the solr-follower-1 stack
+      - solr_url: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerDNS
+        core_name: arclight
+    - POSTGRES_HOST: !stack_output stage/arclight/db.yaml::RDSHostName
+    - POSTGRES_PORT: 5432
+    - POSTGRES_DB: postgres
+    - POSTGRES_USER: !environment_variable ARCLIGHT_DB_USERNAME
+    - POSTGRES_PASSWORD: !environment_variable ARCLIGHT_DB_PASSWORD
+  GrantHttpAccessFromThisServiceTo:
+    - !stack_output stage/solr/solr.yaml::LoadBalancerSecurityGroup

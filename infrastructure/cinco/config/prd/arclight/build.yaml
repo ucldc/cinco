@@ -1,0 +1,27 @@
+template:
+  path: codebuild.j2
+  type: file
+parameters:
+  GitHubRepo: https://github.com/ucldc/cinco
+  Namespace: cinco-arclight-stage
+  Branch: main
+  FilePath: arclight/.*
+
+sceptre_user_data:
+  ECRRepositoryName: cinco-arclight
+  BuildEnvironment:
+    - SUBNET_IDS: !environment_variable SUBNET_IDS
+  build_spec: |-
+    !Sub >-
+              version: 0.2
+
+              phases:
+                build:
+                  commands:
+                    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
+                    - docker build -t cinco-arclight arclight --file arclight/Dockerfile
+                    - docker tag cinco-arclight:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
+                # post_build:
+                #   commands:
+                #     - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
