@@ -46,7 +46,7 @@ each_record do |_record, context|
   ).name
 end
 
-to_field "id_ssm", extract_marc("110a")
+to_field "id_ssm", extract_marc("099a", trim_punctuation: true)
 
 to_field "id"  do |_record, accumulator, context|
   id = context.output_hash["id_ssm"]&.first
@@ -54,13 +54,18 @@ to_field "id"  do |_record, accumulator, context|
   accumulator << id
 end
 
-to_field "title_ssm", extract_marc("110a")
-to_field "title_tesim", extract_marc("110a")
-to_field "ead_ssi", extract_marc("099a")
-to_field "title_stmt_ssm", extract_marc("245a")
+to_field "eadid_ssm", extract_marc("099a")
 
+to_field "ead_ssi" do |_record, accumulator, context|
+  accumulator << context.output_hash["eadid_ssm"]&.first&.strip
+end
 
+to_field "title_ssm", extract_marc("245a")
+to_field "title_tesim", extract_marc("245a")
 to_field "unitdate_ssm", extract_marc("245f")
+
+to_field "main_persname_ssm", extract_marc("100a")
+to_field "main_corpname_ssm", extract_marc("110a")
 
 to_field "preview_ssi" do |_record, accumulator|
   accumulator << settings.fetch(:preview, "false")
@@ -75,13 +80,23 @@ to_field "level_ssim" do |record, accumulator|
   accumulator << "Collection"
 end
 
-to_field "normalized_date_ssm", extract_marc("245f")
+to_field "normalized_date_ssm" do |_record, accumulator, context|
+  accumulator << context.output_hash["unitdate_ssm"]&.first
+end
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|
   title = context.output_hash["title_ssm"]&.first
   date = context.output_hash["normalized_date_ssm"]&.first
-  title_stmt = context.output_hash["title_stmt_ssm"]&.first
-  accumulator << [ title_stmt, title, date ].compact.join(" ").to_s
+  persname = context.output_hash["main_persname_ssm"]&.first
+  corpname = context.output_hash["main_corpname_ssm"]&.first
+  if persname
+    bits = [ persname, title, date ]
+  elsif corpname
+    bits = [ corpname, title, date ]
+  else
+    bits = [ title, date ]
+  end
+  accumulator << bits.compact.join(" ").to_s
 end
 
 to_field "collection_title_tesim" do |_record, accumulator, context|
@@ -103,9 +118,9 @@ end
 to_field "geogname_ssm", extract_marc("651")
 to_field "geogname_ssim", extract_marc("651")
 
-to_field "creator_ssm", extract_marc("100")
-to_field "creator_ssim", extract_marc("100")
-to_field "creator_sort", extract_marc("100")
+to_field "creator_ssm", extract_marc("710")
+to_field "creator_ssim", extract_marc("710")
+# to_field "creator_sort", extract_marc("710")
 
 to_field "creator_persname_ssim", extract_marc("700")
 to_field "creator_corpname_ssim", extract_marc("610")
@@ -210,6 +225,9 @@ to_field "corpname_html_tesim", extract_marc("610")
 
 to_field "famname_tesim", extract_marc("600")
 to_field "famname_html_tesim", extract_marc("600")
+
+to_field "note_tesim", extract_marc("555a:506a")
+to_field "note_html_tesim", extract_marc("555a:506a")
 
 # count all descendant components from the top-level
 to_field "total_component_count_is", first_only do |record, accumulator|
