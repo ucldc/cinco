@@ -47,12 +47,18 @@ each_record do |_record, context|
 end
 
 to_field "id_ssm", extract_marc("099a", trim_punctuation: true)
+to_field "ctrl_num_ssm", extract_marc("001", trim_punctuation: true)
 
 to_field "id"  do |_record, accumulator, context|
   id = context.output_hash["id_ssm"]&.first
-  id = SecureRandom.uuid if id.blank?
+  id = context.output_hash["ctrl_num_ssm"]&.first if id.blank?
+  id = "#{settings["repository"]}_" + SecureRandom.uuid if id.blank?
+  id = id.sub(" ", "_")
   accumulator << id
 end
+
+to_field "unitid_ssm", extract_marc("099a")
+to_field "unitid_tesim", extract_marc("099a")
 
 to_field "eadid_ssm", extract_marc("099a")
 
@@ -87,16 +93,7 @@ end
 to_field "normalized_title_ssm" do |_record, accumulator, context|
   title = context.output_hash["title_ssm"]&.first
   date = context.output_hash["normalized_date_ssm"]&.first
-  persname = context.output_hash["main_persname_ssm"]&.first
-  corpname = context.output_hash["main_corpname_ssm"]&.first
-  if persname
-    bits = [ persname, title, date ]
-  elsif corpname
-    bits = [ corpname, title, date ]
-  else
-    bits = [ title, date ]
-  end
-  accumulator << bits.compact.join(" ").to_s
+  accumulator << [ title, date ].compact.join(" ").to_s
 end
 
 to_field "collection_title_tesim" do |_record, accumulator, context|
@@ -158,9 +155,9 @@ to_field "has_online_content_ssim" do |_record, accumulator, context|
   accumulator << false
 end
 
-to_field "physdesc_tesim", extract_marc("300a")
-to_field "extent_ssm", extract_marc("300a")
+to_field "physdesc_tesim", extract_marc("300")
 
+to_field "extent_ssm", extract_marc("300a")
 to_field "extent_tesim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["extent_ssm"] || []
 end
@@ -178,47 +175,47 @@ to_field "abstract_html_tesm", extract_marc("520a")
 to_field "physloc_tesim", extract_marc("852z")
 to_field "physloc_html_tesm", extract_marc("852z")
 
-to_field "accessrestrict_tesim", extract_marc("506a14")
-to_field "accessrestrict_html_tesim", extract_marc("506a14")
+to_field "accessrestrict_tesim", extract_marc("506a")
+to_field "accessrestrict_html_tesim", extract_marc("506a")
 
-to_field "accruals_tesim", extract_marc("584a10")
-to_field "accruals_html_tesim", extract_marc("584a10")
+to_field "accruals_tesim", extract_marc("584a")
+to_field "accruals_html_tesim", extract_marc("584a")
 
-to_field "altformavail_tesim", extract_marc("530a9")
-to_field "altformavail_html_tesim", extract_marc("530a9")
+to_field "altformavail_tesim", extract_marc("530a")
+to_field "altformavail_html_tesim", extract_marc("530a")
 
-to_field "arrangement_tesim", extract_marc("351a4")
-to_field "arrangement_html_tesim", extract_marc("351a4")
+to_field "arrangement_tesim", extract_marc("351a")
+to_field "arrangement_html_tesim", extract_marc("351a")
 
-to_field "bibliography_tesim", extract_marc("581a11")
-to_field "bibliography_html_tesim", extract_marc("581a11")
+to_field "bibliography_tesim", extract_marc("581a")
+to_field "bibliography_html_tesim", extract_marc("581a")
 
-to_field "bioghist_tesim", extract_marc("545a2")
-to_field "bioghist_html_tesim", extract_marc("545a2")
+to_field "bioghist_tesim", extract_marc("545a")
+to_field "bioghist_html_tesim", extract_marc("545a")
 
-to_field "custodhist_tesim", extract_marc("561a16")
-to_field "custodhist_html_tesim", extract_marc("561a16")
+to_field "custodhist_tesim", extract_marc("561a")
+to_field "custodhist_html_tesim", extract_marc("561a")
 
-to_field "odd_tesim", extract_marc("500a5")
-to_field "odd_html_tesim", extract_marc("500a5")
+to_field "odd_tesim", extract_marc("500a")
+to_field "odd_html_tesim", extract_marc("500a")
 
 to_field "originalsloc_tesim", extract_marc("535")
 to_field "originalsloc_html_tesim", extract_marc("535")
 
-to_field "otherfindaid_tesim", extract_marc("555a8")
-to_field "otherfindaid_html_tesim", extract_marc("555a8")
+to_field "otherfindaid_tesim", extract_marc("555a")
+to_field "otherfindaid_html_tesim", extract_marc("555a")
 
 to_field "phystech_tesim", extract_marc("538")
 to_field "phystech_html_tesim", extract_marc("538")
 
-to_field "prefercite_tesim", extract_marc("524a18")
-to_field "prefercite_html_tesim", extract_marc("524a18")
+to_field "prefercite_tesim", extract_marc("524a")
+to_field "prefercite_html_tesim", extract_marc("524a")
 
-to_field "processinfo_tesim", extract_marc("583a20")
-to_field "processinfo_html_tesim", extract_marc("583a20")
+to_field "processinfo_tesim", extract_marc("583a")
+to_field "processinfo_html_tesim", extract_marc("583a")
 
-to_field "userestrict_tesim", extract_marc("540a15")
-to_field "userestrict_html_tesim", extract_marc("540a15")
+to_field "userestrict_tesim", extract_marc("540a")
+to_field "userestrict_html_tesim", extract_marc("540a")
 
 to_field "corpname_tesim", extract_marc("610")
 to_field "corpname_html_tesim", extract_marc("610")
