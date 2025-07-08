@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   GitHubRepo: https://github.com/ucldc/cinco
-  Namespace: cinco-solr-stage
+  Namespace: cinco-solr-prd
   Branch: main
   FilePath: Dockerfile.solr|arclight/solr/*
 
@@ -22,4 +22,4 @@ sceptre_user_data:
                     - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-solr:latest
                 post_build:
                   commands:
-                    - aws ecs update-service --cluster cinco-stage --service cinco-solr-stage-service --force-new-deployment
+                    - aws ecs update-service --cluster cinco-prd --service cinco-solr-stage-service --force-new-deployment

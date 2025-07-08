@@ -2,11 +2,11 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
-  Namespace: cinco-solr-follower-2-stage
+  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  Namespace: cinco-solr-follower-2-prd
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerImage: !stack_output prd/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
@@ -24,19 +24,19 @@ sceptre_user_data:
   Volumes:
   - Name: "cinco-solr-follower-2-efs-volume"
     EFSVolumeConfiguration:
-      FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+      FilesystemId: !stack_output prd/solr/efs.yaml::EfsFileSystemId
       AuthorizationConfig:
-        AccessPointId: !stack_output stage/solr/efs-follower-access-points.yaml::EfsAccessPointId2
+        AccessPointId: !stack_output prd/solr/efs-follower-access-points.yaml::EfsAccessPointId2
         IAM: ENABLED
       TransitEncryption: ENABLED
   ContainerMountPoints:
   - SourceVolume: "cinco-solr-follower-2-efs-volume"
     ContainerPath: "/var/solr"
   TaskPolicies:
-  - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+  - !stack_output prd/solr/efs.yaml::EfsReaderPolicyArn
   ContainerEnvironment:
   - REPLICATION_ROLE: follower
-  - SOLR_LEADER_URL: http://solr_leader.cinco-stage:8983/solr/arclight/replication
+  - SOLR_LEADER_URL: http://solr_leader.cinco-prd:8983/solr/arclight/replication
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
@@ -46,15 +46,15 @@ sceptre_user_data:
       DiscoveryName: solr_follower_2
       ClientAliases:
       - Port: 8983
-        DnsName: solr_follower_2.cinco-stage
+        DnsName: solr_follower_2.cinco-prd
       # We have to specify an ingress port override, otherwise the target group healthcheck fails
       IngressPortOverride: 8984
   # The solr_follower_2 container is registered with the same target group as the solr_follower_1 container
   LoadBalancer:
-    LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
-    TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
-    TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
-    LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
+    LoadBalancerFullName: !stack_output prd/solr/solr-follower-1.yaml::LoadBalancerFullName
+    TargetGroup: !stack_output prd/solr/solr-follower-1.yaml::TargetGroup
+    TargetGroupFullName: !stack_output prd/solr/solr-follower-1.yaml::TargetGroupFullName
+    LoadBalancerSecurityGroup: !stack_output prd/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
   # This healthcheck is more accurate than the target group healthcheck
   ContainerHealthCheck: |-
     Command:

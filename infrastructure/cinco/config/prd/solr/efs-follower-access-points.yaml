@@ -2,7 +2,7 @@ template:
   path: efs-access-point.j2
   type: file
 parameters:
-  EfsFileSystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+  EfsFileSystemId: !stack_output prd/solr/efs.yaml::EfsFileSystemId
 sceptre_user_data:
   EFSAccessPoints:
     - path: /followers/1/var/solr

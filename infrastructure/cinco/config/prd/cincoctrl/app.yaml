@@ -2,24 +2,24 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
-  Namespace: cinco-ctrl-stage
+  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  Namespace: cinco-ctrl-prd
   VpcId: !environment_variable VPC_ID
   SubnetIDs: !environment_variable SUBNET_IDS
-  ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
+  ContainerImage: !stack_output prd/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
   HealthCheckPath: '/accounts/login/'
-  DBInstanceSecurityGroup: !stack_output stage/cincoctrl/db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output prd/cincoctrl/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: '/entrypoint'
   ContainerCommand: [ "/start" ]
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
-    - !stack_output stage/s3.yaml::Policy
-    - !stack_output stage/textract.yaml::QueueConsumerPolicyArn
-    - !stack_output stage/airflow-permissions.yaml::Policy
+    - !stack_output prd/s3.yaml::Policy
+    - !stack_output prd/textract.yaml::QueueConsumerPolicyArn
+    - !stack_output prd/airflow-permissions.yaml::Policy
   ContainerEnvironment:
-    - POSTGRES_HOST: !stack_output stage/cincoctrl/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output prd/cincoctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: !environment_variable CINCOCTRL_DB_USERNAME
@@ -30,7 +30,7 @@ sceptre_user_data:
     - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET_NAME
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
-    - SQS_URL: !stack_output stage/textract.yaml::QueueUrl
+    - SQS_URL: !stack_output prd/textract.yaml::QueueUrl
     - CDL_ARK_NAAN: !environment_variable CDL_ARK_NAAN
     - CDL_ARK_SHOULDER: !environment_variable CDL_ARK_SHOULDER
     - EZID_ENDPOINT: !environment_variable EZID_ENDPOINT
