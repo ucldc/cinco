@@ -15,18 +15,25 @@ Rails.application.routes.draw do
   root to: "home", controller: "static_pages"
   concern :searchable, Blacklight::Routes::Searchable.new
 
-  resource :catalog, only: [], as: "catalog", path: "/catalog", controller: "catalog" do
+  resource :catalog, only: [], as: "catalog", path: "/search", controller: "catalog" do
     concerns :searchable
   end
   devise_for :users
 
+  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid"
+  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
+
+  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
+
+
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  resources :solr_documents, only: [ :show ], path: "/catalog", controller: "catalog" do
+  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog" do
   concerns :hierarchy
     concerns :exportable
   end
+
 
   resources :bookmarks, only: [ :index, :update, :create, :destroy ] do
     concerns :exportable
@@ -50,7 +57,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

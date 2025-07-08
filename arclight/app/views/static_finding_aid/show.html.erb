@@ -1,0 +1,40 @@
+
+<% content_for(:container_header) do -%>
+
+  <div>
+        <div class="container">
+            <a class="mb-0 navbar-brand navbar-logo d-block" href="/">OAC</a>
+        </div class="container">
+            <p class="h4"> <%= @document.repository %></p>
+        <div>
+
+        </div>
+
+  </div>
+
+  <div class="text-left container py-4">
+    <%= content_tag :h1, class: 'h3' do %>
+        <span aria-hidden="true"><%= blacklight_icon :collection, classes: 'al-collection-content-icon' %></span>
+        <%= @document.collection_name %>
+    <% end %>
+    <div class="row">
+        <ul class="list-unstyled">
+            <li class="static_link">
+                <a href="<%= solr_document_path @document.id %>">
+                    <%= request.base_url %><%= CGI.unescape(solr_document_path @document.id) %>
+                </a>
+            </li>
+             <% if @document.online_content? %>
+                <li class="static_online_available">
+                    Some items available online
+                </li>
+            <% end %>
+            <li>
+                <%= render 'arclight/requests', document: @document %>
+            </li>
+        </ul>
+    </div>
+</div>
+<% end %>
+<hr>
+<%= render 'show_main_content' %>
