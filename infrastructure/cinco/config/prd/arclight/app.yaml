@@ -4,8 +4,8 @@ template:
 parameters:
   ClusterName: !stack_output prd/cluster.yaml::ECSCluster
   Namespace: cinco-arclight-prd
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
+  VpcId: {{ var.prd.VPC_ID }}
+  SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !stack_output prd/arclight/build.yaml::ECRRepository
   ContainerPort: 3000
   HealthCheckPath: '/'
@@ -17,8 +17,8 @@ sceptre_user_data:
     - "server"
   Description: "Arclight Web Application running in ECS"
   ContainerEnvironment:
-    - RAILS_MASTER_KEY: !environment_variable RAILS_MASTER_KEY
-    - S3_BUCKET: !environment_variable S3_BUCKET_NAME
+    - RAILS_MASTER_KEY: {{ var.prd.RAILS_MASTER_KEY }}
+    - S3_BUCKET: {{ var.prd.S3_BUCKET_NAME }}
     - SOLR_URL: !sub
       - "http://{solr_url}/solr/{core_name}"
       # The load balancer for both followers is created as part of the solr-follower-1 stack
@@ -27,7 +27,7 @@ sceptre_user_data:
     - POSTGRES_HOST: !stack_output prd/arclight/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
-    - POSTGRES_USER: !environment_variable ARCLIGHT_DB_USERNAME
-    - POSTGRES_PASSWORD: !environment_variable ARCLIGHT_DB_PASSWORD
+    - POSTGRES_USER: {{ var.prd.ARCLIGHT_DB_USERNAME }}
+    - POSTGRES_PASSWORD: {{ var.prd.ARCLIGHT_DB_PASSWORD }}
   GrantHttpAccessFromThisServiceTo:
     - !stack_output prd/solr/solr.yaml::LoadBalancerSecurityGroup

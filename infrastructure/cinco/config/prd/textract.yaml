@@ -3,6 +3,6 @@ template:
   type: file
 parameters:
   Namespace: cinco-textract-prd
-  S3OutputBucket: !environment_variable S3_BUCKET_NAME
+  S3OutputBucket: {{ var.prd.S3_BUCKET_NAME }}
   S3OutputPrefix: textract-output
-  S3InputBucket: !environment_variable S3_BUCKET_NAME
+  S3InputBucket: {{ var.prd.S3_BUCKET_NAME }}

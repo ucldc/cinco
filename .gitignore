@@ -318,3 +318,6 @@ arclight/config/master.key
 
 # Sceptre dumo files
 .dump/
+
+# Sceptre var files
+vars.yaml

@@ -4,8 +4,8 @@ template:
 parameters:
   ClusterName: !stack_output stage/cluster.yaml::ECSCluster
   Namespace: cinco-ctrl-stage
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
+  VpcId: {{ var.stage.VPC_ID }}
+  SubnetIDs: {{ var.stage.SUBNET_IDS }}
   ContainerImage: !stack_output stage/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
   HealthCheckPath: '/accounts/login/'
@@ -22,17 +22,17 @@ sceptre_user_data:
     - POSTGRES_HOST: !stack_output stage/cincoctrl/db.yaml::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
-    - POSTGRES_USER: !environment_variable CINCOCTRL_DB_USERNAME
-    - POSTGRES_PASSWORD: !environment_variable CINCOCTRL_DB_PASSWORD
+    - POSTGRES_USER: {{ var.stage.CINCOCTRL_DB_USERNAME }}
+    - POSTGRES_PASSWORD: {{ var.stage.CINCOCTRL_DB_PASSWORD }}
     - DJANGO_SETTINGS_MODULE: config.settings.stage
-    - DJANGO_SECRET_KEY: !environment_variable DJANGO_SECRET_KEY
-    - DJANGO_ADMIN_URL: !environment_variable DJANGO_ADMIN_URL
-    - DJANGO_AWS_STORAGE_BUCKET_NAME: !environment_variable S3_BUCKET_NAME
+    - DJANGO_SECRET_KEY: {{ var.stage.DJANGO_SECRET_KEY }}
+    - DJANGO_ADMIN_URL: {{ var.stage.DJANGO_ADMIN_URL }}
+    - DJANGO_AWS_STORAGE_BUCKET_NAME: {{ var.stage.S3_BUCKET_NAME }}
     - WEB_CONCURRENCY: 4
-    - DJANGO_SUPERUSER_PASSWORD: !environment_variable DJANGO_SUPERUSER_PASSWORD
+    - DJANGO_SUPERUSER_PASSWORD: {{ var.stage.DJANGO_SUPERUSER_PASSWORD }}
     - SQS_URL: !stack_output stage/textract.yaml::QueueUrl
-    - CDL_ARK_NAAN: !environment_variable CDL_ARK_NAAN
-    - CDL_ARK_SHOULDER: !environment_variable CDL_ARK_SHOULDER
-    - EZID_ENDPOINT: !environment_variable EZID_ENDPOINT
-    - EZID_USERNAME: !environment_variable EZID_USERNAME
-    - EZID_PASSWORD: !environment_variable EZID_PASSWORD
+    - CDL_ARK_NAAN: {{ var.stage.CDL_ARK_NAAN }}
+    - CDL_ARK_SHOULDER: {{ var.stage.CDL_ARK_SHOULDER }}
+    - EZID_ENDPOINT: {{ var.stage.EZID_ENDPOINT }}
+    - EZID_USERNAME: {{ var.stage.EZID_USERNAME }}
+    - EZID_PASSWORD: {{ var.stage.EZID_PASSWORD }}

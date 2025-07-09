@@ -10,7 +10,7 @@ parameters:
 sceptre_user_data:
   ECRRepositoryName: cinco-ctrl
   BuildEnvironment:
-    - SUBNET_IDS: !environment_variable SUBNET_IDS
+    - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
   build_spec: |-
     !Sub >-
               version: 0.2

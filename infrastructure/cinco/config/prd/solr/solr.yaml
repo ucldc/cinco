@@ -4,8 +4,8 @@ template:
 parameters:
   ClusterName: !stack_output prd/cluster.yaml::ECSCluster
   Namespace: cinco-solr-prd
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
+  VpcId: {{ var.prd.VPC_ID }}
+  SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !stack_output prd/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
@@ -69,4 +69,4 @@ sceptre_user_data:
   # HttpAccessList:
   #   - !stack_output prd/cincoctrl/app.yaml::ServiceSecurityGroup
   #   # - !stack_output prd/arclight/app.yaml::ServiceSecurityGroup
-  #   # - !environment_variable PAD_AIRFLOW_SECURITY_GROUP
+  #   # - {{ var.prd.PAD_AIRFLOW_SECURITY_GROUP }}

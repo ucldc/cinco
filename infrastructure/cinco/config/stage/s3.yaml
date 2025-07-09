@@ -2,4 +2,4 @@ template:
   path: public-s3.yaml
   type: file
 parameters:
-  BucketName: !environment_variable S3_BUCKET_NAME
+  BucketName: {{ var.stage.S3_BUCKET_NAME }}
