@@ -1,0 +1,53 @@
+#!/bin/bash -e
+
+# Parameters:
+#    - filename: name of the file in s3
+#    - repository_code
+#    - preview (optional)
+
+# Environment variables:
+#.   - S3_BUCKET
+#.   - SOLR_WRITER
+
+if [ -z "$2" ]; then
+  echo "Usage: $0 <filename> <repository_code> [--preview]"
+  exit 1
+fi
+
+# check that the S3_BUCKET environment variable is set
+if [ -z "$S3_BUCKET" ]; then
+  echo "The S3_BUCKET environment variable must be set"
+  exit 1
+fi
+
+# check that the SOLR_WRITER environment variable is set
+if [ -z "$SOLR_WRITER" ]; then
+  echo "The SOLR_WRITER environment variable must be set"
+  exit 1
+fi
+
+echo "Downloading MARC file: $1 to /tmp/$1"
+curl https://$S3_BUCKET.s3.us-west-2.amazonaws.com/media/marc/$1 > /tmp/$1
+
+echo "Setting Repository Code Environment Variable"
+export REPOSITORY_ID=$2
+
+# Preview arg will either be "preview" or "publish"
+if [ "$3" == "preview" ]; then
+  echo "Setting Preview Environment Variable"
+  export PREVIEW=true
+else
+  export PREVIEW=false
+fi
+
+echo "Indexing MARC file: $1"
+bundle exec traject -I lib/ \
+    -u $SOLR_WRITER \
+    -i marc -c lib/arclight/traject/marc_config.rb \
+    /tmp/$1 \
+    -s preview=$PREVIEW \
+
+unset REPOSITORY_ID
+
+echo "Finished indexing, cleaning up /tmp/$1"
+rm -f /tmp/$1
