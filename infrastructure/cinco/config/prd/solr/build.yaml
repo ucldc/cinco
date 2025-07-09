@@ -15,13 +15,16 @@ sceptre_user_data:
         Pattern: ^refs/heads/main$
         ExcludeMatchedPattern: false
       - Type: FILE_PATH
-        Pattern: Dockerfile.solr|arclight/solr/*
+        Pattern: arclight/Dockerfile.solr|arclight/solr/*
         ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2
 
               phases:
+                pre_build:
+                  commands:
+                    - cd $CODEBUILD_SRC_DIR/arclight
                 build:
                   commands:
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
