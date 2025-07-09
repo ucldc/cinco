@@ -30,6 +30,6 @@ sceptre_user_data:
                     - docker build -t cinco-arclight arclight --file arclight/Dockerfile
                     - docker tag cinco-arclight:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
                     - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
-                # post_build:
-                #   commands:
-                #     - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
+                post_build:
+                  commands:
+                    - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
