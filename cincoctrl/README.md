@@ -181,7 +181,7 @@ See detailed [cookiecutter-django Docker documentation](https://cookiecutter-dja
 
 `import_repositories <filepath>` -  Imports repositories from an OAC4 export:
 ```
-python ./manage.py dumpdata oac --natural-foreign --indent=4 > /tmp/repositories.json
+python ./manage.py dumpdata oac --indent=4 > /tmp/repositories.json
 ```
 `import_ead <url> (--docurl)` - Imports and EAD file from the given url. `--docurl` can be used to change the location that the command uses to download documents linked in the EAD (default: "https://cdn.calisphere.org").
 `import_record_express <filepath>` - Imports express records from an OAC4 export:
