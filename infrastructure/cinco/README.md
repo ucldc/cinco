@@ -76,7 +76,7 @@ We currently have 3 solr services running, e.g. in stage:
 
 The leader instance functions as the "writer" instance. Indexing work is done here. The follower instances are configured to be kept in sync with the leader, and they function as "reader" instances. The arclight application gets its data from the followers. The only difference between the first and second follower containers is that they write their data to different disk spaces.
 
-The solr containers are configured as leader or follower (or neither) on startup via the `solr-replication-config.py` script. This is run as part of the docker entrypoint script: `cinco-docker-entrypoint.sh`.
+The solr containers are configured as leader or follower (or neither) on startup via the `arclight/solr/solr-replication-config.py` script. This is run as part of the docker entrypoint script: `arclight/solr/cinco-docker-entrypoint.sh`.
 
 #### Configuring allowUrls
 
