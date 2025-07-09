@@ -1,9 +1,15 @@
 # OAC Arclight - Public front end for OAC
 
-The
+## Local dev in Docker
 
+```
+docker compose -f docker-compose.dev.yaml build
+docker compose -f docker-compose.dev.yaml up
+```
 
-## Getting started
+## Local dev with local Ruby/Rails and solr running in Docker
+
+NOTE: following these instructions will run Solr using the arclight/blacklight defaults, rather than with the customizations we have made for cinco. To run solr using the cinco config, follow the `Local dev in Docker` instructions above.
 
 You'll need Ruby available, the version specificed in (.ruby-version)[.ruby-version]. You probably want to manage yourt rubies with a tool like rbenv
 
@@ -26,11 +32,18 @@ bundle exec rails s
 
 ## Indexing
 
-To run the indexer with our customizations use the following command from the arclight root:
+To run the indexer with our customizations use the following command from the arclight root. NOTE that this assumes you are running the arclight app locally, not in docker:
 
 ```
 bundle exec traject -I lib/ -u http://<solr_url>:8983/solr/blacklight-core -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
 ```
+
+You should be able to run the above command in docker also, using something like:
+
+```
+docker exec arclight-app-1 bundle exec traject -I lib/ -u http://solr_follower:8983/solr/arclight -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
+```
+
 ** Settings
 Settings can be added to the index command with `-s name=value`
 

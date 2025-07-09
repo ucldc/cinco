@@ -1,5 +1,7 @@
 version: "3.7"
 
+# NOTE: this runs solr using the default arclight/blacklight config
+# To run solr using the cinco config, use docker-compose.dev.yaml
 services:
   solr:
     image: solr:9.5.0

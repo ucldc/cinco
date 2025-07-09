@@ -5,7 +5,7 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-solr-stage
   Branch: main
-  FilePath: Dockerfile.solr|arclight/solr/*
+  FilePath: arclight/Dockerfile.solr|arclight/solr/*
 
 sceptre_user_data:
   ECRRepositoryName: cinco-solr
@@ -14,6 +14,9 @@ sceptre_user_data:
               version: 0.2
 
               phases:
+                pre_build:
+                  commands:
+                    - cd $CODEBUILD_SRC_DIR/arclight
                 build:
                   commands:
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
