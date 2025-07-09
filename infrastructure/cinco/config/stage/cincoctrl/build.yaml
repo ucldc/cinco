@@ -5,12 +5,20 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-ctrl-stage
   Branch: main
-  FilePath: cincoctrl/.*
 
 sceptre_user_data:
   ECRRepositoryName: cinco-ctrl
   BuildEnvironment:
     - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
+  TriggerFilterGroups:
+    - - Type: EVENT
+        Pattern: PUSH
+      - Type: HEAD_REF
+        Pattern: ^refs/heads/main$
+        ExcludeMatchedPattern: false
+      - Type: FILE_PATH
+        Pattern: cincoctrl/.*
+        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2

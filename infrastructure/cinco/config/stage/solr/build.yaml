@@ -5,10 +5,18 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-solr-stage
   Branch: main
-  FilePath: arclight/Dockerfile.solr|arclight/solr/*
 
 sceptre_user_data:
   ECRRepositoryName: cinco-solr
+  TriggerFilterGroups:
+    - - Type: EVENT
+        Pattern: PUSH
+      - Type: HEAD_REF
+        Pattern: ^refs/heads/main$
+        ExcludeMatchedPattern: false
+      - Type: FILE_PATH
+        Pattern: arclight/Dockerfile.solr|arclight/solr/*
+        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2
