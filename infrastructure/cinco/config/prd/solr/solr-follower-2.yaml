@@ -4,8 +4,8 @@ template:
 parameters:
   ClusterName: !stack_output prd/cluster.yaml::ECSCluster
   Namespace: cinco-solr-follower-2-prd
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
+  VpcId: {{ var.prd.VPC_ID }}
+  SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !stack_output prd/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1

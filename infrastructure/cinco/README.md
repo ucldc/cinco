@@ -7,7 +7,12 @@ The Infrastructure directory contains the "cinco" sceptre project and makes use 
 
 ### Using Sceptre
 
-You'll need some environment variables: `cp infrastructure/cinco/env.example infrastructure/cinco/env.local` and modify accordingly.
+~~You'll need some environment variables: `cp infrastructure/cinco/env.example infrastructure/cinco/env.local` and modify accordingly.~~
+
+You'll need some variables for the prd and stage environment:
+```sh
+cp infrastructure/cinco/example-vars.yaml infrastructure/cinco/vars.yaml
+```
 
 #### Stack Config
 
@@ -17,7 +22,7 @@ To create or update all stacks in the cinco infrastructure, navigate into the sc
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch
+sceptre --var-file vars.yaml launch
 ```
 
 To create or update only a single stack or stack group (this is a sceptre-ism, not a cloudformation grouping) in the cinco infrastructure, specify which cloudformation stack in the `infrastructure/cinco/config` directory you'd like to launch, relative to the `config` directory, for example:
@@ -25,7 +30,7 @@ To create or update only a single stack or stack group (this is a sceptre-ism, n
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch ctrl/ctrl.yaml
+sceptre --var-file vars.yaml launch ctrl/ctrl.yaml
 ```
 
 > Sceptre must be run from the `infrastructure/cinco` directory, and must not include `config` as part of the stack path.
@@ -35,16 +40,16 @@ You could also launch a "stack group":
 ```
 cd infrastructure/cinco
 src env.local
-sceptre launch ctrl
+sceptre --var-file vars.yaml launch ctrl
 ```
 
 Other useful sceptre commands:
 
 ```
-sceptre --debug generate ctrl/ctrl.yaml
-sceptre --debug validate ctrl/ctrl.yaml
-sceptre --debug launch ctrl/ctrl.yaml --disable-rollback
-sceptre --debug delete ctrl/ctrl.yaml
+sceptre --var-file vars.yaml --debug generate ctrl/ctrl.yaml
+sceptre --var-file vars.yaml --debug validate ctrl/ctrl.yaml
+sceptre --var-file vars.yaml --debug launch ctrl/ctrl.yaml --disable-rollback
+sceptre --var-file vars.yaml --debug delete ctrl/ctrl.yaml
 ```
 
 - `generate` outputs the CloudFormation template - for example, the `ecs-webapp.j2` template is a jinja template and the `ctrl/ctrl.yaml` config provides some `sceptre_user_data` that is resolved at `generate` time to produce the CloudFormation template.

@@ -4,7 +4,7 @@ template:
 parameters:
   DBInstanceClass: db.t4g.small
   Namespace: cinco-ctrl-stage
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
-  DBUsername: !environment_variable CINCOCTRL_DB_USERNAME
-  DBPassword: !environment_variable CINCOCTRL_DB_PASSWORD
+  VpcId: {{ var.stage.VPC_ID }}
+  SubnetIDs: {{ var.stage.SUBNET_IDS }}
+  DBUsername: {{ var.stage.CINCOCTRL_DB_USERNAME }}
+  DBPassword: {{ var.stage.CINCOCTRL_DB_PASSWORD }}

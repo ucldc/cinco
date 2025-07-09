@@ -3,8 +3,8 @@ template:
   type: file
 parameters:
   Namespace: cinco-solr-prd
-  VpcId: !environment_variable VPC_ID
-  PrivateSubnetId1: !environment_variable PRIVATE_SUBNET_1
-  PrivateSubnetId2: !environment_variable PRIVATE_SUBNET_2
+  VpcId: {{ var.prd.VPC_ID }}
+  PrivateSubnetId1: {{ var.prd.PRIVATE_SUBNET_1 }}
+  PrivateSubnetId2: {{ var.prd.PRIVATE_SUBNET_2 }}
   EFSAccessPointUserGroup: "8983"
   EFSAccessPointPath: "/var/solr"

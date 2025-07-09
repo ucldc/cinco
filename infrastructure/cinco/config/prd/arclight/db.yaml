@@ -4,7 +4,7 @@ template:
 parameters:
   DBInstanceClass: db.t4g.small
   Namespace: cinco-arclight-prd
-  VpcId: !environment_variable VPC_ID
-  SubnetIDs: !environment_variable SUBNET_IDS
-  DBUsername: !environment_variable ARCLIGHT_DB_USERNAME
-  DBPassword: !environment_variable ARCLIGHT_DB_PASSWORD
+  VpcId: {{ var.prd.VPC_ID }}
+  SubnetIDs: {{ var.prd.SUBNET_IDS }}
+  DBUsername: {{ var.prd.ARCLIGHT_DB_USERNAME }}
+  DBPassword: {{ var.prd.ARCLIGHT_DB_PASSWORD }}
