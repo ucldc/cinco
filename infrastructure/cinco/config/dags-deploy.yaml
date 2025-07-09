@@ -5,11 +5,19 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-dags-deploy
   Branch: main
-  FilePath: dags/.*
 
 sceptre_user_data:
   CodeBuildPolicies:
     - arn:aws:iam::777968769372:policy/cinco-dags-sync
+  TriggerFilterGroups:
+    - - Type: EVENT
+        Pattern: PUSH
+      - Type: HEAD_REF
+        Pattern: ^refs/heads/main$
+        ExcludeMatchedPattern: false
+      - Type: FILE_PATH
+        Pattern: dags/.*
+        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2

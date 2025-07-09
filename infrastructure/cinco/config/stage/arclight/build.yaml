@@ -5,12 +5,20 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-arclight-stage
   Branch: main
-  FilePath: arclight/.*
 
 sceptre_user_data:
   ECRRepositoryName: cinco-arclight
   BuildEnvironment:
     - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
+  TriggerFilterGroups:
+    - - Type: EVENT
+        Pattern: PUSH
+      - Type: HEAD_REF
+        Pattern: ^refs/heads/main$
+        ExcludeMatchedPattern: false
+      - Type: FILE_PATH
+        Pattern: arclight/.*
+        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2
