@@ -22,5 +22,18 @@ fi
 # Run helper script to initialize an empty solr
 init-var-solr
 
-# create and start solr core
-exec solr-precreate arclight /opt/solr/server/solr/configsets/arclight
+coredir="/var/solr/data/arclight"
+config_source="/opt/solr/server/solr/configsets/arclight"
+if [[ ! -d $coredir ]]; then
+    # pre-create core
+    cp -r "$config_source/." "$coredir/"
+    touch "$coredir/core.properties"
+    echo "Created $CORE"
+else
+    # copy current config into place even if core already exists
+    cp -r "$config_source/." "$coredir/"
+    echo "Core $CORE already exists"
+fi
+
+# start solr
+exec solr-fg
