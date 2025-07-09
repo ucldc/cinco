@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
 
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
-  get "findaid", to:  "static_finding_aid#index"
+  get "/findaid", to:  "static_finding_aid#index"
 
 
   concern :exportable, Blacklight::Routes::Exportable.new
