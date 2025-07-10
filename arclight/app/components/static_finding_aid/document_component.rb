@@ -12,6 +12,10 @@ module StaticFindingAid
       @document_tree
     end
 
+    def search_state
+      {}
+    end
+
     def should_render_field?(field_config, *args)
       true
     end
