@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Cinco access to SES
+
+Resources:
+  Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: cinco-ses-permissions
+      Path: "/"
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: "SESEMailSend"
+            Effect: "Allow"
+            Action:
+              - ses:SendEmail
+              - ses:SendRawEmail
+            Resource:
+              - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:*
+
+Outputs:
+  Policy:
+    Description: The ARN of the policy with SES send mail permissions
+    Value: !GetAtt Policy.PolicyArn
