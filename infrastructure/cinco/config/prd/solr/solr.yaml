@@ -48,15 +48,6 @@ sceptre_user_data:
             DnsName: solr_leader.cinco-prd
         # We have to specify an ingress port override, otherwise the target group healthcheck fails
         IngressPortOverride: 8984
-  AdditionalServiceSecurityGroupIngressRules:
-    - description: Allow access from solr-follower-1 container
-      from_port: 8984
-      to_port: 8984
-      security_group_id: !stack_output prd/solr/solr-follower-1.yaml::ServiceSecurityGroup
-    - description: Allow access from solr-follower-2 container
-      from_port: 8984
-      to_port: 8984
-      security_group_id: !stack_output prd/solr/solr-follower-2.yaml::ServiceSecurityGroup
   # This healthcheck is more accurate than the target group healthcheck
   ContainerHealthCheck: |-
     Command:
@@ -69,4 +60,4 @@ sceptre_user_data:
   # HttpAccessList:
   #   - !stack_output prd/cincoctrl/app.yaml::ServiceSecurityGroup
   #   # - !stack_output prd/arclight/app.yaml::ServiceSecurityGroup
-  #   # - {{ var.prd.PAD_AIRFLOW_SECURITY_GROUP }}
+  #   # - {# var.prd.PAD_AIRFLOW_SECURITY_GROUP #}
