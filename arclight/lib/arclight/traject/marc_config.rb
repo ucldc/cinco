@@ -115,13 +115,12 @@ end
 to_field "geogname_ssm", extract_marc("651")
 to_field "geogname_ssim", extract_marc("651")
 
-to_field "creator_ssm", extract_marc("710")
-to_field "creator_ssim", extract_marc("710")
+to_field "creator_ssm", extract_marc("100:110")
+to_field "creator_ssim", extract_marc("100:110")
 # to_field "creator_sort", extract_marc("710")
 
-to_field "creator_persname_ssim", extract_marc("700")
-to_field "creator_corpname_ssim", extract_marc("610")
-to_field "creator_famname_ssim", extract_marc("600")
+to_field "creator_persname_ssim", extract_marc("100:700")
+to_field "creator_corpname_ssim", extract_marc("110:710")
 
 to_field "creators_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["creator_persname_ssim"] if context.output_hash["creator_persname_ssim"]
