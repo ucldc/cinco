@@ -1,0 +1,3 @@
+template:
+  path: ses-permissions.j2
+  type: file
