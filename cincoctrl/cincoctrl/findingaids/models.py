@@ -1,6 +1,7 @@
 import logging
 import urllib.request as urlreq
 import uuid
+from pathlib import Path
 from urllib.parse import urljoin
 
 from django.conf import settings
@@ -204,7 +205,7 @@ class FindingAid(models.Model):
     @property
     def eadid(self):
         if self.ead_file:
-            return self.ead_file.name
+            return Path(self.ead_file.name).name
         return self.collection_number
 
     def queue_status(self, *, force_publish=False):
