@@ -1,7 +1,8 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: CodeBuild Project with optional ECR Repo; logs are in the
-  CloudWatch group /codebuild/<Namespace> stream name "build"
+Description: CodeBuild Project with optional ECR Repo; build triggered by
+  push to the specified branch and changes to the specified file path, logs
+  are in the CloudWatch group /codebuild/<Namespace> stream name "build"
 
 Parameters:
   GitHubRepo:
@@ -31,12 +32,24 @@ Conditions:
   CreateRepo: !Equals [!Ref ECRRepositoryURI, ""]
 
 Resources:
-  {% if sceptre_user_data and sceptre_user_data.ECRRepositoryName is defined %}
+  {% if sceptre_user_data and
+    (sceptre_user_data.ECRRepositoryName is defined or
+    sceptre_user_data.stack_parameters.ECRRepositoryURI is defined)
+  %}
+  {# if ECRRepositoryURI is defined, we need to have this CF block, even though
+    CreateRepo will == False and ECRRepositoryName will == '', so that Outputs
+    doesn't throw an error. TODO: this is all super messy - move optional,
+    mutually exclusive parameters 'URI' and 'Name' to sceptre_user_data and out
+    of params #}
   ECRRepository:
     Type: AWS::ECR::Repository
     Condition: CreateRepo
     Properties:
+      {% if sceptre_user_data.ECRRepositoryName is defined %}
       RepositoryName: {{ sceptre_user_data.ECRRepositoryName }}
+      {% else %}
+      RepositoryName: ''
+      {% endif %}
     DeletionPolicy: Retain
   {% endif %}
 
@@ -159,7 +172,7 @@ Resources:
           StreamName: build
 
 {% if sceptre_user_data and
-  (sceptre_user_data.ECRRepository is defined or
+  (sceptre_user_data.ECRRepositoryName is defined or
    sceptre_user_data.stack_parameters.ECRRepositoryURI is defined)
 %}
 Outputs:
