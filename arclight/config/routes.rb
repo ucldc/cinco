@@ -20,10 +20,15 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid"
-  get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
+   resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid" do
+  end
+
+  # get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid"
+  # get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
 
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
+  get "/findaid/*ark/entire_text", to: "arks#findaid_static"
+
   get "/findaid", to:  "static_finding_aid#index"
 
 

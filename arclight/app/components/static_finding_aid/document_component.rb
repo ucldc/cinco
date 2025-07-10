@@ -13,7 +13,7 @@ module StaticFindingAid
     end
 
     def search_state
-      {}
+      Blacklight::SearchState.new({}, blacklight_config)
     end
 
     def should_render_field?(field_config, *args)

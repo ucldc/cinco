@@ -7,6 +7,7 @@ class StaticFindingAidController < CatalogController
     config.header_component = BlankComponent
     config.show.document_component = StaticFindingAid::DocumentComponent
     config.show.access_component = StaticFindingAid::AccessComponent
+    config.track_search_session.storage = false
   end
 
   def show
