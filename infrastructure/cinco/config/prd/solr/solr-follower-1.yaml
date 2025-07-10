@@ -59,3 +59,8 @@ sceptre_user_data:
                 Interval: 10
                 Timeout: 5
                 Retries: 3
+  SGIngressRuleTargets:
+    - target_name: Leader
+      GroupId: !stack_output stage/solr/solr.yaml::ServiceSecurityGroup
+      FromPort: 8984
+      ToPort: 8984
