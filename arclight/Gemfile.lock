@@ -405,6 +405,10 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     slop (4.10.1)
+    solid_cache (1.0.7)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     solr_wrapper (4.1.0)
       faraday
       faraday-follow_redirects
@@ -525,6 +529,7 @@ DEPENDENCIES
   rubocop-rspec
   sassc-rails (~> 2.1)
   selenium-webdriver
+  solid_cache (~> 1.0)
   solr_wrapper (>= 0.3)
   sprockets-rails
   sqlite3 (>= 1.4)
