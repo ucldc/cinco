@@ -1,4 +1,5 @@
 import os
+import argparse
 # import time
 
 import boto3
@@ -30,8 +31,11 @@ def task_template():
     }
 
 
-def main(command: list[str] = ["migrate"]):
-    cinco_ctrl = get_stack("cinco-stage-cincoctrl-app")
+def main(stack: str, command: list[str] = ["migrate"]):
+    stack_name = (
+        "cinco-prd-cincoctrl-app" if stack == "prd" else "cinco-stage-cincoctrl-app"
+    )
+    cinco_ctrl = get_stack(stack_name)
     cluster = get_stack_output(cinco_ctrl, "ECSCluster")
     task_definition = get_stack_output(cinco_ctrl, "TaskDefinition")
     task_definition = ":".join(task_definition.split(":")[:-1])
@@ -55,7 +59,7 @@ def main(command: list[str] = ["migrate"]):
         overrides={
             "containerOverrides": [
                 {
-                    "name": "cinco-ctrl-stage-container",
+                    "name": f"cinco-ctrl-{stack}-container",
                     "command": ["python", "manage.py", *command],
                 }
             ]
@@ -91,8 +95,8 @@ def main(command: list[str] = ["migrate"]):
 
     # cloudwatch = boto3.client("logs", region_name="us-west-2")
     task_id = task_arn.split("/")[-1]
-    log_group_name = "/ecs/cinco-ctrl-stage"
-    log_stream_name = f"ecs/cinco-ctrl-stage-container/{task_id}"
+    log_group_name = f"/ecs/cinco-ctrl-{stack}"
+    log_stream_name = f"ecs/cinco-ctrl-{stack}-container/{task_id}"
     return (
         f"aws logs tail {log_group_name} --log-stream-name-prefix "
         f"{log_stream_name} --region us-west-2"
@@ -138,8 +142,23 @@ class bcolors:
 # python ecs_manage.py migrate --no-input
 # python ecs_manage.py collectstatic --no-input
 if __name__ == "__main__":
-    import sys
+    parser = argparse.ArgumentParser(
+        description="Run Django management commands on ECS."
+    )
+    parser.add_argument(
+        "--prd", action="store_true", help="Use the production environment"
+    )
+    parser.add_argument(
+        "command", nargs=argparse.REMAINDER, help="Command to pass to manage.py"
+    )
 
-    tail_logs = main(sys.argv[1:])
+    args = parser.parse_args()
+
+    stack = "prd" if args.prd else "stage"
+
+    if not args.command:
+        parser.error("You must provide a management command to run.")
+
+    tail_logs = main(stack, args.command)
     print(f"{bcolors.OKCYAN}[ECS_MANAGE]: {tail_logs}{bcolors.ENDC}")
     os.system(tail_logs)
