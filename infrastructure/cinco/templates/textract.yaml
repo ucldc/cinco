@@ -25,6 +25,16 @@ Parameters:
     Description: The S3 bucket where files are uploaded
     Type: String
 
+  SNSTopicName:
+    Description: The name of the SNS topic for textract notifications
+    # ToDo: adding this for backwards compatibility with existing stage
+    # stack, which created resource "AmazonTextractCincoTopic" - eventually,
+    # rename to "AmazonTextract-${Namespace}-topic"
+    # potentially re-evaluate whether we need two of this stack, or just one
+    # Note: textract SNS topics must be prefixed with "AmazonTextract"
+    Type: String
+    Default: AmazonTextractCincoTopic
+
 Resources:
 
   LambdaExecutionRole:
@@ -123,7 +133,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       # Name must be prepended with AmazonTextract
-      TopicName: AmazonTextractCincoTopic
+      TopicName: !Ref SNSTopicName
 
   TextractSQSQueue:
     Type: AWS::SQS::Queue

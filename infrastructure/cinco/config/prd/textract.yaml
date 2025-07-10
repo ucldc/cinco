@@ -6,3 +6,4 @@ parameters:
   S3OutputBucket: {{ var.prd.S3_BUCKET_NAME }}
   S3OutputPrefix: textract-output
   S3InputBucket: {{ var.prd.S3_BUCKET_NAME }}
+  SNSTopicName: AmazonTextract-cinco-textract-prd-topic
