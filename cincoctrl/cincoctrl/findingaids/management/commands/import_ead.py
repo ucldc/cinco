@@ -69,7 +69,15 @@ class Command(BaseCommand):
             href = ark_dir + href
         return doc_url + href
 
-    def process_supp_files(self, parser, doc_url, ark_dir, finding_aid):
+    def process_supp_files(  # noqa: C901
+        self,
+        parser,
+        doc_url,
+        ark_dir,
+        finding_aid,
+        filename,
+    ):
+        errors = []
         # get and upload any supp files
         for order, a in enumerate(parser.parse_otherfindaids()):
             try:
@@ -88,14 +96,19 @@ class Command(BaseCommand):
                             pdf_file=pdf_file,
                             order=order,
                         )
-            except requests.exceptions.HTTPError:
-                self.stdout.write(f"Supp file {a['href']} not found")
+            except requests.exceptions.HTTPError as e:
+                errors.append(f"\t{url}\t{e}")
             except URLError as e:
-                self.stdout.write(e.message)
+                errors.append(f"\t{url}\t{e.message}")
             except requests.exceptions.ConnectionError as e:
-                self.stdout.write(e.message)
+                errors.append(f"\t{url}\t{e.message}")
             except requests.exceptions.Timeout as e:
-                self.stdout.write(e.message)
+                errors.append(f"\t{url}\t{e.message}")
+
+        if len(errors) > 0:
+            self.stdout.write(f"{filename} failed to import supp files")
+            for e in errors:
+                self.stdout.write(e)
 
         # update links in original EAD
         if finding_aid.supplementaryfile_set.exists():
@@ -117,7 +130,7 @@ class Command(BaseCommand):
             if len(parser.errors) > 0:
                 self.stdout.write(f"Failed to import {filename}")
                 for e in parser.errors:
-                    self.stdout.write(f"\t{filename}\t{e}\tERROR")
+                    self.stdout.write(f"\t{e}")
                 return
 
             parent_ark = parser.parse_parent_ark()
@@ -127,7 +140,6 @@ class Command(BaseCommand):
 
             title, number, ark = parser.extract_ead_fields()
             if FindingAid.objects.filter(ark=ark).exists():
-                self.stdout.write(f"Abort: {ark} already exists")
                 return
 
             # create the finding aid without the file at first
@@ -140,7 +152,7 @@ class Command(BaseCommand):
             )
 
             ark_dir = self.get_ark_dir(ark)
-            self.process_supp_files(parser, doc_url, ark_dir, f)
+            self.process_supp_files(parser, doc_url, ark_dir, f, filename)
 
             # add the new ead file
             ead_file = SimpleUploadedFile(
@@ -149,11 +161,8 @@ class Command(BaseCommand):
             )
             f.ead_file = ead_file
             f.save()
-            self.stdout.write(f"Successfully imported {ark}")
-            for s in f.supplementaryfile_set.all():
-                self.stdout.write(f"\tImported: {s}")
         except EADParserError as e:
-            self.stdout.write(f"{filename}\t{e}\tERROR")
+            self.stdout.write(f"{filename}\t{e}")
 
     def handle(self, *args, **options):
         url = options.get("url")
@@ -175,7 +184,7 @@ class Command(BaseCommand):
                         self.import_ead(url + filename, filename, doc_url, repo_ark)
                     except Exception as e:  # noqa: BLE001
                         # catch and output any random errors so it doesn't abort import
-                        self.stdout.write(f"{filename}\tUnexpected error: {e}\tERROR")
+                        self.stdout.write(f"{filename}\tUnexpected error\t{e}")
         else:
             filename = url.split("/")[-1]
             self.import_ead(url, filename, doc_url, repo_ark)
