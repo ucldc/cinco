@@ -31,11 +31,11 @@ from cinco.arclight_operator import ArcLightOperator
         "preview": Param(
             "publish", type="string", description="Either preview or publish"
         ),
-        "version": Param(
+        "cinco_environment": Param(
             "stage",
             type="enum",
-            enum=["stage", "prod"],
-            description="The version of CincoCtrl and ArcLight to run",
+            enum=["stage", "prd"],
+            description="The CincoCtrl and ArcLight environment to run",
         ),
     },
     tags=["cinco"],
@@ -57,7 +57,7 @@ def index_finding_aid():
         manage_cmd="prepare_finding_aid",
         finding_aid_id="{{ params.finding_aid_id }}",
         s3_key=s3_key,
-        version="{{ params.version }}",
+        cinco_environment="{{ params.cinco_environment }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
@@ -72,16 +72,16 @@ def index_finding_aid():
         finding_aid_ark="{{ params.finding_aid_ark }}",
         eadid="{{ params.eadid }}",
         preview="{{ params.preview }}",
-        version="{{ params.version }}",
+        cinco_environment="{{ params.cinco_environment }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
 
     @task()
-    def cleanup_s3(s3_key, version="stage"):
+    def cleanup_s3(s3_key, cinco_environment="stage"):
         s3 = boto3.resource("s3")
-        if version == "prod":
-            bucket_name = Variable.get("CINCO_S3_BUCKET_PROD")
+        if cinco_environment == "prd":
+            bucket_name = Variable.get("CINCO_S3_BUCKET_PRD")
         else:
             bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
         prefix = f"media/{s3_key}"
@@ -94,7 +94,7 @@ def index_finding_aid():
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
-        >> cleanup_s3(s3_key, version="{{ params.version }}")
+        >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
     )
 
 

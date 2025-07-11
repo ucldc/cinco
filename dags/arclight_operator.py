@@ -69,17 +69,22 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         finding_aid_ark=None,
         eadid=None,
         preview=None,
-        version="stage",
+        cinco_environment="stage",
         **kwargs,
     ):
-        if version == "prod":
-            cluster_name = "cinco-prod"
-            task_name = "cinco-arclight-prod"
-            container_name = "cinco-arclight-prod-container"
+        if cinco_environment == "prd":
+            container_name = "cinco-arclight-prd-container"
+            # TODO: specify task definition revision? how?
+            ecs_names = {
+                "cluster": "cinco-prd",
+                "task_definition": "cinco-arclight-prd",
+            }
         else:  # default to stage
-            cluster_name = "cinco-stage"
-            task_name = "cinco-arclight-stage"
             container_name = "cinco-arclight-stage-container"
+            ecs_names = {
+                "cluster": "cinco-stage",
+                "task_definition": "cinco-arclight-stage",
+            }
 
         command = []
         if arclight_command == "index-from-s3":
@@ -99,10 +104,8 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
             ]
 
         args = {
-            "cluster": cluster_name,
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
-            "task_definition": task_name,
             "overrides": {
                 "containerOverrides": [
                     {
@@ -112,14 +115,15 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            "awslogs_group": f"/ecs/{task_name}",
-            "awslogs_stream_prefix": f"ecs/{container_name}",
-            "awslogs_region": "us-west-2",
-            "reattach": True,
-            "number_logs_exception": 100,
-            "waiter_delay": 10,
-            "waiter_max_attempts": 8640,
+            # "awslogs_group": f"/ecs/{task_name}",
+            # "awslogs_stream_prefix": f"ecs/{container_name}",
+            # "awslogs_region": "us-west-2",
+            # "reattach": True,
+            # "number_logs_exception": 100,
+            # "waiter_delay": 10,
+            # "waiter_max_attempts": 8640,
         }
+        args.update(ecs_names)
         args.update(kwargs)
         super().__init__(**args)
 
@@ -148,7 +152,7 @@ class ArcLightDockerOperator(DockerOperator):
         finding_aid_ark=None,
         eadid=None,
         preview=None,
-        version="stage",
+        cinco_environment="dev",
         **kwargs,
     ):
         mounts = [
