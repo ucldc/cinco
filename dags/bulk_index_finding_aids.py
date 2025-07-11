@@ -44,15 +44,15 @@ def bulk_index_finding_aids():
         task_id="bulk_index_task",
         s3_key="{{ params.s3_key }}",
         arclight_command="bulk-index-from-s3",
-        version="{{ params.version }}",
+        cinco_environment="{{ params.cinco_environment }}",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
     )
 
     @task()
-    def cleanup_s3(s3_key, version="stage"):
+    def cleanup_s3(s3_key, cinco_environment="stage"):
         s3 = boto3.resource("s3")
-        if version == "prod":
+        if cinco_environment == "prd":
             bucket_name = Variable.get("CINCO_S3_BUCKET_PROD")
         else:
             bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
@@ -62,7 +62,9 @@ def bulk_index_finding_aids():
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
-    bulk_index_task >> cleanup_s3("{{ params.s3_key }}", version="{{ params.version }}")
+    bulk_index_task >> cleanup_s3(
+        "{{ params.s3_key }}", cinco_environment="{{ params.cinco_environment }}"
+    )
 
 
 bulk_index_finding_aids = bulk_index_finding_aids()
