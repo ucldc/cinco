@@ -11,6 +11,7 @@ from .base import INSTALLED_APPS
 from .base import env
 
 DEBUG = True
+CINCO_ENVIRONMENT = "stage"
 
 # GENERAL
 # ------------------------------------------------------------------------------
