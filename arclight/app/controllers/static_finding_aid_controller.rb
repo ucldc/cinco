@@ -8,6 +8,12 @@ class StaticFindingAidController < CatalogController
     config.show.document_component = StaticFindingAid::DocumentComponent
     config.show.access_component = StaticFindingAid::AccessComponent
     config.track_search_session.storage = false
+    config[:summary_fields][:creators][:link_to_facet] = false
+    config[:component_fields][:creators][:link_to_facet] = false
+    config[:indexed_terms_fields][:access_subjects][:link_to_facet] = false
+    config[:component_indexed_terms_fields][:access_subjects][:link_to_facet] = false
+    config[:indexed_terms_fields][:places][:link_to_facet] = false
+    config[:component_indexed_terms_fields][:places][:link_to_facet] = false
   end
 
   def show
