@@ -235,6 +235,7 @@ class FindingAid(models.Model):
                         "finding_aid_ark": self.ark,
                         "eadid": self.eadid,
                         "preview": action,
+                        "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
                     related_models=[self],
                     dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",

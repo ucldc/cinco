@@ -155,7 +155,10 @@ def bulk_index_finding_aids(
         bulk_prep_finding_aids(finding_aids, s3_key)
         return trigger_dag(
             "bulk_index_finding_aids",
-            {"s3_key": s3_key},
+            {
+                "s3_key": s3_key,
+                "cinco_environment": settings.CINCO_ENVIRONMENT,
+            },
             related_models=finding_aids,
             dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
         )
