@@ -1,0 +1,29 @@
+#!/bin/bash -e
+
+
+bin/index-marc-from-s3 UC_Berkeley.Law_Lib.marc berkeley_cabesl
+bin/index-marc-from-s3 UC_Berkeley.Biosci.marc berkeley_cabeubnr
+bin/index-marc-from-s3 UC_Berkeley.AsianAmer.marc berkeley_esl
+bin/index-marc-from-s3 UC_Berkeley.Chicano.marc berkeley_esl
+bin/index-marc-from-s3 UC_Berkeley.Ethnic.marc berkeley_esl
+bin/index-marc-from-s3 UC_Berkeley.Trans.marc berkeley_hdtl
+bin/index-marc-from-s3 UC_Berkeley.IGS.marc berkeley_igsl
+bin/index-marc-from-s3 GLC86.mrc csf_hglc
+bin/index-marc-from-s3 GLC87.mrc csf_hglc
+bin/index-marc-from-s3 adamorgan.mrc csf_sfpl
+bin/index-marc-from-s3 photoalbums_2-23-17.mrc csf_sfpl
+bin/index-marc-from-s3 SFH74.mrc csf_sfpl
+bin/index-marc-from-s3 sfh91.mrc csf_sfpl
+bin/index-marc-from-s3 SFMSS22-6.mrc csf_sfpl
+bin/index-marc-from-s3 SFMSS29-6.mrc csf_sfpl
+bin/index-marc-from-s3 sfp35.mrc csf_sfpl
+bin/index-marc-from-s3 sfp70sfp15.mrc csf_sfpl
+bin/index-marc-from-s3 UC_Davis.Shields.mrc ucdavis_spcoll
+bin/index-marc-from-s3 UC_Davis_AR.mrc ucdavis_uarc
+bin/index-marc-from-s3 ucsb.spcoll.oac.mrc ucsb_spcoll
+bin/index-marc-from-s3 UC_Santa_Cruz.Spec_Coll.mrc ucsb_spcoll
+bin/index-marc-from-s3 UC_Santa_Cruz.UA.mrc ucsc_uarc
+bin/index-marc-from-s3 002.mrc csl_chr
+bin/index-marc-from-s3 003.mrc csl_chr
+bin/index-marc-from-s3 BANCOAC_20250617.mrc berkeley_bancroft
+bin/index-marc-from-s3 UC_Los_Angeles.FilmTV.mrc ucla_cluft
