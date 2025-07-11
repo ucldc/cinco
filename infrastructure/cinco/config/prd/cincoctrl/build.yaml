@@ -39,10 +39,11 @@ sceptre_user_data:
                     - TASK_FAMILY="cinco-ctrl-prd"
                     - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_FAMILY")
                     - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
-                    - aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION"
+                    - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
+                    - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
                     - echo "Running Django management commands with new task definition"
                     - chmod +x $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py
-                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd collectstatic --no-input
-                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd migrate --no-input
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd --task-definition $TD_REVISION collectstatic --no-input
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd --task-definition $TD_REVISION migrate --no-input
                     - echo "Forcing a new deployment of the service to apply changes"
-                    - aws ecs update-service --cluster cinco-prd --service cinco-ctrl-prd-service --force-new-deployment
+                    - aws ecs update-service --cluster cinco-prd --service cinco-ctrl-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment

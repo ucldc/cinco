@@ -31,14 +31,19 @@ def task_template():
     }
 
 
-def main(stack: str, command: list[str] = ["migrate"]):
+def main(
+    stack: str, command: list[str] = ["migrate"], task_definition_revision: int = None
+):
     stack_name = (
         "cinco-prd-cincoctrl-app" if stack == "prd" else "cinco-stage-cincoctrl-app"
     )
     cinco_ctrl = get_stack(stack_name)
     cluster = get_stack_output(cinco_ctrl, "ECSCluster")
     task_definition = get_stack_output(cinco_ctrl, "TaskDefinition")
+    # Remove revision if present
     task_definition = ":".join(task_definition.split(":")[:-1])
+    if task_definition_revision is not None:
+        task_definition = f"{task_definition}:{task_definition_revision}"
 
     print(f"Running `python manage.py {' '.join(command)}` " "on Cinco Ctrl in ECS")
 
@@ -149,6 +154,12 @@ if __name__ == "__main__":
         "--prd", action="store_true", help="Use the production environment"
     )
     parser.add_argument(
+        "--task-definition",
+        type=int,
+        default=None,
+        help="Task definition revision to use (default: latest)",
+    )
+    parser.add_argument(
         "command", nargs=argparse.REMAINDER, help="Command to pass to manage.py"
     )
 
@@ -159,6 +170,6 @@ if __name__ == "__main__":
     if not args.command:
         parser.error("You must provide a management command to run.")
 
-    tail_logs = main(stack, args.command)
+    tail_logs = main(stack, args.command, args.task_definition)
     print(f"{bcolors.OKCYAN}[ECS_MANAGE]: {tail_logs}{bcolors.ENDC}")
     os.system(tail_logs)
