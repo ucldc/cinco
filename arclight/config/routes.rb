@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/privacy", to: "privacy", controller: "static_pages"
   get "/example", to: "example", controller: "static_pages"
   get "/overview", to: "overview", controller: "static_pages"
+  get "/quickstart", to: "quickstart", controller: "static_pages"
 
   get "/institutions/", to: "arclight/repositories#index"
   get "/institutions/:id", to: "arclight/repositories#show", as: "repository"
