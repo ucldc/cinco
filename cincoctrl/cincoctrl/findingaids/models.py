@@ -120,7 +120,7 @@ class FindingAid(models.Model):
         # update the new ezid record with target url, owner
         if ark:
             path = f"/id/{ark}"
-            target_url = f"http://content.cdlib.org/{ark}"
+            target_url = f"https://www.oac.cdlib.org/findaid/{ark}"
             owner = "cdldsc"
             data = f"_target: {target_url}\n_owner: {owner}"
             response = self.post_to_ezid(path, data)
