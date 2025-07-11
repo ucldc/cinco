@@ -49,12 +49,13 @@ class EADParser:
     def parse_ark(self):
         eadid = self.root.find("./eadheader/eadid")
         ark = None
-        if "identifier" in eadid.attrib:
-            ark = eadid.attrib["identifier"]
-        elif eadid.attrib.get("url"):
-            ark = eadid.attrib.get("url")
-        elif eadid.text:
-            ark = eadid.text
+        if eadid is not None:
+            if "identifier" in eadid.attrib:
+                ark = eadid.attrib["identifier"]
+            elif eadid.attrib.get("url"):
+                ark = eadid.attrib.get("url")
+            elif eadid.text:
+                ark = eadid.text
 
         if ark:
             m = re.search(r"(ark:/\d{5}/[a-zA-z0-9]+)", ark)
