@@ -89,14 +89,16 @@ class Command(BaseCommand):
                 )
                 date_joined = date_joined.replace(tzinfo=datetime.UTC)
 
+                first_name = voro_user_fields["first_name"].strip()
+                last_name = voro_user_fields["last_name"].strip()
+
                 user_defaults = {
                     "is_superuser": voro_user_fields["is_superuser"],
                     "is_staff": voro_user_fields["is_staff"],
                     "is_active": voro_user_fields["is_active"],
                     "last_login": last_login,
                     "date_joined": date_joined,
-                    "name": f"{voro_user_fields['first_name']} \
-                            {voro_user_fields['last_name']}",
+                    "name": f"{first_name} {last_name}",
                 }
 
                 user, _ = User.objects.get_or_create(
