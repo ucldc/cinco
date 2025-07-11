@@ -32,3 +32,8 @@ crumb :contact do
   link "Contact Us", contact_form_path
   parent :root
 end
+
+crumb :quickstart do
+  link "Quick Start Guide", quickstart_path
+  parent :root
+end
