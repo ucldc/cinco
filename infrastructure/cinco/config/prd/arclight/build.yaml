@@ -34,5 +34,6 @@ sceptre_user_data:
                     - TASK_FAMILY="cinco-arclight-prd"
                     - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_FAMILY")
                     - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
-                    - aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION"
-                    - aws ecs update-service --cluster cinco-prd --service cinco-arclight-prd-service --force-new-deployment
+                    - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
+                    - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
+                    - aws ecs update-service --cluster cinco-prd --service cinco-arclight-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
