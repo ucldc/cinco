@@ -27,7 +27,7 @@
         </div>
         </div>
         <p class="text-end align-self-end">
-            <a class="caption" href="">LeConte Family Papers / UC Berkeley, Bancroft Library</a>
+            <%= link_to "LeConte Family Papers / UC Berkeley, Bancroft Library", solr_document_path("ark:/13030/tf8p3006xd") %>
         </p>
     </div>
 </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="g-col-md-4 g-col-12 home-image" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
             <p>
-                <a class="caption" href="">Item Title / Los Angeles Public Library</a>
+                Courtesy of the <%= link_to('Los Angeles Public Library', repository_path(:id => 'lapl')) %>
             </p>
         </div>
     </div>
@@ -76,7 +76,7 @@
 </div>
 
 <script>
-    var map = L.map('home-map').setView([37.152, -120.594], 6);
+    var map = L.map('home-map') ({scrollWheelZoom: false }).setView([37.152, -120.594], 6); 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
