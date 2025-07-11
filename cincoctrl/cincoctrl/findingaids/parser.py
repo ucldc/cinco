@@ -49,7 +49,7 @@ class EADParser:
     def parse_ark(self):
         eadid = self.root.find("./eadheader/eadid")
         ark = None
-        if eadid:
+        if eadid is not None:
             if "identifier" in eadid.attrib:
                 ark = eadid.attrib["identifier"]
             elif eadid.attrib.get("url"):
