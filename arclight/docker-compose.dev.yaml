@@ -2,6 +2,8 @@ services:
   app:
     image: cinco/app
     pull_policy: never
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: ./Dockerfile.app.dev
