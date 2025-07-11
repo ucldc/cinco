@@ -7,7 +7,8 @@ Resources:
   Policy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: airflow-access-to-cinco
+      ManagedPolicyName: cinco-logs-and-stacks-access
+      Description: Used by airflow to access relevant log groups and stacks
       Path: "/"
       PolicyDocument:
         Version: 2012-10-17
