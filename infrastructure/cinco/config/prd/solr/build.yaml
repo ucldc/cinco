@@ -32,11 +32,32 @@ sceptre_user_data:
                     - docker push $NEW_IMAGE
                 post_build:
                   commands:
+                    - echo "Updating solr leader task definition"
                     - TASK_FAMILY="cinco-solr-prd"
                     - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_FAMILY")
                     - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
                     - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
-                    - echo "Please update solr services, task definition revision:"
+                    - echo "Please update solr leader service, task definition revision:"
                     - echo $TD_REVISION
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
+                    ##### Update solr follower 1 task definition #####
+                    - echo "Updating solr follower 1 task definition"
+                    - TASK_FAMILY="cinco-solr-follower-1-prd"
+                    - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_FAMILY")
+                    - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
+                    - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
+                    - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
+                    - echo "Please update solr follower 1 service, task definition revision:"
+                    - echo $TD_REVISION
+                    # - aws ecs update-service --cluster cinco-prd --service cinco-solr-follower-1-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
+                    ##### Update solr follower 2 task definition #####
+                    - echo "Updating solr follower 2 task definition"
+                    - TASK_FAMILY="cinco-solr-follower-2-prd"
+                    - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$TASK_FAMILY")
+                    - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
+                    - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
+                    - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
+                    - echo "Please update solr follower 2 service, task definition revision:"
+                    - echo $TD_REVISION
+                    # - aws ecs update-service --cluster cinco-prd --service cinco-solr-follower-2-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
