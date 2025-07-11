@@ -33,7 +33,6 @@ from cinco.arclight_operator import ArcLightOperator
         ),
         "cinco_environment": Param(
             "stage",
-            type="enum",
             enum=["stage", "prd"],
             description="The CincoCtrl and ArcLight environment to run",
         ),
