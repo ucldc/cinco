@@ -17,7 +17,7 @@ def poll_message_queue():
     poll_queue = CincoCtrlOperator(  # noqa: F841
         task_id="poll_queue",
         manage_cmd="poll_sqs",
-        version="stage",
+        cinco_environment="stage",
         trigger_rule="always",
         # on_failure_callback=notify_failure,
         # on_success_callback=notify_success
@@ -26,7 +26,7 @@ def poll_message_queue():
     # poll_queue_prod = CincoCtrlOperator(
     #     task_id="poll_queue_prod",
     #     manage_cmd="poll_sqs",
-    #     version="prod",
+    #     cinco_environment="prd",
     #     trigger_rule="always",
     #     # on_failure_callback=notify_failure,
     #     # on_success_callback=notify_success

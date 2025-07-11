@@ -39,7 +39,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         finding_aid_id=None,
         s3_key=None,
         repository_id=None,
-        version="stage",
+        cinco_environment="stage",
         **kwargs,
     ):
         manage_args = []
@@ -58,11 +58,12 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 s3_key,
             ]
 
-        if version == "prod":
-            container_name = "cinco-ctrl-prod-container"
+        if cinco_environment == "prd":
+            container_name = "cinco-ctrl-prd-container"
+            # TODO: specify task definition revision? how?
             ecs_names = {
-                "cluster": "cinco-prod",
-                "task_definition": "cinco-ctrl-prod",
+                "cluster": "cinco-prd",
+                "task_definition": "cinco-ctrl-prd",
             }
         else:  # default to stage
             container_name = "cinco-ctrl-stage-container"
@@ -70,7 +71,6 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 "cluster": "cinco-stage",
                 "task_definition": "cinco-ctrl-stage",
             }
-        container_name = "cinco-ctrl-stage-container"
         args = {
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
@@ -131,7 +131,7 @@ class CincoCtrlDockerOperator(DockerOperator):
         finding_aid_id=None,
         s3_key=None,
         repository_id=None,
-        version="stage",
+        cinco_environment="dev",
         **kwargs,
     ):
         manage_args = []

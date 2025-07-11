@@ -28,11 +28,11 @@ from cinco.arclight_operator import ArcLightOperator
             type="string",
             description="The s3_key where all the indexable finding aids are stored",
         ),
-        "version": Param(
+        "cinco_environment": Param(
             "stage",
             type="enum",
-            enum=["stage", "prod"],
-            description="The version of ArcLight to run",
+            enum=["stage", "prd"],
+            description="The Arclight environment to run",
         ),
     },
     tags=["cinco"],
