@@ -37,6 +37,6 @@ sceptre_user_data:
                     - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
                     - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
-                    - echo "Please update solr services to use the new task definition revision, number: "
+                    - echo "Please update solr services, task definition revision:"
                     - echo $TD_REVISION
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
