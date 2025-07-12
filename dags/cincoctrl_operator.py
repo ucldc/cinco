@@ -36,10 +36,10 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
     def __init__(
         self,
         manage_cmd,
+        cinco_environment,
         finding_aid_id=None,
         s3_key=None,
         repository_id=None,
-        cinco_environment="stage",
         **kwargs,
     ):
         manage_args = []
@@ -58,19 +58,12 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 s3_key,
             ]
 
-        if cinco_environment == "prd":
-            container_name = "cinco-ctrl-prd-container"
-            # TODO: specify task definition revision? how?
-            ecs_names = {
-                "cluster": "cinco-prd",
-                "task_definition": "cinco-ctrl-prd",
-            }
-        else:  # default to stage
-            container_name = "cinco-ctrl-stage-container"
-            ecs_names = {
-                "cluster": "cinco-stage",
-                "task_definition": "cinco-ctrl-stage",
-            }
+        container_name = f"cinco-ctrl-{cinco_environment}-container"
+        # TODO: specify task definition revision? how?
+        ecs_names = {
+            "cluster": f"cinco-{cinco_environment}",
+            "task_definition": f"cinco-ctrl-{cinco_environment}",
+        }
         args = {
             "launch_type": "FARGATE",
             "platform_version": "LATEST",
@@ -117,7 +110,10 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                     get_stack_output(pad_airflow, "PublicSubnet1"),
                     get_stack_output(pad_airflow, "PublicSubnet2"),
                 ],
-                "securityGroups": [os.environ.get("CINCOCTRL_SECURITY_GROUP")],
+                "securityGroups": [
+                    os.environ.get("CINCOCTRL_STAGE_SERVICE_SECURITY_GROUP"),
+                    os.environ.get("CINCOCTRL_PRD_SERVICE_SECURITY_GROUP"),
+                ],
                 "assignPublicIp": "ENABLED",
             }
         }
