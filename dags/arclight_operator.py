@@ -63,28 +63,21 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
     def __init__(
         self,
         arclight_command,
+        cinco_environment,
         finding_aid_id=None,
         s3_key=None,
         repository_code=None,
         finding_aid_ark=None,
         eadid=None,
         preview=None,
-        cinco_environment="stage",
         **kwargs,
     ):
-        if cinco_environment == "prd":
-            container_name = "cinco-arclight-prd-container"
-            # TODO: specify task definition revision? how?
-            ecs_names = {
-                "cluster": "cinco-prd",
-                "task_definition": "cinco-arclight-prd",
-            }
-        else:  # default to stage
-            container_name = "cinco-arclight-stage-container"
-            ecs_names = {
-                "cluster": "cinco-stage",
-                "task_definition": "cinco-arclight-stage",
-            }
+        container_name = f"cinco-arclight-{ cinco_environment }-container"
+        # TODO: specify task definition revision? how?
+        ecs_names = {
+            "cluster": f"cinco-{ cinco_environment }",
+            "task_definition": f"cinco-arclight-{ cinco_environment }",
+        }
 
         command = []
         if arclight_command == "index-from-s3":
