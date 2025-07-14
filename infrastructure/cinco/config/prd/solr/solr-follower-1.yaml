@@ -61,6 +61,6 @@ sceptre_user_data:
                 Retries: 3
   SGIngressRuleTargets:
     - target_name: Leader
-      GroupId: !stack_output stage/solr/solr.yaml::ServiceSecurityGroup
+      GroupId: !stack_output prd/solr/solr.yaml::ServiceSecurityGroup
       FromPort: 8984
       ToPort: 8984
