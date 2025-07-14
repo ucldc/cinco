@@ -18,6 +18,7 @@ sceptre_user_data:
   Description: "Arclight Web Application running in ECS"
   ContainerEnvironment:
     - RAILS_MASTER_KEY: {{ var.stage.RAILS_MASTER_KEY }}
+    - REPOSITORY_FILE: "config/repositories-stage.yml"
     - S3_BUCKET: {{ var.stage.S3_BUCKET_NAME }}
     - SOLR_URL: !sub
       - "http://{solr_url}/solr/{core_name}"
