@@ -2277,7 +2277,7 @@ cats:
         <div class="al-repository-contact-info"><a href="https://calisphere.org/">Digital collections</a></div>
     location_html: |
         <div class="al-repository-street-address-city_state_zip_country">,  , </div>
-    thumbnail_url: "repo-logos/IMG_2286.jpg"
+    thumbnail_url: ""
     latitude: None
     longitude: None
 clobhi:
