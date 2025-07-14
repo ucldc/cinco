@@ -29,14 +29,6 @@ def get_stack_outputs(stack_name):
     return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
 
 
-def get_log_group(stack_name="stage"):
-    """
-    get the log group name for the arclight container
-    """
-    outputs = get_stack_outputs(f"cinco-{stack_name}-arclight-app")
-    return outputs["LogGroup"]
-
-
 def get_solr_writer_url(stack_name="stage"):
     """
     get the url of the solr writer from the cloudformation stack
@@ -129,8 +121,10 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         # rather than in initialization ensures that we only call
         # get_awsvpc_config() when the operator is actually run.
         self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
+
+        cinco_environment = context["params"].get("cinco_environment", "stage")
         self.overrides["containerOverrides"][0]["environment"] = [
-            {"name": "SOLR_WRITER", "value": get_solr_writer_url("stage")}
+            {"name": "SOLR_WRITER", "value": get_solr_writer_url(cinco_environment)}
         ]
         return super().execute(context)
 
