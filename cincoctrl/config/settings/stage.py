@@ -12,6 +12,7 @@ from .base import env
 
 DEBUG = True
 CINCO_ENVIRONMENT = "stage"
+AIRFLOW_PROJECT_NAME = "cinco-stage"
 
 # GENERAL
 # ------------------------------------------------------------------------------
