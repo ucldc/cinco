@@ -115,8 +115,8 @@ end
 to_field "geogname_ssm", extract_marc("651")
 to_field "geogname_ssim", extract_marc("651")
 
-to_field "creator_ssm", extract_marc("100:110")
-to_field "creator_ssim", extract_marc("100:110")
+to_field "creator_ssm", extract_marc("100:110:700:710")
+to_field "creator_ssim", extract_marc("100:110:700:710")
 # to_field "creator_sort", extract_marc("710")
 
 to_field "creator_persname_ssim", extract_marc("100:700")
@@ -175,55 +175,57 @@ to_field "physloc_tesim", extract_marc("852z")
 to_field "physloc_html_tesm", extract_marc("852z")
 
 to_field "accessrestrict_tesim", extract_marc("506a")
-to_field "accessrestrict_html_tesim", extract_marc("506a")
+to_field "accessrestrict_html_tesm", extract_marc("506a")
 
 to_field "accruals_tesim", extract_marc("584a")
-to_field "accruals_html_tesim", extract_marc("584a")
+to_field "accruals_html_tesm", extract_marc("584a")
 
 to_field "altformavail_tesim", extract_marc("530a")
-to_field "altformavail_html_tesim", extract_marc("530a")
+to_field "altformavail_html_tesm", extract_marc("530a")
 
 to_field "arrangement_tesim", extract_marc("351a")
-to_field "arrangement_html_tesim", extract_marc("351a")
+to_field "arrangement_html_tesm", extract_marc("351a")
 
 to_field "bibliography_tesim", extract_marc("581a")
-to_field "bibliography_html_tesim", extract_marc("581a")
+to_field "bibliography_html_tesm", extract_marc("581a")
 
 to_field "bioghist_tesim", extract_marc("545a")
-to_field "bioghist_html_tesim", extract_marc("545a")
+to_field "bioghist_html_tesm", extract_marc("545a")
 
 to_field "custodhist_tesim", extract_marc("561a")
-to_field "custodhist_html_tesim", extract_marc("561a")
+to_field "custodhist_html_tesm", extract_marc("561a")
 
 to_field "odd_tesim", extract_marc("500a")
-to_field "odd_html_tesim", extract_marc("500a")
+to_field "odd_html_tesm", extract_marc("500a")
 
 to_field "originalsloc_tesim", extract_marc("535")
-to_field "originalsloc_html_tesim", extract_marc("535")
+to_field "originalsloc_html_tesm", extract_marc("535")
 
 to_field "otherfindaid_tesim", extract_marc("555a")
-to_field "otherfindaid_html_tesim", extract_marc("555a")
+to_field "otherfindaid_html_tesm", extract_marc("555a")
 
 to_field "phystech_tesim", extract_marc("538")
-to_field "phystech_html_tesim", extract_marc("538")
+to_field "phystech_html_tesm", extract_marc("538")
 
 to_field "prefercite_tesim", extract_marc("524a")
-to_field "prefercite_html_tesim", extract_marc("524a")
+to_field "prefercite_html_tesm", extract_marc("524a")
 
 to_field "processinfo_tesim", extract_marc("583a")
-to_field "processinfo_html_tesim", extract_marc("583a")
+to_field "processinfo_html_tesm", extract_marc("583a")
 
 to_field "userestrict_tesim", extract_marc("540a")
-to_field "userestrict_html_tesim", extract_marc("540a")
+to_field "userestrict_html_tesm", extract_marc("540a")
 
 to_field "corpname_tesim", extract_marc("610")
-to_field "corpname_html_tesim", extract_marc("610")
+to_field "corpname_html_tesm", extract_marc("610")
 
 to_field "famname_tesim", extract_marc("600")
-to_field "famname_html_tesim", extract_marc("600")
+to_field "famname_html_tesm", extract_marc("600")
 
 to_field "note_tesim", extract_marc("555a:506a")
-to_field "note_html_tesim", extract_marc("555a:506a")
+to_field "note_html_tesm", extract_marc("555a:506a")
+
+to_field "language_ssim", marc_languages
 
 # count all descendant components from the top-level
 to_field "total_component_count_is", first_only do |record, accumulator|
