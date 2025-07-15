@@ -100,13 +100,13 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 ]
             },
             "region": "us-west-2",
-            # "awslogs_group": f"/ecs/{task_name}",
-            # "awslogs_stream_prefix": f"ecs/{container_name}",
-            # "awslogs_region": "us-west-2",
-            # "reattach": True,
-            # "number_logs_exception": 100,
-            # "waiter_delay": 10,
-            # "waiter_max_attempts": 8640,
+            "awslogs_group": f"/ecs/cinco-arclight-{ cinco_environment }",
+            "awslogs_stream_prefix": f"ecs/cinco-arclight-{ cinco_environment }-container",
+            "awslogs_region": "us-west-2",
+            "reattach": True,
+            "number_logs_exception": 100,
+            "waiter_delay": 10,
+            "waiter_max_attempts": 8640,
         }
         args.update(ecs_names)
         args.update(kwargs)
