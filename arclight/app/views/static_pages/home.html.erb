@@ -27,6 +27,7 @@
         </div>
         </div>
         <p class="text-end align-self-end">
+            <span class="sr-only visually-hidden">Background image: Handwritten journal including a sketch of the Grand Canyon.</span>
             <%= link_to "LeConte Family Papers / UC Berkeley, Bancroft Library", solr_document_path("ark:/13030/tf8p3006xd"), class: "caption" %>
         </p>
     </div>
@@ -45,7 +46,7 @@
             <div class="visually-hidden-focusable">
                 <h2>Map of OAC's Contributing Institutions</h2>
                 <p class="visually-hidden">Go to the <%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %> page to see a list of all institutions alphabetically sorted.</p>
-                <a href="#calisphere-banner" class="d-inline-block p2 m1">Skip Map</a>
+                <a href="#featured-image" class="d-inline-block p2 m1">Skip Map</a>
                 <p>Use +/- to zoom and the arrow keys to pan around the map. Use the tab key to navigate to the next marker, and click on or press the enter key to select a marker to see the repository name and location.</p>
 
                 <!-- TODO :Use the escape key to exit the map after tabbing into markers. -->
@@ -55,7 +56,8 @@
         </div>
         <div class="g-col-md-4 g-col-12 home-image" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
             <p>
-                <%= link_to('Courtesy of the Los Angeles Public Library', repository_path(:id => 'lapl'), class: "caption") %>
+                <span class="sr-only visually-hidden">Featured image: Group of people in an archive. Black and white.</span>
+                <%= link_to('Courtesy of the Los Angeles Public Library', repository_path(:id => 'lapl'), class: "caption", id: "featured-image") %>
             </p>
         </div>
     </div>
