@@ -24,33 +24,6 @@
     color: $home-headings;
 }
 
-@media (min-width: 768px) {
-    .announcement {
-        position: fixed;
-        // bottom: 0;
-        // right: 150px;
-        // width: 250px;
-        left: 0;
-        top: 450px;
-        z-index: 2000;
-
-        margin: 1rem 0 0 0 !important;
-        box-shadow: 1px 1px 5px rgba(50, 52, 52, .65);
-    }
-}
-
-.announcement {
-    margin: 1rem 0;
-    padding: 1rem 1.5rem;
-
-    background-color: rgba(5, 137, 161, 0.95);
-    // background-color: rgba(var(--oac-teal-rgb), 0.95);
-    color: white;
-
-    a {color: white;}
-    a:hover, a:focus {color: white;}
-}
-
 .home-banner {
     background-image: linear-gradient(
         0deg,
@@ -91,6 +64,9 @@
 .home-image .caption {
     background-color: rgba(80, 82, 82, .75);
     color: #ffffff;
+}
+.home-image .caption:focus {
+    outline-color: white;
 }
 
 @media (min-width: 768px) {
