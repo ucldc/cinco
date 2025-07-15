@@ -3,8 +3,8 @@ Description: CloudFront distribution
 Parameters:
   CNAME:
     Type: String
-  # SSLCertARN:
-  #  Type: String
+  SSLCertARN:
+   Type: String
 
 Resources:
 
@@ -12,15 +12,18 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
-        # Aliases: [ !Ref CNAME ]
         Comment: !Sub "${CNAME} cloudfront distro"
         Enabled: true
         HttpVersion: http1.1  # default
         IPV6Enabled: false
-        # ViewerCertificate:
-        #   AcmCertificateArn: !Ref SSLCertARN
-        #   MinimumProtocolVersion: "TLSv1.2_2021"
-        #   SslSupportMethod: sni-only
+        ViewerCertificate:
+          AcmCertificateArn: !Ref SSLCertARN
+          MinimumProtocolVersion: "TLSv1.2_2021"
+          SslSupportMethod: sni-only
+        {# Logging:
+          IncludeCookies: false
+          Bucket: !Sub "${LogS3Bucket}.s3.amazonaws.com"
+          Prefix: !Ref LogPrefix #}
         Origins:
           {% for origin in sceptre_user_data.origins %}
           - Id: {{ origin.name }}
@@ -51,3 +54,37 @@ Resources:
           # Managed Cache Policy: UseOriginCacheControlHeaders-QueryStrings
           # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html#managed-cache-policy-origin-cache-headers-query-strings
           CachePolicyId: 4cc15a8a-d715-48a4-82b8-cc0b614638fe
+        # CacheBehaviors:
+
+  {# WebACL:
+    Type: 'AWS::WAFv2::WebACL'
+    Properties:
+      Name: {{ origin.name }}
+      Description: ACL for {{ origin.DomainName }}
+      Scope: CLOUDFRONT # For CLOUDFRONT, you must create your WAFv2 resources in the US East (N. Virginia) Region, us-east-1.
+      DefaultAction:
+        Allow: {}
+      # VisibilityConfig:
+      Rules:
+        Name: String
+        Action:
+          RuleAction
+        CaptchaConfig:
+          CaptchaConfig
+        ChallengeConfig:
+          ChallengeConfig
+        OverrideAction:
+          OverrideAction
+        Priority: Integer
+        RuleLabels:
+          - Label
+        Statement:
+          Statement
+        VisibilityConfig:
+          VisibilityConfig
+
+  WebACLAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Ref CloudfrontDistribution
+      WebACLArn: !Ref WebACL #}
