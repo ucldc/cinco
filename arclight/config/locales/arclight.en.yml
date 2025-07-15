@@ -95,6 +95,7 @@ en:
         online_content:
           link_text: View only results with digital items
         has_content: Collection Contents
+        last_indexed: Last Indexed
   oac:
     search:
       placeholder_text: Search over 60,000 collection guides
