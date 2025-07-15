@@ -92,6 +92,7 @@ Search results are categorized in two tabs: "Grouped by collection" and "All res
 <li><strong>"All results"</strong>: Alternatively, you can view "all results" instead, which instead provides any results that match your keyword. The results may include collection titles, as well as folder or document titles, and these results will not be grouped by any particular collection. If you are viewing "all results," you will see the collection title in the breadcrumb, alongside the contributing institution.</li>
 </ul>
 <%= image_tag('arclight/faq/search.png', alt: "OAC search", class: "img-fluid") %>
+<br/>
 <p><strong>Refine your search</strong><br/>
 Use the following filter options to narrow your search results:</p>
 <ul>
@@ -109,6 +110,8 @@ Use the following filter options to narrow your search results:</p>
 
     <p>Collection guides describe the items in a collection and how they were gathered or created. They also identify the collection's location, and may provide additional information, including detailed descriptions, chronologies, and biographies.</p>
 <%= image_tag('arclight/faq/collection-guide.png', alt: "Collection guide example", class: "img-fluid") %>
+<br/>
+
 <ol>
 <li><strong>Collection header</strong>: This area includes the collection title, the contributing institution, and several other options. Click on the contributing institution name to view their contact information.</li>
 <ul style="list-style-type:circle;">
@@ -147,10 +150,12 @@ Use the following filter options to narrow your search results:</p>
     <h3 id="contact">How do I contact contributing institutions?</h3>
     <p>The name of the contributing institution, as well as a link to its website, is provided in every collection guide. Click on the contributing institution to view their contact information. You may also view the "Access and Use" section of the collection guide for information about how to contact the contributing institution.</p>
 <%= image_tag('arclight/faq/contact.png', alt: "Contact contributing institutions", class: "img-fluid") %>
+<br/>
+
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
     <h3 id="online">How do I see online versions of the items?</h3>
-    <p>Collection guides provide detailed descriptions of the items in a collection, and make it easy to  locate individual objects. Selected items have been digitally scanned, and may be available for immediate online viewing through the links provided by contributing institutions. If a collection includes online versions of items, the collection guide will indicate "<%= t('arclight.views.show.online_content.link_text') %>". You may also refine search results to "<%= t('arclight.views.show.online_content.link_text') %>."</p>
+    <p>Collection guides provide detailed descriptions of the items in a collection, and make it easy to  locate individual objects. Selected items have been digitally scanned, and may be available for immediate online viewing through the links provided by contributing institutions. If a collection includes online versions of items, the collection guide will indicate "Digital items available". You may also refine search results to "<%= t('arclight.views.show.online_content.link_text') %>."</p>
     <p>When digital items are available, contributing institutions will provide a link so you may view the digital items. The digital items are not available for viewing directly within the OAC website; these links will point to a digital collections platform, often the contributing partner’s website, or a digital collections website, such as <%= link_to 'Calisphere', 'https://calisphere.org' %>.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
