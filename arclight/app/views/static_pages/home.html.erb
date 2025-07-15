@@ -27,7 +27,7 @@
         </div>
         </div>
         <p class="text-end align-self-end">
-            <%= link_to "LeConte Family Papers / UC Berkeley, Bancroft Library", solr_document_path("ark:/13030/tf8p3006xd") %>
+            <%= link_to "LeConte Family Papers / UC Berkeley, Bancroft Library", solr_document_path("ark:/13030/tf8p3006xd", class: 'caption') %>
         </p>
     </div>
 </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="g-col-md-4 g-col-12 home-image" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
             <p>
-                <%= link_to('Courtesy of the Los Angeles Public Library', repository_path(:id => 'lapl')) %>
+                <%= link_to('Courtesy of the Los Angeles Public Library', repository_path(:id => 'lapl'), class: 'caption') %>
             </p>
         </div>
     </div>
