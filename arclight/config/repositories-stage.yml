@@ -36,20 +36,6 @@ ampas_clac:
     thumbnail_url: ""
     latitude: 34.0603659125
     longitude: -118.376709223
-capsacc:
-    name: "Agua Caliente Cultural Museum"
-    description: "The Agua Caliente Cultural Museum Research Library is a learning, training, and research center for all ages. The Museum accumulates and shares information about the history and culture of the Agua Caliente Band of Cahuilla Indians and other indigenous peoples."
-    contact_html: |
-        <div class="al-repository-contact-phone">(760) 778-1079</div>
-        <div class="al-repository-contact-info"><a href="mailto:mail@accmuseum.org">mail@accmuseum.org</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.accmuseum.org/">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">901 E Tahquitz Canyon Way</div>
-        <div class="al-repository-street-address-address2">Ste C-204</div>
-        <div class="al-repository-street-address-city_state_zip_country">Palm Springs, CA 92262, US</div>
-    thumbnail_url: ""
-    latitude: 33.822832755
-    longitude: -116.542625427
 cfra:
     name: "Alameda County Library, Dublin Library"
     description: ""
@@ -88,7 +74,7 @@ caalamu:
     longitude: -122.2443079
 calb:
     name: "Albany Library"
-    description: "The Albany Historical Collection comprises a wide range of materials, including books, newspapers, pamphlets, oral histories, photographs, clippings and memorabilia.The majority of the collection consists of material donated by local historian Catherine Webb. As founder and president of the Albany Historical Society, Ms. Webb documented the history of Albany for more than sixty years. In January 1994, to coincide with the opening of the new library building, she donated the entire collection of the Historical Society to the Albany Library, where it is displayed in a special alcove designed to house it.Since then, several other members of the community have donated additional materials to the library&#x27;s collection, and the Friends of the Albany Library have generously supported the microfilming of the entire local newspaper collection."
+    description: "The Albany Historical Collection comprises a wide range of materials, including books, newspapers, pamphlets, oral histories, photographs, clippings and memorabilia.The majority of the collection consists of material donated by local historian Catherine Webb. As founder and president of the Albany Historical Society, Ms. Webb documented the history of Albany for more than sixty years. In January 1994, to coincide with the opening of the new library building, she donated the entire collection of the Historical Society to the Albany Library, where it is displayed in a special alcove designed to house it.Since then, several other members of the community have donated additional materials to the library's collection, and the Friends of the Albany Library have generously supported the microfilming of the entire local newspaper collection."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 526-3720</div>
         <div class="al-repository-contact-info"><a href="http://www.aclibrary.org/albany">Website</a></div>
@@ -113,7 +99,7 @@ casfabm:
     longitude: -122.402527
 cajuol:
     name: "American Jewish University"
-    description: "The Ostrow Library is designed to meet the needs of the University&#x27;s faculty and students, as well as scholars conducting research in all fields of Jewish culture and civilization."
+    description: "The Ostrow Library is designed to meet the needs of the University's faculty and students, as well as scholars conducting research in all fields of Jewish culture and civilization."
     contact_html: |
         <div class="al-repository-contact-phone">(310) 440-1238  </div>
         <div class="al-repository-contact-info"><a href="mailto:library@aju.edu">library@aju.edu</a></div>
@@ -127,7 +113,7 @@ cajuol:
     longitude: -118.4716326
 cana:
     name: "Anaheim Public Library"
-    description: "The Anaheim Public Library&#x27;s Heritage Center has an inventory of almost a million items organized and cataloged for use by scholars, students and researchers in the Disney Resort Reading Room. Heritage Services also oversees the historic Mother Colony House and Woelke-Stoffel Victorian on the site of the new Founders&#x27; Park."
+    description: "The Anaheim Public Library's Heritage Center has an inventory of almost a million items organized and cataloged for use by scholars, students and researchers in the Disney Resort Reading Room. Heritage Services also oversees the historic Mother Colony House and Woelke-Stoffel Victorian on the site of the new Founders' Park."
     contact_html: |
         <div class="al-repository-contact-phone">(714) 765-1880</div>
         <div class="al-repository-contact-info"><a href="http://www2.anaheim.net/custom.cfm?name=welcome_library.cfm">Website</a></div>
@@ -139,7 +125,7 @@ cana:
     longitude: -117.919338942
 caarpl:
     name: "Arcadia Public Library"
-    description: "The Library&#x27;s Arcadia History Collection supports the Library&#x27;s mission to collect and preserve materials relating to the cultural and intellectual heritage of the City of Arcadia. Significant holdings include Arcadia Tournament of Roses float photographs along with many Rose Parade programs; a collection of 100 watercolors by Edna Lenz and Justine Wishek which depict the history of the San Gabriel Valley; photographs of the Santa Anita Assembly Center for the Japanese and digitized copies of the &quot;Santa Anita PACEMAKER&quot;; U.S. Army Balloon School papers; and a collection of books written by Arcadia authors. Other print and non-print materials focus on Elias J. &quot;Lucky&quot; Baldwin, the Arboretum of Los Angeles County, and the Santa Anita Racetrack. The history of the City of Arcadia is documented from its incorporation in 1903 and includes information on local businesses, maps and local government."
+    description: "The Library's Arcadia History Collection supports the Library's mission to collect and preserve materials relating to the cultural and intellectual heritage of the City of Arcadia. Significant holdings include Arcadia Tournament of Roses float photographs along with many Rose Parade programs; a collection of 100 watercolors by Edna Lenz and Justine Wishek which depict the history of the San Gabriel Valley; photographs of the Santa Anita Assembly Center for the Japanese and digitized copies of the &quot;Santa Anita PACEMAKER&quot;; U.S. Army Balloon School papers; and a collection of books written by Arcadia authors. Other print and non-print materials focus on Elias J. &quot;Lucky&quot; Baldwin, the Arboretum of Los Angeles County, and the Santa Anita Racetrack. The history of the City of Arcadia is documented from its incorporation in 1903 and includes information on local businesses, maps and local government."
     contact_html: |
         <div class="al-repository-contact-phone">(626) 821-5567</div>
         <div class="al-repository-contact-info"><a href="mailto:ref247@ci.arcadia.ca.us">ref247@ci.arcadia.ca.us</a></div>
@@ -165,7 +151,7 @@ camenasf:
     longitude: -122.162877
 caelaf:
     name: "Arhoolie Foundation"
-    description: "A nonprofit organization rooted in the life&#x27;s work of its founder Chris Strachwitz and his acclaimed independent label Arhoolie Records. Our mission is to document and celebrate blues, Cajun, zydeco, gospel, jazz, Tejano/Norteño, old-time, and other tradition-based styles of music through archival preservation, exhibits, community and educational outreach, live performance, and direct support to artists."
+    description: "A nonprofit organization rooted in the life's work of its founder Chris Strachwitz and his acclaimed independent label Arhoolie Records. Our mission is to document and celebrate blues, Cajun, zydeco, gospel, jazz, Tejano/Norteño, old-time, and other tradition-based styles of music through archival preservation, exhibits, community and educational outreach, live performance, and direct support to artists."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 525-7471</div>
         <div class="al-repository-contact-info"><a href="mailto:info@arhoolie.org">info@arhoolie.org</a></div>
@@ -217,7 +203,7 @@ clart_hmct:
     longitude: -118.148109
 clgam:
     name: "Autry Museum of the American West"
-    description: "The Autry is a history museum dedicated to exploring and sharing the stories, experiences, and perceptions of the diverse peoples of the American West. Located in Griffith Park, the Autry&#x27;s collection of over 500,000 pieces of art and artifacts, which includes the collection of the Southwest Museum of the American Indian, is one of the largest and most significant in the United States.  The Autry Institute includes two research libraries: the Braun Research Library and the Autry Library. Exhibitions, public programs, K–12 educational services, and publications are designed to examine the contemporary human condition through the lens of the historical Western experience and explore critical issues in society."
+    description: "The Autry is a history museum dedicated to exploring and sharing the stories, experiences, and perceptions of the diverse peoples of the American West. Located in Griffith Park, the Autry's collection of over 500,000 pieces of art and artifacts, which includes the collection of the Southwest Museum of the American Indian, is one of the largest and most significant in the United States.  The Autry Institute includes two research libraries: the Braun Research Library and the Autry Library. Exhibitions, public programs, K–12 educational services, and publications are designed to examine the contemporary human condition through the lens of the historical Western experience and explore critical issues in society."
     contact_html: |
         <div class="al-repository-contact-phone">(747) 201-8448</div>
         <div class="al-repository-contact-info"><a href="mailto:rroom@theautry.org">rroom@theautry.org</a></div>
@@ -294,7 +280,7 @@ cbhi:
     longitude: -122.2718157
 cb:
     name: "Berkeley Public Library"
-    description: "The Berkeley Public Library has served the people of Berkeley since 1893.   The Central Library, located in downtown Berkeley, and four recently renovated branches ensure easy library access for residents in Berkeley’s many and diverse neighborhoods. The library&#x27;s local history collection includes books, periodicals, newspaper clippings, photographs, postcards, city directories, telephone books, maps, and other materials related to Berkeley history."
+    description: "The Berkeley Public Library has served the people of Berkeley since 1893.   The Central Library, located in downtown Berkeley, and four recently renovated branches ensure easy library access for residents in Berkeley’s many and diverse neighborhoods. The library's local history collection includes books, periodicals, newspaper clippings, photographs, postcards, city directories, telephone books, maps, and other materials related to Berkeley history."
     contact_html: |
         <div class="al-repository-contact-phone">510 981 6100</div>
         <div class="al-repository-contact-info"><a href="http://www.berkeleypubliclibrary.org/community/berkeley_history/">Website</a></div>
@@ -408,7 +394,7 @@ csfa:
     longitude: -122.466788292
 ccr:
     name: "California Botanic Garden"
-    description: "California Botanic Garden is the largest botanic garden dedicated to California native plants, promoting botany, conservation and horticulture to inspire, inform and educate the public and scientific community about California&#x27;s native flora. The Garden is a living museum with curated collections of more than 22,000 California native plants, some of which are rare or endangered. Spread across 86 acres in Claremont, California, the Garden is located approximately 35 miles east of Los Angeles. The Garden displays about 2000 taxa of California plants and includes those native to the California Floristic Province."
+    description: "California Botanic Garden is the largest botanic garden dedicated to California native plants, promoting botany, conservation and horticulture to inspire, inform and educate the public and scientific community about California's native flora. The Garden is a living museum with curated collections of more than 22,000 California native plants, some of which are rare or endangered. Spread across 86 acres in Claremont, California, the Garden is located approximately 35 miles east of Los Angeles. The Garden displays about 2000 taxa of California plants and includes those native to the California Floristic Province."
     contact_html: |
         <div class="al-repository-contact-phone">(909) 625-8767</div>
         <div class="al-repository-contact-info"><a href="mailto:info@calbg.org">info@calbg.org</a></div>
@@ -421,7 +407,7 @@ ccr:
     longitude: -117.71907
 cocac:
     name: "California College of the Arts Libraries "
-    description: "The California College of the Arts Libraries are located in San Francisco and support the curriculum of the art, design, and architecture school. Their collections house not only thousands of books, periodicals, and videos but also unique materials such as slides, CCA theses, material samples, artists&#x27; books, a seed library, and science equipment.  CCA Libraries&#x27; contributions to Calisphere come via their VAULT digital archive. VAULT preserves the creative and intellectual output of the college, as well as several digitized special collections. The archive includes historical materials related to the college, photographs of exhibitions and events, the Capp Street Project Archive, the Robert Sommer Mudflats Collection, the Hamaguchi Study Print Collection, and the Joseph C. Sinel Collection."
+    description: "The California College of the Arts Libraries are located in San Francisco and support the curriculum of the art, design, and architecture school. Their collections house not only thousands of books, periodicals, and videos but also unique materials such as slides, CCA theses, material samples, artists' books, a seed library, and science equipment.  CCA Libraries' contributions to Calisphere come via their VAULT digital archive. VAULT preserves the creative and intellectual output of the college, as well as several digitized special collections. The archive includes historical materials related to the college, photographs of exhibitions and events, the Capp Street Project Archive, the Robert Sommer Mudflats Collection, the Hamaguchi Study Print Collection, and the Joseph C. Sinel Collection."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 703-9574</div>
         <div class="al-repository-contact-info"><a href="mailto:vault@cca.edu">vault@cca.edu</a></div>
@@ -435,7 +421,7 @@ cocac:
     longitude: -122.393949
 casadt:
     name: "California Department of Transportation (Caltrans)"
-    description: "The California Department of Transportation (Caltrans) Library and History Center preserves and ensures access to selected historical materials such as documents, photographs, maps, and artifacts that track the history of the Department.   Oral histories have been conducted and produced by Department volunteers, the Caltrans History Preservation Committee, and the District 3 History Committee since 1978. The &quot;Highway Recollections&quot; series consists of tape recordings and published transcriptions of interviews with retired engineers, highway maintenance workers, administrators, and other personnel who have shared their insights on past highway development and changes within the Department. All available recordings in this series have been digitized and are available via streaming.   In the wake of the October 17, 1989 Loma Prieta Earthquake, Caltrans commissioned an oral history project to document the personal and professional experiences of 258 Caltrans employees who worked to restore the State&#x27;s damaged transportation system. Caltrans staff in District 4 initiated the “Loma Prieta” project. It was organized quickly and informally with interviews completed within three months of the earthquake while their memories were fresh. The interviews cover a cross section of job titles and geographic areas to better illustrate the size and scope of the disaster.   Currently, only a small portion of the original 258 interviews have been digitalized, but Caltrans library currently is working in partnership with the California Audiovisual Preservation Project (CAVPP) to digitalize all the recordings."
+    description: "The California Department of Transportation (Caltrans) Library and History Center preserves and ensures access to selected historical materials such as documents, photographs, maps, and artifacts that track the history of the Department.   Oral histories have been conducted and produced by Department volunteers, the Caltrans History Preservation Committee, and the District 3 History Committee since 1978. The &quot;Highway Recollections&quot; series consists of tape recordings and published transcriptions of interviews with retired engineers, highway maintenance workers, administrators, and other personnel who have shared their insights on past highway development and changes within the Department. All available recordings in this series have been digitized and are available via streaming.   In the wake of the October 17, 1989 Loma Prieta Earthquake, Caltrans commissioned an oral history project to document the personal and professional experiences of 258 Caltrans employees who worked to restore the State's damaged transportation system. Caltrans staff in District 4 initiated the “Loma Prieta” project. It was organized quickly and informally with interviews completed within three months of the earthquake while their memories were fresh. The interviews cover a cross section of job titles and geographic areas to better illustrate the size and scope of the disaster.   Currently, only a small portion of the original 258 interviews have been digitalized, but Caltrans library currently is working in partnership with the California Audiovisual Preservation Project (CAVPP) to digitalize all the recordings."
     contact_html: |
         <div class="al-repository-contact-phone">(916) 654-4601</div>
         <div class="al-repository-contact-info"><a href="mailto:library@dot.ca.gov">library@dot.ca.gov</a></div>
@@ -476,7 +462,7 @@ cvala:
     longitude: -118.566101
 casfcjc:
     name: "California Judicial Center Library, Special Collections and Archives"
-    description: "The California Judicial Center Library (CJCL) is a law library serving the Justices and staff of the California Supreme Court and the Court of Appeal, First Appellate District and staff of the Administrative Office of the Courts. All state and federal primary legal resources and major secondary legal resources are found in CJCL collections.  CJCL&#x27;s collections contain more than 200,000 volumes, including all Federal and California primary legal resources and major secondary legal resources. Law reviews and journals of California and other major law schools are available in the library&#x27;s main collections.  Special Collections/Archives at CJCL collects the personal papers and other memorabilia of past and present California Supreme Court justices and other notable legal scholars, as well as the archives of the California Supreme Court Historical Society. Special Collections/Archives is open to researchers upon approval of written request."
+    description: "The California Judicial Center Library (CJCL) is a law library serving the Justices and staff of the California Supreme Court and the Court of Appeal, First Appellate District and staff of the Administrative Office of the Courts. All state and federal primary legal resources and major secondary legal resources are found in CJCL collections.  CJCL's collections contain more than 200,000 volumes, including all Federal and California primary legal resources and major secondary legal resources. Law reviews and journals of California and other major law schools are available in the library's main collections.  Special Collections/Archives at CJCL collects the personal papers and other memorabilia of past and present California Supreme Court justices and other notable legal scholars, as well as the archives of the California Supreme Court Historical Society. Special Collections/Archives is open to researchers upon approval of written request."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 865-4383</div>
         <div class="al-repository-contact-info"><a href="mailto:archives@jud.ca.gov">archives@jud.ca.gov</a></div>
@@ -581,7 +567,7 @@ csl:
     longitude: -121.496445537
 csl_chr:
     name: "California State Library, California History Room"
-    description: "The California State Library&#x27;s California History Section holds a major collection of documents from and about California&#x27;s rich history. The documents range from books, maps, newspapers, and periodicals, to pictorial materials (including daguerreotypes, lithographs, stereographs, and paintings) and ephemera (such as posters, programs, pamphlets, and sheet music)."
+    description: "The California State Library's California History Section holds a major collection of documents from and about California's rich history. The documents range from books, maps, newspapers, and periodicals, to pictorial materials (including daguerreotypes, lithographs, stereographs, and paintings) and ephemera (such as posters, programs, pamphlets, and sheet music)."
     contact_html: |
         <div class="al-repository-contact-phone">(916) 654-0176</div>
         <div class="al-repository-contact-info"><a href="mailto:cslcal@library.ca.gov">cslcal@library.ca.gov</a></div>
@@ -619,7 +605,7 @@ casp:
     longitude: -121.4976945
 casp_cspr:
     name: "California State Parks, Archives"
-    description: "The Archives cares for and provides access to documents that tell the story of the State Park System in California and the Department&#x27;s stewardship collections. The mission of the Archives is to acquire, organize, preserve, and provide access to the cumulative body of reference documents and electronic data required for effective stewardship of the full range of natural and cultural resources present in the State Park System."
+    description: "The Archives cares for and provides access to documents that tell the story of the State Park System in California and the Department's stewardship collections. The mission of the Archives is to acquire, organize, preserve, and provide access to the cumulative body of reference documents and electronic data required for effective stewardship of the full range of natural and cultural resources present in the State Park System."
     contact_html: |
         <div class="al-repository-contact-phone">(916) 263-0779</div>
         <div class="al-repository-contact-info"><a href="mailto:Department.Archives@parks.ca.gov">Department.Archives@parks.ca.gov</a></div>
@@ -657,7 +643,7 @@ casaspcd_cihc:
     latitude: 38.584422
     longitude: -121.504009
 casaspcd_govman:
-    name: "California State Parks, Capital District, Governor&#x27;s Mansion SHP"
+    name: "California State Parks, Capital District, Governor's Mansion SHP"
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(916) 324-4409</div>
@@ -722,7 +708,7 @@ casaspcd_statinmu:
     latitude: 38.584422
     longitude: -121.504009
 casaspcd_suttfort:
-    name: "California State Parks, Capital District, Sutter&#x27;s Fort SHP"
+    name: "California State Parks, Capital District, Sutter's Fort SHP"
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(916) 324-4409</div>
@@ -748,7 +734,7 @@ casp_casasppa:
     longitude: -121.420341
 casp_casaccs:
     name: "California State Parks, Relevancy and History Project, California Citrus State Historic Park with University of California, Riverside"
-    description: "The Relevancy and History Project partnership between University of California, Riverside&#x27;s Public History Program and California Citrus State Historic Park has organized a collection containing audiovisual material (moving images and audio) from the 1980s to the 2000s. These include the National Orange Company Oral History Program and other audio visual materials related to citrus heritage, migration, and immigration. The collection includes &quot;Living on the Dime&quot; moving images by Inland Mexican Heritage. &quot;Living on the Dime&quot; examined the effects of economic growth, the concept of progress, and environmental impacts of freeway-centered development on communities along Interstate 10 or &quot;The Dime&quot; throughout Inland Southern California."
+    description: "The Relevancy and History Project partnership between University of California, Riverside's Public History Program and California Citrus State Historic Park has organized a collection containing audiovisual material (moving images and audio) from the 1980s to the 2000s. These include the National Orange Company Oral History Program and other audio visual materials related to citrus heritage, migration, and immigration. The collection includes &quot;Living on the Dime&quot; moving images by Inland Mexican Heritage. &quot;Living on the Dime&quot; examined the effects of economic growth, the concept of progress, and environmental impacts of freeway-centered development on communities along Interstate 10 or &quot;The Dime&quot; throughout Inland Southern California."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 204-0051</div>
         <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=649">Website</a></div>
@@ -785,7 +771,7 @@ cpomcp_envarc:
     longitude: -117.8205095
 cpomcp_spcoll:
     name: "California State Polytechnic University, Pomona, Special Collections and Archives"
-    description: "California State Polytechnic University, Pomona, Special Collections and Archives collect, organize, preserve, and make available Cal Poly Pomona&#x27;s rare books and archival collections. The collections center around themes relevant to the mission of the university and are available for use by all interested users including students, faculty, staff, and the general research community. Special Collections and University Archives actively acquires new materials on a regular basis in our subject strengths. We house the University Archives, the Wine and Wine Industry Collection, the First Edition Collection, the John Gill Modern Poetry Collection, and other library collections and rare materials needing specialized care."
+    description: "California State Polytechnic University, Pomona, Special Collections and Archives collect, organize, preserve, and make available Cal Poly Pomona's rare books and archival collections. The collections center around themes relevant to the mission of the university and are available for use by all interested users including students, faculty, staff, and the general research community. Special Collections and University Archives actively acquires new materials on a regular basis in our subject strengths. We house the University Archives, the Wine and Wine Industry Collection, the First Edition Collection, the John Gill Modern Poetry Collection, and other library collections and rare materials needing specialized care."
     contact_html: |
         <div class="al-repository-contact-phone">(909) 869-3775</div>
         <div class="al-repository-contact-info"><a href="mailto:speccollections@cpp.edu">speccollections@cpp.edu</a></div>
@@ -838,7 +824,7 @@ cbas:
     longitude: -119.1031573
 csuci:
     name: "California State University Channel Islands"
-    description: "California State University Channel Islands&#x27; John Spoor Broome Library houses a number of interesting archival and special collections that can be used for original research. The Robert J. Lagomarsino Collection contains papers, photographs, furniture, and memorabilia relating to Lagomarsino&#x27;s years of political service as a California Senate member from 1961-1974 and as a United States Congressman from 1974-1992. Other archival and special collections include the University Archives, Jack O&#x27;Connell, Camarillo State Hospital, Elmer &quot;Gene&quot; Lore, Sr. Collection, Irene and Jorge Garcia Chicano Studies Collection, Jean M. Harris Papers, and Bottle Village."
+    description: "California State University Channel Islands' John Spoor Broome Library houses a number of interesting archival and special collections that can be used for original research. The Robert J. Lagomarsino Collection contains papers, photographs, furniture, and memorabilia relating to Lagomarsino's years of political service as a California Senate member from 1961-1974 and as a United States Congressman from 1974-1992. Other archival and special collections include the University Archives, Jack O'Connell, Camarillo State Hospital, Elmer &quot;Gene&quot; Lore, Sr. Collection, Irene and Jorge Garcia Chicano Studies Collection, Jean M. Harris Papers, and Bottle Village."
     contact_html: |
         <div class="al-repository-contact-info"><a href="http://library.csuci.edu/collections/">Website</a></div>
     location_html: |
@@ -849,7 +835,7 @@ csuci:
     longitude: -119.043388367
 chico:
     name: "California State University, Chico"
-    description: "The Meriam Library Special Collections and University Archives, a unique regional resource of written and pictorial materials which document the historical as well as the contemporary issues of the 12-county region known as &quot;northeastern California&quot; as well as the history of California State University, Chico.  Special Collections is composed of several &quot;collections&quot; which are housed together in this non-circulating area of the library because of rarity, source, condition or form. Access to the material is provided primarily through the Meriam Library&#x27;s online Library Catalog. Use of these items is limited to the Special Collections reading room and are available for research by faculty, students, visiting scholars, and community members."
+    description: "The Meriam Library Special Collections and University Archives, a unique regional resource of written and pictorial materials which document the historical as well as the contemporary issues of the 12-county region known as &quot;northeastern California&quot; as well as the history of California State University, Chico.  Special Collections is composed of several &quot;collections&quot; which are housed together in this non-circulating area of the library because of rarity, source, condition or form. Access to the material is provided primarily through the Meriam Library's online Library Catalog. Use of these items is limited to the Special Collections reading room and are available for research by faculty, students, visiting scholars, and community members."
     contact_html: |
         <div class="al-repository-contact-phone">(530) 898-6603</div>
         <div class="al-repository-contact-info"><a href="mailto:SpecialCollections@csuchico.edu">SpecialCollections@csuchico.edu</a></div>
@@ -863,7 +849,7 @@ chico:
     longitude: -121.846436262
 csudh:
     name: "California State University, Dominguez Hills"
-    description: "The University Library Department of Archives and Special Collections houses the Special Collections, Archives, and Rare Book Collections of CSU Dominguez Hills, and maintains the department&#x27;s digital collection pages. The University Library Department of Archives and Special Collections also serves as the home of the Archives of the California State University System."
+    description: "The University Library Department of Archives and Special Collections houses the Special Collections, Archives, and Rare Book Collections of CSU Dominguez Hills, and maintains the department's digital collection pages. The University Library Department of Archives and Special Collections also serves as the home of the Archives of the California State University System."
     contact_html: |
         <div class="al-repository-contact-phone">(310) 243-3895</div>
         <div class="al-repository-contact-info"><a href="mailto:archives@csudh.edu">archives@csudh.edu</a></div>
@@ -1046,7 +1032,7 @@ cvm:
     longitude: -122.231117
 csumbl:
     name: "California State University, Monterey Bay Library"
-    description: "California State University, Monterey Bay Library&#x27;s Special Reserve collection contains material of both academic and non-academic interest. They may include but are not limited to publications produced by California State University System, including CSUMB; materials that effect the Monterey Bay community and/or materials of special interest materials regarding the former Fort Ord."
+    description: "California State University, Monterey Bay Library's Special Reserve collection contains material of both academic and non-academic interest. They may include but are not limited to publications produced by California State University System, including CSUMB; materials that effect the Monterey Bay community and/or materials of special interest materials regarding the former Fort Ord."
     contact_html: |
         <div class="al-repository-contact-info"><a href="mailto:archives@csumb.edu">archives@csumb.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://csumb.edu/library">Website</a></div>
@@ -1157,7 +1143,7 @@ cnos_urba:
     longitude: -118.52989
 css:
     name: "California State University, Sacramento Library"
-    description: "The Library&#x27;s Department of Special Collections and University Archives (SCUA) serves as the principal location for the historical research collections at California State University, Sacramento. The primary strengths of the collection are post-World War II political, social, and environmental history of the Sacramento region and the history of the California State University, Sacramento, since its founding in 1947. The Department&#x27;s holdings include printed books, manuscripts, and university archives. Subject collections are comprised of both published and unpublished sources and include the Japanese American Archival Collection (JAAC), the Tsakopoulos Hellenic Collection of rare books and manuscripts, and the Magnus Hirschfeld Collection of Gay, Lesbian, Bisexual, and Transexual History. The department holdings include formats such as oral history transcripts, photographs, posters, broadsides, audiovisual materials, microforms, prints, paintings and other ephemera."
+    description: "The Library's Department of Special Collections and University Archives (SCUA) serves as the principal location for the historical research collections at California State University, Sacramento. The primary strengths of the collection are post-World War II political, social, and environmental history of the Sacramento region and the history of the California State University, Sacramento, since its founding in 1947. The Department's holdings include printed books, manuscripts, and university archives. Subject collections are comprised of both published and unpublished sources and include the Japanese American Archival Collection (JAAC), the Tsakopoulos Hellenic Collection of rare books and manuscripts, and the Magnus Hirschfeld Collection of Gay, Lesbian, Bisexual, and Transexual History. The department holdings include formats such as oral history transcripts, photographs, posters, broadsides, audiovisual materials, microforms, prints, paintings and other ephemera."
     contact_html: |
         <div class="al-repository-contact-phone">916-278-6144</div>
         <div class="al-repository-contact-info"><a href="mailto:lib-scua@csus.edu">lib-scua@csus.edu</a></div>
@@ -1222,7 +1208,7 @@ cacmal:
     longitude: -117.061629
 humboldt:
     name: "Cal Poly Humboldt, Library Special Collections and Archives"
-    description: "The Library&#x27;s Special Collections complement the resources of the general Library collections. They are acquired and maintained in support of the University&#x27;s curriculum with emphasis on the natural resources, Native peoples, and primary industries of Northwestern California, including the history of Cal Poly Humboldt."
+    description: "The Library's Special Collections complement the resources of the general Library collections. They are acquired and maintained in support of the University's curriculum with emphasis on the natural resources, Native peoples, and primary industries of Northwestern California, including the history of Cal Poly Humboldt."
     contact_html: |
         <div class="al-repository-contact-phone">(707) 826-3419</div>
         <div class="al-repository-contact-info"><a href="mailto:archives@humboldt.edu">archives@humboldt.edu</a></div>
@@ -1288,7 +1274,7 @@ cbclgs:
     longitude: -122.263343
 samcc:
     name: "Center for Sacramento History"
-    description: "The Center for Sacramento History educates and enriches the public by collecting, preserving and making accessible the region&#x27;s vast cultural heritage.  Founded in 1953, the Center for Sacramento History (CSH) is funded by the City and the County of Sacramento and is the repository and research center for City and County historic collections. These collections are held in the public trust and reflect the many aspects of the social, political, geographic, and cultural history of the Sacramento region.&lt;br&gt;  The collections held at CSH include both three-dimensional museum artifacts and archival records (public documents, and manuscripts and personal papers). The Center&#x27;s museum collections document Sacramento material culture –the tools employed, the clothing worn, the art enjoyed –and showcase the great diversity that calls the region home.  Within the archival collections are the official records of City and County government and the Superior Court of Sacramento County, and manuscript collections of prominent individuals, families, businesses, organizations, and community groups of the Sacramento region. The Center thus serves as a &quot;total archive&quot; in documenting all aspects of the city and county&#x27;s history. CSH&#x27;s holdings are open for research and available for display at accredited institutions that meet the center&#x27;s security and environmental requirements."
+    description: "The Center for Sacramento History educates and enriches the public by collecting, preserving and making accessible the region's vast cultural heritage.  Founded in 1953, the Center for Sacramento History (CSH) is funded by the City and the County of Sacramento and is the repository and research center for City and County historic collections. These collections are held in the public trust and reflect the many aspects of the social, political, geographic, and cultural history of the Sacramento region.&lt;br&gt;  The collections held at CSH include both three-dimensional museum artifacts and archival records (public documents, and manuscripts and personal papers). The Center's museum collections document Sacramento material culture –the tools employed, the clothing worn, the art enjoyed –and showcase the great diversity that calls the region home.  Within the archival collections are the official records of City and County government and the Superior Court of Sacramento County, and manuscript collections of prominent individuals, families, businesses, organizations, and community groups of the Sacramento region. The Center thus serves as a &quot;total archive&quot; in documenting all aspects of the city and county's history. CSH's holdings are open for research and available for display at accredited institutions that meet the center's security and environmental requirements."
     contact_html: |
         <div class="al-repository-contact-phone">(916) 808-7072</div>
         <div class="al-repository-contact-info"><a href="mailto:csh@cityofsacramento.org">csh@cityofsacramento.org</a></div>
@@ -1393,7 +1379,7 @@ corc_cawla:
     longitude: -117.851184011
 corc_hha:
     name: "Chapman University, Frank Mt. Pleasant Library of Special Collections and Archives, Huell Howser Archives"
-    description: "After creating an enduring public presence with a style of broadcast journalism that emphasized history, traditions, and communities, Huell Howser donated his papers and broadcast materials to Chapman University to archive his life and career while continuing to make an impact on California after his death in January 2013. The collection includes all of Huell Howser&#x27;s productions, on tape and digital formats, his production files and papers, memorabilia and his personal library."
+    description: "After creating an enduring public presence with a style of broadcast journalism that emphasized history, traditions, and communities, Huell Howser donated his papers and broadcast materials to Chapman University to archive his life and career while continuing to make an impact on California after his death in January 2013. The collection includes all of Huell Howser's productions, on tape and digital formats, his production files and papers, memorabilia and his personal library."
     contact_html: |
         <div class="al-repository-contact-phone">(714) 532-6088</div>
         <div class="al-repository-contact-info"><a href="mailto:calgold@chapman.edu">calgold@chapman.edu</a></div>
@@ -1419,7 +1405,7 @@ corc_spcoll:
     longitude: -117.851184011
 corc_uarc:
     name: "Chapman University, Frank Mt. Pleasant Library of Special Collections and Archives, University Archives"
-    description: "The University Archives is the repository for records of enduring value officially made or received by Chapman University, and for other materials of historical value related to the functions of the university and the Chapman community. During its history, the university has undergone changes in name, location, and function and the University Archives contains materials that document this history. There are manuscripts, photographs, books, Chapman periodicals and newspapers, ephemera, and audio/visual materials. The University Archives serves as the main source of historical information for campus offices such as the President&#x27;s Office, Office of the Chancellor, Publications, and Alumni and Parent Relations."
+    description: "The University Archives is the repository for records of enduring value officially made or received by Chapman University, and for other materials of historical value related to the functions of the university and the Chapman community. During its history, the university has undergone changes in name, location, and function and the University Archives contains materials that document this history. There are manuscripts, photographs, books, Chapman periodicals and newspapers, ephemera, and audio/visual materials. The University Archives serves as the main source of historical information for campus offices such as the President's Office, Office of the Chancellor, Publications, and Alumni and Parent Relations."
     contact_html: |
         <div class="al-repository-contact-phone">(714) 532-7719</div>
         <div class="al-repository-contact-info"><a href="mailto:speccoll@chapman.edu">speccoll@chapman.edu</a></div>
@@ -1432,7 +1418,7 @@ corc_uarc:
     longitude: -117.851184011
 corc_sashml:
     name: "Chapman University, Sala and Aron Samueli Holocaust Memorial Library, Oskar Schindler Archive"
-    description: "Dedicated by Nobel Peace Prize laureate, Elie Wiesel on April 11, 2005, the 60th anniversary of his liberation from Buchenwald, the Sala and Aron Samueli Holocaust Memorial Library is located on the 4th floor of the Leatherby Libraries. The library is a gift of Henry and Susan Samueli and is named in honor of Mr. Samueli&#x27;s parents, both of whom were Holocaust survivors. It includes the Joyce and Saul Brandman Survivors Room, made possible by a gift from The Brandman Foundation.  The library&#x27;s permanent and rotating exhibits tell of the individual lives affected, and all too often ended, by the Holocaust. A child&#x27;s shoe from the death camp Majdanek; a brief case used to carry false documents for Jewish children in hiding; a poem written by a boy in Terezin, all transform history into stories through which we can engage and learn. Recent gifts include the collection of Holocaust survivor and rescuer Curt Lowens and a self-portrait by Josef Nassy, a black expatriate artist of Jewish descent interned in camps in Belgium and Germany."
+    description: "Dedicated by Nobel Peace Prize laureate, Elie Wiesel on April 11, 2005, the 60th anniversary of his liberation from Buchenwald, the Sala and Aron Samueli Holocaust Memorial Library is located on the 4th floor of the Leatherby Libraries. The library is a gift of Henry and Susan Samueli and is named in honor of Mr. Samueli's parents, both of whom were Holocaust survivors. It includes the Joyce and Saul Brandman Survivors Room, made possible by a gift from The Brandman Foundation.  The library's permanent and rotating exhibits tell of the individual lives affected, and all too often ended, by the Holocaust. A child's shoe from the death camp Majdanek; a brief case used to carry false documents for Jewish children in hiding; a poem written by a boy in Terezin, all transform history into stories through which we can engage and learn. Recent gifts include the collection of Holocaust survivor and rescuer Curt Lowens and a self-portrait by Josef Nassy, a black expatriate artist of Jewish descent interned in camps in Belgium and Germany."
     contact_html: |
         <div class="al-repository-contact-phone">(714) 532-6005</div>
         <div class="al-repository-contact-info"><a href="mailto:schindlerarchive@chapman.edu">schindlerarchive@chapman.edu</a></div>
@@ -1472,7 +1458,7 @@ chs:
     longitude: -122.166841
 cchu:
     name: "Chula Vista Public Library"
-    description: "The Chula Vista Public Library has an archive of the Star-News, a local paper based in the South Bay area of San Diego County. The microfilm collection begins in 1930 and stretches to 2008. The library has physical copies of the newspaper from 1931 to 2008, and again from 2011 to today. Chula Vista History in Pictures is the library&#x27;s digitized collection of engaging images depicting our local history."
+    description: "The Chula Vista Public Library has an archive of the Star-News, a local paper based in the South Bay area of San Diego County. The microfilm collection begins in 1930 and stretches to 2008. The library has physical copies of the newspaper from 1931 to 2008, and again from 2011 to today. Chula Vista History in Pictures is the library's digitized collection of engaging images depicting our local history."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 691-5069</div>
         <div class="al-repository-contact-info"><a href="http://www.chulavistalibrary.com/">Website</a></div>
@@ -1636,7 +1622,7 @@ cuc_dru:
     longitude: -117.7135309
 caclah:
     name: "Claremont Heritage"
-    description: "Claremont Heritage&#x27;s mission is to advance, preserve and celebrate the historic, architectural, natural and cultural resources of our community through collaboration, education and advocacy.  Claremont Heritage, a non-profit, inclusive, community-oriented membership organization, is the city’s largest membership organization devoted to the preservation of the history and historic character of Claremont.   We: Archive and share Claremont artifacts, oral histories, historic properties and tree surveys, maps and photos. Offer tours, lectures, films and workshops for school children, community groups, and the general public. Support individual homeowners, Claremont city staff, architects, landscape and interior designers, contractors, developers and realtors by providing access to historical and archival information. Recognize and celebrate individuals and organizations that have made significant contributions to preservation of Claremont’s historical resources and cultural heritage.  In these ways, we seek to communicate to residents and visitors the qualities that make our city unique and to promote the value of preserving our neighborhoods, cultural resources, the built and natural environments and their histories."
+    description: "Claremont Heritage's mission is to advance, preserve and celebrate the historic, architectural, natural and cultural resources of our community through collaboration, education and advocacy.  Claremont Heritage, a non-profit, inclusive, community-oriented membership organization, is the city’s largest membership organization devoted to the preservation of the history and historic character of Claremont.   We: Archive and share Claremont artifacts, oral histories, historic properties and tree surveys, maps and photos. Offer tours, lectures, films and workshops for school children, community groups, and the general public. Support individual homeowners, Claremont city staff, architects, landscape and interior designers, contractors, developers and realtors by providing access to historical and archival information. Recognize and celebrate individuals and organizations that have made significant contributions to preservation of Claremont’s historical resources and cultural heritage.  In these ways, we seek to communicate to residents and visitors the qualities that make our city unique and to promote the value of preserving our neighborhoods, cultural resources, the built and natural environments and their histories."
     contact_html: |
         <div class="al-repository-contact-phone">(909) 621-0848</div>
         <div class="al-repository-contact-info"><a href="mailto:info@claremontheritage.org ">info@claremontheritage.org </a></div>
@@ -1687,7 +1673,7 @@ cmartch:
     longitude: -122.1365044
 calacac:
     name: "Corita Art Center"
-    description: "The Corita Art Center, a project of the Immaculate Heart Community, preserves and promotes Corita Kent&#x27;s art, teaching, and passion for social justice. Today, the Corita Art Center facilitates exhibitions by lending artwork all over the world, oversees image and merchandising rights, sells Corita’s remaining original prints, and serves as a resource of information about her life and work."
+    description: "The Corita Art Center, a project of the Immaculate Heart Community, preserves and promotes Corita Kent's art, teaching, and passion for social justice. Today, the Corita Art Center facilitates exhibitions by lending artwork all over the world, oversees image and merchandising rights, sells Corita’s remaining original prints, and serves as a resource of information about her life and work."
     contact_html: |
         <div class="al-repository-contact-phone">(323) 450–4650</div>
         <div class="al-repository-contact-info"><a href="mailto:info@corita.org">info@corita.org</a></div>
@@ -1736,7 +1722,7 @@ ccoro:
     longitude: -117.567413
 ccov:
     name: "Covina Public Library"
-    description: "The Covina Public Library’s mission is to provide an institution where informational, educational and recreational materials will be easily accessible to the entire community; to meet the library&#x27;s ever changing needs via the latest technology; to develop a staff that is responsive to the needs of the residents of Covina – a staff that is well able to select, organize and maintain the library&#x27;s collection and who can interpret the library&#x27;s contents and relate them to individual needs – and; to encourage use of the library as a community information and activities center."
+    description: "The Covina Public Library’s mission is to provide an institution where informational, educational and recreational materials will be easily accessible to the entire community; to meet the library's ever changing needs via the latest technology; to develop a staff that is responsive to the needs of the residents of Covina – a staff that is well able to select, organize and maintain the library's collection and who can interpret the library's contents and relate them to individual needs – and; to encourage use of the library as a community information and activities center."
     contact_html: |
         <div class="al-repository-contact-phone">(626) 384-5300</div>
         <div class="al-repository-contact-info"><a href="https://covinaca.gov/city-departments/library/">Website</a></div>
@@ -1850,7 +1836,7 @@ cdohic:
     longitude: -118.154495
 cfradhc:
     name: "Dublin Heritage Park and Museums"
-    description: "Dublin Heritage Park and Museums comprises a ten-acre park with historic buildings, lawns, a historic cemetery, and picnic areas. There are two museums on site: the 1856 Murray Schoolhouse, which houses a permanent exhibit on Dublin&#x27;s history; and the Kolb House, a historic house museum."
+    description: "Dublin Heritage Park and Museums comprises a ten-acre park with historic buildings, lawns, a historic cemetery, and picnic areas. There are two museums on site: the 1856 Murray Schoolhouse, which houses a permanent exhibit on Dublin's history; and the Kolb House, a historic house museum."
     contact_html: |
         <div class="al-repository-contact-phone">(925) 452-2100</div>
         <div class="al-repository-contact-info"><a href="mailto:HeritagePark@dublin.ca.gov">HeritagePark@dublin.ca.gov</a></div>
@@ -1863,7 +1849,7 @@ cfradhc:
     longitude: -121.938487
 cabaebh:
     name: "East Bakersfield High School"
-    description: "The East Bakersfield High School collection consists of audiovisual material from the 1940s, 1960s and 1970s. A majority of the collection contains audio recordings of the school&#x27;s choir. Other material includes recorded audio from school pageants and band concerts."
+    description: "The East Bakersfield High School collection consists of audiovisual material from the 1940s, 1960s and 1970s. A majority of the collection contains audio recordings of the school's choir. Other material includes recorded audio from school pageants and band concerts."
     contact_html: |
         <div class="al-repository-contact-phone">(661) 871-7221 ext. 72513</div>
         <div class="al-repository-contact-info"><a href="https://east.kernhigh.org/">Website</a></div>
@@ -1875,7 +1861,7 @@ cabaebh:
     longitude: -118.965723
 cabeebmc:
     name: "East Bay Media Center"
-    description: "East Bay Media Center has been serving the Bay Area community for 38 years providing media education services and training by its Emmy and Peabody Award-winning producers.  EBMC is the home of one of northern California&#x27;s largest independent video and film festivals, the BERKELEY VIDEO &amp; FILM FESTIVAL, now in it&#x27;s 27th year, provides a powerful platform for diverse storytelling, with a rich array of documentaries, narrative, experimental, animation, shorts and exclusive screenings of Film School Shorts by USC&#x27;s School of Cinematic Arts.  EBMC is dedicated to providing the resources for affordable access to technologies that enhance and empower independent producers in our community. EBMC serves the Non-Profit East Bay Community, UC Berkeley, Community Colleges, Independent Producers and Students."
+    description: "East Bay Media Center has been serving the Bay Area community for 38 years providing media education services and training by its Emmy and Peabody Award-winning producers.  EBMC is the home of one of northern California's largest independent video and film festivals, the BERKELEY VIDEO &amp; FILM FESTIVAL, now in it's 27th year, provides a powerful platform for diverse storytelling, with a rich array of documentaries, narrative, experimental, animation, shorts and exclusive screenings of Film School Shorts by USC's School of Cinematic Arts.  EBMC is dedicated to providing the resources for affordable access to technologies that enhance and empower independent producers in our community. EBMC serves the Non-Profit East Bay Community, UC Berkeley, Community Colleges, Independent Producers and Students."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 843-3699</div>
         <div class="al-repository-contact-info"><a href="mailto:maketv@aol.com">maketv@aol.com</a></div>
@@ -1900,7 +1886,7 @@ caolebrp:
     longitude: -122.14448
 cainecm:
     name: "Eastern California Museum"
-    description: "The Eastern California Museum was founded in 1928, and has been operated by the County of Inyo since 1968. The mission of the Museum is to collect, preserve, and interpret objects and information related to the cultural and natural history of Inyo County and the Eastern Sierra, from Death Valley to Mono Lake. The Museum collection is held in public trust, and a computerized database with over 15,550 records is used to manage the Museum&#x27;s extensive collections. In addition to those artifacts, the Museum also houses about 27,000 historic photographs of the Eastern Sierra region, the majority of which date from the late 1800s through the 1950s. The Museum is also an outstanding resource for researchers, and typically handles about 200 requests for information or photo reprints per year. Artifacts and information are interpreted for the public through the Museum&#x27;s permanent exhibits and an annual rotating, special exhibit from the collection. The Museum also maintains archives that make up the History Files, and the Family Files, both of which contain newspaper clippings, original documents, and other information about the towns, people, and subjects that have played a role in the history of Inyo County and the Eastern Sierra. The Frank M. Parcher Research Library is another excellent source of information for researchers and the general public. The Museum also presents educational programs, special events, and lectures and talks that are free and open to the public. In addition to the main Museum buildings at the Museum&#x27;s Independence campus, the Eastern California Museum also maintains the historic Commander&#x27;s House and Edwards House in Independence, and the Mary DeDecker Native Plant Garden on the Museum grounds. The Eastern Californian Museum, located at 155 N. Grant St. in Independence, is open daily and weekends (except major holidays) and admission is free, although donations are appreciated."
+    description: "The Eastern California Museum was founded in 1928, and has been operated by the County of Inyo since 1968. The mission of the Museum is to collect, preserve, and interpret objects and information related to the cultural and natural history of Inyo County and the Eastern Sierra, from Death Valley to Mono Lake. The Museum collection is held in public trust, and a computerized database with over 15,550 records is used to manage the Museum's extensive collections. In addition to those artifacts, the Museum also houses about 27,000 historic photographs of the Eastern Sierra region, the majority of which date from the late 1800s through the 1950s. The Museum is also an outstanding resource for researchers, and typically handles about 200 requests for information or photo reprints per year. Artifacts and information are interpreted for the public through the Museum's permanent exhibits and an annual rotating, special exhibit from the collection. The Museum also maintains archives that make up the History Files, and the Family Files, both of which contain newspaper clippings, original documents, and other information about the towns, people, and subjects that have played a role in the history of Inyo County and the Eastern Sierra. The Frank M. Parcher Research Library is another excellent source of information for researchers and the general public. The Museum also presents educational programs, special events, and lectures and talks that are free and open to the public. In addition to the main Museum buildings at the Museum's Independence campus, the Eastern California Museum also maintains the historic Commander's House and Edwards House in Independence, and the Mary DeDecker Native Plant Garden on the Museum grounds. The Eastern Californian Museum, located at 155 N. Grant St. in Independence, is open daily and weekends (except major holidays) and admission is free, although donations are appreciated."
     contact_html: |
         <div class="al-repository-contact-phone">(760) 878-0364</div>
         <div class="al-repository-contact-info"><a href="mailto:ecmuseum@inyocounty.us">ecmuseum@inyocounty.us</a></div>
@@ -1952,7 +1938,7 @@ calaephm:
     longitude: -118.238085
 cesc:
     name: "Escondido Public Library, Pioneer Room"
-    description: "Escondido Public Library&#x27;s Pioneer Room identifies, collects, preserves, and provides access to a non-circulating collection of records, manuscripts, and other significant resources of enduring historic, legal, administrative and fiscal value for the community of Escondido.  Visitors to the Pioneer Room may consult with documents, photographs, and other reference materials available to research a variety of local history topics pertaining to the history and development of Escondido and the surrounding region."
+    description: "Escondido Public Library's Pioneer Room identifies, collects, preserves, and provides access to a non-circulating collection of records, manuscripts, and other significant resources of enduring historic, legal, administrative and fiscal value for the community of Escondido.  Visitors to the Pioneer Room may consult with documents, photographs, and other reference materials available to research a variety of local history topics pertaining to the history and development of Escondido and the surrounding region."
     contact_html: |
         <div class="al-repository-contact-phone">(760) 839-4315</div>
         <div class="al-repository-contact-info"><a href="mailto:pioneer.room@escondidolibrary.org">pioneer.room@escondidolibrary.org</a></div>
@@ -2040,7 +2026,7 @@ fcchs:
     longitude: -119.920914
 cfcpl:
     name: "Fresno County Public Library"
-    description: "The Heritage Center houses a large and diverse collection of materials which document the history of Fresno County since its formation in 1856. The collection&#x27;s primary components are: Approximately 20,000 books and pamphlets pertaining to Fresno County; Approximately 1,500 photographs and postcards illustrating various Fresno County people and places; Approximately 250 oral histories of various people associated with Fresno County history; and A large vertical file containing information on many different subjects relating to Fresno County."
+    description: "The Heritage Center houses a large and diverse collection of materials which document the history of Fresno County since its formation in 1856. The collection's primary components are: Approximately 20,000 books and pamphlets pertaining to Fresno County; Approximately 1,500 photographs and postcards illustrating various Fresno County people and places; Approximately 250 oral histories of various people associated with Fresno County history; and A large vertical file containing information on many different subjects relating to Fresno County."
     contact_html: |
         <div class="al-repository-contact-phone">(559) 600-6230</div>
         <div class="al-repository-contact-info"><a href="mailto:heritagecenter@fresnolibrary.org">heritagecenter@fresnolibrary.org</a></div>
@@ -2116,7 +2102,7 @@ getty_spcoll:
     longitude: -118.475017548
 caargm:
     name: "Gilb Museum of Arcadia Heritage"
-    description: "The Gilb Museum of Arcadia Heritage collection contains text and still image material from the 1920s to the 1990s. A majority of the collection consists of information about the Arcadia Women&#x27;s Club, such as meeting minutes, pressbooks, and ledgers. Other material includes scrapbooks and photo albums of California scenery, texts about California historic landmarks, and a 1948 letter from Richard Nixon."
+    description: "The Gilb Museum of Arcadia Heritage collection contains text and still image material from the 1920s to the 1990s. A majority of the collection consists of information about the Arcadia Women's Club, such as meeting minutes, pressbooks, and ledgers. Other material includes scrapbooks and photo albums of California scenery, texts about California historic landmarks, and a 1948 letter from Richard Nixon."
     contact_html: |
         <div class="al-repository-contact-phone">(626) 574-5440</div>
         <div class="al-repository-contact-info"><a href="mailto:museum@arcadiaca.gov">museum@arcadiaca.gov</a></div>
@@ -2271,12 +2257,15 @@ hssa:
     longitude: -124.077894688
 cats:
     name: "Historical Society of Cat Town"
-    description: ""
+    description: "The Historical Society of Cat Town stewards materials documenting the history of Cat Town and its communities. It also maintains some collections donated by Muppets characters."
     contact_html: |
-        <div class="al-repository-contact-info"><a href="https://cdlib.org/">Website</a></div>
+        <div class="al-repository-contact-phone">1-800-CAT-TOWN</div>
+        <div class="al-repository-contact-info"><a href="mailto:cat-town-hist@cdlib.org">cat-town-hist@cdlib.org</a></div>
+        <div class="al-repository-contact-info"><a href="https://en.wikipedia.org/wiki/Cat">Website</a></div>
         <div class="al-repository-contact-info"><a href="https://calisphere.org/">Digital collections</a></div>
     location_html: |
-        <div class="al-repository-street-address-city_state_zip_country">,  , </div>
+        <div class="al-repository-street-address-address1">12 Cornish Rex St.</div>
+        <div class="al-repository-street-address-city_state_zip_country">Cat Town, CA 00000, US</div>
     thumbnail_url: ""
     latitude: None
     longitude: None
@@ -2308,7 +2297,7 @@ capdhs:
     longitude: -116.393495
 csluhi:
     name: "History Center of San Luis Obispo County"
-    description: "A successor organization to the San Luis Obispo County Historical Society, the History Center of San Luis Obispo&#x27;s mission is to promote the understanding and appreciation of San Luis Obispo County’s historical and cultural heritage. The History Center collects, preserves, and exhibits historic artifacts, records, images, and documents and provides access to its collections in both traditional and digital forms for research, study, and educational purposes. The History Center cooperates with other regional organizations and promotes their goals and programs."
+    description: "A successor organization to the San Luis Obispo County Historical Society, the History Center of San Luis Obispo's mission is to promote the understanding and appreciation of San Luis Obispo County’s historical and cultural heritage. The History Center collects, preserves, and exhibits historic artifacts, records, images, and documents and provides access to its collections in both traditional and digital forms for research, study, and educational purposes. The History Center cooperates with other regional organizations and promotes their goals and programs."
     contact_html: |
         <div class="al-repository-contact-phone">(805) 534-0638</div>
         <div class="al-repository-contact-info"><a href="mailto:info@historycenterslo.org ">info@historycenterslo.org </a></div>
@@ -2350,7 +2339,7 @@ hoover:
     latitude: 37.427246188
     longitude: -122.166337967
 capahu:
-    name: "Humboldt Area People&#x27;s Archive"
+    name: "Humboldt Area People's Archive"
     description: "Our mission is to collect and conserve documents for public use related to activism, business, and art for social justice, peace, and the environment, as well as histories of counterculturists, back-to-the-landers, and cannabis growers’ lives in and around Humboldt, Trinity and Mendocino, California counties. With an emphasis on the late 1960s to present."
     contact_html: |
         <div class="al-repository-contact-phone">(707) 443-3289  </div>
@@ -2364,7 +2353,7 @@ capahu:
     longitude: -124.063671
 huntington:
     name: "Huntington Library"
-    description: "The Huntington Library is one the world&#x27;s great independent research libraries, with more than nine million items spanning the 11th to 21st century. These extraordinary and diverse materials are centered on fourteen intersecting collection strengths, some of which are: British History; Early Printed Books; Hispanic History and Culture; History of Science, Medicine, and Technology; Maps and Atlases; Prints, Posters, and Ephemera; Photography; Pacific Rim; California; and American History. Digitized materials from these vast collections aim to support the research needs of Huntington readers and staff and to share resources with a broader community. New content is regularly added, yet only a fraction of the Huntington Library’s more than nine million items is available in digitized form."
+    description: "The Huntington Library is one the world's great independent research libraries, with more than nine million items spanning the 11th to 21st century. These extraordinary and diverse materials are centered on fourteen intersecting collection strengths, some of which are: British History; Early Printed Books; Hispanic History and Culture; History of Science, Medicine, and Technology; Maps and Atlases; Prints, Posters, and Ephemera; Photography; Pacific Rim; California; and American History. Digitized materials from these vast collections aim to support the research needs of Huntington readers and staff and to share resources with a broader community. New content is regularly added, yet only a fraction of the Huntington Library’s more than nine million items is available in digitized form."
     contact_html: |
         <div class="al-repository-contact-phone">(626) 405-2191</div>
         <div class="al-repository-contact-info"><a href="mailto:reference@huntington.org">reference@huntington.org</a></div>
@@ -2476,7 +2465,7 @@ huntington_inarc:
     longitude: -118.1181199
 caimphs:
     name: "Imperial County Historical Society Pioneers Museum"
-    description: "The Imperial County Historical Society was organized as the Imperial Valley Pioneers Society in 1928 to preserve the life histories of early settlers. Its ongoing mission is to preserve the unique development of the irrigated desert and the people who developed the area&#x27;s modern history. The archives include a rich array of over 45,000 records spanning over 100 years of Imperial Valley history and are located at the Imperial County Historical Society Pioneers&#x27; Museum."
+    description: "The Imperial County Historical Society was organized as the Imperial Valley Pioneers Society in 1928 to preserve the life histories of early settlers. Its ongoing mission is to preserve the unique development of the irrigated desert and the people who developed the area's modern history. The archives include a rich array of over 45,000 records spanning over 100 years of Imperial Valley history and are located at the Imperial County Historical Society Pioneers' Museum."
     contact_html: |
         <div class="al-repository-contact-phone">(760) 352-3211</div>
         <div class="al-repository-contact-info"><a href="mailto:archivist@pioneersmuseum.net">archivist@pioneersmuseum.net</a></div>
@@ -2489,7 +2478,7 @@ caimphs:
     longitude: -115.503863
 cing:
     name: "Inglewood Public Library"
-    description: "The Inglewood Public Library&#x27;s photograph collection includes images of historical interest to the City of Inglewood and surrounding areas. Images, dating from the 1800&#x27;s to 2008, document public, residential and commercial buildings, including businesses, schools, churches, fire and police department facilities, theaters, such as Fox Theater, and the public library; street scenes; neighborhoods; art in Inglewood, such as the History of Transportation Mural; groups and family portraits; annual events, such as Centinela Days and the Inglewood Christmas Parade; adobe house, such as the Centinela Adobe; natural disasters, such as the 1920 Inglewood Earthquake and the 1994 Northridge Earthquake; sport and recreation facilities, such as Hollywood Park Race Track and The Great Western Forum. Formats include aerial photographs. Photographs primarily document city life and commercial activities."
+    description: "The Inglewood Public Library's photograph collection includes images of historical interest to the City of Inglewood and surrounding areas. Images, dating from the 1800's to 2008, document public, residential and commercial buildings, including businesses, schools, churches, fire and police department facilities, theaters, such as Fox Theater, and the public library; street scenes; neighborhoods; art in Inglewood, such as the History of Transportation Mural; groups and family portraits; annual events, such as Centinela Days and the Inglewood Christmas Parade; adobe house, such as the Centinela Adobe; natural disasters, such as the 1920 Inglewood Earthquake and the 1994 Northridge Earthquake; sport and recreation facilities, such as Hollywood Park Race Track and The Great Western Forum. Formats include aerial photographs. Photographs primarily document city life and commercial activities."
     contact_html: |
         <div class="al-repository-contact-phone">(310)412-4280</div>
         <div class="al-repository-contact-info"><a href="mailto:libraryref@cityofinglewood.org">libraryref@cityofinglewood.org</a></div>
@@ -2669,7 +2658,7 @@ calgbam:
     longitude: -117.788331
 calgbhs:
     name: "Laguna Beach Historical Society"
-    description: "The Laguna Beach Historical Society collects, archives, and shares materials about Laguna Beach history.   The Laguna Beach Historical Society is an all-volunteer non-profit civic organization dedicated to:  • Collecting and preserving Laguna Beach&#x27;s historical materials • Disseminating these materials to interested individuals"
+    description: "The Laguna Beach Historical Society collects, archives, and shares materials about Laguna Beach history.   The Laguna Beach Historical Society is an all-volunteer non-profit civic organization dedicated to:  • Collecting and preserving Laguna Beach's historical materials • Disseminating these materials to interested individuals"
     contact_html: |
         <div class="al-repository-contact-phone">(949) 497-6834</div>
         <div class="al-repository-contact-info"><a href="http://www.lagunabeachhistory.org/">Website</a></div>
@@ -2721,7 +2710,7 @@ cljhi:
     longitude: -117.2773708
 casdla:
     name: "Lambda Archives of San Diego"
-    description: "Lambda Archives of San Diego (LASD) has been established to preserve and make available for research and educational purposes the tangible record of the lesbian, gay, bisexual, and transgender (LGBT) community with a special emphasis on those materials relating specifically to San Diego County and northern Baja California. LASD views all aspects of LGBT life as important to the understanding of our communities&#x27; values, interests and issues. To this end, LASD actively seeks to acquire and preserve materials that reflect the diversity of our communities in respect to: gender and sexual identity; racial and ethnic identity; age; and the broad range of our communities&#x27; activities and concerns including politics and social activism, social groups, support groups, athletics, spiritual groups, arts and culture, business and finance, and general community resources. LASD collects not only material related to the communities&#x27; past history, but documents current events as well."
+    description: "Lambda Archives of San Diego (LASD) has been established to preserve and make available for research and educational purposes the tangible record of the lesbian, gay, bisexual, and transgender (LGBT) community with a special emphasis on those materials relating specifically to San Diego County and northern Baja California. LASD views all aspects of LGBT life as important to the understanding of our communities' values, interests and issues. To this end, LASD actively seeks to acquire and preserve materials that reflect the diversity of our communities in respect to: gender and sexual identity; racial and ethnic identity; age; and the broad range of our communities' activities and concerns including politics and social activism, social groups, support groups, athletics, spiritual groups, arts and culture, business and finance, and general community resources. LASD collects not only material related to the communities' past history, but documents current events as well."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 260-1522</div>
         <div class="al-repository-contact-info"><a href="mailto:info@lambdaarchives.org">info@lambdaarchives.org</a></div>
@@ -2871,7 +2860,7 @@ calamta:
     longitude: -118.232716
 cam:
     name: "Los Angeles County Museum of Art"
-    description: "Since its inception in 1965, the Los Angeles County Museum of Art (LACMA) has been devoted to collecting works of art that span both history and geography, in addition to representing Los Angeles&#x27;s uniquely diverse population. Today LACMA is the largest art museum in the western United States, with a collection that includes nearly 130,000 objects dating from antiquity to the present, encompassing the geographic world and nearly the entire history of art. Among the museum’s strengths are its holdings of Asian art, Latin American art, ranging from pre-Columbian masterpieces to works by leading modern and contemporary artists; and Islamic art, of which LACMA hosts one of the most significant collections in the world. A museum of international stature as well as a vital part of Southern California, LACMA shares its vast collections through exhibitions, public programs, and research facilities that attract over a million visitors annually, in addition to serving millions through digital initiatives, such as online collections, scholarly catalogues, and interactive engagement at lacma.org. Situated in Hancock Park on over 20 acres in the heart of Los Angeles, LACMA is located between the ocean and downtown."
+    description: "Since its inception in 1965, the Los Angeles County Museum of Art (LACMA) has been devoted to collecting works of art that span both history and geography, in addition to representing Los Angeles's uniquely diverse population. Today LACMA is the largest art museum in the western United States, with a collection that includes nearly 130,000 objects dating from antiquity to the present, encompassing the geographic world and nearly the entire history of art. Among the museum’s strengths are its holdings of Asian art, Latin American art, ranging from pre-Columbian masterpieces to works by leading modern and contemporary artists; and Islamic art, of which LACMA hosts one of the most significant collections in the world. A museum of international stature as well as a vital part of Southern California, LACMA shares its vast collections through exhibitions, public programs, and research facilities that attract over a million visitors annually, in addition to serving millions through digital initiatives, such as online collections, scholarly catalogues, and interactive engagement at lacma.org. Situated in Hancock Park on over 20 acres in the heart of Los Angeles, LACMA is located between the ocean and downtown."
     contact_html: |
         <div class="al-repository-contact-phone">(323) 857-6118</div>
         <div class="al-repository-contact-info"><a href="mailto:library@lacma.org">library@lacma.org</a></div>
@@ -2885,7 +2874,7 @@ cam:
     longitude: -118.3578161
 cam_barl:
     name: "Los Angeles County Museum of Art, Balch Art Research Library"
-    description: "In keeping with LACMA&#x27;s commitment to research and education, the Mr. and Mrs. Allan C. Balch Art Research Library serves the Museum&#x27;s staff, scholars, students, and the public by collecting, preserving, and ensuring access to information about art.  The Balch Art Research Library is also the repository of LACMA&#x27;s institutional archive of records related to the museum&#x27;s past exhibitions and administrative history.  Access to the library and archive is free and available by appointment. Requests for materials must be made at least one full business day in advance."
+    description: "In keeping with LACMA's commitment to research and education, the Mr. and Mrs. Allan C. Balch Art Research Library serves the Museum's staff, scholars, students, and the public by collecting, preserving, and ensuring access to information about art.  The Balch Art Research Library is also the repository of LACMA's institutional archive of records related to the museum's past exhibitions and administrative history.  Access to the library and archive is free and available by appointment. Requests for materials must be made at least one full business day in advance."
     contact_html: |
         <div class="al-repository-contact-phone">(323) 857-6118</div>
         <div class="al-repository-contact-info"><a href="mailto:library@lacma.org">library@lacma.org</a></div>
@@ -2938,7 +2927,7 @@ casplam:
     longitude: -118.2643567
 claphila:
     name: "Los Angeles Philharmonic Archives"
-    description: "The Los Angeles Philharmonic Archives is the institutional memory of the Los Angeles Philharmonic Association, providing continuity between its past and its future. The Archives serves Philharmonic staff and outside researchers through collecting, preserving, and making available materials that document the full spectrum of activities throughout the history of the Los Angeles Philharmonic dating to its founding in 1919. Taken as a whole, the collection provides a unique and richly detailed perspective on the Los Angeles Philharmonic&#x27;s impact on 20th and 21st century music and society, its contributions to the cultural heritage of Los Angeles and Southern California, and its performance history in associated venues including the Hollywood Bowl and Walt Disney Concert Hall."
+    description: "The Los Angeles Philharmonic Archives is the institutional memory of the Los Angeles Philharmonic Association, providing continuity between its past and its future. The Archives serves Philharmonic staff and outside researchers through collecting, preserving, and making available materials that document the full spectrum of activities throughout the history of the Los Angeles Philharmonic dating to its founding in 1919. Taken as a whole, the collection provides a unique and richly detailed perspective on the Los Angeles Philharmonic's impact on 20th and 21st century music and society, its contributions to the cultural heritage of Los Angeles and Southern California, and its performance history in associated venues including the Hollywood Bowl and Walt Disney Concert Hall."
     contact_html: |
         <div class="al-repository-contact-phone">(213) 972-7689       </div>
         <div class="al-repository-contact-info"><a href="mailto:archives@laphil.org">archives@laphil.org</a></div>
@@ -2951,7 +2940,7 @@ claphila:
     longitude: -118.249669075
 lapl:
     name: "Los Angeles Public Library"
-    description: "Special Collections at the Los Angeles Public Library include a wide variety of rare and unique items: archival collections, photographs, maps, rare books, prints, artists&#x27; books, periodicals, newspapers, pamphlets, broadsides, travel posters, restaurant menus, fashion plates, book plates, fruit crate labels, manuscripts and much more. The rare books at Central Library includes over 22,000 monographs, predominantly in English and Spanish, dating from the 15th century, with the majority published in the 18th and 19th centuries. Archival collections include the Brockman Gallery Archive, the Lydia R. Otero Archive, and the Bill Press Collection of materials relating to Black Sparrow Press and Charles Bukowski.  Central Library&#x27;s History Department began collecting photographs sometime before World War II and had a collection of about 13,000 images by the late 1950s. In 1981, when Los Angeles celebrated its 200th birthday, Security Pacific National Bank gave its noted collection of 250,000 historical photographs to the people of Los Angeles to be archived at the Central Library. Since then, the Central Library has been fortunate to receive other major collections and special archives, making the Library a resource worldwide for visual images.  There are over 200,000 Maps in Central Library&#x27;s collection, one of the largest in American public libraries. The collection also includes some 2,000 atlases, over 1,000 gazetteers, some 20 serial titles and over one thousand books supporting the study of maps and mapping. The emphasis of this collection is on Los Angeles, Southern California and California but in many cases the scope extends to national and international coverage. The great majority of the chronological scope is post-1900 but there is a representation of 19th century maps in California."
+    description: "Special Collections at the Los Angeles Public Library include a wide variety of rare and unique items: archival collections, photographs, maps, rare books, prints, artists' books, periodicals, newspapers, pamphlets, broadsides, travel posters, restaurant menus, fashion plates, book plates, fruit crate labels, manuscripts and much more. The rare books at Central Library includes over 22,000 monographs, predominantly in English and Spanish, dating from the 15th century, with the majority published in the 18th and 19th centuries. Archival collections include the Brockman Gallery Archive, the Lydia R. Otero Archive, and the Bill Press Collection of materials relating to Black Sparrow Press and Charles Bukowski.  Central Library's History Department began collecting photographs sometime before World War II and had a collection of about 13,000 images by the late 1950s. In 1981, when Los Angeles celebrated its 200th birthday, Security Pacific National Bank gave its noted collection of 250,000 historical photographs to the people of Los Angeles to be archived at the Central Library. Since then, the Central Library has been fortunate to receive other major collections and special archives, making the Library a resource worldwide for visual images.  There are over 200,000 Maps in Central Library's collection, one of the largest in American public libraries. The collection also includes some 2,000 atlases, over 1,000 gazetteers, some 20 serial titles and over one thousand books supporting the study of maps and mapping. The emphasis of this collection is on Los Angeles, Southern California and California but in many cases the scope extends to national and international coverage. The great majority of the chronological scope is post-1900 but there is a representation of 19th century maps in California."
     contact_html: |
         <div class="al-repository-contact-phone">(213) 228-7355</div>
         <div class="al-repository-contact-info"><a href="mailto:specialcollections@lapl.org">specialcollections@lapl.org</a></div>
@@ -3005,7 +2994,7 @@ clloy:
     longitude: -118.419903517
 camalch:
     name: "Madera County Library, California History and Family Research Room"
-    description: "The California History and Family Research Room, located on the Second Floor of the Madera County Library, is a repos­itory of early Madera County records and histor­ical information that docu­ment the social, political, economic and cultural de­velopment of the Madera County area from the mid­ 1800&#x27;s to present day. This Collection has a varie­ty of formats including; photographs, primary and secondary printed sources, digitized rec­ords, and oral histories. Our Room also has a reference collection of published secondary sources and serials. Publications include histo­ries of Madera County and its component insti­tutions; area histories that give context to the community, historical maps as well as area periodicals that describe Madera County area history."
+    description: "The California History and Family Research Room, located on the Second Floor of the Madera County Library, is a repos­itory of early Madera County records and histor­ical information that docu­ment the social, political, economic and cultural de­velopment of the Madera County area from the mid­ 1800's to present day. This Collection has a varie­ty of formats including; photographs, primary and secondary printed sources, digitized rec­ords, and oral histories. Our Room also has a reference collection of published secondary sources and serials. Publications include histo­ries of Madera County and its component insti­tutions; area histories that give context to the community, historical maps as well as area periodicals that describe Madera County area history."
     contact_html: |
         <div class="al-repository-contact-phone">(559) 675-7872</div>
         <div class="al-repository-contact-info"><a href="mailto:research@maderacountylibrary.org">research@maderacountylibrary.org</a></div>
@@ -3095,7 +3084,7 @@ cavlmc:
     latitude: 38.101659
     longitude: -122.260633
 casfmi:
-    name: "Mechanics&#x27; Institute"
+    name: "Mechanics' Institute"
     description: "Founded in 1854, the Mechanics’ Institute is one of the oldest institutions on the West Coast of the United States. Its mission is to provide a center for intellectual and cultural advancement. Located in the financial district of San Francisco, it serves individuals and families throughout the Bay Area offering a vibrant library with full-time professional staff, expert instruction and competition in chess, and a full calendar of engaging cultural events, programs, and classes. Anyone can join the Institute for a small annual fee. Many of its activities and services for members are also open to non-members."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 393-0118</div>
@@ -3212,7 +3201,7 @@ cmon:
     longitude: -118.0022316
 csalcl:
     name: "Monterey County Free Libraries"
-    description: "Monterey County Free Libraries&#x27; local history collection consists of books, photographs, maps, and documents on the history of Monterey County and California from the 1890s to 1970s. The collection offers historical interpretation of Monterey County and its role in California history. Digitized images in the collection include photographs, postcards, and documents of people, places, and buildings including libraries and librarians, schools, missions, industries (whaling, salt, and agricultural) in Aromas, Big Sur, Carmel, Gonzales, Jolon, Monterey, Moss Landing, Seaside, Pacific Grove, Salinas, Seaside, Soledad, Spreckels, and more. Of particular interest are photographs of the first county librarian, Anne Hadden, delivering library service on horseback to Big Sur, and photographs of farm labor camps in Monterey County circa 1960s."
+    description: "Monterey County Free Libraries' local history collection consists of books, photographs, maps, and documents on the history of Monterey County and California from the 1890s to 1970s. The collection offers historical interpretation of Monterey County and its role in California history. Digitized images in the collection include photographs, postcards, and documents of people, places, and buildings including libraries and librarians, schools, missions, industries (whaling, salt, and agricultural) in Aromas, Big Sur, Carmel, Gonzales, Jolon, Monterey, Moss Landing, Seaside, Pacific Grove, Salinas, Seaside, Soledad, Spreckels, and more. Of particular interest are photographs of the first county librarian, Anne Hadden, delivering library service on horseback to Big Sur, and photographs of farm labor camps in Monterey County circa 1960s."
     contact_html: |
         <div class="al-repository-contact-phone">(831) 883-7573</div>
         <div class="al-repository-contact-info"><a href="mailto:611-Seaside-Ref@countyofmonterey.gov">611-Seaside-Ref@countyofmonterey.gov</a></div>
@@ -3263,7 +3252,7 @@ cmont:
     longitude: -121.8868474
 cmontp:
     name: "Monterey Public Library"
-    description: "The Monterey Public Library collects and preserves written, visual and audible materials created by and about residents of the Monterey area, both past and present. The Library&#x27;s archival collections contain resources of enduring historical value, often unpublished materials in a variety of formats. They include typescripts, handwritten documents, photographs, scrapbooks, news clippings and printed materials."
+    description: "The Monterey Public Library collects and preserves written, visual and audible materials created by and about residents of the Monterey area, both past and present. The Library's archival collections contain resources of enduring historical value, often unpublished materials in a variety of formats. They include typescripts, handwritten documents, photographs, scrapbooks, news clippings and printed materials."
     contact_html: |
         <div class="al-repository-contact-phone">(831) 646-3741    </div>
         <div class="al-repository-contact-info"><a href="https://monterey.org/library/services/research/history_room/index.php">Website</a></div>
@@ -3288,7 +3277,7 @@ cayvmbh:
     longitude: -116.393649
 cmv:
     name: "Mountain View Public Library "
-    description: "The Mountain View History Center houses information about Mountain View&#x27;s past. We collect and preserve books, maps, photographs, directories, newspapers, school yearbooks, and other materials pertaining to Mountain View&#x27;s heritage. We display artifacts that reflect both the changing and enduring natures of the area once known as The Valley of the Heart’s Delight. The collection is owned jointly by the Library and the Mountain View Historical Association."
+    description: "The Mountain View History Center houses information about Mountain View's past. We collect and preserve books, maps, photographs, directories, newspapers, school yearbooks, and other materials pertaining to Mountain View's heritage. We display artifacts that reflect both the changing and enduring natures of the area once known as The Valley of the Heart’s Delight. The collection is owned jointly by the Library and the Mountain View Historical Association."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 903-6337</div>
         <div class="al-repository-contact-info"><a href="mailto:libraryadultservices@mountainview.gov">libraryadultservices@mountainview.gov</a></div>
@@ -3301,7 +3290,7 @@ cmv:
     longitude: -122.0836274
 csfpal:
     name: "Museum of Performance and Design, Performing Arts Library"
-    description: "The collection contains treasures of the performing arts ranging from the Gold Rush Era to the present time. It holds a part of the preeminent history of the performing arts and the unique history of San Francisco. The Museum&#x27;s diverse collection includes books, periodicals, playbills, clippings, photographs, posters, sheet music, plays and librettos, radio interviews, videotapes, musical theater recordings, the Legacy Oral History Program, the Theater Film Archive, theater design research materials, costumes and set design renderings, personal papers of performers, patrons and critics, as well as the archive of several local performing arts organizations."
+    description: "The collection contains treasures of the performing arts ranging from the Gold Rush Era to the present time. It holds a part of the preeminent history of the performing arts and the unique history of San Francisco. The Museum's diverse collection includes books, periodicals, playbills, clippings, photographs, posters, sheet music, plays and librettos, radio interviews, videotapes, musical theater recordings, the Legacy Oral History Program, the Theater Film Archive, theater design research materials, costumes and set design renderings, personal papers of performers, patrons and critics, as well as the archive of several local performing arts organizations."
     contact_html: |
         <div class="al-repository-contact-phone">4157413531</div>
         <div class="al-repository-contact-info"><a href="mailto:info@mpdsf.org">info@mpdsf.org</a></div>
@@ -3380,7 +3369,7 @@ cnchi:
     longitude: -122.28706
 narc:
     name: "NASA Ames Research Center"
-    description: "Holdings in the NASA Ames Research Center Archives document the history of Ames from 1939 to the present, including the center&#x27;s affiliation with both NASA (as Ames Research Center) and its precursor organization the NACA (as Ames Aeronautical Laboratory). Ames is NASA&#x27;s second oldest center after Langley Research Center. As a multidisciplinary research center in continuous operation for over 80 years, Ames has conducted a wide range of basic and applied research, engineering, and operations to support the nation&#x27;s aeronautics and space endeavors."
+    description: "Holdings in the NASA Ames Research Center Archives document the history of Ames from 1939 to the present, including the center's affiliation with both NASA (as Ames Research Center) and its precursor organization the NACA (as Ames Aeronautical Laboratory). Ames is NASA's second oldest center after Langley Research Center. As a multidisciplinary research center in continuous operation for over 80 years, Ames has conducted a wide range of basic and applied research, engineering, and operations to support the nation's aeronautics and space endeavors."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 604-1032</div>
         <div class="al-repository-contact-info"><a href="mailto:ARC-DL-archives@mail.nasa.gov">ARC-DL-archives@mail.nasa.gov</a></div>
@@ -3432,7 +3421,7 @@ cncl:
     longitude: -121.01893
 mills:
     name: "Northeastern University (Oakland)"
-    description: "Special Collections (Oakland) houses a collection of over 240,000 volumes and other media supporting the curricular needs of the College, with special emphasis on literature, history, women&#x27;s studies, art, and music.  The collection of 12,000 volumes and 10,000 manuscripts housed in the Heller Rare Book Room includes printed books from the 15th century to the present, as well as the Mills College Collection. It is also the home of the Mills Center for the Book, a forum for cultural, literary and aesthetic heritage of the book."
+    description: "Special Collections (Oakland) houses a collection of over 240,000 volumes and other media supporting the curricular needs of the College, with special emphasis on literature, history, women's studies, art, and music.  The collection of 12,000 volumes and 10,000 manuscripts housed in the Heller Rare Book Room includes printed books from the 15th century to the present, as well as the Mills College Collection. It is also the home of the Mills Center for the Book, a forum for cultural, literary and aesthetic heritage of the book."
     contact_html: |
         <div class="al-repository-contact-phone">510.430.2047</div>
         <div class="al-repository-contact-info"><a href="mailto:specialcollections-oak@northeastern.edu">specialcollections-oak@northeastern.edu</a></div>
@@ -3458,9 +3447,18 @@ cabmndnu:
     thumbnail_url: ""
     latitude: 37.518105
     longitude: -122.284891
+oac-test:
+    name: "OAC Test Repository"
+    description: "OAC Test Repository, for sample data in CincoCtrl-stg"
+    contact_html: |
+    location_html: |
+        <div class="al-repository-street-address-city_state_zip_country">,  , </div>
+    thumbnail_url: ""
+    latitude: None
+    longitude: None
 omca:
     name: "Oakland Museum of California"
-    description: "The Oakland Museum of California (OMCA) inspires Californians to create a more vibrant future for themselves and their communities. OMCA&#x27;s mission is to inspire understanding and empathy with stories and experiences of California’s art, history, and natural environment to build more equitable and connected communities. OMCA’s collection of more than two million objects is devoted to the art, history, and natural environment of California and is collected and displayed to reflect the State’s cultural, artistic and biological diversity."
+    description: "The Oakland Museum of California (OMCA) inspires Californians to create a more vibrant future for themselves and their communities. OMCA's mission is to inspire understanding and empathy with stories and experiences of California’s art, history, and natural environment to build more equitable and connected communities. OMCA’s collection of more than two million objects is devoted to the art, history, and natural environment of California and is collected and displayed to reflect the State’s cultural, artistic and biological diversity."
     contact_html: |
         <div class="al-repository-contact-phone">510-318-8400</div>
         <div class="al-repository-contact-info"><a href="mailto:research@museumca.org ">research@museumca.org </a></div>
@@ -3538,7 +3536,7 @@ clo:
     longitude: -118.211688995
 corcl:
     name: "OC Public Libraries"
-    description: "OC Public Libraries is a network of community libraries. It comprises 33 branches as well as an outlet in the Orangewood Children&#x27;s Home to provide a variety of services to residents throughout the County. Some of the branches are operated within the jurisdiction of the county&#x27;s 33 cities and some within the county&#x27;s unincorporated area.  OC Stories was supported in whole or in part by the U.S. Institute of Museum and Library Services under the provisions of the Library Services and Technology Act, administrated in California by the State Librarian.   OC Stories celebrates the rich cultural diversity of Orange County&#x27;s past and present by documenting the people, businesses, institutions, and events of historical significance to Orange County, California. Thanks to all of the Donor Organizations who have shared their images of Orange County with us."
+    description: "OC Public Libraries is a network of community libraries. It comprises 33 branches as well as an outlet in the Orangewood Children's Home to provide a variety of services to residents throughout the County. Some of the branches are operated within the jurisdiction of the county's 33 cities and some within the county's unincorporated area.  OC Stories was supported in whole or in part by the U.S. Institute of Museum and Library Services under the provisions of the Library Services and Technology Act, administrated in California by the State Librarian.   OC Stories celebrates the rich cultural diversity of Orange County's past and present by documenting the people, businesses, institutions, and events of historical significance to Orange County, California. Thanks to all of the Donor Organizations who have shared their images of Orange County with us."
     contact_html: |
         <div class="al-repository-contact-info"><a href="http://www.ocpl.org/">Website</a></div>
     location_html: |
@@ -3566,7 +3564,7 @@ calaong:
     longitude: -118.281545
 con:
     name: "Ontario City Library, Robert E. Ellingwood Model Colony History Room"
-    description: "The library&#x27;s collections cover the history of Ontario and the western region of San Bernardino County.The Model Colony History Room was established in the Ontario City Library in 1970. The room contains non-circulating materials concerning the social, economic and governmental history of Ontario and the western region of San Bernardino County.Materials available in the Model Colony History Room include: manuscripts, photographs, documents, maps, local school yearbooks, news clippings, Ontario city directories, and phone books. Many of these materials date back to 1882 when George Chaffey and William Chaffey founded Ontario, the &quot;Model Colony.&quot;"
+    description: "The library's collections cover the history of Ontario and the western region of San Bernardino County.The Model Colony History Room was established in the Ontario City Library in 1970. The room contains non-circulating materials concerning the social, economic and governmental history of Ontario and the western region of San Bernardino County.Materials available in the Model Colony History Room include: manuscripts, photographs, documents, maps, local school yearbooks, news clippings, Ontario city directories, and phone books. Many of these materials date back to 1882 when George Chaffey and William Chaffey founded Ontario, the &quot;Model Colony.&quot;"
     contact_html: |
         <div class="al-repository-contact-phone">(909) 395-2206</div>
         <div class="al-repository-contact-info"><a href="mailto:localhistory@ontarioca.gov">localhistory@ontarioca.gov</a></div>
@@ -3627,7 +3625,7 @@ cor:
     longitude: -117.849698067
 coroct:
     name: "Oroville Chinese Temple and Museum Complex"
-    description: "Built in 1863 to serve the largest community of Chinese north of Sacramento, this temple of treasures is listed on the National Register of Historic Places and also as a California Landmark. It was first opened to visitors during California&#x27;s 1949 Centennial. Although it is now a museum, it is still an active temple and used occasionally for worship."
+    description: "Built in 1863 to serve the largest community of Chinese north of Sacramento, this temple of treasures is listed on the National Register of Historic Places and also as a California Landmark. It was first opened to visitors during California's 1949 Centennial. Although it is now a museum, it is still an active temple and used occasionally for worship."
     contact_html: |
         <div class="al-repository-contact-phone">(530) 538-2496</div>
         <div class="al-repository-contact-info"><a href="mailto:info@cityoforoville.org">info@cityoforoville.org</a></div>
@@ -3666,7 +3664,7 @@ oxnard:
     longitude: -119.178564996
 canhpra:
     name: "Pacifica Radio Archives"
-    description: "The Pacifica Radio Archives is one of the oldest and largest collections of non-commercial listener-sponsored public radio programs in world. Chronicling the political, cultural and artistic movements of the second half of the 20th century, Pacifica radio programs include documentaries, performances, discussions, debates, drama, poetry readings, commentaries and radio arts. The Pacifica Radio Archives appraise, collect, organize, describe, and preserve the creative work generated by, or produced in association with, Pacifica Radio, and make it available for research and reference use.  The Archives is delighted to be a part of the California Audiovisual Preservation Project (CAVPP). The two oldest Pacifica Radio sister stations, KPFA-FM and KPFK-FM, are based in Berkeley and Los Angeles, respectively. Over the past sixty years, KPFA and KPFK have borne witness to events in both Northern and Southern California, and have prominently featured the voices of California denizens and community members who were often excluded from both local and national news media. The Archives&#x27; CAVPP collection features actuality from mass demonstrations such as People&#x27;s Park Protest and the International Hotel evictions; incisive public affairs programming about issues that affected Californians of the time, such as the passage of Proposition 13, farm workers&#x27; strikes, and racial segregation in urban communities; interviews with politicians, artists and countercultural figures; and much more. Many of these recordings have not been heard since their initial broadcast on Pacifica airwaves."
+    description: "The Pacifica Radio Archives is one of the oldest and largest collections of non-commercial listener-sponsored public radio programs in world. Chronicling the political, cultural and artistic movements of the second half of the 20th century, Pacifica radio programs include documentaries, performances, discussions, debates, drama, poetry readings, commentaries and radio arts. The Pacifica Radio Archives appraise, collect, organize, describe, and preserve the creative work generated by, or produced in association with, Pacifica Radio, and make it available for research and reference use.  The Archives is delighted to be a part of the California Audiovisual Preservation Project (CAVPP). The two oldest Pacifica Radio sister stations, KPFA-FM and KPFK-FM, are based in Berkeley and Los Angeles, respectively. Over the past sixty years, KPFA and KPFK have borne witness to events in both Northern and Southern California, and have prominently featured the voices of California denizens and community members who were often excluded from both local and national news media. The Archives' CAVPP collection features actuality from mass demonstrations such as People's Park Protest and the International Hotel evictions; incisive public affairs programming about issues that affected Californians of the time, such as the passage of Proposition 13, farm workers' strikes, and racial segregation in urban communities; interviews with politicians, artists and countercultural figures; and much more. Many of these recordings have not been heard since their initial broadcast on Pacifica airwaves."
     contact_html: |
         <div class="al-repository-contact-phone">818-506-1077</div>
         <div class="al-repository-contact-info"><a href="mailto:jolene@pacificaradioarchives.org">jolene@pacificaradioarchives.org</a></div>
@@ -3679,7 +3677,7 @@ canhpra:
     longitude: -118.3475675
 cpg:
     name: "Pacific Grove Public Library"
-    description: "The Pacific Grove Public Library collects, organizes, stores and displays books, maps, images, manuscripts, audio visual materials, oral histories, biography files, directories, voter registers, local newspaper clippings, ephemera, and other printed, handwritten and drawn artifacts pertaining to Pacific Grove&#x27;s heritage. Due to the importance of this unique collection, appropriate preservation methods and materials are sought out and utilized."
+    description: "The Pacific Grove Public Library collects, organizes, stores and displays books, maps, images, manuscripts, audio visual materials, oral histories, biography files, directories, voter registers, local newspaper clippings, ephemera, and other printed, handwritten and drawn artifacts pertaining to Pacific Grove's heritage. Due to the importance of this unique collection, appropriate preservation methods and materials are sought out and utilized."
     contact_html: |
         <div class="al-repository-contact-phone">(831) 648-5760</div>
         <div class="al-repository-contact-info"><a href="mailto:referencedesk@cityofpacificgrove.org">referencedesk@cityofpacificgrove.org</a></div>
@@ -3715,7 +3713,7 @@ cps:
     longitude: -116.5275585
 cpa:
     name: "Palo Alto City Library"
-    description: "The Palo Alto City Library collection contains texts from the 1950s to 2010s. A majority of the collection consists of texts about native trees in Palo Alto, women&#x27;s history, and Japanese American history."
+    description: "The Palo Alto City Library collection contains texts from the 1950s to 2010s. A majority of the collection consists of texts about native trees in Palo Alto, women's history, and Japanese American history."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 838-2937</div>
         <div class="al-repository-contact-info"><a href="mailto:pa.library@cityofpaloalto.org">pa.library@cityofpaloalto.org</a></div>
@@ -3727,7 +3725,7 @@ cpa:
     latitude: 37.422289
     longitude: -122.112672
 capawc:
-    name: "Palo Alto Woman&#x27;s Club"
+    name: "Palo Alto Woman's Club"
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(650) 321-5821</div>
@@ -3741,7 +3739,7 @@ capawc:
     longitude: -122.155831
 cpv:
     name: "Palos Verdes Library District"
-    description: "Palos Verdes Library District&#x27;s History Collection presents a panorama of what was important in the Peninsula’s past, as well as what might be meaningful to future generations. It encompasses a variety of formats: books, school yearbooks, maps, photographs, newspaper clippings, genealogical data, early phonebooks, and ephemera."
+    description: "Palos Verdes Library District's History Collection presents a panorama of what was important in the Peninsula’s past, as well as what might be meaningful to future generations. It encompasses a variety of formats: books, school yearbooks, maps, photographs, newspaper clippings, genealogical data, early phonebooks, and ephemera."
     contact_html: |
         <div class="al-repository-contact-phone">(310) 377-9584</div>
         <div class="al-repository-contact-info"><a href="https://pvld.recollectcms.com/">Website</a></div>
@@ -3777,7 +3775,7 @@ capsdhc:
     longitude: -118.1445894
 phm:
     name: "Pasadena Museum of History"
-    description: "Pasadena Museum of History (PMH) has a rich legacy of preserving and showcasing the heritage of Pasadena since its inception in 1924 as the Pasadena Historical Society. Over a century, it has evolved into a treasure trove of historical artifacts and documents, now part of the Archives and Collection at PMH. Here, a wealth of historical artifacts and documents, offering a window into the past, are diligently preserved.  Among its offerings, you&#x27;ll find: •	Photograph Collections: Boasting an impressive collection of estimated million photographic images, the museum&#x27;s photographs span the city&#x27;s evolution from the late 19th century to the present day. Notable collections include prints, negatives (including acetate, nitrate, polyester, and glass plates), slides, stereographs, and postcards. Some photograph collections include the lifework of J. Allen Hawkins, the Pasadena Star-News Collection, the Flag Collection, the Helen Luken Gaut Collection, and hundreds of photo albums.  •	Maps: With more than 45 cubic feet of maps and plans, some dating back to the late 19th century, including Sanborn fire insurance maps for Pasadena, you can explore how the city&#x27;s landscape has changed over the years. •	Ephemera: From pamphlets, brochures, flyers, souvenirs, tickets, and programs to vintage advertisements, you&#x27;ll find an array of ephemera and memorabilia that encompasses every aspect of Pasadena&#x27;s history. •	Special Collections: The Archives proudly houses more than 250 special collections, which have been donated by individuals or organizations, each bearing the donor&#x27;s name and preserved for posterity. These collections cover various aspects of the city&#x27;s history. Notable special collections include Fenyes-Curtin-Paloheimo Collections, Batchelder Family Collection, El Mirador Ranch Collections, Hugh Anderson Collections, Black History Collection, and Sylvanus Marston Collection of architectural drawings and photographs. Other large collections cover real estate, civic groups, schools, the arts, city documents, sports, and business. •	Manuscripts Collection: Comprising over 300 items, this collection includes correspondence, diaries, essays, documents, and original writings dating back to the 1830s, providing wonderful insights into the lives and stories of Pasadena’s residents.   •	Archival Library: The archives also include a wide range of books, rare books, periodicals, and newspapers, making it a comprehensive resource for those seeking to explore Pasadena&#x27;s history.  Open to Public: The Research Library and Archives is open to the public from Friday through Sunday, between 1 to 4 p.m. During these hours, the museum&#x27;s staff and dedicated volunteers are available to assist researchers. If you can&#x27;t visit in person, you can still access the collections by sending research requests via email to research@pasadenahistory.org. Please allow at least a month for the archives staff to research and get back to you."
+    description: "Pasadena Museum of History (PMH) has a rich legacy of preserving and showcasing the heritage of Pasadena since its inception in 1924 as the Pasadena Historical Society. Over a century, it has evolved into a treasure trove of historical artifacts and documents, now part of the Archives and Collection at PMH. Here, a wealth of historical artifacts and documents, offering a window into the past, are diligently preserved.  Among its offerings, you'll find: •	Photograph Collections: Boasting an impressive collection of estimated million photographic images, the museum's photographs span the city's evolution from the late 19th century to the present day. Notable collections include prints, negatives (including acetate, nitrate, polyester, and glass plates), slides, stereographs, and postcards. Some photograph collections include the lifework of J. Allen Hawkins, the Pasadena Star-News Collection, the Flag Collection, the Helen Luken Gaut Collection, and hundreds of photo albums.  •	Maps: With more than 45 cubic feet of maps and plans, some dating back to the late 19th century, including Sanborn fire insurance maps for Pasadena, you can explore how the city's landscape has changed over the years. •	Ephemera: From pamphlets, brochures, flyers, souvenirs, tickets, and programs to vintage advertisements, you'll find an array of ephemera and memorabilia that encompasses every aspect of Pasadena's history. •	Special Collections: The Archives proudly houses more than 250 special collections, which have been donated by individuals or organizations, each bearing the donor's name and preserved for posterity. These collections cover various aspects of the city's history. Notable special collections include Fenyes-Curtin-Paloheimo Collections, Batchelder Family Collection, El Mirador Ranch Collections, Hugh Anderson Collections, Black History Collection, and Sylvanus Marston Collection of architectural drawings and photographs. Other large collections cover real estate, civic groups, schools, the arts, city documents, sports, and business. •	Manuscripts Collection: Comprising over 300 items, this collection includes correspondence, diaries, essays, documents, and original writings dating back to the 1830s, providing wonderful insights into the lives and stories of Pasadena’s residents.   •	Archival Library: The archives also include a wide range of books, rare books, periodicals, and newspapers, making it a comprehensive resource for those seeking to explore Pasadena's history.  Open to Public: The Research Library and Archives is open to the public from Friday through Sunday, between 1 to 4 p.m. During these hours, the museum's staff and dedicated volunteers are available to assist researchers. If you can't visit in person, you can still access the collections by sending research requests via email to research@pasadenahistory.org. Please allow at least a month for the archives staff to research and get back to you."
     contact_html: |
         <div class="al-repository-contact-phone">626.577.1660</div>
         <div class="al-repository-contact-info"><a href="mailto:research@pasadenahistory.org">research@pasadenahistory.org</a></div>
@@ -3841,7 +3839,7 @@ capervmh:
     longitude: -117.2174059
 cpl:
     name: "Placentia Library District"
-    description: "Placentia Library District&#x27;s History Room is open to the public and features books, photographs, videos, oral histories, maps, and other materials documenting the city’s rich and colorful history. Boasting a collection of more than 5,000 photographs, books by local authors, historic orange crate labels and other memorabilia, the Placentia History Room is an invaluable custodian of Placentia’s past."
+    description: "Placentia Library District's History Room is open to the public and features books, photographs, videos, oral histories, maps, and other materials documenting the city’s rich and colorful history. Boasting a collection of more than 5,000 photographs, books by local authors, historic orange crate labels and other memorabilia, the Placentia History Room is an invaluable custodian of Placentia’s past."
     contact_html: |
         <div class="al-repository-contact-phone">(714) 528-1906</div>
         <div class="al-repository-contact-info"><a href="mailto:administration@placentialibrary.org">administration@placentialibrary.org</a></div>
@@ -3865,8 +3863,8 @@ caaupmd:
     latitude: 38.8965467
     longitude: -121.0769078
 caplmm:
-    name: "Pleasanton&#x27;s Museum on Main"
-    description: "This collection presents a diverse set of audio and video recordings from the Pleasanton&#x27;s Museum on Main. These recordings include a collection of programs by the Amador-Livermore Valley Historical Society, video footage documenting Livermore schools in the 1950s, and oral histories with local residents."
+    name: "Pleasanton's Museum on Main"
+    description: "This collection presents a diverse set of audio and video recordings from the Pleasanton's Museum on Main. These recordings include a collection of programs by the Amador-Livermore Valley Historical Society, video footage documenting Livermore schools in the 1950s, and oral histories with local residents."
     contact_html: |
         <div class="al-repository-contact-phone">(925) 462-2766</div>
         <div class="al-repository-contact-info"><a href="mailto:info@museumonmain.org">info@museumonmain.org</a></div>
@@ -3879,7 +3877,7 @@ caplmm:
     longitude: -121.87526
 capoins:
     name: "Point Reyes National Seashore Museum"
-    description: "The Point Reyes National Seashore Museum collection contains texts and images from the 1930s to 2010s. A majority of the collection consists of texts concerning privateer, Sir Francis Drake, and his 16th century voyage to the California coast. Other material includes images of Drake&#x27;s Bay, located along the Point Reyes National Seashore."
+    description: "The Point Reyes National Seashore Museum collection contains texts and images from the 1930s to 2010s. A majority of the collection consists of texts concerning privateer, Sir Francis Drake, and his 16th century voyage to the California coast. Other material includes images of Drake's Bay, located along the Point Reyes National Seashore."
     contact_html: |
         <div class="al-repository-contact-phone">  (415) 464-5125</div>
         <div class="al-repository-contact-info"><a href="mailto:pore_museum@nps.gov">pore_museum@nps.gov</a></div>
@@ -3956,7 +3954,7 @@ capurcm:
     longitude: -118.789801
 crancuca:
     name: "Rancho Cucamonga Library Services"
-    description: "Rancho Cucamonga Library Services consists of two library locations in the city of Rancho Cucamonga, California. The Local History Room at the Paul A. Biane Library houses books, documents, artifacts and photographs that tell the story of Rancho Cucamonga&#x27;s rich history."
+    description: "Rancho Cucamonga Library Services consists of two library locations in the city of Rancho Cucamonga, California. The Local History Room at the Paul A. Biane Library houses books, documents, artifacts and photographs that tell the story of Rancho Cucamonga's rich history."
     contact_html: |
         <div class="al-repository-contact-phone">(909) 477-2720</div>
         <div class="al-repository-contact-info"><a href="mailto:http://www.cityofrc.us/cityhall/lib/contact.asp">http://www.cityofrc.us/cityhall/lib/contact.asp</a></div>
@@ -3969,7 +3967,7 @@ crancuca:
     longitude: -117.575211525
 crc:
     name: "Redwood City Public Library"
-    description: "The Local History Collection of the Redwood City Public Library was established to provide patrons with research opportunities in areas of local interest and to share Redwood City&#x27;s colorful heritage with the community. At the Local History Collection, you can Learn more about the history of Redwood City Explore our large collection of photographs Trace your family history Search for past uses of land and property The Collection covers all aspects of Redwood City&#x27;s development, from the 1850&#x27;s to the present day, with particular emphases on businesses, public schools, civic organizations, city agencies, and early family histories. In addition to a large selection of primary-source materials and private papers, there are oral histories, books, newspapers, pamphlets, tax assessment rolls, maps, city directories, and over 5,500 photographs."
+    description: "The Local History Collection of the Redwood City Public Library was established to provide patrons with research opportunities in areas of local interest and to share Redwood City's colorful heritage with the community. At the Local History Collection, you can Learn more about the history of Redwood City Explore our large collection of photographs Trace your family history Search for past uses of land and property The Collection covers all aspects of Redwood City's development, from the 1850's to the present day, with particular emphases on businesses, public schools, civic organizations, city agencies, and early family histories. In addition to a large selection of primary-source materials and private papers, there are oral histories, books, newspapers, pamphlets, tax assessment rolls, maps, city directories, and over 5,500 photographs."
     contact_html: |
         <div class="al-repository-contact-phone">650/780-7026</div>
         <div class="al-repository-contact-info"><a href="https://www.rwc-localhistory.com/">Website</a></div>
@@ -4186,7 +4184,7 @@ csbrp:
     longitude: -122.41481781
 casdam:
     name: "San Diego Air and Space Museum Library and Archives"
-    description: "The mission of the Library and Archives at the San Diego Air and Space Museum (SDASM) is to collect, preserve, and make available for research published, documentary, and visual materials that chronicle the development of Air &amp; Space technology and experience. SDASM&#x27;s Library &amp; Archives houses one of the largest collections of air and space-related books and archival materials in the country. This extensive collection, which includes many unique and rare items, and diverse materials."
+    description: "The mission of the Library and Archives at the San Diego Air and Space Museum (SDASM) is to collect, preserve, and make available for research published, documentary, and visual materials that chronicle the development of Air &amp; Space technology and experience. SDASM's Library &amp; Archives houses one of the largest collections of air and space-related books and archival materials in the country. This extensive collection, which includes many unique and rare items, and diverse materials."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 234-8291</div>
         <div class="al-repository-contact-info"><a href="mailto:archives@sdasm.org">archives@sdasm.org</a></div>
@@ -4237,7 +4235,7 @@ csdcl:
     longitude: -117.130546
 csdhi:
     name: "San Diego History Center (formerly San Diego Historical Society)"
-    description: "Containing over 2.5 million images, the San Diego History Center&#x27;s Photograph Collection is of regional, national and international significance. This vast collection allows for in-depth examination into the rapidly changing cultural, political and social mores of the region and insight into the people and the environment of San Diego from the late 19th, 20th, and early 21st century. The Research Library is also home to our Document Archives which hold a diverse array of historical documents: books, public records, maps, scrapbooks, unpublished manuscripts, document and manuscript collections, architectural records, newspapers and serials, biographical and subject files, oral history interviews, and ephemera."
+    description: "Containing over 2.5 million images, the San Diego History Center's Photograph Collection is of regional, national and international significance. This vast collection allows for in-depth examination into the rapidly changing cultural, political and social mores of the region and insight into the people and the environment of San Diego from the late 19th, 20th, and early 21st century. The Research Library is also home to our Document Archives which hold a diverse array of historical documents: books, public records, maps, scrapbooks, unpublished manuscripts, document and manuscript collections, architectural records, newspapers and serials, biographical and subject files, oral history interviews, and ephemera."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 232-6203</div>
         <div class="al-repository-contact-info"><a href="http://www.sandiegohistory.org/">Website</a></div>
@@ -4329,7 +4327,7 @@ csdz:
     longitude: -117.001454
 casfai:
     name: "San Francisco Art Institute Archive"
-    description: "The San Francisco Art Institute Archive collection contains texts from the 1900s to 1960s. A majority of the collection consists of texts from the San Francisco Art Association Bulletin. Other material includes the Mark Hopkins Institute Review of Art, the San Francisco Art Association&#x27;s first newsletter."
+    description: "The San Francisco Art Institute Archive collection contains texts from the 1900s to 1960s. A majority of the collection consists of texts from the San Francisco Art Association Bulletin. Other material includes the Mark Hopkins Institute Review of Art, the San Francisco Art Association's first newsletter."
     contact_html: |
         <div class="al-repository-contact-phone">4152941113</div>
         <div class="al-repository-contact-info"><a href="mailto:archive@sfailegacyarchive.org ">archive@sfailegacyarchive.org </a></div>
@@ -4513,7 +4511,7 @@ csat:
     longitude: -122.5648069
 cgvhis:
     name: "San Geronimo Valley Historical Society  "
-    description: "The San Geronimo Valley Historical Society preserves and honors our Valley&#x27;s history, on the ancestral lands of the Coast Miwok."
+    description: "The San Geronimo Valley Historical Society preserves and honors our Valley's history, on the ancestral lands of the Coast Miwok."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 686-1794    </div>
         <div class="al-repository-contact-info"><a href="mailto:sgvhistoricalsociety.org    ">sgvhistoricalsociety.org    </a></div>
@@ -4526,7 +4524,7 @@ cgvhis:
     longitude: -122.67459
 sjcmus:
     name: "San Joaquin County Historical Society and Museum"
-    description: "The San Joaquin County Historical Society preserves and interprets the county&#x27;s history.  The Historical Society provides educational experiences that showcase the county&#x27;s traditions of ingenuity, innovation, and invention -- with emphasis on San Joaquin county&#x27;s singular contributions in agriculture -- to promote community pride, continued learning, and an appreciation of regional history among county residents and visitors.  The San Joaquin County Historical Society accomplishes its mission on behalf of the County of San Joaquin by: 	• Preserving historic buildings, documents, and objects; 	• Operating the San Joaquin County Historical Museum; 	• Presenting exhibits and programs; and 	• Developing and disseminating publications and media."
+    description: "The San Joaquin County Historical Society preserves and interprets the county's history.  The Historical Society provides educational experiences that showcase the county's traditions of ingenuity, innovation, and invention -- with emphasis on San Joaquin county's singular contributions in agriculture -- to promote community pride, continued learning, and an appreciation of regional history among county residents and visitors.  The San Joaquin County Historical Society accomplishes its mission on behalf of the County of San Joaquin by: 	• Preserving historic buildings, documents, and objects; 	• Operating the San Joaquin County Historical Museum; 	• Presenting exhibits and programs; and 	• Developing and disseminating publications and media."
     contact_html: |
         <div class="al-repository-contact-phone">(209) 331-2055 </div>
         <div class="al-repository-contact-info"><a href="mailto:info@sanjoaquinhistory.org">info@sanjoaquinhistory.org</a></div>
@@ -4652,7 +4650,7 @@ cmsbr:
     longitude: -122.403809
 csmat:
     name: "San Mateo Public Library"
-    description: "The San Mateo Public Library has a large collection of California history materials with an emphasis on San Mateo and the Bay Area. The San Mateo Main Library offers: a reference book collection, the California Collection, focused on local history materials; a clipping file of topics from local newspapers from the 1940&#x27;s, 1950&#x27;s and 1960&#x27;s; San Mateo City directories from the 1890&#x27;s - present; historical maps of San Mateo and the surrounding area including Sanborne insurance maps; and local newspapers on microfilm."
+    description: "The San Mateo Public Library has a large collection of California history materials with an emphasis on San Mateo and the Bay Area. The San Mateo Main Library offers: a reference book collection, the California Collection, focused on local history materials; a clipping file of topics from local newspapers from the 1940's, 1950's and 1960's; San Mateo City directories from the 1890's - present; historical maps of San Mateo and the surrounding area including Sanborne insurance maps; and local newspapers on microfilm."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 522-7802</div>
         <div class="al-repository-contact-info"><a href="http://www.cityofsanmateo.org/index.asp?nid=507">Website</a></div>
@@ -4689,7 +4687,7 @@ cstbbg:
     longitude: -119.708613753
 cstbhi:
     name: "Santa Barbara Historical Museum. Gledhill Library"
-    description: "The Gledhill Library is a research, non-circulating collection open to the public.  Our varied materials are available for students, history buffs and anyone seeking a better understanding of our city&#x27;s rich history. Collections focus on the history of Santa Barbara County with additional materials on California history and history of the American West. Holdings include books and pamphlets, photographs, maps, oral histories, newspaper files, clipping and ephemera files, manuscripts and government records."
+    description: "The Gledhill Library is a research, non-circulating collection open to the public.  Our varied materials are available for students, history buffs and anyone seeking a better understanding of our city's rich history. Collections focus on the history of Santa Barbara County with additional materials on California history and history of the American West. Holdings include books and pamphlets, photographs, maps, oral histories, newspaper files, clipping and ephemera files, manuscripts and government records."
     contact_html: |
         <div class="al-repository-contact-phone">(805) 966-1605 x105</div>
         <div class="al-repository-contact-info"><a href="mailto:archivist@sbhistorical.org">archivist@sbhistorical.org</a></div>
@@ -4817,7 +4815,7 @@ casjsca_clerk:
     longitude: -121.904663
 scu:
     name: "Santa Clara University"
-    description: "The collections in the University Archives reflect the rich religious and educational heritage of Mission Santa Clara de Asis, the eighth of California&#x27;s twenty-one missions, and Santa Clara College, the first institution of higher education in California."
+    description: "The collections in the University Archives reflect the rich religious and educational heritage of Mission Santa Clara de Asis, the eighth of California's twenty-one missions, and Santa Clara College, the first institution of higher education in California."
     contact_html: |
         <div class="al-repository-contact-phone">(408) 554-5530</div>
         <div class="al-repository-contact-info"><a href="mailto:specialcollections@scu.edu">specialcollections@scu.edu</a></div>
@@ -4831,7 +4829,7 @@ scu:
     longitude: -121.937470436
 scu_dsaism:
     name: "Santa Clara University, de Saisset Museum"
-    description: "The de Saisset Museum stands at the heart of Santa Clara University&#x27;s campus, adjacent to Mission Santa Clara de Asís. Founded in 1955, it is the only free museum of art and history in the South Bay, and is one of only three museums in Silicon Valley to hold accreditation from the American Alliance of Museums. Operated by Santa Clara University, the de Saisset Museum is funded by the University, de Saisset family trust, membership, and donations.   The de Saisset Museum houses an extensive collection numbering more than 12,500 objects. The museum&#x27;s Art collection includes painting and sculpture, works on paper and photography, new media, and decorative arts. The History collection is divided into two main areas: California History and Mission-era liturgical vestments. Since its founding in 1955, the museum has developed large and encyclopedic holdings, covering a wide range of art historical periods and styles. Although the museum is committed to caring for every piece in its collection, current collecting activity is predominantly focused on works by contemporary California artists."
+    description: "The de Saisset Museum stands at the heart of Santa Clara University's campus, adjacent to Mission Santa Clara de Asís. Founded in 1955, it is the only free museum of art and history in the South Bay, and is one of only three museums in Silicon Valley to hold accreditation from the American Alliance of Museums. Operated by Santa Clara University, the de Saisset Museum is funded by the University, de Saisset family trust, membership, and donations.   The de Saisset Museum houses an extensive collection numbering more than 12,500 objects. The museum's Art collection includes painting and sculpture, works on paper and photography, new media, and decorative arts. The History collection is divided into two main areas: California History and Mission-era liturgical vestments. Since its founding in 1955, the museum has developed large and encyclopedic holdings, covering a wide range of art historical periods and styles. Although the museum is committed to caring for every piece in its collection, current collecting activity is predominantly focused on works by contemporary California artists."
     contact_html: |
         <div class="al-repository-contact-phone">(408) 554-6877</div>
         <div class="al-repository-contact-info"><a href="https://www.scu.edu/desaisset/">Website</a></div>
@@ -4843,7 +4841,7 @@ scu_dsaism:
     longitude: -121.939359
 csjvwd:
     name: "Santa Clara Valley Water District Library"
-    description: "The Santa Clara Valley Water District Library supports the district&#x27;s mission by providing professional research services for district staff and the public, using its core reference and journal collections, satellite libraries, on-line databases, interlibrary loan, and outside experts. The library maintains a catalog database of the core and satellite libraries.  The district library has an extensive collection of books, reports and other materials. While we do not check out materials to the general public, you can use these materials in the library or borrow them on interlibrary loan. See your local public or academic library for details on interlibrary loan. The district library is a specialized collection of 22,000 titles. The types of materials include, Santa Clara Valley Water District reports, consultant reports performed for the District, textbooks, reference books, legal materials, journals audio and videotapes, and CD-ROMs.    The subjects represented in the collection include water quality, water supply, water conservation, flood protection, law, water reclamation, seismic safety, groundwater contamination, civil engineering, hydrology, geology, chemistry, ecology, and environmental issues."
+    description: "The Santa Clara Valley Water District Library supports the district's mission by providing professional research services for district staff and the public, using its core reference and journal collections, satellite libraries, on-line databases, interlibrary loan, and outside experts. The library maintains a catalog database of the core and satellite libraries.  The district library has an extensive collection of books, reports and other materials. While we do not check out materials to the general public, you can use these materials in the library or borrow them on interlibrary loan. See your local public or academic library for details on interlibrary loan. The district library is a specialized collection of 22,000 titles. The types of materials include, Santa Clara Valley Water District reports, consultant reports performed for the District, textbooks, reference books, legal materials, journals audio and videotapes, and CD-ROMs.    The subjects represented in the collection include water quality, water supply, water conservation, flood protection, law, water reclamation, seismic safety, groundwater contamination, civil engineering, hydrology, geology, chemistry, ecology, and environmental issues."
     contact_html: |
         <div class="al-repository-contact-phone">(408) 630-2657</div>
         <div class="al-repository-contact-info"><a href="mailto:scurtin@valleywater.org">scurtin@valleywater.org</a></div>
@@ -4905,7 +4903,7 @@ cstcrcl_dtwnbr:
     longitude: -122.028883
 cstcrcl_scvb:
     name: "Santa Cruz Public Libraries, Santa Cruz Public Libraries, Scotts Valley Branch"
-    description: "The Santa Cruz Public Libraries (SCPL) system delivers information, education, enrichment and inspiration through a network of 10 neighborhood library branches, a web-based digital library, a Bookmobile and community-based programs. The Photograph &amp; Postcard Collection contains more than 1,500 images dating from the 1860&#x27;s to the 1990&#x27;s."
+    description: "The Santa Cruz Public Libraries (SCPL) system delivers information, education, enrichment and inspiration through a network of 10 neighborhood library branches, a web-based digital library, a Bookmobile and community-based programs. The Photograph &amp; Postcard Collection contains more than 1,500 images dating from the 1860's to the 1990's."
     contact_html: |
         <div class="al-repository-contact-phone">(831) 427-7700 ext. 7712</div>
         <div class="al-repository-contact-info"><a href="mailto:gaultl@santacruzpl.org">gaultl@santacruzpl.org</a></div>
@@ -4918,7 +4916,7 @@ cstcrcl_scvb:
     longitude: -122.028572
 csfs:
     name: "Santa Fe Springs City Library"
-    description: "Santa Fe Springs City Library provides qualified staff, materials, and services in a variety of formats to meet the personal, educational and professional needs of two diverse groups within the community. In 2006, the Santa Fe Springs City Library received funding from the Library Services and Technology Act through the California State Library to digitize 200 images from the city&#x27;s historical collection."
+    description: "Santa Fe Springs City Library provides qualified staff, materials, and services in a variety of formats to meet the personal, educational and professional needs of two diverse groups within the community. In 2006, the Santa Fe Springs City Library received funding from the Library Services and Technology Act through the California State Library to digitize 200 images from the city's historical collection."
     contact_html: |
         <div class="al-repository-contact-phone">(562) 868-7738</div>
         <div class="al-repository-contact-info"><a href="mailto:library@santafesprings.org">library@santafesprings.org</a></div>
@@ -5008,7 +5006,7 @@ casfmta:
     longitude: -122.418837
 carivsim:
     name: "Sherman Indian Museum"
-    description: "The Sherman Indian Museum was established to document and perpetuate the history and cultural heritage of the Perris Indian School (1892-1902), Sherman Institute (1902-1970), and Sherman Indian High School (1970-). Materials relating to American Indian education are also part of the museum&#x27;s collection which serves as an educational resource for students and researchers alike."
+    description: "The Sherman Indian Museum was established to document and perpetuate the history and cultural heritage of the Perris Indian School (1892-1902), Sherman Institute (1902-1970), and Sherman Indian High School (1970-). Materials relating to American Indian education are also part of the museum's collection which serves as an educational resource for students and researchers alike."
     contact_html: |
         <div class="al-repository-contact-phone">(951) 276-6719</div>
         <div class="al-repository-contact-info"><a href="mailto:ShermanResearchRequest@yahoo.com">ShermanResearchRequest@yahoo.com</a></div>
@@ -5059,7 +5057,7 @@ csie:
     longitude: -118.0619447
 cayrscm:
     name: "Siskiyou County Museum"
-    description: "The Siskiyou County Museum was built in 1950 by the County with the goal of preserving the history of the area for future generations. From its humble beginnings the Siskiyou County Museum has grown from a collection of articles donated by the descendants of early pioneers and dedicated members of the first Historical Society members, to its present facility with exhibit galleries and an Outdoor Museum that displays original and recreated buildings from all over Siskiyou County.  The museum&#x27;s mission is to collect, preserve, interpret and disseminate the history of Siskiyou County, and in some cases the state of California as it relates to the local region."
+    description: "The Siskiyou County Museum was built in 1950 by the County with the goal of preserving the history of the area for future generations. From its humble beginnings the Siskiyou County Museum has grown from a collection of articles donated by the descendants of early pioneers and dedicated members of the first Historical Society members, to its present facility with exhibit galleries and an Outdoor Museum that displays original and recreated buildings from all over Siskiyou County.  The museum's mission is to collect, preserve, interpret and disseminate the history of Siskiyou County, and in some cases the state of California as it relates to the local region."
     contact_html: |
         <div class="al-repository-contact-phone">(530) 842-3836</div>
         <div class="al-repository-contact-info"><a href="mailto:SCMuseum@co.siskiyou.ca.us">SCMuseum@co.siskiyou.ca.us</a></div>
@@ -5084,7 +5082,7 @@ cafrshf:
     longitude: -121.9131761
 casfpas:
     name: "Sisters of the Presentation, San Francisco"
-    description: "The Sisters of the Presentation&#x27;s archival collections reflect the institutional history of the Sisters of Presentation and their various individual ministries since the time of their foundation in San Francisco, California in 1854 up to the present day.  The unique historical materials reflect the sisters’ participation in these ministries and that of their relationship to those served through these ministries.  Collections spanning the years since 1854 document the sisters’ lives and their ministries in California, New Mexico and Washington; and on sisters’ ministries in response to Vatican II, including mission work in Mexico and Guatemala, and their involvement in social justice issues.  Administrative records include minutes of general councils, chapter assemblies and various committees, including national and international groups. Additional collections include artifacts such as objects from convent life; photographs; scrapbooks; and audiovisual materials.  Areas of research include genealogy, the histories of women in Catholicism, education, Irish-Americans, American Catholicism, and the history of San Francisco. Other areas of research include social justice, spirituality, religious formation, and religious life."
+    description: "The Sisters of the Presentation's archival collections reflect the institutional history of the Sisters of Presentation and their various individual ministries since the time of their foundation in San Francisco, California in 1854 up to the present day.  The unique historical materials reflect the sisters’ participation in these ministries and that of their relationship to those served through these ministries.  Collections spanning the years since 1854 document the sisters’ lives and their ministries in California, New Mexico and Washington; and on sisters’ ministries in response to Vatican II, including mission work in Mexico and Guatemala, and their involvement in social justice issues.  Administrative records include minutes of general councils, chapter assemblies and various committees, including national and international groups. Additional collections include artifacts such as objects from convent life; photographs; scrapbooks; and audiovisual materials.  Areas of research include genealogy, the histories of women in Catholicism, education, Irish-Americans, American Catholicism, and the history of San Francisco. Other areas of research include social justice, spirituality, religious formation, and religious life."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 751-0406</div>
         <div class="al-repository-contact-info"><a href="mailto:presarchives@pbvmsf.org">presarchives@pbvmsf.org</a></div>
@@ -5098,7 +5096,7 @@ casfpas:
     longitude: -122.447669506
 camensla:
     name: "SLAC National Accelerator Laboratory (Archives, History and Records Office)"
-    description: "SLAC National Accelerator Laboratory is one of the world&#x27;s leading research laboratories. Established in 1962 at Stanford University in Menlo Park, California, as a particle physics research center, SLAC is now a multipurpose laboratory for astrophysics, photon science, accelerator and particle physics research.  SLAC&#x27;s Archives, History &amp; Records Office (AHRO) is a coordinate archive to the Stanford University Archives. As such, it ensures that the Laboratory&#x27;s history is identified, collected, preserved and made accessible to the SLAC and Stanford communities, to researchers and to the public. The Office&#x27;s Records Management (RM) function preserves, schedules and disposes of temporary records, regardless of format, created in the course of doing business at SLAC. RM is responsible for appropriate handling and retention of inactive temporary retention records that must be retained for specified lengths of time for financial, legal, epidemiological or medical reasons, according to disposition schedules jointly agreed upon by the U.S. Department of Energy (DOE) and the National Archives and Records Administration (NARA)."
+    description: "SLAC National Accelerator Laboratory is one of the world's leading research laboratories. Established in 1962 at Stanford University in Menlo Park, California, as a particle physics research center, SLAC is now a multipurpose laboratory for astrophysics, photon science, accelerator and particle physics research.  SLAC's Archives, History &amp; Records Office (AHRO) is a coordinate archive to the Stanford University Archives. As such, it ensures that the Laboratory's history is identified, collected, preserved and made accessible to the SLAC and Stanford communities, to researchers and to the public. The Office's Records Management (RM) function preserves, schedules and disposes of temporary records, regardless of format, created in the course of doing business at SLAC. RM is responsible for appropriate handling and retention of inactive temporary retention records that must be retained for specified lengths of time for financial, legal, epidemiological or medical reasons, according to disposition schedules jointly agreed upon by the U.S. Department of Energy (DOE) and the National Archives and Records Administration (NARA)."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 926-5376</div>
         <div class="al-repository-contact-info"><a href="mailto:slacarc@slac.stanford.edu">slacarc@slac.stanford.edu</a></div>
@@ -5124,7 +5122,7 @@ csfcp:
     longitude: -122.401196
 cstr:
     name: "Sonoma County Library"
-    description: "The Sonoma County Library, through its Sonoma Heritage Collections, seeks out, acquires and makes digitally accessible, materials in all formats to illuminate Sonoma County history and culture. The Sonoma Heritage Collection builds on the extensive collection of historical photographs gathered in the the Library&#x27;s History &amp; Genealogy Library, Petaluma History Room and Sonoma County Wine Library, as well as archival collections located in the Sonoma County Archives. We have collaborated with a number of Sonoma County organizations including the Sonoma Valley Historical Society, the Western Sonoma County Historical Society and the Sonoma County Fair to broaden our offerings. The Sonoma Heritage Collections includes a number of current and planned, unique collections ranging from historical photographs to Sonoma County wine labels, and from architectural drawings to winemaker oral histories."
+    description: "The Sonoma County Library, through its Sonoma Heritage Collections, seeks out, acquires and makes digitally accessible, materials in all formats to illuminate Sonoma County history and culture. The Sonoma Heritage Collection builds on the extensive collection of historical photographs gathered in the the Library's History &amp; Genealogy Library, Petaluma History Room and Sonoma County Wine Library, as well as archival collections located in the Sonoma County Archives. We have collaborated with a number of Sonoma County organizations including the Sonoma Valley Historical Society, the Western Sonoma County Historical Society and the Sonoma County Fair to broaden our offerings. The Sonoma Heritage Collections includes a number of current and planned, unique collections ranging from historical photographs to Sonoma County wine labels, and from architectural drawings to winemaker oral histories."
     contact_html: |
         <div class="al-repository-contact-phone">(707) 545-0831</div>
         <div class="al-repository-contact-info"><a href="mailto:digital@sonomalibrary.org">digital@sonomalibrary.org</a></div>
@@ -5150,7 +5148,7 @@ crps:
     longitude: -122.676923275
 sonoma:
     name: "Sonoma State University Library"
-    description: "Sonoma State University Library&#x27;s Special Collections have significant historical value and the items in each collection are worthy of permanent preservation. Books, photographs, personal letters, periodicals, media, and artifacts are included. Emphasis is on the history, people, and culture of the North Bay region of California, but some collections cover a wide range of subjects. Special Collections and the SSU Archives offer a rich environment for intellectual discovery and can greatly enhance your research experience. The collections are available to anyone wishing to incorporate primary sources into academic or personal research projects and classroom instruction."
+    description: "Sonoma State University Library's Special Collections have significant historical value and the items in each collection are worthy of permanent preservation. Books, photographs, personal letters, periodicals, media, and artifacts are included. Emphasis is on the history, people, and culture of the North Bay region of California, but some collections cover a wide range of subjects. Special Collections and the SSU Archives offer a rich environment for intellectual discovery and can greatly enhance your research experience. The collections are available to anyone wishing to incorporate primary sources into academic or personal research projects and classroom instruction."
     contact_html: |
         <div class="al-repository-contact-phone">(707) 664-4152 </div>
         <div class="al-repository-contact-info"><a href="mailto:specialcollections@sonoma.edu">specialcollections@sonoma.edu</a></div>
@@ -5399,7 +5397,7 @@ stanford_cstl:
     longitude: -122.1761355
 stanford_suac:
     name: "Stanford University, Stanford University Archaeology Collections"
-    description: "The Stanford University Archaeology Collections is Stanford&#x27;s home for hands-on artifact study. SUAC promotes socially engaged, collections-based scholarship as a core disciplinary competency and mode of interdisciplinary intellectual inquiry. We model best practices in the ethical stewardship of cultural heritage collections on campus and beyond. We create &quot;connections through collections,&quot; celebrating the power of material culture to inspire innovative thinking and—most importantly—bring people together.   SUAC is part of the Stanford Archaeology Center, an interdisciplinary hub focused on innovative research and education in archaeology and heritage. We support the Center&#x27;s mission to understand the past and its contribution to contemporary and future worlds, to redress the colonial foundations of archaeology through an enduring commitment to ethics and to advancing diversity, equity, and inclusion, and to support excellence in archaeological research and foster dynamic links between scholars in disparate fields."
+    description: "The Stanford University Archaeology Collections is Stanford's home for hands-on artifact study. SUAC promotes socially engaged, collections-based scholarship as a core disciplinary competency and mode of interdisciplinary intellectual inquiry. We model best practices in the ethical stewardship of cultural heritage collections on campus and beyond. We create &quot;connections through collections,&quot; celebrating the power of material culture to inspire innovative thinking and—most importantly—bring people together.   SUAC is part of the Stanford Archaeology Center, an interdisciplinary hub focused on innovative research and education in archaeology and heritage. We support the Center's mission to understand the past and its contribution to contemporary and future worlds, to redress the colonial foundations of archaeology through an enduring commitment to ethics and to advancing diversity, equity, and inclusion, and to support excellence in archaeological research and foster dynamic links between scholars in disparate fields."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 736-2833 </div>
         <div class="al-repository-contact-info"><a href="mailto:suarchcoll@stanford.edu">suarchcoll@stanford.edu</a></div>
@@ -5483,7 +5481,7 @@ canhaat:
     longitude: -118.3744118
 casftm:
     name: "Tenderloin Museum"
-    description: "The Tenderloin Museum celebrates the rich history of one of San Francisco&#x27;s most misunderstood neighborhood. The 31 blocks of the Tenderloin district are the beating heart of the city peopled by immigrants and iconoclasts, artists and activists, sinners and saints. Visit the Tenderloin Museum today and encounter a kaleidoscopic American city in all its grit and glory."
+    description: "The Tenderloin Museum celebrates the rich history of one of San Francisco's most misunderstood neighborhood. The 31 blocks of the Tenderloin district are the beating heart of the city peopled by immigrants and iconoclasts, artists and activists, sinners and saints. Visit the Tenderloin Museum today and encounter a kaleidoscopic American city in all its grit and glory."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 351-1912</div>
         <div class="al-repository-contact-info"><a href="mailto:info@tenderloinmuseum.org">info@tenderloinmuseum.org</a></div>
@@ -5638,7 +5636,7 @@ catlnps:
     longitude: -121.141595
 berkeley:
     name: "UC Berkeley"
-    description: "The University of California, Berkeley is home to many valuable collections of non-book artifacts and objects housed in campus museums, libraries, and archives. Managing, conserving, and providing access to these collections is an important contribution to the fulfillment of the University&#x27;s research, teaching, and public service missions. These collections, including those that increasingly feature digitized materials, document the cultural, biological and physical diversity of California and many other regions and cultures of the world. The collections support research and teaching in many disciplines across campus, from Art to Zoology. The collections are large and diverse in content and many are among the premier collections of their kind in the world."
+    description: "The University of California, Berkeley is home to many valuable collections of non-book artifacts and objects housed in campus museums, libraries, and archives. Managing, conserving, and providing access to these collections is an important contribution to the fulfillment of the University's research, teaching, and public service missions. These collections, including those that increasingly feature digitized materials, document the cultural, biological and physical diversity of California and many other regions and cultures of the world. The collections support research and teaching in many disciplines across campus, from Art to Zoology. The collections are large and diverse in content and many are among the premier collections of their kind in the world."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 642-6000</div>
         <div class="al-repository-contact-info"><a href="https://www.berkeley.edu/">Website</a></div>
@@ -5664,7 +5662,7 @@ berkeley_arthist:
     longitude: -122.2593892
 berkeley_bancroft:
     name: "UC Berkeley, Bancroft Library"
-    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. One of the largest and most heavily used libraries of manuscripts, rare books, and unique materials in the United States, Bancroft supports major research and instructional activities and plays a leading role in the development of the University&#x27;s research collections."
+    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. One of the largest and most heavily used libraries of manuscripts, rare books, and unique materials in the United States, Bancroft supports major research and instructional activities and plays a leading role in the development of the University's research collections."
     contact_html: |
         <div class="al-repository-contact-phone">510-642-6481</div>
         <div class="al-repository-contact-info"><a href="mailto:bancref-library@berkeley.edu">bancref-library@berkeley.edu</a></div>
@@ -5827,7 +5825,7 @@ berkeley_cabeurle:
     longitude: -122.25784421
 berkeley_igsl:
     name: "UC Berkeley, Institute of Governmental Studies Library"
-    description: "The IGS Library is one of the nation&#x27;s major collections in public administration, public affairs, and public policy. The library holds more than 400,000 volumes and is a depository for California local government documents.  Special collections include California Reapportionment Archives and California Election Campaign Ephemera. Pamphlets and unbound reports from a broad range of public interest organizations, research institutes and government agencies are the heart of the collection, which dates from 1921.  The library&#x27;s Ballot Measure Guides help scholars and voters to understand California&#x27;s initiative process, its digital collections bring local government documents to your desktop, and the library&#x27;s reference service provides assistance to the Cal community and to members of the public who have questions regarding public policy and politics."
+    description: "The IGS Library is one of the nation's major collections in public administration, public affairs, and public policy. The library holds more than 400,000 volumes and is a depository for California local government documents.  Special collections include California Reapportionment Archives and California Election Campaign Ephemera. Pamphlets and unbound reports from a broad range of public interest organizations, research institutes and government agencies are the heart of the collection, which dates from 1921.  The library's Ballot Measure Guides help scholars and voters to understand California's initiative process, its digital collections bring local government documents to your desktop, and the library's reference service provides assistance to the Cal community and to members of the public who have questions regarding public policy and politics."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 642-1472</div>
         <div class="al-repository-contact-info"><a href="mailto:igsl@berkeley.edu">igsl@berkeley.edu</a></div>
@@ -5854,7 +5852,7 @@ berkeley_cabesl:
     longitude: -122.253421247
 berkeley_cabemrc:
     name: "UC Berkeley, Media Resources Center"
-    description: "The Media Resources Center (MRC) is the UC Berkeley Library&#x27;s primary collection of materials in audio and visual formats, including DVDs, videocassettes, streamed audio and video, compact audio discs, and audiocassettes."
+    description: "The Media Resources Center (MRC) is the UC Berkeley Library's primary collection of materials in audio and visual formats, including DVDs, videocassettes, streamed audio and video, compact audio discs, and audiocassettes."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 642-8197</div>
         <div class="al-repository-contact-info"><a href="mailto:avmccirc-library@berkeley.edu">avmccirc-library@berkeley.edu</a></div>
@@ -5971,7 +5969,7 @@ berkeley_library:
     longitude: -122.261609
 berkeley_wjhc:
     name: "UC Berkeley, The Magnes Collection of Jewish Art and Life"
-    description: "The Magnes Collection of Jewish Art and Life was established in 2010 following the transfer of the Judah L. Magnes Museum to the University of California, Berkeley. Its remarkably diverse archive, library and museum holdings include art, objects, texts, music, and historical documents about the Jews in the Global Diaspora and the American West. As one of the world&#x27;s preeminent Jewish collections in a university setting, it provides highly innovative and accessible resources to both researchers and visitors."
+    description: "The Magnes Collection of Jewish Art and Life was established in 2010 following the transfer of the Judah L. Magnes Museum to the University of California, Berkeley. Its remarkably diverse archive, library and museum holdings include art, objects, texts, music, and historical documents about the Jews in the Global Diaspora and the American West. As one of the world's preeminent Jewish collections in a university setting, it provides highly innovative and accessible resources to both researchers and visitors."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 643-2526</div>
         <div class="al-repository-contact-info"><a href="mailto:magnes@berkeley.edu">magnes@berkeley.edu</a></div>
@@ -6079,7 +6077,7 @@ wpfaa:
     longitude: -121.7507298
 uci:
     name: "UC Irvine"
-    description: "UC Irvine Special Collections and Archives houses the UC Irvine Libraries&#x27; collections of rare books, manuscripts, archives, photographs, and other rare and special materials.  We welcome students, researchers, and the community members to visit and use our collections and services within our reading room."
+    description: "UC Irvine Special Collections and Archives houses the UC Irvine Libraries' collections of rare books, manuscripts, archives, photographs, and other rare and special materials.  We welcome students, researchers, and the community members to visit and use our collections and services within our reading room."
     contact_html: |
         <div class="al-repository-contact-phone">(949) 824-3947 </div>
         <div class="al-repository-contact-info"><a href="mailto:spcoll@uci.edu">spcoll@uci.edu</a></div>
@@ -6093,7 +6091,7 @@ uci:
     longitude: -117.842067
 uci_cta:
     name: "UC Irvine, Critical Theory Archive"
-    description: "The Critical Theory Archive holds the scholarly archives of major figures who have worked in the fields included under the loosely defined rubric of &quot;critical theory.&quot; The existence of the Archive recognizes the key role that scholars at UC Irvine have played in the development of the field since the 1970s and the significance of Critical Theory in UCI&#x27;s academic programs."
+    description: "The Critical Theory Archive holds the scholarly archives of major figures who have worked in the fields included under the loosely defined rubric of &quot;critical theory.&quot; The existence of the Archive recognizes the key role that scholars at UC Irvine have played in the development of the field since the 1970s and the significance of Critical Theory in UCI's academic programs."
     contact_html: |
         <div class="al-repository-contact-phone">(949) 824-3947</div>
         <div class="al-repository-contact-info"><a href="mailto:spcoll@uci.libanswers.com">spcoll@uci.libanswers.com</a></div>
@@ -6139,7 +6137,7 @@ uci_ocrh:
     longitude: -117.841029167
 uci_sea:
     name: "UC Irvine, Southeast Asian Archive"
-    description: "The University of California, Irvine Libraries established the Southeast Asian Archive in 1987 in response to the community’s interest in having this history documented, preserved, and made accessible. The Archive&#x27;s collection is broad and interdisciplinary in documenting the social, cultural, religious, political, and economic life of members of the Cambodian, Hmong, Laotian, and Vietnamese diaspora. Collection strengths include Southeast Asian American experiences of resettlement and community formations since the Vietnam War, Cambodian Genocide, and geopolitical turmoil in the former French-occupied &quot;Indochina&quot; in the latter half of the 20th century.  The circumstances related to the formation of these diasporic communities, including wars, genocide, and displacement, contribute to the complexities of the Southeast Asian Archive. In particular, records from international aid workers may include information about people who were unknowingly (or non-consentingly) documented and/or depict or describe graphic violence, nudity, as well as racist and/or sexist views. Additionally, these communities originate from countries previously colonized by France and named “Indochina.” As such, some records deploy terms that may be common in government and scholarly publications, but are not adopted or agreed upon by Cambodian, Hmong, Laotian, and Vietnamese people.  These primary source collections are historical and may include descriptive language, personal views, and imagery about and/or in them that are no longer used or considered appropriate today. The acceptability of language and content can change over time. It is possible that a collection or metadata associated with a collection may contain historical language or culturally sensitive content now recognized as inappropriate for publication without meaningful context or consultation with relevant communities.  We are proactively addressing these issues in the UCI Libraries, including ongoing work on reparative, ethical archival description. If you believe that we have archival materials or have published an image or information that is incorrect or that should be restricted, please submit feedback using this form: https://airtable.com/shrOmDhHMDUFlhBVd"
+    description: "The University of California, Irvine Libraries established the Southeast Asian Archive in 1987 in response to the community’s interest in having this history documented, preserved, and made accessible. The Archive's collection is broad and interdisciplinary in documenting the social, cultural, religious, political, and economic life of members of the Cambodian, Hmong, Laotian, and Vietnamese diaspora. Collection strengths include Southeast Asian American experiences of resettlement and community formations since the Vietnam War, Cambodian Genocide, and geopolitical turmoil in the former French-occupied &quot;Indochina&quot; in the latter half of the 20th century.  The circumstances related to the formation of these diasporic communities, including wars, genocide, and displacement, contribute to the complexities of the Southeast Asian Archive. In particular, records from international aid workers may include information about people who were unknowingly (or non-consentingly) documented and/or depict or describe graphic violence, nudity, as well as racist and/or sexist views. Additionally, these communities originate from countries previously colonized by France and named “Indochina.” As such, some records deploy terms that may be common in government and scholarly publications, but are not adopted or agreed upon by Cambodian, Hmong, Laotian, and Vietnamese people.  These primary source collections are historical and may include descriptive language, personal views, and imagery about and/or in them that are no longer used or considered appropriate today. The acceptability of language and content can change over time. It is possible that a collection or metadata associated with a collection may contain historical language or culturally sensitive content now recognized as inappropriate for publication without meaningful context or consultation with relevant communities.  We are proactively addressing these issues in the UCI Libraries, including ongoing work on reparative, ethical archival description. If you believe that we have archival materials or have published an image or information that is incorrect or that should be restricted, please submit feedback using this form: https://airtable.com/shrOmDhHMDUFlhBVd"
     contact_html: |
         <div class="al-repository-contact-phone">(949) 824-3947</div>
         <div class="al-repository-contact-info"><a href="mailto:spcoll@uci.libanswers.com">spcoll@uci.libanswers.com</a></div>
@@ -6175,7 +6173,7 @@ uci_spcoll:
     longitude: -117.841109633
 uci_uarc:
     name: "UC Irvine, University Archives"
-    description: "The University Archives preserves UCI&#x27;s historically significant records. Beginning with the founding of UCI in 1965, the University Archives holds materials that document the planning and growth of the campus, the development and administration of academic and administrative programs and services, faculty concerns, student life, and community relations. In addition to records created in the course of campus business, such as correspondence, memoranda, minutes, reports, plans, charts, and topical files, the University Archives also contains photographs, maps, posters, newsletters, yearbooks, brochures, video and audio recordings, and a variety of other materials."
+    description: "The University Archives preserves UCI's historically significant records. Beginning with the founding of UCI in 1965, the University Archives holds materials that document the planning and growth of the campus, the development and administration of academic and administrative programs and services, faculty concerns, student life, and community relations. In addition to records created in the course of campus business, such as correspondence, memoranda, minutes, reports, plans, charts, and topical files, the University Archives also contains photographs, maps, posters, newsletters, yearbooks, brochures, video and audio recordings, and a variety of other materials."
     contact_html: |
         <div class="al-repository-contact-phone">(949) 824-3947</div>
         <div class="al-repository-contact-info"><a href="mailto:spcoll@uci.libanswers.com">spcoll@uci.libanswers.com</a></div>
@@ -6282,7 +6280,7 @@ ucla_ethno:
     longitude: -118.440116644
 grunwald:
     name: "UCLA, Grunwald Center for the Graphic Arts"
-    description: "The collection of the UCLA Grunwald Center for the Graphic Arts comprises more than 45,000 prints, drawings, photographs, and artists&#x27; books dating from the Renaissance to the present. Established in 1956 with a substantial gift from Fred Grunwald, the collection has been steadily enriched through significant acquisitions and donations. A primary resource for teaching and research, the Grunwald Center houses one of the most significant collections of works on paper in the country."
+    description: "The collection of the UCLA Grunwald Center for the Graphic Arts comprises more than 45,000 prints, drawings, photographs, and artists' books dating from the Renaissance to the present. Established in 1956 with a substantial gift from Fred Grunwald, the collection has been steadily enriched through significant acquisitions and donations. A primary resource for teaching and research, the Grunwald Center houses one of the most significant collections of works on paper in the country."
     contact_html: |
         <div class="al-repository-contact-phone">(310) 443-7000</div>
         <div class="al-repository-contact-info"><a href="https://hammer.ucla.edu/">Website</a></div>
@@ -6435,7 +6433,7 @@ ucla_music:
     longitude: -118.440331221
 ucla_rcrea:
     name: "UCLA, Richard C. Rudolph East Asian Library"
-    description: "The Richard C. Rudolph East Asian Library was established in 1948 to support UCLA&#x27;s teaching and research programs in East Asian studies. The library selects, organizes, and makes available Chinese-, Japanese-, and Korean-language materials, and its staff provides reference and instruction services to optimize access to and use of the collections"
+    description: "The Richard C. Rudolph East Asian Library was established in 1948 to support UCLA's teaching and research programs in East Asian studies. The library selects, organizes, and makes available Chinese-, Japanese-, and Korean-language materials, and its staff provides reference and instruction services to optimize access to and use of the collections"
     contact_html: |
         <div class="al-repository-contact-phone">(310) 825-4836</div>
         <div class="al-repository-contact-info"><a href="http://www.library.ucla.edu/eastasian">Website</a></div>
@@ -6621,7 +6619,7 @@ ucr_libr:
     longitude: -117.33117342
 ucr_uarc:
     name: "UC Riverside, University Archives"
-    description: "The University Archives is the designated repository for records, documents, publications and other materials pertaining to the University of California, Riverside. Located in the Special Collections &amp; Archives Department of the Tomás Rivera Library, the University Archives houses campus materials of enduring historical value. Our holdings document the history of the campus from its beginnings in the early 1900&#x27;s as the Citrus Experiment Station to its present form as a thriving academic institution within the University of California system. These resources support university administration, the institution&#x27;s educational goals, and community outreach activities. The Archives&#x27; holdings are non-circulating and are open for use by the campus community as well as the general public during normal operating hours."
+    description: "The University Archives is the designated repository for records, documents, publications and other materials pertaining to the University of California, Riverside. Located in the Special Collections &amp; Archives Department of the Tomás Rivera Library, the University Archives houses campus materials of enduring historical value. Our holdings document the history of the campus from its beginnings in the early 1900's as the Citrus Experiment Station to its present form as a thriving academic institution within the University of California system. These resources support university administration, the institution's educational goals, and community outreach activities. The Archives' holdings are non-circulating and are open for use by the campus community as well as the general public during normal operating hours."
     contact_html: |
         <div class="al-repository-contact-phone">(951) 827-3233</div>
         <div class="al-repository-contact-info"><a href="mailto:specialcollections@ucr.edu">specialcollections@ucr.edu</a></div>
@@ -6711,7 +6709,7 @@ ucsd_siolib:
     longitude: -117.25254178
 ucsd_spcoll:
     name: "UC San Diego, Special Collections and Archives"
-    description: "Special Collections &amp; Archives is an administative unit of the Library that includes UC San Diego&#x27;s distinguished Mandeville Special Collections and the long-established Scripps Institution of Oceanography Archives. The two collections were combined in July 2013.  Special Collections &amp; Archives (SC&amp;A) houses a wide range of rare books, manuscripts, periodicals, maps, photographs, artworks, films, sound recordings, archives, and digital files. These primary source materials support UCSD&#x27;s instructional and research programs, and distinguish UCSD&#x27;s library collections from all other research universities."
+    description: "Special Collections &amp; Archives is an administative unit of the Library that includes UC San Diego's distinguished Mandeville Special Collections and the long-established Scripps Institution of Oceanography Archives. The two collections were combined in July 2013.  Special Collections &amp; Archives (SC&amp;A) houses a wide range of rare books, manuscripts, periodicals, maps, photographs, artworks, films, sound recordings, archives, and digital files. These primary source materials support UCSD's instructional and research programs, and distinguish UCSD's library collections from all other research universities."
     contact_html: |
         <div class="al-repository-contact-phone">(858) 534-2533</div>
         <div class="al-repository-contact-info"><a href="mailto:spcoll@ucsd.edu">spcoll@ucsd.edu</a></div>
@@ -6728,7 +6726,7 @@ ucsd_spcoll:
     longitude: -117.237317562
 ucsd_libr:
     name: "UC San Diego, The UC San Diego Library"
-    description: "The UC San Diego Library Digital Collections consists of documents, images, video and audio recordings, and research data sets made available to support scholarship, teaching and learning. Content has been drawn from primary source materials from across the Library&#x27;s collections, as well as data generated by campus researchers."
+    description: "The UC San Diego Library Digital Collections consists of documents, images, video and audio recordings, and research data sets made available to support scholarship, teaching and learning. Content has been drawn from primary source materials from across the Library's collections, as well as data generated by campus researchers."
     contact_html: |
         <div class="al-repository-contact-info"><a href="mailto:dl-support@ucsd.edu">dl-support@ucsd.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://libraries.ucsd.edu/research-and-collections/collections">Website</a></div>
@@ -7220,7 +7218,7 @@ usc_gaga:
     longitude: -118.109872
 usc_musi:
     name: "University of Southern California, Music Library"
-    description: "The Music Library&#x27;s primary mission is to support the research and performance needs of the students, faculty, staff, and alumni of the Flora L. Thornton School of Music."
+    description: "The Music Library's primary mission is to support the research and performance needs of the students, faculty, staff, and alumni of the Flora L. Thornton School of Music."
     contact_html: |
         <div class="al-repository-contact-phone">(213) 740-0183</div>
         <div class="al-repository-contact-info"><a href="mailto:ajustice@usc.edu">ajustice@usc.edu</a></div>
@@ -7317,7 +7315,7 @@ uop:
     longitude: -121.312312
 cupl:
     name: "Upland Public Library"
-    description: "The Upland Public Library has a local history collection, which consists of books, oral history tapes, newspaper articles pertaining to people and subjects of interest to Upland&#x27;s history, yearbooks, photographs and slides of historic Upland. The collection includes phone directories dating back to 1898 and Upland News microfilm back to 1913"
+    description: "The Upland Public Library has a local history collection, which consists of books, oral history tapes, newspaper articles pertaining to people and subjects of interest to Upland's history, yearbooks, photographs and slides of historic Upland. The collection includes phone directories dating back to 1898 and Upland News microfilm back to 1913"
     contact_html: |
         <div class="al-repository-contact-phone">(909) 931-4322</div>
         <div class="al-repository-contact-info"><a href="mailto:lorene.broersma@uplandlibrary.org">lorene.broersma@uplandlibrary.org</a></div>
@@ -7471,7 +7469,7 @@ cwh:
     longitude: -118.034749031
 csfsc:
     name: "William E. Colby Memorial Library, Sierra Club"
-    description: "The Sierra Club has maintained a library since its beginnings more than a century ago. The Club&#x27;s first library was based on a small collection of mountaineering literature that served John Muir and other mountaineers at the turn of the twentieth century. In San Francisco&#x27;s devastating 1906 earthquake and fire, this early collection was destroyed, but the library was soon reestablished through an outpouring of donations. From those small beginnings the library has grown to accommodate the evolving needs of Sierra Club members. As the Club grew, so did its library. It now holds a significant conservation and mountaineering collection. In 1965, the Library was dedicated as a memorial to William E. Colby , the first secretary of the Sierra Club and a director for forty-nine years. As a reference library, ours is a non-circulating, research collection. Sierra Club members and the public are welcome to use the library as visitors, by appointment. In our reading room at the Club&#x27;s San Francisco headquarters, we provide on-site access to our extensive collection of books, periodicals, mountaineering journals, government documents, historic photographs, slides, maps and memorabilia. Researchers who are unable to visit our library may search the online catalog  for our traditional collections. We respond to reference inquiries regarding Sierra Club publications and history, and will provide photocopies of specific articles if needed. In the 21st century, the Colby Library has expanded online. Our mission is to bring more great content from the Club&#x27;s website to the library&#x27;s holdings."
+    description: "The Sierra Club has maintained a library since its beginnings more than a century ago. The Club's first library was based on a small collection of mountaineering literature that served John Muir and other mountaineers at the turn of the twentieth century. In San Francisco's devastating 1906 earthquake and fire, this early collection was destroyed, but the library was soon reestablished through an outpouring of donations. From those small beginnings the library has grown to accommodate the evolving needs of Sierra Club members. As the Club grew, so did its library. It now holds a significant conservation and mountaineering collection. In 1965, the Library was dedicated as a memorial to William E. Colby , the first secretary of the Sierra Club and a director for forty-nine years. As a reference library, ours is a non-circulating, research collection. Sierra Club members and the public are welcome to use the library as visitors, by appointment. In our reading room at the Club's San Francisco headquarters, we provide on-site access to our extensive collection of books, periodicals, mountaineering journals, government documents, historic photographs, slides, maps and memorabilia. Researchers who are unable to visit our library may search the online catalog  for our traditional collections. We respond to reference inquiries regarding Sierra Club publications and history, and will provide photocopies of specific articles if needed. In the 21st century, the Colby Library has expanded online. Our mission is to bring more great content from the Club's website to the library's holdings."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 977-5506</div>
         <div class="al-repository-contact-info"><a href="mailto:colby.library@sierraclub.org">colby.library@sierraclub.org</a></div>
@@ -7484,7 +7482,7 @@ csfsc:
     longitude: -122.2659978
 cawilhs:
     name: "Wilmington Historical Society"
-    description: "A group of residents, led by Loraine Roberts of the Banning Park neighborhood, formed the Wilmington Historical Society in an effort to preserve what remains of Wilmington&#x27;s historic structures and gather photographs and information about what is already gone."
+    description: "A group of residents, led by Loraine Roberts of the Banning Park neighborhood, formed the Wilmington Historical Society in an effort to preserve what remains of Wilmington's historic structures and gather photographs and information about what is already gone."
     contact_html: |
         <div class="al-repository-contact-info"><a href="mailto:https://www.wilmingtonhistory.org/contact-us.html">https://www.wilmingtonhistory.org/contact-us.html</a></div>
         <div class="al-repository-contact-info"><a href="https://www.wilmingtonhistory.org/">Website</a></div>
@@ -7495,8 +7493,8 @@ cawilhs:
     latitude: 33.782916
     longitude: -118.265457
 casdwmc:
-    name: "Women&#x27;s Museum of California"
-    description: "Founded in 1983, the Women&#x27;s Museum of California is one of five women&#x27;s museums in the United States.  The museum&#x27;s mission is to educate and inspire current and future generations about the experiences and contributions of women by collecting, preserving, and interpreting the documentary and visual evidence of those experiences.  The museum aims to provide the community a broad collection of reference materials that document women’s history and the female experience.    With approximately 4,000 works in the Library Collection, the interdisciplinary nature concerning women’s history is reflected in our holdings - offering resources on a wide variety of disciplines such as women in the arts, women’s health &amp; reproductive rights, women in the military, biographical works, LGBT studies, law &amp; politics, and seminal works on the first and second waves of the feminist movement.  The majority of the Library Collection is comprised of printed works including books, journals, and periodicals. A small collection of audio-visual materials are available, including early sound recordings (vinyl) and our oral history collection that includes interviews from prominent women in the Unitarian Universalist Church and San Diego’s Hall of Fame Inductees.  The Women’s Museum of California also houses a historically significant Special Collection containing rare and out-of-print volumes dating from the mid-1800s.  A prized collection is a first edition set of Susan B. Anthony’s and Ida Husted Harper’s “The History of Women’s Suffrage,” the only known first edition to exist in California.   The Women&#x27;s Museum of California&#x27;s Archival Collection houses nearly 300 linear feet of material documenting the life and work of prominent female leaders and organizations&#x27; commitment to women&#x27;s rights and representation.  The Archival Collection includes the first women’s studies program developed at San Diego State University, collections from U.N. Conferences on the Status of Women, the National Organization for Women (N.O.W.), the Older Women’s League (O.W.L.), California Women for Agriculture, Women’s International League for Peace and Freedom (W.I.L.P.F.), National League of American Pen Women, League of Women Voters, National Women’s Political Caucus, the American Association of University Women, and finally Planned Parenthood and the Women’s Care Clinic of San Diego.  The personal papers and archival collections of prominent women include our founder, Mary Maschal; California suffragist sympathizer, Alice Park; Nancy Reeves; former California Senator, Lucy Killea; and Alice Barnes."
+    name: "Women's Museum of California"
+    description: "Founded in 1983, the Women's Museum of California is one of five women's museums in the United States.  The museum's mission is to educate and inspire current and future generations about the experiences and contributions of women by collecting, preserving, and interpreting the documentary and visual evidence of those experiences.  The museum aims to provide the community a broad collection of reference materials that document women’s history and the female experience.    With approximately 4,000 works in the Library Collection, the interdisciplinary nature concerning women’s history is reflected in our holdings - offering resources on a wide variety of disciplines such as women in the arts, women’s health &amp; reproductive rights, women in the military, biographical works, LGBT studies, law &amp; politics, and seminal works on the first and second waves of the feminist movement.  The majority of the Library Collection is comprised of printed works including books, journals, and periodicals. A small collection of audio-visual materials are available, including early sound recordings (vinyl) and our oral history collection that includes interviews from prominent women in the Unitarian Universalist Church and San Diego’s Hall of Fame Inductees.  The Women’s Museum of California also houses a historically significant Special Collection containing rare and out-of-print volumes dating from the mid-1800s.  A prized collection is a first edition set of Susan B. Anthony’s and Ida Husted Harper’s “The History of Women’s Suffrage,” the only known first edition to exist in California.   The Women's Museum of California's Archival Collection houses nearly 300 linear feet of material documenting the life and work of prominent female leaders and organizations' commitment to women's rights and representation.  The Archival Collection includes the first women’s studies program developed at San Diego State University, collections from U.N. Conferences on the Status of Women, the National Organization for Women (N.O.W.), the Older Women’s League (O.W.L.), California Women for Agriculture, Women’s International League for Peace and Freedom (W.I.L.P.F.), National League of American Pen Women, League of Women Voters, National Women’s Political Caucus, the American Association of University Women, and finally Planned Parenthood and the Women’s Care Clinic of San Diego.  The personal papers and archival collections of prominent women include our founder, Mary Maschal; California suffragist sympathizer, Alice Park; Nancy Reeves; former California Senator, Lucy Killea; and Alice Barnes."
     contact_html: |
         <div class="al-repository-contact-phone">(619) 233-7963</div>
         <div class="al-repository-contact-info"><a href="mailto:collections@womensmuseumca.org">collections@womensmuseumca.org</a></div>
@@ -7522,7 +7520,7 @@ cbbwu:
     longitude: -118.341198
 cacoihm:
     name: "Workman and Temple Family Homestead Museum"
-    description: "The six-acre site features the Workman House, an 1870s country home constructed around an 1840s adobe built by William and Nicolasa Workman; La Casa Nueva, a 1920s Spanish Colonial Revival mansion noted for its architectural crafts, built by the Workmans&#x27; grandson Walter Temple and his wife, Laura; and El Campo Santo, one of the region&#x27;s oldest private cemeteries, containing the remains of Pío Pico, the last governor of Mexican California, and many other prominent pioneer families."
+    description: "The six-acre site features the Workman House, an 1870s country home constructed around an 1840s adobe built by William and Nicolasa Workman; La Casa Nueva, a 1920s Spanish Colonial Revival mansion noted for its architectural crafts, built by the Workmans' grandson Walter Temple and his wife, Laura; and El Campo Santo, one of the region's oldest private cemeteries, containing the remains of Pío Pico, the last governor of Mexican California, and many other prominent pioneer families."
     contact_html: |
         <div class="al-repository-contact-phone">(626) 968-8492</div>
         <div class="al-repository-contact-info"><a href="mailto:info@homesteadmuseum.org.">info@homesteadmuseum.org.</a></div>
@@ -7548,7 +7546,7 @@ calawgf:
     longitude: -118.361731
 cafovyka:
     name: "Ya-Ka-Ama Indian Education Inc."
-    description: "The Ya-Ka-Ama Indian Education Inc&#x27;s digital collection at California Revealed contains moving images from 1993 to 2018 derived from a collection of MiniDV tapes. The tapes capture a wide range of tribal events including media workshops, baseball games, Earth Day celebrations, youth festivals, and much more."
+    description: "The Ya-Ka-Ama Indian Education Inc's digital collection at California Revealed contains moving images from 1993 to 2018 derived from a collection of MiniDV tapes. The tapes capture a wide range of tribal events including media workshops, baseball games, Earth Day celebrations, youth festivals, and much more."
     contact_html: |
         <div class="al-repository-contact-phone">(707) 887-1541</div>
         <div class="al-repository-contact-info"><a href="mailto:admin@ya-ka-ama.org">admin@ya-ka-ama.org</a></div>
@@ -7600,7 +7598,7 @@ yosnpa:
     longitude: -119.8144723
 ycl:
     name: "Yuba County Library"
-    description: "Yuba County Library&#x27;s Local History Archives strives to inspire Yuba County residents to make its past a meaningful part of their lives. Independently and in partnership with others in the California historical community, the Local History Archives room collects, preserves, documents and makes accessible to the public our state’s continuing heritage, with emphasis on the rich history of Yuba County. The collection represents the social, political, economic, agricultural and cultural heritage of the area."
+    description: "Yuba County Library's Local History Archives strives to inspire Yuba County residents to make its past a meaningful part of their lives. Independently and in partnership with others in the California historical community, the Local History Archives room collects, preserves, documents and makes accessible to the public our state’s continuing heritage, with emphasis on the rich history of Yuba County. The collection represents the social, political, economic, agricultural and cultural heritage of the area."
     contact_html: |
         <div class="al-repository-contact-phone">(530) 749-7380</div>
         <div class="al-repository-contact-info"><a href="mailto:library@co.yuba.ca.us">library@co.yuba.ca.us</a></div>
@@ -7626,3 +7624,4 @@ camyycm:
     thumbnail_url: ""
     latitude: 39.136235
     longitude: -121.587947
+
