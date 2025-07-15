@@ -1,0 +1,16 @@
+template:
+  path: cloudfront.j2
+  type: file
+parameters:
+  CNAME: oac-stg.cdlib.org
+  # SSLCertArn:
+
+sceptre_user_data:
+  origins:
+    - name: arclight
+      DomainName: !stack_output stage/arclight/app.yaml::LoadBalancerDNS
+  subdomains:
+    - name: dashboard
+      origins:
+        - name: cincoctrl
+          DomainName: !stack_output stage/cincoctrl/app.yaml::LoadBalancerDNS
