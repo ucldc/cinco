@@ -1,4 +1,8 @@
 <header>
+  <div class="container-fluid announcement d-flex justify-content-center">
+      <p class="m-0"><strong>🎉 Welcome to the new Online Archive of California! 🎉</strong> 🙋 Visit our <%= link_to 'FAQ for tips to get started.', help_path %></p>
+  </div>
+
   <div class="container">
     <nav class="navbar" aria-label="Search and top-level navigation" id="main-navbar">
       <a class="mb-3 navbar-brand navbar-logo" href="/">OAC</a>
@@ -28,13 +32,6 @@
           <%= search_bar %>
         </div>
       </nav>
-      <% else %>
-      <div class="col-12 col-md-6">
-        <div class="announcement">
-          <p><strong>🎉 Welcome to the new Online Archive of California! 🎉</strong></p>
-          <p>🙋 Visit our <%= link_to 'FAQ', help_path %> for tips to get started.</p>
-        </div>
-      </div>
       <% end %>
 
       <nav class="nav navbar-expand-md" aria-label="Top-level navigation">
