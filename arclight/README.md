@@ -55,6 +55,16 @@ Settings can be added to the index command with `-s name=value`
 `TEXT_FILE_NAME` - May be set to change the name of the the file that contains extracted text (default: `extracted-supplementary-files-text.txt`)
 `TEXT_FILE_DIR` - May be set to change the directory where the text file is located (default: same directory as the XML)
 
+## Caching for Static Finding Aids
+
+We use Rails Solid cache to speed up generation of static finding aid pages. Some static finding aids are too big to even render an initial time as they will time out at the Load Balancer. So, we have a rake task that can be run from the command line in a rails container to generate the cache internally, bypassing the load balancer.
+
+`bin/rake cache:generate_for[ark:/13030/8ac9sjfq4d]`
+
+Additionally, when users start to update finding aids, we will need a way to invalidate cached pages. So, there is an additionl rake task to clear the cache by guide id
+
+`bin/rake cache:clear_for[ark:/13030/8ac9sjfq4d]`
+
 ## Running the tests
 
 We test the application with [rspec](https://rspec.info/).

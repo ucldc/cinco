@@ -27,11 +27,11 @@
 </div>
 <% end %>
 
-<% for child in document_tree.children %>
+  <%  for child in document_tree.children %>
 
-<%= render (self.class).new(document: child.document, presenter: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
+    <%=  render (self.class).new(document: child.document, presenter: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
 
- <% component.with_title(as: 'h4', classes: '', link_to_document: false, actions: false) %>
+      <% component.with_title(as: 'h4', classes: '', link_to_document: false, actions: false) %>
 
- <% end %>
-<% end %>
+      <% end %>
+    <% end %>

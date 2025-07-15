@@ -13,13 +13,36 @@ module Oac
     end
 
     def children
-      @children ||= @hierarchy_data.map do  |doc|
-        FindingAidTreeNode.new(
-          @controller,
-          doc.id,
-          has_children: doc.fetch("child_component_count_isi", 0) > 0
-        )
+      if @document.collection?
+        _children = Rails.cache.fetch("#{@document.id}/children") do
+          _get_children
+        end
+      else
+        _children = _get_children
       end
+      _children
+    end
+
+    def _get_children
+       @children ||= @hierarchy_data.map do  |doc|
+          FindingAidTreeNode.new(
+            @controller,
+            doc.id,
+            has_children: doc.fetch("child_component_count_isi", 0) > 0
+          )
+        end
+    end
+
+    def marshal_dump
+      {}.tap do |result|
+        result[:document] = @document.to_json
+        result[:hierarchy_data] = @hierarchy_data
+      end
+    end
+
+    def marshal_load(serialized_tree)
+      @document = SolrDocument.new(serialized_tree[:document])
+      @hierarchy_data = serialized_tree[:hierarchy_data]
     end
   end
 end
