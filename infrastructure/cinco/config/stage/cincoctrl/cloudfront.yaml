@@ -1,0 +1,11 @@
+template:
+  path: cloudfront.j2
+  type: file
+parameters:
+  CNAME: oac-stg.cdlib.org
+  # SSLCertArn:
+
+sceptre_user_data:
+  origins:
+    - name: cincoctrl
+      DomainName: !stack_output stage/cincoctrl/app.yaml::LoadBalancerDNS
