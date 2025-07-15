@@ -12,13 +12,13 @@
       <li><strong><a href="#start">I'm getting started with OAC!</a></strong></li>
       <ul>
         <li><a href="#oac">What kind of information can I find in OAC?</a></li>
-        <li><a href="#search">Do you have any search tips?</a></li>
+        <li><a href="#search-tips">Do you have any search tips?</a></li>
         <li><a href="#guide">What does a collection guide look like?</a></li>
       </ul>
     </ul>
 
     <ul class="list-unstyled">
-      <li><strong><a href="#collection">I would like to see the collections, but I only see descriptions.</a></strong></li>
+      <li><strong><a href="#collections">I would like to see the collections, but I only see descriptions.</a></strong></li>
       <ul>
         <li><a href="#questions">Can I see the collections, request copies, or ask questions about them?</a></li>
         <li><a href="#contact">How do I contact contributing institutions?</a></li>
@@ -71,7 +71,7 @@ OAC partners with more than <%= link_to '350 contributing institutions', { contr
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
-     <h3 id="search">Do you have any search tips?</h3>
+     <h3 id="search-tips">Do you have any search tips?</h3>
 
     <p>OAC's search box is available at the top right-hand corner of every page. Enter one or more search terms to search through all the collections and items in the site, regardless of which page you are on.</p>
 
@@ -123,6 +123,8 @@ Use the following filter options to narrow your search results:</p>
     <p>Collection guides in OAC vary in their levels of specificity, depending on the kinds of materials described and the practices of the holding institution. A number of factors could contribute to a less detailed guide: the collection may be too small to warrant an extensive inventory, the institution has chosen not to inventory the contents of the collection in detail, the inventory exists but is not online, and many other reasons.</p>
 
     <p>To learn more about any collection in OAC and whether it contains material of interest, it is best to contact the contributing institution.</p>
+
+<p><a href="#contact">Find contributor information on a collection guide</a>.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
@@ -213,9 +215,9 @@ Use the following filter options to narrow your search results:</p>
 
     <h3 id="photographs">I have some historic photographs and documents. Can I put them in OAC?</h3>
 
-    <p>At this time, we can only accept items from institutions. You may consider contacting one of <a href="/institutions">OAC's current contributing institutions</a>, or your local historical society or library.</p>
+    <p>At this time, we can only accept items from institutions. You may consider contacting one of <%= link_to "OAC's current contributing institutions", { controller: 'arclight/repositories', action: 'index' } %>, or your local historical society or library.</p>
 
-    <p>See the <%= link_to 'Society of American Archivists%27 free brochure series', 'https://www2.archivists.org/publications/brochures' %> for useful tips on donating materials to an archive.</p>
+    <p>See the <%= link_to "Society of American Archivists' free brochure series", 'https://www2.archivists.org/publications/brochures' %> for useful tips on donating materials to an archive.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
