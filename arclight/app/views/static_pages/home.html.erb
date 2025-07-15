@@ -42,6 +42,15 @@
             <%= link_to("Browse all contributing institutions", { controller: 'arclight/repositories', action: 'index' }, class: 'btn btn-primary') %>
         </div>
         <div class="g-col-md-8 g-col-12" style="grid-row: span 2;">
+            <div class="visually-hidden-focusable">
+                <h2>Map of OAC's Contributing Institutions</h2>
+                <p class="visually-hidden">Go to the <%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %> page to see a list of all institutions alphabetically sorted.</p>
+                <a href="#calisphere-banner" class="d-inline-block p2 m1">Skip Map</a>
+                <p>Use +/- to zoom and the arrow keys to pan around the map. Use the tab key to navigate to the next marker, and click on or press the enter key to select a marker to see the repository name and location.</p>
+
+                <!-- TODO :Use the escape key to exit the map after tabbing into markers. -->
+
+            </div>
             <div id="home-map"></div>
         </div>
         <div class="g-col-md-4 g-col-12 home-image" style="background-image: url('<%= image_path('arclight/homepage/featured_images/02.png') %>');">
@@ -52,7 +61,7 @@
     </div>
 </div>
 
-<div class="container home calisphere-banner-wrapper">
+<div id="calisphere-banner" class="container home calisphere-banner-wrapper">
     <a href="https://calisphere.org">
     <div class="row mb-4 p-4 calisphere-banner">
         <div class="col-xl-auto col-lg-8 col-md-6 col-sm-auto">

@@ -23,9 +23,15 @@
     }
     .navbar-toggler:last-of-type {
         padding-right: 0;
+        padding-left: 0;
     }
     .navbar-toggler:focus {
+        outline: 2px solid var(--bs-link-hover-color);
+        outline-offset: 2px;
         box-shadow: none;
+    }
+    button:focus:not(:focus-visible) {
+        outline: none;
     }
     .navbar-toggler-icon {
         margin: 5px 0;

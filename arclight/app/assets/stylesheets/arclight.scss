@@ -23,6 +23,15 @@ $logo-image: image_url('arclight/logo.svg') !default;
     --al-content-icon-color: #{ $definition-term-color };
 }
 
+.navbar {
+    --bs-navbar-brand-color: #{ $teal };
+    --bs-navbar-brand-hover-color: #{ $darken-teal-2 };
+    --bs-navbar-brand-focus-color: #{ $darken-teal-2 };
+    --bs-navbar-brand-active-color: #{ $darken-teal-3 };
+    --bs-navbar-brand-disabled-color: #{ $teal };
+    --bs-navbar-toggler-focus-width: 2px;
+}
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #{ $teal };
@@ -123,6 +132,16 @@ dd a:hover, dd a:focus {
 // ************************** //
 // ********** SITE ********** //
 // ************************** //
+
+.announcement {
+    margin: 0 0 1rem 0;
+    padding: .75rem;
+    background-color: $teal;
+    color: white;
+
+    a {color: white;}
+    a:hover, a:focus {color: white; outline-color: white;}
+}
 
 // this is the site breadcrumb, despite the name
 .al-search-breadcrumb {
