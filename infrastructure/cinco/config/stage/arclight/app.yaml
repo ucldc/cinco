@@ -31,6 +31,6 @@ sceptre_user_data:
     - POSTGRES_USER: {{ var.stage.ARCLIGHT_DB_USERNAME }}
     - POSTGRES_PASSWORD: {{ var.stage.ARCLIGHT_DB_PASSWORD }}
   TaskPolicies:
-    - !stack_output prd/s3.yaml::Policy
+    - !stack_output stage/s3.yaml::Policy
   GrantHttpAccessFromThisServiceTo:
     - !stack_output stage/solr/solr.yaml::LoadBalancerSecurityGroup
