@@ -19,6 +19,8 @@ Rails.application.configure do
   # TODO: Remove this in production
   config.action_view.annotate_rendered_view_with_filenames = true
 
+  config.matomo_site_id = ENV["MATOMO_SITE_ID"]
+
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
