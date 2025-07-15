@@ -15,7 +15,7 @@
         <%= f.search_field @query_param, value: @q, placeholder: @placeholder_text, class: "search-q q form-control #{rounded_border_class}", autofocus: @autofocus, aria: { label: scoped_t('search.label') }  %>
       <% end %>
 
-      <%= search_button || render(Blacklight::SearchButtonComponent.new(id: "#{@prefix}search", text: "")) %>
+      <%= search_button || render(Blacklight::SearchButtonComponent.new(id: "#{@prefix}search", text: "Submit search term" )) %>
     </div>
   <% end %>
 </search>
