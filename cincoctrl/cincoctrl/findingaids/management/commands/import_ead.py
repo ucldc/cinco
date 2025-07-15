@@ -140,6 +140,7 @@ class Command(BaseCommand):
 
             title, number, ark = parser.extract_ead_fields()
             if FindingAid.objects.filter(ark=ark).exists():
+                self.stdout.write(f"Skipping {ark} because it already exists")
                 return
 
             # create the finding aid without the file at first
