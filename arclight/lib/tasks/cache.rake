@@ -2,8 +2,13 @@
 namespace :cache do
   desc "Clear cache for Static Guide by id"
   task :clear_for, [ :id ] => :environment do |_t, args|
-    puts "deleting #{args[:id]}/children"
-    puts Rails.cache.delete("#{args[:id]}/children")
+    select_sql = "SELECT key from solid_cache_entries where key like '%#{args[:id]}%'"
+    delete_sql = "DELETE from solid_cache_entries where key like '%#{args[:id]}%'"
+    puts "Number of records before clearance:"
+    puts ActiveRecord::Base.connection.execute(select_sql).size
+    ActiveRecord::Base.connection.execute(delete_sql)
+    puts "Number of records after delete:"
+    puts ActiveRecord::Base.connection.execute(select_sql).size
   end
 
   desc "Generate cache entry for Static Guide by id"
