@@ -8,6 +8,7 @@ parameters:
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !stack_output prd/arclight/build.yaml::ECRRepository
   ContainerPort: 3000
+  ContainerCount: 2
   HealthCheckPath: '/'
   DBInstanceSecurityGroup: !stack_output prd/arclight/db.yaml::RDSSecurityGroup
 sceptre_user_data:
@@ -30,5 +31,7 @@ sceptre_user_data:
     - POSTGRES_USER: {{ var.prd.ARCLIGHT_DB_USERNAME }}
     - POSTGRES_PASSWORD: {{ var.prd.ARCLIGHT_DB_PASSWORD }}
     - MATOMO_SITE_ID: {{ var.prd.MATOMO_SITE_ID }}
+  TaskPolicies:
+    - !stack_output prd/s3.yaml::Policy
   GrantHttpAccessFromThisServiceTo:
     - !stack_output prd/solr/solr.yaml::LoadBalancerSecurityGroup
