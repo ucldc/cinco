@@ -52,7 +52,7 @@ def bulk_index_finding_aids():
     def cleanup_s3(s3_key, cinco_environment="stage"):
         s3 = boto3.resource("s3")
         if cinco_environment == "prd":
-            bucket_name = Variable.get("CINCO_S3_BUCKET_PROD")
+            bucket_name = Variable.get("CINCO_S3_BUCKET_PRD")
         else:
             bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
         prefix = f"media/{s3_key}"
