@@ -10,11 +10,11 @@ import "arclight"
 
 // Debugging Matomo tracking
 
-class _paq {
-    static push(...args) {
-        console.log("Matomo tracking:", ...args);
-    }
-}
+// class _paq {
+//     static push(...args) {
+//         console.log("Matomo tracking:", ...args);
+//     }
+// }
 
 // function to track a page view with Matomo
 function trackMatomoPageView() {
@@ -44,8 +44,8 @@ function trackMatomoPageView() {
 
 document.documentElement.addEventListener('turbo:load', function() {
     return function(e) {
-        console.log(e);
-        console.log("document.location: ", document.location);
+        // console.log(e);
+        // console.log("document.location: ", document.location);
         trackMatomoPageView();
     };
 }());

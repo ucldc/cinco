@@ -29,5 +29,6 @@ sceptre_user_data:
     - POSTGRES_DB: postgres
     - POSTGRES_USER: {{ var.prd.ARCLIGHT_DB_USERNAME }}
     - POSTGRES_PASSWORD: {{ var.prd.ARCLIGHT_DB_PASSWORD }}
+    - MATOMO_SITE_ID: {{ var.prd.MATOMO_SITE_ID }}
   GrantHttpAccessFromThisServiceTo:
     - !stack_output prd/solr/solr.yaml::LoadBalancerSecurityGroup
