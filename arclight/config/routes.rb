@@ -24,9 +24,6 @@ Rails.application.routes.draw do
    resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid" do
   end
 
-  # get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid"
-  # get "/findaid/:id/entire_text/", to: "static_finding_aid#show", as: "static_finding_aid_redirect",  constraints: { id: /ark\:\/.+/ }
-
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
   get "/findaid/*ark/entire_text", to: "arks#findaid_static"
 
@@ -55,7 +52,13 @@ Rails.application.routes.draw do
     post "/create", action: :create, as: "create"
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Generic redirects
+
+  get "/titles", to: redirect("/", status: 301)
+  get "/help/detailedhelp.html", to: redirect("/help", status: 301)
+
+  # METS objects redirects
+  get "/ark:/*id", to: "arks#calisphere"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
