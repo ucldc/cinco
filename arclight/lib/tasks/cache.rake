@@ -1,3 +1,4 @@
+require "net/http"
 
 namespace :cache do
   desc "Clear cache for Static Guide by id"
