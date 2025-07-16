@@ -25,7 +25,16 @@
       <li><%= link_to "View Collection Guide", solr_document_path("ark:/13030/c8xg9zfj") %></li>
       <li><%= link_to "UC Berkeley Bancroft", repository_path(:id => 'berkeley_bancroft')) %></li>
     </ul>
-    <h2>h2: Definition List Example</h2>
+    <p>This list includes some internal controlled vocabulary that you can insert:</p>
+    <ul>
+      <li><%= t('arclight.views.show.online_content.link_text') %></li>
+    </ul>
+    <p>Here's a list, with each list containing sentences:</p>
+    <ul>
+      <li>This list item has a few sentences. There are no link inside this paragraph. This can be wrapped with just the list item tag.</li>
+      <li><p>However, this list item wants you to read more <%= link_to 'about OAC', about_path %>. In order for the link to conform to our style guide (with links in paragraphs being underlined), we need to wrap this list item in p tags, in addition to the list item tag.</p></li>
+    </ul>
+<h2>h2: Definition List Example</h2>
     <p>This page is also a nice place to demonstrate a definition list style. Definition lists are used on the finding aid pages are are comprised of a term (dt) and a description (dd). Links in the description (dd) are underlined like links in paragraphs.</p>
     <dl>
     <dt>Term 1</dt>
