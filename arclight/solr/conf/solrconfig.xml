@@ -312,6 +312,7 @@
       <str name="buildOnCommit">true</str>
       <str name="field">suggest</str>
       <str name="contextField">preview_ssi</str>
+      <str name="buildOnStartup">false</str>
     </lst>
   </searchComponent>
 
