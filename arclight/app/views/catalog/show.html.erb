@@ -19,14 +19,14 @@
         <% if @document.online_content? %>
         <div class="col-sm-auto">
             <span aria-hidden="true"><%= blacklight_icon :online, classes: 'oac-online-content-icon' %></span>
-            <a href="<%= search_action_path(f: { collection: [@document.collection_name], access: ['online'] }) %>">
+            <a href="<%= search_action_path(f: { collection: [@document.collection_name], access: ['online'] }) %>" class="link-underline">
             <%= t('arclight.collection_info_component.online_items') =%>
             </a>
         </div>
         <% end %>
         <div class="col-sm-auto">
             <span aria-hidden="true"><%= blacklight_icon :printer, classes: 'oac-printer-icon' %></span>
-            <a href="<%= static_finding_aid_path @document.collection_id %>">Printable Guide [HTML]</a>
+            <a href="<%= static_finding_aid_path @document.collection_id %>" class="link-underline">Printable guide [HTML]</a>
         </div>
         <div class="col-sm-auto">
             <%= render 'arclight/requests', document: @document %>

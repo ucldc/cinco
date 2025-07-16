@@ -68,7 +68,7 @@ en:
           subject: Subjects
   arclight:
     collection_info_component:
-      online_items: Digital items available
+      online_items: View only results with digital items
     repositories: Contributing Institutions
     routes:
       repositories: Contributing Institutions
