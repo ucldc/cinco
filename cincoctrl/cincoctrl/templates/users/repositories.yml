@@ -4,7 +4,7 @@
     contact_html: |{% if r.phone %}
         <div class="al-repository-contact-phone">{{ r.phone }}</div>{% endif %}{% if r.contact_email %}
         <div class="al-repository-contact-info"><a href="mailto:{{ r.contact_email }}">{{ r.contact_email }}</a></div>{% endif %}{% if r.repositorylink_set.count > 0 %}{% for l in r.repositorylink_set.all %}
-        <div class="al-repository-contact-info"><a href="{{ l.url }}">{{ l.text }}</a></div>{% endfor %}{% endif %}
+        <div class="al-repository-contact-info"><a href="{{ l.url }}" class="offsite-link">{{ l.text }}</a></div>{% endfor %}{% endif %}
     location_html: |{% if r.building %}
         <div class="al-repository-street-address-building">{{ r.building }}</div>{% endif %}{% if r.address1 %}
         <div class="al-repository-street-address-address1">{{ r.address1 }}</div>{% endif %}{% if r.address2 %}
