@@ -23,6 +23,13 @@
     padding-bottom: 0;
 }
 
+// al-sidebar-navigation-context card includes Identifier/Collection
+// Number, Last Indexed, and Permalink; line-break anywhere in
+// potentially long identifier lines
+.al-sidebar-navigation-context .card p {
+    overflow-wrap: anywhere;
+}
+
 // TODO: #sidebar appears on search results pages too,
 // so this should be more specific
 #sidebar {
@@ -58,6 +65,13 @@
     height: 1.5rem;
     margin-right: 0.1rem;
     margin-bottom: 0.2rem;
+}
+.permalink::after {
+    content: url('blacklight/infinity.svg');
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
 }
 #embed {
     padding: 1rem;
