@@ -49,6 +49,7 @@ class CatalogController < ApplicationController
     }
 
     config.header_component = HeaderComponent
+    config.skip_link_component = Oac::SkipLinkComponent
     config.add_results_document_tool(:online, component: Arclight::OnlineStatusIndicatorComponent)
     # config.add_results_document_tool(:arclight_bookmark_control, component: Arclight::BookmarkComponent)
 
