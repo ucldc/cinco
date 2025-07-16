@@ -129,6 +129,15 @@ dd a:hover, dd a:focus,
 .breadcrumb-links a:hover, .breadcrumb-links a:focus {
     color: var(--bs-link-hover-color);
 }
+.offsite-link::after, #embed a::after {
+    content: url('blacklight/arrowupright.svg');
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
 
 // ************************** //
 // ********** SITE ********** //
