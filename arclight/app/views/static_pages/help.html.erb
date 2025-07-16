@@ -30,8 +30,9 @@
     <ul class="list-unstyled">
       <li><strong><a href="#using">I found something I would like to include in my research.</a></strong></li>
       <ul>
-      <li><a href="#publication">May I use OAC materials in a publication or on a web site?</a></li>
-      <li><a href="#cite">I want to cite an image or text in my paper or presentation. What's the proper form?</a></li>
+      <li><a href="#cite-guide">I want to cite or link to a collection guide in OAC. What's the proper form?</a></li>
+      <li><a href="#cite-item">I want to cite an item described in a collection guide. What's the proper form?</a></li>
+      <li><a href="#publication">May I use online versions of items in a publication or on a web site?</a></li>
       </ul>
     </ul>
 
@@ -41,7 +42,7 @@
       <li><a href="#research">I'm conducting research. Can you help me find more information about a particular topic?</a></li>
       <li><a href="#historical">I have a historical item I'd like to know more about. Can you help?</a></li>
       <li><a href="#appraisal">I have an item I would like appraised. Can you help me?</a></li>
-      <li><a href="#photographs">I have some historic photographs and documents. Can I put them in the OAC?</a></li>
+      <li><a href="#photographs">I have some historic photographs and documents. Can I donate or put them in the OAC?</a></li>
       </ul>
     </ul>
 
@@ -59,16 +60,15 @@
     <h3 id="oac">What kind of information can I find in OAC?</h3>
 
     <p>You can discover the contents of the archives, libraries, and museum collections, their physical location, and their contact information.</p>
-    <p>OAC does not own, store, or house any of the materials described in the collection guides.</p>
 
     <p><strong>Collection guides</strong><br/>
 OAC provides access to more than 60,000 online collection guides (also known as "<%= link_to 'finding aids', 'https://dictionary.archivists.org/entry/finding-aid.html' %>"). They describe the items in collections and how they were gathered or created. They also identify the collection's location, and may provide additional information such as detailed descriptions, histories, and biographies. You can use these to browse, locate resources, or view selected items digitally.</p>
 
     <p><strong>Contributing institutions</strong><br/>
 OAC partners with more than <%= link_to '350 contributing institutions', { controller: 'arclight/repositories', action: 'index' } %>, including libraries, special collections, archives, historical societies, and museums throughout California. Select "Contributing Institutions" from the top navigation bar to view and scroll through an A-Z list of all OAC contributing institutions.</p>
-    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be directed to the institution that contributed the materials or the guide. OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
+    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be <p><a href="#contact">directed to the institution that contributed the materials or the guide</a>. OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
     <p>The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</p>
-
+    <p>See the Society of American Archivists' <%= link_to 'Using Archives', 'https://www2.archivists.org/usingarchives' %> for additional resources on conducting research with archives.
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
      <h3 id="search-tips">Do you have any search tips?</h3>
@@ -96,8 +96,8 @@ Search results are categorized in two tabs: "Grouped by collection" and "All res
 <p><strong>Refine your search</strong><br/>
 Use the following filter options to narrow your search results:</p>
 <ul>
-<li><strong>View only results with digital items</strong>: choose this toggle to view only collections that have digitized items available online.</li>
-<li><strong>Institutions</strong>: choose this to view collections only from that institution.</li>
+<li><strong><%= t('arclight.views.show.online_content.link_text') %></strong>: choose this toggle to view only collections that have digitized items available online.</li>
+<li><strong>Contributing Institution</strong>: choose this to view collections only from that institution.</li>
 <li><strong>Collection</strong>: choose this to view results from only one specific collection.</li
 <li><strong>Date Range</strong>: choose a date to view collections with materials from that date.</li>
 <li><strong>Creators, Names, Places, and Subjects</strong>: choose from the set of provided terms to apply that to your results; these terms are drawn from collection guides, when provided.</li>
@@ -113,23 +113,21 @@ Use the following filter options to narrow your search results:</p>
 <p><br/></p>
 
 <ol>
-<li><strong>Collection header</strong>: This area includes the collection title, the contributing institution, and several other options. Click on the contributing institution name to view their contact information.</li>
+<li>This area includes the collection title, the contributing institution, and several other options. Click on the contributing institution name to view their contact information.</li>
 <ul style="list-style-type:circle;">
 <li><strong>Digital items available</strong>: Tells you that some items in this collection have been digitized and can be viewed online. Click this link to see a list of all digital items available. This option does not appear if the collection does not have any digitized materials.</li>
-<li><strong>Printable Guide [HTML]</strong>: This provides an option to view the full collection guide as one long page. Use your web browser features to print/save as a PDF document.</li>
-<li><strong>Request items</strong>: Some collection guides feature a "Request Items" button. If you see this button, you can use it to register with the institution that owns the collection and request materials from them. For example, you can obtain a scanned copy of an item that you are interested in viewing, submit a request in advance of a visit to the library or archive, or ask for additional information about the items in the collection. Upon registering with the institution, you can place requests and track your orders.</li>
+<li><strong>Printable guide [HTML]</strong>: This provides an option to view the full collection guide as one long page. Use your web browser's print/save option to convert it to a PDF document.</li>
+<li><strong>Request items</strong>: Some collection guides feature a "Request items" link. If you see this link, you can use it to register with the institution that owns the collection, place requests, and track your orders. For example, you can obtain a scanned copy of an item that you are interested in viewing, submit a request in advance of a visit to the institution in-person, or ask for additional information about the items in the collection.</li>
 </ul>
 <li><strong>Search this collection</strong> lets you search for any item in this collection guide. Conducting a search within this collection guide will display your search results on the right-hand side of the page.</li>
-<li><strong>Access and Use</strong>: The contributing institution's contact information is available in this section, as well as details that might guide your access and use of the collection material. Contact the contributing institution for any question related to the collection or its contents, including requests for duplication, permissions, or more information.</li>
-<li><strong>Collection Contents</strong> always remains on the left-hand side of the page, and provides a descriptive arrangement of the collection so that you can easily navigate through the collection guide. Additionally, the "View only results with digital items" toggle allows you to refine search. (If there are no digital items for a collection guide, this toggle option is not available.)</li>
-<li><strong>Contents display</strong>: The right-hand side of the page displays the descriptive content from the collection guide. If you opt to search within the collections, your search results will display here instead.</li>
+<li><strong>Access and Use</strong>: The contributing institution's contact information is available in this section, as well as details that might guide your access and use of the collection material.</li>
+<li><strong>Collection Contents</strong> always remains on the left-hand side of the page, and provides a descriptive arrangement of the collection so that you can easily navigate through the collection guide. Additionally, the "<%= t('arclight.views.show.online_content.link_text') %>" toggle allows you to refine search. (If there are no digital items for a collection guide, this toggle option is not available.)</li>
+<li><strong>The right-hand side of the page displays the descriptive content from the collection guide. If you opt to search within the collections, your search results will display here instead. For additional context, <li><%= link_to 'learn more about the collection guides in OAC', overview_path %></li>.</li>
 </ol>
 
     <p>Collection guides in OAC vary in their levels of specificity, depending on the kinds of materials described and the practices of the holding institution. A number of factors could contribute to a less detailed guide: the collection may be too small to warrant an extensive inventory, the institution has chosen not to inventory the contents of the collection in detail, the inventory exists but is not online, and many other reasons.</p>
 
-    <p>To learn more about any collection in OAC and whether it contains material of interest, it is best to contact the contributing institution.</p>
-
-<p><a href="#contact">Find contributor information in a collection guide</a>.</p>
+    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be <a href="#contact">directed to the institution that contributed the materials or the guide</a>.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
@@ -137,11 +135,9 @@ Use the following filter options to narrow your search results:</p>
 
     <h3 id="questions">Can I see the collections, request copies, or ask questions about them?</h3>
 
-    <p>To find out how you can access a particular item, contact the contributing institution directly. A link to contact information is included at the top of every collection guide. The "Access and Use" section of the collection guide may also include information about how to request materials.</p>
+    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--<a href="#contact">directed to the institution that contributed the materials or the guide</a>. The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</p>
 
-    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be directed to the institution that contributed the materials or the guide. OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
-
-    <p>OAC does not own, store, or house any of the materials described in these collection guides.</p>
+    <p>OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
 
     <p><a href="#contact">Find contributor information in a collection guide</a>.</p>
 
@@ -164,7 +160,7 @@ Use the following filter options to narrow your search results:</p>
 
     <p>Unfortunately, not all of the contents in all of the collections have been digitized. Each contributing institution decides what items to digitize and make available online based on a number of considerations (including available funding and resources for digitization, copyright restrictions that may prevent the item from being distributed online, and the scholarly significance of the item). For some researchers, just knowing that a collection exists and what the collection contains is of great assistance to their work. This is why we make the collection guides available.</p>
 
-    <p>To learn more about a particular item, or to learn how you can see it, or to find out if a particular item can be digitized and made available online, please contact the contributing institution directly. A link to contact information is included at the top of every collection guide.</p>
+    <p>To learn more about a particular item, or to learn how you can see it, or to find out if a particular item can be digitized and made available online, please <a href="#contact">contact the contributing institution</a> directly.</p>
 
     <p><a href="#contact">Find contributor information in a collection guide</a>.</p>
 
@@ -172,25 +168,23 @@ Use the following filter options to narrow your search results:</p>
 
     <h2 id="using">I found something I would like to include in my research.</h2>
 
-    <h3 id="publication">May I use OAC materials in a publication or on a web site?</h3>
+    <h3 id="cite-guide">I want to cite or link to a collection guide in OAC. What’s the proper form?</h3>
 
-    <p>The materials in OAC are intended to be used for research, teaching, and private study. All items may be protected by the U.S. Copyright Law (Title 17, U.S.C.). Usage of some items may also be subject to additional restrictions imposed by the copyright owner and/or the institution.</p>
-
-    <p>See the <%= link_to 'Terms of Use', termsofuse_path %> page for details.</p>
-
-    <p><em>OAC does not own or house any of the materials described in the collection guides.</em></p>
-
-    <p><strong>Please contact the institution that houses the collection</strong> for information about the copyright status of a particular digital image or text, or for permission to publish or obtain a reproduction of a particular collection item. A link to contact information is included at the top of every collection guide.</p>
-
-    <p><a href="#guide">Learn more about using collection guides</a>.</p>
+    <p>When citing or referring to a collection guide in OAC, please use the permalink located near the top of the page, that begins with <strong>https://oac.cdlib.org/findaid/ark:/13030/#####</strong>. For additional recommendations on citing materials in archival collections, see the <%= link_to 'APA Style', 'https://apastyle.apa.org/style-grammar-guidelines/references/archival' %> and <%= link_to 'MLA Style Center', 'https://style.mla.org/citing-materials-physical-archives/' %>.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
-    <h3 id="cite">I want to cite an image or text in my paper or presentation. What's the proper form?</h3>
+    <h3 id="cite-item">I want to cite an item described in a collection guide. What's the proper form?</h3>
 
-    <p>When citing or referring to a collection guide in OAC, please use the permalink located near the top of the page, that begins with <strong>https://oac.cdlib.org/findaid/ark:/13030/#####</strong>. Check the guide to see if the collection guide includes a "Preferred Citation." If it does, use that citation when referencing particular items in the collection.</p>
+ <p>When citing or referring to a collection guide in OAC, please use the permalink located near the top of the page, that begins with <strong>https://oac.cdlib.org/findaid/ark:/13030/#####</strong>. Check the guide to see if the collection guide includes a "Preferred Citation." If it does, use that citation when referencing particular items in the collection.</p>
 
     <p>For additional recommendations on citing materials in archival collections, see the <%= link_to 'APA Style', 'https://apastyle.apa.org/style-grammar-guidelines/references/archival' %> and <%= link_to 'MLA Style Center', 'https://style.mla.org/citing-materials-physical-archives/' %>.</p>
+
+<p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
+
+<h3 id="publication">May I use online versions of items in a publication or on a web site?</h3>
+
+<p>If you have identified <a href="#online">collection guides with online items</a>, those items will not be available for viewing directly within the OAC website; these links will point to a digital collections platform, often the contributing partner’s website, or a digital collections website, such as <%= link_to 'Calisphere', 'https://calisphere.org' %>. Please refer to any rights and terms of use information specified by the contributing institution on the external website.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
@@ -198,19 +192,21 @@ Use the following filter options to narrow your search results:</p>
 
     <h3 id="research">I'm conducting research. Can you help me find more information about a particular topic?</h3>
 
-    <p>We do not house the collections here at OAC, and we do not have any further information about specific collections or items.</p>
+    <p>OAC does not offer reference desk services. For general questions, we suggest contacting your local library reference desk.</p><p>We do not house the collections here at OAC, and we do not have any further information about specific collections or items.</p>
 
-    <p>Please address all questions and requests about items in a specific collection to the institution that houses the collection. A link to contact information is included at the top of every collection guide.</p>
+    <p>Questions related to a collection or its contents--including requests for duplication, permissions, or more information--must be <a href="#contact">directed to the institution that contributed the materials or the guide</a>. The name of the contributing institution, as well as a link to its website, is provided on every collection guide.</p>
 
-    <p><a href="#guide">Learn more about using collection guides</a>.</p>
+    <p>OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site.</p>
 
-    <p>For general questions, we suggest contacting your local library reference desk.</p>
+    <p>See the Society of American Archivists' <%= link_to 'Using Archives', 'https://www2.archivists.org/usingarchives' %> for additional resources on conducting research with archives.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
     <h3 id="historical">I have a historical item I'd like to know more about. Can you help?</h3>
 
-    <p>Unfortunately, OAC does not have the resources to offer reference desk services. For general questions, we suggest contacting your local library reference desk for suggestions.</p>
+    <p>OAC does not offer reference desk services. For general questions, we suggest contacting your local library reference desk for suggestions.</p>
+
+    <p>See the Society of American Archivists' <%= link_to 'Using Archives', 'https://www2.archivists.org/usingarchives' %> for additional resources on conducting research with archives.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
@@ -220,11 +216,11 @@ Use the following filter options to narrow your search results:</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
-    <h3 id="photographs">I have some historic photographs and documents. Can I put them in OAC?</h3>
+    <h3 id="photographs">I have some historic photographs and documents. Can I donate or put them in OAC?</h3>
 
-    <p>At this time, we can only accept items from institutions. You may consider contacting one of <%= link_to "OAC's current contributing institutions", { controller: 'arclight/repositories', action: 'index' } %>, or your local historical society or library.</p>
+    <p>OAC does not own, store, or house any of the materials described in the collection guides, nor any of the digital materials appearing on this site. You may consider contacting one of OAC's current <%= link_to "contributing institutions", { controller: 'arclight/repositories', action: 'index' } %>, or your local historical society or library.</p>
 
-    <p>See the <%= link_to "Society of American Archivists' free brochure series", 'https://www2.archivists.org/publications/brochures' %> for useful tips on donating materials to an archive.</p>
+    <p>See the Society of American Archivists' <%= link_to 'free brochure series', 'https://www2.archivists.org/publications/brochures' %> for useful tips on donating materials to an archive.</p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
@@ -252,9 +248,9 @@ Use the following filter options to narrow your search results:</p>
 
   <div class="col-md-4">
     <div class="card p-4 mb-4">
-<h2>Introducing: New OAC</h2>
-<p>We’re excited to introduce you to our upgraded OAC website. However, things might look a little different from what you’re used to. We’ve prepared a few videos to help you get to know the new OAC!</p>
-<p><%= link_to 'Watch our videos', quickstart_path %> demonstrating sitewide search, browse by contributing institutions, and navigate collection guides.</p>
+<h2>Introducing the new OAC</h2>
+<p>Welcome to the new OAC! We've prepared a few videos to help you get familiar with the new design and features of OAC!</p>
+<p>Visit our <%= link_to 'quick start guide', quickstart_path %> for tips to get started.</p>
     </div>
     <div class="card p-4 mb-4">
 <h2>About the collection guides in OAC</h2>
