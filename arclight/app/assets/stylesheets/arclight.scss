@@ -114,11 +114,12 @@ a:focus {
     outline: 2px solid var(--bs-link-hover-color);
     outline-offset: 2px;
 }
-p a, dd a {
+p a, dd a, .link-underline {
     text-decoration: underline;
 }
 p a:hover, p a:focus,
-dd a:hover, dd a:focus {
+dd a:hover, dd a:focus,
+.link-underline:hover, .link-underline:focus {
     text-decoration: none;
 }
 // arclight makes these black, turn them back into normal link color

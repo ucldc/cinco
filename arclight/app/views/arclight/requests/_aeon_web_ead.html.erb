@@ -3,7 +3,7 @@
   <% aeon_web_ead_url = aeon_web_ead&.url %>
 
   <span aria-hidden="true"><%= blacklight_icon :envelope, classes: 'oac-envelope-icon' %></span>
-  <%= link_to aeon_web_ead_url do %>
+  <%= link_to aeon_web_ead_url, class: "link-underline" do %>
     Request items <%= blacklight_icon :arrow_up_right, classes: 'oac-arrow-up-right-icon' %>
   <% end %>
 <% end %>
