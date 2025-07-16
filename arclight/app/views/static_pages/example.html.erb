@@ -14,6 +14,7 @@
       <li><%= link_to 'About OAC', about_path %></li>
       <li><%= link_to 'Contributing Institutions', { controller: 'arclight/repositories', action: 'index' } %></li>
       <li><%= link_to 'FAQs', help_path %></li>
+      <li><%= link_to 'Link with a forced underline', help_path, class: 'link-underline' %></li>
       <li><%= link_to 'Terms of Use', termsofuse_path %></li>
       <li><%= link_to 'Privacy Statement', privacy_path %></li>
       <li><%= link_to 'Accessibility', 'https://cdlib.org/about/policies-and-guidelines/accessibility/' %></li>
@@ -23,7 +24,8 @@
       <li><%= link_to 'California Digital Library', 'https://cdlib.org/' %></li>
       <li><%= link_to 'University of California Libraries', 'https://libraries.universityofcalifornia.edu/' %></li>
       <li><%= link_to "View Collection Guide", solr_document_path("ark:/13030/c8xg9zfj") %></li>
-      <li><%= link_to "UC Berkeley Bancroft", repository_path(:id => 'berkeley_bancroft')) %></li>
+      <li><%= link_to "UC Berkeley Bancroft", repository_path(:id => 'berkeley_bancroft') %></li>
+      <li><a href="https://example.com" class="offsite-link">Example Offsite Link</a></li>
     </ul>
     <p>This list includes some internal controlled vocabulary that you can insert:</p>
     <ul>
