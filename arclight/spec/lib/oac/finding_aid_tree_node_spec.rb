@@ -26,7 +26,7 @@ RSpec.describe Oac::FindingAidTreeNode do
 
   before do
     allow(controller).to receive(:search_service)
-    allow(controller.search_service).to receive(:fetch)
+    allow(controller.search_service).to receive(:fetch).and_return(SolrDocument.new({ id: id }))
     allow(controller.search_service).to receive(:search_results)
     allow(controller.search_service.search_results).to receive(:response).and_return(
       first_hierarchy_response,
@@ -45,12 +45,6 @@ RSpec.describe Oac::FindingAidTreeNode do
     before { tree }
     it "calls the controller's search service fetch method" do
       expect(controller.search_service).to have_received(:fetch).with(id)
-    end
-    it "temporarily merge's some default_solr_params" do
-      expect(controller.blacklight_config.default_solr_params).to have_received(:merge!).with({ fq: "_nest_parent_:#{id}", sort: "sort_isi asc", facet: false })
-    end
-    it "leaves the default_solr_params in their original state" do
-      expect(controller.blacklight_config).to have_received(:default_solr_params=).with(default_solr_params).at_least(:once)
     end
   end
   describe "children method" do

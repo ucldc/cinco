@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
   get "/findaid/*ark/entire_text", to: "arks#findaid_static"
+  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
 
   get "/findaid", to:  "static_finding_aid#index"
 
