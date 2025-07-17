@@ -6,7 +6,9 @@ parameters:
   Namespace: cinco-ctrl-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
-  ContainerImage: !stack_output prd/cincoctrl/build.yaml::ECRRepository
+  ContainerImage: !sub
+    - "{container_image}:v0.1.4-beta"
+    - container_image: !stack_output prd/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
   HealthCheckPath: '/accounts/login/'
   DBInstanceSecurityGroup: !stack_output prd/cincoctrl/db.yaml::RDSSecurityGroup
