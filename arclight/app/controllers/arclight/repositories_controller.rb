@@ -13,7 +13,8 @@ module Arclight
         end
 
         def show
-            repository = Arclight::Repository.find_by!(slug: params[:id])
+            query = _id_or_name(params[:id])
+            repository = Arclight::Repository.find_by!(**query)
             url = search_action_url(
                 f: {
                   repository: [ repository.name ],
@@ -25,6 +26,14 @@ module Arclight
         end
 
         private
+
+        def _id_or_name(params_id)
+          # if it has a '+' in the string, it's probably a name
+          if params_id.include?("+")
+            return { name: params_id.gsub("+", " ").gsub("::", ", ") }
+          end
+          { slug: params_id }
+        end
 
         def load_collection_counts
             counts = fetch_collection_counts
