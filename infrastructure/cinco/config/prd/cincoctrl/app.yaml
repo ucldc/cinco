@@ -7,7 +7,7 @@ parameters:
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
-    - "{container_image}:v0.1.4-beta"
+    - "{container_image}:v0.1.5-beta"
     - container_image: !stack_output prd/cincoctrl/build.yaml::ECRRepository
   ContainerPort: 5000
   HealthCheckPath: '/accounts/login/'

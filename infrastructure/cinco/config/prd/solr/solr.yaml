@@ -6,7 +6,9 @@ parameters:
   Namespace: cinco-solr-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
-  ContainerImage: !stack_output prd/solr/build.yaml::ECRRepository
+  ContainerImage: !sub
+    - "{container_image}:v0.1.5-beta"
+    - container_image: !stack_output prd/solr/build.yaml::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
