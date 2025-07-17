@@ -37,3 +37,5 @@ sceptre_user_data:
     - EZID_ENDPOINT: {{ var.stage.EZID_ENDPOINT }}
     - EZID_USERNAME: {{ var.stage.EZID_USERNAME }}
     - EZID_PASSWORD: {{ var.stage.EZID_PASSWORD }}
+    - SMTP_USER: {{ var.stage.DJANGO_SMTP_USER }}
+    - SMTP_PASSWORD: {{ var.stage.DJANGO_SMTP_PASSWORD}}
