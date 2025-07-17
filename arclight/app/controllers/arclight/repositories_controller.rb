@@ -47,6 +47,7 @@ module Arclight
             results = search_service.search(
             q: "level_ssim:Collection",
             'facet.field': "repository_ssim",
+            'facet.limit': 500,
             fq: "preview_ssi:false", # exclude previewed finding aids from collections counts
             rows: 0
             )
