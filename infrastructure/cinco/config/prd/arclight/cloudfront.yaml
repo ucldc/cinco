@@ -1,0 +1,10 @@
+template:
+  path: cloudfront.j2
+  type: file
+parameters:
+  CNAME: oac.cdlib.org
+  SSLCertARN: arn:aws:acm:us-east-1:777968769372:certificate/60c6f9da-da7f-4ce9-9fd3-3a0c53114752
+sceptre_user_data:
+  origins:
+  - name: arclight
+    DomainName: !stack_output prd/arclight/app.yaml::LoadBalancerDNS
