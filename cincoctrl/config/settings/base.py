@@ -300,3 +300,9 @@ CDL_ARK_SHOULDER = env("CDL_ARK_SHOULDER", default="")
 EZID_ENDPOINT = env("EZID_ENDPOINT", default="")
 EZID_USERNAME = env("EZID_USERNAME", default="")
 EZID_PASSWORD = env("EZID_PASSWORD", default="")
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-west-2.amazonaws.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env("SMTP_USER", default="")
+EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD", default="")
