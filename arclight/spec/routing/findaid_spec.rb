@@ -17,17 +17,17 @@ it "routes escaped /findaid/ark:/* to the catalog controller" do
 
 it "routes escaped /findaid/ark:/*/entire_text/ to the static_finding_aid controller" do
     expect(get("/findaid/ark:%2F13010%2Fsdfsdfsf/entire_text")).to route_to(
-      controller: "static_finding_aid",
-      action: "show",
-      id: "ark:/13010/sdfsdfsf"
+      controller: "arks",
+      action: "findaid_static",
+      ark: "ark:/13010/sdfsdfsf"
       )
   end
 
 it "routes unescaped /findaid/ark:/*/entire_text/ to the static_finding_aid controller" do
     expect(get("/findaid/ark:/13010/sdfsdfsf/entire_text")).to route_to(
-      controller: "static_finding_aid",
-      action: "show",
-      id: "ark:/13010/sdfsdfsf"
+      controller: "arks",
+      action: "findaid_static",
+      ark: "ark:/13010/sdfsdfsf"
       )
   end
 end
