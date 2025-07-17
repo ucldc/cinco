@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-    default from: "oac-feedback-l@ucop.edu"
+    default from: "oacops@cdlib.org"
     default to: "oac-feedback-l@listserv.ucop.edu"
 
     def contact_email(message, sender_name, sender_email, sender_verify_email, referrer)
