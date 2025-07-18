@@ -34,4 +34,8 @@ module ApplicationHelper
     end
     collection = ::SolrDocument.new(collection_hash)
   end
+
+  def show_static_finding_aid_link?(document)
+    document.total_component_count.to_i < Rails.application.config.child_component_limit
+  end
 end

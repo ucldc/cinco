@@ -24,10 +24,12 @@
             </a>
         </div>
         <% end %>
+        <% if show_static_finding_aid_link? @document %>
         <div class="col-sm-auto">
             <span aria-hidden="true"><%= blacklight_icon :printer, classes: 'oac-printer-icon' %></span>
             <a href="<%= static_finding_aid_path @document.collection_id %>" class="link-underline">Printable guide [HTML]</a>
         </div>
+        <% end %>
         <div class="col-sm-auto">
             <%= render 'arclight/requests', document: @document %>
         </div>
