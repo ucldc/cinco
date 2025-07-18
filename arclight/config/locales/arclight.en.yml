@@ -34,7 +34,7 @@ en:
 
         relatedmaterial: Related material
         separatedmaterial: Separated material
-        otherfindaid: Other finding aids
+        otherfindaid: Additional collection guides
         altformavail: Alternative form available
         originalsloc: Location of originals
         materialspec: Material specific details
@@ -101,6 +101,7 @@ en:
           cite_field: Preferred citation
           in_person_field: Location of this collection
           contact_field: Contact
+          related_field: Related resources
 
   oac:
     search:
