@@ -21,7 +21,7 @@
             <% params_for_search[:group] = true %>
             <%= render Oac::SearchBarComponent.new(
                 placeholder_text: "Search collection guides",
-                url: search_action_url,
+                url: search_action_path,
                 params: params_for_search
             ) %>
         </div>
