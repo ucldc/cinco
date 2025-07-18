@@ -13,11 +13,16 @@ sceptre_user_data:
   # occurs when all the filters in the group evaluate to true.
     - - Type: EVENT
         Pattern: RELEASED
+  BuildEnvironment:
+    - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
   build_spec: |-
     !Sub >-
               version: 0.2
 
               phases:
+                install:
+                  runtime-versions:
+                    python: 3.12
                 pre_build:
                   commands:
                     - cd $CODEBUILD_SRC_DIR/arclight
@@ -40,6 +45,7 @@ sceptre_user_data:
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
                     - echo "Please update solr leader service, task definition revision:"
                     - echo $TD_REVISION
+                    - LEADER="cinco-solr-prd:$TD_REVISION"
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
                     ##### Update solr follower 1 task definition #####
                     - echo "Updating solr follower 1 task definition"
@@ -50,6 +56,7 @@ sceptre_user_data:
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
                     - echo "Please update solr follower 1 service, task definition revision:"
                     - echo $TD_REVISION
+                    - FOLLOWER_1="cinco-solr-follower-1-prd:$TD_REVISION"
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-follower-1-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
                     ##### Update solr follower 2 task definition #####
                     - echo "Updating solr follower 2 task definition"
@@ -60,4 +67,7 @@ sceptre_user_data:
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
                     - echo "Please update solr follower 2 service, task definition revision:"
                     - echo $TD_REVISION
+                    - FOLLOWER_2="cinco-solr-follower-2-prd:$TD_REVISION"
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-follower-2-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
+                    ###### Message Slack #####
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/message_slack.py --application solr --cinco_version $TAG --td_family_revisions $LEADER $FOLLOWER_1 $FOLLOWER_2
