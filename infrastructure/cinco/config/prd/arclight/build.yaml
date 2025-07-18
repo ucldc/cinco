@@ -10,6 +10,7 @@ parameters:
 sceptre_user_data:
   BuildEnvironment:
     - SUBNET_IDS: {{ var.prd.SUBNET_IDS }}
+    - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
   TriggerFilterGroups:
   # A build is triggered if any filter group evaluates to true, which
   # occurs when all the filters in the group evaluate to true.
@@ -20,6 +21,9 @@ sceptre_user_data:
               version: 0.2
 
               phases:
+                install:
+                  runtime-versions:
+                    python: 3.12
                 build:
                   commands:
                     - TAG=`git describe --tags --abbrev=0`
@@ -36,4 +40,5 @@ sceptre_user_data:
                     - NEW_TASK_DEFINITION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
                     - REGISTERED_DEFINITION=$(aws ecs register-task-definition --cli-input-json "$NEW_TASK_DEFINITION")
                     - TD_REVISION=$(echo $REGISTERED_DEFINITION | jq -r '.taskDefinition.revision')
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/message_slack.py --application arclight --cinco_version $TAG --td_family_revisions "$TASK_FAMILY:$TD_REVISION"
                     - aws ecs update-service --cluster cinco-prd --service cinco-arclight-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment

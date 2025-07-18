@@ -10,6 +10,7 @@ parameters:
 sceptre_user_data:
   BuildEnvironment:
     - SUBNET_IDS: {{ var.prd.SUBNET_IDS }}
+    - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
   TriggerFilterGroups:
   # A build is triggered if any filter group evaluates to true, which
   # occurs when all the filters in the group evaluate to true.
@@ -46,4 +47,5 @@ sceptre_user_data:
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd --task-definition $TD_REVISION collectstatic --no-input
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py --prd --task-definition $TD_REVISION migrate --no-input
                     - echo "Forcing a new deployment of the service to apply changes"
+                    - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/message_slack.py --application cincoctrl --cinco_version $TAG --td_family_revisions "$TASK_FAMILY:$TD_REVISION"
                     - aws ecs update-service --cluster cinco-prd --service cinco-ctrl-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
