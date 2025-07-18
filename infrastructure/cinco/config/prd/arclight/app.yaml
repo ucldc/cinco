@@ -7,7 +7,7 @@ parameters:
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
-    - "{container_image}:v0.1.5-beta"
+    - "{container_image}:v0.1.6-beta"
     - container_image: !stack_output prd/arclight/build.yaml::ECRRepository
   ContainerPort: 3000
   ContainerCount: 2
