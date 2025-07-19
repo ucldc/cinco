@@ -19,7 +19,7 @@
         <% if @document.online_content? %>
         <div class="col-sm-auto">
             <span aria-hidden="true"><%= blacklight_icon :online, classes: 'oac-online-content-icon' %></span>
-            <a href="<%= search_action_path(f: { collection: [@document.collection_name], access: ['online'] }) %>" class="link-underline">
+            <a href="<%= search_action_path(f: { collection: [@document.collection_name], access: ['online'] }, only_path: true) %>" class="link-underline">
             <%= t('arclight.collection_info_component.online_items') =%>
             </a>
         </div>
