@@ -75,7 +75,10 @@ class EADParser:
         for other in self.root.findall(".//otherfindaid"):
             others.extend(
                 [
-                    {"href": self.get_href(ref.attrib), "text": ref.text.strip()}
+                    {
+                        "href": self.get_href(ref.attrib),
+                        "text": self.node_to_string(ref),
+                    }
                     for ref in other.findall(".//extref")
                 ],
             )

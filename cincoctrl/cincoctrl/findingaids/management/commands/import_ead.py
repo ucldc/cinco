@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 import bs4
 import requests
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -60,9 +62,10 @@ class Command(BaseCommand):
     def normalize_pdf_href(self, href, doc_url, ark_dir):
         if href.startswith(doc_url):
             return href
-        if href.startswith("https://oac.cdlib.org/"):
-            return href.replace("https://oac.cdlib.org", doc_url)
         if href.startswith("http"):
+            parsed_url = urlparse(href)
+            if parsed_url.netloc.endswith("oac.cdlib.org"):
+                return f"{doc_url}{parsed_url.path}"
             msg = f"Can't download external document {href}"
             raise URLError(msg)
         if ark_dir and not ark_dir in href:
@@ -99,11 +102,11 @@ class Command(BaseCommand):
             except requests.exceptions.HTTPError as e:
                 errors.append(f"\t{url}\t{e}")
             except URLError as e:
-                errors.append(f"\t{url}\t{e.message}")
+                errors.append(f"\t{a["href"]}\t{e.message}")
             except requests.exceptions.ConnectionError as e:
-                errors.append(f"\t{url}\t{e.message}")
+                errors.append(f"\t{url}\t{e}")
             except requests.exceptions.Timeout as e:
-                errors.append(f"\t{url}\t{e.message}")
+                errors.append(f"\t{url}\t{e}")
 
         if len(errors) > 0:
             self.stdout.write(f"{filename} failed to import supp files")
