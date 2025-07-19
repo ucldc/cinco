@@ -49,7 +49,7 @@ module Arclight
 
       Oac::SearchBarComponent.new(
         placeholder_text: placeholder_text,
-        url: helpers.search_action_path,
+        url: helpers.search_action_path(only_path: true),
         params: params
       )
     end

@@ -11,7 +11,9 @@ class HeaderComponent < Arclight::HeaderComponent
         params[:group] = true
         Oac::SearchBarComponent.new(
           placeholder_text: I18n.t("oac.search.placeholder_text"),
-          url: helpers.search_action_path,
+          url: helpers.search_action_path(
+            only_path: true
+          ),
           params: params
           #   autocomplete_path: "/catalog/suggest"
         )

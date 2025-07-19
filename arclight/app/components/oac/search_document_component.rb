@@ -16,7 +16,7 @@ module Oac
 
         Oac::SearchBarComponent.new(
           placeholder_text: "Search this collection",
-          url: helpers.search_action_path,
+          url: helpers.search_action_path(only_path: true),
           params: params
         )
       end

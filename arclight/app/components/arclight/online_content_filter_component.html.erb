@@ -1,7 +1,7 @@
 <div id="facet-digital_content" class="<%='facet-limit-active' if @document.online_content? %> mb-4">
   <div class="card-body d-flex align-items-center justify-content-between">
       <div class="form-check form-switch">
-      <a href="<%= helpers.search_action_path(f: { collection: [collection_name], access: ['online'] }) %>">
+      <a href="<%= helpers.search_action_path(f: { collection: [collection_name], access: ['online'] }, only_path: true) %>">
         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
         <label class="form-check-label" for="flexSwitchCheckDefault"><%= t('arclight.views.show.online_content.link_text') %></label>
       </a>
