@@ -24,6 +24,7 @@ ALLOWED_HOSTS = [
     "oac-stg.cdlib.org",
     "*",
 ]
+# CSRF_TRUSTED_ORIGINS = ["https://dashboard.oac-stg.cdlib.org",]
 
 # We need the ALB's DNS record & public IP in ALLOWED_HOSTS, but neither
 # are persistent at the moment - revisit once we have a persistent DNS
@@ -65,10 +66,6 @@ SESSION_COOKIE_NAME = "__Secure-sessionid"
 CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-name
 CSRF_COOKIE_NAME = "__Secure-csrftoken"
-CSRF_TRUSTED_ORIGINS = [
-    "https://dashboard.oac-stg.cdlib.org",
-    "http://cinco-ctrl-stage-alb-861630729.us-west-2.elb.amazonaws.com/",
-]
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
 # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
