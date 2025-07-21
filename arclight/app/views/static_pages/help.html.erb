@@ -92,7 +92,7 @@ Search results are categorized in two tabs: "Grouped by collection" and "All res
 <li><strong>"Grouped by collection"</strong>: By default, the results will be "grouped by collections," which includes the collection title at the top, along with the contributing institution (the institution that houses that collection) and a short description of the collection. Collections include a variety of primary source materials, and some collection guides will describe folder- or document-level contents. The "grouped by collection" view groups those results by particular collections. Click the title to view the collection guide, or click a folder- or document-level record to go to that description directly.</li>
 <li><strong>"All results"</strong>: Alternatively, you can view "all results" instead, which instead provides any results that match your keyword. The results may include collection titles, as well as folder or document titles, and these results will not be grouped by any particular collection. If you are viewing "all results," you will see the collection title in the breadcrumb, alongside the contributing institution.</li>
 </ul>
-<%= image_tag('arclight/faq/search.png', alt: "This image shows example search results for the search term, redwood trees. There is a search box across the top of the image. Below the search box, the page then splits into two sections. The left section displays options to refine your search. The right section displays the search results.", class: "img-fluid") %>
+<%= image_tag('arclight/faq/search.png', alt: "This image shows example search results for the search term, redwood trees. There is a search box across the top of the image. Below the search box, the page then splits into two sections. The left section displays options to refine your search. The right section displays the search results.", class: "img-fluid", style: "border:1px solid #cccccc;") %>
 <p><br/></p>
 <p><strong>Refine your search</strong><br/>
 Use the following filter options to narrow your search results:</p>
@@ -110,7 +110,7 @@ Use the following filter options to narrow your search results:</p>
     <h3 id="guide">What does a collection guide look like?</h3>
 
     <p>Collection guides describe the items in a collection and how they were gathered or created. They also identify the collection's location, and may provide additional information, including detailed descriptions, chronologies, and biographies.</p>
-<%= image_tag('arclight/faq/collection-guide.png', alt: "This image shows an example of a collection guide in OAC. Numbers have been added on this image that match that numbered bullet list, below. 1: The top of the image includes the institution name, collection name, and other options. 2: Just below, there is a ‘search’ box for this collection. 3: The left side of the page includes navigation options, including permalink that always points to this guide. 4: The left side of the page also includes a quick link to view ‘access and use’ information, for this collection. 5: Still on the left side of the page, the Collection Contents provides navigation options. 6: The right side of the page displays selected content.", class: "img-fluid") %>
+<%= image_tag('arclight/faq/collection-guide.png', alt: "This image shows an example of a collection guide in OAC. Numbers have been added on this image that match that numbered bullet list, below. 1: The top of the image includes the institution name, collection name, and other options. 2: Just below, there is a ‘search’ box for this collection. 3: The left side of the page includes navigation options, including a permalink URL that always points to this guide. 4: In the 'Jump to' section on the left side of the page, some collection guides may include a 'Related resources' quick link. 5: Also in the 'Jump to' section, another quick link to view 'Access and use' information, for this collection, is available. 6: Still on the left side of the page, the Collection Contents provides navigation options. 7: The right side of the page displays selected content.", class: "img-fluid", style: "border:1px solid #cccccc;") %>
 <p><br/></p>
 
 <ol>
@@ -121,8 +121,9 @@ Use the following filter options to narrow your search results:</p>
 <li><p><strong>Request items</strong>: Some collection guides feature a "Request items" link. If you see this link, you can use it to register with the institution that owns the collection, place requests, and track your orders. For example, you can obtain a scanned copy of an item that you are interested in viewing, submit a request in advance of a visit to the institution in-person, or ask for additional information about the items in the collection.</p></li>
 </ul>
 <li><p><strong>Search this collection</strong> lets you search for any item in this collection guide. Conducting a search within this collection guide will display your search results on the right-hand side of the page.</p></li>
-<li><p><strong>Permalink</strong>: Available in the "Collection Overview" section, the permalink is a permanent URL that will always point to this collection guide.</p></li>
-<li><p><strong>Access and Use</strong>: Also available in the "Collection Overview" section, click this link to view the contributing institution's contact information, as well as details that might guide your access and use of the collection material.</p></li>
+<li><p><strong>Permalink</strong>: Available in the "Collection Overview" section, the permalink is a permanent URL that will always point to this collection guide. When citing or referencing this collection guide, please use this permalink URL.</p></li>
+<li><p><strong>Related resources</strong>: When available, a "Related resources" quick link can be found in the "Jump to" area. This includes references to additional resources that may be of interest as you navigate this collection guide. This may include "Additional collection guides," which can include PDF attachments with collection inventories. It may also include references to relevant collection guides.</p></li>
+<li><p><strong>Access and Use</strong>: Also available as a quick link in the "Jump to" area, click this to view the contributing institution's contact information, as well as details that might guide your access and use of the collection material.</p></li>
 <li><p><strong>Collection Contents</strong> always remains on the left-hand side of the page, and provides a descriptive arrangement of the collection so that you can easily navigate through the collection guide. Additionally, the "<%= t('arclight.views.show.online_content.link_text') %>" toggle allows you to refine search. (If there are no digital items for a collection guide, this toggle option is not available.)</p></li>
 <li><p>The right-hand side of the page displays the descriptive content from the collection guide. If you opt to search within the collections, your search results will display here instead.</p></li>
 </ol>
@@ -145,7 +146,7 @@ Use the following filter options to narrow your search results:</p>
 
     <h3 id="contact">How do I contact contributing institutions?</h3>
     <p>The name of the contributing institution, as well as a link to its website, is provided in every collection guide. Click on the contributing institution to view their contact information. You may also view the "Access and Use" section of the collection guide for information about how to contact the contributing institution.</p>
-<%= image_tag('arclight/faq/contact.png', alt: "This image shows an example of a collection guide in OAC, with two arrows pointing out links that will display contact information about the contributing institution. The first arrow is at the top of the image, beside the institution name. The second arrow is beside the 'Access and use' link, which is on the left side of the page.", class: "img-fluid") %>
+<%= image_tag('arclight/faq/contact.png', alt: "This image shows an example of a collection guide in OAC, with two arrows pointing out links that will display contact information about the contributing institution. The first arrow is at the top of the image, beside the institution name. The second arrow is beside the 'Access and use' link, which is on the left side of the page.", class: "img-fluid", style: "border:1px solid #cccccc;") %>
 <p><br/></p>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
@@ -178,6 +179,8 @@ Use the following filter options to narrow your search results:</p>
  <p>When citing or referring to an item described in a collection guide, please use the permalink that begins with <strong>https://oac.cdlib.org/findaid/ark:/13030/#####</strong>. Check the guide to see if the collection guide includes a "Preferred Citation." If it does, use that citation when referencing particular items in the collection.</p>
 
     <p>For additional recommendations on citing materials in archival collections, see the <%= link_to 'APA Style', 'https://apastyle.apa.org/style-grammar-guidelines/references/archival' %> and <%= link_to 'MLA Style Center', 'https://style.mla.org/citing-materials-physical-archives/' %>.</p>
+
+<%= image_tag('arclight/faq/preferred-citation.png', alt: "This image shows an example of a collection guide in OAC. There is an arrow on the left side of the image, pointing out a permalink URL. There is a second arrow on the right side of the image, pointing to a ‘Preferred citation’ descriptive information.", class: "img-fluid", style: "border:1px solid #cccccc;") %>
 
 <p style="text-align:right;">[ <a href="#">back to top</a> ]</p>
 
