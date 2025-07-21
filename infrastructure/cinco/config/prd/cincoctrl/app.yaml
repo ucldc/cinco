@@ -42,3 +42,4 @@ sceptre_user_data:
     - EZID_PASSWORD: {{ var.prd.EZID_PASSWORD }}
     - SMTP_USER: {{ var.prd.DJANGO_SMTP_USER }}
     - SMTP_PASSWORD: {{ var.prd.DJANGO_SMTP_PASSWORD}}
+    - ARCLIGHT_URL: {{ var.prd.ARCLIGHT_URL }}
