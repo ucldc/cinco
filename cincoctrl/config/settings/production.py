@@ -20,7 +20,7 @@ AIRFLOW_PROJECT_NAME = "cinco-prd"
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
-    "oac5.cdlib.org",
+    "oac.cdlib.org",
     "*",
 ]
 
