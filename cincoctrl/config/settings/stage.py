@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
     "oac-stg.cdlib.org",
     "*",
 ]
-# CSRF_TRUSTED_ORIGINS = ["https://dashboard.oac-stg.cdlib.org",]
+CSRF_TRUSTED_ORIGINS = ["https://dashboard.oac-stg.cdlib.org"]
 
 # We need the ALB's DNS record & public IP in ALLOWED_HOSTS, but neither
 # are persistent at the moment - revisit once we have a persistent DNS
