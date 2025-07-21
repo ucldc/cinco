@@ -12,7 +12,7 @@ parameters:
       version: !stack_attr sceptre_user_data.cinco_version
   ContainerPort: 3000
   ContainerCount: 2
-  HealthCheckPath: '/'
+  HealthCheckPath: '/up'
   DBInstanceSecurityGroup: !stack_output prd/arclight/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: "/rails/bin/docker-entrypoint"

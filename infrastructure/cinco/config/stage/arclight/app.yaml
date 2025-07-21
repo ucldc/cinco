@@ -8,7 +8,7 @@ parameters:
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
   ContainerImage: !stack_output stage/arclight/build.yaml::ECRRepository
   ContainerPort: 3000
-  HealthCheckPath: '/'
+  HealthCheckPath: '/up'
   DBInstanceSecurityGroup: !stack_output stage/arclight/db.yaml::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: "/rails/bin/docker-entrypoint"
