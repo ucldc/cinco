@@ -20,6 +20,7 @@ AIRFLOW_PROJECT_NAME = "cinco-stage"
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
+    "dashboard.oac-stg.cdlib.org",
     "oac-stg.cdlib.org",
     "*",
 ]
@@ -65,7 +66,7 @@ CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-name
 CSRF_COOKIE_NAME = "__Secure-csrftoken"
 CSRF_TRUSTED_ORIGINS = [
-    "oac-stg.cdlib.org",
+    "https://dashboard.oac-stg.cdlib.org",
     "http://cinco-ctrl-stage-alb-861630729.us-west-2.elb.amazonaws.com/",
 ]
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
