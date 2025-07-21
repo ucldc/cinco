@@ -183,7 +183,11 @@ class EADParser:
     ]
 
     def node_to_string(self, node):
-        return etree.tostring(node, encoding="utf-8", method="text").decode().strip()
+        return (
+            etree.tostring(node, encoding="utf-8", method="text", with_tail=False)
+            .decode()
+            .strip()
+        )
 
     def update_eadid(self, filename):
         node = self.root.find("./eadheader/eadid")
