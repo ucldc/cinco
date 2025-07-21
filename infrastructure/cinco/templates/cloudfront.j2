@@ -13,7 +13,8 @@ Resources:
     Properties:
       DistributionConfig:
         Comment: !Sub "${CNAME} cloudfront distro"
-        Aliases: !Ref CNAME
+        Aliases:
+          - !Ref CNAME
         Enabled: true
         HttpVersion: http1.1  # default
         IPV6Enabled: false
