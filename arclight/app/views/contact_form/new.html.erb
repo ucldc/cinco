@@ -41,10 +41,7 @@
         <% end %>
         <%= form.text_area :message, class: "form-control", :required => true %>
       </div>
-      <%# TODO: insert recaptcha %>
-      <div>
-            <p>[ RECAPTCHA HERE ]</p>
-      </div>
+
 <p>*Messages about items or collections submitted through this page may be forwarded to the contributing institution, as noted in our <%= link_to 'Privacy Statement', privacy_path %>.</p>
       <%= form.submit "Submit", class: "btn btn-primary" %>
     <% end %>

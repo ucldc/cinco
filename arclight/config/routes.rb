@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   get "/titles", to: redirect("/", status: 301)
   get "/help/detailedhelp.html", to: redirect("/help", status: 301)
 
+  get "/view", to: redirect("/", status: 301)
+
   # METS objects redirects
   get "/ark:/*id", to: "arks#calisphere"
 
