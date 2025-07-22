@@ -200,7 +200,7 @@ class FindingAid(models.Model):
         return p.extract_ead_fields()
 
     def public_url(self):
-        return f"{settings.ARCLIGHT_URL}/{self.ark}"
+        return f"{settings.ARCLIGHT_URL}/findaid/{self.ark}"
 
     @property
     def eadid(self):
