@@ -18,7 +18,7 @@
       <li><%= link_to 'Terms of Use', termsofuse_path %></li>
       <li><%= link_to 'Privacy Statement', privacy_path %></li>
       <li><%= link_to 'Accessibility', 'https://cdlib.org/about/policies-and-guidelines/accessibility/' %></li>
-      <li><%= link_to 'Contact Us', contact_form_path %></li>
+      <li><%= link_to 'Contact Us', contact_form_path, data: {turbo: "false"} %></li>
       <li><%= link_to 'About the Collection Guides in OAC', overview_path %></li>
       <li><%= link_to 'CDL Privacy Statement', 'https://cdlib.org/about/policies-and-guidelines/privacy-statement/' %></li>
       <li><%= link_to 'California Digital Library', 'https://cdlib.org/' %></li>

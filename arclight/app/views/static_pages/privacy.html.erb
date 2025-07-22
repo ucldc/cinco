@@ -17,7 +17,7 @@
 
     <p>The content on this website is contributed by cultural heritage institutions across California. We provide our contributors aggregate reports of usage statistics on the content they have submitted, currently derived from web server logs.</p>
 
-    <p>Questions about items and collections should be directed to their contributing institutions. Visit <%= link_to "the institution's page", { controller: 'arclight/repositories', action: 'index' } %> for more information. Messages about items or collections submitted through the site <%= link_to 'Contact Us', contact_form_path %> page may be forwarded to the contributing institution. Your contact information will be included so staff at the contributing institution may follow up with you directly if needed.</p>
+    <p>Questions about items and collections should be directed to their contributing institutions. Visit <%= link_to "the institution's page", { controller: 'arclight/repositories', action: 'index' } %> for more information. Messages about items or collections submitted through the site <%= link_to 'Contact Us', contact_form_path, data: {turbo: "false"} %> page may be forwarded to the contributing institution. Your contact information will be included so staff at the contributing institution may follow up with you directly if needed.</p>
 
     <h3>Third Party APIs</h3>
 
