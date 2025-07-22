@@ -7,4 +7,4 @@ parameters:
 sceptre_user_data:
   origins:
   - name: arclight
-    DomainName: !stack_output prd/arclight/app.yaml::LoadBalancerDNS
+    DomainName: !stack_output_external cinco-prd-arclight-app::LoadBalancerDNS

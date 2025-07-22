@@ -8,4 +8,4 @@ parameters:
 sceptre_user_data:
   origins:
   - name: cincoctrl
-    DomainName: !stack_output prd/cincoctrl/app.yaml::LoadBalancerDNS
+    DomainName: !stack_output_external cinco-prd-cincoctrl-app::LoadBalancerDNS

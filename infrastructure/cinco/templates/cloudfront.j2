@@ -13,6 +13,8 @@ Resources:
     Properties:
       DistributionConfig:
         Comment: !Sub "${CNAME} cloudfront distro"
+        Aliases:
+          - !Ref CNAME
         Enabled: true
         HttpVersion: http1.1  # default
         IPV6Enabled: false
@@ -48,9 +50,15 @@ Resources:
           AllowedMethods:
             - HEAD
             - GET
+            - OPTIONS
+            - PUT
+            - POST
+            - PATCH
+            - DELETE
           CachedMethods:
             - HEAD
             - GET
           # Managed Cache Policy: UseOriginCacheControlHeaders-QueryStrings
           # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html#managed-cache-policy-origin-cache-headers-query-strings
           CachePolicyId: 4cc15a8a-d715-48a4-82b8-cc0b614638fe
+          OriginRequestPolicyId: 216adef6-5c7f-47e4-b989-5492eafa07d3
