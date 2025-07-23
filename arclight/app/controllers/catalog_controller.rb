@@ -2,6 +2,7 @@
 
 # Blacklight controller that handles searches and document requests
 class CatalogController < ApplicationController
+  include CacheControl
   include Blacklight::Catalog
   include Arclight::Catalog
 

@@ -14,8 +14,9 @@ module Arclight
 
         def show
             query = _id_or_name(params[:id])
-            repository = Arclight::Repository.find_by!(**query)
-            url = search_action_path(
+            begin
+                repository = Arclight::Repository.find_by!(**query)
+                url = search_action_path(
                 f: {
                   repository: [ repository.name ],
                   level: [ "Collection" ]
@@ -23,6 +24,9 @@ module Arclight
                 sort: "title_sort asc"
             )
             redirect_to url
+            rescue ActiveRecord::RecordNotFound
+                redirect_to root_path
+            end
         end
 
         private
