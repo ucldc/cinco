@@ -63,8 +63,8 @@ class Command(BaseCommand):
                 term = d["fields"]["term"]
                 qualifier = d["fields"]["qualifier"]
                 value = d["fields"]["content"]
+                f = FindingAid.objects.get(ark=ark)
                 if term == "CR":
-                    f = FindingAid.objects.get(ark=ark)
                     if qualifier in CREATOR_MAP:
                         creator_type = CREATOR_MAP[qualifier]
                         ExpressRecordCreator.objects.get_or_create(
