@@ -36,6 +36,14 @@ module ApplicationHelper
   end
 
   def show_static_finding_aid_link?(document)
+    _within_child_component_limit?(document) && _not_in_disallow_list(document)
+  end
+
+  def _within_child_component_limit?(document)
     document.total_component_count.to_i < Rails.application.config.child_component_limit
+  end
+
+  def _not_in_disallow_list(document)
+    !Rails.application.config.disallowed_static_guides.include? document.id
   end
 end
