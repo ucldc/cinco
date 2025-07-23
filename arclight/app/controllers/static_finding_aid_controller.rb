@@ -4,6 +4,7 @@ class StaticFindingAidController < ApplicationController
   layout "static_catalog_result"
   include Blacklight::Catalog
   include Arclight::Catalog
+  include CacheControl
 
   configure_blacklight do |config|
     config.search_builder_class = StaticFindingAidSearchBuilder
