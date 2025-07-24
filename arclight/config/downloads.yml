@@ -14,7 +14,7 @@ sample_unitid:
     href: ''
     size: '1.23MB'
   ead:
-    href: 'https://cinco-stage.s3.amazonaws.com/media/ead/%{eadid}'
+    href: 'https://cinco-prd.s3.amazonaws.com/media/ead/%{eadid}'
     size: 123456
     # size_accessor: 'level'
 default:
@@ -22,4 +22,4 @@ default:
   pdf:
     template: ''
   ead:
-    template: 'https://cinco-stage.s3.amazonaws.com/media/ead/%{eadid}'
+    template: 'https://cinco-prd.s3.amazonaws.com/media/ead/%{eadid}'
