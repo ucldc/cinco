@@ -10,7 +10,7 @@ from .base import DATABASES
 from .base import INSTALLED_APPS
 from .base import env
 
-DEBUG = True
+DEBUG = False
 CINCO_ENVIRONMENT = "prd"
 AIRFLOW_PROJECT_NAME = "cinco-prd"
 
