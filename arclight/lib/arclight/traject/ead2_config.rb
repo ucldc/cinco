@@ -340,8 +340,12 @@ to_field "components" do |record, accumulator, context|
 
   child_components.each do |child_component|
     if child_component.content.strip.length > 0
-      output = component_indexer.map_record(child_component)
-      accumulator << output if output.keys.any?
+      begin
+        output = component_indexer.map_record(child_component)
+        accumulator << output if output.keys.any?
+      rescue Arclight::Exceptions::TitleNotFound => e
+        # just ignore this component
+      end
     end
   end
 end
