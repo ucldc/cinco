@@ -3,6 +3,7 @@
 module Arclight
     class RepositoriesController < ApplicationController
         def index
+            expires_in 1.day, public: true
             @repositories = Arclight::Repository.all
             @repository_list = @repositories.group_by { |r| r.name[0] }
             load_collection_counts

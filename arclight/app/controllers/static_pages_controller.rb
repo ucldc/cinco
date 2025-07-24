@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
-  def about
-  end
+  before_action :set_expiry
 
   def help
   end
@@ -19,5 +18,9 @@ class StaticPagesController < ApplicationController
 
   def home
     @repositories = Arclight::Repository.all
+  end
+
+  def set_expiry
+    expires_in 7.days, public: true
   end
 end
