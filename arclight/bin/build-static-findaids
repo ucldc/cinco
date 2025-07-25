@@ -3,6 +3,18 @@
 
 set -euo pipefail
 
+# Default values
+PAGE_SIZE="${1:-300}"  # Default to 100 if not provided
+COMPONENT_COUNT_RANGE="${2:-4501 TO *}"
+
+# Usage info
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  echo "Usage: $0 [PAGE_SIZE] [COMPONENT_COUNT_RANGE]"
+  echo "  PAGE_SIZE: Number of results per Solr page (default: 5)"
+  echo "  COMPONENT_COUNT_RANGE: Solr range query for total_component_count_is (default: '4501 TO *')"
+  exit 0
+fi
+
 # Requires jq
 echo -e "\nInstalling jq...\n"
 apt-get update && apt-get install jq -y
@@ -11,11 +23,10 @@ apt-get update && apt-get install jq -y
 # Requires $SOLR_URL and $S3_BUCKET to be set in the environment
 SOLR_URL="${SOLR_URL:?SOLR_URL must be set}"
 S3_BUCKET="${S3_BUCKET:?S3_BUCKET must be set}"
-PAGE_SIZE=5
 
 echo -e "\nQuerying Solr for large finding aids..."
 results=$(curl -s --get "$SOLR_URL/select" \
-  --data-urlencode 'fq=total_component_count_is:[4501 TO *]' \
+  --data-urlencode "fq=total_component_count_is:[${COMPONENT_COUNT_RANGE}]" \
   --data-urlencode 'indent=true' \
   --data-urlencode 'q.op=OR' \
   --data-urlencode 'q=level_ssim:"Collection"' \
@@ -39,7 +50,6 @@ fi
 
 # 4. For each ark/last-indexed-date in our solr search results set
 NUM_FOUND=$(echo "$results" | jq '.response.numFound')
-PAGE_SIZE=$(echo "$results" | jq '.response.docs | length')
 echo -e "\nProcessing Solr results... ($NUM_FOUND total results, $PAGE_SIZE per page)"
 
 START=0
@@ -47,7 +57,7 @@ START=0
 while (( START < NUM_FOUND )); do
   echo -e "\n===== Fetching Solr results page starting at $START... =====\n"
   page_results=$(curl -s --get "$SOLR_URL/select" \
-    --data-urlencode "fq=total_component_count_is:[50 TO 51]" \
+    --data-urlencode "fq=total_component_count_is:[${COMPONENT_COUNT_RANGE}]" \
     --data-urlencode 'indent=true' \
     --data-urlencode 'q.op=OR' \
     --data-urlencode 'q=level_ssim:"Collection"' \
