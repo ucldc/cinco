@@ -141,6 +141,8 @@ def main(
     command: list[str],
     task_definition_revision: int = None,
     latest: bool = False,
+    memory: int = 3072,
+    cpu: int = 1024,
 ):
     cluster = "cinco-prd" if env == "prd" else "cinco-stage"
     task_definition = get_task_definition(
@@ -167,7 +169,8 @@ def main(
                             "value": get_solr_leader_url(env),
                         }
                     ],
-                    "memory": 2048,
+                    "cpu": cpu,
+                    "memory": memory,
                 }
             ]
         },
@@ -203,7 +206,7 @@ def main(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Run commands on an Arclight ECS instance"
+        description="Run commands on an Arclight ECS instance and Solr Leader URL."
     )
     parser.add_argument(
         "--prd", action="store_true", help="Use the production environment"
@@ -218,9 +221,20 @@ if __name__ == "__main__":
         help="Task definition revision to use (default: same as running service)",
     )
     parser.add_argument(
+        "--memory",
+        type=int,
+        default=3072,
+        help="Memory in MiB to allocate for the task (default: 3072 MiB)",
+    )
+    parser.add_argument(
+        "--cpu",
+        type=int,
+        default=1024,
+        help="CPU units to allocate for the task (default: 1024)",
+    )
+    parser.add_argument(
         "command", nargs=argparse.REMAINDER, help="Command to pass to manage.py"
     )
-
     args = parser.parse_args()
 
     stack = "prd" if args.prd else "stage"
@@ -229,4 +243,4 @@ if __name__ == "__main__":
     if not args.command:
         parser.error("You must provide a command to run.")
 
-    main(stack, args.command, args.task_definition, latest)
+    main(stack, args.command, args.task_definition, latest, args.memory, args.cpu)
