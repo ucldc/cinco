@@ -49,7 +49,7 @@ class Command(BaseCommand):
 
     def validate_ead(self, filename, text):
         parser = EADParser()
-        parser.parse_string(text)
+        parser.parse_string(text, filename)
         parser.validate_required_fields()
         parser.validate_component_titles()
         parser.validate_dates()
