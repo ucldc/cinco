@@ -216,7 +216,7 @@ class EADParser:
 
     def validate_component_level(self, c, cid):
         if c.attrib.get("level", "") == "collection":
-            self.errors.append(
+            self.warnings.append(
                 f"Components cannot have level=collection: {cid}",
             )
 
@@ -236,7 +236,7 @@ class EADParser:
                     text = etree.tostring(c, encoding="utf-8", method="text").strip()
                     if len(text) > 0:
                         # not empty but no title info, indexing will fail
-                        self.errors.append(f"No title for non-empty component: {cid}")
+                        self.warnings.append(f"No title for non-empty component: {cid}")
 
         self.validate_component_level(c, cid)
 

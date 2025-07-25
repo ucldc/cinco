@@ -424,8 +424,8 @@ class TestParser(TestCase):
         p = EADParser()
         p.parse_string(NO_COMP_TITLE)
         p.validate_component_titles()
-        assert len(p.errors) == 1
-        assert p.errors[0] == "No title for non-empty component: x311358872"
+        assert len(p.warnings) == 1
+        assert p.warnings[0] == "No title for non-empty component: x311358872"
 
     def test_bad_date_range(self):
         p = EADParser()
@@ -501,8 +501,10 @@ class TestParser(TestCase):
         p = EADParser()
         p.parse_string(COLLECTION_LEVEL)
         p.validate_component_titles()
-        assert len(p.errors) == 1
-        assert p.errors[0] == "Components cannot have level=collection: aspace_ref1_1aa"
+        assert len(p.warnings) == 1
+        assert (
+            p.warnings[0] == "Components cannot have level=collection: aspace_ref1_1aa"
+        )
 
     def test_empty_required_fields(self):
         p = EADParser()
