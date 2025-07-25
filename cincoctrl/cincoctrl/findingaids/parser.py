@@ -32,8 +32,9 @@ class EADParser:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
-    def parse_string(self, xml_str):
+    def parse_string(self, xml_str, filename):
         try:
+            self.filename = filename
             self.xml_tree = None
             self.root = self.strip_namespace(etree.fromstring(xml_str))
         except etree.XMLSyntaxError as e:

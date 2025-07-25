@@ -416,35 +416,35 @@ class TestParser(TestCase):
 
     def test_no_comp_title(self):
         p = EADParser()
-        p.parse_string(NO_COMP_TITLE)
+        p.parse_string(NO_COMP_TITLE, "filename.xml")
         p.validate_component_titles()
         assert len(p.warnings) == 1
         assert p.warnings[0] == "No title for non-empty component: x311358872"
 
     def test_bad_date_range(self):
         p = EADParser()
-        p.parse_string(INVALID_DATERANGE)
+        p.parse_string(INVALID_DATERANGE, "filename.xml")
         p.validate_dates()
         assert len(p.warnings) == 1
         assert p.warnings[0] == "End year (70) before start year (1869)"
 
     def test_invalid_dateformat(self):
         p = EADParser()
-        p.parse_string(INVALID_DATEFORMAT)
+        p.parse_string(INVALID_DATEFORMAT, "filename.xml")
         p.validate_dates()
         assert len(p.warnings) == 1
         assert p.warnings[0] == "Invalid date format 29/10/1869"
 
     def test_xml_comments(self):
         p = EADParser()
-        p.parse_string(XML_COMMENTS)
+        p.parse_string(XML_COMMENTS, "filename.xml")
         p.validate_component_titles()
         assert len(p.errors) == 0
         assert len(p.warnings) == 0
 
     def test_parse_arks(self):
         p = EADParser()
-        p.parse_string(OTHER1)
+        p.parse_string(OTHER1, "filename.xml")
         ark = p.parse_ark()
         parent_ark = p.parse_parent_ark()
         assert ark == "ark:/00000/a00000a0bb"
@@ -452,7 +452,7 @@ class TestParser(TestCase):
 
     def test_parse_otherfindaids1(self):
         p = EADParser()
-        p.parse_string(OTHER1)
+        p.parse_string(OTHER1, "filename.xml")
         others = p.parse_otherfindaids()
         assert len(others) == 1
         assert others[0]["href"] == "original.pdf"
@@ -460,7 +460,7 @@ class TestParser(TestCase):
 
     def test_parse_otherfindaids2(self):
         p = EADParser()
-        p.parse_string(OTHER2)
+        p.parse_string(OTHER2, "filename.xml")
         others = p.parse_otherfindaids()
         assert len(others) == 1
         assert others[0]["href"] == "/data/00000/00/a0a00a01/files/original.pdf"
@@ -468,7 +468,7 @@ class TestParser(TestCase):
 
     def test_update_otherfindaids1(self):
         p = EADParser()
-        p.parse_string(OTHER1)
+        p.parse_string(OTHER1, "filename.xml")
         urls = [{"url": "https://pdf.test/AAAAAAAA.pdf", "text": "Title 1"}]
         p.update_otherfindaids(urls)
         out = p.to_string().decode("utf-8")
@@ -480,7 +480,7 @@ class TestParser(TestCase):
 
     def test_update_otherfindaids2(self):
         p = EADParser()
-        p.parse_string(OTHER2)
+        p.parse_string(OTHER2, "filename.xml")
         urls = [{"url": "https://pdf.test/AAAAAAAA.pdf", "text": "Original Title"}]
         p.update_otherfindaids(urls)
         out = p.to_string().decode("utf-8")
@@ -493,7 +493,7 @@ class TestParser(TestCase):
 
     def test_invalid_collection_level(self):
         p = EADParser()
-        p.parse_string(COLLECTION_LEVEL)
+        p.parse_string(COLLECTION_LEVEL, "filename.xml")
         p.validate_component_titles()
         assert len(p.warnings) == 1
         assert (
@@ -502,7 +502,7 @@ class TestParser(TestCase):
 
     def test_empty_required_fields(self):
         p = EADParser()
-        p.parse_string(EMPTY_FIELDS)
+        p.parse_string(EMPTY_FIELDS, "filename.xml")
         p.validate_required_fields()
         assert len(p.errors) == 1
         assert p.errors[0] == "No value in Title"
