@@ -13,7 +13,11 @@ module Oac
     end
 
     def children
-      Rails.cache.fetch("#{@document.id}/children") do
+      if Rails.config.enable_static_guide_cache
+        Rails.cache.fetch("#{@document.id}/children") do
+          _get_children
+        end
+      else
         _get_children
       end
     end

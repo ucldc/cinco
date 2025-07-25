@@ -4,8 +4,8 @@
 set -euo pipefail
 
 # Default values
-PAGE_SIZE="${1:-300}"  # Default to 100 if not provided
-COMPONENT_COUNT_RANGE="${2:-4501 TO *}"
+PAGE_SIZE="${1:-5}"  # Default to 100 if not provided
+COMPONENT_COUNT_RANGE="${2:-10001 TO 15000}"
 
 # Usage info
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
@@ -23,6 +23,11 @@ apt-get update && apt-get install jq -y
 # Requires $SOLR_URL and $S3_BUCKET to be set in the environment
 SOLR_URL="${SOLR_URL:?SOLR_URL must be set}"
 S3_BUCKET="${S3_BUCKET:?S3_BUCKET must be set}"
+
+# overwrite the CHILD_COMPONENT_LIMIT, set to 1700 by default
+echo -e "\nSetting CHILD_COMPONENT_LIMIT to 1700..."
+export CHILD_COMPONENT_LIMIT=15000
+export ENABLE_STATIC_GUIDE_CACHE=false
 
 echo -e "\nQuerying Solr for large finding aids..."
 results=$(curl -s --get "$SOLR_URL/select" \
