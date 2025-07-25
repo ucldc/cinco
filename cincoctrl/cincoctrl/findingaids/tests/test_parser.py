@@ -407,12 +407,6 @@ class TestParser(TestCase):
             validate_ead(ead_file)
         assert "Failed to parse Title" in str(e)
 
-    def test_no_unitid(self):
-        ead_file = self.get_ead_file("test.xml", TEST_NO_UNITID)
-        with pytest.raises(ValidationError) as e:
-            validate_ead(ead_file)
-        assert "Failed to parse Collection number" in str(e)
-
     def test_invalid_no_dtd(self):
         ead_file = self.get_ead_file("test.xml", INVALID_NO_DTD)
         p = EADParser()
@@ -510,6 +504,12 @@ class TestParser(TestCase):
         p = EADParser()
         p.parse_string(EMPTY_FIELDS)
         p.validate_required_fields()
-        assert len(p.errors) == 2  # noqa: PLR2004
+        assert len(p.errors) == 1
         assert p.errors[0] == "No value in Title"
-        assert p.errors[1] == "No value in Collection number"
+
+    def test_default_unitid(self):
+        ead_file = self.get_ead_file("test.xml", TEST_NO_UNITID)
+        p = EADParser()
+        p.parse_file(ead_file)
+        _, num, _ = p.extract_ead_fields()
+        assert num == "test.xml"

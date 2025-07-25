@@ -25,6 +25,7 @@ class EADParser:
 
     def parse_file(self, xml_file):
         try:
+            self.filename = xml_file.name
             self.xml_tree = etree.parse(xml_file)
             self.root = self.strip_namespace(self.xml_tree.getroot())
         except etree.XMLSyntaxError as e:
@@ -177,11 +178,6 @@ class EADParser:
         author = self.root.find("./eadheader/filedesc/titlestmt/author")
         return author is not None and author.text and "RecordEXPRESS" in author.text
 
-    required_fields = [
-        ("./archdesc/did/unittitle", "Title"),
-        ("./archdesc/did/unitid", "Collection number"),
-    ]
-
     def node_to_string(self, node):
         return (
             etree.tostring(node, encoding="utf-8", method="text", with_tail=False)
@@ -193,19 +189,32 @@ class EADParser:
         node = self.root.find("./eadheader/eadid")
         node.text = filename
 
+    def get_title_node(self):
+        node = self.root.find("./archdesc/did/unittitle")
+        if node is None:
+            node = self.root.find("./eadheader/filedesc/titlestmt/titleproper")
+        return node
+
+    def get_collection_number(self):
+        number_node = self.root.find("./archdesc/did/unitid")
+        if number_node is None:
+            return self.filename
+        number = self.node_to_string(number_node)
+        if len(number) == 0:
+            return self.filename
+        return number
+
     def validate_required_fields(self):
-        for field, label in self.required_fields:
-            node = self.root.find(field)
-            if node is None:
-                self.errors.append(f"Failed to parse {label}")
-            elif len(self.node_to_string(node)) == 0:
-                self.errors.append(f"No value in {label}")
+        node = self.get_title_node()
+        if node is None:
+            self.errors.append("Failed to parse Title")
+        elif len(self.node_to_string(node)) == 0:
+            self.errors.append("No value in Title")
 
     def extract_ead_fields(self):
-        title_node = self.root.find("./archdesc/did/unittitle")
-        number_node = self.root.find("./archdesc/did/unitid")
+        title_node = self.get_title_node()
         title = self.node_to_string(title_node)
-        number = self.node_to_string(number_node)
+        number = self.get_collection_number()
         ark = self.parse_ark()
         return title, number, ark
 
