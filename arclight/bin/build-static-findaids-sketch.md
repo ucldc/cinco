@@ -29,9 +29,9 @@ this container, so:
 
 # 3. Get the currently running application version
 
-This isn't currently anywhere in our image, the codebase isn't even a straight git checkout, and git isn't installed either, so we can't even run a git command. TODO: add this to our image (and our footer, while we're at it)
+set VERSION = cat CINCO_VERSION.txt
 
-# 3. For each item in our solr search results set
+# 3. For each ark/last-indexed-date in our solr search results set
 
 - get the last indexed date
 - get the ark
