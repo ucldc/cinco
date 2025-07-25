@@ -1,0 +1,15 @@
+template:
+  path: cloudwatch-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco-arclight-prd
+  ECSClusterName: !stack_output_external cinco-prd-arclight-app::ECSCluster
+  ECSServiceName: cinco-arclight-prd-service
+  LambdaFunctionName: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionName
+  LambdaFunctionArn: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionArn
+
+sceptre_user_data:
+  databases:
+  - name: !stack_output_external cinco-prd-arclight-db::RDSInstance
+    number: 1
+    role: rw

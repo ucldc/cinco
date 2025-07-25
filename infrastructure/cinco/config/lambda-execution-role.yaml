@@ -1,0 +1,5 @@
+template:
+  path: lambda-execution-role.yaml
+  type: file
+parameters:
+  Namespace: cinco

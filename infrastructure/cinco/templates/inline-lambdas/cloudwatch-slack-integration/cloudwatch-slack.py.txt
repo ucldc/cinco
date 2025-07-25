@@ -1,0 +1,60 @@
+
+          import json
+          import urllib3
+          import os
+
+          slack_url = os.environ['SLACK_HOOK']
+          http = urllib3.PoolManager()
+
+          def lambda_handler(event, context):
+              alarm_data = event['alarmData']
+
+              state = alarm_data['state']['value']
+              previous_state = alarm_data['previousState']['value']
+
+              metric = alarm_data['configuration']['metrics'][0]['metricStat']['metric']
+
+              dimensions = metric['dimensions']
+              dimensions_str = ', '.join([f"*{k}*: {v}" for k, v in dimensions.items()])
+
+              if state == 'ALARM':
+                  icon = ':red_circle:'
+                  short_message = f"*Alarm Activated*"
+              elif previous_state == "INSUFFICIENT_DATA" and state == 'OK':
+                  icon = ':large_green_circle:'
+                  short_message = f"*Alarm Had Insufficient Data, Okay Now*"
+              elif previous_state == 'ALARM' and state == 'OK':
+                  icon = ':large_green_circle:'
+                  short_message = f"*Alarm Resolved*"
+              elif state == 'OK':
+                  icon = ':large_green_circle:'
+                  short_message = f"*Status OK*"
+
+              alarm_description = alarm_data['configuration']['description']
+
+              message = (
+                  f"{icon} {short_message} {icon}\n"
+                  f"{alarm_description} (alarm name: {alarm_data['alarmName']})\n\n"
+                  f"{dimensions_str}\n"
+                  f"*Alarm Reason*: {alarm_data['state']['reason']}\n"
+                  f"*Alarm State*: {state} (from {previous_state})\n"
+              )
+
+              data = {
+                  "channel": os.environ['SLACK_CHANNEL'],
+                  "username": os.environ['SLACK_USERNAME'],
+                  "text": message,
+                  "icon_emoji": os.environ['SLACK_EMOJI'],
+              }
+
+              resp = http.request(
+                  "POST",
+                  slack_url,
+                  body=json.dumps(data).encode("utf-8")
+              )
+
+              return {
+                  "message": message,
+                  "status_code": resp.status,
+                  "response": resp.data,
+              }
