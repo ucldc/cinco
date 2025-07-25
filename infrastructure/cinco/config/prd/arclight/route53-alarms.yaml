@@ -1,0 +1,9 @@
+# Route 53 requires us to create associated alarms in us-east-1
+region: us-east-1
+template:
+  path: route53-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: arclight-prd
+  DomainName: oac.cdlib.org
+  LambdaFunctionArn: !stack_output_external cinco-alarms-lambda-us-east-1::LambdaSlackFunctionArn
