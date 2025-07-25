@@ -29,6 +29,7 @@ sceptre_user_data:
                     python: 3.12
                 build:
                   commands:
+                    - git rev-parse --short HEAD > cincoctrl/CINCO_VERSION.txt
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
                     - docker build -t cinco-ctrl cincoctrl --file cincoctrl/compose/production/django/Dockerfile
                     - docker tag cinco-ctrl:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-ctrl:latest

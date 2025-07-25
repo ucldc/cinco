@@ -26,6 +26,7 @@ sceptre_user_data:
               phases:
                 build:
                   commands:
+                    - git rev-parse --short HEAD > arclight/CINCO_VERSION.txt
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
                     - docker build -t cinco-arclight arclight --file arclight/Dockerfile
                     - docker tag cinco-arclight:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest

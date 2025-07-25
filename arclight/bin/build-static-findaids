@@ -1,0 +1,99 @@
+#!/bin/bash
+# filepath: /Users/awieliczka/Projects/cinco/arclight/bin/build-static-findaids-sketch.sh
+
+set -euo pipefail
+
+# Default values
+PAGE_SIZE="${1:-300}"  # Default to 100 if not provided
+COMPONENT_COUNT_RANGE="${2:-4501 TO *}"
+
+# Usage info
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  echo "Usage: $0 [PAGE_SIZE] [COMPONENT_COUNT_RANGE]"
+  echo "  PAGE_SIZE: Number of results per Solr page (default: 5)"
+  echo "  COMPONENT_COUNT_RANGE: Solr range query for total_component_count_is (default: '4501 TO *')"
+  exit 0
+fi
+
+# Requires jq
+echo -e "\nInstalling jq...\n"
+apt-get update && apt-get install jq -y
+
+# 1. Query for a list of big finding aids using curl
+# Requires $SOLR_URL and $S3_BUCKET to be set in the environment
+SOLR_URL="${SOLR_URL:?SOLR_URL must be set}"
+S3_BUCKET="${S3_BUCKET:?S3_BUCKET must be set}"
+
+echo -e "\nQuerying Solr for large finding aids..."
+results=$(curl -s --get "$SOLR_URL/select" \
+  --data-urlencode "fq=total_component_count_is:[${COMPONENT_COUNT_RANGE}]" \
+  --data-urlencode 'indent=true' \
+  --data-urlencode 'q.op=OR' \
+  --data-urlencode 'q=level_ssim:"Collection"' \
+  --data-urlencode 'sort=total_component_count_is desc' \
+  --data-urlencode "rows=$PAGE_SIZE" \
+  --data-urlencode 'fl=total_component_count_is,id,timestamp')
+
+# 2. Start the rails server (if not already running)
+if ! pgrep -f "rails server" > /dev/null; then
+  echo -e "\nStarting Rails server..."
+  /rails/bin/docker-entrypoint ./bin/rails server > /tmp/rails-server.log 2>&1 &
+  sleep 10  # Give the server time to start
+fi
+
+# 3. Get the currently running application version
+if [[ -f CINCO_VERSION.txt ]]; then
+  VERSION=$(cat CINCO_VERSION.txt)
+else
+  VERSION="unknown"
+fi
+
+# 4. For each ark/last-indexed-date in our solr search results set
+NUM_FOUND=$(echo "$results" | jq '.response.numFound')
+echo -e "\nProcessing Solr results... ($NUM_FOUND total results, $PAGE_SIZE per page)"
+
+START=0
+
+while (( START < NUM_FOUND )); do
+  echo -e "\n===== Fetching Solr results page starting at $START... =====\n"
+  page_results=$(curl -s --get "$SOLR_URL/select" \
+    --data-urlencode "fq=total_component_count_is:[${COMPONENT_COUNT_RANGE}]" \
+    --data-urlencode 'indent=true' \
+    --data-urlencode 'q.op=OR' \
+    --data-urlencode 'q=level_ssim:"Collection"' \
+    --data-urlencode 'sort=total_component_count_is desc' \
+    --data-urlencode "rows=$PAGE_SIZE" \
+    --data-urlencode "start=$START" \
+    --data-urlencode 'fl=total_component_count_is,id,timestamp')
+
+  echo "$page_results" | jq -c '.response.docs[]' | while read -r doc; do
+    ARK=$(echo "$doc" | jq -r '.id')
+    LAST_INDEXED_DATE=$(echo "$doc" | jq -r '.timestamp // empty')
+    if [[ -z "$ARK" ]]; then continue; fi
+
+    echo "Fetching static HTML for $ARK..."
+    ENCODED_ARK=$(printf '%s' "$ARK" | jq -sRr @uri)
+    curl -s "http://0.0.0.0:3000/findaid/static/$ENCODED_ARK" -o /tmp/static_findaid.html
+
+    if [[ ! -s /tmp/static_findaid.html ]]; then
+      echo -e "\033[31mFailed to fetch static HTML for $ARK, skipping upload.\033[0m\n"
+      rm -f /tmp/static_findaid.html
+      continue
+    fi
+
+    echo -e "Uploading to S3: $S3_BUCKET/static_findaids/$ARK"
+    aws s3 cp /tmp/static_findaid.html "s3://$S3_BUCKET/static_findaids/$ARK" \
+      --metadata "ArclightVersion=$VERSION,LastIndexed=$LAST_INDEXED_DATE"
+
+    rm -f /tmp/static_findaid.html
+
+    # Throttle requests to avoid overloading Solr
+    sleep 1
+  done
+
+  START=$(( START + PAGE_SIZE ))
+done
+
+echo -e "\n\n===== Rails server log output ====="
+cat /tmp/rails-server.log
+echo "Done."
