@@ -1,7 +1,7 @@
 <nav class="al-sidebar-navigation-context sidebar-section" aria-labelledby="collection-nav">
   <h2 id="collection-nav"><%= t('arclight.views.show.context_nav.title') %></h2>
   <div class="card p-3 mb-3">
-    <p><b><%= t('arclight.views.show.collection_id') %>:</b> <%= Array(@document["unitid_tesim"]).join(', ') %></p>
+    <p><b><%= t('arclight.views.show.collection_id') %>:</b> <%=  collection_number %></p>
     <p><b><%= t('arclight.views.show.last_indexed') %>:</b> <%= @document.last_indexed.strftime('%F') %></p>
     <p><b>Permalink:</b> <a class="permalink" href="https://oac.cdlib.org/findaid/<%= @document.collection.id %>">https://oac.cdlib.org/findaid/<%= @document.collection.id %></a></p>
   </div>
