@@ -56,6 +56,27 @@ class bcolors:
     UNDERLINE = "\033[4m"
 
 
+def get_stack_outputs(stack_name):
+    """
+    get the outputs of a cloudformation stack
+    """
+    client = boto3.client("cloudformation", region_name="us-west-2")
+    cf_outputs = (
+        client.describe_stacks(StackName=stack_name)
+        .get("Stacks", [{}])[0]
+        .get("Outputs", [])
+    )
+    return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
+
+
+def get_solr_leader_url(env="stage"):
+    """
+    get the url of the solr leader from the cloudformation stack
+    """
+    outputs = get_stack_outputs(f"cinco-{env}-solr-solr")
+    return f"http://{outputs['LoadBalancerDNS']}/solr/arclight"
+
+
 def task_template():
     return {
         "capacityProviderStrategy": [
@@ -140,6 +161,12 @@ def main(
                 {
                     "name": f"cinco-arclight-{env}-container",
                     "command": [*command],
+                    "environment": [
+                        {
+                            "name": "SOLR_URL",
+                            "value": get_solr_leader_url(env),
+                        }
+                    ],
                     "memory": 2048,
                 }
             ]
