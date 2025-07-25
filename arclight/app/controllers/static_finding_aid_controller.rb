@@ -228,6 +228,28 @@ class StaticFindingAidController < ApplicationController
 
   def show
     @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+
+      # get document's last indexed date and id
+      doc_id = @document.id
+      last_indexed = @document["timestamp"]
+      s3_key = "static_findaids/#{doc_id}"
+
+      s3 = Aws::S3::Client.new(region: "us-west-2")
+      bucket = ENV.fetch("S3_BUCKET")
+
+      begin
+        head = s3.head_object(bucket: bucket, key: s3_key)
+        s3_last_indexed = head.metadata["lastindexed"]
+
+        if s3_last_indexed == last_indexed
+          html_obj = s3.get_object(bucket: bucket, key: s3_key)
+          send_data html_obj.body.read, type: "text/html", disposition: "inline"
+          return
+        end
+      rescue Aws::S3::Errors::NotFound
+        # object does not exist, continue as normal
+      end
+
       if !helpers.show_static_finding_aid_link?(@document)
         redirect_to solr_document_path(@document), status: 302
       end
