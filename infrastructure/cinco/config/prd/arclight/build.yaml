@@ -29,6 +29,7 @@ sceptre_user_data:
                     - TAG=`git describe --tags --abbrev=0`
                     - REPO="$AWS_ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com"
                     - NEW_IMAGE="$REPO/cinco-arclight:$TAG"
+                    - cp ./VERSION.txt arclight/CINCO_VERSION.txt
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $REPO
                     - docker build -t cinco-arclight:$TAG arclight --file arclight/Dockerfile
                     - docker tag cinco-arclight:$TAG $NEW_IMAGE
