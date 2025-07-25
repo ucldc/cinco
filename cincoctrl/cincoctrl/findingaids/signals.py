@@ -19,6 +19,7 @@ def update_ead_warnings(sender, instance, created, **kwargs):
             p.parse_file(f)
         p.validate_dtd()
         p.validate_dates()
+        p.validate_component_titles()
         warn_ids = []
         for w in p.warnings:
             warn, _ = ValidationWarning.objects.get_or_create(

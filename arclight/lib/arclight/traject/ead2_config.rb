@@ -91,9 +91,22 @@ to_field "id" do |record, accumulator|
   end
 end
 
+to_field "unittitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "titleproper_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/titleproper")
+
+
 to_field "title_filing_ssi", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
-to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
-to_field "title_tesim", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "title_ssm" do |_record, accumulator, context|
+  unittitle = context.output_hash["unittitle_ssm"]&.first
+  # if no unittitle fall back to title proper
+  if unittitle.blank?
+    unittitle = context.output_hash["titleproper_ssm"]&.first
+  end
+  accumulator << unittitle
+end
+to_field "title_tesim" do |_record, accumulator, context|
+  accumulator << context.output_hash["title_ssm"]
+end
 to_field "ead_ssi" do |_record, accumulator|
   accumulator << settings.fetch(:eadid, "")
 end
@@ -327,8 +340,12 @@ to_field "components" do |record, accumulator, context|
 
   child_components.each do |child_component|
     if child_component.content.strip.length > 0
-      output = component_indexer.map_record(child_component)
-      accumulator << output if output.keys.any?
+      begin
+        output = component_indexer.map_record(child_component)
+        accumulator << output if output.keys.any?
+      rescue Arclight::Exceptions::TitleNotFound => e
+        # just ignore this component
+      end
     end
   end
 end

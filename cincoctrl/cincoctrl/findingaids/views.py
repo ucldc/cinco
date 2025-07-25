@@ -91,7 +91,7 @@ class EADMixin:
         # reset file pointer for file save
         uploaded_file.seek(0)
         p = EADParser()
-        p.parse_string(file_content)
+        p.parse_string(file_content, uploaded_file.name)
         return p.extract_ead_fields()
 
     def form_valid(self, form):
@@ -305,7 +305,7 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
             with fa.ead_file.open("rb") as x:
                 content = x.read()
             parser = EADParser()
-            parser.parse_string(content)
+            parser.parse_string(content, fa.ead_file.name)
             parser.update_otherfindaids(
                 [
                     {"url": f.pdf_file.url, "text": f.title}

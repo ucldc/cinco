@@ -35,5 +35,13 @@ module Arclight
     def section_anchor(section)
       "##{t("arclight.views.show.sections.#{section}").parameterize}"
     end
+
+    def collection_number
+      if @document.collection["unitid_tesim"].blank?
+        @document.collection["ead_ssi"]
+      else
+        Array(@document.collection["unitid_tesim"]).join(", ")
+      end
+    end
   end
 end

@@ -234,7 +234,9 @@ end
 to_field "level_ssm" do |record, accumulator|
   level = record.attribute("level")&.value
   other_level = record.attribute("otherlevel")&.value
-  accumulator << Arclight::LevelLabel.new(level, other_level).to_s
+  level_label =  Arclight::LevelLabel.new(level, other_level).to_s
+  level_label = "File" if level_label == "collection" || level_label == "Collection"
+  accumulator << level_label
 end
 
 to_field "level_ssim" do |_record, accumulator, context|
