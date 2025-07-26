@@ -1,0 +1,15 @@
+# lambda is created in us-east-1 to be used in conjunction with Route53 healthchecks
+region: us-east-1
+template:
+  path: lambda-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco
+  # We can't use stack_output resolver because stack is in a different region, even though IAM roles are global
+  LambdaExecutionRole: arn:aws:iam::777968769372:role/service-role/cinco-lambda-execution-role
+  SlackHook: {{ var.stage.ALARMS_SLACK_HOOK }}
+  SlackChannel: {{ var.stage.ALARMS_SLACK_CHANNEL }}
+  SlackUsername: {{ var.stage.ALARMS_SLACK_USERNAME }}
+
+sceptre_user_data:
+  inline_lambda: "inline-lambdas/cloudwatch-slack-integration/cloudwatch-slack.py.txt"

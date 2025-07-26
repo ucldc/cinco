@@ -1,0 +1,192 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudWatch healthcheck alarms for ECS Service, plus optional RDS alarms.
+Parameters:
+  Namespace:
+    Description: The namespace for the alarms
+    Type: String
+  ECSServiceName:
+    Description: The name of the ECS service to monitor
+    Type: String
+  ECSClusterName:
+    Description: The name of the ECS cluster to which the service belongs
+    Type: String
+  LambdaFunctionName:
+    Description: The name of the lambda function to call when alarms are triggered
+    Type: String
+  LambdaFunctionArn:
+    Description: The ARN of the lambda function to call when alarms are triggered
+    Type: String
+
+Resources:
+  ##
+  ## ECS Alarms
+  ##
+  EcsCpuAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-ecs-cpu
+      AlarmDescription: !Sub CPU utilization > 90% [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: CPUUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: 60
+      EvaluationPeriods: 3
+      DatapointsToAlarm: 3
+      Threshold: 90
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: ServiceName
+          Value: !Ref ECSServiceName
+        - Name: ClusterName
+          Value: !Ref ECSClusterName
+
+  EcsMemoryAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-ecs-memory
+      AlarmDescription: !Sub Memory utilization > 90% [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: MemoryUtilization
+      Namespace: AWS/ECS
+      Statistic: Average
+      Period: 60
+      EvaluationPeriods: 3
+      DatapointsToAlarm: 3
+      Threshold: 90
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: ServiceName
+          Value: !Ref ECSServiceName
+        - Name: ClusterName
+          Value: !Ref ECSClusterName
+
+  EcsCpuAlarmLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !GetAtt EcsCpuAlarm.Arn
+      SourceAccount: !Ref AWS::AccountId
+
+  EcsMemoryAlarmLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !GetAtt EcsMemoryAlarm.Arn
+      SourceAccount: !Ref AWS::AccountId
+
+  ##
+  ## RDS Alarms
+  ##
+{% if sceptre_user_data and sceptre_user_data.databases is defined %}
+{% for database in sceptre_user_data.databases %}
+
+  RdsMemoryAlarmRdsInstance{{ database.number }}:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-rds-db-{{ database.role }}-memory
+      AlarmDescription: !Sub Available memory under 5% [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: FreeableMemory
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: 60
+      Threshold: 5
+      EvaluationPeriods: 15
+      DatapointsToAlarm: 15
+      ComparisonOperator: LessThanThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: DBInstanceIdentifier
+          Value: {{ database.name }}
+
+  RdsMemoryAlarmLambdaPermissionRdsInstance{{ database.number }}:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !GetAtt RdsMemoryAlarmRdsInstance{{ database.number }}.Arn
+      SourceAccount: !Ref AWS::AccountId
+
+  ## RDS alarms -- high db connections
+  DbConnectionsAlarmRdsInstance{{ database.number }}:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-rds-db-{{ database.role }}-connections
+      AlarmDescription: !Sub Number of database connections > 1000 [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: DatabaseConnections
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: 60
+      Threshold: 1000
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 5
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: DBInstanceIdentifier
+          Value: {{ database.name }}
+
+  ConnectionsAlarmLambdaPermissionRdsInstance{{ database.number }}:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !GetAtt DbConnectionsAlarmRdsInstance{{ database.number }}.Arn
+      SourceAccount: !Ref AWS::AccountId
+
+  ## RDS alarms -- high cpu utilization
+  CpuAlarmRdsInstance{{ database.number }}:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-rds-db-{{ database.role }}-cpu
+      AlarmDescription: !Sub CPU utilization > 90% [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: CPUUtilization
+      Namespace: AWS/RDS
+      Statistic: Average
+      Period: 60
+      Threshold: 90
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 5
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: DBInstanceIdentifier
+          Value: {{ database.name }}
+
+  CpuAlarmLambdaPermissionRdsInstance{{ database.number }}:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !GetAtt CpuAlarmRdsInstance{{ database.number }}.Arn
+      SourceAccount: !Ref AWS::AccountId
+
+{% endfor %}
+{% endif %}
