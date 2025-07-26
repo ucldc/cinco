@@ -24,10 +24,8 @@ Rails.application.routes.draw do
    resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid" do
   end
 
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:\/[0-9]]{5}\/[0-9a-zA-Z]+/ }
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static"
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
-
+  get "/findaid/*ark/entire_text", to: "arks#findaid_static"
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
 
   get "/findaid", to:  "static_finding_aid#index"
