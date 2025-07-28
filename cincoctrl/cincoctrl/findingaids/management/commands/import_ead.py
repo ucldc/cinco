@@ -68,8 +68,6 @@ class Command(BaseCommand):
                 return f"{doc_url}{parsed_url.path}"
             msg = f"Can't download external document {href}"
             raise URLError(msg)
-        if ark_dir and not ark_dir in href:
-            href = ark_dir + href
         return doc_url + href
 
     def process_supp_files(  # noqa: C901
@@ -170,7 +168,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         url = options.get("url")
-        doc_url = options.get("doc_url", "https://cdn.calisphere.org")
+        doc_url = options.get("docurl", "https://cdn.calisphere.org")
         repo_ark = options.get("repo_ark")
         is_directory = options.get("directory", False)
 
