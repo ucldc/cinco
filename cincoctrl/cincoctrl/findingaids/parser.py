@@ -190,12 +190,6 @@ class EADParser:
         node = self.root.find("./eadheader/eadid")
         node.text = filename
 
-    def get_title_node(self):
-        node = self.root.find("./archdesc/did/unittitle")
-        if node is None:
-            node = self.root.find("./eadheader/filedesc/titlestmt/titleproper")
-        return node
-
     def get_collection_number(self):
         number_node = self.root.find("./archdesc/did/unitid")
         if number_node is None:
@@ -205,16 +199,28 @@ class EADParser:
             return self.filename
         return number
 
+    def get_title_by_path(self, path):
+        node = self.root.find(path)
+        title = ""
+        if node is not None:
+            title = self.node_to_string(node)
+        return None if len(title) == 0 else title
+
     def validate_required_fields(self):
-        node = self.get_title_node()
-        if node is None:
+        title = self.get_title_by_path("./archdesc/did/unittitle")
+        if title is None:
+            title = self.get_title_by_path("./eadheader/filedesc/titlestmt/titleproper")
+        if title is None:
             self.errors.append("Failed to parse Title")
-        elif len(self.node_to_string(node)) == 0:
-            self.errors.append("No value in Title")
+
+    def get_title(self):
+        title = self.get_title_by_path("./archdesc/did/unittitle")
+        if title is None:
+            title = self.get_title_by_path("./eadheader/filedesc/titlestmt/titleproper")
+        return title
 
     def extract_ead_fields(self):
-        title_node = self.get_title_node()
-        title = self.node_to_string(title_node)
+        title = self.get_title()
         number = self.get_collection_number()
         ark = self.parse_ark()
         return title, number, ark
