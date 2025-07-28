@@ -505,7 +505,7 @@ class TestParser(TestCase):
         p.parse_string(EMPTY_FIELDS, "filename.xml")
         p.validate_required_fields()
         assert len(p.errors) == 1
-        assert p.errors[0] == "No value in Title"
+        assert p.errors[0] == "Failed to parse Title"
 
     def test_default_unitid(self):
         ead_file = self.get_ead_file("test.xml", TEST_NO_UNITID)
