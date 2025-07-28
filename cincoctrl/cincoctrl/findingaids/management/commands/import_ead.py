@@ -68,7 +68,7 @@ class Command(BaseCommand):
                 return f"{doc_url}{parsed_url.path}"
             msg = f"Can't download external document {href}"
             raise URLError(msg)
-        return doc_url + href
+        return doc_url + href.lstrip("/")
 
     def process_supp_files(  # noqa: C901
         self,
