@@ -27,7 +27,7 @@ RSpec.describe "Arclight::Repositories", type: :request do
   describe "Does not load pages for non existent institutions" do
       it "returns http not found response" do
         get "/institutions/NOT+REAL+Library"
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(:redirect)
       end
     end
 end

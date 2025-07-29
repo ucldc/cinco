@@ -24,11 +24,16 @@ Rails.application.routes.draw do
    resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid" do
   end
 
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:\/[0-9]]{5}\/[0-9a-zA-Z]+/ }
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static"
-  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
+  # OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
+  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
+  # esacped OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
+  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
 
-  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/.+/ }
+  # OAC4 like /findaid/ark:/13030/ju7h7eed3
+  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
+
+  # Any findaid ark URLs that are not fitting a specific pattern should 404 instead of hitting solr
+  get "/findaid/*ark/*else", to: "errors#not_found", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
 
   get "/findaid", to:  "static_finding_aid#index"
 
