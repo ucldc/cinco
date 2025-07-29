@@ -30,4 +30,13 @@ it "routes unescaped /findaid/ark:/*/entire_text/ to the static_finding_aid cont
       ark: "ark:/13010/sdfsdfsf"
       )
   end
+
+it "routes garbage after ark to the 404 controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/garbage")).to route_to(
+      controller: "errors",
+      action: "not_found",
+      ark: "ark:/13010/sdfsdfsf",
+      else: "garbage"
+      )
+  end
 end
