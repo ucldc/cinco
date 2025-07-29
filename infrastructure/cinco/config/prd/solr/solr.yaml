@@ -18,8 +18,8 @@ parameters:
   ServiceTaskMaximumPercent: 100
   ServiceTaskMinimumHealthyPercent: 0
   HealthCheckGracePeriodSeconds: 600
-  Cpu: 2048
-  Memory: 4096 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this
+  Cpu: 4096
+  Memory: 8192 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this
 
 sceptre_user_data:
   ApplicationType: internal
