@@ -59,9 +59,9 @@ sceptre_user_data:
                   - "CMD-SHELL"
                   - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1"
                 StartPeriod: 15
-                Interval: 10
-                Timeout: 5
-                Retries: 3
+                Interval: 30
+                Timeout: 15
+                Retries: 6
   SGIngressRuleTargets:
     - target_name: Leader
       GroupId: !stack_output prd/solr/solr.yaml::ServiceSecurityGroup
