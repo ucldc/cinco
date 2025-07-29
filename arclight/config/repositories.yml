@@ -64,7 +64,7 @@ cajuol:
     name: "American Jewish University"
     description: "The Ostrow Library is designed to meet the needs of the University's faculty and students, as well as scholars conducting research in all fields of Jewish culture and civilization."
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 440-1238  </div>
+        <div class="al-repository-contact-phone">(310) 440-1238</div>
         <div class="al-repository-contact-info"><a href="mailto:library@aju.edu">library@aju.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://library.aju.edu/" class="offsite-link">Website</a></div>
     location_html: |
@@ -226,6 +226,18 @@ cb:
     thumbnail_url: ""
     latitude: 37.868163
     longitude: -122.268611
+CLamB:
+    name: "Biola University Archives and Special Collections"
+    description: "The Biola University Archives and Special Collections has unique materials related to our institution and the academic areas reflected within. We want to be represented among other repositories in the OAC/DPLA, and for these to be more easily discoverable."
+    contact_html: |
+        <div class="al-repository-contact-phone">(562) 903-6000</div>
+        <div class="al-repository-contact-info"><a href="https://www.biola.edu/library" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">13800 Biola Ave.</div>
+        <div class="al-repository-street-address-city_state_zip_country">La Miraada, CA 90639, US</div>
+    thumbnail_url: ""
+    latitude: 33.903772
+    longitude: -118.015151
 cvtb:
     name: "Black Gold Cooperative Library System"
     description: "The Black Gold Cooperative Library System began in 1964. Its mission is to enhance library service to a million people in an 8,000 square mile area by providing services to member libraries. Black Gold serves public libraries in the counties of San Luis Obispo, Santa Barbara and Ventura."
@@ -629,6 +641,10 @@ cls:
         <div class="al-repository-street-address-address1">5151 State University Drive</div>
         <div class="al-repository-street-address-city_state_zip_country">Los Angeles, CA 90032-8300, US</div>
     thumbnail_url: ""
+    request_types:
+        aeon_web_ead:
+            request_url: https://aeon.calstatela.edu/logon/
+            request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 34.0670585248
     longitude: -118.167486191
 cvm:
@@ -1605,7 +1621,7 @@ hoover:
     description: "The Hoover Institution Library &amp; Archives holds more than one million volumes and over six thousand archival collections documenting war, revolution, and peace in the twentieth and twenty-first centuries."
     contact_html: |
         <div class="al-repository-contact-phone">(650) 723-3563</div>
-        <div class="al-repository-contact-info"><a href="mailto:https://goto.stanford.edu/Contact-HILA">https://goto.stanford.edu/Contact-HILA</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:hooverarchives@stanford.edu">hooverarchives@stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://www.hoover.org/library-archives" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Hoover Institution Library &amp; Archives, Stanford University</div>
@@ -4333,7 +4349,7 @@ ucla_mss:
     name: "UCLA, Library Special Collections, Charles E. Young Research Library"
     description: ""
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 825-4988 </div>
+        <div class="al-repository-contact-phone">(310) 825-4988</div>
         <div class="al-repository-contact-info"><a href="mailto:AskLSC@library.ucla.edu">AskLSC@library.ucla.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://www.library.ucla.edu/visit/locations/library-special-collections/" class="offsite-link">Website</a></div>
     location_html: |
