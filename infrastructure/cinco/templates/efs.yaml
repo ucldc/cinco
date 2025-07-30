@@ -21,6 +21,10 @@ Parameters:
   EFSAccessPointPath:         # "/var/solr"
     Description: The path for the EFS Access Point
     Type: String
+  ThroughputMode:
+    Description: Throughput mode for the file system
+    Type: String
+    Default: bursting
 
 Resources:
   EfsSecurityGroup:
@@ -55,6 +59,7 @@ Resources:
       LifecyclePolicies:
         - TransitionToIA: AFTER_30_DAYS
         - TransitionToPrimaryStorageClass: AFTER_1_ACCESS
+      ThroughputMode: !Ref ThroughputMode
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
 

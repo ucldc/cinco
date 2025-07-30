@@ -8,3 +8,4 @@ parameters:
   PrivateSubnetId2: {{ var.prd.PRIVATE_SUBNET_2 }}
   EFSAccessPointUserGroup: "8983"
   EFSAccessPointPath: "/var/solr"
+  ThroughputMode: elastic
