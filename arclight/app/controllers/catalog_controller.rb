@@ -419,6 +419,8 @@ class CatalogController < ApplicationController
     # Group header values
     config.add_group_header_field "abstract_or_scope", accessor: true, truncate: true, helper_method: :render_html_tags
 
+    # Disable search session tracking
+    config.track_search_session.storage = false
 
 
     ############ OAC CUSTOMIZATIONS #########
@@ -428,30 +430,5 @@ class CatalogController < ApplicationController
     config.index.document_actions.delete(:bookmark)
     config.show.document_actions.delete(:bookmark)
     config.navbar.partials.delete(:bookmark)
-  end
-
-  def show_static
-    @doc_tree = FindingAidTreeNode.new(self, params[:id])
-  end
-end
-
-
-class FindingAidTreeNode
-  attr_reader :data
-
-
-  def method_missing(m, *args, &block)
-    @data.send(m, *args, &block)
-  end
-
-  def initialize(controller, id, has_children: true)
-    @data = controller.search_service.fetch(id)
-    @hierarchy_data = controller.search_service()
-  end
-
-  def children
-    @children ||= @hierarchy_data.map do  |item|
-      FindingAidTreeNode.new(doc.id, has_children: doc.children?)
-    end
   end
 end

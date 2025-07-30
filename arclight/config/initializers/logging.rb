@@ -1,6 +1,8 @@
 Rails.application.configure do
-  config.lograge.enabled = true if Rails.env.production?
+  # removes timestamp before json logs
+  config.logger = ActiveSupport::Logger.new(STDOUT)
 
+  config.lograge.enabled = true if Rails.env.production?
 
   config.lograge.custom_options = lambda do |event|
       { time: Time.now }
