@@ -14,6 +14,8 @@ parameters:
   ContainerCount: 2
   HealthCheckPath: '/up'
   DBInstanceSecurityGroup: !stack_output prd/arclight/db.yaml::RDSSecurityGroup
+  Cpu: 2048
+  Memory: 4096
 sceptre_user_data:
   ContainerEntryPoint: "/rails/bin/docker-entrypoint"
   ContainerCommand:
