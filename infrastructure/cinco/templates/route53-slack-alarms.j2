@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Route53 healthcheck and alarm
+Parameters:
+  Namespace:
+    Description: The base name used for this stack
+    Type: String
+  DomainName:
+    Description: The domain for which to perform the healthcheck
+    Type: String
+  LambdaFunctionArn:
+    Description: The Lambda function ARN to trigger
+    Type: String
+
+Resources:
+  ##
+  ## Route 53 Healthcheck Alarm - cloudwatch alarms are only triggered if the
+  ##     service is reachable; this goes off if the site cannot be reached.
+  ##
+  Route53HealthCheck:
+    Type: AWS::Route53::HealthCheck
+    Properties:
+      HealthCheckConfig:
+        FullyQualifiedDomainName: !Ref DomainName
+        Port: 443
+        Type: HTTPS
+        RequestInterval: 30
+        FailureThreshold: 3
+      HealthCheckTags:
+        - "Key": "Name"
+          "Value": !Sub "${Namespace}"
+
+  Route53HealthCheckStatusAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-route53-healthcheck
+      AlarmDescription: !Sub "Site cannot be reached: https://${DomainName}"
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: HealthCheckStatus
+      Namespace: AWS/Route53
+      Statistic: Average
+      ComparisonOperator: LessThanThreshold
+      Threshold: 1
+      Period: 60
+      EvaluationPeriods: 3
+      DatapointsToAlarm: 3
+      TreatMissingData: breaching
+      Dimensions:
+        - Name: HealthCheckId
+          Value: !Ref Route53HealthCheck

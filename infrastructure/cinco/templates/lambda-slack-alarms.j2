@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudWatch Alarms for ECS service
+
+Parameters:
+  Namespace:
+    Type: String
+    Description: The base name used for this stack
+  SlackHook:
+    Type: String
+    Description: Slack Webhook URL
+  SlackChannel:
+    Type: String
+    Description: Slack Channel to post to (without hash at beginning of string)
+  SlackUsername:
+    Type: String
+    Description: The username to post as
+  SlackEmoji:
+    Type: String
+    Description: The emoji to use as the icon in the slack message
+    Default: ":aws:"
+  LambdaExecutionRole:
+    Type: String
+    Description: The lambda execution role
+
+Resources:
+  Lambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${Namespace}-slack
+      Description: Send alarms to Slack
+      Runtime: python3.11
+      Role: !Ref LambdaExecutionRole
+      Environment:
+        Variables:
+          SLACK_HOOK: !Ref SlackHook
+          SLACK_CHANNEL: !Sub "#${SlackChannel}"
+          SLACK_USERNAME: !Ref SlackUsername
+          SLACK_EMOJI: !Ref SlackEmoji
+      Code:
+        ZipFile: | {% include sceptre_user_data.inline_lambda %}
+      Handler: index.lambda_handler
+
+  CloudwatchAlarmLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Lambda
+      Action: lambda:InvokeFunction
+      Principal: lambda.alarms.cloudwatch.amazonaws.com
+      SourceArn: !Sub "arn:${AWS::Partition}:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:*"
+      SourceAccount: !Ref AWS::AccountId
+
+Outputs:
+  LambdaSlackFunctionArn:
+    Value: !GetAtt Lambda.Arn
+  LambdaSlackFunctionName:
+    Value: !Ref Lambda
