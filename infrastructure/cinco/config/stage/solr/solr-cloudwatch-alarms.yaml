@@ -1,0 +1,9 @@
+template:
+  path: cloudwatch-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco-solr-stage
+  ECSClusterName: !stack_output_external cinco-stage-solr-solr::ECSCluster
+  ECSServiceName: cinco-solr-stage-service
+  LambdaFunctionName: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionName
+  LambdaFunctionArn: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionArn
