@@ -32,4 +32,18 @@ sceptre_user_data:
                     - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest
                 post_build:
                   commands:
+                    - docker run -d --name arclight-tail-dev-null cinco-arclight tail -f /dev/null
+                    - docker cp arclight-tail-dev-null:/rails/public/assets ./public_assets
+                    - aws s3 cp --recursive ./public_assets s3://cinco-stage/arclight_assets/assets
+                    - docker stop arclight-tail-dev-null
                     - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketAcl
+                  - s3:GetBucketLocation
+                Resource:
+                  - !Sub arn:aws:s3:::cinco-stage*
