@@ -36,6 +36,7 @@ sceptre_user_data:
                     - docker cp arclight-tail-dev-null:/rails/public/assets ./public_assets
                     - aws s3 cp --recursive ./public_assets s3://cinco-stage/arclight_assets/assets
                     - docker stop arclight-tail-dev-null
+                    - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
   additional_policy_statements: |-
     - Effect: Allow
                 Action:
