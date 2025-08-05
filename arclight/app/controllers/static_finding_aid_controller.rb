@@ -229,7 +229,7 @@ class StaticFindingAidController < ApplicationController
   def show
     @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
       if !helpers.show_static_finding_aid_link?(@document)
-        redirect_to solr_document_path(@document), status: 302
+        redirect_to "/static_findaids/#{@document.id}.html"
       end
     @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
   end
