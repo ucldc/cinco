@@ -5,7 +5,7 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-ctrl-prd
   Branch: ''
-  ECRRepositoryURI: !stack_output stage/cincoctrl/build.yaml::ECRRepository
+  ECRRepositoryURI: 777968769372.dkr.ecr.us-west-2.amazonaws.com/cinco-ctrl
 
 sceptre_user_data:
   BuildEnvironment:
