@@ -89,11 +89,27 @@ def index_finding_aid():
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
+    @task()
+    def invalidate_cache_for_item(cinco_environment="stage"):
+        ark = "{{ params.finding_aid_ark }}"
+        if cinco_environment == "prd":
+            CF_DISTRO = Variable.get("CINCO_CLOUDFRONT_PRD")
+        else:
+            CF_DISTRO = Variable.get("CINCO_CLOUDFRONT_STG")
+        cf = boto3.resource("cloudfront")
+        cf.create_invalidation(
+            DistributionId=CF_DISTRO,
+            InvalidationBatch={
+                "Paths": {"Quantity": 2, "Items": [f"/findaid{ark}", ""]}
+            },
+        )
+
     (
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
-        >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
+        >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}"),
+        invalidate_cache_for_item(cinco_environment="{{ params.cinco_environment }}"),
     )
 
 
