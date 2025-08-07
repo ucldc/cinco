@@ -73,7 +73,7 @@ class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline, JobRunInline]
     search_fields = ["collection_title", "ark"]
     list_display = ("collection_title", "collection_number", "ark", "repository")
-    list_filter = ["status"]
+    list_filter = ["status", "repository__name", "record_type"]
     actions = ["bulk_index_action"]
 
     @admin.action(description="Bulk index selected finding aids")
@@ -122,6 +122,7 @@ class ExpressRecordAdmin(admin.ModelAdmin):
         RevisionHistoryInline,
     ]
     search_fields = ["finding_aid__collection_title", "finding_aid__ark"]
+    list_filter = ["finding_aid__status", "finding_aid__repository__name"]
 
 
 @admin.register(SupplementaryFile)
