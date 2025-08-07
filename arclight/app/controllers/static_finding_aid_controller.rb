@@ -1,4 +1,6 @@
+require "net/http"
 require "oac/finding_aid_tree_node"
+require "uri"
 
 class StaticFindingAidController < ApplicationController
   layout "static_catalog_result"
@@ -228,9 +230,21 @@ class StaticFindingAidController < ApplicationController
 
   def show
     @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
-      if !helpers.show_static_finding_aid_link?(@document)
+
+      # make a head request to S3
+      s3_bucket = ENV['S3_BUCKET']
+      uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{@document.id}.html"
+      uri = URI(uri_string)
+      Net::HTTP.start(uri.hostname, 80) { |http|
+        response = http.head(uri.path)
+      }
+
+      if Net::HTTPOK then
         redirect_to "/static_findaids/#{@document.id}.html"
+      elsif !helpers.show_static_finding_aid_link?(@document)
+        redirect_to "/findaid/#{@document.id}"
       end
+
     @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
   end
 end
