@@ -51,6 +51,21 @@ Resources:
       RepositoryName: ''
       {% endif %}
     DeletionPolicy: Retain
+    LifecyclePolicy:
+      LifecyclePolicyText: |
+        {
+          "rules": [
+          {
+            "rulePriority": 1,
+            "description": "Only keep 5 images",
+            "selection": {
+              "tagStatus": "untagged",
+              "countType": "imageCountMoreThan",
+              "countNumber": 5
+            },
+            "action": { "type": "expire" }
+          }]
+        }
   {% endif %}
 
   CodeBuildRole:
