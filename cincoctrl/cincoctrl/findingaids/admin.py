@@ -72,8 +72,14 @@ class JobRunInline(admin.TabularInline):
 class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline, JobRunInline]
     search_fields = ["collection_title", "ark"]
-    list_display = ("collection_title", "collection_number", "ark", "repository")
-    list_filter = ["status", "repository__name", "record_type"]
+    list_display = (
+        "collection_title",
+        "collection_number",
+        "ark",
+        "repository",
+        "record_type",
+    )
+    list_filter = ["status", "record_type", "repository__name"]
     actions = ["bulk_index_action"]
 
     @admin.action(description="Bulk index selected finding aids")
