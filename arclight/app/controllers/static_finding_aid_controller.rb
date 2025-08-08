@@ -232,7 +232,7 @@ class StaticFindingAidController < ApplicationController
     @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
 
       # make a head request to S3
-      s3_bucket = ENV['S3_BUCKET']
+      s3_bucket = ENV["S3_BUCKET"]
       uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{@document.id}.html"
       uri = URI(uri_string)
       Net::HTTP.start(uri.hostname, 80) { |http|
