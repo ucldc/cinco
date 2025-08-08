@@ -28,13 +28,16 @@ Resources:
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
-          - Sid: "Allow Public Read of /static"
+          - Sid: "Allow Public Read of subfolders"
             Effect: Allow
             Principal: "*"
             Action: "s3:GetObject"
             Resource:
               - !Sub "arn:aws:s3:::${BucketName}/static/*"
               - !Sub "arn:aws:s3:::${BucketName}/media/*"
+              - !Sub "arn:aws:s3:::${BucketName}/arclight_errors/*"
+              - !Sub "arn:aws:s3:::${BucketName}/arclight_assets/*"
+              - !Sub "arn:aws:s3:::${BucketName}/static_findaids/*"
 
   Policy:
     Type: AWS::IAM::ManagedPolicy

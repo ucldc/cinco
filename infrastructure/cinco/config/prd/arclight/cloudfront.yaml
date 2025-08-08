@@ -6,5 +6,59 @@ parameters:
   SSLCertARN: arn:aws:acm:us-east-1:777968769372:certificate/60c6f9da-da7f-4ce9-9fd3-3a0c53114752
 sceptre_user_data:
   origins:
-  - name: arclight
-    DomainName: !stack_output_external cinco-prd-arclight-app::LoadBalancerDNS
+    - name: arclight
+      DomainName: !stack_output_external cinco-prd-arclight-app::LoadBalancerDNS
+    - name: s3-cinco-prd-arclight_assets
+      DomainName: cinco-prd.s3.us-west-2.amazonaws.com
+      OriginPath: /arclight_assets
+    - name: cinco-prd.s3.us-west-2.amazonaws.com
+      DomainName: cinco-prd.s3.us-west-2.amazonaws.com
+      OriginPath: /arclight_errors
+    - name: cinco-prd-static-findaids
+      DomainName: cinco-stage.s3.us-west-2.amazonaws.com
+      OriginPath: /static_findaids
+  cache_behaviors:
+    - PathPattern: "/assets/*"
+      TargetOriginId: s3-cinco-prd-arclight_assets
+      ViewerProtocolPolicy: redirect-to-https
+      AllowedMethods:
+        - HEAD
+        - GET
+      CachedMethods:
+        - HEAD
+        - GET
+      ForwardedValues:
+        Cookies:
+          Forward: none
+        QueryString: false
+      CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    - PathPattern: "/error.html"
+      TargetOriginId: cinco-prd.s3.us-west-2.amazonaws.com
+      ViewerProtocolPolicy: redirect-to-https
+      AllowedMethods:
+        - HEAD
+        - DELETE
+        - POST
+        - GET
+        - OPTIONS
+        - PUT
+        - PATCH
+      CachedMethods:
+        - HEAD
+        - GET
+      ForwardedValues:
+        Cookies:
+          Forward: none
+        QueryString: false
+      CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    - PathPattern: /static_findaids/*
+      TargetOriginId: cinco-prd-static-findaids
+      ViewerProtocolPolicy: redirect-to-https
+      AllowedMethods:
+        - HEAD
+        - GET
+        - OPTIONS
+      CachedMethods:
+        - HEAD
+        - GET
+      CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
