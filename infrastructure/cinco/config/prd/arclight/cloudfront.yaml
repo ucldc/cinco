@@ -14,6 +14,9 @@ sceptre_user_data:
     - name: cinco-prd.s3.us-west-2.amazonaws.com
       DomainName: cinco-prd.s3.us-west-2.amazonaws.com
       OriginPath: /arclight_errors
+    - name: cinco-prd-static-findaids
+      DomainName: cinco-stage.s3.us-west-2.amazonaws.com
+      OriginPath: /static_findaids
   cache_behaviors:
     - PathPattern: "/assets/*"
       TargetOriginId: s3-cinco-prd-arclight_assets
@@ -47,4 +50,15 @@ sceptre_user_data:
         Cookies:
           Forward: none
         QueryString: false
+      CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    - PathPattern: /static_findaids/*
+      TargetOriginId: static_findaids
+      ViewerProtocolPolicy: redirect-to-https
+      AllowedMethods:
+        - HEAD
+        - GET
+        - OPTIONS
+      CachedMethods:
+        - HEAD
+        - GET
       CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
