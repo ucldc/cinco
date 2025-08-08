@@ -243,10 +243,12 @@ class StaticFindingAidController < ApplicationController
       case response
       when Net::HTTPOK
         redirect_to "/static_findaids/#{@document.id}.html"
+        return
       end
 
       if !helpers.show_static_finding_aid_link?(@document)
         redirect_to "/findaid/#{@document.id}"
+        return
       end
 
     @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
