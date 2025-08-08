@@ -239,7 +239,7 @@ class StaticFindingAidController < ApplicationController
         response = http.head(uri.path)
       }
 
-      if Net::HTTPOK then
+      if response == Net::HTTPOK then
         redirect_to "/static_findaids/#{@document.id}.html"
       elsif !helpers.show_static_finding_aid_link?(@document)
         redirect_to "/findaid/#{@document.id}"
