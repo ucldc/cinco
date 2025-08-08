@@ -235,13 +235,17 @@ class StaticFindingAidController < ApplicationController
       s3_bucket = ENV["S3_BUCKET"]
       uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{@document.id}.html"
       uri = URI(uri_string)
+      response = nil
       Net::HTTP.start(uri.hostname, 80) { |http|
         response = http.head(uri.path)
       }
 
-      if response == Net::HTTPOK then
+      case response
+      when Net::HTTPOK
         redirect_to "/static_findaids/#{@document.id}.html"
-      elsif !helpers.show_static_finding_aid_link?(@document)
+      end
+
+      if !helpers.show_static_finding_aid_link?(@document)
         redirect_to "/findaid/#{@document.id}"
       end
 
