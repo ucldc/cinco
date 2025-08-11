@@ -215,3 +215,30 @@ Resources:
 
 {% endfor %}
 {% endif %}
+
+  ##
+  ## EFS Alarms
+  ##
+{% if sceptre_user_data and sceptre_user_data.efs_file_system is defined %}
+  EfsAlarmIOAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-efs-io
+      AlarmDescription: !Sub EFS Percent IO >= 100% [${Namespace}]
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: PercentIOLimit
+      Namespace: AWS/EFS
+      Statistic: Average
+      Period: 60
+      Threshold: 100
+      EvaluationPeriods: 15
+      DatapointsToAlarm: 15
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: missing
+      Dimensions:
+        - Name: FileSystemId
+          Value: {{ sceptre_user_data.efs_file_system.file_system_id }}
+{% endif %}
