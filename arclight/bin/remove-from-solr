@@ -1,0 +1,27 @@
+#!/bin/bash -e
+
+# This script takes as an argument the ID of a finding aid
+# and deletes the finding aid from Solr
+
+# check that we have a finding aid ID
+if [ -z "$1" ]; then
+  echo "Usage: $0 <finding_aid_id>"
+  exit 1
+fi
+
+# check that the SOLR_WRITER environment variable is set
+if [ -z "$SOLR_WRITER" ]; then
+  echo "The SOLR_WRITER environment variable must be set"
+  exit 1
+fi
+
+echo "Deleting Finding Aid: $1"
+eadid=$1
+escaped_ead="${eadid//\:/\\\:}"
+escaped_ead="${escaped_ead//\//\\\/}"
+
+curl -X POST "$SOLR_WRITER/update?commit=true" \
+    -H "Content-Type: text/xml" \
+    --data-binary "<delete><query>id:$escaped_ead*</query></delete>"
+
+# deal with any errors
