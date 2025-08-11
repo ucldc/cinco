@@ -1,0 +1,13 @@
+template:
+  path: cloudwatch-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco-solr-follower-1-stage
+  ECSClusterName: !stack_output_external cinco-stage-solr-solr-follower-1::ECSCluster
+  ECSServiceName: cinco-solr-follower-1-stage-service
+  LambdaFunctionName: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionName
+  LambdaFunctionArn: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionArn
+sceptre_user_data:
+  load_balancer:
+    target_group_full_name: !stack_output_external cinco-stage-solr-solr-follower-1::TargetGroupFullName
+    load_balancer_full_name: !stack_output_external cinco-stage-solr-solr-follower-1::LoadBalancerFullName

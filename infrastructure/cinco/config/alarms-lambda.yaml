@@ -1,0 +1,12 @@
+template:
+  path: lambda-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco
+  LambdaExecutionRole: !stack_output_external cinco-lambda-execution-role::ExecutionRoleArn
+  SlackHook: {{ var.stage.ALARMS_SLACK_HOOK }}
+  SlackChannel: {{ var.stage.ALARMS_SLACK_CHANNEL }}
+  SlackUsername: {{ var.stage.ALARMS_SLACK_USERNAME }}
+
+sceptre_user_data:
+  inline_lambda: "inline-lambdas/cloudwatch-slack-integration/cloudwatch-slack.py.txt"

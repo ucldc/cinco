@@ -1,0 +1,18 @@
+template:
+  path: cloudwatch-slack-alarms.j2
+  type: file
+parameters:
+  Namespace: cinco-cincoctrl-prd
+  ECSClusterName: !stack_output_external cinco-prd-cincoctrl-app::ECSCluster
+  ECSServiceName: cinco-cincoctrl-prd-service
+  LambdaFunctionName: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionName
+  LambdaFunctionArn: !stack_output_external cinco-alarms-lambda::LambdaSlackFunctionArn
+
+sceptre_user_data:
+  databases:
+    - name: !stack_output_external cinco-prd-cincoctrl-db::RDSInstance
+      number: 1
+      role: rw
+  load_balancer:
+    target_group_full_name: !stack_output_external cinco-prd-cincoctrl-app::TargetGroupFullName
+    load_balancer_full_name: !stack_output_external cinco-prd-cincoctrl-app::LoadBalancerFullName
