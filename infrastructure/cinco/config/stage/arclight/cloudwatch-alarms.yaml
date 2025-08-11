@@ -10,6 +10,9 @@ parameters:
 
 sceptre_user_data:
   databases:
-  - name: !stack_output_external cinco-stage-arclight-db::RDSInstance
-    number: 1
-    role: rw
+    - name: !stack_output_external cinco-stage-arclight-db::RDSInstance
+      number: 1
+      role: rw
+  load_balancer:
+    target_group_full_name: !stack_output_external cinco-stage-arclight-app::TargetGroupFullName
+    load_balancer_full_name: !stack_output_external cinco-stage-arclight-app::LoadBalancerFullName

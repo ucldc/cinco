@@ -87,6 +87,31 @@ Resources:
       SourceArn: !GetAtt EcsMemoryAlarm.Arn
       SourceAccount: !Ref AWS::AccountId
 
+{% if sceptre_user_data and sceptre_user_data.load_balancer is defined %}
+  Alb5xxAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub ${Namespace}-5xx
+      AlarmDescription: !Sub "5XX errors > 2 in the last 900 seconds on ${Namespace}"
+      AlarmActions:
+        - !Ref LambdaFunctionArn
+      OKActions:
+        - !Ref LambdaFunctionArn
+      MetricName: HTTPCode_Target_5XX_Count
+      Namespace: AWS/ApplicationELB
+      Statistic: Sum
+      Period: 900
+      EvaluationPeriods: 1
+      Threshold: 2
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      Dimensions:
+        - Name: TargetGroup
+          Value: {{ sceptre_user_data.load_balancer.target_group_full_name }}
+        - Name: ClusterName
+          Value: {{ sceptre_user_data.load_balancer.load_balancer_full_name }}
+{% endif %}
+
   ##
   ## RDS Alarms
   ##
