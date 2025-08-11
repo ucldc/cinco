@@ -24,7 +24,7 @@ Parameters:
   ThroughputMode:
     Description: Throughput mode for the file system
     Type: String
-    Default: bursting
+    Default: elastic
 
 Resources:
   EfsSecurityGroup:
