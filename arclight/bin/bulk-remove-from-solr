@@ -1,0 +1,28 @@
+#!/bin/bash -e
+
+# This script takes as an argument the name of a key
+# in s3://$S3_BUCKET/removals/ containing a list
+# of finding aid IDs to delete, and deletes the finding aids
+# from solr
+
+# check that we have an s3 key
+if [ -z "$1" ]; then
+  echo "Usage: $0 <s3_key>"
+  exit 1
+fi
+
+# check that the S3_BUCKET environment variable is set
+if [ -z "$S3_BUCKET" ]; then
+  echo "The S3_BUCKET environment variable must be set"
+  exit 1
+fi
+
+echo "Downloading S3 file $S3_BUCKET/$1 to /tmp/$1"
+aws s3 cp s3://"$S3_BUCKET"/removals/"$1" /tmp/"$1"
+
+while IFS="" read -r p || [ -n "$p" ]
+do
+  bin/remove-from-solr "$p"
+done < "/tmp/$1"
+
+echo "Finished deleting finding aids from arclight"
