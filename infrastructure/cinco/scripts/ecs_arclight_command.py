@@ -3,17 +3,20 @@ import argparse
 
 import boto3
 
+
 def get_stack_output(stack, key):
     stack_outputs = stack["Outputs"]
     for stack_output in stack_outputs:
         if stack_output["OutputKey"] == key:
             return stack_output["OutputValue"]
 
+
 def get_stack(stack_name: str):
     # get cluster, security groups from arclight stack
     cloudformation = boto3.client("cloudformation", region_name="us-west-2")
     resp = cloudformation.describe_stacks(StackName=stack_name)
     return resp["Stacks"][0]
+
 
 def task_template():
     return {
@@ -26,6 +29,7 @@ def task_template():
         "enableExecuteCommand": True,
     }
 
+
 class bcolors:
     HEADER = "\033[95m"
     OKBLUE = "\033[94m"
@@ -36,6 +40,7 @@ class bcolors:
     ENDC = "\033[0m"
     BOLD = "\033[1m"
     UNDERLINE = "\033[4m"
+
 
 def main(stack: str, command: str, task_definition_revision: int = None):
     stack_name = (
@@ -59,9 +64,7 @@ def main(stack: str, command: str, task_definition_revision: int = None):
         networkConfiguration={
             "awsvpcConfiguration": {
                 "subnets": os.environ["SUBNET_IDS"].split(","),
-                "securityGroups": [
-                    get_stack_output(arclight, "ServiceSecurityGroup")
-                ],
+                "securityGroups": [get_stack_output(arclight, "ServiceSecurityGroup")],
                 "assignPublicIp": "ENABLED",
             }
         },
@@ -111,10 +114,9 @@ def main(stack: str, command: str, task_definition_revision: int = None):
         f"{log_stream_name} --region us-west-2"
     )
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Run arclight commands on ECS."
-    )
+    parser = argparse.ArgumentParser(description="Run arclight commands on ECS.")
     parser.add_argument(
         "--prd", action="store_true", help="Use the production environment"
     )
