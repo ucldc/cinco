@@ -24,4 +24,9 @@ curl -X POST "$SOLR_WRITER/update?commit=true" \
     -H "Content-Type: text/xml" \
     --data-binary "<delete><query>id:$escaped_ead*</query></delete>"
 
+# alternative delete query
+# curl -X POST "$SOLR_WRITER/update?commit=true" \
+#     -H "Content-Type: text/xml" \
+#     --data-binary "<delete><query>_root_:$escaped_ead</query></delete>"
+
 # deal with any errors
