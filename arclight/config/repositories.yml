@@ -64,7 +64,7 @@ cajuol:
     name: "American Jewish University"
     description: "The Ostrow Library is designed to meet the needs of the University's faculty and students, as well as scholars conducting research in all fields of Jewish culture and civilization."
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 440-1238  </div>
+        <div class="al-repository-contact-phone">(310) 440-1238</div>
         <div class="al-repository-contact-info"><a href="mailto:library@aju.edu">library@aju.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://library.aju.edu/" class="offsite-link">Website</a></div>
     location_html: |
