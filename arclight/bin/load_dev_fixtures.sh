@@ -1,8 +1,4 @@
-if [ -z "${SOLR_URL}" ]; then
-    echo $SOLR_URL
-    echo "\$SOLR_URL must be set for this script to run"
-    exit
-fi
+SOLR_URL=http://local_dev_solr_leader:8983/solr/arclight
 
 if [ -z "${FIXTURE_PATH}" ]; then
     FIXTURE_PATH="/app/fixtures"
