@@ -1,5 +1,5 @@
 {% for r in object_list %}{{ r.code }}:
-    name: "{{ r.name }}"
+    name: "{{ r.name|safe }}"
     description: "{{ r.description_no_newlines }}"
     contact_html: |{% if r.phone %}
         <div class="al-repository-contact-phone">{{ r.phone }}</div>{% endif %}{% if r.contact_email %}
