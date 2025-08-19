@@ -100,7 +100,7 @@ def index_finding_aid():
         cf.create_invalidation(
             DistributionId=CF_DISTRO,
             InvalidationBatch={
-                "Paths": {"Quantity": 2, "Items": [f"/findaid{ark}", ""]}
+                "Paths": {"Quantity": 2, "Items": [f"/findaid/{ark}", ""]}
             },
         )
 
@@ -108,8 +108,12 @@ def index_finding_aid():
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
-        >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}"),
-        invalidate_cache_for_item(cinco_environment="{{ params.cinco_environment }}"),
+        >> [
+            cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}"),
+            invalidate_cache_for_item(
+                cinco_environment="{{ params.cinco_environment }}"
+            ),
+        ]
     )
 
 
