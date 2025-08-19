@@ -73,7 +73,7 @@
     </div>
     <% if repository.description.length > 0 %>
     <div class="mb-3">
-        <%= repository.description %>
+        <%= repository.description.html_safe %>
     </div>
     <% end %>
     <div class="mb-5">
