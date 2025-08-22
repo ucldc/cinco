@@ -2326,7 +2326,8 @@ CaNAFRC:
     name: "NASA Armstrong Flight Research Center"
     description: "Collections in the Armstrong Flight Research Center Archives document this aeronautical research center’s history. AFRC&#x27;s main campus is located inside Edwards Air Force Base in California."
     contact_html: |
-        <div class="al-repository-contact-phone">(650) 604-8487</div>
+        <div class="al-repository-contact-phone">(650) 604-1032</div>
+        <div class="al-repository-contact-info"><a href="mailto:ARC-DL-archives@mail.nasa.gov">ARC-DL-archives@mail.nasa.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://www.nasa.gov/armstrong/overview/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">4800 Lilly Ave.</div>
@@ -4167,6 +4168,18 @@ uci_ocrh:
             request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 33.6471580111
     longitude: -117.841029167
+uci_pas:
+    name: "UC Irvine, Prisons and Society"
+    description: "The Prisons and Society collection reflects UC Irvine’s scholarly and policy impacts on the interrelated fields of justice, law, civil rights, social justice, and prison studies. The collection centers the voices of the incarcerated, formerly incarcerated, and exonerated, with emphasis on prisoner rights, prison administration, and political and social movements serving these communities. Foci include restorative justice, decarceration, and prison litigation and compliance.  This is an evolving collecting area, initiated in 2022. Our collecting prioritizes potential impact on research needs of UCI faculty, staff, and students and emphasizes California and the U.S. West."
+    contact_html: |
+        <div class="al-repository-contact-info"><a href="mailto:spcoll@uci.libanswers.com">spcoll@uci.libanswers.com</a></div>
+        <div class="al-repository-contact-info"><a href="http://special.lib.uci.edu/collections/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">The UCI Libraries, P.O. Box 19557</div>
+        <div class="al-repository-street-address-city_state_zip_country">Irvine, CA 92623-9557, US</div>
+    thumbnail_url: ""
+    latitude: 33.6471959695
+    longitude: -117.841109633
 uci_sea:
     name: "UC Irvine, Southeast Asian Archive"
     description: "The University of California, Irvine Libraries established the Southeast Asian Archive in 1987 in response to the community’s interest in having this history documented, preserved, and made accessible. The Archive&#x27;s collection is broad and interdisciplinary in documenting the social, cultural, religious, political, and economic life of members of the Cambodian, Hmong, Laotian, and Vietnamese diaspora. Collection strengths include Southeast Asian American experiences of resettlement and community formations since the Vietnam War, Cambodian Genocide, and geopolitical turmoil in the former French-occupied &quot;Indochina&quot; in the latter half of the 20th century.  The circumstances related to the formation of these diasporic communities, including wars, genocide, and displacement, contribute to the complexities of the Southeast Asian Archive. In particular, records from international aid workers may include information about people who were unknowingly (or non-consentingly) documented and/or depict or describe graphic violence, nudity, as well as racist and/or sexist views. Additionally, these communities originate from countries previously colonized by France and named “Indochina.” As such, some records deploy terms that may be common in government and scholarly publications, but are not adopted or agreed upon by Cambodian, Hmong, Laotian, and Vietnamese people.  These primary source collections are historical and may include descriptive language, personal views, and imagery about and/or in them that are no longer used or considered appropriate today. The acceptability of language and content can change over time. It is possible that a collection or metadata associated with a collection may contain historical language or culturally sensitive content now recognized as inappropriate for publication without meaningful context or consultation with relevant communities.  We are proactively addressing these issues in the UCI Libraries, including ongoing work on reparative, ethical archival description. If you believe that we have archival materials or have published an image or information that is incorrect or that should be restricted, please submit feedback using this form: https://airtable.com/shrOmDhHMDUFlhBVd"
