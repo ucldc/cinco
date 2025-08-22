@@ -3385,6 +3385,8 @@ CaNAFRC:
     name: "NASA Armstrong Flight Research Center"
     description: "Collections in the Armstrong Flight Research Center Archives document this aeronautical research center’s history. AFRC&#x27;s main campus is located inside Edwards Air Force Base in California."
     contact_html: |
+        <div class="al-repository-contact-phone">(650) 604-1032</div>
+        <div class="al-repository-contact-info"><a href="mailto:ARC-DL-archives@mail.nasa.gov">ARC-DL-archives@mail.nasa.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://www.nasa.gov/armstrong/overview/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">4800 Lilly Ave.</div>
