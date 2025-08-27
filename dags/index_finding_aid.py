@@ -99,10 +99,11 @@ def index_finding_aid():
         cf = boto3.resource("cloudfront")
         cf.create_invalidation(
             DistributionId=CF_DISTRO,
-            InvalidationBatch={
-                "Paths": {"Quantity": 2, "Items": [f"/findaid/{ark}", ""]}
-            },
+            InvalidationBatch={"Paths": {"Quantity": 1, "Items": [f"/findaid/{ark}"]}},
         )
+        # TODO: we also want to invalidate the repository landing page,
+        # but the url requires the repository name, which we don't have here:
+        # "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=<URL_ENCODED_REPOSITORY_NAME>&sort=title_sort+asc
 
     (
         s3_key
