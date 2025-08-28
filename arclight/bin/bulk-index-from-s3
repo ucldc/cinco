@@ -42,6 +42,18 @@ for folder in /tmp/$1/*; do
         -s ark=$FINDING_AID_ARK \
         -s eadid="$EADID" \
         -s preview=$PREVIEW &
+    echo "Clearing Cache for $folder"
+
+    REPO_NAME=$(rake repo:urlized_name[$REPOSITORY_ID])
+    echo "Running cache invalidation for $FINDING_AID_ARK and $REPOSITORY_ID landing page"
+    if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+      echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
+    else
+      echo "Invalidating urls: /findaid/$FINDING_AID_ARK and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
+      cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$FINDING_AID_ARK" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+      echo "Invalidation submitted: $cf"
+    fi
+
     unset REPOSITORY_ID
     unset FINDING_AID_ID
     unset FINDING_AID_ARK

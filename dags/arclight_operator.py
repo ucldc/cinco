@@ -1,6 +1,7 @@
 import os
 import boto3
 
+from airflow.models import Variable
 
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.providers.amazon.aws.operators.ecs import EcsRunTaskOperator
@@ -123,8 +124,14 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         self.network_configuration = {"awsvpcConfiguration": get_awsvpc_config()}
 
         cinco_environment = context["params"].get("cinco_environment", "stage")
+        if cinco_environment == "prd":
+            cf_distro = Variable.get("CINCO_CLOUDFRONT_PRD")
+        else:
+            cf_distro = Variable.get("CINCO_CLOUDFRONT_STG")
+
         self.overrides["containerOverrides"][0]["environment"] = [
-            {"name": "SOLR_WRITER", "value": get_solr_writer_url(cinco_environment)}
+            {"name": "SOLR_WRITER", "value": get_solr_writer_url(cinco_environment)},
+            {"name": "CLOUDFRONT_DISTRIBUTION_ID", "value": cf_distro},
         ]
         return super().execute(context)
 
