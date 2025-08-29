@@ -44,7 +44,7 @@ for folder in /tmp/$1/*; do
         -s preview=$PREVIEW &
     echo "Clearing Cache for $folder"
 
-    REPO_NAME=$(rake repo:urlized_name[$REPOSITORY_ID])
+    REPO_NAME=$(bundle exec rake repo:urlized_name\[$REPOSITORY_ID\])
     echo "Running cache invalidation for $FINDING_AID_ARK and $REPOSITORY_ID landing page"
     if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
       echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."

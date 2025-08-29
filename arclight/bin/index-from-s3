@@ -54,7 +54,7 @@ unset REPOSITORY_ID
 echo "Finished indexing, cleaning up /tmp/$1"
 rm -rf /tmp/$1
 
-REPO_NAME=$(rake repo:urlized_name[$3])
+REPO_NAME=$(bundle exec rake repo:urlized_name\[$3\])
 echo "Running cache invalidation for $4 and $3 landing page"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
   echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
