@@ -102,3 +102,15 @@ Unfortunately, there can by definition be only one Solr leader. This means that 
 The 2 follower containers are targets of the same target group on the same load balancer. This load balancer is created as part of the `cinco-stage-solr-solr-follower-1` CloudFormation stack. Its details are then passed in to the `solr-follower-2` template as parameters. Somewhat unintuitively, then, the `cinco-solr-follower-1-stage-alb` alb serves as the load balancer for both followers.
 
 The solr leader is fronted by its own load balancer.
+
+### Non-Declarative Infrastructure
+
+#### CloudFront Circular Dependency
+
+Arclight as an ECS service must exist in order to create a CloudFront distro, however, we also want to attach a Policy to Arclight's Role to allow Arclight to invalidate its own CloudFront cache. The CloudFront create invalidation policy must be resource-restricted by CloudFront distro ID, so we have a circular dependency.
+
+Is this an argument for a procedural IaC vs. a declarative IaC, or an argument against the proposed architecture?
+
+> I think this is an argument against the proposed architecture - arclight shouldn't be managing its own cache invalidations and instead some other thing should be handling it (like Airflow). I do think we live with it anyway. The reason Airflow cannot handle it is because Airflow doesn't know the "Repository Landing Page" URL that it has to clear.
+
+I've added a `CloudfrontInvalidationPolicy` to `cloudfront.j2` with an arn available for use at `Outputs.InvalidationPolicy`, but I've not actually added that policy to `stage/arclight/app.yaml:sceptre_user_data.TaskPolicies` or `prd/arclight/app.yaml:sceptre_user_data.TaskPolicies`, since that would result in a circular dependency. If we recreate the stack from scratch, we'll have to manually add this Policy to the Arclight ECS TaskRole.

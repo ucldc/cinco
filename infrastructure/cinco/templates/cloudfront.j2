@@ -1,6 +1,8 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: CloudFront distribution
 Parameters:
+  NAMESPACE:
+    Type: String
   CNAME:
     Type: String
   SSLCertARN:
@@ -66,3 +68,24 @@ Resources:
         CacheBehaviors:
           {{ sceptre_user_data.cache_behaviors }}
         {% endif %}
+
+  CloudfrontInvalidationPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${NAMESPACE}-cloudfront-invalidation
+      Path: "/"
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: CFInvalidation
+            Effect: Allow
+            Action:
+              - cloudfront:GetInvalidation
+              - cloudfront:CreateInvalidation
+              - cloudfront:ListInvalidation
+            Resource:
+              - !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${CloudfrontDistribution}"
+
+Outputs:
+  InvalidationPolicy:
+    Value: !Ref CloudfrontInvalidationPolicy.PolicyArn

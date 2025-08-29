@@ -2,6 +2,7 @@ template:
   path: cloudfront.j2
   type: file
 parameters:
+  Namespace: oac-prd-dashboard
   CNAME: dashboard.oac.cdlib.org
   SSLCertARN: arn:aws:acm:us-east-1:777968769372:certificate/60c6f9da-da7f-4ce9-9fd3-3a0c53114752
 
