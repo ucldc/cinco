@@ -5,7 +5,7 @@
 
 # check that we have a finding aid ID
 if [ -z "$1" ]; then
-  echo "Usage: $0 <finding_aid_id>"
+  echo "Usage: $0 <finding_aid_id - typically an ark>"
   exit 1
 fi
 
@@ -16,17 +16,17 @@ if [ -z "$SOLR_WRITER" ]; then
 fi
 
 echo "Deleting Finding Aid: $1"
-eadid=$1
-escaped_ead="${eadid//\:/\\\:}"
-escaped_ead="${escaped_ead//\//\\\/}"
+findaid_id=$1
+escaped_findaidid="${findaid_id//\:/\\\:}"
+escaped_findaidid="${escaped_findaidid//\//\\\/}"
 
 curl -X POST "$SOLR_WRITER/update?commit=true" \
     -H "Content-Type: text/xml" \
-    --data-binary "<delete><query>id:$escaped_ead*</query></delete>"
+    --data-binary "<delete><query>id:$escaped_findaidid*</query></delete>"
 
 # alternative delete query
 # curl -X POST "$SOLR_WRITER/update?commit=true" \
 #     -H "Content-Type: text/xml" \
-#     --data-binary "<delete><query>_root_:$escaped_ead</query></delete>"
+#     --data-binary "<delete><query>_root_:$escaped_findaidid</query></delete>"
 
 # deal with any errors
