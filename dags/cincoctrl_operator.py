@@ -40,6 +40,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         finding_aid_id=None,
         s3_key=None,
         repository_id=None,
+        finding_aid_ark=None,
         **kwargs,
     ):
         manage_args = []
@@ -56,6 +57,11 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 repository_id,
                 "--s3-key",
                 s3_key,
+            ]
+        elif manage_cmd == "remove_finding_aid":
+            manage_args = [
+                "--ark",
+                finding_aid_ark,
             ]
 
         container_name = f"cinco-ctrl-{cinco_environment}-container"
@@ -127,6 +133,7 @@ class CincoCtrlDockerOperator(DockerOperator):
         finding_aid_id=None,
         s3_key=None,
         repository_id=None,
+        finding_aid_ark=None,
         cinco_environment="dev",
         **kwargs,
     ):
@@ -144,6 +151,11 @@ class CincoCtrlDockerOperator(DockerOperator):
                 repository_id,
                 "--s3-key",
                 s3_key,
+            ]
+        elif manage_cmd == "remove_finding_aid":
+            manage_args = [
+                "--ark",
+                finding_aid_ark,
             ]
 
         # set in startup.sh, path to cinco/cincoctrl on local

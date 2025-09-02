@@ -88,6 +88,8 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
                 f"bin/{arclight_command}",
                 s3_key,
             ]
+        elif arclight_command == "remove-from-solr":
+            command = [f"bin/{arclight_command}", finding_aid_ark]
 
         args = {
             "launch_type": "FARGATE",
@@ -177,6 +179,8 @@ class ArcLightDockerOperator(DockerOperator):
                 f"bin/{arclight_command}",
                 s3_key,
             ]
+        elif arclight_command == "remove-from-solr":
+            command = [f"bin/{arclight_command}", finding_aid_ark]
 
         args = {
             "image": f"{container_image}:{container_version}",
