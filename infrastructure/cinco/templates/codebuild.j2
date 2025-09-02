@@ -50,22 +50,22 @@ Resources:
       {% else %}
       RepositoryName: ''
       {% endif %}
-    DeletionPolicy: Retain
-    LifecyclePolicy:
-      LifecyclePolicyText: |
-        {
-          "rules": [
+      LifecyclePolicy:
+        LifecyclePolicyText: |
           {
-            "rulePriority": 1,
-            "description": "Only keep 5 images",
-            "selection": {
-              "tagStatus": "untagged",
-              "countType": "imageCountMoreThan",
-              "countNumber": 5
-            },
-            "action": { "type": "expire" }
-          }]
-        }
+            "rules": [
+            {
+              "rulePriority": 1,
+              "description": "Only keep 5 images",
+              "selection": {
+                "tagStatus": "untagged",
+                "countType": "imageCountMoreThan",
+                "countNumber": 5
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+    DeletionPolicy: Retain
   {% endif %}
 
   CodeBuildRole:
