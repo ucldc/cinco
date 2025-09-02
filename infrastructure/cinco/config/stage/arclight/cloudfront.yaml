@@ -2,7 +2,7 @@ template:
   path: cloudfront.j2
   type: file
 parameters:
-  Namespace: oac-stg
+  NAMESPACE: oac-stg
   CNAME: oac-stg.cdlib.org
   SSLCertARN: arn:aws:acm:us-east-1:777968769372:certificate/f0097032-d6cc-46c0-a6d1-985f3f6cbd55
 sceptre_user_data:
