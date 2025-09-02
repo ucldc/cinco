@@ -3,9 +3,9 @@
 # This script takes as an argument the ID of a finding aid
 # and deletes the finding aid from Solr
 
-# check that we have a finding aid ID
-if [ -z "$1" ]; then
-  echo "Usage: $0 <finding_aid_id - typically an ark>"
+# check that we have a finding aid ID and repository code
+if [ -z "$2" ]; then
+  echo "Usage: $0 <finding_aid_id - typically an ark> <repository_code>"
   exit 1
 fi
 
@@ -30,3 +30,13 @@ curl -X POST "$SOLR_WRITER/update?commit=true" \
 #     --data-binary "<delete><query>_root_:$escaped_findaidid</query></delete>"
 
 # deal with any errors
+
+REPO_NAME=$(bundle exec rake repo:urlized_name\[$2\])
+echo "Running cache invalidation for $1 and $2 landing page"
+if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+  echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
+else
+  echo "Invalidating urls: /findaid/$1 and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
+  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$1" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+  echo "Invalidation submitted: $cf"
+fi
