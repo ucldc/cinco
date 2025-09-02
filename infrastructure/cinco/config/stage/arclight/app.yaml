@@ -2,14 +2,14 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  ClusterName: !stack_output_external cinco-stage-cluster::ECSCluster
   Namespace: cinco-arclight-stage
   VpcId: {{ var.stage.VPC_ID }}
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
-  ContainerImage: !stack_output stage/arclight/build.yaml::ECRRepository
+  ContainerImage: !stack_output_external cinco-stage-arclight-build::ECRRepository
   ContainerPort: 3000
   HealthCheckPath: '/up'
-  DBInstanceSecurityGroup: !stack_output stage/arclight/db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output_external cinco-stage-arclight-db::RDSSecurityGroup
 sceptre_user_data:
   ContainerEntryPoint: "/rails/bin/docker-entrypoint"
   ContainerCommand:
@@ -23,14 +23,14 @@ sceptre_user_data:
     - SOLR_URL: !sub
       - "http://{solr_url}/solr/{core_name}"
       # The load balancer for both followers is created as part of the solr-follower-1 stack
-      - solr_url: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerDNS
+      - solr_url: !stack_output_external cinco-stage-solr-solr-follower-1::LoadBalancerDNS
         core_name: arclight
-    - POSTGRES_HOST: !stack_output stage/arclight/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output_external cinco-stage-arclight-db::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: {{ var.stage.ARCLIGHT_DB_USERNAME }}
     - POSTGRES_PASSWORD: {{ var.stage.ARCLIGHT_DB_PASSWORD }}
   TaskPolicies:
-    - !stack_output stage/s3.yaml::Policy
+    - !stack_output_external cinco-stage-s3::Policy
   GrantHttpAccessFromThisServiceTo:
-    - !stack_output stage/solr/solr.yaml::LoadBalancerSecurityGroup
+    - !stack_output_external cinco-stage-solr-solr::LoadBalancerSecurityGroup

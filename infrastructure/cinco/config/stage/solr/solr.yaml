@@ -2,11 +2,11 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output stage/cluster.yaml::ECSCluster
+  ClusterName: !stack_output_external cinco-stage-cluster::ECSCluster
   Namespace: cinco-solr-stage
   VpcId: {{ var.stage.VPC_ID }}
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
-  ContainerImage: !stack_output stage/solr/build.yaml::ECRRepository
+  ContainerImage: !stack_output_external cinco-stage-solr-build::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
@@ -24,16 +24,16 @@ sceptre_user_data:
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
-        FilesystemId: !stack_output stage/solr/efs.yaml::EfsFileSystemId
+        FilesystemId: !stack_output_external cinco-stage-solr-efs::EfsFileSystemId
         AuthorizationConfig:
-          AccessPointId: !stack_output stage/solr/efs.yaml::EfsAccessPointId
+          AccessPointId: !stack_output_external cinco-stage-solr-efs::EfsAccessPointId
           IAM: ENABLED
         TransitEncryption: ENABLED
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-efs-volume"
       ContainerPath: "/var/solr"
   TaskPolicies:
-    - !stack_output stage/solr/efs.yaml::EfsReaderPolicyArn
+    - !stack_output_external cinco-stage-solr-efs::EfsReaderPolicyArn
   ContainerEnvironment:
     - REPLICATION_ROLE: leader
   ContainerPortName: solr
@@ -58,6 +58,6 @@ sceptre_user_data:
                 Timeout: 5
                 Retries: 3
   # HttpAccessList:
-  #   - !stack_output stage/cincoctrl/app.yaml::ServiceSecurityGroup
-  #   # - !stack_output stage/arclight/app.yaml::ServiceSecurityGroup
+  #   - !stack_output_external cinco-stage-cincoctrl-app::ServiceSecurityGroup
+  #   # - !stack_output_external cinco-stage-arclight-app::ServiceSecurityGroup
   #   # - {# var.stage.PAD_AIRFLOW_SECURITY_GROUP #}

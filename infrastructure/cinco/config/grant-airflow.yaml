@@ -4,10 +4,10 @@ template:
 
 sceptre_user_data:
   logs:
-    - !stack_output stage/cincoctrl/app.yaml::LogGroup
-    - !stack_output stage/arclight/app.yaml::LogGroup
-    - !stack_output prd/cincoctrl/app.yaml::LogGroup
-    - !stack_output prd/arclight/app.yaml::LogGroup
+    - !stack_output_external cinco-stage-cincoctrl-app::LogGroup
+    - !stack_output_external cinco-stage-arclight-app::LogGroup
+    - !stack_output_external cinco-prd-cincoctrl-app::LogGroup
+    - !stack_output_external cinco-prd-arclight-app::LogGroup
   stacks:
     - cinco-stage-solr-solr
     - cinco-stage-arclight-app
