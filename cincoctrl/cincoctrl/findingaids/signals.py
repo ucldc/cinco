@@ -1,5 +1,7 @@
+import boto3
 from django.db.models import Q
 from django.db.models.signals import post_save
+from django.db.models.signals import pre_delete
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
@@ -29,6 +31,27 @@ def update_ead_warnings(sender, instance, created, **kwargs):
             warn_ids.append(warn.pk)
         # Delete any no-longer-relevant warnings
         instance.validationwarning_set.exclude(pk__in=warn_ids).delete()
+
+
+@receiver(pre_delete, sender=FindingAid)
+def delete_s3_ead_file_on_model_delete(sender, instance, **kwargs):
+    # instance.ead_file.delete(save=False) tells django-storages to delete
+    # the associated S3 object without attempting to save the model instance
+    # again - unnecessary during deletion.
+    if instance.ead_file:
+        instance.ead_file.delete(save=False)
+
+
+@receiver(pre_delete, sender=SupplementaryFile)
+def delete_s3_pdf_file_on_model_delete(sender, instance, **kwargs):
+    # instance.pdf_file.delete(save=False) tells django-storages to delete
+    # the associated S3 object without attempting to save the model instance
+    # again - unnecessary during deletion.
+    if instance.pdf_file:
+        instance.pdf_file.delete(save=False)
+    if instance.textract_output:
+        s3_client = boto3.client("s3")
+        s3_client.delete_object(Bucket="cinco-stage", Key=instance.textract_output)
 
 
 @receiver(pre_save, sender=SupplementaryFile)
