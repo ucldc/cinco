@@ -4178,6 +4178,10 @@ uci_pas:
         <div class="al-repository-street-address-address1">The UCI Libraries, P.O. Box 19557</div>
         <div class="al-repository-street-address-city_state_zip_country">Irvine, CA 92623-9557, US</div>
     thumbnail_url: ""
+    request_types:
+        aeon_web_ead:
+            request_url: https://uci.aeon.atlas-sys.com/logon/
+            request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 33.6471959695
     longitude: -117.841109633
 uci_sea:
