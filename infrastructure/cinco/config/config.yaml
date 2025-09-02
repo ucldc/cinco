@@ -9,3 +9,4 @@ stack_tags:
   Team: 'dsc'
   Service: 'oac'
   CodeRepo: 'https://github.com/ucldc/cinco'
+stack_tags_inheritance: merge
