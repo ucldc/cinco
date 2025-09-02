@@ -1,0 +1,46 @@
+from datetime import datetime
+from airflow.decorators import dag
+from airflow.models.param import Param
+
+from cinco.cincoctrl_operator import CincoCtrlOperator
+from cinco.arclight_operator import ArcLightOperator
+
+
+@dag(
+    dag_id="delete_finding_aid",
+    schedule=None,
+    start_date=datetime(2025, 1, 1),
+    catchup=False,
+    params={
+        "finding_aid_ark": Param(
+            "", type="string", description="The ARK of the Finding Aid"
+        ),
+        "cinco_environment": Param(
+            "stage",
+            enum=["stage", "prd"],
+            description="The CincoCtrl and ArcLight environment to run",
+        ),
+    },
+    tags=["cinco"],
+    # on_failure_callback=notify_dag_failure,
+    # on_success_callback=notify_dag_success,
+)
+def delete_finding_aid():
+    remove_from_index = ArcLightOperator(
+        task_id="remove_from_index",
+        arclight_command="remove-from-solr",
+        finding_aid_ark="{{ params.finding_aid_ark }}",
+        cinco_environment="{{ params.cinco_environment }}",
+    )
+
+    remove_from_database = CincoCtrlOperator(
+        task_id="remove_from_database",
+        manage_cmd="remove_finding_aid",
+        finding_aid_ark="{{ params.finding_aid_ark }}",
+        cinco_environment="{{ params.cinco_environment }}",
+    )
+
+    remove_from_index >> remove_from_database
+
+
+delete_finding_aid = delete_finding_aid()
