@@ -103,7 +103,7 @@ class FindingAidAdmin(admin.ModelAdmin):
                 airflow_url = trigger_dag(
                     "unpublish_finding_aid",
                     {
-                        "ark": finding_aid.ark,
+                        "finding_aid_ark": finding_aid.ark,
                         "repository_code": finding_aid.repository.code,
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
@@ -129,7 +129,7 @@ class FindingAidAdmin(admin.ModelAdmin):
                 airflow_url = trigger_dag(
                     "delete_finding_aid",
                     {
-                        "ark": finding_aid.ark,
+                        "finding_aid_ark": finding_aid.ark,
                         "repository_code": finding_aid.repository.code,
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
