@@ -2,6 +2,7 @@ import json
 import logging
 from datetime import UTC
 from datetime import datetime
+from urllib.parse import urlencode
 
 import boto3
 from django.conf import settings
@@ -32,7 +33,15 @@ def mwaa_client(func):
 
 
 @mwaa_client
-def trigger_dag(dag, dag_conf, client, related_models=None, dag_run_prefix=None):
+def trigger_dag(  # noqa: PLR0913
+    dag,
+    dag_conf,
+    client,
+    related_models=None,
+    dag_run_prefix=None,
+    *,
+    track_dag=True,
+):
     request_params = {
         "Name": env_name,
         "Path": f"/dags/{dag}/dagRuns",
@@ -64,22 +73,27 @@ def trigger_dag(dag, dag_conf, client, related_models=None, dag_run_prefix=None)
     if isinstance(resp["RestApiResponse"], dict):
         dag_run_id = resp["RestApiResponse"].get("dag_run_id")
         logical_date = resp["RestApiResponse"].get("logical_date")
-    job_trigger = JobTrigger(
-        dag_id=dag,
-        dag_run_conf=json.dumps(dag_conf),
-        airflow_url=env_url,
-        dag_run_id=dag_run_id,
-        logical_date=logical_date,
-        rest_api_status_code=status_code,
-        rest_api_response=json.dumps(resp),
-    )
-    job_trigger.save()
-    job_trigger.related_models.set(related_models)
 
-    if job_trigger.rest_api_status_code != 200:  # noqa: PLR2004
-        raise MWAAAPIError(request_params, status_code, resp["RestApiResponse"])
+    if track_dag:
+        job_trigger = JobTrigger(
+            dag_id=dag,
+            dag_run_conf=json.dumps(dag_conf),
+            airflow_url=env_url,
+            dag_run_id=dag_run_id,
+            logical_date=logical_date,
+            rest_api_status_code=status_code,
+            rest_api_response=json.dumps(resp),
+        )
+        job_trigger.save()
+        job_trigger.related_models.set(related_models)
 
-    return job_trigger
+        if job_trigger.rest_api_status_code != 200:  # noqa: PLR2004
+            raise MWAAAPIError(request_params, status_code, resp["RestApiResponse"])
+
+        return job_trigger
+
+    query = {"dag_run_id": dag_run_id}
+    return f"{env_url}/dags/{dag}/grid?&{urlencode(query)}&base_date="
 
 
 @mwaa_client
