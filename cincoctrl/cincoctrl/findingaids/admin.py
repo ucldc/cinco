@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.contrib import messages
 from django.urls import reverse
@@ -5,6 +6,7 @@ from django.utils.safestring import mark_safe
 
 from cincoctrl.airflow_client.models import JobRun
 from cincoctrl.airflow_client.models import JobTrigger
+from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.management.commands.bulk_index_finding_aids import (
     bulk_index_finding_aids,
 )
@@ -80,7 +82,71 @@ class FindingAidAdmin(admin.ModelAdmin):
         "record_type",
     )
     list_filter = ["status", "record_type", "repository__name"]
-    actions = ["bulk_index_action"]
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if "delete_selected" in actions:
+            del actions["delete_selected"]
+        return actions
+
+    actions = [
+        "bulk_index_action",
+        "delete_finding_aid_action",
+        "unpublish_finding_aid_action",
+    ]
+
+    @admin.action(description="Unpublish selected finding aids")
+    def unpublish_finding_aid_action(self, request, queryset):
+        if settings.ENABLE_AIRFLOW:
+            airflow_urls = []
+            for finding_aid in queryset:
+                airflow_url = trigger_dag(
+                    "unpublish_finding_aid",
+                    {
+                        "ark": finding_aid.ark,
+                        "repository_code": finding_aid.repository.code,
+                        "cinco_environment": settings.CINCO_ENVIRONMENT,
+                    },
+                    related_models=[finding_aid],
+                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
+                    track_dag=False,
+                )
+                airflow_urls.append(airflow_url)
+            airflow_urls = "\n".join(airflow_urls)
+            self.message_user(
+                request,
+                f"Unpublishing {queryset.count()} finding aids.\n{airflow_urls}",
+                messages.SUCCESS,
+            )
+        else:
+            self.message_user(request, "Airflow is not enabled.", messages.ERROR)
+
+    @admin.action(description="Delete (and unindex) selected finding aids")
+    def delete_finding_aid_action(self, request, queryset):
+        if settings.ENABLE_AIRFLOW:
+            airflow_urls = []
+            for finding_aid in queryset:
+                airflow_url = trigger_dag(
+                    "delete_finding_aid",
+                    {
+                        "ark": finding_aid.ark,
+                        "repository_code": finding_aid.repository.code,
+                        "cinco_environment": settings.CINCO_ENVIRONMENT,
+                    },
+                    related_models=[finding_aid],
+                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
+                    track_dag=False,
+                )
+                airflow_urls.append(airflow_url)
+
+            airflow_urls = "\n".join(airflow_urls)
+            self.message_user(
+                request,
+                f"Deleting {queryset.count()} finding aids.\n{airflow_urls}",
+                messages.SUCCESS,
+            )
+        else:
+            self.message_user(request, "Airflow is not enabled.", messages.ERROR)
 
     @admin.action(description="Bulk index selected finding aids")
     def bulk_index_action(self, request, queryset):
