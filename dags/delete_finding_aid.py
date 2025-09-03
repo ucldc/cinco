@@ -1,6 +1,9 @@
+import boto3
 from datetime import datetime
-from airflow.decorators import dag
+from airflow.decorators import dag, task
 from airflow.models.param import Param
+from airflow.models import Variable
+
 
 from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
@@ -44,7 +47,28 @@ def delete_finding_aid():
         cinco_environment="{{ params.cinco_environment }}",
     )
 
-    remove_from_index >> remove_from_database
+    @task()
+    def remove_static_finding_aid(ark, cinco_environment="stage"):
+        s3 = boto3.resource("s3")
+        if cinco_environment == "prd":
+            bucket_name = Variable.get("CINCO_S3_BUCKET_PRD")
+        else:
+            bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
+
+        prefix = f"static_findaids/static_findaids/{ark}"
+        print(f"Deleting objects in {bucket_name} at {prefix}")
+        bucket = s3.Bucket(bucket_name)
+        delete_results = bucket.objects.filter(Prefix=prefix).delete()
+        print(delete_results)
+
+    (
+        remove_from_index
+        >> remove_from_database
+        >> remove_static_finding_aid(
+            "{{ params.finding_aid_ark }}",
+            cinco_environment="{{ params.cinco_environment }}",
+        )
+    )
 
 
 delete_finding_aid = delete_finding_aid()
