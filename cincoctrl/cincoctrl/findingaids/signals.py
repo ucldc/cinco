@@ -52,7 +52,12 @@ def delete_s3_pdf_file_on_model_delete(sender, instance, **kwargs):
         instance.pdf_file.delete(save=False)
     if instance.textract_output:
         s3 = boto3.resource("s3")
-        prefix = f"{instance.textract_output}/"
+        bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+        prefix = instance.textract_output.split(bucket_name)[1].lstrip("/")
+        print(  # noqa: T201
+            "Deleting textracted supplemental file at "
+            f"{settings.AWS_STORAGE_BUCKET_NAME}/{prefix}",
+        )
         bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
         bucket.objects.filter(Prefix=prefix).delete()
 
