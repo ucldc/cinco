@@ -1,4 +1,5 @@
 import boto3
+from django.conf import settings
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.db.models.signals import pre_delete
@@ -50,8 +51,10 @@ def delete_s3_pdf_file_on_model_delete(sender, instance, **kwargs):
     if instance.pdf_file:
         instance.pdf_file.delete(save=False)
     if instance.textract_output:
-        s3_client = boto3.client("s3")
-        s3_client.delete_object(Bucket="cinco-stage", Key=instance.textract_output)
+        s3 = boto3.resource("s3")
+        prefix = f"{instance.textract_output}/"
+        bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
+        bucket.objects.filter(Prefix=prefix).delete()
 
 
 @receiver(pre_save, sender=SupplementaryFile)
