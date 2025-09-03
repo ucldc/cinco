@@ -63,6 +63,11 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 "--ark",
                 finding_aid_ark,
             ]
+        elif manage_cmd == "bulk_remove_finding_aids":
+            manage_args = [
+                "--s3-key",
+                s3_key,
+            ]
 
         container_name = f"cinco-ctrl-{cinco_environment}-container"
         # TODO: specify task definition revision? how?
@@ -156,6 +161,11 @@ class CincoCtrlDockerOperator(DockerOperator):
             manage_args = [
                 "--ark",
                 finding_aid_ark,
+            ]
+        elif manage_cmd == "bulk_remove_finding_aids":
+            manage_args = [
+                "--s3-key",
+                s3_key,
             ]
 
         # set in startup.sh, path to cinco/cincoctrl on local
