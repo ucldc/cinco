@@ -15,6 +15,9 @@ from cinco.arclight_operator import ArcLightOperator
         "finding_aid_ark": Param(
             "", type="string", description="The ARK of the Finding Aid"
         ),
+        "repository_code": Param(
+            "", type="string", description="The code of the repository"
+        ),
         "cinco_environment": Param(
             "stage",
             enum=["stage", "prd"],
@@ -30,6 +33,7 @@ def unpublish_finding_aid():
         task_id="remove_from_index",
         arclight_command="remove-from-solr",
         finding_aid_ark="{{ params.finding_aid_ark }}",
+        repository_code="{{ params.repository_code }}",
         cinco_environment="{{ params.cinco_environment }}",
     )
     remove_from_index
