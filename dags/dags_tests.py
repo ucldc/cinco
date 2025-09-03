@@ -14,5 +14,5 @@ class CincoDagsTest(TestCase):
         return DagBag(dag_folder=DAGS_FOLDER, include_examples=False)
 
     def test_no_import_errors(self):
-        assert len(self.dag_bag().dags) == 4
+        assert len(self.dag_bag().dags) == 7
         assert not self.dag_bag().import_errors
