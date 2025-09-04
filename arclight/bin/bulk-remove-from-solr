@@ -48,7 +48,7 @@ do
     repo_code="${repo_code%%*( )}"
     repo_name=$(bundle exec rake repo:urlized_name[$repo_code])
     paths+="\"/findaid/$findaid_id\" \"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "
-done
+done < "/tmp/$1"
 
 echo "Running cache invalidation for $paths"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
