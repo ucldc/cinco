@@ -100,6 +100,7 @@ class FindingAidAdmin(admin.ModelAdmin):
         if settings.ENABLE_AIRFLOW:
             airflow_urls = []
             for finding_aid in queryset:
+                ark_name = self.ark.replace("/", ":")
                 airflow_url = trigger_dag(
                     "unpublish_finding_aid",
                     {
@@ -108,7 +109,7 @@ class FindingAidAdmin(admin.ModelAdmin):
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
                     related_models=[finding_aid],
-                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
+                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
                     track_dag=False,
                 )
                 airflow_urls.append(airflow_url)
@@ -126,6 +127,7 @@ class FindingAidAdmin(admin.ModelAdmin):
         if settings.ENABLE_AIRFLOW:
             airflow_urls = []
             for finding_aid in queryset:
+                ark_name = self.ark.replace("/", ":")
                 airflow_url = trigger_dag(
                     "delete_finding_aid",
                     {
@@ -134,7 +136,7 @@ class FindingAidAdmin(admin.ModelAdmin):
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
                     related_models=[finding_aid],
-                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
+                    dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
                     track_dag=False,
                 )
                 airflow_urls.append(airflow_url)
