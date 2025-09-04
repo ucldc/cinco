@@ -42,10 +42,8 @@ paths=""
 while IFS=, read -r findaid_id repo_code || [ -n "$findaid_id" ]
 do
     # Trim leading/trailing whitespace of findaid_id and repo_code
-    findaid_id="${findaid_id##*( )}"
-    findaid_id="${findaid_id%%*( )}"
-    repo_code="${repo_code##*( )}"
-    repo_code="${repo_code%%*( )}"
+    findaid_id="$(echo "$findaid_id" | sed 's/^ *//;s/ *$//')"
+    repo_code="$(echo "$repo_code" | sed 's/^ *//;s/ *$//')"
     repo_name=$(bundle exec rake repo:urlized_name\[$repo_code\])
     paths+="\"/findaid/$findaid_id\" \"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "
 done < "/tmp/$1"
