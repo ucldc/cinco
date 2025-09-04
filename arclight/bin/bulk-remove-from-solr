@@ -39,20 +39,26 @@ echo "Finished deleting finding aids from arclight"
 echo "Now creating a cache invalidation for each page and their repositories"
 
 paths=""
+declare -A repo_names_seen
 while IFS=, read -r findaid_id repo_code || [ -n "$findaid_id" ]
 do
     # Trim leading/trailing whitespace of findaid_id and repo_code
     findaid_id="$(echo "$findaid_id" | sed 's/^ *//;s/ *$//')"
     repo_code="$(echo "$repo_code" | sed 's/^ *//;s/ *$//')"
-    repo_name=$(bundle exec rake repo:urlized_name\[$repo_code\])
-    paths+="\"/findaid/$findaid_id\" \"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "
+    repo_name=$(bundle exec rake repo:urlized_name[$repo_code])
+    paths+="\"/findaid/$findaid_id\" "
+    # Only add the repository search path if we haven't seen this repo_name before
+    if [[ -z "${repo_names_seen[$repo_name]}" ]]; then
+        paths+="\"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "
+        repo_names_seen[$repo_name]=1
+    fi
 done < "/tmp/$1"
 
 echo "Running cache invalidation for $paths"
+echo "aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths $paths"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
     echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
 else
-  echo "Invalidating urls: $paths"
   cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths $paths)
   echo "Invalidation submitted: $cf"
 fi
