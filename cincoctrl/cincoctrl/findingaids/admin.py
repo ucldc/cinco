@@ -80,6 +80,7 @@ class FindingAidAdmin(admin.ModelAdmin):
         "ark",
         "repository",
         "record_type",
+        "date_updated",
     )
     list_filter = ["status", "record_type", "repository__name"]
 
