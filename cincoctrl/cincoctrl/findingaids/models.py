@@ -37,6 +37,7 @@ STATUSES = (
     ("queued_publish", "Queued for Publication"),
     ("published", "Published"),
     ("publish_error", "Publication Error"),
+    ("unpublished", "Unpublished"),
 )
 
 INDEXING_STATUSES = (
