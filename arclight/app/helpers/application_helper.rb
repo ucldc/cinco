@@ -46,4 +46,14 @@ module ApplicationHelper
   def _not_in_disallow_list(document)
     !Rails.application.config.disallowed_static_guides.include? document.id
   end
+
+  def ark_rewrite_link_to(resource)
+    if resource.href =~ /.*ark\.cdlib\.org.*/
+      href = resource.href.gsub(/ark\.cdlib\.org/, "oac.cdlib.org")
+      label = resource.label.gsub(/ark\.cdlib\.org/, "oac.cdlib.org")
+      return link_to(label, href)
+    end
+
+    link_to(resource.label, resource.href)
+  end
 end

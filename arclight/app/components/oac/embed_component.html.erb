@@ -1,0 +1,10 @@
+<div id="embed" class="mb-2">
+  <h2 class="al-show-sub-heading"><%= t('arclight.views.show.embedded_content') %></h2>
+  <%= render Oac::OembedViewerComponent.with_collection(embeddable_resources, document: @document) %>
+
+  <% linked_resources.each do |resource| %>
+    <div class="al-digital-object-1">
+      <%= helpers.ark_rewrite_link_to(resource) %>
+    </div>
+  <% end %>
+</div>

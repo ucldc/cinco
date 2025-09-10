@@ -9,4 +9,28 @@ RSpec.describe ApplicationHelper, type: :helper do
         expect(helper.repository_location_to_city(test_html)).to eq("Palm Springs, CA")
     end
   end
+
+    describe "#ark_rewrite_link_to" do
+    let(:resource_class) { Struct.new(:label, :href) }
+    let(:resource) { resource_class.new(ark_url, "https://#{ark_url}") }
+
+    describe "when the link is to ark.cdlib.org" do
+      let(:ark_url) { "ark.cdlib.org/ark:/13030/12345" }
+      let(:expected_label) { "oac.cdlib.org/ark:/13030/12345" }
+      let(:expected_href) { "https://oac.cdlib.org/ark:/13030/12345" }
+      it "rewrites the link to  oac.cdlib.org" do
+      expect(helper.ark_rewrite_link_to(resource))
+        .to eql("<a href=\"#{expected_href}\">#{expected_label}</a>")
+      end
+    end
+    describe "when the link is to not to ark.cdlib.org" do
+      let(:ark_url) { "noac.cdlib.org/ark:/13030/12345" }
+      let(:expected_label) { "noac.cdlib.org/ark:/13030/12345" }
+      let(:expected_href) { "https://noac.cdlib.org/ark:/13030/12345" }
+      it "leaves the link unchanged" do
+      expect(helper.ark_rewrite_link_to(resource))
+        .to eql("<a href=\"#{expected_href}\">#{expected_label}</a>")
+      end
+    end
+  end
 end
