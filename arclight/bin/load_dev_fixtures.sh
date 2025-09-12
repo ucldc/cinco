@@ -1,4 +1,4 @@
-SOLR_URL=http://local_dev_solr_leader:8983/solr/arclight
+SOLR_URL=http://solr:8983/solr/arclight
 
 if [ -z "${FIXTURE_PATH}" ]; then
     FIXTURE_PATH="/app/fixtures"
