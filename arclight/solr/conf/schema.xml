@@ -122,6 +122,7 @@
       -->
     <!-- KD-tree versions of date fields -->
     <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+    <fieldType name="rdate" class="solr.DateRangeField" />
 
     <!-- The "RandomSortField" is not used to store or search any
          data.  You can declare fields of this type it in your schema
@@ -287,6 +288,7 @@
    <field name="_root_" type="string" indexed="true" stored="true" docValues="false" />
    <field name="_nest_parent_" type="string" indexed="true" stored="true"/>
    <field name="_nest_path_" type="_nest_path_" indexed="true" stored="true"/>
+  <field name="date_range" type="rdate" indexed="true" stored="true" multiValued="true" />
 
    <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.
