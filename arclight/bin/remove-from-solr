@@ -19,26 +19,19 @@ fi
 
 echo "Deleting Finding Aid: $1"
 findaid_id=$1
-escaped_findaidid="${findaid_id//\:/\\\:}"
-escaped_findaidid="${escaped_findaidid//\//\\\/}"
-
-# Possibly unsafe delete query
-# curl -X POST "$SOLR_WRITER/update?commit=true" \
-#     -H "Content-Type: text/xml" \
-#     --data-binary "<delete><query>id:$escaped_findaidid*</query></delete>"
 
 curl --fail -X POST "$SOLR_WRITER/update?commit=true" \
     -H "Content-Type: text/xml" \
-    --data-binary "<delete><query>_root_:$escaped_findaidid</query></delete>"
+    --data-binary "<delete><id>$findaid_id</id></delete>"
 
 # deal with any errors
 
 REPO_NAME=$(bundle exec rake repo:urlized_name\[$2\])
-echo "Running cache invalidation for $1 and $2 landing page"
+echo "Running cache invalidation for $findaid_id and $REPO_NAME landing page"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
   echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
 else
-  echo "Invalidating urls: /findaid/$1 and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
-  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$1" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+  echo "Invalidating urls: /findaid/$findaid_id and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
+  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$findaid_id" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
   echo "Invalidation submitted: $cf"
 fi
