@@ -59,7 +59,9 @@ echo "Running cache invalidation for $4 and $3 landing page"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
   echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
 else
-  echo "Invalidating urls: /findaid/$4 and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
-  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$4" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+  # url encode the ark
+  ENCODED_ARK=$(echo "$4" | sed 's/\//%2F/g')
+  echo "Invalidating urls: /findaid/$4, /findaid/$ENCODED_ARK, and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
+  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$4" "/findaid/$ENCODED_ARK" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
   echo "Invalidation submitted: $cf"
 fi

@@ -47,6 +47,8 @@ do
     repo_code="$(echo "$repo_code" | sed 's/^ *//;s/ *$//')"
     repo_name=$(bundle exec rake repo:urlized_name[$repo_code])
     paths+="\"/findaid/$findaid_id\" "
+    encoded_ark=$(echo "$findaid_id" | sed 's/\//%2F/g')
+    paths+="\"/findaid/$encoded_ark\" "
     # Only add the repository search path if we haven't seen this repo_name before
     if [[ -z "${repo_names_seen[$repo_name]}" ]]; then
         paths+="\"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "

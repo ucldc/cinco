@@ -45,12 +45,13 @@ for folder in /tmp/$1/*; do
     echo "Clearing Cache for $folder"
 
     REPO_NAME=$(bundle exec rake repo:urlized_name\[$REPOSITORY_ID\])
+    ENCODED_ARK=$(echo "$FINDING_AID_ARK" | sed 's/\//%2F/g')
     echo "Running cache invalidation for $FINDING_AID_ARK and $REPOSITORY_ID landing page"
     if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
       echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
     else
-      echo "Invalidating urls: /findaid/$FINDING_AID_ARK and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
-      cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$FINDING_AID_ARK" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+      echo "Invalidating urls: /findaid/$FINDING_AID_ARK, /findaid/$ENCODED_ARK, and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
+      cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$FINDING_AID_ARK" "/findaid/$ENCODED_ARK" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
       echo "Invalidation submitted: $cf"
     fi
 
