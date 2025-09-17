@@ -20,6 +20,9 @@ parameters:
 
 sceptre_user_data:
   ApplicationType: internal
+  LoadBalancerAttributes:
+    - Key: idle_timeout.timeout_seconds
+      Value: 3600
   ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
   Volumes:
     - Name: "cinco-solr-efs-volume"

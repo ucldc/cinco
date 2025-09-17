@@ -153,6 +153,11 @@ Parameters:
     Required: false - if not provided an ECSTaskRole will be configured
       with arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
 
+  LoadBalancerAttributes:
+    Type: a list of LoadBalancerAttributes
+    Description: a list of load balancer attributes
+    Required: false - if not provided, no load balancer attributes will be explicitly configured
+
   alarm_config:
     actions: list of arns of actions to take when alarms are triggered;
       used for CPU, Memory, and 5xx Alarms - also 4xx Alarm if configured, used
@@ -592,6 +597,9 @@ Resources:
       SecurityGroups:
         - !Ref LoadBalancerSecurityGroup
       Subnets: !Ref SubnetIDs
+      {% if sceptre_user_data and sceptre_user_data.LoadBalancerAttributes is defined %}
+      LoadBalancerAttributes: {{ sceptre_user_data.LoadBalancerAttributes }}
+      {% endif %}
 
   TargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
