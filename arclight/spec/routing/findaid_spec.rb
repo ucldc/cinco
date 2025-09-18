@@ -31,6 +31,47 @@ it "routes unescaped /findaid/ark:/*/entire_text/ to the static_finding_aid cont
       )
   end
 
+  it "routes admin after ark to the the findaid controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/admin")).to route_to(
+      controller: "arks",
+      action: "findaid",
+      ark: "ark:/13010/sdfsdfsf"
+      )
+  end
+
+    it "routes admin/ after ark to the the findaid controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/admin/")).to route_to(
+      controller: "arks",
+      action: "findaid",
+      ark: "ark:/13010/sdfsdfsf"
+      )
+  end
+
+    it "routes dsc after ark to the the findaid controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/dsc")).to route_to(
+      controller: "arks",
+      action: "findaid",
+      ark: "ark:/13010/sdfsdfsf"
+      )
+  end
+
+    it "routes dsc/ after ark to the the findaid controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/dsc/")).to route_to(
+      controller: "arks",
+      action: "findaid",
+      ark: "ark:/13010/sdfsdfsf"
+      )
+  end
+
+      it "routes dsc/ after ark to the the findaid controller" do
+    expect(get("/findaid/ark:/13010/sdfsdfsf/dsc/?query=")).to route_to(
+      controller: "arks",
+      action: "findaid",
+      ark: "ark:/13010/sdfsdfsf",
+      query: ""
+      )
+  end
+
 it "routes garbage after ark to the 404 controller" do
     expect(get("/findaid/ark:/13010/sdfsdfsf/garbage")).to route_to(
       controller: "errors",

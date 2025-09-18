@@ -29,6 +29,17 @@ Rails.application.routes.draw do
   # esacped OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
   get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
 
+  # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
+  get "/findaid/*ark/admin", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
+  # esacped OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
+  get "/findaid/*ark/admin", to: "arks#findaid", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
+
+  # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
+  get "/findaid/*ark/dsc", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
+  # esacped OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
+  get "/findaid/*ark/dsc", to: "arks#findaid", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
+
+
   # OAC4 like /findaid/ark:/13030/ju7h7eed3
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
 
