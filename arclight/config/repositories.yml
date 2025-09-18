@@ -1787,11 +1787,11 @@ caljjcv:
     thumbnail_url: ""
     latitude: 32.8690356
     longitude: -117.2432877
-cawhomla :
+cawhomla:
     name: "June L. Mazer Lesbian Archives"
     description: "We are a vital Lesbian and feminist community resource committed to sharing our history across generations, ethnicity, race, and personal belief systems by collecting, preserving and making available unique memorabilia in a safe and welcoming environment."
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 659-2478   </div>
+        <div class="al-repository-contact-phone">(310) 659-2478</div>
         <div class="al-repository-contact-info"><a href="mailto:contact@mazerlesbianarchives.org">contact@mazerlesbianarchives.org</a></div>
         <div class="al-repository-contact-info"><a href="https://www.mazerlesbianarchives.org/" class="offsite-link">Website</a></div>
     location_html: |
@@ -2810,7 +2810,7 @@ cscls:
     name: "Sacramento Public Library - Sacramento Room"
     description: ""
     contact_html: |
-        <div class="al-repository-contact-phone">(916) 264-2797</div>
+        <div class="al-repository-contact-phone">(916) 264-2976</div>
         <div class="al-repository-contact-info"><a href="mailto:sacroom@saclibrary.org">sacroom@saclibrary.org</a></div>
         <div class="al-repository-contact-info"><a href="http://www.saclibrary.org/" class="offsite-link">Website</a></div>
     location_html: |
