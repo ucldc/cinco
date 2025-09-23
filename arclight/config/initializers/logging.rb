@@ -1,5 +1,4 @@
 Rails.application.configure do
-  # removes timestamp before json logs
   config.logger = ActiveSupport::Logger.new(STDOUT)
 
   config.lograge.enabled = true if Rails.env.production?
@@ -8,8 +7,10 @@ Rails.application.configure do
       request = event.payload[:request]
       {
         time: Time.now,
-        query_string: event.payload[:query_string],
-        accept: request&.headers["Accept"]
+        query_string: request&.query_string,
+        accept_header: request&.headers["Accept"],
+        cloudfront_request_id: request&.headers["X-Amz-Cf-Id"],
+        rails_request_id: request&.request_id
       }
   end
 
