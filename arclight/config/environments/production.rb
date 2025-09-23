@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require "json"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -61,11 +62,28 @@ Rails.application.configure do
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  # config.logger = ActiveSupport::Logger.new(STDOUT)
+  #   .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+  #   .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  # config.log_tags = [ :request_id ]
+
+  # moves standard log formatting into json log message
+  config.logger.formatter = proc do |severity, datetime, progname, msg|
+    begin
+      log_hash = JSON.parse(msg)
+    rescue JSON::ParserError
+      log_hash = { message: msg }
+    end
+    log_hash.merge!(
+      log_level: severity,
+      log_time: datetime.iso8601,
+      log_progname: progname,
+      log_pid: Process.pid
+    )
+    "#{log_hash.to_json}\n"
+  end
 
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
