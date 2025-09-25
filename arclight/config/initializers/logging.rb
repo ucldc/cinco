@@ -9,6 +9,7 @@ Rails.application.configure do
         time: Time.now,
         query_string: request&.query_string,
         accept_header: request&.headers["Accept"],
+        user_agent: request&.headers["User-Agent"],
         cloudfront_request_id: request&.headers["X-Amz-Cf-Id"],
         rails_request_id: request&.request_id
       }
