@@ -39,12 +39,11 @@ Rails.application.routes.draw do
   # esacped OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
   get "/findaid/*ark/dsc", to: "arks#findaid", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
 
+  # Any findaid ark URLs that are not fitting a specific pattern should 404 instead of hitting solr
+  get "/findaid/*ark/*else", to: "errors#not_found", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
 
   # OAC4 like /findaid/ark:/13030/ju7h7eed3
   get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-
-  # Any findaid ark URLs that are not fitting a specific pattern should 404 instead of hitting solr
-  get "/findaid/*ark/*else", to: "errors#not_found", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
 
   get "/findaid", to:  "static_finding_aid#index"
 
