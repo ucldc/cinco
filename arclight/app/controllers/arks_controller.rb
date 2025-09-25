@@ -12,7 +12,8 @@ class ArksController < ApplicationController
       action: action_name,
       cloudfront_request_id: request.headers["X-Amz-Cf-Id"],
       accept_header: request.headers["Accept"],
-      user_agent: request.headers["User-Agent"]
+      user_agent: request.headers["User-Agent"],
+      originally_requested_path: request&.original_fullpath
     }.to_json)
     redirect_to url
   end
@@ -30,7 +31,8 @@ class ArksController < ApplicationController
       action: action_name,
       cloudfront_request_id: request.headers["X-Amz-Cf-Id"],
       accept_header: request.headers["Accept"],
-      user_agent: request.headers["User-Agent"]
+      user_agent: request.headers["User-Agent"],
+      originally_requested_path: request&.original_fullpath
     }.to_json)
     redirect_to url
   end
