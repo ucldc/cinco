@@ -2948,6 +2948,18 @@ sdsu_spcoll:
     thumbnail_url: ""
     latitude: 32.7752596192
     longitude: -117.071224451
+csdhiss:
+    name: "San Dimas Historical Society"
+    description: "Formed in the summer of 1966, our mission as an organization has been to preserve the history of San Dimas by bringing together people interested in Southern California regional history through discovering and collecting items that establish, define or illustrate the history of San Dimas."
+    contact_html: |
+        <div class="al-repository-contact-phone">(909) 592-1190</div>
+        <div class="al-repository-contact-info"><a href="https://sandimashistorical.org/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">121 N. San Dimas Ave.</div>
+        <div class="al-repository-street-address-city_state_zip_country">San Dimas, CA 91773, US</div>
+    thumbnail_url: ""
+    latitude: 34.107437
+    longitude: -117.807529
 casfai:
     name: "San Francisco Art Institute Archive"
     description: "The San Francisco Art Institute Archive collection contains texts from the 1900s to 1960s. A majority of the collection consists of texts from the San Francisco Art Association Bulletin. Other material includes the Mark Hopkins Institute Review of Art, the San Francisco Art Association&#x27;s first newsletter."
@@ -3573,6 +3585,10 @@ stanford_chs:
         <div class="al-repository-street-address-address2">557 Escondido Mall</div>
         <div class="al-repository-street-address-city_state_zip_country">Stanford, CA 94305-6004, US</div>
     thumbnail_url: ""
+    request_types:
+        aeon_web_ead:
+            request_url: https://stanford.aeon.atlas-sys.com/logon
+            request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
 stanford_casteal:
@@ -4436,6 +4452,19 @@ ucla_rbcaas:
     thumbnail_url: ""
     latitude: 34.104979
     longitude: -118.397692
+ucla_whrml:
+    name: "UCLA, Walter H. Rubsamen Music Library"
+    description: "The Music Library provides resources for music research, performance and study that span all music genres."
+    contact_html: |
+        <div class="al-repository-contact-phone">(310) 825-4882</div>
+        <div class="al-repository-contact-info"><a href="mailto:AskUs@library.ucla.edu">AskUs@library.ucla.edu</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.library.ucla.edu/visit/locations/music-library" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">1102 Schoenberg Music Building</div>
+        <div class="al-repository-street-address-city_state_zip_country">Los Angeles, CA 90095-1490, US</div>
+    thumbnail_url: ""
+    latitude: 34.0707912263
+    longitude: -118.440116644
 ucm_caawucm:
     name: "UC Merced, Library and Special Collections"
     description: "The Special Collections at the UC Merced Library houses the Library’s rare books, manuscripts, and other digital collections, with a special emphasis on the history and people of California’s Central Valley."
