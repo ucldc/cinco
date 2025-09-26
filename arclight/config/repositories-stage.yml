@@ -3460,6 +3460,15 @@ cabmndnu:
     thumbnail_url: ""
     latitude: 37.518105
     longitude: -122.284891
+oac-aeon-test:
+    name: "OAC Aeon Test Repository"
+    description: "OAC Aeon Test Repository, for sample data in CincoCtrl-stg"
+    contact_html: |
+    location_html: |
+        <div class="al-repository-street-address-city_state_zip_country">,  , </div>
+    thumbnail_url: ""
+    latitude: None
+    longitude: None
 oac-test:
     name: "OAC Test Repository"
     description: "OAC Test Repository, for sample data in CincoCtrl-stg"
@@ -5307,6 +5316,10 @@ stanford_chs:
         <div class="al-repository-street-address-address2">557 Escondido Mall</div>
         <div class="al-repository-street-address-city_state_zip_country">Stanford, CA 94305-6004, US</div>
     thumbnail_url: ""
+    request_types:
+        aeon_web_ead:
+            request_url: https://stanford.aeon.atlas-sys.com/logon
+            request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
 stanford_casteal:
@@ -6129,6 +6142,10 @@ uci_lips:
     location_html: |
         <div class="al-repository-street-address-city_state_zip_country">Irvine, CA 92623, US</div>
     thumbnail_url: ""
+    request_types:
+        aeon_web_ead:
+            request_url: https://uci.aeon.atlas-sys.com/logon/
+            request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 33.6471959695
     longitude: -117.841109633
 uci_ocrh:
