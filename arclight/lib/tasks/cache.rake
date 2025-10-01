@@ -14,7 +14,7 @@ namespace :cache do
 
   desc "Generate cache entry for Static Guide by id"
   task :generate_for, [ :id ] => :environment do |_t, args|
-    path = Rails.application.routes.url_helpers.static_finding_aid_path(id: args[:id])
+    path = oac_static_finding_aid_path(id: args[:id])
     Net::HTTP.get(URI.parse("http://127.0.0.1:3000#{path}"))
   end
 end
