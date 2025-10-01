@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "home", controller: "static_pages"
   get "/about", to: "about", controller: "static_pages"
   get "/help", to: "help", controller: "static_pages"
   get "/terms", to: "termsofuse", controller: "static_pages", as: "termsofuse"
@@ -13,16 +14,14 @@ Rails.application.routes.draw do
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"
 
-  root to: "home", controller: "static_pages"
   concern :searchable, Blacklight::Routes::Searchable.new
-
   resource :catalog, only: [], as: "catalog", path: "/search", controller: "catalog" do
     concerns :searchable
   end
+
   devise_for :users
 
-   resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid" do
-  end
+  resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid"
 
   # OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
   get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
@@ -52,10 +51,9 @@ Rails.application.routes.draw do
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
   resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog" do
-  concerns :hierarchy
+    concerns :hierarchy
     concerns :exportable
   end
-
 
   resources :bookmarks, only: [ :index, :update, :create, :destroy ] do
     concerns :exportable
