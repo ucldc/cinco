@@ -22,37 +22,22 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :static_finding_aid, only: [ :show ], path: "/findaid/static", controller: "static_finding_aid"
-
-  # OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-  # esacped OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
-  get "/findaid/*ark/entire_text", to: "arks#findaid_static", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
-
-  # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
-  get "/findaid/*ark/admin", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-  # esacped OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
-  get "/findaid/*ark/admin", to: "arks#findaid", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
-
-  # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
-  get "/findaid/*ark/dsc", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-  # esacped OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
-  get "/findaid/*ark/dsc", to: "arks#findaid", constraints: { ark: /ark\:%2F[0-9]{5}%2F[0-9a-zA-Z]+/ }
-
-  # Any findaid ark URLs that are not fitting a specific pattern should 404 instead of hitting solr
-  get "/findaid/*ark/*else", to: "errors#not_found", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-
-  # OAC4 like /findaid/ark:/13030/ju7h7eed3
-  get "/findaid/*ark", to: "arks#findaid", constraints: { ark: /ark\:\/[0-9]{5}\/[0-9a-zA-Z]+/ }
-
-  get "/findaid", to:  "static_finding_aid#index"
-
+  get "/findaid", to:  "static_finding_aid#index"  # Required for static finding aid controller to work properly, don't know why
 
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog" do
+  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(ark\:(\/|\%2[fF])[0-9]{5}(\/|\%2[fF])[0-9a-zA-Z]+_?[^\/]*)|((?!ark\:)[^\/]+)/ } do
+    member do
+      get "entire_text" => "arks#findaid_static"   # OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
+      get "admin" => redirect("/findaid/%{id}", status: 302)    # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
+      get "dsc" => redirect("/findaid/%{id}", status: 302)    # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/dsc
+    end
     concerns :hierarchy
     concerns :exportable
+    member do
+      get "*else" => "errors#not_found"    # Any findaid ark URLs that are not fitting a specific pattern should 404 instead of hitting solr
+    end
   end
 
   resources :bookmarks, only: [ :index, :update, :create, :destroy ] do
