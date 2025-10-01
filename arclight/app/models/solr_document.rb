@@ -3,7 +3,18 @@
 # Represents a single document returned from Solr
 class SolrDocument
   include Blacklight::Solr::Document
- include Arclight::SolrDocument
+  include Arclight::SolrDocument
+
+  def to_param
+    # For ARK identifiers, return the raw ID without encoding
+    # Rails routing should handle ARK identifiers as special path segments
+    Rails.logger.info("SolrDocument to_param called for ID: #{self.id}")
+    if self.id.to_s.start_with?("ark:")
+      self.id.to_s
+    else
+      super
+    end
+  end
 
   # self.unique_key = 'id'
 
