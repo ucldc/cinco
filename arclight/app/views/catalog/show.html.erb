@@ -26,7 +26,7 @@
         <% end %>
         <div class="col-sm-auto">
             <span aria-hidden="true"><%= blacklight_icon :printer, classes: 'oac-printer-icon' %></span>
-            <a href="<%= static_finding_aid_path @document.collection_id %>" class="link-underline" data-turbo="false">Printable guide [HTML]</a>
+            <a href="<%= oac_static_finding_aid_path @document.collection_id %>" class="link-underline" data-turbo="false">Printable guide [HTML]</a>
         </div>
         <div class="col-sm-auto">
             <%= render 'arclight/requests', document: @document %>
