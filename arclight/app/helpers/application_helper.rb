@@ -56,4 +56,18 @@ module ApplicationHelper
 
     link_to(resource.label, resource.href)
   end
+
+  def oac_hierarchy_solr_document_path(*args, **options)
+    document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
+
+    encoded_path = hierarchy_solr_document_path(*args, **options)
+    Rails.logger.info("Generated path from original: #{encoded_path}")
+
+    if document_id.to_s.start_with?("ark:")
+      Rails.logger.info("ARK detected, generating custom hierarchy path.")
+      encoded_path.gsub!("%2F", "/")
+      Rails.logger.info("Rewritten hierarchy path: #{encoded_path}")
+    end
+    encoded_path
+  end
 end
