@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(ark\:(\/|\%2[fF])[0-9]{5}(\/|\%2[fF])[0-9a-zA-Z]+_?[^\/]*)|((?!ark\:)[^\/]+)/ } do
+  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(ark\:\/[0-9]{5}\/[0-9a-zA-Z]+_?[^\/]*)|((?!ark\:)[^\/]+)/ } do
     member do
       get "entire_text" => "arks#findaid_static"   # OAC4 static URLS like /findaid/ark:/13030/ju7h7eed3/entire_text
       get "admin" => redirect("/findaid/%{id}", status: 302)    # OAC4 style URLS like /findaid/ark:/13030/ju7h7eed3/admin
