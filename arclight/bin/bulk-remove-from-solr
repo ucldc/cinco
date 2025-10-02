@@ -21,6 +21,9 @@ echo "Downloading S3 file $S3_BUCKET/$1 to /tmp/$1"
 aws s3 cp s3://"$S3_BUCKET"/removals/"$1" /tmp/"$1"
 
 queries=""
+# Initialize array for cache invalidation paths
+INVALIDATION_PATHS=()
+
 while IFS=, read -r findaid_id repo_code || [ -n "$findaid_id" ]
 do
     # Trim leading/trailing whitespace
@@ -29,6 +32,11 @@ do
     escaped_findaidid="${findaid_id//\:/\\\:}"
     escaped_findaidid="${escaped_findaidid//\//\\\/}"
     queries+="<query>_root_:$escaped_findaidid</query>"
+
+    # Add to invalidation paths array
+    if [ ! -z "$findaid_id" ]; then
+        INVALIDATION_PATHS+=("/findaid/$findaid_id*")
+    fi
 done < "/tmp/$1"
 
 curl -X POST "$SOLR_WRITER/update?commit=true" \
@@ -38,29 +46,14 @@ curl -X POST "$SOLR_WRITER/update?commit=true" \
 echo "Finished deleting finding aids from arclight"
 echo "Now creating a cache invalidation for each page and their repositories"
 
-paths=""
-declare -A repo_names_seen
-while IFS=, read -r findaid_id repo_code || [ -n "$findaid_id" ]
-do
-    # Trim leading/trailing whitespace of findaid_id and repo_code
-    findaid_id="$(echo "$findaid_id" | sed 's/^ *//;s/ *$//')"
-    repo_code="$(echo "$repo_code" | sed 's/^ *//;s/ *$//')"
-    repo_name=$(bundle exec rake repo:urlized_name[$repo_code])
-    paths+="\"/findaid/$findaid_id\" "
-    encoded_ark=$(echo "$findaid_id" | sed 's/\//%2F/g')
-    paths+="\"/findaid/$encoded_ark\" "
-    # Only add the repository search path if we haven't seen this repo_name before
-    if [[ -z "${repo_names_seen[$repo_name]}" ]]; then
-        paths+="\"/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$repo_name&sort=title_sort+asc\" "
-        repo_names_seen[$repo_name]=1
+# Run cache invalidation once for all paths
+if [ ${#INVALIDATION_PATHS[@]} -gt 0 ]; then
+    if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+        echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
+    else
+        echo "Running cache invalidation for ${#INVALIDATION_PATHS[@]} paths"
+        echo "Invalidating urls: ${INVALIDATION_PATHS[*]}"
+        cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "${INVALIDATION_PATHS[@]}")
+        echo "Invalidation submitted: $cf"
     fi
-done < "/tmp/$1"
-
-echo "Running cache invalidation for $paths"
-echo "aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths $paths"
-if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
-    echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
-else
-  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths $paths)
-  echo "Invalidation submitted: $cf"
 fi

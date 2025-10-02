@@ -26,12 +26,11 @@ curl --fail -X POST "$SOLR_WRITER/update?commit=true" \
 
 # deal with any errors
 
-REPO_NAME=$(bundle exec rake repo:urlized_name\[$2\])
-echo "Running cache invalidation for $findaid_id and $REPO_NAME landing page"
 if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
   echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
 else
-  echo "Invalidating urls: /findaid/$findaid_id and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
-  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$findaid_id" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
+  echo "Running cache invalidation for 1 path"
+  echo "Invalidating urls: /findaid/$findaid_id*"
+  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$findaid_id*")
   echo "Invalidation submitted: $cf"
 fi
