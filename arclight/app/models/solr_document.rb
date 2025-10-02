@@ -10,7 +10,7 @@ class SolrDocument
     # Rails routing should handle ARK identifiers as special path segments
     # this does not work as it should, instead see:
     #   - config/initializers/ark_url_fix.rb
-    #   - app/helpers/application_helper.rb oac_hierarchy_solr_document_path
+    #   - app/helpers/application_helper.rb hierarchy_solr_document_path
     #   - app/helpers/application_helper.rb static_finding_aid_path
     #   - app/helpers/application_helper.rb solr_document_path
     Rails.logger.info("SolrDocument to_param called for ID: #{self.id}")
