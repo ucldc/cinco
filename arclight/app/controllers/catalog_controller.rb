@@ -6,6 +6,18 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Arclight::Catalog
 
+  before_action :set_conditional_cache_control, only: [ :index ]
+
+  private
+
+  def set_conditional_cache_control
+    # Check if 'repository' parameter exists (any value) AND level parameter equals 'Collection'
+    if params[:f]&.key?("repository") &&
+       params[:f]&.dig("level")&.include?("Collection")
+      expires_in 1.hour, public: true
+    end
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
