@@ -57,6 +57,15 @@ module ApplicationHelper
     link_to(resource.label, resource.href)
   end
 
+  # Overwrite the dynamically generated path helper methods provided by Rails
+  # to avoid encoding slashes in ARK identifiers. These methods are generated
+  # at runtime, and super, here, refers to the original method.
+  #
+  # This allows us to use the standard Rails path helpers in our code (and, more
+  # importantly, in Blacklight and Arclight) without changing any of that code.
+  #
+  # Sometimes, Rails does get confused and doesn't find our overrides.
+  # helpers.<method_name> most reliably finds the correct method.
   def hierarchy_solr_document_path(*args, **options)
     Rails.logger.debug("custom oac hierarchy_solr_document_path generated")
     rewrite_ark_path_if_needed(*args, **options) { super(*args, **options) }
@@ -76,6 +85,8 @@ module ApplicationHelper
 
   def rewrite_ark_path_if_needed(*args, **options)
     document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
+    # yield refers to the block passed to this method, "super", above. In each case, super
+    # refers to the Rails-generated path helper method - a dynamically generated method.
     encoded_path = yield
 
     Rails.logger.debug("Generated path from original: #{encoded_path}")
