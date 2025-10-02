@@ -11,7 +11,7 @@ class SolrDocument
     # this does not work as it should, instead see:
     #   - config/initializers/ark_url_fix.rb
     #   - app/helpers/application_helper.rb oac_hierarchy_solr_document_path
-    #   - app/helpers/static_finding_aid_helper.rb oac_static_finding_aid_path
+    #   - app/controllers/application_controller.rb static_finding_aid_path
     #   - app/controllers/application_controller.rb solr_document_path
     Rails.logger.info("SolrDocument to_param called for ID: #{self.id}")
     if self.id.to_s.start_with?("ark:")
