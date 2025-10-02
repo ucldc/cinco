@@ -25,6 +25,9 @@ fi
 echo "Downloading Contents of S3 Prefix $1 to /tmp/$1"
 aws s3 sync s3://$S3_BUCKET/media/$1 /tmp/$1
 
+# Initialize array for cache invalidation paths
+INVALIDATION_PATHS=()
+
 # for every folder in /tmp/$1,
 #  1. source /tmp/$1/<folder>/indexing_env.sh &
 #  2. run traject command referenceing /tmp/$1/<folder>/finding-aid.xml
@@ -44,16 +47,9 @@ for folder in /tmp/$1/*; do
         -s preview=$PREVIEW &
     echo "Clearing Cache for $folder"
 
-    REPO_NAME=$(bundle exec rake repo:urlized_name\[$REPOSITORY_ID\])
-    ENCODED_ARK=$(echo "$FINDING_AID_ARK" | sed 's/\//%2F/g')
-    echo "Running cache invalidation for $FINDING_AID_ARK and $REPOSITORY_ID landing page"
-    if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
-      echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
-    else
-      echo "Invalidating urls: /findaid/$FINDING_AID_ARK, /findaid/$ENCODED_ARK, and /search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc"
-      cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$FINDING_AID_ARK" "/findaid/$ENCODED_ARK" "/search?f%5Blevel%5D%5B%5D=Collection&f%5Brepository%5D%5B%5D=$REPO_NAME&sort=title_sort+asc")
-      echo "Invalidation submitted: $cf"
-    fi
+    # Add path to invalidation list
+    INVALIDATION_PATHS+=("/findaid/$FINDING_AID_ARK*")
+    echo "Added to invalidation list: /findaid/$FINDING_AID_ARK*"
 
     unset REPOSITORY_ID
     unset FINDING_AID_ID
@@ -64,6 +60,18 @@ for folder in /tmp/$1/*; do
   fi
 done
 wait
+
+# Run cache invalidation once for all paths: "findaid/<ark>*""
+if [ ${#INVALIDATION_PATHS[@]} -gt 0 ]; then
+  if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
+    echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
+  else
+    echo "Running cache invalidation for ${#INVALIDATION_PATHS[@]} paths"
+    echo "Invalidating urls: ${INVALIDATION_PATHS[*]}"
+    cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "${INVALIDATION_PATHS[@]}")
+    echo "Invalidation submitted: $cf"
+  fi
+fi
 
 echo "Finished indexing, cleaning up /tmp/$1"
 rm -rf /tmp/$1
