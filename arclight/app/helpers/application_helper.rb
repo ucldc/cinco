@@ -58,42 +58,32 @@ module ApplicationHelper
   end
 
   def hierarchy_solr_document_path(*args, **options)
-    document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
-
-    encoded_path = super(*args, **options)
-    Rails.logger.info("Generated path from original: #{encoded_path}")
-
-    if document_id.to_s.start_with?("ark:")
-      Rails.logger.info("ARK detected, generating custom hierarchy path.")
-      encoded_path.gsub!("%2F", "/")
-      Rails.logger.info("Rewritten hierarchy path: #{encoded_path}")
-    end
-    encoded_path
+    Rails.logger.debug("custom oac hierarchy_solr_document_path generated")
+    rewrite_ark_path_if_needed(*args, **options) { super(*args, **options) }
   end
 
   def solr_document_path(*args, **options)
-    Rails.logger.info("solr_document_path called with args: #{args}, options: #{options}")
-    document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
-    encoded_path = super(*args, **options)
-    Rails.logger.info("Generated path from original: #{encoded_path}")
-
-    if document_id.to_s.start_with?("ark:")
-      Rails.logger.info("ARK detected, generating custom solr document path.")
-      encoded_path.gsub!("%2F", "/")
-      Rails.logger.info("Rewritten solr document path: #{encoded_path}")
-    end
-    encoded_path
+    Rails.logger.debug("custom oac solr_document_path generated")
+    rewrite_ark_path_if_needed(*args, **options) { super(*args, **options) }
   end
 
   def static_finding_aid_path(*args, **options)
+    Rails.logger.debug("custom oac static_finding_aid_path generated")
+    rewrite_ark_path_if_needed(*args, **options) { super(*args, **options) }
+  end
+
+  private
+
+  def rewrite_ark_path_if_needed(*args, **options)
     document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
-    encoded_path = super(*args, **options)
-    Rails.logger.info("Generated path from original: #{encoded_path}")
+    encoded_path = yield
+
+    Rails.logger.debug("Generated path from original: #{encoded_path}")
 
     if document_id.to_s.start_with?("ark:")
-      Rails.logger.info("ARK detected, generating custom static finding aid path.")
+      Rails.logger.debug("ARK detected, generating custom path.")
       encoded_path.gsub!("%2F", "/")
-      Rails.logger.info("Rewritten static finding aid path: #{encoded_path}")
+      Rails.logger.debug("Rewritten path: #{encoded_path}")
     end
     encoded_path
   end
