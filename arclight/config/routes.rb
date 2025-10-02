@@ -27,7 +27,10 @@ Rails.application.routes.draw do
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(ark\:\/[0-9]{5}\/[0-9a-zA-Z]+_?[^\/]*)|((?!ark\:)[^\/]+)/ } do
+  ark = /ark:\/\d{5}\/[0-9a-zA-Z]+/
+  optional_component = /_?[^\/]*/
+  not_ark = /(?!ark\:)[^\/]+/
+  resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(#{ark}#{optional_component})|(#{not_ark})/ } do
     concerns :hierarchy
     concerns :exportable
     member do
