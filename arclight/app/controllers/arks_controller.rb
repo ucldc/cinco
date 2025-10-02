@@ -1,4 +1,6 @@
 class ArksController < ApplicationController
+  # Keep this redirect here - rspec doesn't seem to like
+  # external redirects in the routes file
   def calisphere
     respond_to do |format|
       format.any do
