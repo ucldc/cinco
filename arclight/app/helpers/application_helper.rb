@@ -57,10 +57,10 @@ module ApplicationHelper
     link_to(resource.label, resource.href)
   end
 
-  def oac_hierarchy_solr_document_path(*args, **options)
+  def hierarchy_solr_document_path(*args, **options)
     document_id = options[:id] || (args.first.respond_to?(:id) ? args.first.id : args.first)
 
-    encoded_path = hierarchy_solr_document_path(*args, **options)
+    encoded_path = super(*args, **options)
     Rails.logger.info("Generated path from original: #{encoded_path}")
 
     if document_id.to_s.start_with?("ark:")
