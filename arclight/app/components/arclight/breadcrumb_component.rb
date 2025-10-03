@@ -28,8 +28,6 @@ module Arclight
 
       yield build_repository_link
 
-      Rails.logger.debug("Breadcrumb parents: #{@document.parents.map(&:id).join(', ')}")
-
       @document.parents.each do |parent|
         yield tag.li(class: "breadcrumb-item") { link_to(parent.label, helpers.solr_document_path(parent.id)) }
       end
