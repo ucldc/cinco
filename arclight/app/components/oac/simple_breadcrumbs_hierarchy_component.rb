@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Arclight
+module Oac
   # Render the hierarchy for a document
   class SimpleBreadcrumbsHierarchyComponent < ViewComponent::Base
     delegate :document, to: :@presenter
