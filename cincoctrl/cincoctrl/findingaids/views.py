@@ -304,10 +304,16 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
         fa = form.instance
         if fa.ead_file.name:
+            filename_prefix = fa.ead_file.field.upload_to
+            if fa.ead_file.name.startswith(filename_prefix):
+                filename = fa.ead_file.name[len(filename_prefix) :]
+            else:
+                filename = fa.ead_file.name
+
             with fa.ead_file.open("rb") as x:
                 content = x.read()
             parser = EADParser()
-            parser.parse_string(content, fa.ead_file.name)
+            parser.parse_string(content, filename)
             parser.update_otherfindaids(
                 [
                     {"url": f.pdf_file.url, "text": f.title}
@@ -316,7 +322,7 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
             )
             fa.ead_file = ContentFile(
                 parser.to_string(),
-                name=fa.ead_file.name,
+                name=filename,
             )
         fa.queue_index()
         return super().form_valid(form)

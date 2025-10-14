@@ -179,6 +179,6 @@ class TestFindingAidViews(TestCase):
         assert response.status_code == CREATED
         assert SupplementaryFile.objects.count() == 1
         supp_file = SupplementaryFile.objects.first()
-        assert supp_file.finding_aid.ead_file.name == "ead/test_ead1.xml"
+        assert supp_file.finding_aid.ead_file.name.startswith("ead/test_ead1")
 
         index_mock.assert_called_once()

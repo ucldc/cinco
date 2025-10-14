@@ -2,7 +2,6 @@ import re
 from io import StringIO
 from pathlib import Path
 
-from django.db.models.fields.files import FieldFile
 from lxml import etree
 
 
@@ -24,9 +23,20 @@ class EADParser:
         etree.cleanup_namespaces(node)
         return node
 
-    def parse_file(self, xml_file: FieldFile):
+    def parse_file(self, xml_file):
+        # xml_file is not guaranteed to be a FieldFile, but should have name and open()
+        # if xml_file has no field attribute, just use the name as-is
         try:
-            self.filename = xml_file.name
+            filename_prefix = xml_file.field.upload_to
+            if xml_file.name.startswith(filename_prefix):
+                filename = xml_file.name[len(filename_prefix) :]
+            else:
+                filename = xml_file.name
+        except AttributeError:
+            filename = xml_file.name
+
+        try:
+            self.filename = filename
             self.xml_tree = etree.parse(xml_file)
             self.root = self.strip_namespace(self.xml_tree.getroot())
         except etree.XMLSyntaxError as e:
