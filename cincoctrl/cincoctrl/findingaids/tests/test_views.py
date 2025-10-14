@@ -158,6 +158,7 @@ class TestFindingAidViews(TestCase):
             repository=self.repository,
             collection_title="Test Collection",
             collection_number="COLL_NUM",
+            ead_file=self.get_test_file("test_ead1.xml"),
         )
         pdf_file = self.get_test_file("test_pdf.pdf")
 
@@ -177,4 +178,7 @@ class TestFindingAidViews(TestCase):
 
         assert response.status_code == CREATED
         assert SupplementaryFile.objects.count() == 1
+        supp_file = SupplementaryFile.objects.first()
+        assert supp_file.finding_aid.ead_file.name == "ead/test_ead1.xml"
+
         index_mock.assert_called_once()
