@@ -2,6 +2,7 @@ import re
 from io import StringIO
 from pathlib import Path
 
+from django.db.models.fields.files import FieldFile
 from lxml import etree
 
 
@@ -23,7 +24,7 @@ class EADParser:
         etree.cleanup_namespaces(node)
         return node
 
-    def parse_file(self, xml_file):
+    def parse_file(self, xml_file: FieldFile):
         try:
             self.filename = xml_file.name
             self.xml_tree = etree.parse(xml_file)
@@ -32,7 +33,7 @@ class EADParser:
             msg = f"Could not parse XML file: {e}"
             raise EADParserError(msg) from None
 
-    def parse_string(self, xml_str, filename):
+    def parse_string(self, xml_str: bytes, filename: str):
         try:
             self.filename = filename
             self.xml_tree = None

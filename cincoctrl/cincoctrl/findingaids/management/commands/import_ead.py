@@ -47,7 +47,7 @@ class Command(BaseCommand):
             help="if the url points to an entire directory rather than a single EAD",
         )
 
-    def validate_ead(self, filename, text):
+    def validate_ead(self, filename: str, text: bytes):
         parser = EADParser()
         parser.parse_string(text, filename)
         parser.validate_required_fields()
@@ -120,7 +120,7 @@ class Command(BaseCommand):
                 ],
             )
 
-    def import_ead(self, url, filename, doc_url, repo_ark):
+    def import_ead(self, url: str, filename: str, doc_url: str, repo_ark: str):
         r = requests.get(url, allow_redirects=True, timeout=30)
         r.raise_for_status()
 
