@@ -11,6 +11,7 @@ from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import FindingAid
 from cincoctrl.findingaids.models import Language
 from cincoctrl.findingaids.models import SupplementaryFile
+from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.users.models import Repository
 from cincoctrl.users.models import User
 from cincoctrl.users.models import UserRole
@@ -62,6 +63,72 @@ class TestFindingAidViews(TestCase):
         assert response.status_code == OK
         assert FindingAid.objects.count() == 0
         index_mock.assert_not_called()
+
+    @mock.patch.object(FindingAid, "queue_index")
+    def test_resubmit_ead(self, index_mock):
+        # create a finding aid with a supplemental file
+        finding_aid = FindingAid.objects.create(
+            repository=self.repository,
+            collection_title="Title of the EAD",
+            collection_number="COLL_NUM",
+            ead_file=self.get_test_file("test_ead1.xml"),
+        )
+        pdf_file = self.get_test_file("test_pdf.pdf")
+
+        url = reverse("findingaids:attach_pdf", kwargs={"pk": finding_aid.pk})
+        data = {
+            "supplementaryfile_set-TOTAL_FORMS": "1",
+            "supplementaryfile_set-INITIAL_FORMS": "0",
+            "supplementaryfile_set-MIN_NUM_FORMS": "0",
+            "supplementaryfile_set-MAX_NUM_FORMS": "1000",
+            "supplementaryfile_set-0-title": "supp file 1",
+            "supplementaryfile_set-0-order": "0",
+            "supplementaryfile_set-0-id": "",
+            "supplementaryfile_set-0-finding_aid": finding_aid.pk,
+            "supplementaryfile_set-0-pdf_file": pdf_file,
+        }
+        response = self.client.post(url, data)
+
+        # assert supplemental file has been added
+        assert response.status_code == CREATED
+        assert SupplementaryFile.objects.count() == 1
+        assert SupplementaryFile.objects.first().finding_aid.pk == finding_aid.pk
+
+        # assert ead file content has been updated to include supplemental file
+        finding_aid.refresh_from_db()
+        with finding_aid.ead_file.open() as f:
+            p = EADParser()
+            p.parse_file(f)
+        other_findaids = p.parse_otherfindaids()
+        assert len(other_findaids) == 1
+        other_findaid = other_findaids[0]
+        assert other_findaid["text"] == "supp file 1"
+        assert other_findaid["href"].endswith("pdf/test_pdf.pdf")
+
+        # resubmit the same EAD file
+        url = reverse("findingaids:update_ead", kwargs={"pk": finding_aid.pk})
+        new_ead_file = self.get_test_file("test_ead1.xml")
+        data = {
+            "repository": self.repository.pk,
+            "ead_file": new_ead_file,
+        }
+        response = self.client.post(url, data)
+
+        # assert supplemental file still attached to finding aid object
+        assert response.status_code == CREATED
+        assert SupplementaryFile.objects.count() == 1
+        assert SupplementaryFile.objects.first().finding_aid.pk == finding_aid.pk
+
+        # assert ead file content still contains attached supplemental file
+        finding_aid.refresh_from_db()
+        with finding_aid.ead_file.open() as f:
+            p = EADParser()
+            p.parse_file(f)
+        other_findaids = p.parse_otherfindaids()
+        assert len(other_findaids) == 1
+        other_findaid = other_findaids[0]
+        assert other_findaid["text"] == "supp file 1"
+        assert other_findaid["href"].endswith("pdf/test_pdf.pdf")
 
     @mock.patch.object(FindingAid, "queue_index")
     def test_create_recordexpress(self, index_mock):
