@@ -15,7 +15,7 @@ from cincoctrl.findingaids.parser import EADParser
 
 
 @receiver(post_save, sender=FindingAid)
-def update_ead_warnings(sender, instance, created, **kwargs):
+def update_ead_warnings(sender, instance: FindingAid, created, **kwargs):
     if instance.ead_file.name:
         p = EADParser()
         with instance.ead_file.open("rb") as f:

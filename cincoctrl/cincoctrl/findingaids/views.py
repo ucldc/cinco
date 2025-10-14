@@ -1,8 +1,10 @@
 from dal.autocomplete import Select2QuerySetView
 from django.core.files.base import ContentFile
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
+from django.forms import ModelForm
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -84,7 +86,7 @@ class EADMixin:
         context["verb"] = self.verb
         return context
 
-    def extract_ead_fields(self, uploaded_file):
+    def extract_ead_fields(self, uploaded_file: InMemoryUploadedFile):
         file_content = b""
         for chunk in uploaded_file.chunks():
             file_content += chunk
@@ -94,7 +96,7 @@ class EADMixin:
         p.parse_string(file_content, uploaded_file.name)
         return p.extract_ead_fields()
 
-    def form_valid(self, form):
+    def form_valid(self, form: ModelForm):
         if "ead_file" in self.request.FILES:
             (
                 form.instance.collection_title,
