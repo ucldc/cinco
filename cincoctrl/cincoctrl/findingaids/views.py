@@ -1,5 +1,4 @@
 from dal.autocomplete import Select2QuerySetView
-from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
@@ -103,8 +102,13 @@ class EADMixin:
                 form.instance.collection_number,
                 form.instance.ark,
             ) = self.extract_ead_fields(self.request.FILES["ead_file"])
+
+        response = super().form_valid(form)  # save the model(s) first
+        if form.instance.ead_file.name:
+            form.instance.update_ead_with_supplementary_files()
+
         form.instance.queue_index()
-        return super().form_valid(form)
+        return response
 
 
 class FindingAidCreateView(EADMixin, UserHasAnyRoleMixin, CreateView):
@@ -258,6 +262,8 @@ class PublishRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
+        if obj.ead_file.name:
+            obj.update_ead_with_supplementary_files()
         obj.queue_index(force_publish=True)
         return obj
 
@@ -271,6 +277,8 @@ class PreviewRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
+        if obj.ead_file.name:
+            obj.update_ead_with_supplementary_files()
         obj.queue_index()
         return obj
 
@@ -302,30 +310,13 @@ class AttachPDFView(UserCanAccessRecordMixin, UpdateView):
 
         context["formset"].save()
 
-        fa = form.instance
-        if fa.ead_file.name:
-            filename_prefix = fa.ead_file.field.upload_to
-            if fa.ead_file.name.startswith(filename_prefix):
-                filename = fa.ead_file.name[len(filename_prefix) :]
-            else:
-                filename = fa.ead_file.name
-
-            with fa.ead_file.open("rb") as x:
-                content = x.read()
-            parser = EADParser()
-            parser.parse_string(content, filename)
-            parser.update_otherfindaids(
-                [
-                    {"url": f.pdf_file.url, "text": f.title}
-                    for f in fa.supplementaryfile_set.all()
-                ],
-            )
-            fa.ead_file = ContentFile(
-                parser.to_string(),
-                name=filename,
-            )
-        fa.queue_index()
-        return super().form_valid(form)
+        response = super().form_valid(form)  # save the model first
+        if form.instance.ead_file.name:
+            updated = form.instance.update_ead_with_supplementary_files()
+            if updated:
+                print("queuing reindex in AttachPDFView::form_valid")  # noqa: T201
+                form.instance.queue_index()
+        return response
 
 
 attach_pdf = AttachPDFView.as_view()
