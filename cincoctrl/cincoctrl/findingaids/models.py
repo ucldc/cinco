@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models import CharField
@@ -208,6 +209,42 @@ class FindingAid(models.Model):
         if self.ead_file:
             return Path(self.ead_file.name).name
         return self.collection_number
+
+    def update_ead_with_supplementary_files(self) -> bool:
+        if not self.ead_file.name:
+            return False
+
+        with self.ead_file.open("rb") as file:
+            parser = EADParser()
+            parser.parse_file(file)
+
+        supplementary_files = [
+            (sf.title, sf.pdf_file.url) for sf in self.supplementaryfile_set.all()
+        ]
+        ead_file_otherfindaids = [
+            (ofa["text"], ofa["href"]) for ofa in parser.parse_otherfindaids()
+        ]
+        additional_files = set(supplementary_files) - set(ead_file_otherfindaids)
+
+        if additional_files:
+            parser.update_otherfindaids(
+                [{"text": text, "url": href} for text, href in additional_files],
+            )
+
+            filename_prefix = self.ead_file.field.upload_to
+            if self.ead_file.name.startswith(filename_prefix):
+                filename = self.ead_file.name[len(filename_prefix) :]
+            else:
+                filename = self.ead_file.name
+
+            self.ead_file = ContentFile(
+                parser.to_string(),
+                name=filename,
+            )
+            self.save()
+            return True
+
+        return False
 
     def queue_status(self, *, force_publish=False):
         if force_publish or "publish" in self.status:
