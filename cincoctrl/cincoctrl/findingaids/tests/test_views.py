@@ -65,6 +65,60 @@ class TestFindingAidViews(TestCase):
         index_mock.assert_not_called()
 
     @mock.patch.object(FindingAid, "queue_index")
+    def test_attach_multiple_pdfs_index_once(self, index_mock):
+        finding_aid = FindingAid.objects.create(
+            repository=self.repository,
+            collection_title="Test Collection",
+            collection_number="COLL_NUM",
+            ead_file=self.get_test_file("test_ead1.xml"),
+        )
+        pdf_file1 = self.get_test_file("test_pdf.pdf")
+        pdf_file2 = self.get_test_file("test_pdf2.pdf")
+
+        url = reverse("findingaids:attach_pdf", kwargs={"pk": finding_aid.pk})
+        data = {
+            "supplementaryfile_set-TOTAL_FORMS": "2",
+            "supplementaryfile_set-INITIAL_FORMS": "0",
+            "supplementaryfile_set-MIN_NUM_FORMS": "0",
+            "supplementaryfile_set-MAX_NUM_FORMS": "1000",
+            "supplementaryfile_set-0-title": "supp file 1",
+            "supplementaryfile_set-0-order": "0",
+            "supplementaryfile_set-0-id": "",
+            "supplementaryfile_set-0-finding_aid": finding_aid.pk,
+            "supplementaryfile_set-0-pdf_file": pdf_file1,
+            "supplementaryfile_set-1-title": "supp file 2",
+            "supplementaryfile_set-1-order": "1",
+            "supplementaryfile_set-1-id": "",
+            "supplementaryfile_set-1-finding_aid": finding_aid.pk,
+            "supplementaryfile_set-1-pdf_file": pdf_file2,
+        }
+        response = self.client.post(url, data)
+
+        assert response.status_code == CREATED
+        assert SupplementaryFile.objects.count() == 2  # noqa: PLR2004
+        supp_file1 = SupplementaryFile.objects.filter(title="supp file 1").first()
+        supp_file2 = SupplementaryFile.objects.filter(title="supp file 2").first()
+        assert supp_file1.finding_aid.ead_file.name.startswith("ead/test_ead1")
+        assert supp_file2.finding_aid.ead_file.name.startswith("ead/test_ead1")
+
+        # parse ead file and check for both attached pdfs
+        finding_aid.refresh_from_db()
+        assert finding_aid.supplementaryfile_set.count() == 2  # noqa: PLR2004
+        with finding_aid.ead_file.open() as f:
+            p = EADParser()
+            p.parse_file(f)
+        other_findaids = p.parse_otherfindaids()
+        assert len(other_findaids) == 2  # noqa: PLR2004
+        texts = [of["text"] for of in other_findaids]
+        hrefs = [of["href"] for of in other_findaids]
+        assert "supp file 1" in texts
+        assert "supp file 2" in texts
+        assert any(href.endswith("pdf/test_pdf.pdf") for href in hrefs)
+        assert any(href.endswith("pdf/test_pdf2.pdf") for href in hrefs)
+
+        index_mock.assert_called_once()
+
+    @mock.patch.object(FindingAid, "queue_index")
     def test_resubmit_ead(self, index_mock):
         # create a finding aid with a supplemental file
         finding_aid = FindingAid.objects.create(
@@ -93,6 +147,7 @@ class TestFindingAidViews(TestCase):
         assert response.status_code == CREATED
         assert SupplementaryFile.objects.count() == 1
         assert SupplementaryFile.objects.first().finding_aid.pk == finding_aid.pk
+        assert index_mock.call_count == 1
 
         # assert ead file content has been updated to include supplemental file
         finding_aid.refresh_from_db()
@@ -129,6 +184,8 @@ class TestFindingAidViews(TestCase):
         other_findaid = other_findaids[0]
         assert other_findaid["text"] == "supp file 1"
         assert other_findaid["href"].endswith("pdf/test_pdf.pdf")
+        # once for initial attach, once for resubmit
+        assert index_mock.call_count == 2  # noqa: PLR2004
 
     @mock.patch.object(FindingAid, "queue_index")
     def test_create_recordexpress(self, index_mock):
