@@ -25,4 +25,4 @@ jobs:
           github-token: ${{ secrets.AMY_ADD_TO_PROJECT_TOKEN }}
           item-id: ${{ steps.add-project.outputs.itemId }}
           field-keys: Status,Service
-          field-values: Up next 📚,OAC
+          field-values: Ready for review 👀,OAC
