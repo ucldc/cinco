@@ -68,6 +68,11 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 "--s3-key",
                 s3_key,
             ]
+        elif manage_cmd == "mark_unpublished":
+            manage_args = [
+                "--ark",
+                finding_aid_ark,
+            ]
 
         container_name = f"cinco-ctrl-{cinco_environment}-container"
         # TODO: specify task definition revision? how?
@@ -166,6 +171,11 @@ class CincoCtrlDockerOperator(DockerOperator):
             manage_args = [
                 "--s3-key",
                 s3_key,
+            ]
+        elif manage_cmd == "mark_unpublished":
+            manage_args = [
+                "--ark",
+                finding_aid_ark,
             ]
 
         # set in startup.sh, path to cinco/cincoctrl on local
