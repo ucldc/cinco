@@ -29,6 +29,9 @@ class Command(BaseCommand):
         for line in body.splitlines():
             ark, repo_code = line.split(",")
             ark = ark.strip()
-            f = FindingAid.objects.get(ark=ark)
-            f.delete()
-            self.stdout.write(f"Deleted finding aid {ark}")
+            try:
+                f = FindingAid.objects.get(ark=ark)
+                f.delete()
+                self.stdout.write(f"Deleted finding aid {ark}")
+            except FindingAid.DoesNotExist:
+                self.stdout.write(f"Finding aid {ark} does not exist")

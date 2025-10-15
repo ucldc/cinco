@@ -17,6 +17,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         ark = options.get("ark")
-        f = FindingAid.objects.get(ark=ark)
-        f.delete()
-        self.stdout.write(f"Deleted finding aid {ark}")
+        try:
+            f = FindingAid.objects.get(ark=ark)
+            f.delete()
+            self.stdout.write(f"Deleted finding aid {ark}")
+        except FindingAid.DoesNotExist:
+            self.stdout.write(f"Finding aid {ark} does not exist")
