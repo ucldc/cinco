@@ -2,7 +2,7 @@ from datetime import datetime
 from airflow.decorators import dag
 from airflow.models.param import Param
 
-# from cinco.cincoctrl_operator import CincoCtrlOperator
+from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
 
 
@@ -38,14 +38,14 @@ def unpublish_finding_aid():
     )
     remove_from_index
 
-    # mark_unpublished = CincoCtrlOperator(
-    #     task_id="mark_unpublished",
-    #     manage_cmd="mark_unpublished",
-    #     finding_aid_ark="{{ params.finding_aid_ark }}",
-    #     cinco_environment="{{ params.cinco_environment }}",
-    # )
+    mark_unpublished = CincoCtrlOperator(
+        task_id="mark_unpublished",
+        manage_cmd="mark_unpublished",
+        finding_aid_ark="{{ params.finding_aid_ark }}",
+        cinco_environment="{{ params.cinco_environment }}",
+    )
 
-    # remove_from_index >> mark_unpublished
+    remove_from_index >> mark_unpublished
 
 
 unpublish_finding_aid = unpublish_finding_aid()
