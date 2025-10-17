@@ -1299,6 +1299,18 @@ cesc:
     thumbnail_url: ""
     latitude: 33.12071
     longitude: -117.079282
+CSjE:
+    name: "Evergreen Valley College (San Jose)"
+    description: "Since September 3, 1975, Evergreen Valley College has been serving students on the Eastside of San Jose as one of two community colleges in San Jose. When it first opened, a two-lane country road ran by campus, and it did not even connect to Highway 101. As the city of San Jose has grown, so has EVC. Today with over 9000 students per semester it has expanded educational opportunities for students of all backgrounds."
+    contact_html: |
+        <div class="al-repository-contact-phone">(408) 531-6179</div>
+        <div class="al-repository-contact-info"><a href="https://www.evc.edu/50" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">3095 Yerba Buena Rd.</div>
+        <div class="al-repository-street-address-city_state_zip_country">San Jose, CA 95135, US</div>
+    thumbnail_url: ""
+    latitude: 37.301309
+    longitude: -121.762635
 casjfs:
     name: "Forever Saroyan, LLC"
     description: "An archive of the memories &amp; legacies of the Saroyan and Minasian families."
@@ -2335,6 +2347,19 @@ CaNAFRC:
     thumbnail_url: ""
     latitude: 34.94934
     longitude: -117.896606
+CNa:
+    name: "National City Public Library"
+    description: "Recognizing the cultural, linguistic and economic diversity of our community, the National City Public Library serves the informational, educational, social and recreational needs of all the residents of the community. We support lifelong learning, personal enrichment and empowerment by providing access to a variety of materials and current technology, a courteous and expert staff, and a friendly environment that contributes to the quality of life in National City."
+    contact_html: |
+        <div class="al-repository-contact-phone">(619) 470-5800</div>
+        <div class="al-repository-contact-info"><a href="mailto:localhistory@nationalcityca.gov">localhistory@nationalcityca.gov</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.nationalcityca.gov/government/library/local-history" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">1243 National City Blvd.</div>
+        <div class="al-repository-street-address-city_state_zip_country">National City, CA 91950, US</div>
+    thumbnail_url: ""
+    latitude: 32.671973
+    longitude: -117.10485
 cncl:
     name: "Nevada County Libraries, Doris Foley Library for Historical Research"
     description: ""
@@ -3803,8 +3828,8 @@ cto:
     description: "Our Special Collections provide access to a rich collection of materials that support research and enjoyment of the history of the Conejo Valley.   The Local History Collection has more than 1,800 published books and pamphlets, covering approximately 1875 to the present. In addition, the collection includes extensive subject files, biographical files, maps, oral histories, photographs, and other materials documenting the area."
     contact_html: |
         <div class="al-repository-contact-phone">805-449-2660 Option 5</div>
-        <div class="al-repository-contact-info"><a href="mailto:Library@toaks.org">Library@toaks.org</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.tolibrary.org/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:Jberard@tolibrary.org">Jberard@tolibrary.org</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.tolibrary.org/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">1401 E. Janss Road</div>
         <div class="al-repository-street-address-city_state_zip_country">Thousand Oaks, CA 91362, US</div>
