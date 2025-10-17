@@ -12,7 +12,7 @@ class SolrDocument
     #   - app/helpers/application_helper.rb hierarchy_solr_document_path
     #   - app/helpers/application_helper.rb static_finding_aid_path
     #   - app/helpers/application_helper.rb solr_document_path
-    Rails.logger.info("SolrDocument to_param called for ID: #{self.id}")
+    # Rails.logger.debug("SolrDocument to_param called for ID: #{self.id}")
     if self.id.to_s.start_with?("ark:")
       self.id.to_s
     else
