@@ -98,4 +98,8 @@ module ApplicationHelper
     end
     encoded_path
   end
+
+  def rewrite_any_ark_path(path)
+    path.include?("ark:") ? path.gsub("%2F", "/") : path
+  end
 end
