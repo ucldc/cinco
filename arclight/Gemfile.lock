@@ -538,6 +538,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rack-mini-profiler
   rails (~> 7.2.2)
+  request_store
   rsolr (>= 1.0, < 3)
   rspec-rails (~> 6.0.0)
   rubocop-rails-omakase
