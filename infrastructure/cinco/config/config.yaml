@@ -3,7 +3,7 @@ region: us-west-2
 sceptre_user_data_inheritance: merge
 sceptre_user_data:
   stack_parameters: !stack_attr parameters
-  cinco_version: v1.0.21
+  cinco_version: v1.0.22
 stack_tags:
   Program: 'pad'
   Team: 'dsc'
