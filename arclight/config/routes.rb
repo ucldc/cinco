@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  match "/404", to: "errors#not_found", via: :all
+  match "/404", to: "errors#not_found", via: :all, format: false
 
   # for oac4 static pages
   get "default/css/default.css" => redirect("/oac4_default.css")
