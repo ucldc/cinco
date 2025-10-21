@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get "/view", to: redirect("/", status: 301)
 
   # METS objects redirects
-  get "/ark:/*id", to: "arks#calisphere"
+  get "/ark:/*id", to: "arks#calisphere", format: false
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
