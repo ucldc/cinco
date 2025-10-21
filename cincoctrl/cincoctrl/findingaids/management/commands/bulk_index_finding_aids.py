@@ -3,13 +3,19 @@ To kick off a bulk indexing job, run:
     python manage.py bulk_index_finding_aids
 
 Arguments:
---finding-aid-ids: a list of finding aid ids to index. one of
-    either --finding-aid-ids or --repository-id is required
---repository-id: will index all finding aids related to this
-    repository, either this, or a list of finding aid ids is required
+--finding-aid-ids: a list of finding aid ids to index. If any filters
+    are provided, the filters will be applied to this list. If no finding
+    aid ids are provided, filters will be applied to set of all finding aids.
+--filters: [optional] one or more filter queries to apply to the finding
+    aids specified by --finding-aid-ids, or to all finding aids if no
+    finding aid ids are provided. Format is FIELD_LOOKUP=VALUE(S), e.g.,
+    --filters repository_id=1 status=published or
+    --filters repository_id__in=[1,2,3] status__in=['published','previewed']
+    (see Django Queryset filter() documentation for details on field lookups:
+    https://docs.djangoproject.com/en/5.2/ref/models/querysets/#filter)
 --s3-key: [optional] s3 key to customize where the job's working
     files are stored, will use {settings.AWS_STORAGE_BUCKET_NAME}/media/
-    (defined in django settings), followed by {s3_key}, by default:
+    (defined in django settings), followed by {s3_key}. Default:
     {AWS_STORAGE_BUCKET_NAME}/media/indexing/bulk/{now}
 --force-publish: [optional] if True, will force publish all finding aids,
     default is False.
@@ -21,12 +27,14 @@ and triggers the bulk_index_finding_aids dag with the s3 prefix of the
 job's working files as the argument.
 """
 
+import ast
 import logging
 import math
 from datetime import UTC
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import FieldError
 from django.core.management.base import BaseCommand
 from django.db.models import QuerySet
 
@@ -39,6 +47,17 @@ from cincoctrl.findingaids.models import FindingAid
 logger = logging.getLogger(__name__)
 
 
+class InvalidFilterError(Exception):
+    def __init__(self, filter_argument, message=None):
+        doc_link = "https://docs.djangoproject.com/en/5.2/ref/models/querysets/#filter"
+        default_message = (
+            f"Error applying filters: Cannot resolve '{filter_argument}' into a "
+            f"FIELD_LOOKUP=VALUE pair\n  See {doc_link} for details on field lookups."
+        )
+        self.message = message or default_message
+        super().__init__(self.message)
+
+
 class Command(BaseCommand):
     help = (
         "Prepare the specified finding aids for indexing - specify finding "
@@ -46,31 +65,27 @@ class Command(BaseCommand):
     )
 
     def add_arguments(self, parser):
-        # Must provide either --repository or --finding-aid-ids, but not both
-        group = parser.add_mutually_exclusive_group(required=True)
-        group.add_argument(
-            "--repository",
-            nargs="?",
-            default=None,
-            type=int,
-            metavar="REPOSITORY ID",
-            help="Specify Finding Aids to prepare for indexing by repository id",
-        )
-        group.add_argument(
+        parser.add_argument(
             "--finding-aid-ids",
             nargs="*",
             default=None,
             type=int,
             metavar="finding-aid-id",
-            help="List of Finding Aid IDs to prepare for indexing",
+            help="Optional list of Finding Aid IDs to prepare for indexing",
         )
         parser.add_argument(
-            "--status",
-            nargs="?",
+            "--filters",
+            nargs="*",
             default=None,
             type=str,
-            metavar="STATUS",
-            help="Specify the status of the Finding aids to prepare for indexing",
+            metavar="FILTER_FIELD=FILTER_VALUE(S)",
+            help=(
+                "Set one or more filter queries on finding aid IDs provided, "
+                "or on set of all finding aids, e.g., "
+                "--filters repository_id=1 status=published or "
+                "--filters repository_id__in=[1,2,3] "
+                "status__in=['published','previewed']"
+            ),
         )
         parser.add_argument(
             "-s3",
@@ -92,23 +107,50 @@ class Command(BaseCommand):
             action="store_true",
         )
 
+    def create_queryset(self, finding_aid_ids, filters_argument) -> QuerySet:
+        if finding_aid_ids:
+            finding_aids = FindingAid.objects.filter(id__in=finding_aid_ids)
+            msg = (
+                f"Searching: {len(finding_aid_ids)} finding aids by ID -> "
+                f"{finding_aids.count()} found."
+            )
+        else:
+            finding_aids = FindingAid.objects.all()
+            msg = "Searching: all finding aids, no finding aid IDs provided."
+        self.stdout.write(msg)
+
+        filters = {}
+        for filter_argument in filters_argument:
+            if filter_argument.count("=") != 1:
+                raise InvalidFilterError(filter_argument)
+            field_lookup, value = filter_argument.split("=")
+            if value.startswith("["):
+                value = ast.literal_eval(value)
+            filters[field_lookup] = value
+        msg = f"Filtering: {finding_aids.count()} finding aids for {filters}"
+        finding_aids = finding_aids.filter(**filters)
+        msg += f" -> {finding_aids.count()} found."
+        self.stdout.write(msg)
+        return finding_aids
+
     def handle(self, *args, **kwargs):
-        s3_key = kwargs.get("s3_key")
-        repository_id = kwargs.get("repository")
-        status = kwargs.get("status")
         finding_aid_ids = kwargs.get("finding_aid_ids")
+        filters_argument = kwargs.get("filters") or []
+        try:
+            finding_aids = self.create_queryset(finding_aid_ids, filters_argument)
+        except InvalidFilterError as e:
+            self.stdout.write(str(e))
+            return
+        except FieldError as e:
+            self.stdout.write(f"Error applying filters: {e}")
+            return
+
+        s3_key = kwargs.get("s3_key")
         max_num_records = kwargs.get("max_num_records")
         force_publish = kwargs.get("force_publish")
 
-        if repository_id:
-            finding_aids = FindingAid.objects.filter(repository_id=repository_id)
-        elif finding_aid_ids:
-            finding_aids = FindingAid.objects.filter(id__in=finding_aid_ids)
-
-        if status:
-            finding_aids = finding_aids.filter(status=status)
-
         count = finding_aids.count()
+        self.stdout.write(f"{count} finding aids to index.")
 
         if max_num_records and count > max_num_records:
             id_list = list(finding_aids.values_list("pk", flat=True))
@@ -126,7 +168,7 @@ class Command(BaseCommand):
                     force_publish=force_publish,
                     s3_key=s3_key,
                 )
-        else:
+        elif count > 0:
             self.stdout.write(
                 f"Bulk indexing {finding_aids.count()} finding aids",
             )
@@ -135,6 +177,8 @@ class Command(BaseCommand):
                 force_publish=force_publish,
                 s3_key=s3_key,
             )
+        else:
+            self.stdout.write("No finding aids to index, exiting.")
 
 
 def bulk_index_finding_aids(
