@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Ensure Faraday is available before defining the middleware
+require "faraday"
+
 # RSolr Documentation: https://github.com/rsolr/rsolr/tree/v2.6.0
 # Faraday Middleware Documentation: https://lostisland.github.io/faraday/#/middleware/index
 # X-Trace-Id Header Documentation: https://solr.apache.org/guide/solr/latest/deployment-guide/distributed-tracing.html
