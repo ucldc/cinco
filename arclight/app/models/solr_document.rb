@@ -28,4 +28,11 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  attribute :title_filing, :string, 'title_filing_ssi'
+
+  def collection_name
+    collection&.title_filing
+  end
+
 end
