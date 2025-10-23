@@ -3964,7 +3964,7 @@ berkeley_esl:
     description: "The Library comprises the Asian American Studies Collections, the Chicano Studies Collection, the Comparative Ethnic Studies Collection and the Native American Studies Collection."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 643-1234</div>
-        <div class="al-repository-contact-info"><a href="mailto:esl@library.berkeley.edu">esl@library.berkeley.edu</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:esl-library@berkeley.edu">esl-library@berkeley.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://eslibrary.berkeley.edu/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">University of California, Berkeley, Dept. of Ethnic Studies, 30 Stephens Hall #2630</div>
