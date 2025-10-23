@@ -267,7 +267,7 @@ ccr:
     latitude: 34.116024
     longitude: -117.71907
 cocac:
-    name: "California College of the Arts Libraries "
+    name: "California College of the Arts Libraries"
     description: "The California College of the Arts Libraries are located in San Francisco and support the curriculum of the art, design, and architecture school. Their collections house not only thousands of books, periodicals, and videos but also unique materials such as slides, CCA theses, material samples, artists&#x27; books, a seed library, and science equipment.  CCA Libraries&#x27; contributions to Calisphere come via their VAULT digital archive. VAULT preserves the creative and intellectual output of the college, as well as several digitized special collections. The archive includes historical materials related to the college, photographs of exhibitions and events, the Capp Street Project Archive, the Robert Sommer Mudflats Collection, the Hamaguchi Study Print Collection, and the Joseph C. Sinel Collection."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 703-9574</div>
@@ -275,7 +275,7 @@ cocac:
         <div class="al-repository-contact-info"><a href="https://libraries.cca.edu/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Simpson Library</div>
-        <div class="al-repository-street-address-address2">1111 8th Street</div>
+        <div class="al-repository-street-address-address2">145 Hooper Street</div>
         <div class="al-repository-street-address-city_state_zip_country">San Francisco, CA 94107, US</div>
     thumbnail_url: ""
     latitude: 37.762902
@@ -3964,7 +3964,7 @@ berkeley_esl:
     description: "The Library comprises the Asian American Studies Collections, the Chicano Studies Collection, the Comparative Ethnic Studies Collection and the Native American Studies Collection."
     contact_html: |
         <div class="al-repository-contact-phone">(510) 643-1234</div>
-        <div class="al-repository-contact-info"><a href="mailto:esl@library.berkeley.edu">esl@library.berkeley.edu</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:esl-library@berkeley.edu">esl-library@berkeley.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://eslibrary.berkeley.edu/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">University of California, Berkeley, Dept. of Ethnic Studies, 30 Stephens Hall #2630</div>
