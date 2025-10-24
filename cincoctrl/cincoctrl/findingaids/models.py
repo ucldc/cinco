@@ -82,6 +82,7 @@ class FindingAid(models.Model):
         default="started",
         choices=STATUSES,
     )  # system-set
+    ead_filesize = IntegerField(null=True, blank=True)  # auto-assigned
     date_created = DateTimeField(auto_now_add=True)  # auto-assigned
     date_updated = DateTimeField(auto_now=True)  # auto-updated
 
@@ -102,6 +103,8 @@ class FindingAid(models.Model):
                 self.ark = str(uuid.uuid4())
             else:
                 self.ark = self.mint_cdl_ark()
+        if self.ead_file and self.ead_file.size:
+            self.ead_filesize = self.ead_file.size
 
         super().save(*args, **kwargs)
 
