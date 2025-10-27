@@ -5,11 +5,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from cincoctrl.airflow_client.models import JobRun
-from cincoctrl.airflow_client.models import JobTrigger
 from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
-from cincoctrl.findingaids.management.commands.bulk_index_finding_aids import (
-    bulk_index_finding_aids,
-)
 from cincoctrl.findingaids.models import ExpressRecord
 from cincoctrl.findingaids.models import ExpressRecordCreator
 from cincoctrl.findingaids.models import ExpressRecordSubject
@@ -159,20 +155,37 @@ class FindingAidAdmin(admin.ModelAdmin):
         else:
             self.message_user(request, "Airflow is not enabled.", messages.ERROR)
 
-    @admin.action(description="Bulk index selected finding aids")
-    def bulk_index_action(self, request, queryset):
-        job_trigger = bulk_index_finding_aids(queryset)
+    @admin.action(description="Index selected finding aids")
+    def index_finding_aid_action(self, request, queryset):
+        if settings.ENABLE_AIRFLOW:
+            airflow_urls = []
+            for finding_aid in queryset:
+                airflow_url = finding_aid.queue_index()
+                airflow_urls.append(airflow_url)
 
-        message = job_trigger
-        if isinstance(job_trigger, JobTrigger):
-            change_url = reverse(
-                "admin:airflow_client_jobtrigger_change",
-                args=(job_trigger.id,),
+            airflow_urls = "\n".join(airflow_urls)
+            self.message_user(
+                request,
+                f"Indexing {queryset.count()} finding aids.\n{airflow_urls}",
+                messages.SUCCESS,
             )
-            link_str = f'Job <a href="{change_url}">{job_trigger}</a> triggered'
-            message = mark_safe(link_str)  # noqa: S308
+        else:
+            self.message_user(request, "Airflow is not enabled.", messages.ERROR)
 
-        self.message_user(request, message, messages.SUCCESS)
+    # @admin.action(description="Bulk index selected finding aids")
+    # def bulk_index_action(self, request, queryset):
+    #     job_trigger = bulk_index_finding_aids(queryset)
+
+    #     message = job_trigger
+    #     if isinstance(job_trigger, JobTrigger):
+    #         change_url = reverse(
+    #             "admin:airflow_client_jobtrigger_change",
+    #             args=(job_trigger.id,),
+    #         )
+    #         link_str = f'Job <a href="{change_url}">{job_trigger}</a> triggered'
+    #         message = mark_safe(link_str)
+
+    #     self.message_user(request, message, messages.SUCCESS)
 
 
 class ExpressRecordCreatorInline(admin.TabularInline):

@@ -261,14 +261,18 @@ class FindingAid(models.Model):
         logger.info("update status for %s: %s", self.ark, self.status)
         return action
 
-    def queue_index(self, *, force_publish=False):
+    def queue_index(self, *, force_publish=False) -> str | None:
+        # always update EAD with any supplementary files before indexing
+        if self.ead_file.name:
+            self.update_ead_with_supplementary_files()
+
         if self.repository.auto_index:
             action = self.queue_status(force_publish=force_publish)
             logger.info("queue index for %s: %s", self.ark, action)
 
             if settings.ENABLE_AIRFLOW:
                 ark_name = self.ark.replace("/", ":")
-                trigger_dag(
+                return trigger_dag(
                     "index_finding_aid",
                     {
                         "finding_aid_id": self.id,
@@ -285,6 +289,7 @@ class FindingAid(models.Model):
                     related_models=[self],
                     dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
                 )
+        return None
 
 
 class IndexingHistory(models.Model):

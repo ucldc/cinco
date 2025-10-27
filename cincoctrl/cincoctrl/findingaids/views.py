@@ -104,9 +104,6 @@ class EADMixin:
             ) = self.extract_ead_fields(self.request.FILES["ead_file"])
 
         response = super().form_valid(form)  # save the model(s) first
-        if form.instance.ead_file.name:
-            form.instance.update_ead_with_supplementary_files()
-
         form.instance.queue_index()
         return response
 
@@ -262,8 +259,6 @@ class PublishRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
-        if obj.ead_file.name:
-            obj.update_ead_with_supplementary_files()
         obj.queue_index(force_publish=True)
         return obj
 
@@ -277,8 +272,6 @@ class PreviewRecordView(UserCanAccessRecordMixin, DetailView):
 
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
-        if obj.ead_file.name:
-            obj.update_ead_with_supplementary_files()
         obj.queue_index()
         return obj
 
