@@ -106,7 +106,6 @@ class EADMixin:
         response = super().form_valid(form)  # save the model(s) first
         if form.instance.ead_file.name:
             form.instance.update_ead_with_supplementary_files()
-
         form.instance.queue_index()
         return response
 
