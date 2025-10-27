@@ -39,7 +39,11 @@ Resources:
               HTTPPort: 80
               HTTPSPort: 443
               OriginProtocolPolicy: http-only
+              {% if origin.OriginReadTimeout is defined %}
+              OriginReadTimeout: {{ origin.OriginReadTimeout }}
+              {% else %}
               OriginReadTimeout: 30
+              {% end %}
               OriginKeepaliveTimeout: 5
               OriginSSLProtocols:
                 - TLSv1.2
