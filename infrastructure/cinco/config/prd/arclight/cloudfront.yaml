@@ -9,6 +9,7 @@ sceptre_user_data:
   origins:
     - name: arclight
       DomainName: !stack_output_external cinco-prd-arclight-app::LoadBalancerDNS
+      OriginReadTimeout: 90
     - name: s3-cinco-prd-arclight_assets
       DomainName: cinco-prd.s3.us-west-2.amazonaws.com
       OriginPath: /arclight_assets
