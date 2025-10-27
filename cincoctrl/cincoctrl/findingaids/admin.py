@@ -111,6 +111,11 @@ class FindingAidAdmin(admin.ModelAdmin):
                     },
                     related_models=[finding_aid],
                     dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
+                    dag_note=(
+                        f"Unpublishing {finding_aid.ark} "
+                        f"from {finding_aid.repository.name} "
+                        f"({finding_aid.repository.code})"
+                    ),
                     track_dag=False,
                 )
                 airflow_urls.append(airflow_url)
@@ -135,6 +140,10 @@ class FindingAidAdmin(admin.ModelAdmin):
                         "repository_code": finding_aid.repository.code,
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
+                    dag_note=(
+                        f"Deleting {finding_aid.ark} from {finding_aid.repository.name}"
+                        f" ({finding_aid.repository.code})"
+                    ),
                     related_models=[finding_aid],
                     dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__bulk",
                     track_dag=False,

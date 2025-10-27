@@ -278,6 +278,10 @@ class FindingAid(models.Model):
                         "preview": action,
                         "cinco_environment": settings.CINCO_ENVIRONMENT,
                     },
+                    dag_note=(
+                        f"Indexing {self.ark} from {self.repository.name} "
+                        f"({self.repository.code})"
+                    ),
                     related_models=[self],
                     dag_run_prefix=f"{settings.AIRFLOW_PROJECT_NAME}__{ark_name}",
                 )
