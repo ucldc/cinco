@@ -39,18 +39,18 @@ def trigger_dag(  # noqa: PLR0913
     client,
     related_models=None,
     dag_run_prefix=None,
+    dag_note=None,
     *,
     track_dag=True,
 ):
+    note = f"Triggered using InvokeRestApi from {settings.AIRFLOW_PROJECT_NAME}"
     request_params = {
         "Name": env_name,
         "Path": f"/dags/{dag}/dagRuns",
         "Method": "POST",
         "Body": {
             "conf": dag_conf,
-            "note": (
-                f"Triggered using InvokeRestApi from {settings.AIRFLOW_PROJECT_NAME}"
-            ),
+            "note": f"{dag_note} | {note}" if dag_note else note,
         },
     }
     if dag_run_prefix:
