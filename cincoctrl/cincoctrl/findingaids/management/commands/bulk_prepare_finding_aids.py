@@ -1,6 +1,6 @@
 """
-To kick off a bulk indexing job, run:
-    python manage.py bulk_index_finding_aids
+To prepare finding aids for indexing in bulk, run:
+    python manage.py bulk_prepare_finding_aids
 
 Arguments:
 --finding-aid-ids: a list of finding aid ids to index. If any filters
@@ -163,7 +163,7 @@ class Command(BaseCommand):
                 self.stdout.write(
                     f"Bulk indexing batch of {batch.count()} finding aids",
                 )
-                bulk_index_finding_aids(
+                bulk_prepare_finding_aids(
                     batch,
                     force_publish=force_publish,
                     s3_key=s3_key,
@@ -172,7 +172,7 @@ class Command(BaseCommand):
             self.stdout.write(
                 f"Bulk indexing {finding_aids.count()} finding aids",
             )
-            bulk_index_finding_aids(
+            bulk_prepare_finding_aids(
                 finding_aids,
                 force_publish=force_publish,
                 s3_key=s3_key,
@@ -181,7 +181,7 @@ class Command(BaseCommand):
             self.stdout.write("No finding aids to index, exiting.")
 
 
-def bulk_index_finding_aids(
+def bulk_prepare_finding_aids(
     finding_aids: QuerySet,
     *,
     force_publish: bool = False,
