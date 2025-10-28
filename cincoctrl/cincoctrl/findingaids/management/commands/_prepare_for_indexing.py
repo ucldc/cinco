@@ -76,11 +76,3 @@ def prepare_finding_aid(finding_aid, s3_key):
             )
 
     return s3_key
-
-
-def bulk_prep_finding_aids(finding_aids, s3_key):
-    for finding_aid in finding_aids:
-        prepare_finding_aid(
-            finding_aid,
-            f"{s3_key}/{finding_aid.id}",
-        )
