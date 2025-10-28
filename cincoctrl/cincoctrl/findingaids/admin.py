@@ -174,7 +174,7 @@ class FindingAidAdmin(admin.ModelAdmin):
 
     # @admin.action(description="Bulk index selected finding aids")
     # def bulk_index_action(self, request, queryset):
-    #     job_trigger = bulk_index_finding_aids(queryset)
+    #     job_trigger = bulk_prepare_finding_aids(queryset)
 
     #     message = job_trigger
     #     if isinstance(job_trigger, JobTrigger):
