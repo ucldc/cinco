@@ -30,9 +30,14 @@ class SolrDocument
   use_extension(Blacklight::Document::DublinCore)
 
   attribute :title_filing, :string, 'title_filing_ssi'
+  attribute :unittitle, :string, 'unittitle_ssm'
 
   def collection_name
-    collection&.title_filing
+    if collection&.title_filing
+      collection&.title_filing
+    else
+      collection&.unittitle
+    end
   end
 
 end
