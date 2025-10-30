@@ -80,6 +80,8 @@ class CatalogController < ApplicationController
     config.index.document_component = Arclight::SearchResultComponent
     config.index.group_component = Arclight::GroupComponent
     config.index.constraints_component = Arclight::ConstraintsComponent
+    # NOTE: To configure the title field for search results,
+    #       modify app/presenters/oac_index_presenter.rb#heading
     config.index.document_presenter_class = OacIndexPresenter
     config.index.search_bar_component = Arclight::SearchBarComponent
     # config.index.thumbnail_field = 'thumbnail_path_ss'

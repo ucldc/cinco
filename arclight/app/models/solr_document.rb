@@ -29,15 +29,16 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
-  attribute :title_filing, :string, 'title_filing_ssi'
-  attribute :unittitle, :string, 'unittitle_ssm'
+  attribute :title_filing, :string, "title_filing_ssi"
+  attribute :unittitle, :string, "unittitle_ssm"
 
   def collection_name
     if collection&.title_filing
       collection&.title_filing
-    else
+    elsif collection&.unittitle
       collection&.unittitle
+    else
+      collection&.id
     end
   end
-
 end
