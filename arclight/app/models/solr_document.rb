@@ -28,4 +28,20 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  # Add title_filing and unittitle attributes to SolrDocument
+  attribute :title_filing, :string, "title_filing_ssi"
+  attribute :unittitle, :string, "unittitle_ssm"
+
+  # Override blacklight behavior to return title_filing if available,
+  # with unittitle and id as fallbacks.
+  def collection_name
+    if collection&.title_filing
+      collection&.title_filing
+    elsif collection&.unittitle
+      collection&.unittitle
+    else
+      collection&.id
+    end
+  end
 end

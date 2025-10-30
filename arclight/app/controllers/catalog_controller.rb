@@ -76,12 +76,13 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.partials = %i[arclight_index_default]
-    config.index.title_field = "normalized_title_ssm"
     config.index.display_type_field = "level_ssm"
     config.index.document_component = Arclight::SearchResultComponent
     config.index.group_component = Arclight::GroupComponent
     config.index.constraints_component = Arclight::ConstraintsComponent
-    config.index.document_presenter_class = Arclight::IndexPresenter
+    # NOTE: To configure the title field for search results,
+    #       modify app/presenters/oac_index_presenter.rb#heading
+    config.index.document_presenter_class = OacIndexPresenter
     config.index.search_bar_component = Arclight::SearchBarComponent
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -288,6 +289,7 @@ class CatalogController < ApplicationController
     # ===========================
 
     # Collection Show Page - Summary Section
+    config.add_summary_field "title", field: "unittitle_ssm"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: true
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
     config.add_summary_field "extent", field: "extent_ssm"
