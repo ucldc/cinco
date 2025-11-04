@@ -42,6 +42,7 @@ it in s3 at
 """
 
 import ast
+import json
 import logging
 
 from django.conf import settings
@@ -51,6 +52,7 @@ from django.core.files.storage import storages
 from django.core.management.base import BaseCommand
 from django.db.models import QuerySet
 
+from cincoctrl.airflow_client.models import JobRun
 from cincoctrl.findingaids.management.commands._prepare_for_indexing import (
     prepare_finding_aid,
 )
@@ -133,6 +135,16 @@ class Command(BaseCommand):
         parser.add_argument(
             "--force-publish",
             action="store_true",
+        )
+        parser.add_argument(
+            "--dag_run_id",
+            type=str,
+            help="Airflow DAG run ID for tracking this job execution",
+        )
+        parser.add_argument(
+            "--logical_date",
+            type=str,
+            help="Airflow logical date for this job execution",
         )
 
     def _create_queryset(
@@ -297,6 +309,27 @@ class Command(BaseCommand):
 
         return batched_express_finding_aids + batched_ead_finding_aids
 
+    def _create_job_run_record(self, finding_aids, *args, **kwargs):
+        # todo: move this to the cincoctrl action that triggers this airflow job?
+        if finding_aids and settings.ENABLE_AIRFLOW:
+            job_run = JobRun(
+                dag_id="bulk_index_finding_aids",
+                dag_run_conf=json.dumps(
+                    {
+                        "queryset_filters": kwargs.get("filters"),
+                        "max_num_records": kwargs.get("max_num_records"),
+                        "max_file_size_in_MB": kwargs.get("max_file_size_in_MB"),
+                        "s3_key": kwargs.get("s3_key"),
+                        "cinco_environment": settings.CINCO_ENVIRONMENT,
+                    },
+                ),
+                airflow_url=settings.AIRFLOW_ENV_URL,
+                dag_run_id=kwargs.get("dag_run_id"),
+                logical_date=kwargs.get("logical_date"),
+            )
+            job_run.save()
+            job_run.related_models.set(finding_aids)
+
     def handle(self, *args, **kwargs):
         finding_aid_ids = kwargs.get("finding_aid_ids")
         filters_argument = kwargs.get("filters") or []
@@ -316,6 +349,8 @@ class Command(BaseCommand):
             finding_aids,
             force_publish=force_publish,
         )
+
+        self._create_job_run_record(finding_aids, *args, **kwargs)
 
         max_num_records = kwargs.get("max_num_records")
         max_file_size = kwargs.get("max_file_size_in_MB")

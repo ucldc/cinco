@@ -100,7 +100,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         args.update(kwargs)
         super().__init__(**args)
 
-    def compose_manage_args(self):
+    def compose_manage_args(self, context):
         """Compose manage args using the rendered template values, only including valid values"""
 
         def is_not_none(value):
@@ -126,6 +126,8 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 manage_args.extend(
                     ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
                 )
+            manage_args.extend(["--dag_run_id", str(context["dag_run"].run_id)])
+            manage_args.extend(["--logical_date", str(context["logical_date"])])
 
         elif self.manage_cmd == "remove_finding_aid":
             if is_not_none(self.finding_aid_ark):
@@ -167,7 +169,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         }
 
         # Compose the manage args using the now-rendered template values
-        manage_args = self.compose_manage_args()
+        manage_args = self.compose_manage_args(context)
 
         # Update the command in the container overrides
         self.overrides["containerOverrides"][0]["command"] = [
@@ -262,7 +264,7 @@ class CincoCtrlDockerOperator(DockerOperator):
         args.update(kwargs)
         super().__init__(**args)
 
-    def compose_manage_args(self):
+    def compose_manage_args(self, context):
         """Compose manage args using the rendered template values, only including valid values"""
 
         def is_not_none(value):
@@ -288,6 +290,8 @@ class CincoCtrlDockerOperator(DockerOperator):
                 manage_args.extend(
                     ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
                 )
+            manage_args.extend(["--dag_run_id", str(context["dag_run"].run_id)])
+            manage_args.extend(["--logical_date", str(context["logical_date"])])
 
         elif self.manage_cmd == "remove_finding_aid":
             if is_not_none(self.finding_aid_ark):
@@ -308,7 +312,7 @@ class CincoCtrlDockerOperator(DockerOperator):
         print(f"{self.environment=}")
 
         # Compose the manage args using the now-rendered template values
-        manage_args = self.compose_manage_args()
+        manage_args = self.compose_manage_args(context)
         print(f"Composed manage_args: {manage_args}")
 
         # Update the command with the manage args
