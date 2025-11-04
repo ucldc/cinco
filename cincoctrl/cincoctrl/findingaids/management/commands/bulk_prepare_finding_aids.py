@@ -176,13 +176,15 @@ class Command(BaseCommand):
         force_publish: bool,
     ) -> QuerySet:
         published = finding_aids.filter(status="published").count()
-        msg = f"Reindexing: {published:,} published finding aids\n"
+        self.stdout.write(f"Reindexing: {published:,} published finding aids\n")
 
         previewed = finding_aids.filter(status="previewed").count()
         if force_publish:
-            msg += f"Force publishing: {previewed:,} previewed finding aids\n"
+            self.stdout.write(
+                f"Force publishing: {previewed:,} previewed finding aids\n",
+            )
         else:
-            msg += f"Reindexing: {previewed:,} previewed finding aids\n"
+            self.stdout.write(f"Reindexing: {previewed:,} previewed finding aids\n")
 
         unindexed_statuses = [
             "started",
@@ -193,10 +195,11 @@ class Command(BaseCommand):
             "unpublished",
         ]
         unindexed_counts = finding_aids.filter(status__in=unindexed_statuses).count()
-        self.stdout.write(
-            f"WARNING: {unindexed_counts:,} finding aids with unindexable statuses "
-            "will be skipped. Re-index these individually in the dashboard.",
-        )
+        if unindexed_counts > 0:
+            self.stdout.write(
+                f"WARNING: {unindexed_counts:,} finding aids with unindexable statuses "
+                "will be skipped. Re-index these individually in the dashboard.",
+            )
         return finding_aids.filter(status__in=["published", "previewed"])
 
     def _batch_by_record_count(
@@ -257,10 +260,10 @@ class Command(BaseCommand):
         ead_finding_aids = finding_aids.filter(record_type="ead")
 
         self.stdout.write(
-            f"Batching {express_finding_aids.count()} record express finding aids in "
-            f"{max_num_records} record batches\n"
+            f"\n\nBatching {express_finding_aids.count()} record express finding aids "
+            f"in {max_num_records} record batches\n"
             f"Batching {ead_finding_aids.count()} ead finding aids in {max_file_size} "
-            "MB batches",
+            "MB batches\n\n",
         )
 
         max_file_size = max_file_size * 1024 * 1024  # convert MB to bytes
@@ -275,14 +278,14 @@ class Command(BaseCommand):
 
         if ead_errors:
             self.stdout.write(
-                f"{'*' * 80}\nWARNING: {len(ead_errors)} finding aids could not be "
+                f"\n{'*' * 80}\nWARNING: {len(ead_errors)} finding aids could not be "
                 f"batched due to missing or invalid EAD file size; pks:\n{ead_errors}\n"
                 f"Re-index these individually after fixing the issue.\n"
-                f"{'*' * 80}",
+                f"{'*' * 80}\n",
             )
         self.stdout.write(
-            f"Created {len(batched_express_finding_aids)} express batches and "
-            f"{len(batched_ead_finding_aids)} ead batches.",
+            f"\n\nCreated {len(batched_express_finding_aids)} express batches and "
+            f"{len(batched_ead_finding_aids)} ead batches.\n\n",
         )
 
         return batched_express_finding_aids + batched_ead_finding_aids
