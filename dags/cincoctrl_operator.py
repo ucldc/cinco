@@ -32,7 +32,52 @@ def get_stack(stack_name: str):
     return resp["Stacks"][0]
 
 
-class CincoCtrlEcsOperator(EcsRunTaskOperator):
+class CincoCtrlOperatorMixin:
+    def compose_manage_args(self, context):
+        """Compose manage args using the rendered template values, only including valid values"""
+
+        def is_not_none(value):
+            """Check if a value is not None (handles None, 'None' string, empty, and 'null')"""
+            return value is not None and str(value).lower() not in ("none", "", "null")
+
+        manage_args = []
+
+        if self.manage_cmd == "prepare_finding_aid":
+            if is_not_none(self.finding_aid_id):
+                manage_args.extend(["--finding-aid-id", str(self.finding_aid_id)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "bulk_prepare_finding_aids":
+            if is_not_none(self.queryset_filters):
+                manage_args.extend(["--filters", str(self.queryset_filters)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+            if is_not_none(self.max_num_records):
+                manage_args.extend(["--max-num-records", str(self.max_num_records)])
+            if is_not_none(self.max_file_size_in_MB):
+                manage_args.extend(
+                    ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
+                )
+            manage_args.extend(["--dag_run_id", str(context["dag_run"].run_id)])
+            manage_args.extend(["--logical_date", str(context["logical_date"])])
+
+        elif self.manage_cmd == "remove_finding_aid":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        elif self.manage_cmd == "bulk_remove_finding_aids":
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "mark_unpublished":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        return manage_args
+
+
+class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
     # Define template fields so Airflow knows to render these
     template_fields = (
         "manage_cmd",
@@ -100,49 +145,6 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         args.update(kwargs)
         super().__init__(**args)
 
-    def compose_manage_args(self, context):
-        """Compose manage args using the rendered template values, only including valid values"""
-
-        def is_not_none(value):
-            """Check if a value is not None (handles None, 'None' string, empty, and 'null')"""
-            return value is not None and str(value).lower() not in ("none", "", "null")
-
-        manage_args = []
-
-        if self.manage_cmd == "prepare_finding_aid":
-            if is_not_none(self.finding_aid_id):
-                manage_args.extend(["--finding-aid-id", str(self.finding_aid_id)])
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-
-        elif self.manage_cmd == "bulk_prepare_finding_aids":
-            if is_not_none(self.queryset_filters):
-                manage_args.extend(["--filters", str(self.queryset_filters)])
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-            if is_not_none(self.max_num_records):
-                manage_args.extend(["--max-num-records", str(self.max_num_records)])
-            if is_not_none(self.max_file_size_in_MB):
-                manage_args.extend(
-                    ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
-                )
-            manage_args.extend(["--dag_run_id", str(context["dag_run"].run_id)])
-            manage_args.extend(["--logical_date", str(context["logical_date"])])
-
-        elif self.manage_cmd == "remove_finding_aid":
-            if is_not_none(self.finding_aid_ark):
-                manage_args.extend(["--ark", str(self.finding_aid_ark)])
-
-        elif self.manage_cmd == "bulk_remove_finding_aids":
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-
-        elif self.manage_cmd == "mark_unpublished":
-            if is_not_none(self.finding_aid_ark):
-                manage_args.extend(["--ark", str(self.finding_aid_ark)])
-
-        return manage_args
-
     def execute(self, context):
         # Operators are instantiated once per scheduler cycle per airflow task
         # using them, regardless of whether or not that airflow task actually
@@ -182,7 +184,7 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         return super().execute(context)
 
 
-class CincoCtrlDockerOperator(DockerOperator):
+class CincoCtrlDockerOperator(CincoCtrlOperatorMixin, DockerOperator):
     # Define template fields so Airflow knows to render these
     template_fields = (
         "manage_cmd",
@@ -263,49 +265,6 @@ class CincoCtrlDockerOperator(DockerOperator):
         }
         args.update(kwargs)
         super().__init__(**args)
-
-    def compose_manage_args(self, context):
-        """Compose manage args using the rendered template values, only including valid values"""
-
-        def is_not_none(value):
-            """Check if a value is not None (handles None, 'None' string, empty, and 'null')"""
-            return value is not None and str(value).lower() not in ("none", "", "null")
-
-        manage_args = []
-
-        if self.manage_cmd == "prepare_finding_aid":
-            if is_not_none(self.finding_aid_id):
-                manage_args.extend(["--finding-aid-id", str(self.finding_aid_id)])
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-
-        elif self.manage_cmd == "bulk_prepare_finding_aids":
-            if is_not_none(self.queryset_filters):
-                manage_args.extend(["--filters", str(self.queryset_filters)])
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-            if is_not_none(self.max_num_records):
-                manage_args.extend(["--max-num-records", str(self.max_num_records)])
-            if is_not_none(self.max_file_size_in_MB):
-                manage_args.extend(
-                    ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
-                )
-            manage_args.extend(["--dag_run_id", str(context["dag_run"].run_id)])
-            manage_args.extend(["--logical_date", str(context["logical_date"])])
-
-        elif self.manage_cmd == "remove_finding_aid":
-            if is_not_none(self.finding_aid_ark):
-                manage_args.extend(["--ark", str(self.finding_aid_ark)])
-
-        elif self.manage_cmd == "bulk_remove_finding_aids":
-            if is_not_none(self.s3_key):
-                manage_args.extend(["--s3-key", str(self.s3_key)])
-
-        elif self.manage_cmd == "mark_unpublished":
-            if is_not_none(self.finding_aid_ark):
-                manage_args.extend(["--ark", str(self.finding_aid_ark)])
-
-        return manage_args
 
     def execute(self, context):
         print(f"Running {self.command} on {self.image} image")
