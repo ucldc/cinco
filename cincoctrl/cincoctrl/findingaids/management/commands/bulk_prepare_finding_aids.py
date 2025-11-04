@@ -58,6 +58,10 @@ from cincoctrl.findingaids.models import FindingAid
 
 logger = logging.getLogger(__name__)
 
+cli_warning_output_template = (
+    "...\n" + (">" * 3) + "\n>>> WARNING: {warning_message}\n" + (">" * 3)
+)
+
 
 class InvalidFilterError(Exception):
     def __init__(self, filter_argument, message=None):
@@ -166,7 +170,7 @@ class Command(BaseCommand):
         msg += f" -> {finding_aids.count()} found."
         self.stdout.write(msg)
 
-        # return queryset
+        # return the queryset
         return finding_aids
 
     def _refine_queryset_by_status(
@@ -196,10 +200,11 @@ class Command(BaseCommand):
         ]
         unindexed_counts = finding_aids.filter(status__in=unindexed_statuses).count()
         if unindexed_counts > 0:
-            self.stdout.write(
-                f"WARNING: {unindexed_counts:,} finding aids with unindexable statuses "
-                "will be skipped. Re-index these individually in the dashboard.",
+            msg = (
+                f"{unindexed_counts:,} finding aids with unindexable statuses will be "
+                f"skipped. Re-index these individually in the dashboard."
             )
+            self.stdout.write(cli_warning_output_template.format(warning_message=msg))
         return finding_aids.filter(status__in=["published", "previewed"])
 
     def _batch_by_record_count(
@@ -260,10 +265,12 @@ class Command(BaseCommand):
         ead_finding_aids = finding_aids.filter(record_type="ead")
 
         self.stdout.write(
-            f"\n\nBatching {express_finding_aids.count()} record express finding aids "
-            f"in {max_num_records} record batches\n"
+            f"Batching {express_finding_aids.count()} record express finding aids "
+            f"in {max_num_records} record batches",
+        )
+        self.stdout.write(
             f"Batching {ead_finding_aids.count()} ead finding aids in {max_file_size} "
-            "MB batches\n\n",
+            "MB batches",
         )
 
         max_file_size = max_file_size * 1024 * 1024  # convert MB to bytes
@@ -277,15 +284,15 @@ class Command(BaseCommand):
         )
 
         if ead_errors:
-            self.stdout.write(
-                f"\n{'*' * 80}\nWARNING: {len(ead_errors)} finding aids could not be "
-                f"batched due to missing or invalid EAD file size; pks:\n{ead_errors}\n"
-                f"Re-index these individually after fixing the issue.\n"
-                f"{'*' * 80}\n",
+            msg = (
+                f"{len(ead_errors)} finding aids could not be batched due to missing "
+                f"or invalid EAD file size; pks:\n{ead_errors}\nRe-index these "
+                "individually after fixing the issue.\n"
             )
+            self.stdout.write(cli_warning_output_template.format(warning_message=msg))
         self.stdout.write(
-            f"\n\nCreated {len(batched_express_finding_aids)} express batches and "
-            f"{len(batched_ead_finding_aids)} ead batches.\n\n",
+            f"Created {len(batched_express_finding_aids)} express batches and "
+            f"{len(batched_ead_finding_aids)} ead batches.",
         )
 
         return batched_express_finding_aids + batched_ead_finding_aids
@@ -293,6 +300,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         finding_aid_ids = kwargs.get("finding_aid_ids")
         filters_argument = kwargs.get("filters") or []
+        msg = "Preparing finding aids for bulk indexing..."
+        self.stdout.write(f"...\n{'*'*80}\n{msg.center(80)}\n{'^'*80}")
         try:
             finding_aids = self._create_queryset(finding_aid_ids, filters_argument)
         except InvalidFilterError as e:
@@ -314,7 +323,9 @@ class Command(BaseCommand):
 
         s3_key = kwargs.get("s3_key")
 
-        self.stdout.write("Preparing finding aids for indexing by batch...\n")
+        self.stdout.write(
+            f"Preparing {len(finding_aids)} finding aids for indexing by batch...\n",
+        )
 
         for i, batch in enumerate(batches, start=1):
             self.stdout.write(
@@ -339,7 +350,12 @@ class Command(BaseCommand):
             )
 
         bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+        msg = (
+            f"Prepared {len(finding_aids)} finding aids in {len(batches)} batches "
+            f"for indexing at:"
+        )
         self.stdout.write(
-            f"\nPrepared {len(finding_aids)} finding aids in {len(batches)} batches "
-            f"for indexing at s3://{bucket_name}/media/{s3_key}",
+            f"...\n{'*'*80}\n"
+            f"{msg.center(80)}\ns3://{bucket_name}/media/{s3_key}\n"
+            f"{'^'*80}",
         )
