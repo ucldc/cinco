@@ -172,21 +172,6 @@ class FindingAidAdmin(admin.ModelAdmin):
         else:
             self.message_user(request, "Airflow is not enabled.", messages.ERROR)
 
-    # @admin.action(description="Bulk index selected finding aids")
-    # def bulk_index_action(self, request, queryset):
-    #     job_trigger = bulk_prepare_finding_aids(queryset)
-
-    #     message = job_trigger
-    #     if isinstance(job_trigger, JobTrigger):
-    #         change_url = reverse(
-    #             "admin:airflow_client_jobtrigger_change",
-    #             args=(job_trigger.id,),
-    #         )
-    #         link_str = f'Job <a href="{change_url}">{job_trigger}</a> triggered'
-    #         message = mark_safe(link_str)
-
-    #     self.message_user(request, message, messages.SUCCESS)
-
 
 class ExpressRecordCreatorInline(admin.TabularInline):
     model = ExpressRecordCreator
