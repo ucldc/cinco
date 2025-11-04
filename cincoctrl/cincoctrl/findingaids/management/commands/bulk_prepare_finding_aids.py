@@ -16,10 +16,9 @@ Arguments:
     --filters repository_id__in=[1,2,3] status__in=['published','previewed']
     (see Django Queryset filter() documentation for details on field lookups:
     https://docs.djangoproject.com/en/5.2/ref/models/querysets/#filter)
---s3-job-id: [optional] s3 prefix to customize where the job's working
-    files are stored, will use {settings.AWS_STORAGE_BUCKET_NAME}
-    (defined in django settings), with prefix /media/indexing/bulk/{s3_job_id}.
-    Default: {AWS_STORAGE_BUCKET_NAME}/media/indexing/bulk/{uuid}.
+--s3-key: [required] s3 prefix to customize where the job's working
+    files are stored in s3, e.g., indexing/bulk/{s3_job_id}/ (stored in
+    storages['default'] Media root under /media/)
 --max-num-records: [optional] To reduce the indexer's workload and the risk of
     out of memory errors from the Arclight Container, batch record express
     finding aids into batches of this many records. Default is 200.
@@ -44,8 +43,8 @@ it in s3 at
 
 import ast
 import logging
-import uuid
 
+from django.conf import settings
 from django.core.exceptions import FieldError
 from django.core.files.base import ContentFile
 from django.core.files.storage import storages
@@ -102,8 +101,9 @@ class Command(BaseCommand):
         )
         parser.add_argument(
             "-s3",
-            "--s3-job-id",
+            "--s3-key",
             type=str,
+            required=True,
             help="s3 job prefix for storing the pages of finding aids being indexed",
         )
         parser.add_argument(
@@ -300,13 +300,16 @@ class Command(BaseCommand):
             return
 
         force_publish = kwargs.get("force_publish", False)
-        finding_aids = self._refine_queryset_by_status(finding_aids, force_publish)
+        finding_aids = self._refine_queryset_by_status(
+            finding_aids,
+            force_publish=force_publish,
+        )
 
         max_num_records = kwargs.get("max_num_records")
         max_file_size = kwargs.get("max_file_size_in_MB")
         batches = self._batch_finding_aids(finding_aids, max_num_records, max_file_size)
 
-        s3_job_id = kwargs.get("s3_job_id") or uuid.uuid(4)
+        s3_key = kwargs.get("s3_key")
 
         self.stdout.write("Preparing finding aids for indexing by batch...\n")
 
@@ -324,16 +327,16 @@ class Command(BaseCommand):
                 finding_aid.update_ead_with_supplementary_files()
                 prepare_finding_aid(
                     finding_aid,
-                    f"indexing/bulk/{s3_job_id}/page-{i}/{finding_aid.id}",
+                    f"{s3_key}/page-{i}/{finding_aid.id}",
                 )
             csv_lines = "\n".join(manifest)
             storages["default"].save(
-                f"{s3_job_id}/page-{i}/manifest.csv",
+                f"{s3_key}/page-{i}/manifest.csv",
                 ContentFile(csv_lines.encode("utf-8")),
             )
 
+        bucket_name = settings.AWS_STORAGE_BUCKET_NAME
         self.stdout.write(
             f"\nPrepared {len(finding_aids)} finding aids in {len(batches)} batches "
-            f"for indexing at s3://{storages['default'].bucket_name}/media/indexing/"
-            f"bulk/{s3_job_id}/",
+            f"for indexing at s3://{bucket_name}/media/{s3_key}",
         )
