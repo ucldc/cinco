@@ -67,3 +67,43 @@ INSTALLED_APPS += ["django_extensions"]
 # ------------------------------------------------------------------------------
 ENABLE_AIRFLOW = False
 DISABLE_ARK_MINTING = True
+
+CINCO_MINIO_ENDPOINT = env("CINCO_MINIO_ENDPOINT", None)
+if CINCO_MINIO_ENDPOINT:
+    AWS_STORAGE_BUCKET_NAME = "cinco-dev"
+    AWS_ACCESS_KEY_ID = "minioadmin"
+    AWS_SECRET_ACCESS_KEY = "minioadmin"  # noqa: S105
+    AWS_S3_CUSTOM_DOMAIN = CINCO_MINIO_ENDPOINT.replace("http://", "").replace(
+        "https://",
+        "",
+    )
+
+    AWS_QUERYSTRING_AUTH = False
+    _AWS_EXPIRY = 60 * 60 * 24 * 7
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate",
+    }
+    AWS_S3_MAX_MEMORY_SIZE = env.int(
+        "DJANGO_AWS_S3_MAX_MEMORY_SIZE",
+        default=100_000_000,  # 100MB
+    )
+
+    # STATIC & MEDIA
+    # ------------------------
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "location": "media",
+                "file_overwrite": False,
+                "url_protocol": "http:",
+                "region_name": "us-east-1",
+                "use_ssl": False,
+                "endpoint_url": f"http://{AWS_S3_CUSTOM_DOMAIN}",
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+    MEDIA_URL = f"http://{AWS_S3_CUSTOM_DOMAIN}/media/"
