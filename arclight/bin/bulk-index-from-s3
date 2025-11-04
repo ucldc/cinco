@@ -22,8 +22,19 @@ if [ -z "$SOLR_WRITER" ]; then
   exit 1
 fi
 
+# if CINCO_MINIO_ENDPOINT is set, configure aws cli to use local minio endpoint
+if [ -n "$CINCO_MINIO_ENDPOINT" ]; then
+  echo "Using Minio endpoint: $CINCO_MINIO_ENDPOINT"
+  export AWS_ACCESS_KEY_ID="minioadmin"
+  export AWS_SECRET_ACCESS_KEY="minioadmin"
+  export AWS_DEFAULT_REGION="us-east-1"
+  S3_CLI_ENDPOINT="--endpoint-url $CINCO_MINIO_ENDPOINT"
+else
+  S3_CLI_ENDPOINT=""
+fi
+
 echo "Downloading Contents of S3 Prefix $1 to /tmp/$1"
-aws s3 sync s3://$S3_BUCKET/media/$1 /tmp/$1
+aws s3 sync s3://$S3_BUCKET/media/$1 /tmp/$1 $S3_CLI_ENDPOINT
 
 # Initialize array for cache invalidation paths
 INVALIDATION_PATHS=()

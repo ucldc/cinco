@@ -161,7 +161,7 @@ class ArcLightDockerOperator(DockerOperator):
             )
         ]
 
-        container_image = "cinco-arclight-indexer"
+        container_image = "cinco/arclight"
         container_version = "latest"
         container_name = "cinco-arclight-stage-container"
 
@@ -195,8 +195,10 @@ class ArcLightDockerOperator(DockerOperator):
             "mounts": mounts,
             "mount_tmp_dir": False,
             "environment": {
-                "S3_BUCKET": "awieliczka-test-bucket",
-                "SOLR_URL": "http://localhost:8983/solr/arclight",
+                "S3_BUCKET": "cinco-dev",
+                "CINCO_MINIO_ENDPOINT": os.environ.get("CINCO_MINIO_ENDPOINT", ""),
+                "SOLR_URL": "http://solr:8983/solr/arclight",
+                "SOLR_WRITER": "http://solr:8983/solr/arclight",
             },
             "max_active_tis_per_dag": 4,
         }

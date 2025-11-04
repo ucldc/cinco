@@ -39,8 +39,10 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         cinco_environment,
         finding_aid_id=None,
         s3_key=None,
-        repository_id=None,
+        queryset_filters=None,
         finding_aid_ark=None,
+        max_num_records=None,
+        max_file_size_in_MB=None,
         **kwargs,
     ):
         manage_args = []
@@ -51,12 +53,16 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 "--s3-key",
                 s3_key,
             ]
-        elif manage_cmd == "bulk_prep_finding_aids":
+        elif manage_cmd == "bulk_prepare_finding_aids":
             manage_args = [
-                "--repository",
-                repository_id,
+                "--filters",
+                queryset_filters,
                 "--s3-key",
                 s3_key,
+                "--max-num-records",
+                str(max_num_records),
+                "--max-file-size-in-MB",
+                str(max_file_size_in_MB),
             ]
         elif manage_cmd == "remove_finding_aid":
             manage_args = [
@@ -142,9 +148,11 @@ class CincoCtrlDockerOperator(DockerOperator):
         manage_cmd,
         finding_aid_id=None,
         s3_key=None,
-        repository_id=None,
+        queryset_filters=None,
         finding_aid_ark=None,
         cinco_environment="dev",
+        max_num_records=None,
+        max_file_size_in_MB=None,
         **kwargs,
     ):
         manage_args = []
@@ -155,12 +163,16 @@ class CincoCtrlDockerOperator(DockerOperator):
                 "--s3-key",
                 s3_key,
             ]
-        elif manage_cmd == "bulk_prep_finding_aids":
+        elif manage_cmd == "bulk_prepare_finding_aids":
             manage_args = [
-                "--repository",
-                repository_id,
+                "--filters",
+                queryset_filters,
                 "--s3-key",
                 s3_key,
+                "--max-num-records",
+                str(max_num_records),
+                "--max-file-size-in-MB",
+                str(max_file_size_in_MB),
             ]
         elif manage_cmd == "remove_finding_aid":
             manage_args = [
@@ -194,12 +206,13 @@ class CincoCtrlDockerOperator(DockerOperator):
         mwaa_local_mount = f"{os.environ.get('AIRFLOW_HOME')}/local_storage/"
         django_conf = "cincoctrl/.envs/.local/.django"
         postgres_conf = "cincoctrl/.envs/.local/.postgres"
-        aws_conf = "cincoctrl/.envs/.local/.aws"
+        # aws_conf = "cincoctrl/.envs/.local/.aws"
         env = {
             **dotenv_values(f"{mwaa_local_mount}/{django_conf}"),
             **dotenv_values(f"{mwaa_local_mount}/{postgres_conf}"),
-            **dotenv_values(f"{mwaa_local_mount}/{aws_conf}"),
-            **{"POSTGRES_HOST": os.environ.get("CINCO_POSTGRES_HOST", "")},
+            # **dotenv_values(f"{mwaa_local_mount}/{aws_conf}"),
+            **{"POSTGRES_HOST": os.environ.get("CINCO_POSTGRES_HOST", "postgres")},
+            **{"CINCO_MINIO_ENDPOINT": os.environ.get("CINCO_MINIO_ENDPOINT", "")},
         }
 
         container_image = "cincoctrl_local_django"

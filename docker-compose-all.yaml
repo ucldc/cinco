@@ -1,0 +1,98 @@
+volumes:
+  cincoctrl_local_postgres_data: {}
+  cincoctrl_local_postgres_data_backups: {}
+  cincoctrl_local_s3_data: {}
+
+
+services:
+  django:
+    build:
+      context: ./cincoctrl
+      dockerfile: ./compose/local/django/Dockerfile
+    image: cincoctrl_local_django
+    depends_on:
+      - postgres
+      - minio
+    volumes:
+      - ./cincoctrl:/app:z
+    env_file:
+      - ./cincoctrl/.envs/.local/.django
+      - ./cincoctrl/.envs/.local/.postgres
+    environment:
+      CINCO_MINIO_ENDPOINT: http://minio.cinco.orb.local:9000
+    ports:
+      - '8000:8000'
+    command: /start
+
+  postgres:
+    build:
+      context: ./cincoctrl
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: cincoctrl_production_postgres
+    volumes:
+      - cincoctrl_local_postgres_data:/var/lib/postgresql/data
+      - cincoctrl_local_postgres_data_backups:/backups
+    env_file:
+      - ./cincoctrl/.envs/.local/.postgres
+
+  arclight:
+    build:
+      context: ./arclight
+      dockerfile: ./Dockerfile.app.dev
+    image: cinco/arclight
+    depends_on:
+      - solr
+    volumes:
+      - ./arclight:/app
+    environment:
+      RAILS_VERSION: 7.2.2
+      SOLR_PORT: 8983
+      SOLR_URL: http://solr:8983/solr/arclight
+      SOLR_VERSION: 9.6.1
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+
+  solr:
+    build:
+      context: ./arclight
+      dockerfile: ./Dockerfile.solr
+    image: cinco/solr
+    ports:
+      - "8983:8983"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
+      timeout: 20s
+      retries: 10
+
+  minio:
+    image: minio/minio
+    container_name: cincoctrl_local_s3
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./.mock_s3:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  minio-setup:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      mc alias set local http://minio:9000 minioadmin minioadmin;
+      mc mb local/cinco-dev;
+      mc anonymous set public local/cinco-dev;
+      "

@@ -1,6 +1,6 @@
 services:
-  app:
-    image: cinco/app
+  arclight:
+    image: cinco/arclight
     pull_policy: never
     tty: true
     stdin_open: true
