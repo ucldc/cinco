@@ -33,6 +33,17 @@ def get_stack(stack_name: str):
 
 
 class CincoCtrlEcsOperator(EcsRunTaskOperator):
+    # Define template fields so Airflow knows to render these
+    template_fields = (
+        "manage_cmd",
+        "finding_aid_id",
+        "s3_key",
+        "queryset_filters",
+        "finding_aid_ark",
+        "max_num_records",
+        "max_file_size_in_MB",
+    )
+
     def __init__(
         self,
         manage_cmd,
@@ -45,40 +56,15 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         max_file_size_in_MB=None,
         **kwargs,
     ):
-        manage_args = []
-        if manage_cmd == "prepare_finding_aid":
-            manage_args = [
-                "--finding-aid-id",
-                finding_aid_id,
-                "--s3-key",
-                s3_key,
-            ]
-        elif manage_cmd == "bulk_prepare_finding_aids":
-            manage_args = [
-                "--filters",
-                queryset_filters,
-                "--s3-key",
-                s3_key,
-                "--max-num-records",
-                str(max_num_records),
-                "--max-file-size-in-MB",
-                str(max_file_size_in_MB),
-            ]
-        elif manage_cmd == "remove_finding_aid":
-            manage_args = [
-                "--ark",
-                finding_aid_ark,
-            ]
-        elif manage_cmd == "bulk_remove_finding_aids":
-            manage_args = [
-                "--s3-key",
-                s3_key,
-            ]
-        elif manage_cmd == "mark_unpublished":
-            manage_args = [
-                "--ark",
-                finding_aid_ark,
-            ]
+        # Store parameters as instance variables for later use in execute()
+        self.manage_cmd = manage_cmd
+        self.finding_aid_id = finding_aid_id
+        self.s3_key = s3_key
+        self.queryset_filters = queryset_filters
+        self.finding_aid_ark = finding_aid_ark
+        self.cinco_environment = cinco_environment
+        self.max_num_records = max_num_records
+        self.max_file_size_in_MB = max_file_size_in_MB
 
         container_name = f"cinco-ctrl-{cinco_environment}-container"
         # TODO: specify task definition revision? how?
@@ -97,7 +83,6 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                             "python",
                             "manage.py",
                             manage_cmd,
-                            *manage_args,
                         ],
                     }
                 ]
@@ -114,6 +99,47 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
         args.update(ecs_names)
         args.update(kwargs)
         super().__init__(**args)
+
+    def compose_manage_args(self):
+        """Compose manage args using the rendered template values, only including valid values"""
+
+        def is_not_none(value):
+            """Check if a value is not None (handles None, 'None' string, empty, and 'null')"""
+            return value is not None and str(value).lower() not in ("none", "", "null")
+
+        manage_args = []
+
+        if self.manage_cmd == "prepare_finding_aid":
+            if is_not_none(self.finding_aid_id):
+                manage_args.extend(["--finding-aid-id", str(self.finding_aid_id)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "bulk_prepare_finding_aids":
+            if is_not_none(self.queryset_filters):
+                manage_args.extend(["--filters", str(self.queryset_filters)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+            if is_not_none(self.max_num_records):
+                manage_args.extend(["--max-num-records", str(self.max_num_records)])
+            if is_not_none(self.max_file_size_in_MB):
+                manage_args.extend(
+                    ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
+                )
+
+        elif self.manage_cmd == "remove_finding_aid":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        elif self.manage_cmd == "bulk_remove_finding_aids":
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "mark_unpublished":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        return manage_args
 
     def execute(self, context):
         # Operators are instantiated once per scheduler cycle per airflow task
@@ -139,10 +165,33 @@ class CincoCtrlEcsOperator(EcsRunTaskOperator):
                 "assignPublicIp": "ENABLED",
             }
         }
+
+        # Compose the manage args using the now-rendered template values
+        manage_args = self.compose_manage_args()
+
+        # Update the command in the container overrides
+        self.overrides["containerOverrides"][0]["command"] = [
+            "python",
+            "manage.py",
+            self.manage_cmd,
+            *manage_args,
+        ]
+
         return super().execute(context)
 
 
 class CincoCtrlDockerOperator(DockerOperator):
+    # Define template fields so Airflow knows to render these
+    template_fields = (
+        "manage_cmd",
+        "finding_aid_id",
+        "s3_key",
+        "queryset_filters",
+        "finding_aid_ark",
+        "max_num_records",
+        "max_file_size_in_MB",
+    )
+
     def __init__(
         self,
         manage_cmd,
@@ -155,40 +204,15 @@ class CincoCtrlDockerOperator(DockerOperator):
         max_file_size_in_MB=None,
         **kwargs,
     ):
-        manage_args = []
-        if manage_cmd == "prepare_finding_aid":
-            manage_args = [
-                "--finding-aid-id",
-                finding_aid_id,
-                "--s3-key",
-                s3_key,
-            ]
-        elif manage_cmd == "bulk_prepare_finding_aids":
-            manage_args = [
-                "--filters",
-                queryset_filters,
-                "--s3-key",
-                s3_key,
-                "--max-num-records",
-                str(max_num_records),
-                "--max-file-size-in-MB",
-                str(max_file_size_in_MB),
-            ]
-        elif manage_cmd == "remove_finding_aid":
-            manage_args = [
-                "--ark",
-                finding_aid_ark,
-            ]
-        elif manage_cmd == "bulk_remove_finding_aids":
-            manage_args = [
-                "--s3-key",
-                s3_key,
-            ]
-        elif manage_cmd == "mark_unpublished":
-            manage_args = [
-                "--ark",
-                finding_aid_ark,
-            ]
+        # Store parameters as instance variables for later use in execute()
+        self.manage_cmd = manage_cmd
+        self.finding_aid_id = finding_aid_id
+        self.s3_key = s3_key
+        self.queryset_filters = queryset_filters
+        self.finding_aid_ark = finding_aid_ark
+        self.cinco_environment = cinco_environment
+        self.max_num_records = max_num_records
+        self.max_file_size_in_MB = max_file_size_in_MB
 
         # set in startup.sh, path to cinco/cincoctrl on local
         if os.environ.get("CINCO_MOUNT_CINCOCTRL"):
@@ -219,6 +243,7 @@ class CincoCtrlDockerOperator(DockerOperator):
         container_version = "latest"
         container_name = "cincoctrl_local_django-managepy"
 
+        # Don't include manage_args in the initial command - we'll add them in execute()
         args = {
             "image": f"{container_image}:{container_version}",
             "container_name": container_name,
@@ -226,7 +251,6 @@ class CincoCtrlDockerOperator(DockerOperator):
                 "python",
                 "manage.py",
                 manage_cmd,
-                *manage_args,
             ],
             "network_mode": "bridge",
             "auto_remove": "force",
@@ -238,9 +262,59 @@ class CincoCtrlDockerOperator(DockerOperator):
         args.update(kwargs)
         super().__init__(**args)
 
+    def compose_manage_args(self):
+        """Compose manage args using the rendered template values, only including valid values"""
+
+        def is_not_none(value):
+            """Check if a value is not None (handles None, 'None' string, empty, and 'null')"""
+            return value is not None and str(value).lower() not in ("none", "", "null")
+
+        manage_args = []
+
+        if self.manage_cmd == "prepare_finding_aid":
+            if is_not_none(self.finding_aid_id):
+                manage_args.extend(["--finding-aid-id", str(self.finding_aid_id)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "bulk_prepare_finding_aids":
+            if is_not_none(self.queryset_filters):
+                manage_args.extend(["--filters", str(self.queryset_filters)])
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+            if is_not_none(self.max_num_records):
+                manage_args.extend(["--max-num-records", str(self.max_num_records)])
+            if is_not_none(self.max_file_size_in_MB):
+                manage_args.extend(
+                    ["--max-file-size-in-MB", str(self.max_file_size_in_MB)]
+                )
+
+        elif self.manage_cmd == "remove_finding_aid":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        elif self.manage_cmd == "bulk_remove_finding_aids":
+            if is_not_none(self.s3_key):
+                manage_args.extend(["--s3-key", str(self.s3_key)])
+
+        elif self.manage_cmd == "mark_unpublished":
+            if is_not_none(self.finding_aid_ark):
+                manage_args.extend(["--ark", str(self.finding_aid_ark)])
+
+        return manage_args
+
     def execute(self, context):
         print(f"Running {self.command} on {self.image} image")
         print(f"{self.environment=}")
+
+        # Compose the manage args using the now-rendered template values
+        manage_args = self.compose_manage_args()
+        print(f"Composed manage_args: {manage_args}")
+
+        # Update the command with the manage args
+        self.command = self.command + manage_args
+        print(f"Final command: {self.command}")
+
         return super().execute(context)
 
 
