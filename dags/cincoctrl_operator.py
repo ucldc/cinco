@@ -33,6 +33,38 @@ def get_stack(stack_name: str):
 
 
 class CincoCtrlOperatorMixin:
+    # Define template fields so Airflow knows to render these
+    template_fields = (
+        "manage_cmd",
+        "finding_aid_id",
+        "s3_key",
+        "queryset_filters",
+        "finding_aid_ark",
+        "max_num_records",
+        "max_file_size_in_MB",
+    )
+
+    def setup_cincoctrl_attributes(
+        self,
+        manage_cmd,
+        cinco_environment=None,
+        finding_aid_id=None,
+        s3_key=None,
+        queryset_filters=None,
+        finding_aid_ark=None,
+        max_num_records=None,
+        max_file_size_in_MB=None,
+    ):
+        # Store parameters as instance variables for later use in execute()
+        self.manage_cmd = manage_cmd
+        self.finding_aid_id = finding_aid_id
+        self.s3_key = s3_key
+        self.queryset_filters = queryset_filters
+        self.finding_aid_ark = finding_aid_ark
+        self.cinco_environment = cinco_environment
+        self.max_num_records = max_num_records
+        self.max_file_size_in_MB = max_file_size_in_MB
+
     def compose_manage_args(self, context):
         """Compose manage args using the rendered template values, only including valid values"""
 
@@ -78,44 +110,31 @@ class CincoCtrlOperatorMixin:
 
 
 class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
-    # Define template fields so Airflow knows to render these
-    template_fields = (
-        "manage_cmd",
-        "finding_aid_id",
-        "s3_key",
-        "queryset_filters",
-        "finding_aid_ark",
-        "max_num_records",
-        "max_file_size_in_MB",
-    )
+    def __init__(self, **kwargs):
+        # Validate that cinco_environment is provided for ECS operator
+        if "cinco_environment" not in kwargs or kwargs["cinco_environment"] is None:
+            raise ValueError("cinco_environment is required for CincoCtrlEcsOperator")
 
-    def __init__(
-        self,
-        manage_cmd,
-        cinco_environment,
-        finding_aid_id=None,
-        s3_key=None,
-        queryset_filters=None,
-        finding_aid_ark=None,
-        max_num_records=None,
-        max_file_size_in_MB=None,
-        **kwargs,
-    ):
-        # Store parameters as instance variables for later use in execute()
-        self.manage_cmd = manage_cmd
-        self.finding_aid_id = finding_aid_id
-        self.s3_key = s3_key
-        self.queryset_filters = queryset_filters
-        self.finding_aid_ark = finding_aid_ark
-        self.cinco_environment = cinco_environment
-        self.max_num_records = max_num_records
-        self.max_file_size_in_MB = max_file_size_in_MB
+        # Extract mixin-specific arguments
+        cincoctrl_args = {
+            "manage_cmd": kwargs.pop("manage_cmd"),
+            "cinco_environment": kwargs.pop("cinco_environment"),
+            "finding_aid_id": kwargs.pop("finding_aid_id", None),
+            "s3_key": kwargs.pop("s3_key", None),
+            "queryset_filters": kwargs.pop("queryset_filters", None),
+            "finding_aid_ark": kwargs.pop("finding_aid_ark", None),
+            "max_num_records": kwargs.pop("max_num_records", None),
+            "max_file_size_in_MB": kwargs.pop("max_file_size_in_MB", None),
+        }
 
-        container_name = f"cinco-ctrl-{cinco_environment}-container"
+        # Set up mixin attributes
+        self.setup_cincoctrl_attributes(**cincoctrl_args)
+
+        container_name = f"cinco-ctrl-{self.cinco_environment}-container"
         # TODO: specify task definition revision? how?
         ecs_names = {
-            "cluster": f"cinco-{cinco_environment}",
-            "task_definition": f"cinco-ctrl-{cinco_environment}",
+            "cluster": f"cinco-{ self.cinco_environment }",
+            "task_definition": f"cinco-ctrl-{ self.cinco_environment }",
         }
         args = {
             "launch_type": "FARGATE",
@@ -127,14 +146,14 @@ class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
                         "command": [
                             "python",
                             "manage.py",
-                            manage_cmd,
+                            self.manage_cmd,
                         ],
                     }
                 ]
             },
             "region": "us-west-2",
-            "awslogs_group": f"/ecs/cinco-ctrl-{ cinco_environment }",
-            "awslogs_stream_prefix": f"ecs/cinco-ctrl-{cinco_environment}-container",
+            "awslogs_group": f"/ecs/cinco-ctrl-{ self.cinco_environment }",
+            "awslogs_stream_prefix": f"ecs/cinco-ctrl-{ self.cinco_environment }-container",
             "awslogs_region": "us-west-2",
             "reattach": True,
             "number_logs_exception": 100,
@@ -143,7 +162,7 @@ class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
         }
         args.update(ecs_names)
         args.update(kwargs)
-        super().__init__(**args)
+        EcsRunTaskOperator.__init__(self, **args)
 
     def execute(self, context):
         # Operators are instantiated once per scheduler cycle per airflow task
@@ -170,10 +189,8 @@ class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
             }
         }
 
-        # Compose the manage args using the now-rendered template values
+        # Jinja templates are rendered in execute, so compose manage args here
         manage_args = self.compose_manage_args(context)
-
-        # Update the command in the container overrides
         self.overrides["containerOverrides"][0]["command"] = [
             "python",
             "manage.py",
@@ -185,38 +202,21 @@ class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
 
 
 class CincoCtrlDockerOperator(CincoCtrlOperatorMixin, DockerOperator):
-    # Define template fields so Airflow knows to render these
-    template_fields = (
-        "manage_cmd",
-        "finding_aid_id",
-        "s3_key",
-        "queryset_filters",
-        "finding_aid_ark",
-        "max_num_records",
-        "max_file_size_in_MB",
-    )
+    def __init__(self, **kwargs):
+        # Extract mixin-specific arguments
+        cincoctrl_args = {
+            "manage_cmd": kwargs.pop("manage_cmd"),
+            "cinco_environment": kwargs.pop("cinco_environment", "dev"),
+            "finding_aid_id": kwargs.pop("finding_aid_id", None),
+            "s3_key": kwargs.pop("s3_key", None),
+            "queryset_filters": kwargs.pop("queryset_filters", None),
+            "finding_aid_ark": kwargs.pop("finding_aid_ark", None),
+            "max_num_records": kwargs.pop("max_num_records", None),
+            "max_file_size_in_MB": kwargs.pop("max_file_size_in_MB", None),
+        }
 
-    def __init__(
-        self,
-        manage_cmd,
-        finding_aid_id=None,
-        s3_key=None,
-        queryset_filters=None,
-        finding_aid_ark=None,
-        cinco_environment="dev",
-        max_num_records=None,
-        max_file_size_in_MB=None,
-        **kwargs,
-    ):
-        # Store parameters as instance variables for later use in execute()
-        self.manage_cmd = manage_cmd
-        self.finding_aid_id = finding_aid_id
-        self.s3_key = s3_key
-        self.queryset_filters = queryset_filters
-        self.finding_aid_ark = finding_aid_ark
-        self.cinco_environment = cinco_environment
-        self.max_num_records = max_num_records
-        self.max_file_size_in_MB = max_file_size_in_MB
+        # Set up mixin attributes
+        self.setup_cincoctrl_attributes(**cincoctrl_args)
 
         # set in startup.sh, path to cinco/cincoctrl on local
         if os.environ.get("CINCO_MOUNT_CINCOCTRL"):
@@ -254,7 +254,7 @@ class CincoCtrlDockerOperator(CincoCtrlOperatorMixin, DockerOperator):
             "command": [
                 "python",
                 "manage.py",
-                manage_cmd,
+                self.manage_cmd,
             ],
             "network_mode": "bridge",
             "auto_remove": "force",
@@ -264,19 +264,15 @@ class CincoCtrlDockerOperator(CincoCtrlOperatorMixin, DockerOperator):
             "max_active_tis_per_dag": 4,
         }
         args.update(kwargs)
-        super().__init__(**args)
+        DockerOperator.__init__(self, **args)
 
     def execute(self, context):
+        # Jinja templates are rendered in execute, so compose manage args here
+        manage_args = self.compose_manage_args(context)
+        self.command = self.command + manage_args
+
         print(f"Running {self.command} on {self.image} image")
         print(f"{self.environment=}")
-
-        # Compose the manage args using the now-rendered template values
-        manage_args = self.compose_manage_args(context)
-        print(f"Composed manage_args: {manage_args}")
-
-        # Update the command with the manage args
-        self.command = self.command + manage_args
-        print(f"Final command: {self.command}")
 
         return super().execute(context)
 
