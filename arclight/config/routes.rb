@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   concern :exportable, Blacklight::Routes::Exportable.new
   concern :hierarchy, Arclight::Routes::Hierarchy.new
 
-  ark = /ark:(\/|%2[fF])\d{5}(\/|%2[fF])[0-9a-zA-Z]+/
+  ark = /ark:\/\d{5}\/[0-9a-zA-Z]+/
   optional_component = /_?[^\/]*/
   not_ark = /(?!ark\:)[^\/]+/
   resources :solr_documents, only: [ :show ], path: "/findaid", controller: "catalog", constraints: { id: /(#{ark}#{optional_component})|(#{not_ark})/ } do
