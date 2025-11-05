@@ -81,11 +81,10 @@ We run rubocop as part of the pre-commit configuration. By default, it only runs
 
 ## Test data fixture
 
-From arclight container:
+From local machine, run test data load script in arclight container:
 
 ```
-export SOLR_URL="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
-bin/load_dev_fixtures.sh
+docker exec arclight-app-1 bash -c "./bin/load_dev_fixtures.sh"
 ```
 
 ## Indexing documents
@@ -93,7 +92,6 @@ bin/load_dev_fixtures.sh
 Example indexing EAD in local dev environment (from arclight container):
 
 ```
-export SOLR_WRITER="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
 export REPOSITORY_ID=ampas_clac
 bundle exec traject -I lib/ -u $SOLR_WRITER -i xml -c lib/arclight/traject/ead2_config.rb files/xml/finding-aid.xml -s ark=ark:/13030/c8ht2mq2 -s eadid="filename.xml"
 ```
