@@ -73,7 +73,7 @@ class JobRunInline(admin.TabularInline):
 @admin.register(FindingAid)
 class FindingAidAdmin(admin.ModelAdmin):
     inlines = [SupplementaryFileInline, JobRunInline]
-    search_fields = ["collection_title", "ark"]
+    search_fields = ["collection_title", "ark", "ead_file"]
     list_display = (
         "collection_title",
         "collection_number",
