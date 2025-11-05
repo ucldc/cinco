@@ -102,4 +102,9 @@ module ApplicationHelper
   def rewrite_any_ark_path(path)
     path.include?("ark:") ? path.gsub("%2F", "/") : path
   end
+
+  def render_html_revision(args)
+    values = Array(args[:value])
+    simple_format(Array(args[:value]).flatten.join('<br/><br/>'))
+  end
 end

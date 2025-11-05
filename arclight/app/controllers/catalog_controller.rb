@@ -103,6 +103,7 @@ class CatalogController < ApplicationController
       related_field
       indexed_terms_field
       access_field
+      about_field
     ]
 
     config.show.collection_access_items = %i[
@@ -288,6 +289,7 @@ class CatalogController < ApplicationController
     # ===========================
 
     # Collection Show Page - Summary Section
+    config.add_summary_field "subtitle", field: "subtitle_tesim"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: true
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
     config.add_summary_field "extent", field: "extent_ssm"
@@ -343,6 +345,13 @@ class CatalogController < ApplicationController
     config.add_indexed_terms_field "indexes", field: "indexes_html_tesm",
                                               helper_method: :render_html_tags
 
+    # Collection Show Page - About This Collection Guide Section
+    config.add_about_field "collection_guide_author", field: "author_tesim", helper_method: :render_html_tags
+    config.add_about_field "sponsor", field: "sponsor_tesim", helper_method: :render_html_tags
+    config.add_about_field "date_prepared", field: "date_prepared_tesim", helper_method: :render_html_tags
+    config.add_about_field "date_encoded", field: "date_encoded_tesim", helper_method: :render_html_tags
+    config.add_about_field "revision_history", field: "revision_ssm", helper_method: :render_html_revision
+ 
     # ==========================
     # COMPONENT SHOW PAGE FIELDS
     # ==========================
