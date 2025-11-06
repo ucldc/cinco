@@ -12,7 +12,8 @@ Rails.application.configure do
         user_agent: request&.headers["User-Agent"],
         cloudfront_request_id: request&.headers["X-Amz-Cf-Id"],
         rails_request_id: request&.request_id,
-        originally_requested_path: request&.original_fullpath
+        originally_requested_path: request&.original_fullpath,
+        referrer: request&.headers["Referer"]
       }
   end
 
