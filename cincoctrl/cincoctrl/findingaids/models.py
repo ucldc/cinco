@@ -19,6 +19,7 @@ from django.db.models import TextField
 from django.db.models import URLField
 from django.urls import reverse
 
+from cincoctrl.airflow_client.models import JobTrigger
 from cincoctrl.airflow_client.mwaa_api_client import trigger_dag
 from cincoctrl.findingaids.parser import EADParser
 from cincoctrl.findingaids.validators import validate_ead
@@ -261,7 +262,7 @@ class FindingAid(models.Model):
         logger.info("update status for %s: %s", self.ark, self.status)
         return action
 
-    def queue_index(self, *, force_publish=False) -> str | None:
+    def queue_index(self, *, force_publish=False) -> JobTrigger | None:
         # always update EAD with any supplementary files before indexing
         if self.ead_file.name:
             self.update_ead_with_supplementary_files()
