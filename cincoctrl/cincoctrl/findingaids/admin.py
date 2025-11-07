@@ -160,8 +160,8 @@ class FindingAidAdmin(admin.ModelAdmin):
         if settings.ENABLE_AIRFLOW:
             airflow_urls = []
             for finding_aid in queryset:
-                airflow_url = finding_aid.queue_index()
-                airflow_urls.append(airflow_url)
+                job_trigger = finding_aid.queue_index()
+                airflow_urls.append(job_trigger.dag_run_airflow_url)
 
             airflow_urls = "\n".join(airflow_urls)
             self.message_user(
