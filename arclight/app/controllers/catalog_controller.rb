@@ -351,7 +351,7 @@ class CatalogController < ApplicationController
     config.add_about_field "date_prepared", field: "date_prepared_tesim", helper_method: :render_html_tags
     config.add_about_field "date_encoded", field: "date_encoded_tesim", helper_method: :render_html_tags
     config.add_about_field "revision_history", field: "revision_ssm", helper_method: :render_html_revision
- 
+
     # ==========================
     # COMPONENT SHOW PAGE FIELDS
     # ==========================

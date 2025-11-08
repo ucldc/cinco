@@ -105,6 +105,6 @@ module ApplicationHelper
 
   def render_html_revision(args)
     values = Array(args[:value])
-    simple_format(Array(args[:value]).flatten.join('<br/><br/>'))
+    simple_format(Array(args[:value]).flatten.join("<br/><br/>"))
   end
 end
