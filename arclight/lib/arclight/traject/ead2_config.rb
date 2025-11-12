@@ -309,6 +309,28 @@ to_field "pdftext_tesim" do |record, accumulator|
   accumulator << settings["text_reader"].constantize.new(settings["command_line.filename"]).get_text
 end
 
+to_field "subtitle_tesim", extract_xpath("/ead/eadheader/filedesc/titlestmt/subtitle")
+to_field "author_tesim", extract_xpath("/ead/eadheader/filedesc/titlestmt/author")
+to_field "sponsor_tesim", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
+to_field "date_prepared_ssm", extract_xpath("/ead/eadheader/filedesc/publicationstmt/date")
+to_field "date_encoded_ssm", extract_xpath("/ead/eadheader/profiledesc/creation")
+
+to_field "revision_ssm" do |record, accumulator|
+  changes = record.xpath("/ead/eadheader/revisiondesc/change")
+  dates_and_items_per_change = changes.map do |change|
+    dates = change.xpath("./date").map { |d| d.text.strip }
+    items = change.xpath("./item").map  { |i| i.text.strip }
+    dates_and_items = dates + items
+    dates_and_items.join("<br/>") unless dates_and_items.empty?
+  end
+
+  accumulator.concat(dates_and_items_per_change)
+end
+
+to_field "editionstmt_ssm", extract_xpath("/ead/eadheader/filedesc/editionstmt/p")
+to_field "seriesstmt_ssm", extract_xpath("/ead/eadheader/filedesc/seriesstmt/p")
+to_field "note_ssm", extract_xpath("/ead/eadheader/filedesc/notestmt/note/p")
+
 # =============================
 # Each component child document
 # <c> <c01> <c12>
