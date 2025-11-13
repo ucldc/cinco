@@ -314,6 +314,7 @@ class CatalogController < ApplicationController
     config.add_background_field "fileplan", field: "fileplan_html_tesm", helper_method: :render_html_tags
     config.add_background_field "descrules", field: "descrules_ssm", helper_method: :render_html_tags
     config.add_background_field "note", field: "note_html_tesm", helper_method: :render_html_tags
+    config.add_background_field "bibliography", field: "bibliography_html_tesm", helper_method: :render_html_tags
 
     # Collection Show Page - Related Section
     config.add_related_field "relatedmaterial", field: "relatedmaterial_html_tesm", helper_method: :render_html_tags
@@ -388,6 +389,7 @@ class CatalogController < ApplicationController
     config.add_component_field "altformavail", field: "altformavail_html_tesm", helper_method: :render_html_tags
     config.add_component_field "otherfindaid", field: "otherfindaid_html_tesm", helper_method: :render_html_tags
     config.add_component_field "odd", field: "odd_html_tesm", helper_method: :render_html_tags
+    config.add_component_field "bibliography", field: "bibliography_html_tesm", helper_method: :render_html_tags
     config.add_component_field "relatedmaterial", field: "relatedmaterial_html_tesm", helper_method: :render_html_tags
     config.add_component_field "separatedmaterial", field: "separatedmaterial_html_tesm", helper_method: :render_html_tags
     config.add_component_field "originalsloc", field: "originalsloc_html_tesm", helper_method: :render_html_tags
