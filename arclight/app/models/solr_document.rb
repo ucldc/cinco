@@ -28,4 +28,14 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  # DublinCore specifies export_formats :dc_xml, :xml, :oai_dc_xml, which
+  # automatically creates <link rel="alternate"> tags for these formats
+  # ex:
+  # <link rel="alternate" title="xml" type="application/xml" href="https://oac.cdlib.org/findaid/<ark>.xml">
+  # <link rel="alternate" title="dc_xml" type="text/xml" href="https://oac.cdlib.org/findaid/<ark>.dc_xml">
+  # <link rel="alternate" title="oai_dc_xml" type="text/xml" href="https://oac.cdlib.org/findaid/<ark>.oai_dc_xml">
+  def export_formats
+    {}  # Override to return empty hash, removing dc_xml export links
+  end
 end
