@@ -335,6 +335,7 @@
 
    <!-- field-based searches -->
    <copyField source="normalized_title_ssm" dest="normalized_title_teim"/>
+   <copyField source="oac_normalized_title_ssm" dest="oac_normalized_title_teim"/>
    <copyField source="places_ssim" dest="place_teim"/>
    <copyField source="names_ssim" dest="name_teim"/>
    <copyField source="access_subjects_ssim" dest="subject_teim"/>
@@ -383,6 +384,7 @@
 
    <!-- sort fields -->
    <copyField source="normalized_title_ssm" dest="title_sort"/> <!-- TODO: assumes single values -->
+   <copyField source="oac_normalized_title_ssm" dest="oac_title_sort"/> <!-- TODO: assumes single values -->
    <copyField source="normalized_date_ssm" dest="date_sort"/> <!-- TODO: assumes single values -->
 
    <!-- spellcheck fields -->
@@ -392,6 +394,7 @@
 
    <!-- for suggestions -->
    <copyField source="normalized_title_ssm" dest="suggest"/>
+   <copyField source="oac_normalized_title_ssm" dest="suggest"/>
    <copyField source="collection_ssim" dest="suggest"/>
    <copyField source="names_ssim" dest="suggest"/>
    <copyField source="repository_ssim" dest="suggest"/>
