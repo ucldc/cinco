@@ -110,6 +110,10 @@ class CincoCtrlOperatorMixin:
 
 
 class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
+    template_fields = (
+        CincoCtrlOperatorMixin.template_fields + EcsRunTaskOperator.template_fields
+    )
+
     def __init__(self, **kwargs):
         # Validate that cinco_environment is provided for ECS operator
         if "cinco_environment" not in kwargs or kwargs["cinco_environment"] is None:
@@ -202,6 +206,10 @@ class CincoCtrlEcsOperator(CincoCtrlOperatorMixin, EcsRunTaskOperator):
 
 
 class CincoCtrlDockerOperator(CincoCtrlOperatorMixin, DockerOperator):
+    template_fields = (
+        CincoCtrlOperatorMixin.template_fields + DockerOperator.template_fields
+    )
+
     def __init__(self, **kwargs):
         # Extract mixin-specific arguments
         cincoctrl_args = {
