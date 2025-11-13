@@ -77,6 +77,7 @@ class FindingAidAdmin(admin.ModelAdmin):
         "repository",
         "record_type",
         "ead_file",
+        "status",
         "date_updated",
     )
     list_filter = ["status", "record_type", "repository__name"]
