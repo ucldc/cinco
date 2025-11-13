@@ -3,14 +3,6 @@
 from django.db import migrations, models
 
 
-def populate_ead_filesize(apps, schema_editor):
-    FindingAid = apps.get_model('findingaids', 'FindingAid')
-    for fa in FindingAid.objects.all():
-        if fa.ead_file and fa.ead_file.size:
-            fa.ead_filesize = fa.ead_file.size
-            fa.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -23,5 +15,4 @@ class Migration(migrations.Migration):
             name='ead_filesize',
             field=models.IntegerField(blank=True, null=True),
         ),
-        migrations.RunPython(populate_ead_filesize, migrations.RunPython.noop),
     ]
