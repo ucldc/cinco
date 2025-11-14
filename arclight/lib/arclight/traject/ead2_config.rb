@@ -298,6 +298,12 @@ end
 
 to_field "language_ssim", extract_xpath("/ead/archdesc/did/langmaterial")
 
+to_field "containers_ssm", extract_xpath("/ead/archdesc/did/container", to_text: false) do |record, accumulator|
+  accumulator.map! do |xml_node|
+    "#{xml_node.attribute("type")&.value}: #{xml_node.at_xpath('.')&.text.strip}"
+  end
+end
+
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
 # count all descendant components from the top-level

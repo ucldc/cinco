@@ -294,6 +294,11 @@ class CatalogController < ApplicationController
     config.add_summary_field "dates", field: "normalized_date_ssm"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: true
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
+    config.add_summary_field "containers", field: "containers_ssm", separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
     config.add_summary_field "extent", field: "extent_ssm"
     config.add_summary_field "language", field: "language_ssim"
     config.add_summary_field "prefercite", field: "prefercite_html_tesm", helper_method: :render_html_tags
