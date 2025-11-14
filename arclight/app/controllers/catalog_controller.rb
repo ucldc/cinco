@@ -76,7 +76,7 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.partials = %i[arclight_index_default]
-    config.index.title_field = "normalized_title_ssm"
+    config.index.title_field = "oac_normalized_title_ssm"
     config.index.display_type_field = "level_ssm"
     config.index.document_component = Arclight::SearchResultComponent
     config.index.group_component = Arclight::GroupComponent
@@ -159,7 +159,7 @@ class CatalogController < ApplicationController
       online: { label: "Online access", fq: "has_online_content_ssim:true" }
     }, component: OnlineContentFacetComponent
     config.add_facet_field "repository", field: "repository_ssim", limit: 10
-    config.add_facet_field "collection", field: "collection_ssim", limit: 10
+    config.add_facet_field "collection", field: "oac_collection_ssim", limit: 10
     config.add_facet_field "creators", field: "creator_ssim", limit: 10
     config.add_facet_field "date_range", field: "date_range_isim", range: true
     config.add_facet_field "names", field: "names_ssim", limit: 10
@@ -272,8 +272,8 @@ class CatalogController < ApplicationController
     config.add_sort_field "date_sort desc", label: "date (descending)"
     config.add_sort_field "creator_sort asc", label: "creator (A-Z)"
     config.add_sort_field "creator_sort desc", label: "creator (Z-A)"
-    config.add_sort_field "title_sort asc", label: "title (A-Z)"
-    config.add_sort_field "title_sort desc", label: "title (Z-A)"
+    config.add_sort_field "oac_title_sort asc", label: "title (A-Z)"
+    config.add_sort_field "oac_title_sort desc", label: "title (Z-A)"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
@@ -289,6 +289,7 @@ class CatalogController < ApplicationController
     # ===========================
 
     # Collection Show Page - Summary Section
+    config.add_summary_field "title", field: "unittitle_ssm"
     config.add_summary_field "subtitle", field: "subtitle_tesim"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: true
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags

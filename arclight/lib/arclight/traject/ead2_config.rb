@@ -155,8 +155,21 @@ to_field "collection_title_tesim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
 end
 
+to_field "oac_normalized_title_ssm" do |_record, accumulator, context|
+  oac_title = context.output_hash["title_filing_ssi"]&.first
+  if oac_title.blank?
+    oac_title = context.output_hash["unittitle_ssm"]&.first
+  end
+  date = context.output_hash["normalized_date_ssm"]&.first
+  accumulator << settings["title_normalizer"].constantize.new(oac_title, date).to_s
+end
+
 to_field "collection_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
+end
+
+to_field "oac_collection_ssim" do |_record, accumulator, context|
+  accumulator.concat context.output_hash.fetch("oac_normalized_title_ssm", [])
 end
 
 to_field "repository_ssm" do |_record, accumulator, context|

@@ -28,4 +28,11 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  # Add oac_normalized_title attribute to SolrDocument
+  attribute :oac_normalized_title, :string, "oac_normalized_title_ssm"
+
+  def collection_name
+    collection&.oac_normalized_title
+  end
 end

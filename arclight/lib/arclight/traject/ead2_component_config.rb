@@ -140,6 +140,17 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
   accumulator << settings["title_normalizer"].constantize.new(title, date, container_label, unitid).to_s
 end
 
+to_field "oac_normalized_title_ssm" do |_record, accumulator, context|
+  oac_title = context.output_hash["title_filing_ssi"]&.first
+  if oac_title.blank?
+    oac_title = context.output_hash["title_ssm"]&.first
+  end
+  date = context.output_hash["normalized_date_ssm"]&.first
+  container_label = context.output_hash["containers_ssim"]
+  unitid = context.output_hash["unitid_ssm"]&.first
+  accumulator << settings["title_normalizer"].constantize.new(oac_title, date, container_label, unitid).to_s
+end
+
 to_field "component_level_isim" do |_record, accumulator|
   accumulator << (settings[:depth] || 1)
 end
@@ -179,6 +190,10 @@ end
 
 to_field "collection_ssim" do |_record, accumulator, _context|
   accumulator.concat settings[:root].output_hash["normalized_title_ssm"]
+end
+
+to_field "oac_collection_ssim" do |_record, accumulator, _context|
+  accumulator.concat settings[:root].output_hash["oac_normalized_title_ssm"]
 end
 
 # This accumulates direct text from a physdesc, ignoring child elements handled elsewhere
