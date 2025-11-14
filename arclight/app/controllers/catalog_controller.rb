@@ -159,7 +159,7 @@ class CatalogController < ApplicationController
       online: { label: "Online access", fq: "has_online_content_ssim:true" }
     }, component: OnlineContentFacetComponent
     config.add_facet_field "repository", field: "repository_ssim", limit: 10
-    config.add_facet_field "collection", field: "collection_ssim", limit: 10
+    config.add_facet_field "collection", field: "oac_collection_ssim", limit: 10
     config.add_facet_field "creators", field: "creator_ssim", limit: 10
     config.add_facet_field "date_range", field: "date_range_isim", range: true
     config.add_facet_field "names", field: "names_ssim", limit: 10

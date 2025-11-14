@@ -168,6 +168,10 @@ to_field "collection_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
 end
 
+to_field "oac_collection_ssim" do |_record, accumulator, context|
+  accumulator.concat context.output_hash.fetch("oac_normalized_title_ssm", [])
+end
+
 to_field "repository_ssm" do |_record, accumulator, context|
   accumulator << context.clipboard[:repository]
 end

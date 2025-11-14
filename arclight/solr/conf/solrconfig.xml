@@ -192,6 +192,7 @@
        <str name="facet.field">access_subjects_ssim</str>
        <str name="facet.field">repository_ssim</str>
        <str name="facet.field">collection_ssim</str>
+       <str name="facet.field">oac_collection_ssim</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>
