@@ -73,7 +73,7 @@ done
 wait
 
 # Run cache invalidation once for all paths: "findaid/<ark>*""
-if [ ${#INVALIDATION_PATHS[@]} -gt 0 ]; then
+if [ ${#INVALIDATE_IDS[@]} -gt 0 ] && [ ${#INVALIDATE_IDS[@]} -lt 10 ]; then
   if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
     echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
   else
@@ -82,6 +82,8 @@ if [ ${#INVALIDATION_PATHS[@]} -gt 0 ]; then
     cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "${INVALIDATION_PATHS[@]}")
     echo "Invalidation submitted: $cf"
   fi
+else
+  echo "Too few or too many invalidation paths (${#INVALIDATE_IDS[@]}), skipping cache invalidation."
 fi
 
 echo "Finished indexing, cleaning up /tmp/$1"
