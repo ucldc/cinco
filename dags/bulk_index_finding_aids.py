@@ -105,6 +105,7 @@ def bulk_index_finding_aids():
             s3_key=batch_s3_key,
             arclight_command="bulk-index-from-s3",
             cinco_environment="{{ params.cinco_environment }}",
+            pool="cinco_solr_bulk_index_pool",
             # on_failure_callback=notify_failure,
             # on_success_callback=notify_success
         )
