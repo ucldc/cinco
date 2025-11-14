@@ -56,7 +56,7 @@ for folder in /tmp/$1/*; do
         -s ark=$FINDING_AID_ARK \
         -s eadid="$EADID" \
         -s preview=$PREVIEW &
-    echo "Clearing Cache for $folder"
+    echo "Clearing environment for $folder"
 
     # Add path to invalidation list
     INVALIDATION_PATHS+=("/findaid/$FINDING_AID_ARK*")
@@ -73,7 +73,7 @@ done
 wait
 
 # Run cache invalidation once for all paths: "findaid/<ark>*""
-if [ ${#INVALIDATE_IDS[@]} -gt 0 ] && [ ${#INVALIDATE_IDS[@]} -lt 10 ]; then
+if [ ${#INVALIDATION_PATHS[@]} -gt 0 ] && [ ${#INVALIDATION_PATHS[@]} -lt 10 ]; then
   if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
     echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
   else
@@ -83,7 +83,7 @@ if [ ${#INVALIDATE_IDS[@]} -gt 0 ] && [ ${#INVALIDATE_IDS[@]} -lt 10 ]; then
     echo "Invalidation submitted: $cf"
   fi
 else
-  echo "Too few or too many invalidation paths (${#INVALIDATE_IDS[@]}), skipping cache invalidation."
+  echo "Too few or too many invalidation paths (${#INVALIDATION_PATHS[@]}), skipping cache invalidation."
 fi
 
 echo "Finished indexing, cleaning up /tmp/$1"
