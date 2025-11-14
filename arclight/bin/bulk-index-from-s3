@@ -55,7 +55,7 @@ for folder in /tmp/$1/*; do
         $folder/finding-aid.xml \
         -s ark=$FINDING_AID_ARK \
         -s eadid="$EADID" \
-        -s preview=$PREVIEW &
+        -s preview=$PREVIEW
     echo "Clearing environment for $folder"
 
     # Add path to invalidation list
