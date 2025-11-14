@@ -4294,9 +4294,9 @@ ucla_clucs:
     longitude: -118.44116807
 ucla_clark:
     name: "UCLA, Clark (William Andrews) Memorial Library"
-    description: "The William Andrews Clark Memorial Library, which is administered by UCLA’s Center for 17th- &amp; 18th-Century Studies, is located on a historic, five-acre property in the West Adams neighborhood of Los Angeles. The rare book and manuscript library specializes in the study of England and the Continent from the Tudor period through the long eighteenth century. Other subject strengths include Oscar Wilde, book arts, and Montana and the West. The Clark is open to students, professors, and scholars throughout the world and serves as the research laboratory for a distinguished array of fellows working either in early modern studies or the fin-de-siècle world of Oscar Wilde. The Clark is also the site for a range of cultural programs organized by the Center, including chamber music concerts, theatrical performances, and lectures."
+    description: "The UCLA William Andrews Clark Memorial Library is a rare book and manuscript library that is open to all researchers who wish to conduct research with its holdings. The Library specializes in the study of England and Western Europe from the Tudor period through the long eighteenth century and from the mid-Victorian to late Edwardian periods, with a focus on Oscar Wilde and his circle. Other collection strengths include modern book arts; fine printing and the history of the book; and Montana and the West."
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 794-5155</div>
+        <div class="al-repository-contact-phone">(424) 442-6172</div>
         <div class="al-repository-contact-info"><a href="mailto:clark@humnet.ucla.edu">clark@humnet.ucla.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://www.clarklibrary.ucla.edu/" class="offsite-link">Website</a></div>
     location_html: |
