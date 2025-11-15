@@ -180,8 +180,8 @@ to_field "repository_ssim" do |_record, accumulator, context|
   accumulator << context.clipboard[:repository]
 end
 
-to_field "geogname_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")
-to_field "geogname_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname")
+to_field "geogname_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname | /ead/archdesc/descgrp/controlaccess/geogname")
+to_field "geogname_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname | /ead/archdesc/descgrp/controlaccess/geogname")
 
 to_field "creator_ssm", extract_xpath("/ead/archdesc/did/origination")
 to_field "creator_ssim", extract_xpath("/ead/archdesc/did/origination")
@@ -199,14 +199,14 @@ to_field "creators_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["creator_famname_ssim"] if context.output_hash["creator_famname_ssim"]
 end
 
-to_field "places_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname")
+to_field "places_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname | /ead/archdesc/descgrp/controlaccess/geogname")
 
 to_field "access_terms_ssm", extract_xpath('/ead/archdesc/userestrict/*[local-name()!="head"]')
 
 to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/descgrp/acqinfo/*[local-name()!="head"]')
 
-to_field "access_subjects_ssim", extract_xpath("/ead/archdesc/controlaccess", to_text: false) do |_record, accumulator|
+to_field "access_subjects_ssim", extract_xpath("/ead/archdesc/controlaccess | /ead/archdesc/descgrp/controlaccess", to_text: false) do |_record, accumulator|
   accumulator.map! do |element|
     %w[subject function occupation genreform].map do |selector|
       element.xpath(".//#{selector}").map(&:text)
@@ -263,7 +263,7 @@ end
 to_field "physfacet_tesim", extract_xpath("/ead/archdesc/did/physdesc/physfacet")
 to_field "dimensions_tesim", extract_xpath("/ead/archdesc/did/physdesc/dimensions")
 
-to_field "genreform_ssim", extract_xpath("/ead/archdesc/controlaccess/genreform")
+to_field "genreform_ssim", extract_xpath("/ead/archdesc/controlaccess/genreform | /ead/archdesc/descgrp/controlaccess/genreform")
 
 to_field "date_range_isim", extract_xpath("/ead/archdesc/did/unitdate/@normal", to_text: false) do |_record, accumulator|
   range = Oac::OptionalYearRange.new
@@ -274,11 +274,13 @@ to_field "date_range_isim", extract_xpath("/ead/archdesc/did/unitdate/@normal", 
   accumulator.replace range.years
 end
 
-to_field "indexes_html_tesm", extract_xpath("/ead/archdesc/index", to_text: false)
-to_field "indexes_tesim", extract_xpath("/ead/archdesc/index")
+to_field "indexes_html_tesm", extract_xpath("/ead/archdesc/index | /ead/archdesc/descgrp/index", to_text: false)
+to_field "indexes_tesim", extract_xpath("/ead/archdesc/index | /ead/archdesc/descgrp/index")
 
 SEARCHABLE_NOTES_FIELDS.map do |selector|
-  to_field "#{selector}_html_tesm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
+  to_field "#{selector}_html_tesm",
+    extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head'] | /ead/archdesc/descgrp/#{selector}/*[local-name()!='head']",
+    to_text: false) do |_record, accumulator|
     accumulator.map!(&:to_html)
   end
   to_field "#{selector}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head") unless selector == "prefercite"
@@ -291,7 +293,7 @@ DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
 end
 
 NAME_ELEMENTS.map do |selector|
-  to_field "names_coll_ssim", extract_xpath("/ead/archdesc/controlaccess/#{selector}")
+  to_field "names_coll_ssim", extract_xpath("/ead/archdesc/controlaccess/#{selector} | /ead/archdesc/descgrp/controlaccess/#{selector}")
   to_field "names_ssim", extract_xpath("//#{selector}"), unique
   to_field "#{selector}_ssim", extract_xpath("//#{selector}"), unique
 end
