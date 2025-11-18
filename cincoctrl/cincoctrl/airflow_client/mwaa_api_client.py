@@ -90,6 +90,7 @@ def trigger_dag(  # noqa: PLR0913
         if job_trigger.rest_api_status_code != 200:  # noqa: PLR2004
             raise MWAAAPIError(request_params, status_code, resp["RestApiResponse"])
 
+        job_trigger.refresh_from_db()
         return job_trigger
 
     query = {"dag_run_id": dag_run_id}
