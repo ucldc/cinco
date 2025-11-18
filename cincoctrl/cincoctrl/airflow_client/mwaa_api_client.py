@@ -127,12 +127,12 @@ def update_job_run(job: JobTrigger | JobRun, client: boto3.client):
 
     job_run, created = JobRun.objects.get_or_create(
         dag_id=dag,
-        dag_run_conf=json.dumps(resp["RestApiResponse"].get("conf")),
         airflow_url=env_url,
         dag_run_id=dag_run_id,
         logical_date=resp["RestApiResponse"]["logical_date"],
     )
     if created:
+        job_run.dag_run_conf = json.dumps(resp["RestApiResponse"].get("conf"))
         job_run.related_models.set(job.related_models.all())
 
     if isinstance(job, JobTrigger):
