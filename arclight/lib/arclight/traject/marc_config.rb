@@ -68,6 +68,7 @@ end
 
 to_field "title_ssm", extract_marc("245a")
 to_field "title_tesim", extract_marc("245a")
+to_field "unittitle_ssm", extract_marc("245a")
 to_field "unitdate_ssm", extract_marc("245f")
 
 to_field "main_persname_ssm", extract_marc("100a")
@@ -96,12 +97,22 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
   accumulator << [ title, date ].compact.join(" ").to_s
 end
 
+to_field "oac_normalized_title_ssm" do |_record, accumulator, context|
+  title = context.output_hash["unittitle_ssm"]&.first
+  date = context.output_hash["normalized_date_ssm"]&.first
+  accumulator << [ title, date ].compact.join(" ").to_s
+end
+
 to_field "collection_title_tesim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
 end
 
 to_field "collection_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash.fetch("normalized_title_ssm", [])
+end
+
+to_field "oac_collection_ssim" do |_record, accumulator, context|
+  accumulator.concat context.output_hash.fetch("oac_normalized_title_ssm", [])
 end
 
 to_field "repository_ssm" do |_record, accumulator, context|
