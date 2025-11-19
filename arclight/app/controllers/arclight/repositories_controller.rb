@@ -22,7 +22,7 @@ module Arclight
                   repository: [ repository.name ],
                   level: [ "Collection" ]
                 },
-                sort: "title_sort asc"
+                sort: "oac_title_sort asc"
             )
             redirect_to url
             rescue ActiveRecord::RecordNotFound

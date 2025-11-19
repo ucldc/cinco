@@ -36,7 +36,7 @@ module Arclight
           # bar defaults - Group by Collection & Sort by Relevance
           params[:group] = true
           params.delete(:sort)
-        # params[:sort] = "score desc, title_sort asc"
+        # params[:sort] = "score desc, oac_title_sort asc"
       end
 
       if params[:f] && params[:f][:repository]
