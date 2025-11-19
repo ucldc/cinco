@@ -193,9 +193,9 @@ cbea:
     name: "Beaumont Library District"
     description: "The Beaumont Library District was established in August 1911 and the Carnegie funded building was opened in 1914. An addition was built in 1966. A community room was added in 1981. The library holdings are 56,745 volumes. 14,490 registered borrowers utilize the collections. Currently, the District provides library services to residents of the city of Beaumont, parts of the city of Banning, the unincorporated Cherry Valley, and unincorporated areas of Riverside County, all of which lie within the District boundaries."
     contact_html: |
-        <div class="al-repository-contact-phone">(951) 845-1357  </div>
-        <div class="al-repository-contact-info"><a href="mailto:http://bld.lib.ca.us/contactus.html">http://bld.lib.ca.us/contactus.html</a></div>
-        <div class="al-repository-contact-info"><a href="http://bld.lib.ca.us/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-phone">(951) 845-1357</div>
+        <div class="al-repository-contact-info"><a href="mailto:info@bld.lib.ca.us">info@bld.lib.ca.us</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.mybld.org/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">125 East 8th Street</div>
         <div class="al-repository-street-address-city_state_zip_country">Beaumont, CA 92223, US</div>
