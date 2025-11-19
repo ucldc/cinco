@@ -26,4 +26,5 @@ bin/index-marc-from-s3 UC_Santa_Cruz.UA.mrc ucsc_uarc
 bin/index-marc-from-s3 002.mrc csl_chr
 bin/index-marc-from-s3 003.mrc csl_chr
 bin/index-marc-from-s3 BANCOAC_20250617.mrc berkeley_bancroft
-bin/index-marc-from-s3 UC_Los_Angeles.FilmTV.mrc ucla_cluft
+bin/index-marc-from-s3 UC_Los_Angeles_FilmTV.mrc ucla_cluft
+# bin/index-marc-from-s3 UC_Los_Angeles_FilmTV.mrc oac-test  # For stage, ucla_cluft repo doesn't exist, so use oac-test
