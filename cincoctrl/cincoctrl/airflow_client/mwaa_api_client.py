@@ -129,7 +129,7 @@ def update_job_run(job: JobTrigger | JobRun, client: boto3.client):
         dag_id=dag,
         airflow_url=env_url,
         dag_run_id=dag_run_id,
-        logical_date=resp["RestApiResponse"]["logical_date"],
+        logical_date=datetime.fromisoformat(resp["RestApiResponse"]["logical_date"]),
     )
     if created:
         job_run.dag_run_conf = json.dumps(resp["RestApiResponse"].get("conf"))
