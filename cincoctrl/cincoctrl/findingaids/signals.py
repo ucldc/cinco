@@ -120,8 +120,9 @@ def remove_old_job_runs(sender, instance, created, **kwargs):
             .first()
         )
 
-        # Remove older job runs for the same finding aid
-        JobRun.objects.filter(
-            related_models__id=related_model.id,
-            logical_date__lt=recent_success.logical_date,
-        ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()
+        if recent_success:
+            # Remove older job runs for the same finding aid
+            JobRun.objects.filter(
+                related_models__id=related_model.id,
+                logical_date__lt=recent_success.logical_date,
+            ).exclude(Q(pk=instance.pk) | Q(pk=recent_success.pk)).delete()

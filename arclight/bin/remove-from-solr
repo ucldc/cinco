@@ -20,7 +20,7 @@ fi
 echo "Deleting Finding Aid: $1"
 findaid_id=$1
 
-curl --fail -X POST "$SOLR_WRITER/update?commit=true" \
+curl --fail -sS -X POST "$SOLR_WRITER/update?commit=true" \
     -H "Content-Type: text/xml" \
     --data-binary "<delete><id>$findaid_id</id></delete>"
 
