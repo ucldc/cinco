@@ -35,6 +35,11 @@ fi
 
 echo "Downloading Contents of S3 Prefix $1 to /tmp/$1"
 aws s3 sync s3://$S3_BUCKET/media/$1 /tmp/$1 $S3_CLI_ENDPOINT
+# check that the download succeeded
+if [ $? -ne 0 ]; then
+  echo "Failed to download S3 prefix s3://$S3_BUCKET/media/$1"
+  exit 1
+fi
 
 # Initialize array for cache invalidation paths
 INVALIDATION_PATHS=()
