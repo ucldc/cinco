@@ -88,10 +88,11 @@ def update_status(sender, instance, created, **kwargs):
                 finding_aid=related_model,
                 status="success",
             )
-            if current_status == "queued_preview":
+            if current_status in ["queued_preview", "preview_error"]:
                 updated_status = "previewed"
-            elif current_status == "queued_publish":
+            elif current_status in ["queued_publish", "publish_error"]:
                 updated_status = "published"
+
         elif instance.status == "failed":
             IndexingHistory.objects.create(
                 finding_aid=related_model,
