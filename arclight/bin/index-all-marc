@@ -21,7 +21,7 @@ bin/index-marc-from-s3 sfp70sfp15.mrc csf_sfpl
 bin/index-marc-from-s3 UC_Davis.Shields.mrc ucdavis_spcoll
 bin/index-marc-from-s3 UC_Davis_AR.mrc ucdavis_uarc
 bin/index-marc-from-s3 ucsb.spcoll.oac.mrc ucsb_spcoll
-bin/index-marc-from-s3 UC_Santa_Cruz.Spec_Coll.mrc ucsb_spcoll
+bin/index-marc-from-s3 UC_Santa_Cruz.Spec_Coll.mrc ucsc_spcoll
 bin/index-marc-from-s3 UC_Santa_Cruz.UA.mrc ucsc_uarc
 bin/index-marc-from-s3 002.mrc csl_chr
 bin/index-marc-from-s3 003.mrc csl_chr
