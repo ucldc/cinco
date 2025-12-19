@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{# load querystring from django.contrib.staticfiles #}
 
 {% block title %}
   Manage Collection Guides
@@ -18,8 +19,7 @@
         <p>
           + <a  href="{% url 'findingaids:create_record_express' %}">Create a new RecordEXPRESS guide</a>
         </p>
-{% if records_page %}
-<h2>Your collection guides</h2>
+        <h2>Your collection guides</h2>
         <p>
           <div class="col-sm-4">
             <form method="get">
@@ -28,54 +28,98 @@
             </form>
           </div>
         </p>
-          <table class="table table-striped">
-            <thead>
-              <th>Collection Title</th>
-              <th>Collection Number</th>
-              <th>Repository</th>
-              <th>ARK</th>
-              <th>Submission Type</th>
-              <th>Date Updated</th>
-              <th>Publication Status</th>
-            </thead>
-              {% for record in records_page %}
-              <tr>
-                <td><a href="{{ record.get_absolute_url }}">{{ record.collection_title }}</a></td>
-                <td>{{ record.collection_number }}</td>
-                <td>{{ record.repository }}</td>
-                <td>{{ record.ark|slice:"-8:" }}</td>
-                <td>{{ record.record_type }}</td>
-                <td>{{ record.date_updated|date:"Y-m-d" }}</td>
-                <td>{{ record.status }}</td>
-              </tr>
-              {% endfor %}
-            </table>
+{% if records_page %}
+        <p>
+          Showing {{ records_page.start_index }} to {{ records_page.end_index }} of {{ records_page.paginator.count }} records found.
+        </p>
+        <table class="table table-striped">
+          <thead>
+            <th class="{{ sortable.collection_title.direction }}">
+              <a href="{% querystring sort=sortable.collection_title.link %}">
+                Collection Title
+              </a>
+            </th>
+            <th class="{{ sortable.collection_number.direction }}">
+              <a href="{% querystring sort=sortable.collection_number.link %}">
+                Collection Number
+              </a>
+            </th>
+            <th class="{{ sortable.ark.direction }}">
+              <a href="{% querystring sort=sortable.ark.link %}">
+                ARK
+              </a>
+            </th>
+            <th class="{{ sortable.repository.direction }}">
+              <a href="{% querystring sort=sortable.repository.link %}">
+                Repository
+              </a>
+            </th>
+            <th class="{{ sortable.record_type.direction }}">
+              <a href="{% querystring sort=sortable.record_type.link %}">
+                Submission Type
+              </a>
+            </th>
+            <th class="{{ sortable.status.direction }}">
+              <a href="{% querystring sort=sortable.status.link %}">
+                Publication Status
+              </a>
+            </th>
+            <th class="{{ sortable.date_updated.direction }}">
+              <a href="{% querystring sort=sortable.date_updated.link %}">
+                Date Updated
+              </a>
+            </th>
+            <th>
+              Includes PDFs?
+            </th>
+            <th>
+              Download EAD File
+            </th>
+          </thead>
+        {% for record in records_page %}
+          <tr>
+            <td><a href="{{ record.get_absolute_url }}">{{ record.collection_title }}</a></td>
+            <td>{{ record.collection_number }}</td>
+            <td>{{ record.ark }}</td>
+            <td>{{ record.repository }}</td>
+            <td>{{ record.record_type }}</td>
+            <td>{{ record.status }}</td>
+            <td>{{ record.date_updated|date:"Y-m-d" }}</td>
+            <td>{% if record.supplemental_pdfs.count > 0 %}Yes{% else %}No{% endif %}</td>
+            <td>{% if record.ead_file %}<a href="{{ record.ead_file.url }}">{{ record.ead_file }}</a>{% else %}N/A{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </table>
 
-            {% if records_page.has_other_pages %}
-              <div class="btn-group" role="group" aria-label="Record pagination">
-                {% if records_page.has_previous %}
-                  <a href="{{ base_page_url }}page={{ records_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
-                {% endif %}
-                {% for page_number in records_page.paginator.page_range %}
-                  {% if records_page.number == page_number %}
-                      <button class="btn btn-outline-primary active">
-                          <span>{{ page_number }} <span class="sr-only">(current)</span></span>
-                      </button>
-                  {% else %}
-                      <a href="{{ base_page_url }}page={{ page_number }}" class="btn btn-outline-primary">
-                          {{ page_number }}
-                      </a>
-                  {% endif %}
-                {% endfor %}
-
-                {% if records_page.has_next %}
-                  <a href="{{ base_page_url }}page={{ records_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
-                {% endif %}
-              </div>
-            {% endif %}
-          {% else %}
-            <p>No records found</p>
+        {% if records_page.has_other_pages %}
+        <div class="btn-group" role="group" aria-label="Record pagination">
+          {% if records_page.has_previous %}
+            <a href="{% querystring page=records_page.previous_page_number %}" class="btn btn-outline-primary">&lsaquo;</a>
           {% endif %}
+
+          {% for page_number in paginator_range %}
+            {% if records_page.number == page_number %}
+              <button class="btn btn-outline-primary active">
+                <span>{{ page_number }} <span class="visually-hidden">(current)</span></span>
+              </button>
+            {% elif page_number == "…" %}
+              <button class="btn btn-outline-primary disabled">…</button>
+            {% else %}
+              <a href="{% querystring page=page_number %}" class="btn btn-outline-primary">
+                {{ page_number }}
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          {% if records_page.has_next %}
+            <a href="{% querystring page=records_page.next_page_number %}" class="btn btn-outline-primary">&rsaquo;</a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+{% else %}
+        <p>No records found.</p>
+{% endif %}
       </div>
     </div>
   </div>
