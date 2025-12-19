@@ -42,6 +42,30 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
             repo_qs=self.request.user.repositories(),
         )
 
+        sortable_fields = [
+            "collection_title",
+            "collection_number",
+            "repository",
+            "ark",
+            "record_type",
+            "date_updated",
+            "status",
+        ]
+        sort_links = {
+            field: {"link": f"{field}", "direction": ""} for field in sortable_fields
+        }
+
+        if "sort" in self.request.GET:
+            sort_value = self.request.GET["sort"]
+            sort_field = sort_value[1:] if sort_value.startswith("-") else sort_value
+            if sort_field in sortable_fields:
+                f.qs.order_by(sort_value)
+
+            sort_links[sort_field] = {
+                "link": sort_field if sort_value.startswith("-") else f"-{sort_field}",
+                "direction": "asc" if sort_value.startswith("-") else "desc",
+            }
+
         items_per_page = 25
         paginator = Paginator(f.qs, items_per_page)
 
@@ -52,15 +76,24 @@ class ManageRecordsView(UserHasAnyRoleMixin, ListView):
         except EmptyPage:
             records_page = paginator.page(paginator.num_pages)
 
-        context["filter"] = f
-        context["records_page"] = records_page
-        sep = "&" if len(self.request.GET) > 0 else "?"
-        context["base_page_url"] = f"{self.request.get_full_path()}{sep}"
-        return context
+        return {
+            **context,
+            "paginator_range": paginator.get_elided_page_range(
+                number=records_page.number,
+                on_each_side=2,
+                on_ends=1,
+            ),
+            "filter": f,
+            "records_page": records_page,
+            "sortable": sort_links,
+        }
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(repository__in=self.request.user.repositories())
+        queryset = queryset.filter(repository__in=self.request.user.repositories())
+        if "sort" in self.request.GET:
+            queryset = queryset.order_by(self.request.GET["sort"])
+        return queryset
 
 
 manage_records_view = ManageRecordsView.as_view()
