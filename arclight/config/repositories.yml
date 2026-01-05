@@ -1567,11 +1567,11 @@ hssa:
     longitude: -124.077894688
 clobhi:
     name: "Historical Society of Long Beach"
-    description: "The Historical Society’s collection includes about 3,000 photographic images, 27,000 photographic prints and 3,000 slides. They range from fragile glass plate negatives to volatile nitrate negatives made through the 1930s, to Polaroid snap shots and color prints. The Historical Society also has large groups of images made by local commercial photographers Lawrence Inman and the Winstead Brothers between the 1920s and 1960s. In addition, there are more than 1,300 picture postcard images, along with an extensive collection of city directories, maps and map books, real estate records, architectural drawings, blueprints, thousands of documents, papers, pamphlets, brochures, booklets and some three dimensional artifacts."
+    description: "The Historical Society of Long Beach holds the most extensive collection of Long Beach record, including the City Manager Collection (1923-1953). The Photograph Collection includes more than 100,000 professional and amateur images of Long Beach from the late 1800s to present in the form of glass plate, nitrates, 35mm, tintype, prints black and white/sepia/color, Polaroids and more. Commercial collections include the Winstead Brothers, Lawrence Inman, and A. C. Brown. Heavily represented subjects include LGBTQ+, Grand Prix, downtown redevelopment, the Miss Universe pageant, construction of the Naval shipyard, aerials of the city and harbor, panoramas, early surfing contests, the Pike Amusement Zone and more. There are more than 1,300 picture postcards, along with an extensive collection of city directories, maps and map books, real estate records, architectural drawings, blueprints, pamphlets, brochures, booklets and millions of documents, accompanied by three dimensional artifacts."
     contact_html: |
         <div class="al-repository-contact-phone">(562) 424-2220</div>
-        <div class="al-repository-contact-info"><a href="mailto:archives@hslb.org; programs@hslb.org (photo requests)">archives@hslb.org; programs@hslb.org (photo requests)</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.hslb.org/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:archives@hslb.org">archives@hslb.org</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.hslb.org/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">4260 Atlantic Avenue</div>
         <div class="al-repository-street-address-city_state_zip_country">Long Beach, CA 90807, US</div>
