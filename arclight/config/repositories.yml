@@ -1571,8 +1571,7 @@ clobhi:
     contact_html: |
         <div class="al-repository-contact-phone">(562) 424-2220</div>
         <div class="al-repository-contact-info"><a href="mailto:archives@hslb.org">archives@hslb.org</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.hslb.org/" class="offsite-link">Website</a></div>
-        <div class="al-repository-contact-info"><a href="http://programs@hslb.org" class="offsite-link">Photo Requests</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.hslb.org/" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">4260 Atlantic Avenue</div>
         <div class="al-repository-street-address-city_state_zip_country">Long Beach, CA 90807, US</div>
