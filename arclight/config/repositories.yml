@@ -64,16 +64,16 @@ cajuol:
     name: "American Jewish University"
     description: "The Ostrow Library is designed to meet the needs of the University&#x27;s faculty and students, as well as scholars conducting research in all fields of Jewish culture and civilization."
     contact_html: |
-        <div class="al-repository-contact-phone">(310) 440-1238</div>
+        <div class="al-repository-contact-phone">(310) 440-1248</div>
         <div class="al-repository-contact-info"><a href="mailto:library@aju.edu">library@aju.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://library.aju.edu/" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">Bel and Jack M. Ostrow Library,</div>
-        <div class="al-repository-street-address-address2">15600 Mulholland Dr.</div>
-        <div class="al-repository-street-address-city_state_zip_country">Los Angeles, CA 90077, US</div>
+        <div class="al-repository-street-address-address1">Ziegler Campus</div>
+        <div class="al-repository-street-address-address2">350 S. Beverly Drive Suite 200</div>
+        <div class="al-repository-street-address-city_state_zip_country">Beverly Hills, CA 90212, US</div>
     thumbnail_url: ""
-    latitude: 34.1278499635
-    longitude: -118.4716326
+    latitude: 34.060464
+    longitude: -118.39873
 cana:
     name: "Anaheim Public Library"
     description: "The Anaheim Public Library&#x27;s Heritage Center has an inventory of almost a million items organized and cataloged for use by scholars, students and researchers in the Disney Resort Reading Room. Heritage Services also oversees the historic Mother Colony House and Woelke-Stoffel Victorian on the site of the new Founders&#x27; Park."
