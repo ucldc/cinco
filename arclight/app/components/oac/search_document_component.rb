@@ -12,7 +12,7 @@ module Oac
 
       def search_bar_component
         params = helpers.search_state.params_for_search.except(:qt)
-        params["f[collection][]"] = @document.collection.normalized_title
+        params["f[collection][]"] = @document.collection.oac_normalized_title
 
         Oac::SearchBarComponent.new(
           placeholder_text: "Search this collection",
