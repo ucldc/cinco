@@ -27,6 +27,10 @@
 </div>
 <% end %>
 
+<% if document.children? %>
+<div style="margin-left: 20px;">
+<% end %>
+
   <%  for child in document_tree.children %>
 
     <%=  render (self.class).new(document: child.document, presenter: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
@@ -35,3 +39,7 @@
 
       <% end %>
     <% end %>
+
+<% if document.children? %>
+</div>
+<% end %>

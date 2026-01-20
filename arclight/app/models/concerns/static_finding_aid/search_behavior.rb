@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Overridden from Arclight and OAC in order to escape IDs
-# and add the hierachy behavior to all searches
+# Overridden from Arclight and OAC to fetch entire document tree
+# with nested children in a single query
 
 require "rsolr"
 
@@ -17,15 +17,18 @@ module StaticFindingAid
       ]
     end
 
-    # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/AbcSize
     def add_hierarchy_behavior(solr_parameters)
+      return unless blacklight_params[:id]
+
+      # Fetch the document by ID with all nested children in a single query
       solr_parameters[:fq] ||= []
-      # Escape IDs because arks contain special characters
-      solr_parameters[:fq] << "_nest_parent_:#{RSolr.solr_escape(blacklight_params[:id])}"
-      solr_parameters[:rows] = blacklight_params[:per_page]&.to_i || blacklight_params[:limit]&.to_i || 999_999_999
-      solr_parameters[:start] = blacklight_params[:offset] if blacklight_params[:offset]
-      solr_parameters[:sort] = "sort_isi asc"
+      solr_parameters[:fq] << "id:#{RSolr.solr_escape(blacklight_params[:id])}"
+      solr_parameters[:fl] = "*,-text,[child fl=\"*,-text\"]"
+      solr_parameters[:rows] = 1
       solr_parameters[:facet] = false
+
+      # Clean up any facet parameters
       solr_parameters.delete("facet.query")
       solr_parameters.delete("facet.field")
       solr_parameters.delete("f.repository_ssim.facet.limit")
