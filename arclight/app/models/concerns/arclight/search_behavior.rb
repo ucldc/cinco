@@ -29,6 +29,7 @@ module Arclight
       solr_parameters[:start] = blacklight_params[:offset] if blacklight_params[:offset]
       solr_parameters[:sort] = "sort_isi asc"
       solr_parameters[:facet] = false
+      solr_parameters[:fl] = "*,-text"
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity
 
