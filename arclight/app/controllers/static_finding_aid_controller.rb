@@ -18,22 +18,12 @@ class StaticFindingAidController < ApplicationController
 
     config.default_solr_params = {
       rows: 10,
-      fl: "*,collection:[subquery]",
-      'collection.q': "{!terms f=id v=$row._root_}",
-      'collection.defType': "lucene",
-      'collection.fl': "*",
-      'collection.rows': 1,
       fq: "preview_ssi:false"
     }
 
 
     config.default_document_solr_params = {
-     qt: "document",
-     fl: "*,collection:[subquery]",
-     'collection.q': "{!terms f=id v=$row._root_}",
-     'collection.defType': "lucene",
-     'collection.fl': "*",
-     'collection.rows': 1
+      qt: "document"
     }
 
     config.add_results_document_tool(:online, component: Arclight::OnlineStatusIndicatorComponent)
@@ -229,28 +219,105 @@ class StaticFindingAidController < ApplicationController
   end
 
   def show
-    @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+    document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+    unless document
+      redirect_to "/findaid/#{params[:id]}"
+      return
+    end
 
-      # make a head request to S3
-      s3_bucket = ENV["S3_BUCKET"]
-      uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{@document.id}.html"
-      uri = URI(uri_string)
+    # Check S3 cache
+    s3_bucket = ENV["S3_BUCKET"]
+    uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{params[:id]}.html"
+    uri = URI(uri_string)
+
+    begin
       response = nil
-      Net::HTTP.start(uri.hostname, 80) { |http|
+      Net::HTTP.start(uri.hostname, 443, use_ssl: true) do |http|
         response = http.head(uri.path)
-      }
-
-      case response
-      when Net::HTTPOK
-        redirect_to "/static_findaids/#{@document.id}.html"
-        return
       end
 
-      if !helpers.show_static_finding_aid_link?(@document)
-        redirect_to "/findaid/#{@document.id}"
+      if response.is_a?(Net::HTTPOK) && cache_is_valid?(response, document)
+        redirect_to "/static_findaids/#{params[:id]}.html"
         return
       end
+    rescue => e
+      Rails.logger.warn("S3 cache check failed: #{e.message}")
+    end
 
+    # Check if we should show static finding aid
+    unless within_component_limit?(document["total_component_count_is"])
+      redirect_to "/findaid/#{params[:id]}"
+      return
+    end
+
+    # Cache miss or invalid - build the tree and render
     @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
+    @document = @doc_tree.document
+
+    Rails.logger.info("SHOW: #{params[:id]}")
+    Rails.logger.info("Document: #{document.inspect}")
+    Rails.logger.info("Document ID: #{document['id']}")
+    Rails.logger.info("Document Version: #{document['_version_']}")
+    Rails.logger.info("Document Total Component Count: #{document['total_component_count_is']}")
+    Rails.logger.info("Document Timestamp: #{document['timestamp']}")
+    Rails.logger.info("Component Limit: #{Rails.application.config.child_component_limit}")
+
+    # Render to string instead of responding
+    html_content = render_to_string(
+      layout: "static_catalog_result",
+      formats: [ :html ]
+    )
+
+    # Upload to S3 if bucket is configured
+    if s3_bucket.present?
+      upload_to_s3(params[:id], html_content, document)
+      redirect_to "/static_findaids/#{params[:id]}.html"
+    else
+      # No S3 configured, serve directly
+      render html: html_content.html_safe
+    end
+  end
+
+  private
+
+  def fetch_document_metadata(id)
+    search_service = Blacklight.repository_class.new(blacklight_config)
+    # Lightweight query to get only the fields needed for cache validation
+    response = search_service.search(
+      q: "id:#{RSolr.solr_escape(id)}`",
+      fl: "id,_version_,total_component_count_is,timestamp",
+      rows: 1
+    )
+    response["response"]["docs"].first
+  end
+
+  def within_component_limit?(total_count)
+    return false unless total_count
+    total_count.to_i < Rails.application.config.child_component_limit
+  end
+
+  def cache_is_valid?(s3_response, document)
+    # Check if S3 metadata matches current Solr document
+    s3_version = s3_response["x-amz-meta-version"]
+    s3_component_count = s3_response["x-amz-meta-total-component-count"]
+
+    return false unless s3_version && s3_component_count
+
+    s3_version == document["_version_"].to_s &&
+      s3_component_count == document["total_component_count_is"].to_s
+  end
+
+  def upload_to_s3(id, html_content, metadata)
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV["S3_BUCKET"])
+
+    bucket.object("static_findaids/static_findaids/#{id}.html").put(
+      body: html_content,
+      content_type: "text/html",
+      metadata: {
+        "version" => metadata["_version_"].to_s,
+        "total-component-count" => metadata["total_component_count_is"].to_s
+      }
+    )
   end
 end
