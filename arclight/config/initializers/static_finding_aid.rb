@@ -2,7 +2,7 @@
 # too many to display a static finding aid.
 #
 #
-Rails.application.config.child_component_limit = ENV["CHILD_COMPONENT_LIMIT"] || 300
+Rails.application.config.child_component_limit = ENV["CHILD_COMPONENT_LIMIT"] || 10000
 
 #
 Rails.application.config.disallowed_static_guides = [
