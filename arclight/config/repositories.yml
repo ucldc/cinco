@@ -620,6 +620,19 @@ cfls_uasc:
     thumbnail_url: ""
     latitude: 33.8740731
     longitude: -117.9026351
+CLobS:
+    name: "California State University, Long Beach"
+    description: "Special Collections &amp; University Archives is a department in the CSULB University Library. Our major collecting areas are University history, collections relating to local history and Californiana, U.S. politics, and the arts in Southern California.  University Archives covers the history of the University and surrounding areas. Materials include yearbooks, commencement programs, presidents’ papers, meeting minutes for University organizations, and campus photography. Special Collections includes art, photography, rare books and manuscripts. We have over 16,000 books, as well as around 500 fine art and photographic prints."
+    contact_html: |
+        <div class="al-repository-contact-phone">(562) 985-4087</div>
+        <div class="al-repository-contact-info"><a href="mailto:LIB-Archives@csulb.edu">LIB-Archives@csulb.edu</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">University Library, 3rd Floor, Rm. 300</div>
+        <div class="al-repository-street-address-address2">1250 Bellflower Boulevard</div>
+        <div class="al-repository-street-address-city_state_zip_country">Long Beach, CA 90807, </div>
+    thumbnail_url: ""
+    latitude: 33.785289
+    longitude: -118.116255
 cls:
     name: "California State University, Los Angeles"
     description: "The mission of Special Collections &amp; Archives, California State University, Los Angeles is to support the discovery, learning and engagement goals of the University by identifying, acquiring, perserving, and providing access to primary research materials of enduring value in support of the academic mission of the university, the educational and research needs of the CSULA academic community, scholars, and the research community at large."
