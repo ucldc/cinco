@@ -626,6 +626,7 @@ CLobS:
     contact_html: |
         <div class="al-repository-contact-phone">(562) 985-4087</div>
         <div class="al-repository-contact-info"><a href="mailto:LIB-Archives@csulb.edu">LIB-Archives@csulb.edu</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.csulb.edu/university-library/welcome-to-special-collections-and-university-archives" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">University Library, 3rd Floor, Rm. 300</div>
         <div class="al-repository-street-address-address2">1250 Bellflower Boulevard</div>
