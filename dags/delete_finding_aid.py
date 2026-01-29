@@ -1,8 +1,7 @@
 import boto3
 from datetime import datetime
-from airflow.decorators import dag, task
+from airflow.sdk import dag, task, Variable
 from airflow.models.param import Param
-from airflow.models import Variable
 
 
 from cinco.cincoctrl_operator import CincoCtrlOperator

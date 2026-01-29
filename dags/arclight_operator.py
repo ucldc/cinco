@@ -1,7 +1,7 @@
 import os
 import boto3
 
-from airflow.models import Variable
+from airflow.sdk import Variable
 
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.providers.amazon.aws.operators.ecs import EcsRunTaskOperator

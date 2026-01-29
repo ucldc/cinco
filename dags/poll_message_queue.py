@@ -1,5 +1,5 @@
 from datetime import datetime
-from airflow.decorators import dag
+from airflow.sdk import dag
 
 from cinco.cincoctrl_operator import CincoCtrlOperator
 

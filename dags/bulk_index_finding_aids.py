@@ -12,9 +12,8 @@ import os
 import uuid
 import boto3
 from datetime import datetime
-from airflow.decorators import dag, task, task_group
+from airflow.sdk import dag, task, task_group, Variable
 from airflow.models.param import Param
-from airflow.models import Variable
 
 from cinco.arclight_operator import ArcLightOperator
 from cinco.cincoctrl_operator import CincoCtrlOperator
