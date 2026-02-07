@@ -84,3 +84,4 @@ gem "lograge", "~> 0.14.0"
 gem "request_store"
 
 gem "solid_cache", "~> 1.0"
+gem "aws-sdk-s3", "~> 1.213"
