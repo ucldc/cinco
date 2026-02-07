@@ -72,7 +72,6 @@ module ApplicationHelper
   end
 
   def solr_document_path(*args, **options)
-    Rails.logger.debug("custom oac solr_document_path generated")
     rewrite_ark_path_if_needed(*args, **options) { super(*args, **options) }
   end
 
@@ -89,12 +88,9 @@ module ApplicationHelper
     # refers to the Rails-generated path helper method - a dynamically generated method.
     encoded_path = yield
 
-    Rails.logger.debug("Generated path from original: #{encoded_path}")
-
     if document_id.to_s.start_with?("ark:")
-      Rails.logger.debug("ARK detected, generating custom path.")
       encoded_path.gsub!("%2F", "/")
-      Rails.logger.debug("Rewritten path: #{encoded_path}")
+      Rails.logger.debug("Rewrite ARK path from #{yield} to #{encoded_path}")
     end
     encoded_path
   end

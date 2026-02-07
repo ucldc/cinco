@@ -49,6 +49,7 @@ services:
       SOLR_PORT: 8983
       SOLR_URL: http://solr:8983/solr/arclight
       SOLR_VERSION: 9.6.1
+      CINCO_MINIO_ENDPOINT: http://minio.cinco.orb.local:9000
     ports:
       - "3000:3000"
     tty: true

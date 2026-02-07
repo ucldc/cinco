@@ -227,40 +227,43 @@ class StaticFindingAidController < ApplicationController
 
     # Check S3 cache
     s3_bucket = ENV["S3_BUCKET"]
-    uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{params[:id]}.html"
-    uri = URI(uri_string)
 
-    begin
-      response = nil
-      Net::HTTP.start(uri.hostname, 443, use_ssl: true) do |http|
-        response = http.head(uri.path)
-      end
+    if s3_bucket.present?
+      begin
+        s3 = Aws::S3::Resource.new
+        bucket = s3.bucket(s3_bucket)
+        obj = bucket.object("static_findaids/static_findaids/#{params[:id]}.html")
 
-      if response.is_a?(Net::HTTPOK) && cache_is_valid?(response, document)
-        redirect_to "/static_findaids/#{params[:id]}.html"
-        return
+        # Check if object exists and get metadata
+        head = obj.head
+        Rails.logger.info("S3 cache exists for #{params[:id]}")
+
+        if cache_is_valid?(head.metadata, document)
+          Rails.logger.info("Serving static finding aid for #{params[:id]} from S3 cache")
+          # Fetch and render cached content from S3
+          s3_content = obj.get.body.read
+          render html: s3_content.html_safe
+          return
+        else
+          Rails.logger.info("S3 cache invalid for #{params[:id]}")
+        end
+      rescue Aws::S3::Errors::NotFound
+        Rails.logger.info("S3 cache miss for #{params[:id]}")
+      rescue => e
+        Rails.logger.warn("S3 cache check failed: #{e.message}")
       end
-    rescue => e
-      Rails.logger.warn("S3 cache check failed: #{e.message}")
     end
 
     # Check if we should show static finding aid
-    unless within_component_limit?(document["total_component_count_is"])
-      redirect_to "/findaid/#{params[:id]}"
-      return
-    end
+    # unless within_component_limit?(document["total_component_count_is"])
+    #   redirect_to "/findaid/#{params[:id]}"
+    #   return
+    # end
+    Rails.logger.info("Rendering static finding aid for #{params[:id]} dynamically")
 
     # Cache miss or invalid - build the tree and render
     @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
     @document = @doc_tree.document
-
-    Rails.logger.info("SHOW: #{params[:id]}")
-    Rails.logger.info("Document: #{document.inspect}")
-    Rails.logger.info("Document ID: #{document['id']}")
-    Rails.logger.info("Document Version: #{document['_version_']}")
-    Rails.logger.info("Document Total Component Count: #{document['total_component_count_is']}")
-    Rails.logger.info("Document Timestamp: #{document['timestamp']}")
-    Rails.logger.info("Component Limit: #{Rails.application.config.child_component_limit}")
 
     # Render to string instead of responding
     html_content = render_to_string(
@@ -271,11 +274,10 @@ class StaticFindingAidController < ApplicationController
     # Upload to S3 if bucket is configured
     if s3_bucket.present?
       upload_to_s3(params[:id], html_content, document)
-      redirect_to "/static_findaids/#{params[:id]}.html"
-    else
-      # No S3 configured, serve directly
-      render html: html_content.html_safe
     end
+
+    # Serve the rendered content
+    render html: html_content.html_safe
   end
 
   private
@@ -296,27 +298,40 @@ class StaticFindingAidController < ApplicationController
     total_count.to_i < Rails.application.config.child_component_limit
   end
 
-  def cache_is_valid?(s3_response, document)
+  def cache_is_valid?(s3_metadata, document)
     # Check if S3 metadata matches current Solr document
-    s3_version = s3_response["x-amz-meta-version"]
-    s3_component_count = s3_response["x-amz-meta-total-component-count"]
+    s3_version = s3_metadata["version"]
+    s3_component_count = s3_metadata["total-component-count"]
+    s3_timestamp = s3_metadata["timestamp"]
 
-    return false unless s3_version && s3_component_count
+    Rails.logger.info("S3 metadata - version: #{s3_version}, component_count: #{s3_component_count}, timestamp: #{s3_timestamp}")
+
+    return false unless s3_version && s3_component_count && s3_timestamp
 
     s3_version == document["_version_"].to_s &&
-      s3_component_count == document["total_component_count_is"].to_s
+      s3_component_count == document["total_component_count_is"].to_s &&
+      s3_timestamp == document["timestamp"].to_s
+  end
+
+  def fetch_from_s3(id)
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(ENV["S3_BUCKET"])
+    obj = bucket.object("static_findaids/static_findaids/#{id}.html")
+    obj.get.body.read
   end
 
   def upload_to_s3(id, html_content, metadata)
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV["S3_BUCKET"])
 
+    Rails.logger.info("Uploading static finding aid for #{id} to S3 cache")
     bucket.object("static_findaids/static_findaids/#{id}.html").put(
       body: html_content,
       content_type: "text/html",
       metadata: {
         "version" => metadata["_version_"].to_s,
-        "total-component-count" => metadata["total_component_count_is"].to_s
+        "total-component-count" => metadata["total_component_count_is"].to_s,
+        "timestamp" => metadata["timestamp"].to_s
       }
     )
   end
