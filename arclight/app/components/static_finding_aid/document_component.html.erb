@@ -21,7 +21,7 @@
 <%= access if document.collection? %>
 
 <% if document.children? %>
-<div id="<%= "content-#{document.id}" %> >
+<div id='<%= "content-#{document.id}" %>' >
   <h2 class="al-show-sub-heading"><%= t 'arclight.views.show.contents' %></h2>
 
 </div>
@@ -33,7 +33,7 @@
 
   <%  for child in document_tree.children %>
 
-    <%=  render (self.class).new(document: child.document, presenter: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
+    <%=  render (self.class).new(document: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
 
       <% component.with_title(as: 'h4', classes: '', link_to_document: false, actions: false) %>
 
