@@ -299,6 +299,11 @@ class StaticFindingAidController < ApplicationController
   end
 
   def cache_is_valid?(s3_metadata, document)
+    if env["STATIC_FINDING_AID_TRANSITION"] == true
+      Rails.logger.info("Static finding aid transition mode enabled; file exists, assuming valid cache")
+      return true
+    end
+
     # Check if S3 metadata matches current Solr document
     s3_version = s3_metadata["version"]
     s3_component_count = s3_metadata["total-component-count"]
