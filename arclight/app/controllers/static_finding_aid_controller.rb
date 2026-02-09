@@ -236,10 +236,8 @@ class StaticFindingAidController < ApplicationController
 
         # Check if object exists and get metadata
         head = obj.head
-        Rails.logger.info("S3 cache exists for #{params[:id]}")
-
         if cache_is_valid?(head.metadata, document)
-          Rails.logger.info("Serving static finding aid for #{params[:id]} from S3 cache")
+          Rails.logger.info("S3 cache valid for #{params[:id]}, serving cached content")
           # Fetch and render cached content from S3
           s3_content = obj.get.body.read
           render html: s3_content.html_safe
@@ -254,11 +252,6 @@ class StaticFindingAidController < ApplicationController
       end
     end
 
-    # Check if we should show static finding aid
-    # unless within_component_limit?(document["total_component_count_is"])
-    #   redirect_to "/findaid/#{params[:id]}"
-    #   return
-    # end
     Rails.logger.info("Rendering static finding aid for #{params[:id]} dynamically")
 
     # Cache miss or invalid - build the tree and render
@@ -282,24 +275,9 @@ class StaticFindingAidController < ApplicationController
 
   private
 
-  def fetch_document_metadata(id)
-    search_service = Blacklight.repository_class.new(blacklight_config)
-    # Lightweight query to get only the fields needed for cache validation
-    response = search_service.search(
-      q: "id:#{RSolr.solr_escape(id)}`",
-      fl: "id,_version_,total_component_count_is,timestamp",
-      rows: 1
-    )
-    response["response"]["docs"].first
-  end
-
-  def within_component_limit?(total_count)
-    return false unless total_count
-    total_count.to_i < Rails.application.config.child_component_limit
-  end
-
   def cache_is_valid?(s3_metadata, document)
-    if env["STATIC_FINDING_AID_TRANSITION"] == true
+    # todo: remove log output after transition period
+    if Rails.application.config.static_findaid_cache_transition == true
       Rails.logger.info("Static finding aid transition mode enabled; file exists, assuming valid cache")
       return true
     end
