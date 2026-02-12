@@ -35,7 +35,7 @@ namespace :static_finding_aid do
         # Check if it was uploaded to S3
         if ENV["S3_BUCKET"].present?
           puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
-          puts "  Path: static_findaids/static_findaids/#{id}.html"
+          puts "  Path: static_findaids/oac5/#{id}.html"
         else
           puts "⚠ S3_BUCKET not configured - content not uploaded to S3"
         end
