@@ -229,26 +229,43 @@ class StaticFindingAidController < ApplicationController
     s3_bucket = ENV["S3_BUCKET"]
 
     if s3_bucket.present?
+      s3 = Aws::S3::Resource.new
+      bucket = s3.bucket(s3_bucket)
+
+      # First try oac5 path with validation
       begin
-        s3 = Aws::S3::Resource.new
-        bucket = s3.bucket(s3_bucket)
-        obj = bucket.object("static_findaids/static_findaids/#{params[:id]}.html")
+        obj = bucket.object("static_findaids/oac5/#{params[:id]}.html")
 
         # Check if object exists and get metadata
         head = obj.head
         if cache_is_valid?(head.metadata, document)
-          Rails.logger.info("S3 cache valid for #{params[:id]}, serving cached content")
+          Rails.logger.info("S3 cache valid for #{params[:id]} at oac5/, serving cached content")
           # Fetch and render cached content from S3
           s3_content = obj.get.body.read
           render html: s3_content.html_safe
           return
         else
-          Rails.logger.info("S3 cache invalid for #{params[:id]}")
+          Rails.logger.info("S3 cache invalid for #{params[:id]} at oac5/, checking fallback location")
         end
       rescue Aws::S3::Errors::NotFound
-        Rails.logger.info("S3 cache miss for #{params[:id]}")
+        Rails.logger.info("S3 cache miss for #{params[:id]} at oac5/, checking fallback location")
       rescue => e
-        Rails.logger.warn("S3 cache check failed: #{e.message}")
+        Rails.logger.warn("S3 cache check failed for oac5/: #{e.message}")
+      end
+
+      # Fallback to static_findaids path (assume valid if exists)
+      begin
+        obj = bucket.object("static_findaids/static_findaids/#{params[:id]}.html")
+        obj.head  # Check if exists
+
+        Rails.logger.info("S3 cache found for #{params[:id]} at static_findaids/, serving cached content (assuming valid)")
+        s3_content = obj.get.body.read
+        render html: s3_content.html_safe
+        return
+      rescue Aws::S3::Errors::NotFound
+        Rails.logger.info("S3 cache miss for #{params[:id]} at static_findaids/")
+      rescue => e
+        Rails.logger.warn("S3 cache check failed for static_findaids/: #{e.message}")
       end
     end
 
