@@ -4,7 +4,7 @@ argon2-cffi==23.1.0  # https://github.com/hynek/argon2_cffi
 
 # Django
 # ------------------------------------------------------------------------------
-django==5.2.9  # pyup: < 5.1  # https://www.djangoproject.com/
+django==5.2.11  # pyup: < 5.1  # https://www.djangoproject.com/
 django-environ==0.11.2  # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 django-allauth[mfa]==65.0.2  # https://github.com/pennersr/django-allauth
