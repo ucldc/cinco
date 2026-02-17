@@ -45,7 +45,7 @@ A list of [all  possible settings](http://cookiecutter-django.readthedocs.io/en/
 
 ### Dependencies
 
-- Django 5.0.9
+- Django 5.2.11
 - Postgres 16
 - Allauth - consider removing, not sure if it's really doing anything for us
 - Gunicorn
