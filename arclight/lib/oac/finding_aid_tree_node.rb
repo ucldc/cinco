@@ -26,16 +26,5 @@ module Oac
         child_docs.map { |child_hash| FindingAidTreeNode.new(@controller, nil, doc_hash: child_hash) }
       end
     end
-
-    def marshal_dump
-      {}.tap do |result|
-        result[:doc_hash] = @doc_hash
-      end
-    end
-
-    def marshal_load(serialized_tree)
-      @doc_hash = serialized_tree[:doc_hash]
-      @document = SolrDocument.new(@doc_hash)
-    end
   end
 end
