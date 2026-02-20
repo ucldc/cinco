@@ -247,7 +247,7 @@ class StaticFindingAidController < ApplicationController
     # Check S3 cache
     s3_bucket = ENV["S3_BUCKET"]
 
-    if s3_bucket.present?
+    if s3_bucket.present? && !Rails.application.config.disable_static_findaid_cache
       s3 = Aws::S3::Resource.new
       bucket = s3.bucket(s3_bucket)
 
@@ -256,6 +256,7 @@ class StaticFindingAidController < ApplicationController
         obj = bucket.object("static_findaids/oac5/#{params[:id]}.html")
 
         # Check if object exists and get metadata
+        # todo: this log output is conservative and verbose - remove at some point
         head = obj.head
         if cache_is_valid?(head.metadata, document)
           Rails.logger.info("S3 cache valid for #{params[:id]} at oac5/, serving cached content")
@@ -273,6 +274,7 @@ class StaticFindingAidController < ApplicationController
       end
 
       # Fallback to static_findaids path (assume valid if exists)
+      # todo: remove this block after transition period
       begin
         obj = bucket.object("static_findaids/static_findaids/#{params[:id]}.html")
         obj.head  # Check if exists
@@ -312,13 +314,8 @@ class StaticFindingAidController < ApplicationController
   private
 
   def cache_is_valid?(s3_metadata, document)
-    # todo: remove log output after transition period
-    if Rails.application.config.static_findaid_cache_transition == true
-      Rails.logger.info("Static finding aid transition mode enabled; file exists, assuming valid cache")
-      return true
-    end
-
     # Check if S3 metadata matches current Solr document
+    # todo: this log output is conservative and verbose - remove at some point
     s3_version = s3_metadata["version"]
     s3_component_count = s3_metadata["total-component-count"]
     s3_timestamp = s3_metadata["timestamp"]
@@ -332,14 +329,8 @@ class StaticFindingAidController < ApplicationController
       s3_timestamp == document["timestamp"].to_s
   end
 
-  def fetch_from_s3(id)
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(ENV["S3_BUCKET"])
-    obj = bucket.object("static_findaids/static_findaids/#{id}.html")
-    obj.get.body.read
-  end
-
   def upload_to_s3(id, html_content, metadata)
+    # todo: this log output is conservative and verbose - remove at some point
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket(ENV["S3_BUCKET"])
 
