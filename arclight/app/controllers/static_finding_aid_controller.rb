@@ -246,47 +246,19 @@ class StaticFindingAidController < ApplicationController
 
     # Check S3 cache
     s3_bucket = ENV["S3_BUCKET"]
-
     if s3_bucket.present? && !Rails.application.config.disable_static_findaid_cache
       s3 = Aws::S3::Resource.new
       bucket = s3.bucket(s3_bucket)
 
       # First try oac5 path with validation
-      begin
-        obj = bucket.object("static_findaids/oac5/#{params[:id]}.html")
-
-        # Check if object exists and get metadata
-        # todo: this log output is conservative and verbose - remove at some point
-        head = obj.head
-        if cache_is_valid?(head.metadata, document)
-          Rails.logger.info("S3 cache valid for #{params[:id]} at oac5/, serving cached content")
-          # Fetch and render cached content from S3
-          s3_content = obj.get.body.read
-          render html: s3_content.html_safe
-          return
-        else
-          Rails.logger.info("S3 cache invalid for #{params[:id]} at oac5/, checking fallback location")
-        end
-      rescue Aws::S3::Errors::NotFound
-        Rails.logger.info("S3 cache miss for #{params[:id]} at oac5/, checking fallback location")
-      rescue => e
-        Rails.logger.warn("S3 cache check failed for oac5/: #{e.message}")
+      s3_content = fetch_from_s3("oac5/#{params[:id]}.html", method(:cache_is_valid?))
+      if !s3_content
+        s3_content = fetch_from_s3("static_findaids/#{params[:id]}.html")
       end
 
-      # Fallback to static_findaids path (assume valid if exists)
-      # todo: remove this block after transition period
-      begin
-        obj = bucket.object("static_findaids/static_findaids/#{params[:id]}.html")
-        obj.head  # Check if exists
-
-        Rails.logger.info("S3 cache found for #{params[:id]} at static_findaids/, serving cached content (assuming valid)")
-        s3_content = obj.get.body.read
+      if s3_content
         render html: s3_content.html_safe
         return
-      rescue Aws::S3::Errors::NotFound
-        Rails.logger.info("S3 cache miss for #{params[:id]} at static_findaids/")
-      rescue => e
-        Rails.logger.warn("S3 cache check failed for static_findaids/: #{e.message}")
       end
     end
 
@@ -327,6 +299,37 @@ class StaticFindingAidController < ApplicationController
     s3_version == document["_version_"].to_s &&
       s3_component_count == document["total_component_count_is"].to_s &&
       s3_timestamp == document["timestamp"].to_s
+  end
+
+  def fetch_from_s3(path, cache_check_fn = nil)
+    s3_bucket = ENV["S3_BUCKET"]
+    s3 = Aws::S3::Resource.new
+    bucket = s3.bucket(s3_bucket)
+
+    begin
+      obj = bucket.object("static_findaids/#{path}")
+      head = obj.head
+
+      if cache_check_fn.respond_to?(:call)
+        if cache_check_fn.call(head.metadata, document)
+          Rails.logger.info("S3 cache valid for #{path}, serving cached content")
+          # Fetch and render cached content from S3
+          obj.get.body.read
+        else
+          Rails.logger.info("S3 cache invalid for #{path}")
+          nil
+        end
+      else
+        Rails.logger.info("S3 cache assumed valid for #{path}, serving cached content")
+        obj.get.body.read
+      end
+    rescue Aws::S3::Errors::NotFound
+      Rails.logger.info("No s3 file found at #{path}")
+      nil
+    rescue => e
+      Rails.logger.warn("S3 request failed: #{e.message}")
+      nil
+    end
   end
 
   def upload_to_s3(id, html_content, metadata)
