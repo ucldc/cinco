@@ -76,6 +76,8 @@ $logo-image: image_url('arclight/logo.svg') !default;
 @import 'header-footer';
 @import 'finding-aid';
 @import 'search';
+@import 'print';
+@import 'static-finding-aid';
 
 // ************************** //
 // ******** HEADINGS ******** //

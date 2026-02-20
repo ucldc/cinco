@@ -2,23 +2,21 @@
 <% content_for(:container_header) do -%>
 
   <div>
-        <div class="container">
+        <div class="container py-4">
             <a class="mb-0 navbar-brand navbar-logo d-block" href="/">OAC</a>
-        </div class="container">
+        </div>
+        <div class="container">
             <p class="h4"> <%= @document.repository %></p>
         <div>
-
-        </div>
-
   </div>
 
-  <div class="text-left container py-4">
-    <%= content_tag :h1, class: 'h3' do %>
+  <div class="text-left container my-4 py-2 static-findaid-title">
+    <%= content_tag :h1 do %>
         <span aria-hidden="true"><%= blacklight_icon :collection, classes: 'al-collection-content-icon' %></span>
         <%= @document.collection_name %>
     <% end %>
     <div class="row">
-        <ul class="list-unstyled">
+        <ul class="list-unstyled static-findaid-list">
             <li class="static_link">
                 <a href="<%= solr_document_path @document.id %>">
                     <%= request.base_url %><%= CGI.unescape(solr_document_path @document.id) %>
@@ -36,5 +34,4 @@
     </div>
 </div>
 <% end %>
-<hr>
 <%= render 'show_main_content' %>
