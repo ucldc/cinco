@@ -3,7 +3,8 @@
 #
 #
 # Rails.application.config.child_component_limit = ENV["CHILD_COMPONENT_LIMIT"] || 10000
-Rails.application.config.static_findaid_cache_transition = ENV["STATIC_FINDAID_CACHE_TRANSITION"] || false
+Rails.application.config.disable_static_findaid_cache = ENV["DISABLE_STATIC_FINDAID_CACHE"] || false
+
 #
 Rails.application.config.disallowed_static_guides = [
   "ark:/13030/c8tt4pp0"
