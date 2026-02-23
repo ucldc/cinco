@@ -238,8 +238,8 @@ class StaticFindingAidController < ApplicationController
   end
 
   def show
-    document = search_service.fetch(::RSolr.solr_escape(params[:id]))
-    unless document
+    @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+    unless @document
       redirect_to "/findaid/#{params[:id]}"
       return
     end
@@ -247,15 +247,14 @@ class StaticFindingAidController < ApplicationController
     # Check S3 cache
     s3_bucket = ENV["S3_BUCKET"]
     if s3_bucket.present? && !Rails.application.config.disable_static_findaid_cache
-      s3 = Aws::S3::Resource.new
-      bucket = s3.bucket(s3_bucket)
-
       # First try oac5 path with validation
       s3_content = fetch_from_s3("oac5/#{params[:id]}.html", method(:cache_is_valid?))
-      if !s3_content
-        s3_content = fetch_from_s3("static_findaids/#{params[:id]}.html")
+      if s3_content
+        @main_content = fragment
+        return
       end
 
+      s3_content = fetch_from_s3("static_findaids/#{params[:id]}.html")
       if s3_content
         render html: s3_content.html_safe
         return
@@ -269,18 +268,15 @@ class StaticFindingAidController < ApplicationController
     @document = @doc_tree.document
 
     # Render to string instead of responding
-    html_content = render_to_string(
-      layout: "static_catalog_result",
+    @main_content = render_to_string(
+      partial: "static_finding_aid/show_main_content",
       formats: [ :html ]
     )
 
     # Upload to S3 if bucket is configured
     if s3_bucket.present?
-      upload_to_s3(params[:id], html_content, document)
+      upload_to_s3(params[:id], @main_content, @document)
     end
-
-    # Serve the rendered content
-    render html: html_content.html_safe
   end
 
   private
