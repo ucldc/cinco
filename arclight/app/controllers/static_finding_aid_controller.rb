@@ -338,7 +338,7 @@ class StaticFindingAidController < ApplicationController
     bucket = s3.bucket(ENV["S3_BUCKET"])
 
     Rails.logger.info("Uploading static finding aid for #{id} to S3 cache")
-    bucket.object("static_findaids/static_findaids/#{id}.html").put(
+    bucket.object("static_findaids/oac5/#{id}.html").put(
       body: html_content,
       content_type: "text/html",
       metadata: {
