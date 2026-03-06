@@ -1,0 +1,6 @@
+template:
+  path: code-pipeline.yaml
+  type: file
+parameters:
+  Namespace: cinco-arclight-stage
+  CodestarConnectionArn: # connector for github

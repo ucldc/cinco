@@ -1,0 +1,159 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Code Pipeline
+
+Parameters:
+  Namespace:
+    Description: The namespace for the code pipeline
+    Type: String
+  CodestarConnectionArn:
+    Description:
+    Type: String
+
+Resources:
+
+  IAMCodePipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      RoleName: !Sub ${Namespace}-codepipeline
+
+  IAMCodePipelinePolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      PolicyName: !Sub ${Namespace}-codepipeline-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+
+      RoleName:
+        Ref: IAMCodePipelineRole
+
+  CodePipeLine:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: !Sub ${Namespace}-pipeline
+      RoleArn: !GetAtt IAMCodePipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref ArtifactS3Bucket
+      Stages:
+        # each stage contains actions that are performed on the application artifacts, e.g. source code
+        # each stage is made up of a series of serial or parallel actions (runOrder)
+        # action types: source, build, test, deploy, approval, and invoke
+        # execution - a set of changes released by a pipeline; each has its own ID
+        # each stage is locked while it processes an execution
+        # newer executions pass and replace (supersede) less recent executions already running through the pipeline
+        # You can use overrides to start a pipeline with a specific source revision ID that you provide for the pipeline execution.
+        # In the system patching scenario, we could provide the github hash for the source of the currently deployed version
+        # The pipeline must have a source stage and at least one other stage that is a build or deployment stage.
+        - Name: Source  # First phase is to source from Github. https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodestarConnectionSource.html
+          Actions:
+            - Name: Source
+              # Action types are preconfigured actions that are available for selection in CodePipeline.
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                # https://docs.aws.amazon.com/codepipeline/latest/userguide/connections-github.html
+                Provider: CodeStarSourceConnection
+                Version: 1
+              Configuration:
+                ConnectionArn: !Ref CodestarConnectionArn
+                FullRepositoryId: !Sub cdlib/${Namespace}
+                BranchName: main # not necessarily main
+              OutputArtifacts:
+                - Name: SourceArtifact
+        # build stage: code is built and tests are run
+        # CodeBuild build action: https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodeBuild.html
+        # Our CodeBuild projects are all currently triggered by a github commit (stage) or release (prod)
+        # Do we need to rewrite them to be triggered as part of a pipeline build stage?
+        # Our CodeBuild projects all currently have github as the source provider
+        # Do we need to rewrite them to have a CodePipeline source stage artifact as the source provider?
+        # Current arclight prod buildspec: https://github.com/ucldc/cinco/blob/main/infrastructure/cinco/config/prd/arclight/build.yaml
+        #   It is currently triggered by a github release, and tags the image with the release version
+        - Name: Build
+          Actions:
+            - Name: Build
+              InputArtifacts:
+              - Name: SourceArtifact
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: 1
+              Configuration:
+                ProjectName:
+                  Ref: CodeBuild
+              OutputArtifacts:
+                - Name: BuildArtifact
+        # recommendation: related test, deploy, and approval actions grouped together in one stage
+        # Before you create a pipeline that deploys container-based applications with Amazon ECS, you must create an image definitions file as described in Image definitions file reference.
+        - Name: Deploy  # Third phase is to Deploy from Build. https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECS.html
+          Actions:
+            - Name: Deploy
+              InputArtifacts:
+              - Name: BuildArtifact
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: ECS
+                Version: 1
+              Configuration:
+                ClusterName: !Ref ClusterName
+                ServiceName: !Ref ServiceName
+                DeploymentTimeout: 15
+
+  ## EventBridge ##
+  IAMEventBridgeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - scheduler.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      RoleName: !Sub ${Namespace}-rebuild
+
+  IAMEventBridgePolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      PolicyName: !Sub ${Namespace}-rebuild-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+            - codepipeline:StartPipelineExecution
+            Resource:
+              - !Sub arn:aws:codepipeline:us-west-2:${AWS::AccountId}:${Namespace}-pipeline
+      RoleName:
+        Ref: IAMEventBridgeRole
+
+  EventBridgeScheduler:  # Runs the codepipeline for patching.
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      Name: !Sub ${Namespace}-rebuild
+      Description: "Invoke AWS CodePipeline of the container build/deployment"
+      FlexibleTimeWindow:
+        Mode: FLEXIBLE
+        MaximumWindowInMinutes: 1
+      ScheduleExpression: cron(0 11 ? * 4 *)  # This is in UTC.
+      State: ENABLED
+      Target:
+        Arn:
+          !Sub "arn:${AWS::Partition}:codepipeline:${AWS::Region}:${AWS::AccountId}:${CodePipeLine}"  # GetAtt is not supported
+        RoleArn:
+          !GetAtt IAMEventBridgeRole.Arn
