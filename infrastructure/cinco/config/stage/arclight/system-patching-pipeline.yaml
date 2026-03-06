@@ -1,0 +1,10 @@
+template:
+  path: code-pipeline.yaml
+  type: file
+parameters:
+  Namespace: cinco-arclight-stage
+  ArtifactS3Bucket: cinco-stage
+  SourceRepositoryId: ucldc/cinco
+  SourceBranchName: main
+  CodeConnectionArn: arn:aws:codeconnections:us-west-2:777968769372:connection/a757f2ea-6fdf-4153-bf40-6a2c7e9dd96d
+  CodeBuildProjectName: cinco-arclight-stage
