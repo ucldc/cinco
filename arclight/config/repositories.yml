@@ -3678,23 +3678,6 @@ stanford_mss:
             request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
-stanford_cstmusl:
-    name: "Stanford University, Music Library"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-phone">650-723-1212</div>
-        <div class="al-repository-contact-info"><a href="mailto:muslibref@stanford.edu">muslibref@stanford.edu</a></div>
-        <div class="al-repository-contact-info"><a href="https://library.stanford.edu/music" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">Stanford Music Library, Braun Music Center, 541 Lasuen Mall</div>
-        <div class="al-repository-street-address-city_state_zip_country">Stanford, CA 94305-3076, US</div>
-    thumbnail_url: ""
-    request_types:
-        aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
-    latitude: 37.4237443678
-    longitude: -122.169283032
 stanford_rbd:
     name: "Stanford University, Rare Books Division"
     description: ""
