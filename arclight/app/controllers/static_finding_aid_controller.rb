@@ -238,8 +238,8 @@ class StaticFindingAidController < ApplicationController
   end
 
   def show
-    document = search_service.fetch(::RSolr.solr_escape(params[:id]))
-    unless document
+    @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+    unless @document
       redirect_to "/findaid/#{params[:id]}"
       return
     end
@@ -276,7 +276,7 @@ class StaticFindingAidController < ApplicationController
 
     # Upload to S3 if bucket is configured
     if s3_bucket.present?
-      upload_to_s3(params[:id], html_content, document)
+      upload_to_s3(params[:id], html_content, @document)
     end
 
     # Serve the rendered content
