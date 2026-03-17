@@ -311,7 +311,7 @@ class StaticFindingAidController < ApplicationController
       head = obj.head
 
       if cache_check_fn.respond_to?(:call)
-        if cache_check_fn.call(head.metadata, document)
+        if cache_check_fn.call(head.metadata, @document)
           Rails.logger.info("S3 cache valid for #{path}, serving cached content")
           # Fetch and render cached content from S3
           obj.get.body.read
