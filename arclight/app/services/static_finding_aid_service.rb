@@ -13,8 +13,8 @@ class StaticFindingAidService
     @document = @controller.search_service.fetch(::RSolr.solr_escape(@id))
     return :not_found unless @document
 
-    if (cached_content = try_s3_cache)
-      @html_content = cached_content
+    if (cached_partial = try_s3_cache)
+      @html_content = render_with_cached_partial(cached_partial)
       return :cached
     end
 
@@ -40,13 +40,28 @@ class StaticFindingAidService
 
     # Render and cache just the main content partial
     if ENV["S3_BUCKET"].present?
-        # Render to string instead of responding
-        @html_content = @controller.render_to_string(
-            layout: "static_catalog_result",
-            formats: [ :html ],
-            assigns: { doc_tree: @doc_tree, document: @document }
-        )
-        upload_to_s3(@id, @html_content, @document)
+      main_content = @controller.render_to_string(
+        partial: "static_finding_aid/show_main_content",
+        formats: [ :html ],
+        assigns: { doc_tree: @doc_tree, document: @document }
+      )
+      upload_to_s3(@id, main_content, @document)
     end
+
+    # Render the full page for the immediate response
+    @html_content = @controller.render_to_string(
+      layout: "static_catalog_result",
+      formats: [ :html ],
+      assigns: { doc_tree: @doc_tree, document: @document }
+    )
+  end
+
+  def render_with_cached_partial(main_content)
+    @controller.render_to_string(
+      template: "static_finding_aid/show",
+      layout: "static_catalog_result",
+      formats: [ :html ],
+      assigns: { document: @document, cached_main_content: main_content }
+    )
   end
 end
