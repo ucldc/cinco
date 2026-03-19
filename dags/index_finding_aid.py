@@ -1,4 +1,5 @@
 import boto3
+import requests
 from datetime import datetime
 from airflow.decorators import dag, task
 from airflow.models.param import Param
@@ -89,11 +90,34 @@ def index_finding_aid():
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
+    @task(pool="cinco_solr_expensive_query_pool")
+    def request_staticfindaid_rebuild(finding_aid_id, cinco_environment="stage"):
+        if cinco_environment == "prd":
+            url = f"https://oac.cdlib.org/findaid/static/{finding_aid_id}"
+        else:
+            url = f"https://oac-stg.cdlib.org/findaid/static/{finding_aid_id}"
+
+        resp = requests.get(url)
+        if resp.status_code == 503:
+            print(f"Static Finding Aid service is rebuilding {finding_aid_id}")
+        elif resp.status_code == 200:
+            print(f"Static Finding Aid for {finding_aid_id} built successfully")
+        else:
+            raise Exception(
+                "Unexpected response from Static Finding Aid service: \n"
+                f"    url: {url}\n"
+                f"    {resp.status_code} - {resp.text}"
+            )
+
     (
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
         >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
+        >> request_staticfindaid_rebuild(
+            "{{ params.finding_aid_id }}",
+            cinco_environment="{{ params.cinco_environment }}",
+        )
     )
 
 
