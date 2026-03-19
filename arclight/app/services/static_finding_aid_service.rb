@@ -1,6 +1,8 @@
 class StaticFindingAidService
   include StaticFindingAid::S3Cache
 
+  SOLR_TREE_TIMEOUT_SECONDS = ENV.fetch("SOLR_TREE_TIMEOUT_SECONDS", 2).to_f
+
   attr_reader :document, :doc_tree, :html_content
 
   def initialize(controller, id)
@@ -8,7 +10,7 @@ class StaticFindingAidService
     @id = id
   end
 
-  # Returns one of: :not_found, :cached, :rendered
+  # Returns one of: :not_found, :cached, :rendered, :timeout
   def call
     @document = @controller.search_service.fetch(::RSolr.solr_escape(@id))
     return :not_found unless @document
@@ -18,8 +20,18 @@ class StaticFindingAidService
       return :cached
     end
 
-    render_dynamic
-    :rendered
+    start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    begin
+      Timeout.timeout(SOLR_TREE_TIMEOUT_SECONDS) { render_dynamic }
+      elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
+      Rails.logger.info("Rendered static finding aid for #{@id} in #{elapsed.round(2)}s")
+      :rendered
+    rescue Timeout::Error
+      elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
+      Rails.logger.warn("Solr tree fetch timed out for #{@id} after #{elapsed.round(2)}s (limit: #{SOLR_TREE_TIMEOUT_SECONDS}s), queuing background render")
+      StaticFindingAidRenderJob.perform_later(@id)
+      :timeout
+    end
   end
 
   private
