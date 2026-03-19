@@ -7,6 +7,7 @@ class StaticFindingAidController < ApplicationController
   include Blacklight::Catalog
   include Arclight::Catalog
   include CacheControl
+  include StaticFindingAid::S3Cache
 
   configure_blacklight do |config|
     config.search_builder_class = StaticFindingAidSearchBuilder
@@ -281,71 +282,5 @@ class StaticFindingAidController < ApplicationController
 
     # Serve the rendered content
     render html: html_content.html_safe
-  end
-
-  private
-
-  def cache_is_valid?(s3_metadata, document)
-    # Check if S3 metadata matches current Solr document
-    # todo: this log output is conservative and verbose - remove at some point
-    s3_version = s3_metadata["version"]
-    s3_component_count = s3_metadata["total-component-count"]
-    s3_timestamp = s3_metadata["timestamp"]
-
-    Rails.logger.info("S3 metadata - version: #{s3_version}, component_count: #{s3_component_count}, timestamp: #{s3_timestamp}")
-
-    return false unless s3_version && s3_component_count && s3_timestamp
-
-    s3_version == document["_version_"].to_s &&
-      s3_component_count == document["total_component_count_is"].to_s &&
-      s3_timestamp == document["timestamp"].to_s
-  end
-
-  def fetch_from_s3(path, cache_check_fn = nil)
-    s3_bucket = ENV["S3_BUCKET"]
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(s3_bucket)
-
-    begin
-      obj = bucket.object("static_findaids/#{path}")
-      head = obj.head
-
-      if cache_check_fn.respond_to?(:call)
-        if cache_check_fn.call(head.metadata, @document)
-          Rails.logger.info("S3 cache valid for #{path}, serving cached content")
-          # Fetch and render cached content from S3
-          obj.get.body.read
-        else
-          Rails.logger.info("S3 cache invalid for #{path}")
-          nil
-        end
-      else
-        Rails.logger.info("S3 cache assumed valid for #{path}, serving cached content")
-        obj.get.body.read
-      end
-    rescue Aws::S3::Errors::NotFound
-      Rails.logger.info("No s3 file found at #{path}")
-      nil
-    rescue => e
-      Rails.logger.warn("S3 request failed: #{e.message}")
-      nil
-    end
-  end
-
-  def upload_to_s3(id, html_content, metadata)
-    # todo: this log output is conservative and verbose - remove at some point
-    s3 = Aws::S3::Resource.new
-    bucket = s3.bucket(ENV["S3_BUCKET"])
-
-    Rails.logger.info("Uploading static finding aid for #{id} to S3 cache")
-    bucket.object("static_findaids/oac5/#{id}.html").put(
-      body: html_content,
-      content_type: "text/html",
-      metadata: {
-        "version" => metadata["_version_"].to_s,
-        "total-component-count" => metadata["total_component_count_is"].to_s,
-        "timestamp" => metadata["timestamp"].to_s
-      }
-    )
   end
 end
