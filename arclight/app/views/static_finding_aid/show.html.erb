@@ -34,4 +34,4 @@
     </div>
 </div>
 <% end %>
-<%= render 'show_main_content' %>
+<%= @cached_main_content&.html_safe || render('show_main_content') %>
