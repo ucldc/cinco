@@ -3701,8 +3701,8 @@ stanford_cstl:
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(650) 725-8045</div>
-        <div class="al-repository-contact-info"><a href="mailto:medhistory@lists.stanford.edu">medhistory@lists.stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://lane.stanford.edu/med-history/index.html" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="https://lane.stanford.edu/med-history/contact.html" class="offsite-link">Email</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Lane Medical Library &amp; Knowledge Management Center</div>
         <div class="al-repository-street-address-address2">300 Pasteur Drive, Room L109</div>
