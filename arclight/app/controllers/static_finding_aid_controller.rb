@@ -77,6 +77,7 @@ class StaticFindingAidController < ApplicationController
     # Collection Show Page - Summary Section
     config.add_summary_field "title", field: "unittitle_ssm"
     config.add_summary_field "subtitle", field: "subtitle_tesim"
+    config.add_summary_field "identifier", field: "unitid_ssm"
     config.add_summary_field "dates", field: "normalized_date_ssm"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: false
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
@@ -186,6 +187,7 @@ class StaticFindingAidController < ApplicationController
     config.add_component_field "separatedmaterial", field: "separatedmaterial_html_tesm", helper_method: :render_html_tags
     config.add_component_field "originalsloc", field: "originalsloc_html_tesm", helper_method: :render_html_tags
     config.add_component_field "note", field: "note_html_tesm", helper_method: :render_html_tags
+    config.add_component_field "restrictions", field: "accessrestrict_html_tesm", helper_method: :render_html_tags
 
     # Component Show Page - Indexed Terms Section
     config.add_component_indexed_terms_field "access_subjects", field: "access_subjects_ssim", link_to_facet: false, separator_options: {
