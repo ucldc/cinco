@@ -4370,6 +4370,18 @@ grunwald:
     thumbnail_url: ""
     latitude: 34.0591115443
     longitude: -118.443819433
+ucla_irle:
+    name: "UCLA, Institute for Research on Labor and Employment (IRLE) Archive"
+    description: "Since 1946, the UCLA Institute for Research on Labor and Employment (IRLE) has shaped labor policy and practice, supported the vitality of unions and working-class community organizations, and prepared researchers and organizers for careers of consequence. This archive is part of the IRLE&#x27;s Memory Work Initiative, which aims to collect, preserve, and provide access to materials that document the experiences, achievements, and memories of working people in Los Angeles and the surrounding region."
+    contact_html: |
+        <div class="al-repository-contact-info"><a href="mailto:irlearchive@irle.ucla.edu">irlearchive@irle.ucla.edu</a></div>
+        <div class="al-repository-contact-info"><a href="http://irle.ucla.edu/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">10945 Le Conte Avenue</div>
+        <div class="al-repository-street-address-city_state_zip_country">Los Angeles, CA 90095-1478, US</div>
+    thumbnail_url: ""
+    latitude: 34.06431426966079
+    longitude: -118.4470187865067
 ucla_cohr:
     name: "UCLA, Library Special Collections, Center for Oral History Research"
     description: "UCLA’s Center for Oral History Research collects oral history interviews related primarily to the history of Southern California and the Los Angeles metropolitan region."
