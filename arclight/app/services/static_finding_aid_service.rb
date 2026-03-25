@@ -1,7 +1,7 @@
 class StaticFindingAidService
   include StaticFindingAid::S3Cache
 
-  SOLR_TREE_TIMEOUT_SECONDS = ENV.fetch("SOLR_TREE_TIMEOUT_SECONDS", 2).to_f
+  SOLR_TREE_TIMEOUT_SECONDS = ENV.fetch("SOLR_TREE_TIMEOUT_SECONDS", 1).to_f
 
   attr_reader :document, :doc_tree, :html_content
 
