@@ -6,7 +6,7 @@ class StaticFindingAidRenderJob < ApplicationJob
   # Serialize all expensive Solr tree fetches so concurrent jobs don't pile up
   # on Solr. Jobs waiting on the lock will short-circuit via the S3 cache guard
   # once the first job completes.
-  RENDER_MUTEX = Mutex.new
+  @@render_mutex = Mutex.new
 
   def perform(id)
     Rails.logger.info("StaticFindingAidRenderJob: starting #{id}")
@@ -22,7 +22,7 @@ class StaticFindingAidRenderJob < ApplicationJob
       return
     end
 
-    RENDER_MUTEX.synchronize do
+    @@render_mutex.synchronize do
       # Re-check inside the lock — a preceding job may have just finished
       if s3_cache_current?(id, document)
         Rails.logger.info("StaticFindingAidRenderJob: S3 cache current after acquiring lock for #{id}, skipping")
