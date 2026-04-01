@@ -65,6 +65,7 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         preview=None,
         **kwargs,
     ):
+        self.arclight_command = arclight_command
         container_name = f"cinco-arclight-{ cinco_environment }-container"
         # TODO: specify task definition revision? how?
         ecs_names = {
@@ -92,6 +93,8 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
             command = [f"bin/{arclight_command}", finding_aid_ark, repository_code]
         elif arclight_command == "bulk-remove-from-solr":
             command = [f"bin/{arclight_command}", s3_key]
+        elif arclight_command == "generate-static-findaid":
+            command = [f"bin/{arclight_command}", finding_aid_ark]
 
         args = {
             "launch_type": "FARGATE",
@@ -133,10 +136,14 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         else:
             cf_distro = Variable.get("CINCO_CLOUDFRONT_STG")
 
-        self.overrides["containerOverrides"][0]["environment"] = [
-            {"name": "SOLR_WRITER", "value": get_solr_writer_url(cinco_environment)},
+        solr_leader_url = get_solr_writer_url(cinco_environment)
+        env = [
+            {"name": "SOLR_WRITER", "value": solr_leader_url},
             {"name": "CLOUDFRONT_DISTRIBUTION_ID", "value": cf_distro},
         ]
+        if self.arclight_command == "generate-static-findaid":
+            env.append({"name": "SOLR_URL", "value": solr_leader_url})
+        self.overrides["containerOverrides"][0]["environment"] = env
         return super().execute(context)
 
 
@@ -185,6 +192,8 @@ class ArcLightDockerOperator(DockerOperator):
             command = [f"bin/{arclight_command}", finding_aid_ark, repository_code]
         elif arclight_command == "bulk-remove-from-solr":
             command = [f"bin/{arclight_command}", s3_key]
+        elif arclight_command == "generate-static-findaid":
+            command = [f"bin/{arclight_command}", finding_aid_ark]
 
         args = {
             "image": f"{container_image}:{container_version}",

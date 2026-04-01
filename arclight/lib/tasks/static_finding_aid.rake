@@ -12,7 +12,7 @@ namespace :static_finding_aid do
 
     begin
       # Create a proper request environment
-      env = Rack::MockRequest.env_for("http://localhost:3000/static_finding_aid/#{id}")
+      env = Rack::MockRequest.env_for("http://localhost:3000/findaid/static/#{id}")
       env["rack.session"] = {}
       env["rack.session.options"] = {}
       request = ActionDispatch::Request.new(env)
@@ -33,12 +33,15 @@ namespace :static_finding_aid do
         # Check if it was uploaded to S3
         if ENV["S3_BUCKET"].present?
           puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
-          puts "  Path: static_findaids/static_findaids/#{id}.html"
+          puts "  Path: static_findaids/oac5/#{id}.html"
         else
           puts "⚠ S3_BUCKET not configured - content not uploaded to S3"
         end
       elsif response.status == 302
         puts "✗ Document not found in Solr - redirected to /findaid/#{id}"
+        exit 1
+      elsif response.status == 503
+        puts "✗ Solr tree fetch timed out for #{id} - background render job queued"
         exit 1
       else
         puts "✗ Failed with status: #{response.status}"
@@ -72,7 +75,7 @@ namespace :static_finding_aid do
       print "[#{index + 1}/#{total}] Processing #{id}... "
 
       begin
-        env = Rack::MockRequest.env_for("http://localhost:3000/static_finding_aid/#{id}")
+        env = Rack::MockRequest.env_for("http://localhost:3000/findaid/static/#{id}")
         env["rack.session"] = {}
         env["rack.session.options"] = {}
         request = ActionDispatch::Request.new(env)
@@ -88,6 +91,9 @@ namespace :static_finding_aid do
         if response.status == 200
           puts "✓"
           success_count += 1
+        elsif response.status == 503
+          puts "✗ (timeout - background render job queued)"
+          failure_count += 1
         else
           puts "✗ (status: #{response.status})"
           failure_count += 1
