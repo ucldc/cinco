@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+# This script takes as an argument the ARK of a finding aid and generates
+# a static finding aid by fetching from Solr and uploading the result to S3.
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <finding_aid_ark>"
+  exit 1
+fi
+
+echo "Generating static finding aid for ARK: $1"
+SOLR_TREE_TIMEOUT_SECONDS=300 bundle exec rake static_finding_aid:generate["$1"]
