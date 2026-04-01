@@ -20,11 +20,98 @@ async function handler(event) {
     };
   }
 
+  // Redirect http(s)://content.cdlib.org/<path> to
+  //          https://calisphere.org
+  else if (headers.host && headers.host.value === 'content.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://calisphere.org" }
+      }
+    };
+  }
+
+  // Redirect http(s)://imgzoom.cdlib.org/<path> to
+  //          https://calisphere.org
+  else if (headers.host && headers.host.value === 'imgzoom.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://calisphere.org" }
+      }
+    };
+  }
+
+  // Redirect http(s)://calcultures.cdlib.org/<path> to
+  //          https://calisphere.org/exhibitions/browse/cal-cultures/
+  else if (headers.host && headers.host.value === 'calcultures.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://calisphere.org/exhibitions/browse/cal-cultures/" }
+      }
+    };
+  }
+
+  // Redirect http(s)://jarda.cdlib.org/<path> to
+  //          https://calisphere.org/exhibitions/browse/jarda/
+  else if (headers.host && headers.host.value === 'jarda.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://calisphere.org/exhibitions/browse/jarda/" }
+      }
+    };
+  }
+
+  // Redirect http(s)://voro.cdlib.org/a/admin/<path> to
+  //          https://dashboard.oac.cdlib.org/
+  else if (
+    headers.host &&
+    headers.host.value === 'voro.cdlib.org' &&
+    request.uri.startsWith('/a/admin/')
+  ) {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://dashboard.oac.cdlib.org/" }
+      }
+    };
+  }
+
+  // Redirect http(s)://voro.cdlib.org/<path> to
+  //          https://help.oac.cdlib.org/
+  else if (headers.host && headers.host.value === 'voro.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://help.oac.cdlib.org/" }
+      }
+    };
+  }
+
+  // Redirect http(s)://dynaweb.cdlib.org/<path> to
+  //          https://oac.cdlib.org
+  else if (headers.host && headers.host.value === 'dynaweb.cdlib.org') {
+    return {
+      statusCode: 301,
+      statusDescription: 'Moved Permanently',
+      headers: {
+        location: { value: "https://oac.cdlib.org" }
+      }
+    };
+  }
 
   // Redirect http(s)://www.oac.cdlib.org/<path> to
   //          https://oac.cdlib.org/<path>
   // (remove the www. subdomain)
-  if (headers.host && headers.host.value.startsWith('www.')) {
+  else if (headers.host && headers.host.value.startsWith('www.')) {
     let newHost = headers.host.value.replace(/^www\./, '');
     let redirectUrl = 'https://' + newHost + request.uri;
 
