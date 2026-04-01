@@ -1,5 +1,6 @@
+import os
+
 import boto3
-import requests
 from datetime import datetime
 from airflow.decorators import dag, task
 from airflow.models.param import Param
@@ -79,45 +80,45 @@ def index_finding_aid():
 
     @task()
     def cleanup_s3(s3_key, cinco_environment="stage"):
-        s3 = boto3.resource("s3")
-        if cinco_environment == "prd":
-            bucket_name = Variable.get("CINCO_S3_BUCKET_PRD")
+        cinco_minio_endpoint = os.environ.get("CINCO_MINIO_ENDPOINT", None)
+        if cinco_minio_endpoint:
+            s3 = boto3.resource(
+                "s3",
+                endpoint_url=cinco_minio_endpoint,
+                aws_access_key_id="minioadmin",
+                aws_secret_access_key="minioadmin",
+                region_name="us-east-1",
+            )
+            bucket_name = "cinco-dev"
         else:
-            bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
+            s3 = boto3.resource("s3")
+            if cinco_environment == "prd":
+                bucket_name = Variable.get("CINCO_S3_BUCKET_PRD")
+            else:
+                bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
+
         prefix = f"media/{s3_key}"
         print(f"Deleting objects in {bucket_name} at {prefix}")
         bucket = s3.Bucket(bucket_name)
         delete_results = bucket.objects.filter(Prefix=prefix).delete()
         print(delete_results)
 
-    @task(pool="cinco_solr_expensive_query_pool")
-    def request_staticfindaid_rebuild(finding_aid_id, cinco_environment="stage"):
-        if cinco_environment == "prd":
-            url = f"https://oac.cdlib.org/findaid/static/{finding_aid_id}"
-        else:
-            url = f"https://oac-stg.cdlib.org/findaid/static/{finding_aid_id}"
-
-        resp = requests.get(url)
-        if resp.status_code == 503:
-            print(f"Static Finding Aid service is rebuilding {finding_aid_id}")
-        elif resp.status_code == 200:
-            print(f"Static Finding Aid for {finding_aid_id} built successfully")
-        else:
-            raise Exception(
-                "Unexpected response from Static Finding Aid service: \n"
-                f"    url: {url}\n"
-                f"    {resp.status_code} - {resp.text}"
-            )
+    request_staticfindaid_rebuild = ArcLightOperator(
+        task_id="request_staticfindaid_rebuild",
+        arclight_command="generate-static-findaid",
+        finding_aid_ark="{{ params.finding_aid_ark }}",
+        cinco_environment="{{ params.cinco_environment }}",
+        pool="cinco_solr_expensive_query_pool",
+        # on_failure_callback=notify_failure,
+        # on_success_callback=notify_success
+    )
 
     (
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
         >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
-        >> request_staticfindaid_rebuild(
-            "{{ params.finding_aid_id }}",
-            cinco_environment="{{ params.cinco_environment }}",
-        )
+        >> request_staticfindaid_rebuild
     )
 
 
