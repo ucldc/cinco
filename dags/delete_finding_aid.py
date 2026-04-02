@@ -55,11 +55,16 @@ def delete_finding_aid():
         else:
             bucket_name = Variable.get("CINCO_S3_BUCKET_STAGE")
 
-        prefix = f"static_findaids/static_findaids/{ark}"
-        print(f"Deleting objects in {bucket_name} at {prefix}")
-        bucket = s3.Bucket(bucket_name)
-        delete_results = bucket.objects.filter(Prefix=prefix).delete()
-        print(delete_results)
+        prefixes = [
+            f"static_findaids/static_findaids/{ark}",
+            f"static_findaids/oac4/{ark}",
+            f"static_findaids/oac5/{ark}",
+        ]
+        for prefix in prefixes:
+            print(f"Deleting objects in {bucket_name} at {prefix}")
+            bucket = s3.Bucket(bucket_name)
+            delete_results = bucket.objects.filter(Prefix=prefix).delete()
+            print(delete_results)
 
     (
         remove_from_index
