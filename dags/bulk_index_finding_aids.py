@@ -133,6 +133,7 @@ def bulk_index_finding_aids():
         s3_key=s3_key, cinco_environment="{{ params.cinco_environment }}"
     )
 
+    # TODO: request a static finding aid rebuild for each finding aid
     (
         bulk_prepare_finding_aids_task
         >> finding_aid_batches
