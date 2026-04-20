@@ -54,6 +54,7 @@ namespace :static_finding_aid do
     end
   end
 
+  # TODO: untested and will likely need adjustments to work, but a good starting place
   desc "Generate static finding aids for multiple Solr IDs from a file"
   task :generate_batch, [ :file_path ] => :environment do |_t, args|
     unless args[:file_path].present? && File.exist?(args[:file_path])

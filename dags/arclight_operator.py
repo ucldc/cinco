@@ -140,6 +140,10 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         env = [
             {"name": "SOLR_WRITER", "value": solr_leader_url},
             {"name": "CLOUDFRONT_DISTRIBUTION_ID", "value": cf_distro},
+            {
+                "name": "SOLR_TREE_TIMEOUT_SECONDS",
+                "value": "150",
+            },  # 2.5 minute timeout for static findaid generation
         ]
         if self.arclight_command == "generate-static-findaid":
             env.append({"name": "SOLR_URL", "value": solr_leader_url})
@@ -208,6 +212,7 @@ class ArcLightDockerOperator(DockerOperator):
                 "CINCO_MINIO_ENDPOINT": os.environ.get("CINCO_MINIO_ENDPOINT", ""),
                 "SOLR_URL": "http://solr:8983/solr/arclight",
                 "SOLR_WRITER": "http://solr:8983/solr/arclight",
+                "SOLR_TREE_TIMEOUT_SECONDS": 150,  # 2.5 minute timeout for static findaid generation
             },
             "max_active_tis_per_dag": 4,
         }
