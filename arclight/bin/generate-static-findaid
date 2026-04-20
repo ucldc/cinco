@@ -9,4 +9,4 @@ if [ -z "$1" ]; then
 fi
 
 echo "Generating static finding aid for ARK: $1"
-SOLR_TREE_TIMEOUT_SECONDS=300 bundle exec rake static_finding_aid:generate["$1"]
+bundle exec rake static_finding_aid:generate["$1"]
