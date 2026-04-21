@@ -1,6 +1,8 @@
 class StaticFindingAidRenderJob < ApplicationJob
   include StaticFindingAid::S3Cache
 
+  DocumentNotFound = Class.new(StandardError)
+
   queue_as :default
 
   # Serialize all expensive Solr tree fetches so concurrent jobs don't pile up
@@ -13,8 +15,7 @@ class StaticFindingAidRenderJob < ApplicationJob
 
     document = fetch_document_metadata(id)
     unless document
-      Rails.logger.warn("StaticFindingAidRenderJob: no document found for #{id}, skipping")
-      return
+      raise DocumentNotFound, "No document found in Solr for #{id}"
     end
 
     if s3_cache_current?(id, document)
@@ -31,7 +32,9 @@ class StaticFindingAidRenderJob < ApplicationJob
 
       Rails.logger.info("StaticFindingAidRenderJob: rendering #{id}")
 
+      t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       doc_tree = Oac::FindingAidTreeNode.new(StaticFindingAidController, id)
+      Rails.logger.info("[timing] #{id} solr_tree_fetch: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0).round(2)}s")
 
       # ActionController::Renderer creates a bare controller instance without
       # calling `process`, so `action_name` is never set. Blacklight uses
@@ -44,6 +47,7 @@ class StaticFindingAidRenderJob < ApplicationJob
         end
       end
       renderer = renderer_class.renderer.new("rack.session" => {})
+      t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       main_content = renderer.render(
         partial: "static_finding_aid/show_main_content",
         assigns: {
@@ -53,8 +57,11 @@ class StaticFindingAidRenderJob < ApplicationJob
           current_search_session: nil
         }
       )
+      Rails.logger.info("[timing] #{id} render_partial: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t1).round(2)}s")
 
+      t2 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       upload_to_s3(id, main_content, doc_tree.document)
+      Rails.logger.info("[timing] #{id} upload_to_s3: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t2).round(2)}s")
       Rails.logger.info("StaticFindingAidRenderJob: finished #{id}")
     end
   end
