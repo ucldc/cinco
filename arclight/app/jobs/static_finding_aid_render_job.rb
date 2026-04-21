@@ -5,6 +5,10 @@ class StaticFindingAidRenderJob < ApplicationJob
 
   queue_as :default
 
+  discard_on DocumentNotFound do |job, error|
+    Rails.logger.warn("StaticFindingAidRenderJob: discarding job for #{job.arguments.first} - #{error.message}")
+  end
+
   # Serialize all expensive Solr tree fetches so concurrent jobs don't pile up
   # on Solr. Jobs waiting on the lock will short-circuit via the S3 cache guard
   # once the first job completes.
