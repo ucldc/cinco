@@ -52,28 +52,24 @@ class StaticFindingAidService
     @document = @doc_tree.document
     Rails.logger.info("[timing] #{@id} solr_tree_fetch: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0).round(2)}s")
 
+    t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    main_content = @controller.render_to_string(
+      partial: "static_finding_aid/show_main_content",
+      formats: [ :html ],
+      assigns: { doc_tree: @doc_tree, document: @document }
+    )
+    Rails.logger.info("[timing] #{@id} render_partial: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t1).round(2)}s")
+
     # Render and cache just the main content partial
     if ENV["S3_BUCKET"].present?
-      t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      main_content = @controller.render_to_string(
-        partial: "static_finding_aid/show_main_content",
-        formats: [ :html ],
-        assigns: { doc_tree: @doc_tree, document: @document }
-      )
-      Rails.logger.info("[timing] #{@id} render_partial: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t1).round(2)}s")
-
       t2 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       upload_to_s3(@id, main_content, @document)
       Rails.logger.info("[timing] #{@id} upload_to_s3: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t2).round(2)}s")
     end
 
-    # Render the full page for the immediate response
+    # Render the full page for the immediate response using already-rendered partial
     t3 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    @html_content = @controller.render_to_string(
-      layout: "static_catalog_result",
-      formats: [ :html ],
-      assigns: { doc_tree: @doc_tree, document: @document }
-    )
+    @html_content = render_with_cached_partial(main_content)
     Rails.logger.info("[timing] #{@id} render_full_page: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t3).round(2)}s")
   end
 
