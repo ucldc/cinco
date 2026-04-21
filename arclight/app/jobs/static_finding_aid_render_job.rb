@@ -1,7 +1,13 @@
 class StaticFindingAidRenderJob < ApplicationJob
   include StaticFindingAid::S3Cache
 
+  DocumentNotFound = Class.new(StandardError)
+
   queue_as :default
+
+  discard_on DocumentNotFound do |job, error|
+    Rails.logger.warn("StaticFindingAidRenderJob: discarding job for #{job.arguments.first} - #{error.message}")
+  end
 
   # Serialize all expensive Solr tree fetches so concurrent jobs don't pile up
   # on Solr. Jobs waiting on the lock will short-circuit via the S3 cache guard
@@ -13,8 +19,7 @@ class StaticFindingAidRenderJob < ApplicationJob
 
     document = fetch_document_metadata(id)
     unless document
-      Rails.logger.warn("StaticFindingAidRenderJob: no document found for #{id}, skipping")
-      return
+      raise DocumentNotFound, "No document found in Solr for #{id}"
     end
 
     if s3_cache_current?(id, document)

@@ -13,42 +13,19 @@ namespace :static_finding_aid do
     puts "Generating static finding aid for ID: #{id}"
 
     begin
-      # Create a proper request environment
-      env = Rack::MockRequest.env_for("http://localhost:3000/findaid/static/#{id}")
-      env["rack.session"] = {}
-      env["rack.session.options"] = {}
-      request = ActionDispatch::Request.new(env)
-      response = ActionDispatch::Response.new
+      # use new.perform, instead of perform_now, to allow rescue of DocumentNotFound error
+      StaticFindingAidRenderJob.new.perform(id)
 
-      # Set up the controller with proper context
-      controller = StaticFindingAidController.new
-      controller.set_request! request
-      controller.set_response! response
-      controller.params = ActionController::Parameters.new(id: id, controller: "static_finding_aid", action: "show")
-
-      # Call the show action
-      controller.process(:show)
-
-      if response.status == 200
+      if ENV["S3_BUCKET"].present?
         puts "✓ Successfully generated static finding aid for #{id}"
-
-        # Check if it was uploaded to S3
-        if ENV["S3_BUCKET"].present?
-          puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
-          puts "  Path: static_findaids/oac5/#{id}.html"
-        else
-          puts "⚠ S3_BUCKET not configured - content not uploaded to S3"
-        end
-      elsif response.status == 302
-        puts "✗ Document not found in Solr - redirected to /findaid/#{id}"
-        exit 1
-      elsif response.status == 503
-        puts "✗ Solr tree fetch timed out for #{id} - background render job queued"
-        Kernel.exit!(1)
+        puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
+        puts "  Path: static_findaids/oac5/#{id}.html"
       else
-        puts "✗ Failed with status: #{response.status}"
-        exit 1
+        puts "⚠ S3_BUCKET not configured - content not uploaded to S3"
       end
+    rescue StaticFindingAidRenderJob::DocumentNotFound => e
+      puts "✗ #{e.message}"
+      exit 1
     rescue => e
       puts "✗ Error generating static finding aid: #{e.message}"
       puts e.backtrace.first(5).join("\n")
