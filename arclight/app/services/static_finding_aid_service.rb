@@ -50,22 +50,19 @@ class StaticFindingAidService
     @doc_tree = Oac::FindingAidTreeNode.new(@controller, @id)
     @document = @doc_tree.document
 
-    # Render and cache just the main content partial
-    if ENV["S3_BUCKET"].present?
-      main_content = @controller.render_to_string(
-        partial: "static_finding_aid/show_main_content",
-        formats: [ :html ],
-        assigns: { doc_tree: @doc_tree, document: @document }
-      )
-      upload_to_s3(@id, main_content, @document)
-    end
-
-    # Render the full page for the immediate response
-    @html_content = @controller.render_to_string(
-      layout: "static_catalog_result",
+    main_content = @controller.render_to_string(
+      partial: "static_finding_aid/show_main_content",
       formats: [ :html ],
       assigns: { doc_tree: @doc_tree, document: @document }
     )
+
+    # Render and cache just the main content partial
+    if ENV["S3_BUCKET"].present?
+      upload_to_s3(@id, main_content, @document)
+    end
+
+    # Render the full page for the immediate response using already-rendered partial
+    @html_content = render_with_cached_partial(main_content)
   end
 
   def render_with_cached_partial(main_content)
