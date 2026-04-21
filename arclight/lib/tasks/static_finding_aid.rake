@@ -7,6 +7,8 @@ namespace :static_finding_aid do
       exit 1
     end
 
+    $stdout.sync = true
+
     id = args[:id]
     puts "Generating static finding aid for ID: #{id}"
 
@@ -42,7 +44,7 @@ namespace :static_finding_aid do
         exit 1
       elsif response.status == 503
         puts "✗ Solr tree fetch timed out for #{id} - background render job queued"
-        exit 1
+        Kernel.exit!(1)
       else
         puts "✗ Failed with status: #{response.status}"
         exit 1
