@@ -53,13 +53,18 @@ module StaticFindingAid
       s3_component_count = s3_metadata["total-component-count"]
       s3_timestamp = s3_metadata["timestamp"]
 
+      doc_version = document["_version_"].to_s
+      doc_component_count = document["total_component_count_is"].to_s
+      doc_timestamp = document["timestamp"].to_s
+
       Rails.logger.info("S3 metadata - version: #{s3_version}, component_count: #{s3_component_count}, timestamp: #{s3_timestamp}")
+      Rails.logger.info("Document metadata - version: #{doc_version}, component_count: #{doc_component_count}, timestamp: #{doc_timestamp}")
 
       return false unless s3_version && s3_component_count && s3_timestamp
 
-      s3_version == document["_version_"].to_s &&
-        s3_component_count == document["total_component_count_is"].to_s &&
-        s3_timestamp == document["timestamp"].to_s
+      s3_version == doc_version &&
+        s3_component_count == doc_component_count &&
+        s3_timestamp == doc_timestamp
     end
 
 
