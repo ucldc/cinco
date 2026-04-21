@@ -149,12 +149,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
             env.append({"name": "SOLR_URL", "value": solr_leader_url})
         self.overrides["containerOverrides"][0]["environment"] = env
 
-        if (
-            cinco_environment == "prd"
-            and self.arclight_command == "generate-static-findaid"
-        ):
+        if self.arclight_command == "generate-static-findaid":
             print(self.overrides)
-            print("CURRENTLY TESTING THIS TASK IN STAGE ONLY - SKIP IN PRD FOR NOW")
+            print("SKIP TASK FOR NOW")
             return
 
         return super().execute(context)
