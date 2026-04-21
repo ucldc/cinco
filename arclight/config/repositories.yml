@@ -3,8 +3,8 @@ ampas_clac:
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(310) 247-3036 extension 2226</div>
-        <div class="al-repository-contact-info"><a href="mailto:specialcollections@oscars.org">specialcollections@oscars.org</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.oscars.org/library/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:ref@oscars.org">ref@oscars.org</a></div>
+        <div class="al-repository-contact-info"><a href="https://academycollection.org/web/arena" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">333 S. La Cienega Blvd</div>
         <div class="al-repository-street-address-city_state_zip_country">Beverly Hills, CA 90211, US</div>
@@ -292,6 +292,18 @@ cocac:
     thumbnail_url: ""
     latitude: 37.762902
     longitude: -122.393949
+CaAlaHRS:
+    name: "California Historical Radio Society"
+    description: "CHRS is a non-profit, educational 501(c)(3) corporation chartered by the State of California in 1974 to promote the research, restoration, preservation, publication, and presentation of early radio and broadcasting."
+    contact_html: |
+        <div class="al-repository-contact-phone">(510) 703-5991</div>
+        <div class="al-repository-contact-info"><a href="https://californiahistoricalradio.com/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">2152 Central Avenue</div>
+        <div class="al-repository-street-address-city_state_zip_country">Alameda, CA 94501, US</div>
+    thumbnail_url: ""
+    latitude: 37.766088
+    longitude: -122.248118
 caltech:
     name: "California Institute of Technology (Caltech)"
     description: "The Caltech Archives collects, preserves, and makes available the history of science and technology at Caltech."
