@@ -90,6 +90,7 @@ class FindingAidAdmin(admin.ModelAdmin):
 
     actions = [
         "bulk_index_action",
+        "index_finding_aid_action",
         "delete_finding_aid_action",
         "unpublish_finding_aid_action",
     ]
@@ -156,7 +157,7 @@ class FindingAidAdmin(admin.ModelAdmin):
         else:
             self.message_user(request, "Airflow is not enabled.", messages.ERROR)
 
-    @admin.action(description="Index selected finding aids")
+    @admin.action(description="Index selected finding aids - ONLY FOR TESTING")
     def index_finding_aid_action(self, request, queryset):
         if settings.ENABLE_AIRFLOW:
             airflow_urls = []
