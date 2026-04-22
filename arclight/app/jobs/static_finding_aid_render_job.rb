@@ -79,7 +79,6 @@ class StaticFindingAidRenderJob < ApplicationJob
       q: "id:#{RSolr.solr_escape(id)}",
       fl: "_version_,timestamp,total_component_count_is",
       rows: 1,
-      fq: "preview_ssi:false"
     )
     doc = response["response"]["docs"].first
     SolrDocument.new(doc) if doc
