@@ -13,7 +13,7 @@ namespace :static_finding_aid do
     puts "Generating static finding aid for ID: #{id}"
 
     begin
-      StaticFindingAidRenderJob.perform_now(id)
+      StaticFindingAidRenderJob.new.perform(id)
 
       if ENV["S3_BUCKET"].present?
         puts "✓ Successfully generated static finding aid for #{id}"
