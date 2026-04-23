@@ -1,11 +1,17 @@
-<% document_component = blacklight_config.view_config(:show).document_component -%>
+<% presenter ||= document_presenter(@document) %>
 
-<%=  render (document_component).new(document_component.collection_parameter => document_presenter(@document), component: :div, show: true, partials: blacklight_config.view_config(:show).partials, doc_tree: @doc_tree), cached: true do |component| %>
+<% document_component = presenter.view_config.document_component -%>
+<%=  render document_component.new(
+       document: presenter,
+       component: :div,
+       show: true,
+       doc_tree: @doc_tree
+     ) do |component| %>
   <%  component.with_title(as: 'h1', classes: '', link_to_document: false, actions: false) %>
   <% component.with_footer do %>
     <% if @document.respond_to?(:export_as_openurl_ctx_kev) %>
       <!-- COinS, for Zotero among others. -->
-      <span class="Z3988" title="<%= @document.export_as_openurl_ctx_kev(document_presenter(@document).display_type) %>"></span>
+      <span class="Z3988" title="<%= @document.export_as_openurl_ctx_kev(presenter.display_type) %>"></span>
     <% end %>
   <% end %>
 <% end %>
