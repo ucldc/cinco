@@ -75,8 +75,7 @@ class StaticFindingAidRenderJob < ApplicationJob
   # Cheap Solr query - only the fields needed for cache validation.
   # Uses /get (Real-Time Get) instead of /select to avoid solr commit race.
   def fetch_document_metadata(id)
-    repository = Blacklight.repository_class.new(StaticFindingAidController.blacklight_config)
-    response = repository.connection.send_and_receive(
+    response = Blacklight.default_index.connection.send_and_receive(
       "get",
       params: {
         id: id,
