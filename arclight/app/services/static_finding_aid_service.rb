@@ -47,7 +47,7 @@ class StaticFindingAidService
   def render_dynamic
     Rails.logger.info("Rendering static finding aid for #{@id} dynamically")
 
-    @doc_tree = Oac::FindingAidTreeNode.new(@controller, @id)
+    @doc_tree = Oac::FindingAidTreeNode.new(@id)
     @document = @doc_tree.document
 
     main_content = @controller.render_to_string(

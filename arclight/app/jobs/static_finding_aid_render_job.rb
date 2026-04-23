@@ -36,7 +36,7 @@ class StaticFindingAidRenderJob < ApplicationJob
 
       Rails.logger.info("StaticFindingAidRenderJob: rendering #{id}")
 
-      doc_tree = Oac::FindingAidTreeNode.new(StaticFindingAidController, id)
+      doc_tree = Oac::FindingAidTreeNode.new(id)
 
       # ActionController::Renderer creates a bare controller instance without
       # calling `process`, so `action_name` is never set. Blacklight uses
@@ -66,15 +66,17 @@ class StaticFindingAidRenderJob < ApplicationJob
 
   private
 
-  # Cheap Solr query - only the fields needed for cache validation
+  # Cheap Solr query - only the fields needed for cache validation.
+  # Uses /get (Real-Time Get) instead of /select to avoid solr commit race.
   def fetch_document_metadata(id)
-    repository = Blacklight.repository_class.new(StaticFindingAidController.blacklight_config)
-    response = repository.search(
-      q: "id:#{RSolr.solr_escape(id)}",
-      fl: "_version_,timestamp,total_component_count_is",
-      rows: 1,
+    response = Blacklight.default_index.connection.send_and_receive(
+      "get",
+      params: {
+        id: id,
+        fl: "_version_,timestamp,total_component_count_is"
+      }
     )
-    doc = response["response"]["docs"].first
+    doc = response["doc"]
     SolrDocument.new(doc) if doc
   end
 end

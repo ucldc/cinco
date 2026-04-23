@@ -2,58 +2,69 @@ require 'rails_helper'
 require 'oac/finding_aid_tree_node'
 
 RSpec.describe Oac::FindingAidTreeNode do
-  let(:tree) { described_class.new(controller, id) }
-  let(:controller) { instance_double(StaticFindingAidController) }
   let(:id) { 'test_id' }
-  let(:first_hierarchy_response) {
-    ActiveSupport::HashWithIndifferentAccess.new(
-      { "docs": [ { id: "1a" }, { id: "2a" }, { id: "3a" } ] })
-  }
-  let(:second_hierarchy_response) {
-    ActiveSupport::HashWithIndifferentAccess.new(
-      { "docs": [ { id: "4a" }, { id: "5a" }, { id: "6a" } ] }
-    )
-  }
-  let(:empty_hierarchy_response) {
-    ActiveSupport::HashWithIndifferentAccess.new(
-      { "docs": [] }
-    )
-  }
-
-  let(:default_solr_params) {
-    { default: "params" }
-  }
+  let(:doc_hash) do
+    {
+      "id" => id,
+      "_version_" => "1234",
+      "components" => [
+        { "id" => "child_1", "components" => [ { "id" => "grandchild_1", "components" => [] } ] },
+        { "id" => "child_2", "components" => [] }
+      ]
+    }
+  end
+  let(:solr_connection) { instance_double(RSolr::Client) }
 
   before do
-    allow(controller).to receive(:search_service)
-    allow(controller.search_service).to receive(:fetch).and_return(SolrDocument.new({ id: id }))
-    allow(controller.search_service).to receive(:search_results)
-    allow(controller.search_service.search_results).to receive(:response).and_return(
-      first_hierarchy_response,
-      second_hierarchy_response,
-      empty_hierarchy_response
-    )
-
-    allow(controller).to receive(:blacklight_config)
-
-    allow(controller.blacklight_config).to receive(:default_solr_params).and_return(default_solr_params)
-    allow(controller.blacklight_config).to receive(:default_solr_params=)
-    allow(controller.blacklight_config.default_solr_params).to receive(:merge!)
+    allow(Blacklight.default_index).to receive(:connection).and_return(solr_connection)
+    allow(solr_connection).to receive(:send_and_receive).with("get", params: { id: id, fl: "*,[child]" })
+                                                        .and_return({ "doc" => doc_hash })
   end
 
   describe "creating an instance" do
-    before { tree }
-    it "calls the controller's search service fetch method" do
-      expect(controller.search_service).to have_received(:fetch).with(id)
+    it "fetches the document via RTG" do
+      described_class.new(id)
+      expect(solr_connection).to have_received(:send_and_receive).with("get", params: { id: id, fl: "*,[child]" })
+    end
+
+    it "exposes the SolrDocument" do
+      tree = described_class.new(id)
+      expect(tree.document).to be_a(SolrDocument)
+      expect(tree.document["id"]).to eq(id)
+    end
+
+    context "when the document is not found" do
+      before do
+        allow(solr_connection).to receive(:send_and_receive).and_return({ "doc" => nil })
+      end
+
+      it "sets document to nil" do
+        tree = described_class.new(id)
+        expect(tree.document).to be_nil
+      end
     end
   end
-  describe "children method" do
-    before { tree }
+
+  describe "#children" do
+    let(:tree) { described_class.new(id) }
+
     it "returns an array of #{described_class.name} objects" do
-      expect(tree.children.map { |c| c.class }.uniq).to be_eql([ described_class ])
+      expect(tree.children.map(&:class).uniq).to eq([ described_class ])
     end
+
     it "nests children" do
       expect(tree.children.first.children.first).to be_a(described_class)
+    end
+
+    it "returns the correct number of top-level children" do
+      expect(tree.children.length).to eq(2)
+    end
+  end
+
+  describe "constructing from a doc_hash directly" do
+    it "does not call Solr" do
+      described_class.new(nil, doc_hash: doc_hash)
+      expect(solr_connection).not_to have_received(:send_and_receive)
     end
   end
 end
