@@ -48,7 +48,7 @@ class StaticFindingAidService
     Rails.logger.info("Rendering static finding aid for #{@id} dynamically")
 
     t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    @doc_tree = Oac::FindingAidTreeNode.new(@controller, @id)
+    @doc_tree = Oac::FindingAidTreeNode.new(@id)
     @document = @doc_tree.document
     Rails.logger.info("[timing] #{@id} solr_tree_fetch: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0).round(2)}s")
 
