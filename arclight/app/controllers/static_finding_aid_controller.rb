@@ -249,6 +249,9 @@ class StaticFindingAidController < ApplicationController
     when :cached, :rendered
       @document = service.document
       render html: service.html_content.html_safe
+    when :legacy_cached
+      @document = service.document
+      render html: service.html_content.html_safe
     when :timeout
       response.headers["Cache-Control"] = "no-store"
       render "static_finding_aid/try_again_later", status: :service_unavailable

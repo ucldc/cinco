@@ -10,7 +10,7 @@ class StaticFindingAidService
     @id = id
   end
 
-  # Returns one of: :not_found, :cached, :rendered, :timeout
+  # Returns one of: :not_found, :cached, :legacy_cached, :rendered, :timeout
   def call
     @document = @controller.search_service.fetch(::RSolr.solr_escape(@id))
     return :not_found unless @document
@@ -18,6 +18,9 @@ class StaticFindingAidService
     if (cached_partial = try_s3_cache)
       @html_content = render_with_cached_partial(cached_partial)
       return :cached
+    elsif (legacy_cached = try_legacy_cache)
+      @html_content = legacy_cached
+      return :legacy_cached
     end
 
     start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
@@ -40,7 +43,13 @@ class StaticFindingAidService
     return nil unless ENV["S3_BUCKET"].present? && !Rails.application.config.disable_static_findaid_cache
 
     s3_content = fetch_from_s3("oac5/#{@id}.html", method(:cache_is_valid?), document: @document)
-    s3_content ||= fetch_from_s3("static_findaids/#{@id}.html")
+    s3_content
+  end
+
+  def try_legacy_cache
+    return nil unless ENV["S3_BUCKET"].present? && !Rails.application.config.disable_static_findaid_cache
+
+    s3_content = fetch_from_s3("static_findaids/#{@id}.html")
     s3_content
   end
 
