@@ -248,7 +248,14 @@ class StaticFindingAidController < ApplicationController
       redirect_to "/findaid/#{params[:id]}"
     when :cached, :rendered
       @document = service.document
-      render html: service.html_content.html_safe
+      html = service.html_content
+      response.headers["Vary"] = "Accept-Encoding"
+      if request.headers["Accept-Encoding"]&.include?("gzip")
+        response.headers["Content-Encoding"] = "gzip"
+        render body: ActiveSupport::Gzip.compress(html), content_type: "text/html"
+      else
+        render html: html.html_safe
+      end
     when :timeout
       response.headers["Cache-Control"] = "no-store"
       render "static_finding_aid/try_again_later", status: :service_unavailable
