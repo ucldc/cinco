@@ -29,6 +29,22 @@ module Arclight
       solr_parameters[:start] = blacklight_params[:offset] if blacklight_params[:offset]
       solr_parameters[:sort] = "sort_isi asc"
       solr_parameters[:facet] = false
+      # Optimize performance by only fetching fields needed for hierarchy display
+      solr_parameters[:fl] = [
+        "id",
+        "title_ssm",
+        "normalized_title_ssm",
+        "level_ssm",
+        "sort_isi",
+        "ref_ssi",
+        "unitid_ssm",
+        "containers_ssim",
+        "extent_ssm",
+        "unitdate_ssm",
+        "normalized_date_ssm",
+        "child_component_count_isi",
+        "_nest_path_"
+      ].join(",")
     end
     # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity
 
