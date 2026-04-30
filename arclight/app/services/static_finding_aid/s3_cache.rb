@@ -47,19 +47,32 @@ module StaticFindingAid
 
 
     def cache_is_valid?(s3_metadata, document)
+      doc_id = document["id"]
+
       # Check if S3 metadata matches current Solr document
       # todo: this log output is conservative and verbose - remove at some point
       s3_version = s3_metadata["version"]
       s3_component_count = s3_metadata["total-component-count"]
       s3_timestamp = s3_metadata["timestamp"]
+      Rails.logger.info("S3  metadata for #{doc_id} - version: #{s3_version}, component_count: #{s3_component_count}, timestamp: #{s3_timestamp}")
 
-      Rails.logger.info("S3 metadata - version: #{s3_version}, component_count: #{s3_component_count}, timestamp: #{s3_timestamp}")
+      doc_version = document["_version_"].to_s
+      doc_component_count = document["total_component_count_is"].to_s
+      doc_timestamp = document["timestamp"].to_s
+      Rails.logger.info("Doc metadata for #{doc_id} - version: #{doc_version}, component_count: #{doc_component_count}, timestamp: #{doc_timestamp}")
 
       return false unless s3_version && s3_component_count && s3_timestamp
 
-      s3_version == document["_version_"].to_s &&
-        s3_component_count == document["total_component_count_is"].to_s &&
-        s3_timestamp == document["timestamp"].to_s
+      s3_time = DateTime.iso8601(s3_timestamp)
+      doc_time = DateTime.iso8601(doc_timestamp)
+
+      (s3_version == doc_version &&
+        s3_component_count == doc_component_count &&
+        s3_time == doc_time) or
+        (s3_component_count == doc_component_count &&
+        s3_time >= doc_time)
+    rescue ArgumentError
+      false
     end
 
 

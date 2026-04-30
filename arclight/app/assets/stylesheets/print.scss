@@ -6,8 +6,26 @@
     .container {
         max-width: none;
     }
-    h1 { font-size: 24px; }
-    h2 { font-size: 18px; }
-    h3 { font-size: 16px; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+    html { font-size: 12px; }
     body { font-size: 12px; }
+    // we use the ::after content to display "offsite" icons
+    // and "permalink" icons, but these don't make sense in print,
+    // so replace the content with the URL in parenthesis
+    // and reset the other styles to make it look like normal text
+    a::after {
+        content: " (" attr(href) ")" !important;
+        display: initial !important;
+        width: initial !important;
+        height: initial !important;
+        position: initial !important;
+        top: initial !important;
+        left: initial !important;
+    }
+    .navbar-logo {
+        --webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 }

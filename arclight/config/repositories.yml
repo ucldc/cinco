@@ -2937,8 +2937,8 @@ csdca:
     name: "San Diego City Clerk's Archives"
     description: "City of San Diego, Office of the City Clerk-Archives"
     contact_html: |
-        <div class="al-repository-contact-phone">(619) 236-7216</div>
-        <div class="al-repository-contact-info"><a href="mailto:sely@sandiego.gov">sely@sandiego.gov</a></div>
+        <div class="al-repository-contact-phone">(619) 533-4000</div>
+        <div class="al-repository-contact-info"><a href="mailto:cityclerk@sandiego.gov">cityclerk@sandiego.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://www.sandiego.gov/digitalarchives" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">202 C Street</div>
