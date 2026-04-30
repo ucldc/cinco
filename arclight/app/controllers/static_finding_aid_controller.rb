@@ -18,22 +18,12 @@ class StaticFindingAidController < ApplicationController
 
     config.default_solr_params = {
       rows: 10,
-      fl: "*,collection:[subquery]",
-      'collection.q': "{!terms f=id v=$row._root_}",
-      'collection.defType': "lucene",
-      'collection.fl': "*",
-      'collection.rows': 1,
       fq: "preview_ssi:false"
     }
 
 
     config.default_document_solr_params = {
-     qt: "document",
-     fl: "*,collection:[subquery]",
-     'collection.q': "{!terms f=id v=$row._root_}",
-     'collection.defType': "lucene",
-     'collection.fl': "*",
-     'collection.rows': 1
+      qt: "document"
     }
 
     config.add_results_document_tool(:online, component: Arclight::OnlineStatusIndicatorComponent)
@@ -53,6 +43,7 @@ class StaticFindingAidController < ApplicationController
       background_field
       related_field
       indexed_terms_field
+      about_field
       access_field
     ]
 
@@ -84,8 +75,17 @@ class StaticFindingAidController < ApplicationController
     # ===========================
 
     # Collection Show Page - Summary Section
+    config.add_summary_field "title", field: "unittitle_ssm"
+    config.add_summary_field "subtitle", field: "subtitle_tesim"
+    config.add_summary_field "identifier", field: "unitid_ssm"
+    config.add_summary_field "dates", field: "normalized_date_ssm"
     config.add_summary_field "creators", field: "creator_ssim", link_to_facet: false
     config.add_summary_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
+    config.add_summary_field "containers", field: "containers_ssm", separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
     config.add_summary_field "extent", field: "extent_ssm"
     config.add_summary_field "language", field: "language_ssim"
     config.add_summary_field "prefercite", field: "prefercite_html_tesm", helper_method: :render_html_tags
@@ -108,6 +108,7 @@ class StaticFindingAidController < ApplicationController
     config.add_background_field "fileplan", field: "fileplan_html_tesm", helper_method: :render_html_tags
     config.add_background_field "descrules", field: "descrules_ssm", helper_method: :render_html_tags
     config.add_background_field "note", field: "note_html_tesm", helper_method: :render_html_tags
+    config.add_background_field "bibliography", field: "bibliography_html_tesm", helper_method: :render_html_tags
 
     # Collection Show Page - Related Section
     config.add_related_field "relatedmaterial", field: "relatedmaterial_html_tesm", helper_method: :render_html_tags
@@ -139,6 +140,12 @@ class StaticFindingAidController < ApplicationController
     config.add_indexed_terms_field "indexes", field: "indexes_html_tesm",
                                               helper_method: :render_html_tags
 
+    config.add_about_field "collection_guide_author", field: "author_tesim", helper_method: :render_html_tags
+    config.add_about_field "sponsor", field: "sponsor_tesim", helper_method: :render_html_tags
+    config.add_about_field "date_prepared", field: "date_prepared_ssm", helper_method: :render_html_tags
+    config.add_about_field "date_encoded", field: "date_encoded_ssm", helper_method: :render_html_tags
+    # config.add_about_field "revision_history", field: "revision_ssm", helper_method: :render_html_revision
+
     # ==========================
     # COMPONENT SHOW PAGE FIELDS
     # ==========================
@@ -151,6 +158,8 @@ class StaticFindingAidController < ApplicationController
     }, if: lambda { |_context, _field_config, document|
       document.containers.present?
     }
+    config.add_component_field "identifier", field: "unitid_ssm"
+    config.add_component_field "dates", field: "normalized_date_ssm"
     config.add_component_field "creators", field: "creator_ssim", link_to_facet: false
     config.add_component_field "abstract", field: "abstract_html_tesm", helper_method: :render_html_tags
     config.add_component_field "extent", field: "extent_ssm"
@@ -173,10 +182,12 @@ class StaticFindingAidController < ApplicationController
     config.add_component_field "altformavail", field: "altformavail_html_tesm", helper_method: :render_html_tags
     config.add_component_field "otherfindaid", field: "otherfindaid_html_tesm", helper_method: :render_html_tags
     config.add_component_field "odd", field: "odd_html_tesm", helper_method: :render_html_tags
+    config.add_component_field "bibliography", field: "bibliography_html_tesm", helper_method: :render_html_tags
     config.add_component_field "relatedmaterial", field: "relatedmaterial_html_tesm", helper_method: :render_html_tags
     config.add_component_field "separatedmaterial", field: "separatedmaterial_html_tesm", helper_method: :render_html_tags
     config.add_component_field "originalsloc", field: "originalsloc_html_tesm", helper_method: :render_html_tags
     config.add_component_field "note", field: "note_html_tesm", helper_method: :render_html_tags
+    config.add_component_field "restrictions", field: "accessrestrict_html_tesm", helper_method: :render_html_tags
 
     # Component Show Page - Indexed Terms Section
     config.add_component_indexed_terms_field "access_subjects", field: "access_subjects_ssim", link_to_facet: false, separator_options: {
@@ -229,28 +240,21 @@ class StaticFindingAidController < ApplicationController
   end
 
   def show
-    @document = search_service.fetch(::RSolr.solr_escape(params[:id]))
+    service = StaticFindingAidService.new(self, params[:id])
+    outcome = service.call
 
-      # make a head request to S3
-      s3_bucket = ENV["S3_BUCKET"]
-      uri_string = "https://#{s3_bucket}.s3.us-west-2.amazonaws.com/static_findaids/static_findaids/#{@document.id}.html"
-      uri = URI(uri_string)
-      response = nil
-      Net::HTTP.start(uri.hostname, 80) { |http|
-        response = http.head(uri.path)
-      }
-
-      case response
-      when Net::HTTPOK
-        redirect_to "/static_findaids/#{@document.id}.html"
-        return
-      end
-
-      if !helpers.show_static_finding_aid_link?(@document)
-        redirect_to "/findaid/#{@document.id}"
-        return
-      end
-
-    @doc_tree = Oac::FindingAidTreeNode.new(self, params[:id])
+    case outcome
+    when :not_found
+      redirect_to "/findaid/#{params[:id]}"
+    when :cached, :rendered
+      @document = service.document
+      render html: service.html_content.html_safe
+    when :legacy_cached
+      @document = service.document
+      render html: service.html_content.html_safe
+    when :timeout
+      response.headers["Cache-Control"] = "no-store"
+      render "static_finding_aid/try_again_later", status: :service_unavailable
+    end
   end
 end

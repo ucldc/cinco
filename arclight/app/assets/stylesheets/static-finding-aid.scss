@@ -1,0 +1,44 @@
+@import 'colors';
+
+.static-findaid-title {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: var(--bs-border-color);
+    margin-bottom: 10px;
+}
+
+.static-findaid-list {
+    margin-bottom: 5px;
+}
+
+.static-findaid-document {
+    margin-bottom: 10px;
+}
+
+.static-findaid-document #embed {
+    padding: 0;
+    margin-bottom: 1rem !important;
+    border: 0;
+}
+
+.static-findaid-doc-title {
+    margin-bottom: 10px;
+}
+
+.static-findaid-doc-title h3 {
+    border-width: 0 0 1px 0;
+    border-style: dashed;
+    border-color: var(--bs-border-color);
+}
+
+.static-findaid-doc-tree {
+    // margin-left: 20px;
+    border-width: 0 0 0 1px;
+    border-color: var(--bs-border-color);
+    border-style: solid;
+    padding-left: 20px;
+}
+
+.static-findaid-document:last-of-type {
+    border: 0;
+}
