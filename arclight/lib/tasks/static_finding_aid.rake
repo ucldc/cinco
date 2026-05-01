@@ -12,17 +12,18 @@ namespace :static_finding_aid do
     id = args[:id]
     puts "Generating static finding aid for ID: #{id}"
 
+    unless ENV["S3_BUCKET"].present?
+      puts "✗ S3_BUCKET not configured - cannot generate static finding aid"
+      exit 1
+    end
+
     begin
       # use new.perform, instead of perform_now, to allow rescue of DocumentNotFound error
       StaticFindingAidRenderJob.new.perform(id)
 
-      if ENV["S3_BUCKET"].present?
-        puts "✓ Successfully generated static finding aid for #{id}"
-        puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
-        puts "  Path: static_findaids/oac5/#{id}.html"
-      else
-        puts "⚠ S3_BUCKET not configured - content not uploaded to S3"
-      end
+      puts "✓ Successfully generated static finding aid for #{id}"
+      puts "✓ Content uploaded to S3 bucket: #{ENV['S3_BUCKET']}"
+      puts "  Path: static_findaids/oac5/#{id}.html"
     rescue StaticFindingAidRenderJob::DocumentNotFound => e
       puts "✗ #{e.message}"
       exit 1
