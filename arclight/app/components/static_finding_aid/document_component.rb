@@ -6,10 +6,15 @@ module StaticFindingAid
       show: false, doc_tree: nil, **args)
       super
       @document_tree = doc_tree
+      @tree_level = args[:tree_level] || 0
     end
 
     def document_tree
       @document_tree
+    end
+
+    def tree_level
+      @tree_level
     end
 
     def search_state

@@ -9,6 +9,9 @@
     h1 { font-size: 20px; }
     h2 { font-size: 16px; }
     h3 { font-size: 14px; }
+    h4 { font-size: 14px !important; }
+    .static-findaid-doc-title h4 { font-size: 14px; }
+
     html { font-size: 12px; }
     body { font-size: 12px; }
     // we use the ::after content to display "offsite" icons

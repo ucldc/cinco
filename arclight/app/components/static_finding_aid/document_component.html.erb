@@ -1,8 +1,8 @@
 <div class="static-findaid-document">
   <% if not document.collection? %>
   <div class="static-findaid-doc-title">
-    <%= content_tag :h3 do %>
-      <%= document.normalized_title %>
+    <%= content_tag :h4 do %>
+      <span class="sr-only">Level <%= tree_level %>: </span><%= document.normalized_title %>
     <% end %>
   </div>
   <% else %>
@@ -34,7 +34,14 @@
 
   <div class="static-findaid-doc-tree">
     <%  for child in document_tree.children %>
-      <%=  render (self.class).new(document: document_presenter(child.document), doc_tree: child, component: :div, show: true, partials: blacklight_config.view_config(:show).partials) do |component| %>
+      <%=  render (self.class).new(
+              document: document_presenter(child.document),
+              component: :div,
+              show: true,
+              doc_tree: child,
+              partials: blacklight_config.view_config(:show).partials,
+              tree_level: tree_level + 1,
+            ) do |component| %>
         <% component.with_title(as: 'h4', classes: '', link_to_document: false, actions: false) %>
       <% end %>
     <% end %>

@@ -25,10 +25,23 @@
     margin-bottom: 10px;
 }
 
-.static-findaid-doc-title h3 {
+.static-findaid-doc-title h4 {
     border-width: 0 0 1px 0;
     border-style: dashed;
     border-color: var(--bs-border-color);
+    font-size: 20px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .static-findaid-doc-tree {
