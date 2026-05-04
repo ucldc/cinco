@@ -55,3 +55,18 @@
 .static-findaid-document:last-of-type {
     border: 0;
 }
+
+.blacklight-static_finding_aid dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blacklight-static_finding_aid dl dt {
+    flex: 0 1 180px;
+    margin-bottom: .5rem;
+}
+
+.blacklight-static_finding_aid dl dd {
+    flex: 4 1 calc(100% - 180px);
+    margin-bottom: .5rem;
+}
