@@ -9,7 +9,7 @@
     <h2><%= t 'arclight.views.show.context_nav.title' %></h2>
   <% end %>
 
-  <%= embed if document.collection? %>
+  <%= render Oac::EmbedComponent.new(document: document, presenter: presenter, heading_level: :h3) if document.collection? %>
 
   <div id="<%= "metadata-#{document.id}"%>">
     <% if document.collection? %>
@@ -20,7 +20,7 @@
       <%= render StaticFindingAid::MetadataSectionComponent.with_collection(component_metadata_partials,
               metadata_attr: { layout: StaticFindingAid::MetadataFieldLayoutComponent },
               presenter: presenter) unless document.collection? %>
-      <%= embed %>
+      <%= render Oac::EmbedComponent.new(document: document, presenter: presenter, heading_level: :h5) %>
     <% end %>
     <%= access if document.collection? %>
   </div>

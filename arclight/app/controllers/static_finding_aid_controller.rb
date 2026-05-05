@@ -32,7 +32,7 @@ class StaticFindingAidController < ApplicationController
 
     config.show.sidebar_component = Arclight::SidebarComponent
     config.show.breadcrumb_component = Oac::SimpleBreadcrumbsHierarchyComponent
-    config.show.embed_component = Arclight::EmbedComponent
+    config.show.embed_component = Oac::EmbedComponent
     config.show.online_status_component = Arclight::OnlineStatusIndicatorComponent
     config.show.document_header_component = Arclight::BlankComponent
     config.show.display_type_field = "level_ssm"
