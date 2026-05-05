@@ -16,9 +16,9 @@
         <%= @document.collection_name %>
     <% end %>
     <div class="row">
-        <ul class="list-unstyled static-findaid-list">
+        <ul class="list-unstyled static-findaid-list" aria-label="Quick Collection Information">
             <li class="static_link">
-                <a href="<%= solr_document_path @document.id %>">
+                <span class="sr-only">Permalink: </span><a href="<%= solr_document_path @document.id %>">
                     <%= request.base_url %><%= CGI.unescape(solr_document_path @document.id) %>
                 </a>
             </li>
