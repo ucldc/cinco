@@ -65,12 +65,3 @@ unset REPOSITORY_ID
 
 echo "Finished indexing, cleaning up /tmp/$1"
 rm -rf /tmp/$1
-
-if [ -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
-  echo "CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation."
-else
-  echo "Running cache invalidation for 1 path"
-  echo "Invalidating urls: /findaid/$4*"
-  cf=$(aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/findaid/$4*")
-  echo "Invalidation submitted: $cf"
-fi

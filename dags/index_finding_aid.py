@@ -1,6 +1,7 @@
 import os
 
 import boto3
+import time
 from datetime import datetime
 from airflow.decorators import dag, task
 from airflow.models.param import Param
@@ -113,12 +114,42 @@ def index_finding_aid():
         # on_success_callback=notify_success
     )
 
+    @task()
+    def clear_cloudfront_cache(finding_aid_id, cinco_environment="stage"):
+        # wait for 1 minute to allow time for solr autocommit &
+        # replication to complete
+        time.sleep(60)
+        if cinco_environment == "prd":
+            cf_distro = Variable.get("CINCO_CLOUDFRONT_PRD")
+        else:
+            cf_distro = Variable.get("CINCO_CLOUDFRONT_STG")
+
+        if not cf_distro:
+            print("CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation.")
+        else:
+            print("Running cache invalidation for 1 path")
+            print(f"Invalidating urls: /findaid/{finding_aid_id}*")
+            cf = boto3.client("cloudfront").create_invalidation(
+                DistributionId=cf_distro,
+                InvalidationBatch={
+                    "Paths": {"Quantity": 1, "Items": [f"/findaid/{finding_aid_id}*"]},
+                    "CallerReference": str(datetime.now().timestamp()),
+                },
+            )
+            print(f"Invalidation submitted: {cf['Invalidation']['Id']}")
+
+        return
+
     (
         s3_key
         >> prepare_finding_aid
         >> index_finding_aid_task
         >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
         >> request_staticfindaid_rebuild
+        >> clear_cloudfront_cache(
+            "{{ params.finding_aid_id }}",
+            cinco_environment="{{ params.cinco_environment }}",
+        )
     )
 
 
