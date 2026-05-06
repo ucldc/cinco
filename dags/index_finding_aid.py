@@ -1,11 +1,11 @@
 import os
 
 import boto3
-import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from airflow.decorators import dag, task
 from airflow.models.param import Param
 from airflow.models import Variable
+from airflow.sensors.time_delta import TimeDeltaSensor
 
 from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
@@ -114,11 +114,15 @@ def index_finding_aid():
         # on_success_callback=notify_success
     )
 
+    # wait for 1 minute to allow time for solr autocommit &
+    # replication to complete
+    wait_one_minute = TimeDeltaSensor(
+        task_id="wait_one_minute",
+        delta=timedelta(minutes=1),
+    )
+
     @task()
     def clear_cloudfront_cache(finding_aid_id, cinco_environment="stage"):
-        # wait for 1 minute to allow time for solr autocommit &
-        # replication to complete
-        time.sleep(60)
         if cinco_environment == "prd":
             cf_distro = Variable.get("CINCO_CLOUDFRONT_PRD")
         else:
@@ -146,6 +150,7 @@ def index_finding_aid():
         >> index_finding_aid_task
         >> cleanup_s3(s3_key, cinco_environment="{{ params.cinco_environment }}")
         >> request_staticfindaid_rebuild
+        >> wait_one_minute
         >> clear_cloudfront_cache(
             "{{ params.finding_aid_id }}",
             cinco_environment="{{ params.cinco_environment }}",
