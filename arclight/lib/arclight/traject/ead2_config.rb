@@ -352,6 +352,10 @@ to_field "editionstmt_ssm", extract_xpath("/ead/eadheader/filedesc/editionstmt/p
 to_field "seriesstmt_ssm", extract_xpath("/ead/eadheader/filedesc/seriesstmt/p")
 to_field "note_ssm", extract_xpath("/ead/eadheader/filedesc/notestmt/note/p")
 
+to_field "source_format_ssi" do |_record, accumulator|
+  accumulator << "ead"
+end
+
 # =============================
 # Each component child document
 # <c> <c01> <c12>
