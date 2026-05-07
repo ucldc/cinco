@@ -255,3 +255,7 @@ end
 to_field "sort_isi" do |_record, accumulator, _context|
   accumulator << 0
 end
+
+to_field "source_format_ssi" do |_record, accumulator|
+  accumulator << "marc"
+end
