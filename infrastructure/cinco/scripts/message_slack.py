@@ -146,7 +146,7 @@ def main(application, cinco_version, td_family_revisions):
             icon_emoji = ":hammer_and_wrench:"
 
         data = {
-            "channel": "#oac5",
+            "channel": "#oac",
             "username": "aws-codebuild",
             "icon_emoji": icon_emoji,
             "blocks": message["blocks"],
