@@ -5014,6 +5014,20 @@ usc_rhc:
             request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 34.0201146624
     longitude: -118.283797503
+CLSU-SCA:
+    name: "University of Southern California, School of Cinematic Arts"
+    description: "Donated to USC by Warner Communications in 1977, the USC Warner Bros. Archives [WBA] is the largest and possibly the richest single studio collection of paper documents in the world.  It is the only collection to bring production, distribution and exhibition records together to document the activities of a vertically integrated studio. In the archives&#x27; collection, the making of many classic films - including The Jazz Singer, Casablanca and Rebel Without a Cause - is documented from story acquisition through theatrical release, including daily contributions of actors, directors, producers, and writers."
+    contact_html: |
+        <div class="al-repository-contact-phone">(213) 821-3900</div>
+        <div class="al-repository-contact-info"><a href="mailto:wbarchives@cinema.usc.edu">wbarchives@cinema.usc.edu</a></div>
+        <div class="al-repository-contact-info"><a href="https://cinema.usc.edu/about/warnerbrosarchives.cfm" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">Doheny Memorial Library</div>
+        <div class="al-repository-street-address-address2">Room G4</div>
+        <div class="al-repository-street-address-city_state_zip_country">Los Angeles, CA 90089-0185, US</div>
+    thumbnail_url: ""
+    latitude: 34.020235
+    longitude: -118283845.0
 usc_spcoll:
     name: "University of Southern California, Special Collections"
     description: "The Special Collections department provides access to and preserves archival, historic, and primary source materials in its main areas of strength: Los Angeles regional history; American literature; Lion Feuchtwanger and the German émigré experience; natural history; Iberian, Latin American, and U.S. Hispanics studies, and USC history and the university’s intellectual life. Our quarters provide an area where students, faculty, and their classes may pursue intellectual exchange and quiet discovery of the library’s rare and other non-circulating materials."
