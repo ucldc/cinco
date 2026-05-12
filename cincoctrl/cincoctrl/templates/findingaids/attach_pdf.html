@@ -8,9 +8,8 @@
 
 {% block content %}
     <h1>Attach Supplemental PDF Files</h1>
-    <p>
-        Add or replace supplemental PDF files to this collection guide.
-    </p>
+    <p>Add or replace supplemental PDF files to this collection guide. Please ensure that all contributed PDF content meets accessibility best practices.</p>
+    <p>Resources are available in the Contributor Help Center to provide guidance as you <a href="https://help.oac.cdlib.org/support/solutions/articles/9000093762#Step-1:-Prepare-Supplemental-PDF-Files">create accessible and compliant PDFs</a> with confidence. If there are additional resources you would like to recommend, please do share!</p>
       <div class="card">
         <div class="card-body">
           <div><b>Collection Title:</b> {{ form.instance.collection_title }}</div>
@@ -24,6 +23,7 @@
         {% include 'findingaids/includes/formset.html' with title="Supplemental PDF Files" name="PDF" label="PDF" formset=formset%}
         <div class="control-group">
             <div class="controls">
+              <p>🔎 <strong>Accessibility Check:</strong> Have you created a <a href="https://help.oac.cdlib.org/support/solutions/articles/9000093762#Step-1:-Prepare-Supplemental-PDF-Files">web accessible PDF</a> and tested it for compliance? Please verify before uploading.</p>
               <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
