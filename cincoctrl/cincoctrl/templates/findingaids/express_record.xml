@@ -27,7 +27,7 @@
              </titlestmt>
              <publicationstmt>
                  <publisher>{{ object.finding_aid.repository.name }}</publisher>
-                 <date>{{ object.date }}</date>
+                 <date>{{ object.finding_aid.date_created }}</date>
              </publicationstmt>
          </filedesc>
         {% if object.revisionhistory_set.exists %}
