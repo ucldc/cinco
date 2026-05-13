@@ -68,6 +68,9 @@ class StaticFindingAidRenderJob < ApplicationJob
       Rails.logger.info("[timing] #{id} upload_to_s3: #{(Process.clock_gettime(Process::CLOCK_MONOTONIC) - t2).round(2)}s")
       Rails.logger.info("StaticFindingAidRenderJob: finished #{id}")
     end
+  rescue => e
+    Rails.logger.error("StaticFindingAidRenderJob: error processing finding aid #{id}: #{e.class}: #{e.message}")
+    raise
   end
 
   private
