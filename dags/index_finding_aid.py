@@ -122,7 +122,7 @@ def index_finding_aid():
     )
 
     @task()
-    def clear_cloudfront_cache(finding_aid_id, cinco_environment="stage"):
+    def clear_cloudfront_cache(finding_aid_ark=None, cinco_environment="stage"):
         if cinco_environment == "prd":
             cf_distro = Variable.get("CINCO_CLOUDFRONT_PRD")
         else:
@@ -132,15 +132,15 @@ def index_finding_aid():
             print("CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation.")
         else:
             print("Running cache invalidation for 1 path")
-            print(f"Invalidating urls: /findaid/{finding_aid_id}*")
+            print(f"Invalidating urls: /findaid/{finding_aid_ark}*")
             cf = boto3.client("cloudfront").create_invalidation(
                 DistributionId=cf_distro,
                 InvalidationBatch={
                     "Paths": {
                         "Quantity": 2,
                         "Items": [
-                            f"/findaid/{finding_aid_id}*"
-                            f"/findaid/static/{finding_aid_id}*"
+                            f"/findaid/{finding_aid_ark}*"
+                            f"/findaid/static/{finding_aid_ark}*"
                         ],
                     },
                     "CallerReference": str(datetime.now().timestamp()),
@@ -158,7 +158,7 @@ def index_finding_aid():
         >> request_staticfindaid_rebuild
         >> wait_one_minute
         >> clear_cloudfront_cache(
-            "{{ params.finding_aid_id }}",
+            finding_aid_ark="{{ params.finding_aid_ark }}",
             cinco_environment="{{ params.cinco_environment }}",
         )
     )
