@@ -35,6 +35,9 @@ class StaticFindingAidService
       StaticFindingAidRenderJob.perform_later(@id)
       :timeout
     end
+  rescue => e
+    Rails.logger.error("StaticFindingAidService: error processing finding aid #{@id}: #{e.class}: #{e.message}")
+    raise
   end
 
   private
