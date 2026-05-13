@@ -132,7 +132,9 @@ def index_finding_aid():
             print("CLOUDFRONT_DISTRIBUTION_ID not set, skipping cache invalidation.")
         else:
             print("Running cache invalidation for 1 path")
-            print(f"Invalidating urls: /findaid/{finding_aid_ark}*")
+            print(
+                f"Invalidating urls: /findaid/{finding_aid_ark}*, /findaid/static/{finding_aid_ark}*"
+            )
             cf = boto3.client("cloudfront").create_invalidation(
                 DistributionId=cf_distro,
                 InvalidationBatch={
