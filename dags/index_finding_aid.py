@@ -136,7 +136,13 @@ def index_finding_aid():
             cf = boto3.client("cloudfront").create_invalidation(
                 DistributionId=cf_distro,
                 InvalidationBatch={
-                    "Paths": {"Quantity": 1, "Items": [f"/findaid/{finding_aid_id}*"]},
+                    "Paths": {
+                        "Quantity": 2,
+                        "Items": [
+                            f"/findaid/{finding_aid_id}*"
+                            f"/findaid/static/{finding_aid_id}*"
+                        ],
+                    },
                     "CallerReference": str(datetime.now().timestamp()),
                 },
             )
