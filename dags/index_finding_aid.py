@@ -139,8 +139,8 @@ def index_finding_aid():
                     "Paths": {
                         "Quantity": 2,
                         "Items": [
-                            f"/findaid/{finding_aid_ark}*"
-                            f"/findaid/static/{finding_aid_ark}*"
+                            f"/findaid/{finding_aid_ark}*",
+                            f"/findaid/static/{finding_aid_ark}*",
                         ],
                     },
                     "CallerReference": str(datetime.now().timestamp()),
