@@ -185,10 +185,41 @@ async function handler(event) {
       }
   }
 
+  // Redirect http(s)://oac.cdlib.org/search?...style=oac4... to
+  //          https://oac.cdlib.org/
+  // Redirect http(s)://oac.cdlib.org/search?...idT=... to
+  //          https://oac.cdlib.org/
   // Redirect oac.cdlib.org/findaid/ark:%2F\d{5}%2F[a-zA-Z0-9]+(.*) to
   //          oac.cdlib.org/findaid/ark:/$1/$2$3
   else if (headers.host && headers.host.value === 'oac.cdlib.org') {
-      let uri = request.uri;
+      let rawUri = request.uri || '';
+      let uri = rawUri.split('?')[0];
+      let rawQuery = rawUri.includes('?') ? rawUri.split('?').slice(1).join('?') : '';
+
+      // Redirect search with style=oac4 or idT= in query string to https://oac.cdlib.org/
+      let querystring = request.querystring;
+      let querystringBlob = JSON.stringify(querystring || {});
+      if (
+        uri.startsWith('/search') &&
+        (
+          (querystring && querystring.style && querystring.style.value && querystring.style.value.includes('oac4')) ||
+          querystringBlob.includes('idT=') ||
+          rawQuery.includes('style=oac4') ||
+          rawQuery.includes('idT=')
+        )
+      ) {
+        let redirectUrl = 'https://oac.cdlib.org/';
+        console.log("redirecting to: " + redirectUrl);
+        return {
+          statusCode: 301,
+          statusDescription: 'Moved Permanently',
+          headers: {
+            location: { value: redirectUrl }
+          }
+        };
+      }
+
+      // Redirect arks with encoded slashes to the unencoded version of the ark
       let arkEncodedPattern = /\/findaid\/ark:%2F(\d{5})%2F([a-zA-Z0-9]+)(.*)/;
       let match = uri.match(arkEncodedPattern);
       if (match) {
