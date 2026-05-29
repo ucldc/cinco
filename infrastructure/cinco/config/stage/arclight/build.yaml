@@ -2,11 +2,13 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-arclight-stage
-  Branch: main
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
+    Branch: main
   ECRRepositoryName: cinco-arclight
   BuildEnvironment:
     - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
@@ -39,6 +41,14 @@ sceptre_user_data:
                     - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
   additional_policy_statements: |-
     - Effect: Allow
+                Action:
+                  - ecs:RunTask
+                  - ecs:DescribeTasks
+                  - ecs:DescribeTaskDefinition
+                  - ecs:RegisterTaskDefinition
+                  - ecs:UpdateService
+                Resource: "*"
+              - Effect: Allow
                 Action:
                   - s3:PutObject
                   - s3:GetObject

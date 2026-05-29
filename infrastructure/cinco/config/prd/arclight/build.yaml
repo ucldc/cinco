@@ -2,12 +2,13 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-arclight-prd
-  Branch: ''
   ECRRepositoryURI: 777968769372.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
   BuildEnvironment:
     - SUBNET_IDS: {{ var.prd.SUBNET_IDS }}
     - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
@@ -48,6 +49,14 @@ sceptre_user_data:
                     - aws ecs update-service --cluster cinco-prd --service cinco-arclight-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
   additional_policy_statements: |-
     - Effect: Allow
+                Action:
+                  - ecs:RunTask
+                  - ecs:DescribeTasks
+                  - ecs:DescribeTaskDefinition
+                  - ecs:RegisterTaskDefinition
+                  - ecs:UpdateService
+                Resource: "*"
+              - Effect: Allow
                 Action:
                   - s3:PutObject
                   - s3:GetObject
