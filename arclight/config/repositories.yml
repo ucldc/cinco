@@ -2124,6 +2124,18 @@ camalch:
     thumbnail_url: ""
     latitude: 36.96136
     longitude: -120.0619648
+CaWhoMAK:
+    name: "MAK Center for Art and Architecture"
+    description: "The MAK Center for Art and Architecture, Los Angeles is a contemporary, experimental, multi-disciplinary center for art and architecture and is headquartered in three architectural landmarks by the Austrian-American architect Rudolph M. Schindler. Founded in 1994, the MAK Center is a Los Angeles-based 501(c)3 non-profit organization and the California satellite of the MAK – Museum of Applied Arts, Vienna. The core of the programming includes the internationally recognized MAK Artists and Architects-in-Residence Program, an annual residency program for emerging international artists and architects. The MAK Center works in cooperation with the Friends of the Schindler House (FoSH), a nonprofit organization whose mission is to preserve and maintain Schindler&#x27;s Kings Road house in West Hollywood."
+    contact_html: |
+        <div class="al-repository-contact-phone">(847) 507-0032</div>
+        <div class="al-repository-contact-info"><a href="https://www.makcenter.org/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">835 N. Kings Road</div>
+        <div class="al-repository-street-address-city_state_zip_country">West Hollywood, CA, CA 90069, US</div>
+    thumbnail_url: ""
+    latitude: 34.086728
+    longitude: -118372112.0
 csrcl:
     name: "Marin County Free Library. California Room"
     description: "The Anne T. Kent California Room is an archive dedicated to collecting, preserving and interpreting the history and culture of Marin County."
@@ -4842,6 +4854,18 @@ uidl:
     thumbnail_url: ""
     latitude: 38.577551
     longitude: -121.497587
+CLavASpC:
+    name: "University of La Verne, Archives and Special Collections"
+    description: "Archives and Special Collections at the Wilson Library provides source materials of significant historical and/or research value that support teaching and learning at the university and beyond."
+    contact_html: |
+        <div class="al-repository-contact-phone">(909) 448-4301</div>
+        <div class="al-repository-contact-info"><a href="https://library.laverne.edu/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">2024 W. Third Street</div>
+        <div class="al-repository-street-address-city_state_zip_country">La Verne, CA 91750, US</div>
+    thumbnail_url: ""
+    latitude: 34.100722
+    longitude: -117771656.0
 crediu:
     name: "University of Redlands"
     description: "The Armacost Library holds special collection materials related to students, faculty and other individuals who have contributed significantly to the learning community of the University of Redlands. Notable collections include the collections from University of Redlands professor of Music Barney Childs, British production designer for film and television Harry Pottle, and author and University of Redlands alumna Ruth Ikerman."
