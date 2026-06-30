@@ -1,0 +1,48 @@
+template:
+  path: codebuild.j2
+  type: file
+parameters:
+  Namespace: cinco-trigger-ecs-patching-pipeline
+
+sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
+    Branch: main
+  ECRRepositoryName: cinco-trigger-ecs-patching-pipeline
+  BuildEnvironment:
+    - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
+  TriggerFilterGroups:
+    - - Type: EVENT
+        Pattern: PUSH
+      - Type: HEAD_REF
+        Pattern: ^refs/heads/main$
+        ExcludeMatchedPattern: false
+      - Type: FILE_PATH
+        Pattern: "infrastructure/lambdas/trigger-ecs-patching-pipeline/*"
+        ExcludeMatchedPattern: false
+  build_spec: |-
+    !Sub >-
+              version: 0.2
+
+              phases:
+                pre_build:
+                  commands:
+                    - cd $CODEBUILD_SRC_DIR/infrastructure/lambdas/trigger-ecs-patching-pipeline
+                build:
+                  commands:
+                    # login to ECR public so we can pull lambda image
+                    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+                    - docker build --platform linux/amd64 -t ${Namespace} .
+                    # login to ECR private so we can push new image
+                    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
+                    - docker tag ${Namespace}:latest ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/${Namespace}:latest
+                    - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/${Namespace}:latest
+                    # update lambda function with new image
+                    - aws lambda update-function-code --function-name cinco-trigger-ecs-patching-pipeline-lambda-function --image-uri ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/${Namespace}:latest
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - lambda:GetLayerVersion
+                  - lambda:UpdateFunctionCode
+                Resource: "*"

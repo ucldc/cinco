@@ -1,0 +1,140 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lambda function deployed from a container image stored in ECR private.
+Parameters:
+  Namespace:
+    Description: The namespace to be used when naming resources
+    Type: String
+  VpcId:
+    Description: ID of the VPC that will be used when creating security group
+    Type: String
+  FunctionDescription:
+    Description: Description of the lambda function
+    Type: String
+  ECRRepositoryName:
+    Description: Name of the private ECR repo where the lambda container image is stored
+    Type: String
+  SubnetId1:
+    Description: First subnet to use for lambda VPC configuration
+    Type: String
+  SubnetId2:
+    Description: Second subnet to use for lambda VPC configuration
+    Type: String
+  Timeout:
+    Description: Amount of time (in seconds) that lambda allows function to run before stopping it
+    Type: Number
+    Default: 3
+  DBInstanceSecurityGroup:
+    Type: String
+    Description: The security group for RDS instance to which the lambda needs access
+    Default: ""
+
+Conditions:
+  RequiresDBAccess: !Not [!Equals [!Ref DBInstanceSecurityGroup, ""]]
+
+Resources:
+  # Allow lambda function to connect to the internet
+  LambdaExecutionSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub Security Group for ${Namespace} lambda function
+      GroupName: !Sub ${Namespace}-lambda
+      VpcId: !Ref VpcId
+      SecurityGroupEgress:
+        - Description: Allow all outbound traffic
+          IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+  DBInstanceSecurityGroupApplicationIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Condition: RequiresDBAccess
+    Properties:
+      GroupId: !Ref DBInstanceSecurityGroup
+      IpProtocol: "tcp"
+      FromPort: "5432"
+      ToPort: "5432"
+      SourceSecurityGroupId: !Ref LambdaExecutionSecurityGroup
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-lambda-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ lambda.amazonaws.com, apigateway.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+  LambdaExecutionPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-lambda-policy
+      Path: "/"
+      Roles: [ !Ref LambdaExecutionRole ]
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: LoggingAccess
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "*"
+          - Sid: NetworkInterfaceAccess
+            Effect: Allow
+            Action:
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DeleteNetworkInterface
+            Resource: "*"
+          - Sid: ParameterStoreAccess
+            Effect: Allow
+            Action:
+              - ssm:GetParameter
+              - kms:Decrypt
+            Resource: "*"
+          {% if sceptre_user_data and sceptre_user_data.additional_policy_statements is defined %}
+          {{ sceptre_user_data.additional_policy_statements }}
+          {% endif %}
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub ${Namespace}-lambda-function
+      Description: !Ref FunctionDescription
+      PackageType: Image
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/${ECRRepositoryName}:latest
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref LambdaExecutionSecurityGroup
+        # VPC location determines what lambda has access to on the VPC network
+        # when executing the lambda code.
+        SubnetIds:
+          - !Ref SubnetId1
+          - !Ref SubnetId2
+      {% if sceptre_user_data and sceptre_user_data.LambdaEnvironmentVariables is defined %}
+      Environment:
+        Variables:
+          {% for env_var in sceptre_user_data.LambdaEnvironmentVariables %}
+          {% for key, value in env_var.items() %}
+          {{ key }}: {{ value }}
+          {% endfor %}
+          {% endfor %}
+      {% endif %}
+      Timeout: !Ref Timeout
+    DependsOn: LambdaExecutionPolicy
+
+Outputs:
+  LambdaFunctionArn:
+    Value: !GetAtt LambdaFunction.Arn
+  LambdaFunctionName:
+    Value: !Ref LambdaFunction
+  LambdaFunctionId:
+    Value: !Ref LambdaFunction
+  LambdaExecutionRoleArn:
+    Value: !GetAtt LambdaExecutionRole.Arn
+  LambdaExecutionSecurityGroupId:
+    Value: !Ref LambdaExecutionSecurityGroup
