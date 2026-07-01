@@ -4792,7 +4792,7 @@ ucsb_ccber:
     longitude: -119.85450983
 ucsb_spcoll:
     name: "UC Santa Barbara, Special Research Collections"
-    description: "The Department of Special Research Collections collects, maintains, preserves, and makes accessible the UCSB Library’s most valuable, rare, and unique materials. Included are printed materials such as books and serials, as well as manuscripts, and audio-visual materials. Among the department’s holdings are approximately 250,000 volumes, 16,000 linear feet of manuscripts, 100,000 photographs and more than 200,000 early sound recordings."
+    description: "The Department of Special Research Collections collects, maintains, preserves, and makes accessible the UCSB Library&#x27;s most valuable, rare, and unique materials. Included are printed materials such as books and serials, as well as manuscripts and audiovisual materials. Among the department&#x27;s holdings are approximately 250,000 volumes, 16,000 linear feet of manuscripts, 100,000 photographs, and more than 200,000 early sound recordings.  To request materials, use the Request Items option when available in the collection guide. If you do not see a request option, the collection may be represented by a brief record. Brief records and all UCSB manuscript collections can be found and requested through the UCSB Library ArchivesSpace (coming soon)."
     contact_html: |
         <div class="al-repository-contact-phone">(805) 893-3062</div>
         <div class="al-repository-contact-info"><a href="mailto:special@library.ucsb.edu">special@library.ucsb.edu</a></div>
