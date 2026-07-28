@@ -1,0 +1,41 @@
+template:
+  path: code-pipeline.yaml.j2
+  type: file
+parameters:
+  Namespace: cinco-arclight-dev
+  SourceRepositoryId: ucldc/cinco
+  ChangeDetectionBranchName: infrastructure-arclight-auto-patching
+  CodeConnectionArn: arn:aws:codeconnections:us-west-2:866216109762:connection/fa425c08-dc3a-40c2-b45d-adb3bc6f91c7
+  CodeBuildRoleName: !stack_output_external cinco-dev-arclight-build::CodeBuildRole
+  CodeBuildProjectName: cinco-arclight-dev
+
+sceptre_user_data:
+  GitPushFilter:
+    - Branches:
+        Includes:
+          - infrastructure-arclight-auto-patching
+      FilePaths:
+        Includes:
+          - arclight/**
+  ### prod git push filter
+  # there is no native release event for CodePipeline, so we trigger on tags starting with 'v' for version
+  # GitPushFilter:
+  #   - Tags:
+  #       Includes:
+  #         - v*
+  ### stage git push filter
+  # GitPushFilter:
+  #   - Branches:
+  #       Includes:
+  #         - main
+  #     FilePaths:
+  #       Includes:
+  #         - arclight/**
+
+# For patching, we want to rebuild and deploy the container using the same dockerfile, code version, or env vars
+# Steps:
+#   - use describeServiceDeployments API to get info on what's currently deployed: stage==Completed, state==SUCCESSFUL
+#   - get currently deployed task definition id (targetServiceRevision/arn)
+#   - get image build details for that task definition using describe tasks API
+#   - we need to use the git hash in our tags for stage
+# https://aws.amazon.com/blogs/containers/improving-deployment-visibility-for-amazon-ecs-services/
