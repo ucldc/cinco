@@ -1,0 +1,125 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Trigger patching for an ECS service
+
+Parameters:
+  Namespace:
+    Type: String
+    Description: The base name used for this stack
+  VpcId:
+    Type: String
+    Description: ID of the VPC that will be used when creating security group
+  SubnetId1:
+    Description: First subnet to use for lambda VPC configuration
+    Type: String
+  SubnetId2:
+    Description: Second subnet to use for lambda VPC configuration
+    Type: String
+  CodebuildProject:
+    Type: String
+    Description: The codebuild project to trigger
+
+Resources:
+  # Allow lambda function to connect to the internet
+  LambdaExecutionSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub Security Group for ${Namespace} patching lambda function
+      GroupName: !Sub ${Namespace}-trigger-patching-lambda
+      VpcId: !Ref VpcId
+      SecurityGroupEgress:
+        - Description: Allow all outbound traffic
+          IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Namespace}-trigger-patching-lambda-role
+      Path: "/service-role/"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [ lambda.amazonaws.com, apigateway.amazonaws.com ]
+            Action: [ "sts:AssumeRole" ]
+
+  LambdaExecutionPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub ${Namespace}-trigger-patching-lambda-policy
+      Path: "/"
+      Roles: [ !Ref LambdaExecutionRole ]
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: LoggingAccess
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "*"
+          - Sid: NetworkInterfaceAccess
+            Effect: Allow
+            Action:
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DeleteNetworkInterface
+            Resource: "*"
+          - Sid: ParameterStoreAccess
+            Effect: Allow
+            Action:
+              - ssm:GetParameter
+              - kms:Decrypt
+            Resource: "*"
+          - Effect: Allow
+            Action:
+              - ecs:ListServiceDeployments
+              - ecs:DescribeServiceRevisions
+            Resource:
+              - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service/*
+              - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service-revision/*
+          - Effect: Allow
+            Action:
+              - ecs:DescribeTaskDefinition
+            Resource:
+              - '*'
+          - Effect: Allow
+            Action:
+              - codebuild:StartBuild
+            Resource:
+              - !Sub arn:aws:codebuild:${AWS::Region}:${AWS::AccountId}:project/${CodebuildProject}
+
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: LambdaExecutionPolicy
+    Properties:
+      FunctionName: !Sub ${Namespace}-trigger-patching
+      Description: Trigger patching for an ECS service
+      Runtime: python3.11
+      Role: !GetAtt LambdaExecutionRole.Arn
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref LambdaExecutionSecurityGroup
+        # VPC location determines what lambda has access to on the VPC network
+        # when executing the lambda code.
+        SubnetIds:
+          - !Ref SubnetId1
+          - !Ref SubnetId2
+      Code:
+        ZipFile: | {% include sceptre_user_data.inline_lambda %}
+      Handler: index.lambda_handler
+      Timeout: 60
+
+Outputs:
+  LambdaFunctionArn:
+    Value: !GetAtt LambdaFunction.Arn
+  LambdaFunctionName:
+    Value: !Ref LambdaFunction
+  LambdaFunctionId:
+    Value: !Ref LambdaFunction
+  LambdaExecutionRoleArn:
+    Value: !GetAtt LambdaExecutionRole.Arn
+  LambdaExecutionSecurityGroupId:
+    Value: !Ref LambdaExecutionSecurityGroup
