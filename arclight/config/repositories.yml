@@ -2216,8 +2216,8 @@ cmlpl:
     name: "Mill Valley Public Library"
     description: "The Lucretia Little History Room is dedicated to illuminating the unique and vibrant history of Mill Valley and making this history accessible to people of all ages and interests. We accomplish this by collecting, preserving, and promoting materials of enduring value pertaining to people, places, and events associated with Mill Valley and a few select nearby areas, such as Mount Tamalpais and Muir Woods, that are an essential part of Mill Valley’s historic heritage."
     contact_html: |
-        <div class="al-repository-contact-phone">415-389-4292 x203</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@cityofmillvalley.gov">reference@cityofmillvalley.gov</a></div>
+        <div class="al-repository-contact-phone">415-389-4292 x4725</div>
+        <div class="al-repository-contact-info"><a href="mailto:hist@cityofmillvalley.gov">hist@cityofmillvalley.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://millvalleylibrary.gov/377/Collections" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">375 Throckmorton Avenue</div>
@@ -4872,7 +4872,7 @@ CLavASpC:
         <div class="al-repository-contact-phone">(909) 448-4301</div>
         <div class="al-repository-contact-info"><a href="https://library.laverne.edu/" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">2024 W. Third Street</div>
+        <div class="al-repository-street-address-address1">2040 3rd Street</div>
         <div class="al-repository-street-address-city_state_zip_country">La Verne, CA 91750, US</div>
     thumbnail_url: ""
     latitude: 34.100722
