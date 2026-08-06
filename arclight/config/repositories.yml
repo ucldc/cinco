@@ -1528,7 +1528,7 @@ catorgfb:
     longitude: -118.2394707
 CaSaGMP:
     name: "Governor's Mansion State Historic Park"
-    description: "The Governor&#x27;s Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
+    description: "The Governor's Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor's Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
     contact_html: |
         <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=498" class="offsite-link">Website</a></div>
     location_html: |
@@ -2147,6 +2147,19 @@ CaWhoMAK:
     thumbnail_url: ""
     latitude: 34.086728
     longitude: -118372112.0
+CAMaNaHS:
+    name: "Manzanar National Historic Site"
+    description: "Manzanar National Historic Site was established to preserve the stories of the internment of nearly 120,000 Japanese Americans during World War II and to serve as a reminder to this and future generations of the fragility of American civil liberties.  Congress established Manzanar National Historic in 1992. Three distinct eras are represented in the site&#x27;s museum collection. Owens Valley Paiute inhabiting the area from A.D. 600 to the early 1900s; the early ranching and farming period from 1860-1930; and the World War II confinement of Japanese Americans from 1942-1945. The National Park Service has conducted oral histories about these eras of Manzanar since 1999. The purpose of the collection is to preserve, study and interpret the cultural history of Manzanar.Bird pins are one of many artifacts in the Manzanar Collection. These and other items offer a glimpse into life in camp. Furniture, clothing, utensils, cemetery offerings, and other tangible resources enrich our knowledge and our ability to tell the stories of people who lived at Manzanar."
+    contact_html: |
+        <div class="al-repository-contact-phone">(760) 878-2194 x3310</div>
+        <div class="al-repository-contact-info"><a href="https://www.nps.gov/manz/index.htm" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">P.O. Box 426</div>
+        <div class="al-repository-street-address-address2">5001 Highway 395</div>
+        <div class="al-repository-street-address-city_state_zip_country">Independence, CA 93526, US</div>
+    thumbnail_url: ""
+    latitude: 36.557604
+    longitude: -118.053637
 csrcl:
     name: "Marin County Free Library. California Room"
     description: "The Anne T. Kent California Room is an archive dedicated to collecting, preserving and interpreting the history and culture of Marin County."
