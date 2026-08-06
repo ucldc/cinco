@@ -1526,6 +1526,17 @@ catorgfb:
     thumbnail_url: ""
     latitude: 34.0494156
     longitude: -118.2394707
+CaSaGMP:
+    name: "Governor's Mansion State Historic Park"
+    description: "The Governor's Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
+    contact_html: |
+        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=498" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">1526 H Street</div>
+        <div class="al-repository-street-address-city_state_zip_country">Sacramento, CA 95814, US</div>
+    thumbnail_url: ""
+    latitude: 38.58011
+    longitude: -121.484886
 gtu:
     name: "Graduate Theological Union"
     description: "Special Collections and Archives support the curriculum and preserve the records of the Graduate Theological Union. The collections are dedicated to diverse religious dialogue, the Christian and wider religious intellectual heritage, the American religious experience in the West, and the ministries and missions of the Member Schools and Institutes of the GTU."
@@ -2136,6 +2147,19 @@ CaWhoMAK:
     thumbnail_url: ""
     latitude: 34.086728
     longitude: -118372112.0
+CAMaNaHS:
+    name: "Manzanar National Historic Site"
+    description: "Manzanar National Historic Site was established to preserve the stories of the internment of nearly 120,000 Japanese Americans during World War II and to serve as a reminder to this and future generations of the fragility of American civil liberties.  Congress established Manzanar National Historic in 1992. Three distinct eras are represented in the site&#x27;s museum collection. Owens Valley Paiute inhabiting the area from A.D. 600 to the early 1900s; the early ranching and farming period from 1860-1930; and the World War II confinement of Japanese Americans from 1942-1945. The National Park Service has conducted oral histories about these eras of Manzanar since 1999. The purpose of the collection is to preserve, study and interpret the cultural history of Manzanar.Bird pins are one of many artifacts in the Manzanar Collection. These and other items offer a glimpse into life in camp. Furniture, clothing, utensils, cemetery offerings, and other tangible resources enrich our knowledge and our ability to tell the stories of people who lived at Manzanar."
+    contact_html: |
+        <div class="al-repository-contact-phone">(760) 878-2194 x3310</div>
+        <div class="al-repository-contact-info"><a href="https://www.nps.gov/manz/index.htm" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">P.O. Box 426</div>
+        <div class="al-repository-street-address-address2">5001 Highway 395</div>
+        <div class="al-repository-street-address-city_state_zip_country">Independence, CA 93526, US</div>
+    thumbnail_url: ""
+    latitude: 36.557604
+    longitude: -118.053637
 csrcl:
     name: "Marin County Free Library. California Room"
     description: "The Anne T. Kent California Room is an archive dedicated to collecting, preserving and interpreting the history and culture of Marin County."
@@ -2205,8 +2229,8 @@ cmlpl:
     name: "Mill Valley Public Library"
     description: "The Lucretia Little History Room is dedicated to illuminating the unique and vibrant history of Mill Valley and making this history accessible to people of all ages and interests. We accomplish this by collecting, preserving, and promoting materials of enduring value pertaining to people, places, and events associated with Mill Valley and a few select nearby areas, such as Mount Tamalpais and Muir Woods, that are an essential part of Mill Valley’s historic heritage."
     contact_html: |
-        <div class="al-repository-contact-phone">415-389-4292 x203</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@cityofmillvalley.gov">reference@cityofmillvalley.gov</a></div>
+        <div class="al-repository-contact-phone">415-389-4292 x4725</div>
+        <div class="al-repository-contact-info"><a href="mailto:hist@cityofmillvalley.gov">hist@cityofmillvalley.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://millvalleylibrary.gov/377/Collections" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">375 Throckmorton Avenue</div>
@@ -4792,7 +4816,7 @@ ucsb_ccber:
     longitude: -119.85450983
 ucsb_spcoll:
     name: "UC Santa Barbara, Special Research Collections"
-    description: "The Department of Special Research Collections collects, maintains, preserves, and makes accessible the UCSB Library's most valuable, rare, and unique materials. Included are printed materials such as books and serials, as well as manuscripts and audiovisual materials. Among the department's holdings are approximately 250,000 volumes, 16,000 linear feet of manuscripts, 100,000 photographs, and more than 200,000 early sound recordings.  To request materials, use the Request Items option when available in the collection guide. If you do not see a request option, the collection may be represented by a brief record. Brief records and all UCSB manuscript collections can be found and requested through the UCSB Library ArchivesSpace (coming soon)."
+    description: "The Department of Special Research Collections collects, maintains, preserves, and makes accessible the UCSB Library's most valuable, rare, and unique materials. Included are printed materials such as books and serials, as well as manuscripts and audiovisual materials. Among the department&#x27;s holdings are approximately 250,000 volumes, 16,000 linear feet of manuscripts, 100,000 photographs, and more than 200,000 early sound recordings.  To request materials, use the Request Items option when available in the collection guide. If you do not see a request option, the collection may be represented by a brief record. Brief records and all UCSB manuscript collections can be found and requested through the UCSB Library ArchivesSpace (coming soon)."
     contact_html: |
         <div class="al-repository-contact-phone">(805) 893-3062</div>
         <div class="al-repository-contact-info"><a href="mailto:special@library.ucsb.edu">special@library.ucsb.edu</a></div>
@@ -4861,7 +4885,7 @@ CLavASpC:
         <div class="al-repository-contact-phone">(909) 448-4301</div>
         <div class="al-repository-contact-info"><a href="https://library.laverne.edu/" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">2024 W. Third Street</div>
+        <div class="al-repository-street-address-address1">2040 3rd Street</div>
         <div class="al-repository-street-address-city_state_zip_country">La Verne, CA 91750, US</div>
     thumbnail_url: ""
     latitude: 34.100722
