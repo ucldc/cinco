@@ -1528,7 +1528,7 @@ catorgfb:
     longitude: -118.2394707
 CaSaGMP:
     name: "Governor's Mansion State Historic Park"
-    description: "The Governor's Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor's Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
+    description: "The Governor&#x27;s Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
     contact_html: |
         <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=498" class="offsite-link">Website</a></div>
     location_html: |
@@ -1901,19 +1901,6 @@ claoshs:
     thumbnail_url: ""
     latitude: 33.9318863843
     longitude: -117.944208384
-cljhi:
-    name: "La Jolla Historical Society"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-phone">(858) 459-5335</div>
-        <div class="al-repository-contact-info"><a href="mailto:info@lajollahistory.org">info@lajollahistory.org</a></div>
-        <div class="al-repository-contact-info"><a href="https://lajollahistory.org/" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">7846 Eads Avenue</div>
-        <div class="al-repository-street-address-city_state_zip_country">La Jolla, CA 92037, US</div>
-    thumbnail_url: ""
-    latitude: 32.8453812
-    longitude: -117.2773708
 casdla:
     name: "Lambda Archives of San Diego"
     description: "Lambda Archives of San Diego (LASD) has been established to preserve and make available for research and educational purposes the tangible record of the lesbian, gay, bisexual, and transgender (LGBT) community with a special emphasis on those materials relating specifically to San Diego County and northern Baja California. LASD views all aspects of LGBT life as important to the understanding of our communities&#x27; values, interests and issues. To this end, LASD actively seeks to acquire and preserve materials that reflect the diversity of our communities in respect to: gender and sexual identity; racial and ethnic identity; age; and the broad range of our communities&#x27; activities and concerns including politics and social activism, social groups, support groups, athletics, spiritual groups, arts and culture, business and finance, and general community resources. LASD collects not only material related to the communities&#x27; past history, but documents current events as well."
@@ -2341,6 +2328,19 @@ cmontp:
     thumbnail_url: ""
     latitude: 36.596316
     longitude: -121.896846
+cljhi:
+    name: "Museum of History and Culture La Jolla"
+    description: "The Museum of History and Culture La Jolla (MHC La Jolla) celebrates the history and culture of this region along the water’s edge through interdisciplinary programs, exhibitions, and research that challenge expectations. It balances contemporary and historic perspectives to create understanding and connection."
+    contact_html: |
+        <div class="al-repository-contact-phone">(858) 459-5335</div>
+        <div class="al-repository-contact-info"><a href="mailto:info@mhclajolla.org">info@mhclajolla.org</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.mhclajolla.org/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">7846 Eads Avenue</div>
+        <div class="al-repository-street-address-city_state_zip_country">La Jolla, CA 92037, US</div>
+    thumbnail_url: ""
+    latitude: 32.8453812
+    longitude: -117.2773708
 csfpal:
     name: "Museum of Performance and Design, Performing Arts Library"
     description: "The collection contains treasures of the performing arts ranging from the Gold Rush Era to the present time. It holds a part of the preeminent history of the performing arts and the unique history of San Francisco. The Museum&#x27;s diverse collection includes books, periodicals, playbills, clippings, photographs, posters, sheet music, plays and librettos, radio interviews, videotapes, musical theater recordings, the Legacy Oral History Program, the Theater Film Archive, theater design research materials, costumes and set design renderings, personal papers of performers, patrons and critics, as well as the archive of several local performing arts organizations."
