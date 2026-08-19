@@ -1,14 +1,14 @@
+# ruff: noqa: DTZ001, DTZ005
 import os
+from datetime import datetime, timedelta
 
 import boto3
-from datetime import datetime, timedelta
 from airflow.decorators import dag, task
-from airflow.models.param import Param
 from airflow.models import Variable
+from airflow.models.param import Param
 from airflow.sensors.time_delta import TimeDeltaSensor
-
-from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
+from cinco.cincoctrl_operator import CincoCtrlOperator
 
 
 @dag(
@@ -149,8 +149,6 @@ def index_finding_aid():
                 },
             )
             print(f"Invalidation submitted: {cf['Invalidation']['Id']}")
-
-        return
 
     (
         s3_key

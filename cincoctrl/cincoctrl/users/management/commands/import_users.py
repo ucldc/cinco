@@ -77,7 +77,7 @@ class Command(BaseCommand):
         for voro_user in voro_users:
             voro_user_fields = voro_user["fields"]
             email = voro_user_fields["email"]
-            if email and not email in emails:
+            if email and email not in emails:
                 emails.append(voro_user_fields["email"])
 
                 last_login = datetime.datetime.fromisoformat(
