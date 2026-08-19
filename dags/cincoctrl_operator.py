@@ -1,12 +1,12 @@
+# ruff: noqa: PIE800
+
 import os
+
 import boto3
-
-from dotenv import dotenv_values
-
-from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.providers.amazon.aws.operators.ecs import EcsRunTaskOperator
-
+from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
+from dotenv import dotenv_values
 
 # generally speaking, the CONTAINER_EXECUTION_ENVIRONMENT should always
 # be 'ecs' in deployed MWAA and should always be 'docker' in local development.
