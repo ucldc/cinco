@@ -1,3 +1,4 @@
+# ruff: noqa: ISC004
 """
 Update solrconfig.xml for index replication
 See https://solr.apache.org/guide/solr/latest/deployment-guide/user-managed-index-replication.html
@@ -50,5 +51,4 @@ elif os.environ.get("REPLICATION_ROLE") == "follower":
     solr_config[-1:-1] = follower_config
 
 with open(solrconfig_path, "w") as f:
-    for line in solr_config:
-        f.write(f"{line}")
+    f.writelines(f"{line}" for line in solr_config)
