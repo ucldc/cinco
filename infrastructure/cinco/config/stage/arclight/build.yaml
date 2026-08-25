@@ -2,23 +2,14 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-arclight-stage
-  Branch: main
 
 sceptre_user_data:
+  Source:
+    Type: CODEPIPELINE
   ECRRepositoryName: cinco-arclight
   BuildEnvironment:
     - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
-  TriggerFilterGroups:
-    - - Type: EVENT
-        Pattern: PUSH
-      - Type: HEAD_REF
-        Pattern: ^refs/heads/main$
-        ExcludeMatchedPattern: false
-      - Type: FILE_PATH
-        Pattern: arclight/.*
-        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2
@@ -36,7 +27,10 @@ sceptre_user_data:
                     - docker cp arclight-tail-dev-null:/rails/public/assets ./public_assets
                     - aws s3 cp --recursive ./public_assets s3://cinco-stage/arclight_assets/assets
                     - docker stop arclight-tail-dev-null
-                    - aws ecs update-service --cluster cinco-stage --service cinco-arclight-stage-service --force-new-deployment
+                    - printf '[{"name":"cinco-arclight-stage-container","imageUri":"%s"}]' ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-arclight:latest > imagedefinitions.json
+              artifacts:
+                files:
+                  - imagedefinitions.json
   additional_policy_statements: |-
     - Effect: Allow
                 Action:
@@ -47,3 +41,4 @@ sceptre_user_data:
                   - s3:GetBucketLocation
                 Resource:
                   - !Sub arn:aws:s3:::cinco-stage*
+                  - arn:aws:s3:::cinco-arclight-stage-pipeline-artifacts*

@@ -2,11 +2,13 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-ctrl-stage
-  Branch: main
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
+    Branch: main
   ECRRepositoryName: cinco-ctrl
   BuildEnvironment:
     - SUBNET_IDS: {{ var.stage.SUBNET_IDS }}
@@ -39,3 +41,13 @@ sceptre_user_data:
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py collectstatic --no-input
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/ecs_manage.py migrate --no-input
                     - aws ecs update-service --cluster cinco-stage --service cinco-ctrl-stage-service --force-new-deployment
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - ecs:RunTask
+                  - ecs:DescribeTasks
+                  - ecs:DescribeTaskDefinition
+                  - ecs:RegisterTaskDefinition
+                  - ecs:UpdateService
+
+                Resource: "*"
