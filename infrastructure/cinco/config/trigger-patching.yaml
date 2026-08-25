@@ -1,0 +1,12 @@
+template:
+  path: lambda-trigger-patching.j2
+  type: file
+parameters:
+  Namespace: cinco
+  VpcId: {{ var.stage.VPC_ID }}
+  SubnetId1: {{ var.stage.PRIVATE_SUBNET_1 }}
+  SubnetId2: {{ var.stage.PRIVATE_SUBNET_2 }}
+  CodebuildProject: cinco-arclight-stage
+
+sceptre_user_data:
+  inline_lambda: "inline-lambdas/trigger-patching/trigger-patching.py.txt"

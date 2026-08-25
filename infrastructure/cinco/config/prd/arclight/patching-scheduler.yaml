@@ -1,0 +1,10 @@
+template:
+  path: lambda-scheduler.yaml
+  type: file
+parameters:
+  Namespace: cinco-arclight-prd-patching
+  TargetLambdaArn: !stack_output_external cinco-trigger-patching::LambdaFunctionArn
+  Description: Scheduler for cinco arclight prd regular patching
+  # Wednesdays at 10:30am
+  ScheduleExpression: "cron(30 10 ? * 4 *)"
+  Input: '{"cluster": "cinco-prd", "service": "cinco-arclight-prd-service", "gitrepo": "ucldc/cinco", "codebuild_project": "cinco-arclight-prd"}'
