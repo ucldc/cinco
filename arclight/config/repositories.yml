@@ -1530,13 +1530,14 @@ CaSaGMP:
     name: "Governor's Mansion State Historic Park"
     description: "The Governor's Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor's Mansion archival collection covers the Governor's families, photographs, and State Park history."
     contact_html: |
-        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=498" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=31848" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">1526 H Street</div>
-        <div class="al-repository-street-address-city_state_zip_country">Sacramento, CA 95814, US</div>
+        <div class="al-repository-street-address-address1">Statewide Museum Collection Center</div>
+        <div class="al-repository-street-address-address2">4940 Lang Ave.</div>
+        <div class="al-repository-street-address-city_state_zip_country">McClellan, CA 95652, US</div>
     thumbnail_url: ""
-    latitude: 38.58011
-    longitude: -121.484886
+    latitude: 38.657706
+    longitude: -121420643.0
 gtu:
     name: "Graduate Theological Union"
     description: "Special Collections and Archives support the curriculum and preserve the records of the Graduate Theological Union. The collections are dedicated to diverse religious dialogue, the Christian and wider religious intellectual heritage, the American religious experience in the West, and the ministries and missions of the Member Schools and Institutes of the GTU."
@@ -1848,6 +1849,18 @@ caljjcv:
     thumbnail_url: ""
     latitude: 32.8690356
     longitude: -117.2432877
+CAJoTNP:
+    name: "Joshua Tree National Park"
+    description: "Joshua Tree National Park's mission is to preserve and protect the scenic, natural, and cultural resources representative of the Colorado and Mojave deserts' rich biological and geological diversity, cultural history, wilderness, recreational values, and outstanding opportunities for education and scientific study."
+    contact_html: |
+        <div class="al-repository-contact-phone">(760) 367-5500</div>
+        <div class="al-repository-contact-info"><a href="https://www.nps.gov/jotr/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">74485 National Park Drive</div>
+        <div class="al-repository-street-address-city_state_zip_country">Twentynine Palms, CA 92277-3597, US</div>
+    thumbnail_url: ""
+    latitude: 34.128695
+    longitude: -116037638.0
 cawhomla:
     name: "June L. Mazer Lesbian Archives"
     description: "We are a vital Lesbian and feminist community resource committed to sharing our history across generations, ethnicity, race, and personal belief systems by collecting, preserving and making available unique memorabilia in a safe and welcoming environment."
@@ -3449,6 +3462,18 @@ csfs:
     thumbnail_url: ""
     latitude: 33.9456829544
     longitude: -118.083715439
+CaToSMM:
+    name: "Santa Monica Mountains National Recreation Area"
+    description: "Santa Monica Mountains National Recreation Area is the largest urban national park in the world. It contains many parks and preserves with one of the highest documented densities of archeological resources. The park is managed by the National Park Service."
+    contact_html: |
+        <div class="al-repository-contact-phone">(805) 370-2301</div>
+        <div class="al-repository-contact-info"><a href="https://www.nps.gov/samo/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">26876 Mulholland Highway</div>
+        <div class="al-repository-street-address-city_state_zip_country">Calabasas, CA 91302, US</div>
+    thumbnail_url: ""
+    latitude: 34.102918
+    longitude: -118707466.0
 cstmo:
     name: "Santa Monica Public Library"
     description: "The Santa Monica Public Library serves as a vibrant hub for learning, culture, and community connection. Committed to fostering literacy, lifelong learning, civic engagement, and cultural awareness, the Library champions values of equity, diversity, and inclusivity. Guided by its vision to preserve the past, serve the present, and shape the future, the Library's mission is to provide resources, services, and welcoming spaces that inspire the community to read, connect, relax, and learn"
@@ -5244,6 +5269,18 @@ csfsc:
     thumbnail_url: ""
     latitude: 37.8102987
     longitude: -122.2659978
+CaWiCRCFM:
+    name: "Willow Creek China Flat Museum"
+    description: "Preserving the History of the Klamath Trinity Region of Northern California"
+    contact_html: |
+        <div class="al-repository-contact-phone">(530) 629-2653</div>
+        <div class="al-repository-contact-info"><a href="https://thebigfootmuseum.com/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">38949 Highway 299</div>
+        <div class="al-repository-street-address-city_state_zip_country">Willow Creek, CA 95573, US</div>
+    thumbnail_url: ""
+    latitude: 40.939988
+    longitude: -123631868.0
 cawilhs:
     name: "Wilmington Historical Society"
     description: "A group of residents, led by Loraine Roberts of the Banning Park neighborhood, formed the Wilmington Historical Society in an effort to preserve what remains of Wilmington's historic structures and gather photographs and information about what is already gone."
