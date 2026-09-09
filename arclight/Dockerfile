@@ -24,7 +24,7 @@
 #     cinco-arclight /rails/bin/index-from-s3 <finding_aid_id>
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.2.0
+ARG RUBY_VERSION=3.2.2
 FROM public.ecr.aws/docker/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here

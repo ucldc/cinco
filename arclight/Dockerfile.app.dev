@@ -1,4 +1,4 @@
-FROM ruby:3.2.0
+FROM ruby:3.2.2-bookworm
 
 RUN apt-get update -qq && \
     apt-get install -y \
@@ -12,9 +12,7 @@ RUN apt-get update -qq && \
     sqlite3 \
     tzdata \
     yarn \
-    python3 \
-    python3-pip && \
-    pip3 install awscli
+    awscli
 
 RUN mkdir /app
 WORKDIR /app
