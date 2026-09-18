@@ -5,7 +5,8 @@ RUN apt-get update && \
   apt-get -y install --no-install-recommends \
   jq \
   python3 \
-  python3-pip
+  python3-pip \
+  awscli
 
 USER solr
 
@@ -14,6 +15,7 @@ COPY --chown=solr:solr solr/solr.xml /opt/solr/server/solr/solr.xml
 COPY --chown=solr:solr solr/solr.in.sh /etc/default/solr.in.sh
 
 COPY --chmod=744 --chown=solr:solr solr/cinco-docker-entrypoint.sh /cinco-docker-entrypoint.sh
+COPY --chmod=744 --chown=solr:solr solr/leader-backup /opt/solr/docker/scripts/leader-backup
 COPY --chmod=744 --chown=solr:solr solr/solr-replication-config.py /solr-replication-config.py
 
 CMD /cinco-docker-entrypoint.sh
