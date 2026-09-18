@@ -29,14 +29,6 @@ while true; do
     backup=$(echo "$solr_resp" | jq -r '.details.backup')
     backupstatus=$(echo "$backup" | jq -r '.status')
 
-    # if the timeout has been reached, log a message and exit
-    now=$(date +%s)
-    elapsed=$(( now - start_time ))
-    if (( elapsed >= timeout_seconds )); then
-        echo $(log_msg "unknown" "backup did not complete within ${timeout_seconds}s" "$solr_resp")
-        exit 1
-    fi
-
     # if backup success, log a message and exit
     if [[ "$backupstatus" == "success" ]]; then
         # calculate the elapsed time for the backup
@@ -48,8 +40,16 @@ while true; do
         break
     elif [[ "$backupstatus" == "failed" ]]; then
         echo $(log_msg "failed" "Solr backup failed - see solr response for details" "$solr_resp")
-        break
+        exit 1
     else
         sleep $polling_seconds
+    fi
+
+    # if the timeout has been reached, log a message and exit
+    now=$(date +%s)
+    elapsed=$(( now - start_time ))
+    if (( elapsed >= timeout_seconds )); then
+        echo $(log_msg "unknown" "backup did not complete within ${timeout_seconds}s" "$solr_resp")
+        exit 1
     fi
 done
