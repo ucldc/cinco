@@ -66,6 +66,10 @@ services:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
       retries: 10
+    environment:
+      REPLICATION_ROLE: leader
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
 
   minio:
     image: minio/minio
