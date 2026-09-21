@@ -339,15 +339,17 @@
       <str name="dir">${solr.ulog.dir:}</str>
     </updateLog>
 
+    <!-- Hard Commit: Writes data to disk for durability -->
     <autoCommit>
-      <maxTime>60000</maxTime>
-      <maxDocs>10000</maxDocs>
-      <maxSize>512m</maxSize>
+      <maxTime>60000</maxTime> <!-- commit every 60 seconds -->
+      <maxDocs>10000</maxDocs> <!-- or after 10,000 documents -->
+      <maxSize>512m</maxSize> <!-- or after the transaction log exceeds 512 MB -->
+      <openSearcher>false</openSearcher> <!-- Do not open a new searcher here -->
     </autoCommit>
 
-    <!-- for bulk updates disable soft commits -->
+    <!-- Soft Commit: Makes data visible to searchers -->
     <autoSoftCommit>
-      <maxTime>-1</maxTime>
+      <maxTime>30000</maxTime> <!-- soft commit every 30 seconds -->
     </autoSoftCommit>
   </updateHandler>
 
