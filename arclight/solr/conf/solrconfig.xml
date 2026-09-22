@@ -344,12 +344,12 @@
       <maxTime>60000</maxTime> <!-- commit every 60 seconds -->
       <maxDocs>10000</maxDocs> <!-- or after 10,000 documents -->
       <maxSize>512m</maxSize> <!-- or after the transaction log exceeds 512 MB -->
-      <openSearcher>false</openSearcher> <!-- Do not open a new searcher here -->
+      <openSearcher>true</openSearcher> <!-- Open a new searcher here: this is the default -->
     </autoCommit>
 
     <!-- Soft Commit: Makes data visible to searchers -->
     <autoSoftCommit>
-      <maxTime>30000</maxTime> <!-- soft commit every 30 seconds -->
+      <maxTime>-1</maxTime> <!-- disable soft commits - the leader is rarely searched, but can be bulk updated, followers never have a transaction log to soft commit -->
     </autoSoftCommit>
   </updateHandler>
 

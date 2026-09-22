@@ -8,13 +8,13 @@ We have 1 leader Solr instance running in ECS with an EFS backed filesystem. Ind
 
 ### Replication
 
-Replication happens at request of the follower, rather than at issuance of the leader. In `solr-replication-config.py`, the follower is configured to poll the leader every 20 seconds for any updates - this results in an update latency of at most 20 seconds from leader to follower.
+Replication happens at request of the follower, rather than at issuance of the leader. In `solr-replication-config.py`, the follower is configured to poll the leader every 20 seconds for any updates - this results in an update latency of at most 20 seconds from leader to follower of - critically - any *hard commits*. Soft commits are *not* replicated (more on commits later).
 
 ### Backups
 
 #### Backup Creation on the Leader
 
-Backups are exclusively taken of the leader via a cronjob run /inside/ the leader container.
+Backups are exclusively taken of the leader - how is still under consideration.
 
 > We can't use solr's auto backup - it can only be configured to happen on `optimize`, `commit`, or `startup` and none of these three are good options for us. We never optimize (hence removing replicateAfter and backupAfter optimize in this commit); when we actually get a workload, commits might happen too frequently and backups happening alongside the commits might overwhelm the leader; startup happens very, very rarely. Additionally, there is no option in the replicationHandler to add the configured s3 repository and location - the auto backup exclusively uses the local filesystem.
 
@@ -32,11 +32,17 @@ Backups are used to pre-populate followers in `solr-setup.sh` using the replicat
 
 Configured in `solrconfig.xml`
 
-Hard commits (writing the data to disk) are made every 60 seconds, or after 10,000 documents, or after the transaction log exceeds 512 MB. We don't open a new searcher when we issue a hard commit.
+Hard commits (writing the data to disk) are made every 60 seconds, or after 10,000 documents, or after the transaction log exceeds 512 MB. Since soft commits - which make data visible to the searcher - are disabled, we do open a new searcher when we issue a hard commit.
 
-Soft commits are made every 30 seconds, these soft commits make data visible to the searcher (hence, we don't need to open a new searcher when we issue a hard commit). However, soft commits don't write data to disk, the data is still stored in the transaction log.
+> Since it is only hard commits that are replicated to followers, we can deduce that the maximum latency between a document getting indexed to the leader and the leader writing the data to disk is 60 seconds, and the maximum latency between the leader issuing a hard commit and the follower learning of this new hard commit is 20 seconds. This doesn't count the actual time it takes the leader to make the hard commit, the time it takes the follower to retrieve the data, or the time it takes the follower to open a new searcher once it has retrieved the data, but given that our indexing load is low, hard commits should be mere seconds, and follower replication data retrieval should also be mere seconds. Opening a new searcher can take a bit longer, but I think it's generous and safe to say there should be a maximum of 2 minutes between indexing the document to the leader and the document being found on the follower. **This does not take into account any application-level or CloudFront level caching, though**
 
-### Bulk indexing
+Soft commits are disabled - since the leader is rarely handling search queries (only manually by a developer), only updates, there is no clear use for soft commits. In fact, it is safer to keep soft commits turned off for the occasional bulk workloads.
+
+~~Soft commits are made every 30 seconds, these soft commits make data visible to the searcher (hence, we don't need to open a new searcher when we issue a hard commit). However, soft commits don't write data to disk, the data is still stored in the transaction log.~~
+
+### Soft Commits & Bulk Indexing
+
+**If at some point we turn soft commits back on:**
 
 For bulk indexing, use the API to disable soft commits! Otherwise, our transaction log will get very large!
 
