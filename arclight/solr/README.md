@@ -12,9 +12,19 @@ Replication happens at request of the follower, rather than at issuance of the l
 
 ### Backups
 
-Backups are exclusively taken of the leader - still trying to figure out how.
+#### Backup Creation on the Leader
 
-> Can't use solr's auto backup - it can only be configured to happen on `optimize`, `commit`, or `startup` and none of these three are good options for us. We never optimize (hence removing replicateAfter and backupAfter optimize in this commit); when we actually get a workload, commits might happen too frequently and backups happening alongside the commits might overwhelm the leader; startup happens very, very rarely. Additionally, there is no option in the replicationHandler to add the configured s3 repository and location - the auto backup exclusively uses the local filesystem.
+Backups are exclusively taken of the leader via a cronjob run /inside/ the leader container.
+
+> We can't use solr's auto backup - it can only be configured to happen on `optimize`, `commit`, or `startup` and none of these three are good options for us. We never optimize (hence removing replicateAfter and backupAfter optimize in this commit); when we actually get a workload, commits might happen too frequently and backups happening alongside the commits might overwhelm the leader; startup happens very, very rarely. Additionally, there is no option in the replicationHandler to add the configured s3 repository and location - the auto backup exclusively uses the local filesystem.
+
+Option 1: Eventbridge Scheduler > Run Task > One-Off Run Task with security group permissions allowing requests to http://solr-leader:8983/solr/arclight/replication? endpoint. The ArcLight image already has this security group...could add a script to the image and override the entrypoint command? Seems odd that the ArcLight image would have the solr backup script, though. Could also put the solr backup script in the solr image and override the entrypoint?
+
+Option 2: Sidecar container defined in the task definition that does nothing but run cron (Dockerfile.cron), with network permissions to hit http://solr-leader:8983/solr/arclight/replication? endpoint - in awsvpc mode (which we use), no special permissions necessary - all handled by ECS magic. Hooray.
+
+Option 3 (currently implemented): Running cron on the solr container itself. Involves some trickiness regarding starting the container as root so we can start cron as root and then dropping into the solr user to run solr. Also some trickiness regarding backup script output tailed into the solr logs themselves. But also this kind of seems like the right place for it?
+
+#### Backup Utilization on the Followers
 
 Backups are used to pre-populate followers in `cinco-docker-entrypoint.sh` using the replication API with command=restore. In order to use Solr's replication API, Solr must be actively running, however, we do want to use the restore command to pre-populate prior to initiating replication (or else, replication will start from the very beginning of the solr index's history, and will cause the follower to hit the leader excessively), so we spin up Solr, restore from backup, stop Solr, update the configuration to enable replication polling, and then restart Solr again.
 

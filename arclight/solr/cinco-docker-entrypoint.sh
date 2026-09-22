@@ -90,5 +90,7 @@ else
     echo "REPLICATION_ROLE env var not set; skipping configuration for solr index replication."
 fi
 
-# start solr
+# start solr while also tailing leader-backup logs
+touch /tmp/leader-backup
+tail -F /tmp/leader-backup &
 exec solr-fg
