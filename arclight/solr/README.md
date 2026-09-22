@@ -26,7 +26,7 @@ Option 3 (currently implemented): Running cron on the solr container itself. Inv
 
 #### Backup Utilization on the Followers
 
-Backups are used to pre-populate followers in `cinco-docker-entrypoint.sh` using the replication API with command=restore. In order to use Solr's replication API, Solr must be actively running, however, we do want to use the restore command to pre-populate prior to initiating replication (or else, replication will start from the very beginning of the solr index's history, and will cause the follower to hit the leader excessively), so we spin up Solr, restore from backup, stop Solr, update the configuration to enable replication polling, and then restart Solr again.
+Backups are used to pre-populate followers in `solr-setup.sh` using the replication API with command=restore. In order to use Solr's replication API, Solr must be actively running, however, we do want to use the restore command to pre-populate prior to initiating replication (or else, replication will start from the very beginning of the solr index's history, and will cause the follower to hit the leader excessively), so we spin up Solr, restore from backup, stop Solr, update the configuration to enable replication polling, and then restart Solr again.
 
 ### Commits
 
