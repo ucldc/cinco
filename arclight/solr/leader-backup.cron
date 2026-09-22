@@ -1,0 +1,3 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/solr/bin
+0 * * * * solr /bin/bash -lc '/opt/solr/docker/scripts/leader-backup >> /tmp/leader-backup 2>&1'
