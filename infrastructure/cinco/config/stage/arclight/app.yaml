@@ -4,6 +4,8 @@ template:
 parameters:
   ClusterName: !stack_output_external cinco-stage-cluster::ECSCluster
   Namespace: cinco-arclight-stage
+  EscalopeHost: pad-cinco-arclight-stage
+  EscalopeService: pad-cinco
   VpcId: {{ var.stage.VPC_ID }}
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
   ContainerImage: !stack_output_external cinco-stage-arclight-build::ECRRepository
@@ -34,3 +36,6 @@ sceptre_user_data:
     - !stack_output_external cinco-stage-s3::Policy
   GrantHttpAccessFromThisServiceTo:
     - !stack_output_external cinco-stage-solr-solr::LoadBalancerSecurityGroup
+  alarm_config:
+    actions:
+      - {{ var.ESCALOPE_LAMBDA_ARN }}
