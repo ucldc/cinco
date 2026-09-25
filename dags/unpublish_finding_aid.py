@@ -1,9 +1,11 @@
+# ruff: noqa: B018, DTZ001
+
 from datetime import datetime
+
 from airflow.decorators import dag
 from airflow.models.param import Param
-
-from cinco.cincoctrl_operator import CincoCtrlOperator
 from cinco.arclight_operator import ArcLightOperator
+from cinco.cincoctrl_operator import CincoCtrlOperator
 
 
 @dag(

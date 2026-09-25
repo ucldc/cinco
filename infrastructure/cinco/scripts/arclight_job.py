@@ -1,3 +1,5 @@
+# ruff: noqa: RUF015
+
 """
 Requires a python3 environment w/ boto3 installed, cdl-pad-prd profile
 configured (as per cdl-ssm-util), and AWS_* environment variables.
@@ -41,6 +43,7 @@ to examine and explore the filesystem for an older arclight version:
 """
 
 import argparse
+
 import boto3
 
 
@@ -139,7 +142,7 @@ def get_service_network_config(cluster, env):
 def main(
     env: str,
     command: list[str],
-    task_definition_revision: int = None,
+    task_definition_revision: int | None = None,
     latest: bool = False,
     memory: int = 3072,
     cpu: int = 1024,
@@ -238,7 +241,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     stack = "prd" if args.prd else "stage"
-    latest = True if args.latest else False
+    latest = bool(args.latest)
 
     if not args.command:
         parser.error("You must provide a command to run.")
