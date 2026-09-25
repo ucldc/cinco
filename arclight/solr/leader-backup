@@ -1,6 +1,21 @@
 #!/bin/bash
 set -e
 
+# don't back up if no changes since last backup
+if aws s3 ls s3://cinco-dev/solr_backups/index_version.txt >/dev/null 2>&1; then
+    last_snapshot_version=$(aws s3 cp s3://cinco-dev/solr_backups/index_version.txt -)
+    solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=details")
+    index_version=$(echo "$solr_resp" | jq -r '.details.indexVersion')
+    if [[ "$last_snapshot_version" == "$index_version" ]]; then
+        echo "last snapshot version equals current index version; no backup needed"
+        exit 0
+    else
+        echo "making a new backup!"
+    fi
+else
+    echo "no index version in s3"
+fi
+
 # start backup
 solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=backup&repository=s3&location=solr_backups")
 respstatus=$(echo "$solr_resp" | jq -r '.status')
@@ -31,6 +46,14 @@ while true; do
 
     # if backup success, log a message and exit
     if [[ "$backupstatus" == "success" ]]; then
+        # store the most recently backed up index version in s3 and perform snapshot rotation
+        index_version=$(echo "$solr_resp" | jq -r '.details.indexVersion')
+        echo "$index_version" | aws s3 cp - s3://cinco-dev/solr_backups/index_version.txt
+        python3 /snapshot-rotation.py
+        if [[ "$?" != 0 ]]; then
+            echo $(log_msg "error" "s3 snapshot rotation failed" "{}")
+        fi
+
         # calculate the elapsed time for the backup
         starttime=$(date -d $(echo "$backup" | jq -r '.startTime') +%s)
         endtime=$(date -d $(echo "$backup" | jq -r '.endTime') +%s)

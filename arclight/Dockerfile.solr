@@ -6,14 +6,19 @@ RUN apt-get update && \
   jq \
   python3 \
   python3-pip \
-  awscli \
+  unzip \
+  sudo \
   cron \
-  gosu
+  gosu && \
+  pip install boto3
+
+RUN curl -fsSL https://awscli.amazonaws.com/v2/install.sh | sudo bash -s -- --system
 
 COPY --chown=solr:solr solr/conf /opt/solr/server/solr/configsets/arclight/conf
 COPY --chown=solr:solr solr/solr.xml /opt/solr/server/solr/solr.xml
 COPY --chown=solr:solr solr/solr.in.sh /etc/default/solr.in.sh
 COPY --chown=solr:solr --chmod=744 solr/leader-backup /opt/solr/docker/scripts/leader-backup
+COPY --chown=solr:solr --chmod=744 solr/snapshot-rotation.py /snapshot-rotation.py
 
 COPY --chmod=744 solr/solr-setup.sh /solr-setup.sh
 COPY --chmod=744 solr/solr-replication-config.py /solr-replication-config.py
