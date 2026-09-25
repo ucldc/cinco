@@ -1,0 +1,21 @@
+template:
+  path: code-pipeline.yaml.j2
+  type: file
+parameters:
+  Namespace: cinco-arclight-stage
+  SourceRepositoryId: ucldc/cinco
+  ChangeDetectionBranchName: main
+  CodeConnectionArn: arn:aws:codeconnections:us-west-2:777968769372:connection/a757f2ea-6fdf-4153-bf40-6a2c7e9dd96d
+  CodeBuildRoleName: !stack_output_external cinco-stage-arclight-build::CodeBuildRole
+  CodeBuildProjectName: cinco-arclight-stage
+  EcsClusterName: cinco-stage
+  EcsServiceName: cinco-arclight-stage-service
+
+sceptre_user_data:
+  GitPushFilter:
+    - Branches:
+        Includes:
+          - main
+      FilePaths:
+        Includes:
+          - arclight/**

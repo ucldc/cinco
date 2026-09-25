@@ -1,0 +1,31 @@
+template:
+  path: lambda-function.j2
+  type: file
+parameters:
+  Namespace: cinco-trigger-ecs-patching-pipeline
+  VpcId: {{ var.prd.VPC_ID }}
+  FunctionDescription: Trigger patching pipeline for an ECS Service
+  ECRRepositoryName: cinco-trigger-ecs-patching-pipeline
+  SubnetId1: subnet-08a31a6d2aff9ac32
+  SubnetId2: subnet-09e65806b80ebad6b
+  Timeout: '20'
+
+sceptre_user_data:
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - ecs:ListServiceDeployments
+                  - ecs:DescribeServiceRevisions
+                Resource:
+                  - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service/*
+                  - !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:service-revision/*
+              - Effect: Allow
+                Action:
+                  - ecs:DescribeTaskDefinition
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - codepipeline:StartPipelineExecution
+                Resource:
+                  - !Sub arn:aws:codepipeline:${AWS::Region}:${AWS::AccountId}:*
