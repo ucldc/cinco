@@ -1530,7 +1530,7 @@ CaSaGMP:
     name: "Governor's Mansion State Historic Park"
     description: "The Governor&#x27;s Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
     contact_html: |
-        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=31848" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=31846" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Statewide Museum Collection Center</div>
         <div class="al-repository-street-address-address2">4940 Lang Ave.</div>
