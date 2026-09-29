@@ -4903,6 +4903,18 @@ uidl:
     thumbnail_url: ""
     latitude: 38.577551
     longitude: -121.497587
+CSfH:
+    name: "University of California College of the Law, San Francisco"
+    description: "The University of California College of the Law, San Francisco is a public law school in San Francisco. It was formerly known as the University of California, Hastings College of the Law. The school was founded in 1878 by Serranus Clinton Hastings, the first chief justice of the Supreme Court of California."
+    contact_html: |
+        <div class="al-repository-contact-phone">(415) 565-4600</div>
+        <div class="al-repository-contact-info"><a href="https://www.uclawsf.edu/" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">200 McAllister Street</div>
+        <div class="al-repository-street-address-city_state_zip_country">San Francisco, CA 94102, US</div>
+    thumbnail_url: ""
+    latitude: None
+    longitude: None
 CLavASpC:
     name: "University of La Verne, Archives and Special Collections"
     description: "Archives and Special Collections at the Wilson Library provides source materials of significant historical and/or research value that support teaching and learning at the university and beyond."
