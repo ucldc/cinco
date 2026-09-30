@@ -295,7 +295,7 @@
 # SOLR_OPTS="$SOLR_OPTS -Dlog4j2.formatMsgNoLookups=true"
 
 # The bundled plugins in the "modules" folder can easily be enabled as a comma-separated list in SOLR_MODULES variable
-# SOLR_MODULES=extraction,ltr
+SOLR_MODULES=s3-repository
 
 # Configure the default replica placement plugin to use if one is not configured in cluster properties
 # See https://solr.apache.org/guide/solr/latest/configuration-guide/replica-placement-plugins.html for details

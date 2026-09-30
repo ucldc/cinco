@@ -66,6 +66,34 @@ services:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
       retries: 10
+    environment:
+      REPLICATION_ROLE: leader
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+
+  solr-follower:
+    build:
+      context: ./arclight
+      dockerfile: ./Dockerfile.solr
+    image: cinco/solr
+    ports:
+      - "7574:8983"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
+      timeout: 20s
+      retries: 10
+    environment:
+      REPLICATION_ROLE: follower
+      SOLR_LEADER_URL: http://solr:8983/solr/arclight/replication
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+    depends_on:
+      solr:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    profiles:
+      - solr-dev
 
   minio:
     image: minio/minio
