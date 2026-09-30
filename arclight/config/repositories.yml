@@ -1240,6 +1240,7 @@ cadvnp:
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(760) 786-3282</div>
+        <div class="al-repository-contact-info"><a href="mailto:DEVA_Curator@nps.gov">DEVA_Curator@nps.gov</a></div>
         <div class="al-repository-contact-info"><a href="https://www.nps.gov/museum/exhibits/death_valley/index.html" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">PO Box 579</div>
