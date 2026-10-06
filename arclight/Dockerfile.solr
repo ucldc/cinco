@@ -24,7 +24,7 @@ COPY --chown=solr:solr solr/conf /opt/solr/server/solr/configsets/arclight/conf
 COPY --chown=solr:solr solr/solr.xml /opt/solr/server/solr/solr.xml
 COPY --chown=solr:solr solr/solr.in.sh /etc/default/solr.in.sh
 
-COPY --chown=solr:solr --chmod=744 solr/solr-setup.sh /opt/solr/arclight/solr-setup.sh
+COPY --chown=solr:solr --chmod=744 solr/cinco-docker-entrypoint.sh /opt/solr/arclight/cinco-docker-entrypoint.sh
 COPY --chown=solr:solr --chmod=744 solr/solr-replication-config.py /opt/solr/arclight/solr-replication-config.py
 COPY --chown=solr:solr --chmod=744 solr/leader-backup.py /opt/solr/arclight/leader-backup.py
 

@@ -21,4 +21,4 @@ else
     rm -rf /etc/cron.d/leader-backup.cron /opt/solr/arclight/leader-backup.py
 fi
 
-exec gosu solr bash /opt/solr/arclight/solr-setup.sh
+exec gosu solr bash /opt/solr/arclight/cinco-docker-entrypoint.sh
