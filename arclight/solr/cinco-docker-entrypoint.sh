@@ -3,10 +3,10 @@ set -e
 
 # create a log message function that takes a status, a message, and a solr resp, and outputs a JSON object with those values
 log_msg() {
-    local arclight_backup_status="$1"
+    local arclight_replication_status="$1"
     local message="$2"
     local solr_resp="$3"
-    jq -nc --arg arclight_backup_status "$arclight_backup_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
+    jq -nc --arg arclight_replication_status "$arclight_replication_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
 }
 
 # Remove lock file. This can stick around if solr was not shut down properly.
@@ -60,7 +60,7 @@ if [[ "$REPLICATION_ROLE" == "follower" ]]; then
             echo $(log_msg $status "Restore completed successfully" "$restorestatus")
             break
         elif [[ "$status" == "failed" ]]; then
-            echo $(log_msg $status "Solr backup failed - see solr response for details" "$solr_resp")
+            echo $(log_msg $status "Solr restore failed - see solr response for details" "$solr_resp")
             exit 1
         else
             sleep $polling_seconds
@@ -70,7 +70,7 @@ if [[ "$REPLICATION_ROLE" == "follower" ]]; then
         now=$(date +%s)
         elapsed=$(( now - start_time ))
         if (( elapsed >= timeout_seconds )); then
-            echo $(log_msg $status "backup did not complete within ${timeout_seconds}s" "$solr_resp")
+            echo $(log_msg $status "restore did not complete within ${timeout_seconds}s" "$solr_resp")
             break
         fi
     done

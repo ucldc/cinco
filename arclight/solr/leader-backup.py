@@ -158,7 +158,7 @@ def poll_solr_for_backup_completion(
         time.sleep(polling_seconds)
 
 
-def snapshot_rotation():
+def rotate_snapshots():
     s3_client = boto3.client("s3", **AWS)
 
     snapshot_prefix = f"{SNAPSHOT_PREFIX}snapshot."
@@ -257,7 +257,7 @@ def main() -> None:
         Bucket=S3_BUCKET, Key=VERSION_FILE, Body=(index_version or "").encode("utf-8")
     )
 
-    snapshot_rotation()
+    rotate_snapshots()
 
     log_msg(
         "success",
