@@ -20,13 +20,16 @@ import botocore
 import requests
 
 AWS = {
-    "region_name": "us-east-1",
-    "aws_access_key_id": "minioadmin",
-    "aws_secret_access_key": "minioadmin",
-    "endpoint_url": "http://minio.cinco.orb.local:9000",
+    "region_name": os.environ.get("AWS_REGION"),
+    "aws_access_key_id": os.environ.get("AWS_ACCESS_KEY_ID"),
+    "aws_secret_access_key": os.environ.get("AWS_SECRET_ACCESS_KEY"),
+    "endpoint_url": os.environ.get("AWS_ENDPOINT_URL"),
 }
+AWS = {k: v for k, v in AWS.items() if v is not None}
 
-S3_BUCKET = os.environ.get("S3_BUCKET", "cinco-dev")
+S3_BUCKET = os.environ.get("S3_BUCKET")
+SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")
+
 SNAPSHOT_PREFIX = "solr_backups/"
 VERSION_FILE = f"{SNAPSHOT_PREFIX}index_version.txt"
 SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")
@@ -44,6 +47,11 @@ def log_msg(status: str, message: str, payload: Any) -> None:
             indent=4,
         ),
     )
+
+
+if not S3_BUCKET:
+    log_msg("failed", "S3_BUCKET environment variable is not set", {})
+    sys.exit(1)
 
 
 def get_latest_snapshot_version() -> int | None:
