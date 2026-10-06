@@ -10,19 +10,22 @@ RUN apt-get update && \
   sudo \
   cron \
   gosu && \
-  pip install boto3
+  pip install boto3 requests && \
+  mkdir /opt/solr/arclight
 
 RUN curl -fsSL https://awscli.amazonaws.com/v2/install.sh | sudo bash -s -- --system
 
+# Root-owned files
+COPY --chmod=644 solr/leader-backup.cron /etc/cron.d/leader-backup
+COPY --chmod=744 solr/entrypoint.sh /entrypoint.sh
+
+# Solr-owned files
 COPY --chown=solr:solr solr/conf /opt/solr/server/solr/configsets/arclight/conf
 COPY --chown=solr:solr solr/solr.xml /opt/solr/server/solr/solr.xml
 COPY --chown=solr:solr solr/solr.in.sh /etc/default/solr.in.sh
-COPY --chown=solr:solr --chmod=744 solr/leader-backup /opt/solr/docker/scripts/leader-backup
-COPY --chown=solr:solr --chmod=744 solr/snapshot-rotation.py /snapshot-rotation.py
 
-COPY --chmod=744 solr/solr-setup.sh /solr-setup.sh
-COPY --chmod=744 solr/solr-replication-config.py /solr-replication-config.py
-COPY --chmod=744 solr/entrypoint.sh /entrypoint.sh
-COPY --chmod=644 solr/leader-backup.cron /etc/cron.d/leader-backup
+COPY --chown=solr:solr --chmod=744 solr/solr-setup.sh /opt/solr/arclight/solr-setup.sh
+COPY --chown=solr:solr --chmod=744 solr/solr-replication-config.py /opt/solr/arclight/solr-replication-config.py
+COPY --chown=solr:solr --chmod=744 solr/leader-backup.py /opt/solr/arclight/leader-backup.py
 
 CMD /entrypoint.sh

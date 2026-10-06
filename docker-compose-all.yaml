@@ -66,12 +66,15 @@ services:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
       retries: 10
+    volumes:
+      - ./arclight/solr:/opt/solr/arclight/
     environment:
       REPLICATION_ROLE: leader
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
       AWS_ENDPOINT_URL: http://minio.cinco.orb.local:9000
       AWS_REGION: us-east-1
+      S3_BUCKET: cinco-dev
 
   solr-follower:
     build:

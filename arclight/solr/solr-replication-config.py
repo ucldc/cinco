@@ -26,7 +26,6 @@ if os.environ.get("REPLICATION_ROLE") == "leader":
         '    <lst name="leader">\n',
         '      <str name="confFiles">_rest_managed.json,elevate.xml,mapping-ISOLatin1Accent.txt,protwords.txt,schema.xml,scripts.conf,spellings.txt,stopwords_en.txt,stopwords.txt,synonyms.txt</str>\n',
         "    </lst>\n",
-        '    <int name="maxNumberOfBackups">2</int>\n',
         '    <str name="commitReserveDuration">00:00:10</str>\n',
         '    <lst name="invariants">\n',
         '      <str name="maxWriteMBPerSec">16</str>\n',
