@@ -69,6 +69,8 @@ services:
     volumes:
       - ./arclight/solr:/opt/solr/arclight/
     environment:
+      # to run solr without any replication or backup
+      # remove all of the following env vars (but most importantly, REPLICATION_ROLE)
       REPLICATION_ROLE: leader
       SOLR_S3_BUCKET: cinco-dev
       SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
@@ -77,6 +79,10 @@ services:
       AWS_REGION: us-east-1
 
   solr-follower:
+    # this container is optional, to run a stack with a solr follower, use
+    # docker-compose --profile solr-dev up
+    profiles:
+      - solr-dev
     build:
       context: ./arclight
       dockerfile: ./Dockerfile.solr
@@ -99,8 +105,6 @@ services:
         condition: service_healthy
       minio:
         condition: service_healthy
-    profiles:
-      - solr-dev
 
   minio:
     image: minio/minio
