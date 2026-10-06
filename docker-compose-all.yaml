@@ -70,11 +70,11 @@ services:
       - ./arclight/solr:/opt/solr/arclight/
     environment:
       REPLICATION_ROLE: leader
+      SOLR_S3_BUCKET: cinco-dev
+      SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
-      AWS_ENDPOINT_URL: http://minio.cinco.orb.local:9000
       AWS_REGION: us-east-1
-      S3_BUCKET: cinco-dev
 
   solr-follower:
     build:

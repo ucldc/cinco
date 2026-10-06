@@ -6,9 +6,9 @@ if [[ "$REPLICATION_ROLE" == "leader" ]]; then
     OPTIONAL_CRON_VARS=(
         AWS_ACCESS_KEY_ID
         AWS_SECRET_ACCESS_KEY
-        AWS_ENDPOINT_URL
         AWS_REGION
-        S3_BUCKET
+        SOLR_S3_ENDPOINT
+        SOLR_S3_BUCKET
     )
     for var in "${OPTIONAL_CRON_VARS[@]}"; do
         if [ -n "${!var-}" ]; then

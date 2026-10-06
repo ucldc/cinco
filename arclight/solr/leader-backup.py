@@ -23,11 +23,11 @@ AWS = {
     "region_name": os.environ.get("AWS_REGION"),
     "aws_access_key_id": os.environ.get("AWS_ACCESS_KEY_ID"),
     "aws_secret_access_key": os.environ.get("AWS_SECRET_ACCESS_KEY"),
-    "endpoint_url": os.environ.get("AWS_ENDPOINT_URL"),
+    "endpoint_url": os.environ.get("SOLR_S3_ENDPOINT"),
 }
 AWS = {k: v for k, v in AWS.items() if v is not None}
 
-S3_BUCKET = os.environ.get("S3_BUCKET")
+S3_BUCKET = os.environ.get("SOLR_S3_BUCKET")
 SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")
 
 SNAPSHOT_PREFIX = "solr_backups/"
@@ -50,7 +50,7 @@ def log_msg(status: str, message: str, payload: Any) -> None:
 
 
 if not S3_BUCKET:
-    log_msg("failed", "S3_BUCKET environment variable is not set", {})
+    log_msg("failed", "SOLR_S3_BUCKET environment variable is not set", {})
     sys.exit(1)
 
 
