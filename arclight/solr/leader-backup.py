@@ -43,8 +43,7 @@ def log_msg(status: str, message: str, payload: Any) -> None:
                 "arclight_backup_status": status,
                 "message": message,
                 "context": payload,
-            },
-            indent=4,
+            }
         ),
     )
 
