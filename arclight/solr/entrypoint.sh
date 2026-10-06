@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-if [[ "$REPLICATION_ROLE" == "leader" ]]; then
+if [[ "${REPLICATION_ROLE:-}" == "leader" ]]; then
 
     OPTIONAL_CRON_VARS=(
         AWS_ACCESS_KEY_ID
