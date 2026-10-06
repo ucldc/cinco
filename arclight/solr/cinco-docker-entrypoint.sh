@@ -30,6 +30,7 @@ else
     echo "Core $CORE already exists"
 fi
 
+# Restore from backup if this instance is a follower
 if [[ "$REPLICATION_ROLE" == "follower" ]]; then
     echo "Replication role is $REPLICATION_ROLE; restoring from backup snapshot"
 
