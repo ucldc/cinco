@@ -3686,7 +3686,7 @@ stanford_cstmus:
     description: "ARS finding aids"
     contact_html: |
         <div class="al-repository-contact-phone">(650) 723-9312</div>
-        <div class="al-repository-contact-info"><a href="mailto:soundarchive@stanford.edu ">soundarchive@stanford.edu </a></div>
+        <div class="al-repository-contact-info"><a href="mailto:soundarchive@stanford.edu">soundarchive@stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://library.stanford.edu/ars" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Braun Music Center, 541 Lasuen Mall</div>
@@ -3694,8 +3694,8 @@ stanford_cstmus:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4239744194
     longitude: -122.169384956
 stanford_chs:
@@ -3712,8 +3712,8 @@ stanford_chs:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
 stanford_casteal:
@@ -3724,14 +3724,14 @@ stanford_casteal:
         <div class="al-repository-contact-info"><a href="mailto:eastasialibrary@stanford.edu">eastasialibrary@stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://library.stanford.edu/eal" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">Lathrop Library </div>
+        <div class="al-repository-street-address-address1">Lathrop Library</div>
         <div class="al-repository-street-address-address2">557 Escondido Mall</div>
         <div class="al-repository-street-address-city_state_zip_country">Palo Alto, CA 94305-3106, US</div>
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.426635
     longitude: -122.166841
 stanford_mss:
@@ -3748,8 +3748,8 @@ stanford_mss:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
 stanford_rbd:
@@ -3766,8 +3766,8 @@ stanford_rbd:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4267179434
     longitude: -122.167067528
 stanford_cstl:
@@ -3798,8 +3798,8 @@ stanford_uarc:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4270672668
     longitude: -122.167925835
 cyccl:
