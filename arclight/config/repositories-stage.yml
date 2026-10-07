@@ -2266,7 +2266,7 @@ cats:
     location_html: |
         <div class="al-repository-street-address-address1">12 Cornish Rex St.</div>
         <div class="al-repository-street-address-city_state_zip_country">Cat Town, CA 00000, US</div>
-    thumbnail_url: "repo-logos/IMG_2286.jpg"
+    thumbnail_url: ""
     latitude: None
     longitude: None
 clobhi:
@@ -2364,25 +2364,8 @@ huntington:
     thumbnail_url: ""
     latitude: 34.1272238367
     longitude: -118.10997963
-huntington_arcoll:
-    name: "Huntington Library, Architecture Collections"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-phone">(626) 405-2129</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@huntington.org">reference@huntington.org</a></div>
-        <div class="al-repository-contact-info"><a href="https://www.huntington.org/" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">1151 Oxford Road</div>
-        <div class="al-repository-street-address-city_state_zip_country">San Marino, CA 91108, US</div>
-    thumbnail_url: ""
-    request_types:
-        aeon_web_ead:
-            request_url: https://aeon.huntington.org//aeon/Aeon.dll
-            request_mappings: Action=10&Form=31&Value=ead_url
-    latitude: 34.1296261846
-    longitude: -118.109936714
 huntington_mss:
-    name: "Huntington Library, Manuscript Collections"
+    name: "Huntington Library, Library Collections"
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(626) 405-2191</div>
@@ -2398,57 +2381,6 @@ huntington_mss:
             request_mappings: Action=10&Form=31&Value=ead_url
     latitude: 34.1271883116
     longitude: -118.10997963
-huntington_parc:
-    name: "Huntington Library, Photo Archives Collections"
-    description: "The Huntington Library houses approximately 500,000 prints and negatives spanning the century from 1850 to 1950. This superlative collection, which covers a variety of topics from the American Civil War to the building of the transcontinental railroad, from &quot;Grand Tours&quot; of Europe to modest family photograph albums, is particularly strong in depicting the history and development of the American West."
-    contact_html: |
-        <div class="al-repository-contact-phone">(626) 405-2129</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@huntington.org">reference@huntington.org</a></div>
-        <div class="al-repository-contact-info"><a href="https://www.huntington.org/" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">1151 Oxford Road</div>
-        <div class="al-repository-street-address-city_state_zip_country">San Marino, CA 91108, US</div>
-    thumbnail_url: ""
-    request_types:
-        aeon_web_ead:
-            request_url: https://aeon.huntington.org//aeon/Aeon.dll
-            request_mappings: Action=10&Form=31&Value=ead_url
-    latitude: 34.1272593617
-    longitude: -118.10997963
-huntington_preph:
-    name: "Huntington Library, Prints and Ephemera Collections"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-phone">(626) 405-2191</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@huntington.org">reference@huntington.org</a></div>
-        <div class="al-repository-contact-info"><a href="https://www.huntington.org/" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">1151 Oxford Road</div>
-        <div class="al-repository-street-address-city_state_zip_country">San Marino, CA 91108, US</div>
-    thumbnail_url: ""
-    request_types:
-        aeon_web_ead:
-            request_url: https://aeon.huntington.org//aeon/Aeon.dll
-            request_mappings: Action=10&Form=31&Value=ead_url
-    latitude: 34.1272948868
-    longitude: -118.10997963
-huntington_rbd:
-    name: "Huntington Library, Rare Book Collections"
-    description: ""
-    contact_html: |
-        <div class="al-repository-contact-phone">(626) 405-2191</div>
-        <div class="al-repository-contact-info"><a href="mailto:reference@huntington.org">reference@huntington.org</a></div>
-        <div class="al-repository-contact-info"><a href="https://www.huntington.org/" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">1151 Oxford Road</div>
-        <div class="al-repository-street-address-city_state_zip_country">San Marino, CA 91108, US</div>
-    thumbnail_url: ""
-    request_types:
-        aeon_web_ead:
-            request_url: https://aeon.huntington.org//aeon/Aeon.dll
-            request_mappings: Action=10&Form=31&Value=ead_url
-    latitude: 34.1290355952
-    longitude: -118.11006546
 huntington_inarc:
     name: "Huntington Library, The Huntington Institutional Archives"
     description: ""
@@ -5292,7 +5224,7 @@ stanford_cstmus:
     description: "ARS finding aids"
     contact_html: |
         <div class="al-repository-contact-phone">(650) 723-9312</div>
-        <div class="al-repository-contact-info"><a href="mailto:soundarchive@stanford.edu ">soundarchive@stanford.edu </a></div>
+        <div class="al-repository-contact-info"><a href="mailto:soundarchive@stanford.edu">soundarchive@stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://library.stanford.edu/ars" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">Braun Music Center, 541 Lasuen Mall</div>
@@ -5300,8 +5232,8 @@ stanford_cstmus:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4239744194
     longitude: -122.169384956
 stanford_chs:
@@ -5330,14 +5262,14 @@ stanford_casteal:
         <div class="al-repository-contact-info"><a href="mailto:eastasialibrary@stanford.edu">eastasialibrary@stanford.edu</a></div>
         <div class="al-repository-contact-info"><a href="https://library.stanford.edu/eal" class="offsite-link">Website</a></div>
     location_html: |
-        <div class="al-repository-street-address-address1">Lathrop Library </div>
+        <div class="al-repository-street-address-address1">Lathrop Library</div>
         <div class="al-repository-street-address-address2">557 Escondido Mall</div>
         <div class="al-repository-street-address-city_state_zip_country">Palo Alto, CA 94305-3106, US</div>
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.426635
     longitude: -122.166841
 stanford_csthms:
@@ -5368,8 +5300,8 @@ stanford_mss:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4266668227
     longitude: -122.167024612
 stanford_cstmusl:
@@ -5403,8 +5335,8 @@ stanford_rbd:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4267179434
     longitude: -122.167067528
 stanford_cstl:
@@ -5449,8 +5381,8 @@ stanford_uarc:
     thumbnail_url: ""
     request_types:
         aeon_web_ead:
-            request_url: https://stanford.aeon.atlas-sys.com/logon
-            request_mappings: Action=10&Form=31&Value=ead_url
+            request_url: https://requests.stanford.edu/archives_requests/new
+            request_mappings: value=ead_url
     latitude: 37.4270672668
     longitude: -122.167925835
 cabesc:
