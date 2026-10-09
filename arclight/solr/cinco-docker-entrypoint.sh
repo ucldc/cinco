@@ -81,7 +81,7 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
         status=$(echo "$restorestatus" | jq -r '.status')
 
         if [[ "$status" == "success" ]]; then
-            echo $(log_msg $status "Restore completed successfully" "$restorestatus")
+            echo $(log_msg $status "Restore completed successfully" "$solr_resp")
             break
         elif [[ "$status" == "failed" ]]; then
             echo $(log_msg $status "Solr restore failed - see solr response for details" "$solr_resp")
