@@ -9,14 +9,6 @@ log_msg() {
     jq -nc --arg arclight_replication_status "$arclight_replication_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
 }
 
-# Remove lock file. This can stick around if solr was not shut down properly.
-if [ -f "/var/solr/data/arclight/data/index/write.lock" ]; then
-    rm /var/solr/data/arclight/data/index/write.lock
-fi
-
-# Run helper script to initialize an empty solr
-init-var-solr
-
 coredir="/var/solr/data/arclight"
 config_source="/opt/solr/server/solr/configsets/arclight"
 if [[ ! -d $coredir ]]; then
@@ -24,14 +16,15 @@ if [[ ! -d $coredir ]]; then
     cp -r "$config_source/." "$coredir/"
     touch "$coredir/core.properties"
     echo "Created $CORE"
+    created="true"
 else
     # copy current config into place even if core already exists
     cp -r "$config_source/." "$coredir/"
     echo "Core $CORE already exists"
 fi
 
-# Restore from backup if this instance is a follower
-if [[ "$REPLICATION_ROLE" == "follower" ]]; then
+# Restore from backup if this instance is a follower, or if we're creating the core for the first time
+if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
     echo "Replication role is $REPLICATION_ROLE; restoring from backup snapshot"
 
     # start solr, wait for it to be fully up and ready, and then perform restore

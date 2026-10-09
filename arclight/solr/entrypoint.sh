@@ -21,4 +21,12 @@ else
     rm -rf /etc/cron.d/leader-backup.cron /opt/solr/arclight/leader-backup.py
 fi
 
+# Remove lock file. This can stick around if solr was not shut down properly.
+if [ -f "/var/solr/data/arclight/data/index/write.lock" ]; then
+    rm /var/solr/data/arclight/data/index/write.lock
+fi
+
+init-var-solr
+chown -R solr:solr /var/solr
+
 exec gosu solr bash /opt/solr/arclight/cinco-docker-entrypoint.sh
