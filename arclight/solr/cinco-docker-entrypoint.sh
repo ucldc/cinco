@@ -31,6 +31,8 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
     solr start
     /opt/solr/docker/scripts/wait-for-solr.sh --max-attempts 30 --solr-url http://localhost:8983/solr
 
+    echo $(curl -s "http://localhost:8983/solr/admin/cores?action=status&core=arclight")
+
     # restore from backup
     solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=restore&repository=s3&location=solr_backups")
     respstatus=$(echo "$solr_resp" | jq -r '.status')
