@@ -6,6 +6,7 @@ log_msg() {
     local arclight_replication_status="$1"
     local message="$2"
     local solr_resp="$3"
+    echo "log_msg"
     jq -nc --arg arclight_replication_status "$arclight_replication_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
 }
 
@@ -31,10 +32,37 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
     solr start
     /opt/solr/docker/scripts/wait-for-solr.sh --max-attempts 30 --solr-url http://localhost:8983/solr
 
-    echo $(curl -s "http://localhost:8983/solr/admin/cores?action=status&core=arclight")
+    # poll till the core is loaded
+    start_time=$(date +%s)
+    timeout_seconds=60
+    polling_seconds=5
+    while true; do
+        solr_resp=$(curl -s "http://localhost:8983/solr/admin/cores?action=status&core=arclight")
+        echo $solr_resp
+        is_loaded=$(echo "$solr_resp" | jq -r '.status.arclight.isLoaded')
+        is_loading=$(echo "$solr_resp" | jq -r '.status.arclight.isLoading')
+        index_num_docs=$(echo "$solr_resp" | jq -r '.status.arclight.index.numDocs')
+        if [[ "$is_loaded" == "false" && "$is_loading" == "true" ]]; then
+            sleep $polling_seconds
+        elif [[ "$is_loaded" == "true" || "$index_num_docs" == 0 ]]; then
+            break
+        else
+            echo $(log_msg "failed" "unexpected core status" "$solr_resp")
+            exit 1
+        fi
+
+        # if the timeout has been reached, log a message and exit
+        now=$(date +%s)
+        elapsed=$(( now - start_time ))
+        if (( elapsed >= 60 )); then
+            echo $(log_msg "failed" "core did not come up within ${timeout_seconds}s" "$solr_resp")
+            break
+        fi
+    done
 
     # restore from backup
     solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=restore&repository=s3&location=solr_backups")
+    echo $solr_resp
     respstatus=$(echo "$solr_resp" | jq -r '.status')
     if [[ "$respstatus" != "OK" ]]; then
         echo $(log_msg "failed" "error issuing replication?command=restore" "$solr_resp")
@@ -48,6 +76,7 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
     while true; do
         # curl for details on the restore status
         solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=restorestatus")
+        echo $solr_resp
         restorestatus=$(echo "$solr_resp" | jq -r '.restorestatus')
         status=$(echo "$restorestatus" | jq -r '.status')
 
