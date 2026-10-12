@@ -1,3 +1,4 @@
+ESCALOPE_LAMBDA_ARN:
 prd:
   VPC_ID:
   SUBNET_IDS:
