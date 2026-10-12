@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ001
 """
 The bulk_index_finding_aids dag only has 2 tasks - the arclight indexing
 task and the s3 cleanup task. For the arclight indexing task, I was
@@ -10,12 +11,12 @@ in a given bulk job, and runs the traject command for each one.
 
 import os
 import uuid
-import boto3
 from datetime import datetime
-from airflow.decorators import dag, task, task_group
-from airflow.models.param import Param
-from airflow.models import Variable
 
+import boto3
+from airflow.decorators import dag, task, task_group
+from airflow.models import Variable
+from airflow.models.param import Param
 from cinco.arclight_operator import ArcLightOperator
 from cinco.cincoctrl_operator import CincoCtrlOperator
 

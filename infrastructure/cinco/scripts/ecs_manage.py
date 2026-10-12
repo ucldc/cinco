@@ -1,7 +1,9 @@
-import os
-import argparse
-# import time
+# ruff: noqa: RUF015, BLE001
 
+import argparse
+import os
+
+# import time
 import boto3
 
 
@@ -32,8 +34,11 @@ def task_template():
 
 
 def main(
-    stack: str, command: list[str] = ["migrate"], task_definition_revision: int = None
+    stack: str,
+    command: list[str] | None = None,
+    task_definition_revision: int | None = None,
 ):
+    command = command or ["migrate"]
     stack_name = (
         "cinco-prd-cincoctrl-app" if stack == "prd" else "cinco-stage-cincoctrl-app"
     )

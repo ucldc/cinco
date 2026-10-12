@@ -1,7 +1,10 @@
-import json
-import urllib3
-import os
+# ruff: noqa: BLE001
+
 import argparse
+import json
+import os
+
+import urllib3
 
 http = urllib3.PoolManager()
 

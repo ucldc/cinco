@@ -1,6 +1,8 @@
-from datetime import datetime
-from airflow.decorators import dag
+# ruff: noqa: DTZ001
 
+from datetime import datetime
+
+from airflow.decorators import dag
 from cinco.cincoctrl_operator import CincoCtrlOperator
 
 
@@ -14,7 +16,7 @@ from cinco.cincoctrl_operator import CincoCtrlOperator
     # on_success_callback=notify_dag_success,
 )
 def cinco_poll_airflow_api():
-    poll_airflow = CincoCtrlOperator(  # noqa: F841
+    poll_airflow = CincoCtrlOperator(
         task_id="poll_airflow",
         manage_cmd="poll_airflow",
         cinco_environment="stage",
