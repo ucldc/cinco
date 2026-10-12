@@ -1,0 +1,22 @@
+template:
+  path: code-pipeline.yaml.j2
+  type: file
+parameters:
+  Namespace: cinco-arclight-prd
+  SourceRepositoryId: ucldc/cinco
+  ChangeDetectionBranchName: main
+  CodeConnectionArn: arn:aws:codeconnections:us-west-2:777968769372:connection/a757f2ea-6fdf-4153-bf40-6a2c7e9dd96d
+  CodeBuildRoleName: !stack_output_external cinco-prd-arclight-build::CodeBuildRole
+  CodeBuildProjectName: cinco-arclight-prd
+  EcsClusterName: cinco-prd
+  EcsServiceName: cinco-arclight-prd-service
+
+sceptre_user_data:
+  # there is no native release event for CodePipeline, so we trigger on
+  # tags starting with 'v' for version
+  GitPushFilter:
+    - Tags:
+        Includes:
+          - v*
+  CodeBuildEnvironmentVariables: '[{"name":"CURRENT_ENVIRONMENT","value":"Production","type":"PLAINTEXT"},
+                              {"name":"UseParamStore","value":"CURRENT_ENVIRONMENT","type":"PARAMETER_STORE"}]'

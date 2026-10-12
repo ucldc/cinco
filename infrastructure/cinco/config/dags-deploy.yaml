@@ -2,11 +2,13 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-dags-deploy
-  Branch: main
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
+    Branch: main
   CodeBuildPolicies:
     - arn:aws:iam::777968769372:policy/cinco-dags-sync
   TriggerFilterGroups:

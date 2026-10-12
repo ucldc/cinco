@@ -2,12 +2,13 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-solr-prd
-  Branch: ''
   ECRRepositoryURI: !stack_output stage/solr/build.yaml::ECRRepository
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
   TriggerFilterGroups:
   # A build is triggered if any filter group evaluates to true, which
   # occurs when all the filters in the group evaluate to true.
@@ -71,3 +72,13 @@ sceptre_user_data:
                     # - aws ecs update-service --cluster cinco-prd --service cinco-solr-follower-2-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
                     ###### Message Slack #####
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/message_slack.py --application solr --cinco_version $TAG --td_family_revisions $LEADER $FOLLOWER_1 $FOLLOWER_2
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - ecs:RunTask
+                  - ecs:DescribeTasks
+                  - ecs:DescribeTaskDefinition
+                  - ecs:RegisterTaskDefinition
+                  - ecs:UpdateService
+
+                Resource: "*"

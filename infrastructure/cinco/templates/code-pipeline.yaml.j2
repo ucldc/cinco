@@ -1,0 +1,185 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description:
+  Code Pipeline. Sources code from github, builds using a CodeBuild project,
+  and deploys to ECS. Triggered on push to GitHub using AWS CodeConnections.
+
+Parameters:
+  Namespace:
+    Description: The namespace for the code pipeline
+    Type: String
+  ExecutionMode:
+    Description: Pipeline execution mode
+    Type: String
+    Default: SUPERSEDED
+  SourceRepositoryId:
+    Description: Git repo id for source, in the form 'user/repo'
+    Type: String
+  ChangeDetectionBranchName:
+    Description: Git branch name on which to detect changes that will trigger pipeline execution
+    Type: String
+  CodeConnectionArn:
+    Description: Github code connection ARN
+    Type: String
+  CodeBuildRoleName:
+    Description: Name of the IAM Role of the codebuild project used in the build stage
+    Type: String
+  CodeBuildProjectName:
+    Description: Name of the codebuild project used in the build stage
+    Type: String
+  EcsClusterName:
+    Description: Name of ECS cluster to deploy to
+    Type: String
+  EcsServiceName:
+    Description: Name of ECS service to deploy to
+    Type: String
+
+Resources:
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Namespace}-pipeline-artifacts"
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteOldArtifacts
+            Status: Enabled
+            ExpirationInDays: 7
+            Prefix: ""
+
+  IAMArtifactBucketPolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      PolicyName: !Sub ${Namespace}-artifact-bucket-access-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: 'Allow'
+            Action:
+            - s3:GetObject
+            Resource:
+            - !GetAtt ArtifactBucket.Arn
+            - !Sub "${ArtifactBucket.Arn}/*"
+      RoleName: !Ref CodeBuildRoleName
+
+  IAMCodePipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      RoleName: !Sub ${Namespace}-codepipeline
+
+  IAMCodePipelinePolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      PolicyName: !Sub ${Namespace}-codepipeline-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+            - codeconnections:UseConnection
+            Resource: !Ref CodeConnectionArn
+          - Effect: 'Allow'
+            Action:
+            - s3:PutObject
+            - s3:GetObject
+            - s3:GetObjectVersion
+            - s3:GetBucketAcl
+            - s3:GetBucketLocation
+            Resource:
+            - !GetAtt ArtifactBucket.Arn
+            - !Sub "${ArtifactBucket.Arn}/*"
+          - Effect: 'Allow'
+            Action:
+            - codebuild:BatchGetBuilds
+            - codebuild:StartBuild
+            - codebuild:BatchGetBuildBatches
+            - codebuild:StartBuildBatch
+            Resource:
+            - '*'
+          - Effect: 'Allow'
+            Action:
+            - ecs:*
+            Resource:
+            - '*'
+          - Effect: 'Allow'
+            Action: iam:PassRole
+            Resource:
+            - '*'
+            Condition:
+              StringEquals:
+                iam:PassedToService:
+                - ecs.amazonaws.com
+                - ecs-tasks.amazonaws.com
+      RoleName:
+        Ref: IAMCodePipelineRole
+
+  CodePipeLine:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: !Sub ${Namespace}-pipeline
+      PipelineType: V2
+      ExecutionMode: !Ref ExecutionMode
+      RoleArn: !GetAtt IAMCodePipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref ArtifactBucket
+      Triggers:
+        - ProviderType: CodeStarSourceConnection
+          GitConfiguration:
+            SourceActionName: Source
+            Push: {{ sceptre_user_data.GitPushFilter }}
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: 1
+              Configuration:
+                # https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodestarConnectionSource.html#action-reference-CodestarConnectionSource-config
+                ConnectionArn: !Ref CodeConnectionArn
+                FullRepositoryId: !Ref SourceRepositoryId
+                # Set to false to allow the Triggers property to control execution
+                DetectChanges: false
+                BranchName: !Ref ChangeDetectionBranchName
+              OutputArtifacts:
+                - Name: SourceArtifact
+        - Name: Build
+          Actions:
+            - Name: Build
+              InputArtifacts:
+                - Name: SourceArtifact
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: 1
+              Configuration:
+                ProjectName: !Ref CodeBuildProjectName
+              OutputArtifacts:
+                - Name: BuildArtifact
+        - Name: Deploy
+          Actions:
+            - Name: Deploy
+              InputArtifacts:
+              - Name: BuildArtifact
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: ECS
+                Version: 1
+              Configuration:
+                ClusterName: !Ref EcsClusterName
+                ServiceName: !Ref EcsServiceName
+                FileName: imagedefinitions.json
+                DeploymentTimeout: 15

@@ -1,13 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: CodeBuild Project with optional ECR Repo; build triggered by
-  push to the specified branch and changes to the specified file path, logs
-  are in the CloudWatch group /codebuild/<Namespace> stream name "build"
+Description: CodeBuild Project with optional ECR Repo; builds can be triggered either by
+  a GitHub event or CodePipeline; logs are in the CloudWatch group /codebuild/<Namespace>
+  stream name "build"
 
 Parameters:
-  GitHubRepo:
-    Description: The URL of the GitHub repository to pull code from
-    Type: String
   ECRRepositoryURI:
     Description: The URI of the ECR repository - if not provided, will create
       one using sceptre_user_data.ECRRepositoryName as the name, if available.
@@ -16,10 +13,6 @@ Parameters:
   Namespace:
     Description: The namespace for the CodeBuild project
     Type: String
-  Branch:
-    Description: The branch to build from
-    Type: String
-    Default: main
   BuildSpecLocation:
     Description: The path to the buildspec.yml file in the GitHub repository -
       this should be relative to the root of the repo.
@@ -27,6 +20,22 @@ Parameters:
       are provided, the default value of "buildspec.yml" will be used.
     Type: String
     Default: "buildspec.yml"
+
+{# In addition to the CloudFormation Parameters listed above, this template
+   also supports the following sceptre_user_data parameters:
+
+  Source:
+    Type: A dict containing Type (required), GithubRepo (optional), Branch (optional)
+    Description: codebuild Source information
+    Required: Source.Type is required and must be either CODEPIPELINE or GITHUB.
+      If type is GITHUB then a Source.GithubRepo value must also be provided,
+      and a Branch value may also be provided.
+
+  TriggerFilterGroups:
+    Type: A list of trigger filter groups
+    Description: a list of trigger filter groups to be used if source type is GITHUB
+    Required: No
+#}
 
 Conditions:
   CreateRepo: !Equals [!Ref ECRRepositoryURI, ""]
@@ -145,13 +154,19 @@ Resources:
       Name: !Ref Namespace
       Description: !Sub Builds the ${Namespace} docker image and pushes to ECR
       ServiceRole: !GetAtt CodeBuildRole.Arn
-      SourceVersion: !Ref Branch
+      {% if sceptre_user_data.Source.Branch is defined %}
+      SourceVersion: {{ sceptre_user_data.Source.Branch }}
+      {% endif %}
       Source:
+        {% if sceptre_user_data.Source.Type == 'GITHUB' %}
         Type: GITHUB
-        Location: !Ref GitHubRepo
+        Location: {{ sceptre_user_data.Source.GitHubRepo }}
         Auth:
           Type: OAUTH
         GitCloneDepth: 1
+        {% elif sceptre_user_data.Source.Type == 'CODEPIPELINE' %}
+        Type: CODEPIPELINE
+        {% endif %}
         {% if sceptre_user_data and sceptre_user_data.build_spec is defined %}
         BuildSpec: {{ sceptre_user_data.build_spec }}
         {% else %}
@@ -175,23 +190,32 @@ Resources:
           {% endfor %}
           {% endfor %}
           {% endif %}
+      {% if sceptre_user_data and sceptre_user_data.TriggerFilterGroups is defined %}
       Triggers:
         Webhook: true
         FilterGroups: {{ sceptre_user_data.TriggerFilterGroups }}
+      {% endif %}
       Artifacts:
+        {% if sceptre_user_data.Source.Type == 'GITHUB' %}
         Type: NO_ARTIFACTS
+        {% elif sceptre_user_data.Source.Type == 'CODEPIPELINE' %}
+        Type: CODEPIPELINE
+        {% endif %}
       LogsConfig:
         CloudWatchLogs:
           GroupName: !Sub /codebuild/${Namespace}
           Status: ENABLED
           StreamName: build
 
+Outputs:
 {% if sceptre_user_data and
   (sceptre_user_data.ECRRepositoryName is defined or
    sceptre_user_data.stack_parameters.ECRRepositoryURI is defined)
 %}
-Outputs:
   ECRRepository:
     Description: The ECR Repository URI
     Value: !If [CreateRepo, !GetAtt ECRRepository.RepositoryUri, !Ref ECRRepositoryURI]
 {% endif %}
+  CodeBuildRole:
+    Description: CodeBuildRole
+    Value: !Ref CodeBuildRole

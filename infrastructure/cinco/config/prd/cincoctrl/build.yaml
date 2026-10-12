@@ -2,20 +2,21 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-ctrl-prd
-  Branch: ''
   ECRRepositoryURI: 777968769372.dkr.ecr.us-west-2.amazonaws.com/cinco-ctrl
 
 sceptre_user_data:
+  Source:
+    Type: GITHUB
+    GitHubRepo: https://github.com/ucldc/cinco
   BuildEnvironment:
-    - SUBNET_IDS: {{ var.prd.SUBNET_IDS }}
-    - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
+  - SUBNET_IDS: {{ var.prd.SUBNET_IDS }}
+  - SLACK_HOOK: {{ var.prd.SLACK_HOOK }}
   TriggerFilterGroups:
   # A build is triggered if any filter group evaluates to true, which
   # occurs when all the filters in the group evaluate to true.
-    - - Type: EVENT
-        Pattern: RELEASED
+  - - Type: EVENT
+      Pattern: RELEASED
   build_spec: |-
     !Sub >-
               version: 0.2
@@ -49,3 +50,12 @@ sceptre_user_data:
                     - echo "Forcing a new deployment of the service to apply changes"
                     - python $CODEBUILD_SRC_DIR/infrastructure/cinco/scripts/message_slack.py --application cincoctrl --cinco_version $TAG --td_family_revisions "$TASK_FAMILY:$TD_REVISION"
                     - aws ecs update-service --cluster cinco-prd --service cinco-ctrl-prd-service --task-definition $TASK_FAMILY:$TD_REVISION --force-new-deployment
+  additional_policy_statements: |-
+    - Effect: Allow
+                Action:
+                  - ecs:RunTask
+                  - ecs:DescribeTasks
+                  - ecs:DescribeTaskDefinition
+                  - ecs:RegisterTaskDefinition
+                  - ecs:UpdateService
+                Resource: "*"
