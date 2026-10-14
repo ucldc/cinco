@@ -3184,8 +3184,8 @@ sfsu_jpll:
     description: ""
     contact_html: |
         <div class="al-repository-contact-phone">(415) 405-5549</div>
-        <div class="al-repository-contact-info"><a href="mailto:specialcollections@sfsu.edu">specialcollections@sfsu.edu</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.library.sfsu.edu/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:sca@sfsu.libanswers.com">sca@sfsu.libanswers.com</a></div>
+        <div class="al-repository-contact-info"><a href="https://oac.cdlib.org/institutions/sfsu_jpll" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">1630 Holloway Avenue</div>
         <div class="al-repository-street-address-city_state_zip_country">San Francisco, CA 94132-1722, US</div>
@@ -3197,8 +3197,8 @@ sfsu_larc:
     description: "Few regions can rival the rich, lively labor history of the San Francisco Bay Area. This history is preserved in primary source and vintage history materials at the Labor Archives and Research Center (LARC).Founded in 1985 by trade union leaders, historians, labor activists and university administrators, the Labor Archives is a unit of the J. Paul Leonard Library at San Francisco State University. The Labor Archives has an Advisory Board drawn from the labor, academic and community leaders of the Bay Area."
     contact_html: |
         <div class="al-repository-contact-phone">(415) 405-5549</div>
-        <div class="al-repository-contact-info"><a href="mailto:specialcollections@sfsu.edu">specialcollections@sfsu.edu</a></div>
-        <div class="al-repository-contact-info"><a href="http://library.sfsu.edu/larc" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="mailto:sca@sfsu.libanswers.com">sca@sfsu.libanswers.com</a></div>
+        <div class="al-repository-contact-info"><a href="https://oac.cdlib.org/institutions/sfsu_larc" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">J. Paul Leonard Library, Room 460</div>
         <div class="al-repository-street-address-address2">1630 Holloway Ave</div>
