@@ -72,8 +72,8 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
 
     # wait up to {timeout} for restore to complete successfully, checking every {polling} seconds
     start_time=$(date +%s)
-    timeout_seconds=120
-    polling_seconds=10
+    timeout_seconds=600
+    polling_seconds=60
     while true; do
         # curl for details on the restore status
         solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=restorestatus")
