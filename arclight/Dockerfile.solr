@@ -9,7 +9,8 @@ RUN apt-get update && \
   unzip \
   sudo \
   cron \
-  gosu && \
+  gosu \
+  gnupg && \
   pip install boto3 requests && \
   mkdir /opt/solr/arclight
 
