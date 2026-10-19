@@ -6,6 +6,10 @@ log_msg() {
     local arclight_replication_status="$1"
     local message="$2"
     local solr_resp="$3"
+    echo "log_msg called with:"
+    echo "arclight_replication_status: $arclight_replication_status"
+    echo "message: $message"
+    echo "solr_resp: $solr_resp"
     echo "log_msg"
     jq -nc --arg arclight_replication_status "$arclight_replication_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
 }
