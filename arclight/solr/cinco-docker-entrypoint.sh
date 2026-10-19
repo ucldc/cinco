@@ -29,7 +29,8 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
     echo "Replication role is $REPLICATION_ROLE; restoring from backup snapshot"
 
     # start solr, wait for it to be fully up and ready, and then perform restore
-    solr start
+    MAX_TRY=30 start-local-solr
+
     /opt/solr/docker/scripts/wait-for-solr.sh --max-attempts 30 --solr-url http://localhost:8983/solr
 
     # poll till the core is loaded
@@ -44,7 +45,7 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
         index_num_docs=$(echo "$solr_resp" | jq -r '.status.arclight.index.numDocs')
         if [[ "$is_loaded" == "false" && "$is_loading" == "true" ]]; then
             sleep $polling_seconds
-        elif [[ "$is_loaded" == "true" || "$index_num_docs" == 0 ]]; then
+        elif [[ "$is_loaded" == "true" || "$index_num_docs" -ge 0 ]]; then
             break
         else
             echo $(log_msg "failed" "unexpected core status" "$solr_resp")
@@ -99,7 +100,7 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
         fi
     done
 
-    solr stop
+    stop-local-solr
 fi
 
 # Run script to configure as leader/follower for solr index replication
