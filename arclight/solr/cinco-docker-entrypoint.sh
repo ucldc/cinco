@@ -6,10 +6,6 @@ log_msg() {
     local arclight_replication_status="$1"
     local message="$2"
     local solr_resp="$3"
-    echo "log_msg called with:"
-    echo "arclight_replication_status: $arclight_replication_status"
-    echo "message: $message"
-    echo "solr_resp: $solr_resp"
     echo "log_msg"
     jq -nc --arg arclight_replication_status "$arclight_replication_status" --arg message "$message" --argjson solr_resp "$solr_resp" '$ARGS.named'
 }
@@ -76,8 +72,8 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
 
     # wait up to {timeout} for restore to complete successfully, checking every {polling} seconds
     start_time=$(date +%s)
-    timeout_seconds=60
-    polling_seconds=5
+    timeout_seconds=120
+    polling_seconds=10
     while true; do
         # curl for details on the restore status
         solr_resp=$(curl -s "http://localhost:8983/solr/arclight/replication?command=restorestatus")
@@ -86,10 +82,10 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
         status=$(echo "$restorestatus" | jq -r '.status')
 
         if [[ "$status" == "success" ]]; then
-            echo $(log_msg $status "Restore completed successfully" "$solr_resp")
+            echo $(log_msg "$status" "Restore completed successfully" "$solr_resp")
             break
         elif [[ "$status" == "failed" ]]; then
-            echo $(log_msg $status "Solr restore failed - see solr response for details" "$solr_resp")
+            echo $(log_msg "$status" "Solr restore failed - see solr response for details" "$solr_resp")
             exit 1
         else
             sleep $polling_seconds
@@ -99,7 +95,7 @@ if [[ "$REPLICATION_ROLE" == "follower" || "${created:-}" == "true" ]]; then
         now=$(date +%s)
         elapsed=$(( now - start_time ))
         if (( elapsed >= timeout_seconds )); then
-            echo $(log_msg $status "restore did not complete within ${timeout_seconds}s" "$solr_resp")
+            echo $(log_msg "$status" "restore did not complete within ${timeout_seconds}s" "$solr_resp")
             break
         fi
     done
