@@ -437,6 +437,18 @@ casp_cspr:
     thumbnail_url: ""
     latitude: 38.657084
     longitude: -121.420341
+CaSaGMP:
+    name: "California State Parks, Governor's Mansion State Historic Park"
+    description: "The Governor&#x27;s Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
+    contact_html: |
+        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=31848" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-address1">Statewide Museum Collection Center</div>
+        <div class="al-repository-street-address-address2">4940 Lang Ave.</div>
+        <div class="al-repository-street-address-city_state_zip_country">McClellan, CA 95652, US</div>
+    thumbnail_url: ""
+    latitude: 38.657706
+    longitude: -121420643.0
 casp_casasppa:
     name: "California State Parks, Photographic Archives"
     description: ""
@@ -1527,18 +1539,6 @@ catorgfb:
     thumbnail_url: ""
     latitude: 34.0494156
     longitude: -118.2394707
-CaSaGMP:
-    name: "Governor's Mansion State Historic Park"
-    description: "The Governor&#x27;s Mansion is a Victorian-style mansion built in 1877 in Sacramento, which served as the executive residence for fourteen Governors. Later, the mansion was purchased by the State of California and served as a public museum from 1967-2012. While the mansion is no longer open to the public, the Governor&#x27;s Mansion archival collection covers the Governor&#x27;s families, photographs, and State Park history."
-    contact_html: |
-        <div class="al-repository-contact-info"><a href="https://www.parks.ca.gov/?page_id=31848" class="offsite-link">Website</a></div>
-    location_html: |
-        <div class="al-repository-street-address-address1">Statewide Museum Collection Center</div>
-        <div class="al-repository-street-address-address2">4940 Lang Ave.</div>
-        <div class="al-repository-street-address-city_state_zip_country">McClellan, CA 95652, US</div>
-    thumbnail_url: ""
-    latitude: 38.657706
-    longitude: -121420643.0
 gtu:
     name: "Graduate Theological Union"
     description: "Special Collections and Archives support the curriculum and preserve the records of the Graduate Theological Union. The collections are dedicated to diverse religious dialogue, the Christian and wider religious intellectual heritage, the American religious experience in the West, and the ministries and missions of the Member Schools and Institutes of the GTU."
