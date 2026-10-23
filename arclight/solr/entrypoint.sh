@@ -9,6 +9,7 @@ if [[ "${REPLICATION_ROLE:-}" == "leader" ]]; then
         AWS_REGION
         SOLR_S3_ENDPOINT
         SOLR_S3_BUCKET
+        AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
     )
     for var in "${OPTIONAL_CRON_VARS[@]}"; do
         if [ -n "${!var-}" ]; then
