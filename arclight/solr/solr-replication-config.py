@@ -8,7 +8,9 @@ of the solrconfig.xml file
 
 import os
 
-solrconfig_path = "/opt/solr/server/solr/configsets/arclight/conf/solrconfig.xml"
+# solrconfig_path = "/opt/solr/server/solr/configsets/arclight/conf/solrconfig.xml"
+# edit the live solrconfig.xml in the data directory, rather than the configset
+solrconfig_path = "/var/solr/data/arclight/conf/solrconfig.xml"
 with open(solrconfig_path, "r") as f:
     solr_config = [line for line in f]
 
