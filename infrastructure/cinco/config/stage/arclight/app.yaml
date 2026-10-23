@@ -22,8 +22,7 @@ sceptre_user_data:
     - S3_BUCKET: {{ var.stage.S3_BUCKET_NAME }}
     - SOLR_URL: !sub
       - "http://{solr_url}/solr/{core_name}"
-      # The load balancer for both followers is created as part of the solr-follower-1 stack
-      - solr_url: !stack_output_external cinco-stage-solr-solr-follower-1::LoadBalancerDNS
+      - solr_url: !stack_output_external cinco-stage-solr-follower::LoadBalancerDNS
         core_name: arclight
     - POSTGRES_HOST: !stack_output_external cinco-stage-arclight-db::RDSHostName
     - POSTGRES_PORT: 5432

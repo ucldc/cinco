@@ -6,7 +6,9 @@ parameters:
   Namespace: cinco-solr-follower-stage
   VpcId: {{ var.stage.VPC_ID }}
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
-  ContainerImage: !stack_output_external cinco-stage-solr-build::ECRRepository
+  ContainerImage: !sub
+    - "{ECRRepository}:v2.1.0-beta"
+    - ECRRepository: !stack_output_external cinco-stage-solr-build::ECRRepository
   ContainerPort: 8983
   ContainerCount: 2
   HealthCheckPath: "/solr/arclight/admin/ping"
