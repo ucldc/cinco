@@ -25,7 +25,7 @@ AWS = {
     "aws_secret_access_key": os.environ.get("AWS_SECRET_ACCESS_KEY"),
     "endpoint_url": os.environ.get("SOLR_S3_ENDPOINT"),
 }
-AWS = {k: v for k, v in AWS.items() if v is not None}
+AWS = {k: v for k, v in AWS.items() if v}
 
 S3_BUCKET = os.environ.get("SOLR_S3_BUCKET")
 SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")

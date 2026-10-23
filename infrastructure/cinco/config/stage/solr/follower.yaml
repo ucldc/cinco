@@ -25,7 +25,6 @@ sceptre_user_data:
   ContainerEntryPoint: "/entrypoint.sh"
   #ContainerEntryPoint: '"tail", "-f", "/dev/null"' # for debugging
   TaskPolicies:
-    - !stack_output_external cinco-stage-solr-efs::EfsReaderPolicyArn
     - !stack_output_external cinco-stage-s3::Policy
   ContainerEnvironment:
     - REPLICATION_ROLE: follower
