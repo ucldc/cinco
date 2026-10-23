@@ -41,7 +41,7 @@ bundle exec traject -I lib/ -u http://<solr_url>:8983/solr/blacklight-core -i xm
 You should be able to run the above command in docker also, using something like:
 
 ```
-docker exec arclight-app-1 bundle exec traject -I lib/ -u http://solr_follower:8983/solr/arclight -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
+docker exec arclight-arclight-1 bundle exec traject -I lib/ -u http://solr:8983/solr/arclight -i xml -c lib/arclight/traject/ead2_config.rb path/to/file.xml
 ```
 
 ** Settings
