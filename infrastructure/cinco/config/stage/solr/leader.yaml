@@ -3,10 +3,12 @@ template:
   type: file
 parameters:
   ClusterName: !stack_output_external cinco-stage-cluster::ECSCluster
-  Namespace: cinco-solr-stage
+  Namespace: cinco-solr-leader-stage
   VpcId: {{ var.stage.VPC_ID }}
   SubnetIDs: {{ var.stage.SUBNET_IDS }}
-  ContainerImage: !stack_output_external cinco-stage-solr-build::ECRRepository
+  ContainerImage: !sub
+    - "{ECRRepository}:v2.1.0-beta"
+    - ECRRepository: !stack_output_external cinco-stage-solr-build::ECRRepository
   ContainerPort: 8983
   ContainerCount: 1
   HealthCheckPath: "/solr/arclight/admin/ping"
@@ -23,22 +25,14 @@ sceptre_user_data:
   LoadBalancerAttributes:
     - Key: idle_timeout.timeout_seconds
       Value: 3600
-  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
-  Volumes:
-    - Name: "cinco-solr-efs-volume"
-      EFSVolumeConfiguration:
-        FilesystemId: !stack_output_external cinco-stage-solr-efs::EfsFileSystemId
-        AuthorizationConfig:
-          AccessPointId: !stack_output_external cinco-stage-solr-efs::EfsAccessPointId
-          IAM: ENABLED
-        TransitEncryption: ENABLED
-  ContainerMountPoints:
-    - SourceVolume: "cinco-solr-efs-volume"
-      ContainerPath: "/var/solr"
+  ContainerEntryPoint: "/entrypoint.sh"
   TaskPolicies:
     - !stack_output_external cinco-stage-solr-efs::EfsReaderPolicyArn
+    - !stack_output_external cinco-stage-s3::Policy
   ContainerEnvironment:
     - REPLICATION_ROLE: leader
+    - SOLR_S3_BUCKET: cinco-stage
+    - SOLR_S3_ENDPOINT: ""
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
