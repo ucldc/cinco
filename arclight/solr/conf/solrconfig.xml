@@ -194,16 +194,16 @@
        <str name="facet.field">collection_ssim</str>
        <str name="facet.field">oac_collection_ssim</str>
 
-       <str name="spellcheck">true</str>
-       <str name="spellcheck.dictionary">default</str>
+       <str name="spellcheck">false</str>
+       <!-- <str name="spellcheck.dictionary">default</str>
        <str name="spellcheck.onlyMorePopular">true</str>
        <str name="spellcheck.extendedResults">true</str>
        <str name="spellcheck.collate">false</str>
-       <str name="spellcheck.count">5</str>
+       <str name="spellcheck.count">5</str> -->
      </lst>
-    <arr name="last-components">
+    <!-- <arr name="last-components">
       <str>spellcheck</str>
-    </arr>
+    </arr> -->
   </requestHandler>
 
   <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
@@ -223,9 +223,9 @@
 
         http://wiki.apache.org/solr/SpellCheckComponent
      -->
-  <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+  <!-- <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
 
-    <str name="queryAnalyzerFieldType">textSpell</str>
+    <str name="queryAnalyzerFieldType">textSpell</str> -->
 
     <!-- Multiple "Spell Checkers" can be declared and used by this
          component
@@ -234,7 +234,7 @@
     <!-- a spellchecker built from a field of the main index, and
          written to disk
       -->
-    <lst name="spellchecker">
+    <!-- <lst name="spellchecker">
       <str name="name">default</str>
       <str name="field">spell</str>
       <str name="spellcheckIndexDir">./spell</str>
@@ -260,7 +260,7 @@
       <str name="spellcheckIndexDir">./spell_title</str>
       <str name="accuracy">0.7</str>
       <str name="buildOnOptimize">true</str>
-    </lst>
+    </lst> -->
 
     <!-- a spellchecker that uses a different distance measure -->
     <!--
@@ -300,7 +300,7 @@
          <str name="spellcheckIndexDir">spellcheckerFile</str>
        </lst>
       -->
-  </searchComponent>
+  <!-- </searchComponent> -->
 
   <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
