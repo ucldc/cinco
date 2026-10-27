@@ -78,6 +78,8 @@
     <AsyncLogger name="org.eclipse.jetty.webapp" level="warn"/>
     <AsyncLogger name="org.eclipse.jetty.server.session" level="warn"/>
 
+    <AsyncLogger name="org.apache.solr.core.SolrCore.Request" level="warn" />
+
     <AsyncRoot level="info">
       <AppenderRef ref="MainLogFile"/>
       <AppenderRef ref="STDOUT"/>
