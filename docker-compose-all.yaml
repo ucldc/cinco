@@ -3,7 +3,6 @@ volumes:
   cincoctrl_local_postgres_data_backups: {}
   cincoctrl_local_s3_data: {}
 
-
 services:
   django:
     build:
@@ -66,6 +65,46 @@ services:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
       retries: 10
+    volumes:
+      - ./arclight/solr:/opt/solr/arclight/
+    environment:
+      # to run solr without any replication or backup
+      # remove all of the following env vars (but most importantly, REPLICATION_ROLE)
+      REPLICATION_ROLE: leader
+      SOLR_S3_BUCKET: cinco-dev
+      SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+
+  solr-follower:
+    # this container is optional, to run a stack with a solr follower, use
+    # docker-compose -f 'docker-compose-all.yaml' --profile solr-dev up -d --build
+    profiles:
+      - solr-dev
+    build:
+      context: ./arclight
+      dockerfile: ./Dockerfile.solr
+    image: cinco/solr
+    ports:
+      - "7574:8983"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
+      timeout: 20s
+      retries: 10
+    environment:
+      REPLICATION_ROLE: follower
+      SOLR_LEADER_URL: http://solr:8983/solr/arclight/replication
+      SOLR_S3_BUCKET: cinco-dev
+      SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+    depends_on:
+      solr:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
 
   minio:
     image: minio/minio

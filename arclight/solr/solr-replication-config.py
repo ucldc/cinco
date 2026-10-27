@@ -8,7 +8,9 @@ of the solrconfig.xml file
 
 import os
 
-solrconfig_path = "/opt/solr/server/solr/configsets/arclight/conf/solrconfig.xml"
+# solrconfig_path = "/opt/solr/server/solr/configsets/arclight/conf/solrconfig.xml"
+# edit the live solrconfig.xml in the data directory, rather than the configset
+solrconfig_path = "/var/solr/data/arclight/conf/solrconfig.xml"
 with open(solrconfig_path, "r") as f:
     solr_config = [line for line in f]
 
@@ -24,11 +26,8 @@ if os.environ.get("REPLICATION_ROLE") == "leader":
         "  <!-- leader configuration for index replication -->\n"
         '  <requestHandler name="/replication" class="solr.ReplicationHandler">\n',
         '    <lst name="leader">\n',
-        '      <str name="replicateAfter">optimize</str>\n',
-        '      <str name="backupAfter">optimize</str>\n',
         '      <str name="confFiles">_rest_managed.json,elevate.xml,mapping-ISOLatin1Accent.txt,protwords.txt,schema.xml,scripts.conf,spellings.txt,stopwords_en.txt,stopwords.txt,synonyms.txt</str>\n',
         "    </lst>\n",
-        '    <int name="maxNumberOfBackups">2</int>\n',
         '    <str name="commitReserveDuration">00:00:10</str>\n',
         '    <lst name="invariants">\n',
         '      <str name="maxWriteMBPerSec">16</str>\n',
