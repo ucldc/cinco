@@ -302,7 +302,7 @@
       -->
   <!-- </searchComponent> -->
 
-  <searchComponent name="suggest" class="solr.SuggestComponent">
+  <!-- <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
       <str name="name">mySuggester</str>
       <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
@@ -327,7 +327,7 @@
     <arr name="components">
       <str>suggest</str>
     </arr>
-  </requestHandler>
+  </requestHandler> -->
 
   <!--
   OAC5 Custom config
