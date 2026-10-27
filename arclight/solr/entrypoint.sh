@@ -30,4 +30,9 @@ fi
 init-var-solr
 chown -R solr:solr /var/solr
 
+# We have to move this into place after init-var-solr, so initialization
+# doesn't overwrite our custom log4j2 configuration
+mv "/opt/solr/server/solr/configsets/arclight/conf/log4j2.xml" "/var/solr/log4j2.xml"
+chown solr:solr /var/solr/log4j2.xml
+
 exec gosu solr bash /opt/solr/arclight/cinco-docker-entrypoint.sh
