@@ -19,7 +19,7 @@ parameters:
   ServiceTaskMinimumHealthyPercent: 0
   HealthCheckGracePeriodSeconds: 600
   Cpu: 4096
-  Memory: 8192 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this
+  Memory: 16384 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this
 
 sceptre_user_data:
   ApplicationType: internal
@@ -32,6 +32,7 @@ sceptre_user_data:
     - SOLR_LEADER_URL: http://solr_leader.cinco-prd:8983/solr/arclight/replication
     - SOLR_S3_BUCKET: cinco-prd
     - SOLR_S3_ENDPOINT: ""
+    - SOLR_HEAP: 8192m
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
