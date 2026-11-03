@@ -2,13 +2,13 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  ClusterName: !stack_output_external cinco-prd-cluster::ECSCluster
   Namespace: cinco-solr-follower-1-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
     - "{container_image}:{version}"
-    - container_image: !stack_output prd/solr/build.yaml::ECRRepository
+    - container_image: !stack_output_external cinco-prd-solr-build::ECRRepository
       version: !stack_attr sceptre_user_data.cinco_version
   ContainerPort: 8983
   ContainerCount: 1
@@ -28,16 +28,16 @@ sceptre_user_data:
   Volumes:
     - Name: "cinco-solr-follower-efs-volume"
       EFSVolumeConfiguration:
-        FilesystemId: !stack_output prd/solr/efs.yaml::EfsFileSystemId
+        FilesystemId: !stack_output_external cinco-prd-solr-efs::EfsFileSystemId
         AuthorizationConfig:
-          AccessPointId: !stack_output prd/solr/efs-follower-access-points.yaml::EfsAccessPointId1
+          AccessPointId: !stack_output_external cinco-prd-solr-efs-follower-access-points::EfsAccessPointId1
           IAM: ENABLED
         TransitEncryption: ENABLED
   ContainerMountPoints:
     - SourceVolume: "cinco-solr-follower-efs-volume"
       ContainerPath: "/var/solr"
   TaskPolicies:
-    - !stack_output prd/solr/efs.yaml::EfsReaderPolicyArn
+    - !stack_output_external cinco-prd-solr-efs::EfsReaderPolicyArn
   ContainerEnvironment:
     - REPLICATION_ROLE: follower
     - SOLR_LEADER_URL: http://solr_leader.cinco-prd:8983/solr/arclight/replication
@@ -64,6 +64,6 @@ sceptre_user_data:
                 Retries: 6
   SGIngressRuleTargets:
     - target_name: Leader
-      GroupId: !stack_output prd/solr/solr.yaml::ServiceSecurityGroup
+      GroupId: !stack_output_external cinco-prd-solr-solr::ServiceSecurityGroup
       FromPort: 8984
       ToPort: 8984

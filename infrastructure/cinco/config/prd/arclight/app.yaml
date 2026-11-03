@@ -2,18 +2,18 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  ClusterName: !stack_output_external cinco-prd-cluster::ECSCluster
   Namespace: cinco-arclight-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
     - "{container_image}:{version}"
-    - container_image: !stack_output prd/arclight/build.yaml::ECRRepository
+    - container_image: !stack_output_external cinco-prd-arclight-build::ECRRepository
       version: !stack_attr sceptre_user_data.cinco_version
   ContainerPort: 3000
   ContainerCount: 2
   HealthCheckPath: '/up'
-  DBInstanceSecurityGroup: !stack_output prd/arclight/db.yaml::RDSSecurityGroup
+  DBInstanceSecurityGroup: !stack_output_external cinco-prd-arclight-db::RDSSecurityGroup
   Cpu: 2048
   Memory: 4096
 sceptre_user_data:
@@ -30,16 +30,16 @@ sceptre_user_data:
       # The load balancer for both followers is created as part of the solr-follower stack
       - solr_url: !stack_output_external cinco-prd-solr-follower::LoadBalancerDNS
         core_name: arclight
-    - POSTGRES_HOST: !stack_output prd/arclight/db.yaml::RDSHostName
+    - POSTGRES_HOST: !stack_output_external cinco-prd-arclight-db::RDSHostName
     - POSTGRES_PORT: 5432
     - POSTGRES_DB: postgres
     - POSTGRES_USER: {{ var.prd.ARCLIGHT_DB_USERNAME }}
     - POSTGRES_PASSWORD: {{ var.prd.ARCLIGHT_DB_PASSWORD }}
     - MATOMO_SITE_ID: {{ var.prd.MATOMO_SITE_ID }}
   TaskPolicies:
-    - !stack_output prd/s3.yaml::Policy
+    - !stack_output_external cinco-prd-s3.yaml::Policy
   GrantHttpAccessFromThisServiceTo:
-    - !stack_output prd/solr/solr.yaml::LoadBalancerSecurityGroup
+    - !stack_output_external cinco-prd-solr-solr::LoadBalancerSecurityGroup
   LoadBalancerAttributes:
     - Key: idle_timeout.timeout_seconds
       Value: 90

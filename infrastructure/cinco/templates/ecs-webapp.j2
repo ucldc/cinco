@@ -147,7 +147,7 @@ Parameters:
       will be attached to the ECSTaskRole assigned to the container.
       https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-taskrolearn
       Can also attach policies after the stack is created using
-      !stack_output ECSTaskRole, but this argument allows for the policies
+      !stack_output_external ECSTaskRole, but this argument allows for the policies
       to be attached at stack creation time (esp useful if permissions are
       required for healthchecks or other container startup tasks)
     Required: false - if not provided an ECSTaskRole will be configured
@@ -200,7 +200,7 @@ Parameters:
     Example:
       SGIngressRuleTargets:
         - target_name: Leader
-          GroupId: !stack_output prd/solr/solr.yaml::ServiceSecurityGroup
+          GroupId: !stack_output_external cinco-prd-solr-solr::ServiceSecurityGroup
           FromPort: 8984
           ToPort: 8984
 
@@ -209,10 +209,10 @@ Parameters:
     Type: A dict containing LoadBalancerFullName, TargetGroup, TargetGroupFullName, LoadBalancerSecurityGroup
     Required: false - if not provided, a load balancer will be created as part of this stack
     Example:
-      LoadBalancerFullName: !stack_output stage/solr/follower.yaml::LoadBalancerFullName
-      TargetGroup: !stack_output stage/solr/follower.yaml::TargetGroup
-      TargetGroupFullName: !stack_output stage/solr/follower.yaml::TargetGroupFullName
-      LoadBalancerSecurityGroup: !stack_output stage/solr/follower.yaml::LoadBalancerSecurityGroup
+      LoadBalancerFullName: !stack_output_external cinco-stage-solr-follower::LoadBalancerFullName
+      TargetGroup: !stack_output_external cinco-stage-solr-follower::TargetGroup
+      TargetGroupFullName: !stack_output_external cinco-stage-solr-follower::TargetGroupFullName
+      LoadBalancerSecurityGroup: !stack_output_external cinco-stage-solr-follower::LoadBalancerSecurityGroup
 
   ServiceConnectConfiguration:
     Description: AWS::ECS::Service ServiceConnectConfiguration

@@ -2,13 +2,13 @@ template:
   path: ecs-webapp.j2
   type: file
 parameters:
-  ClusterName: !stack_output prd/cluster.yaml::ECSCluster
+  ClusterName: !stack_output_external cinco-prd-cluster::ECSCluster
   Namespace: cinco-ctrl-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
     - "{container_image}:{version}"
-    - container_image: !stack_output prd/cincoctrl/build.yaml::ECRRepository
+    - container_image: !stack_output_external cinco-prd-cincoctrl-build::ECRRepository
       version: !stack_attr sceptre_user_data.cinco_version
   ContainerPort: 5000
   HealthCheckPath: '/accounts/login/'
@@ -18,8 +18,8 @@ sceptre_user_data:
   ContainerCommand: [ "/start" ]
   Description: "CincoCtrl Web Application running in ECS"
   TaskPolicies:
-    - !stack_output prd/s3.yaml::Policy
-    - !stack_output prd/textract.yaml::QueueConsumerPolicyArn
+    - !stack_output_external cinco-prd-s3::Policy
+    - !stack_output_external cinco-prd-textract::QueueConsumerPolicyArn
     - !stack_output_external pad-airflow-access-permissions::Policy
     - !stack_output_external pad-ses-send-policy::Policy
   ContainerEnvironment:
@@ -34,7 +34,7 @@ sceptre_user_data:
     - DJANGO_AWS_STORAGE_BUCKET_NAME: {{ var.prd.S3_BUCKET_NAME }}
     - WEB_CONCURRENCY: 4
     - DJANGO_SUPERUSER_PASSWORD: {{ var.prd.DJANGO_SUPERUSER_PASSWORD }}
-    - SQS_URL: !stack_output prd/textract.yaml::QueueUrl
+    - SQS_URL: !stack_output_external cinco-prd-textract::QueueUrl
     - CDL_ARK_NAAN: {{ var.prd.CDL_ARK_NAAN }}
     - CDL_ARK_SHOULDER: {{ var.prd.CDL_ARK_SHOULDER }}
     - EZID_ENDPOINT: {{ var.prd.EZID_ENDPOINT }}
