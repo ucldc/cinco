@@ -209,10 +209,10 @@ Parameters:
     Type: A dict containing LoadBalancerFullName, TargetGroup, TargetGroupFullName, LoadBalancerSecurityGroup
     Required: false - if not provided, a load balancer will be created as part of this stack
     Example:
-      LoadBalancerFullName: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerFullName
-      TargetGroup: !stack_output stage/solr/solr-follower-1.yaml::TargetGroup
-      TargetGroupFullName: !stack_output stage/solr/solr-follower-1.yaml::TargetGroupFullName
-      LoadBalancerSecurityGroup: !stack_output stage/solr/solr-follower-1.yaml::LoadBalancerSecurityGroup
+      LoadBalancerFullName: !stack_output stage/solr/follower.yaml::LoadBalancerFullName
+      TargetGroup: !stack_output stage/solr/follower.yaml::TargetGroup
+      TargetGroupFullName: !stack_output stage/solr/follower.yaml::TargetGroupFullName
+      LoadBalancerSecurityGroup: !stack_output stage/solr/follower.yaml::LoadBalancerSecurityGroup
 
   ServiceConnectConfiguration:
     Description: AWS::ECS::Service ServiceConnectConfiguration
