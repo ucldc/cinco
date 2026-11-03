@@ -33,6 +33,8 @@ SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")
 SNAPSHOT_PREFIX = "solr_backups/"
 VERSION_FILE = f"{SNAPSHOT_PREFIX}index_version.txt"
 SOLR_URL = os.environ.get("SOLR_URL", "http://localhost:8983/solr/arclight")
+BACKUP_TIMEOUT = int(os.environ.get("LEADER_BACKUP_TIMEOUT", "600"))
+BACKUP_POLLING = int(os.environ.get("LEADER_BACKUP_POLLING", "5"))
 
 
 def log_msg(status: str, message: str, payload: Any) -> None:
@@ -128,9 +130,7 @@ def start_backup() -> dict[str, Any]:
     return solr_resp
 
 
-def poll_solr_for_backup_completion(
-    last_snapshot_name, timeout_seconds: int = 60, polling_seconds: int = 5
-) -> dict[str, Any]:
+def poll_solr_for_backup_completion(last_snapshot_name) -> dict[str, Any]:
     start_time = time.time()
     while True:
         solr_resp = solr_request("?command=details")
@@ -148,14 +148,14 @@ def poll_solr_for_backup_completion(
                     {"solr_resp": solr_resp},
                 )
                 sys.exit(1)
-        if time.time() - start_time >= timeout_seconds:
+        if time.time() - start_time >= BACKUP_TIMEOUT:
             log_msg(
                 "unknown",
                 "Backup did not complete within timeout",
-                {"timeout": timeout_seconds, "solr_resp": solr_resp},
+                {"timeout": BACKUP_TIMEOUT, "solr_resp": solr_resp},
             )
             sys.exit(1)
-        time.sleep(polling_seconds)
+        time.sleep(BACKUP_POLLING)
 
 
 def rotate_snapshots():
