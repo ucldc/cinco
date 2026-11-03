@@ -73,13 +73,12 @@ Using Solr standalone instead of Solr Cloud saves us the hassle of running ZooKe
 
 We are using Solr [index replication](https://solr.apache.org/guide/solr/latest/deployment-guide/user-managed-index-replication.html).
 
-We currently have 3 solr services running, e.g. in stage:
+We currently have 2 solr services running, e.g. in stage:
 
 - cinco-solr-stage-service - the solr leader instance
-- cinco-solr-follower-stage-1-service - the first follower instance
-- cinco-solr-follower-stage-2-service - the second follower instance
+- cinco-solr-follower-stage-service - running two follower instances
 
-The leader instance functions as the "writer" instance. Indexing work is done here. The follower instances are configured to be kept in sync with the leader, and they function as "reader" instances. The arclight application gets its data from the followers. The only difference between the first and second follower containers is that they write their data to different disk spaces.
+The leader instance functions as the "writer" instance. Indexing work is done here. The follower instances are configured to be kept in sync with the leader, and they function as "reader" instances. The arclight application gets its data from the followers. The leader instance stores its index on a persistent EFS, while the follower instances build their index from backup on the container's ephemeral file system.
 
 The solr containers are configured as leader or follower (or neither) on startup via the `arclight/solr/solr-replication-config.py` script. This is run as part of the docker entrypoint script: `arclight/solr/cinco-docker-entrypoint.sh`.
 
@@ -99,7 +98,7 @@ Unfortunately, there can by definition be only one Solr leader. This means that 
 
 #### Load balancers
 
-The solr follower service, which runs 2 follower containers, is fronted by its own load balancer, created as part of the `cinco-stage-solr-follower` Cloudformation stack.
+The solr follower service is fronted by its own load balancer, created as part of the `cinco-stage-solr-follower` Cloudformation stack.
 
 The solr leader is fronted by its own load balancer.
 
