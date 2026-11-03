@@ -45,6 +45,8 @@ sceptre_user_data:
     - REPLICATION_ROLE: leader
     - SOLR_S3_BUCKET: cinco-prd
     - SOLR_S3_ENDPOINT: ""
+    - LEADER_BACKUP_TIMEOUT: "700"
+    - LEADER_BACKUP_POLLING: "5"
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
