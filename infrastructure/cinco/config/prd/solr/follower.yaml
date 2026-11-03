@@ -3,7 +3,7 @@ template:
   type: file
 parameters:
   ClusterName: !stack_output prd/cluster.yaml::ECSCluster
-  Namespace: cinco-solr-follower-1-prd
+  Namespace: cinco-solr-follower-prd
   VpcId: {{ var.prd.VPC_ID }}
   SubnetIDs: {{ var.prd.SUBNET_IDS }}
   ContainerImage: !sub
@@ -11,7 +11,7 @@ parameters:
     - container_image: !stack_output prd/solr/build.yaml::ECRRepository
       version: !stack_attr sceptre_user_data.cinco_version
   ContainerPort: 8983
-  ContainerCount: 1
+  ContainerCount: 2
   HealthCheckPath: "/solr/arclight/admin/ping"
   # old container must be stopped before new one is started,
   # otherwise we get an error about index dir locking from Solr
@@ -23,34 +23,25 @@ parameters:
 
 sceptre_user_data:
   ApplicationType: internal
-  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
+  ContainerEntryPoint: "/entrypoint.sh"
   #ContainerEntryPoint: '"tail", "-f", "/dev/null"' # for debugging
-  Volumes:
-    - Name: "cinco-solr-follower-efs-volume"
-      EFSVolumeConfiguration:
-        FilesystemId: !stack_output prd/solr/efs.yaml::EfsFileSystemId
-        AuthorizationConfig:
-          AccessPointId: !stack_output prd/solr/efs-follower-access-points.yaml::EfsAccessPointId1
-          IAM: ENABLED
-        TransitEncryption: ENABLED
-  ContainerMountPoints:
-    - SourceVolume: "cinco-solr-follower-efs-volume"
-      ContainerPath: "/var/solr"
   TaskPolicies:
-    - !stack_output prd/solr/efs.yaml::EfsReaderPolicyArn
+    - !stack_output_external cinco-prd-s3::Policy
   ContainerEnvironment:
     - REPLICATION_ROLE: follower
     - SOLR_LEADER_URL: http://solr_leader.cinco-prd:8983/solr/arclight/replication
+    - SOLR_S3_BUCKET: cinco-prd
+    - SOLR_S3_ENDPOINT: ""
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
     Enabled: true
     Services:
       - PortName: solr
-        DiscoveryName: solr_follower_1
+        DiscoveryName: solr_follower
         ClientAliases:
           - Port: 8983
-            DnsName: solr_follower_1.cinco-prd
+            DnsName: solr_follower.cinco-prd
         # We have to specify an ingress port override, otherwise the target group healthcheck fails
         IngressPortOverride: 8984
   # This healthcheck is more accurate than the target group healthcheck
@@ -58,8 +49,8 @@ sceptre_user_data:
     Command:
                   - "CMD-SHELL"
                   - "curl -sf http://localhost:8983/solr/arclight/admin/ping?wt=json | jq '.status' | grep -iq \"ok\" || exit 1"
-                StartPeriod: 15
-                Interval: 30
+                StartPeriod: 300
+                Interval: 300
                 Timeout: 15
                 Retries: 6
   SGIngressRuleTargets:
