@@ -5,7 +5,7 @@ parameters:
   GitHubRepo: https://github.com/ucldc/cinco
   Namespace: cinco-solr-prd
   Branch: ''
-  ECRRepositoryURI: !stack_output stage/solr/build.yaml::ECRRepository
+  ECRRepositoryURI: !stack_output_external cinco-stage-solr-build::ECRRepository
 
 sceptre_user_data:
   TriggerFilterGroups:
