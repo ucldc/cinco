@@ -93,13 +93,13 @@ We are using ECS ServiceConnect for communication between the leader and followe
 
 #### Updating Solr
 
-We have deployed each of the 2 solr follower containers to its own ECS service. This allows us to update them individually and avoid both being down at the same time. TODO: automate this using CodePipeline.
+We have deployed the solr follower containers to its own ECS service, this allows us to scale up the followers independently of the leader.
 
 Unfortunately, there can by definition be only one Solr leader. This means that any updates necessitating task replacement will cause downtime.
 
 #### Load balancers
 
-The 2 follower containers are targets of the same target group on the same load balancer. This load balancer is created as part of the `cinco-stage-solr-solr-follower-1` CloudFormation stack. Its details are then passed in to the `solr-follower-2` template as parameters. Somewhat unintuitively, then, the `cinco-solr-follower-1-stage-alb` alb serves as the load balancer for both followers.
+The solr follower service, which runs 2 follower containers, is fronted by its own load balancer, created as part of the `cinco-stage-solr-follower` Cloudformation stack.
 
 The solr leader is fronted by its own load balancer.
 
