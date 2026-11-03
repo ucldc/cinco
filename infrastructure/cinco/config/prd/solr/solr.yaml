@@ -26,7 +26,7 @@ sceptre_user_data:
   LoadBalancerAttributes:
     - Key: idle_timeout.timeout_seconds
       Value: 3600
-  ContainerEntryPoint: "/cinco-docker-entrypoint.sh"
+  ContainerEntryPoint: "/entrypoint.sh"
   Volumes:
     - Name: "cinco-solr-efs-volume"
       EFSVolumeConfiguration:
@@ -40,8 +40,11 @@ sceptre_user_data:
       ContainerPath: "/var/solr"
   TaskPolicies:
     - !stack_output prd/solr/efs.yaml::EfsReaderPolicyArn
+    - !stack_output_external cinco-prd-s3::Policy
   ContainerEnvironment:
     - REPLICATION_ROLE: leader
+    - SOLR_S3_BUCKET: cinco-prd
+    - SOLR_S3_ENDPOINT: ""
   ContainerPortName: solr
   ContainerPortAppProtocol: http
   ServiceConnectConfiguration:
