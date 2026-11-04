@@ -16,9 +16,9 @@ if [ -z "$S3_BUCKET" ]; then
   exit 1
 fi
 
-# check that the SOLR_WRITER environment variable is set
-if [ -z "$SOLR_WRITER" ]; then
-  echo "The SOLR_WRITER environment variable must be set"
+# check that the SOLR_LEADER environment variable is set
+if [ -z "$SOLR_LEADER" ]; then
+  echo "The SOLR_LEADER environment variable must be set"
   exit 1
 fi
 
@@ -55,7 +55,7 @@ for folder in /tmp/$1/*; do
     # run traject command referenceing /tmp/$1/<folder>/finding-aid.xml
     echo "Indexing Finding Aid: $FINDING_AID_ID, Repository Code: $REPOSITORY_ID, Finding Aid ARK: $FINDING_AID_ARK, Preview: $PREVIEW"
     bundle exec traject -I lib/ \
-        -u $SOLR_WRITER \
+        -u $SOLR_LEADER \
         -i xml -c lib/arclight/traject/ead2_config.rb \
         $folder/finding-aid.xml \
         -s ark=$FINDING_AID_ARK \
