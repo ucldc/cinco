@@ -30,9 +30,9 @@ def get_stack_outputs(stack_name):
     return {output["OutputKey"]: output["OutputValue"] for output in cf_outputs}
 
 
-def get_solr_writer_url(stack_name="stage"):
+def get_solr_leader_url(stack_name="stage"):
     """
-    get the url of the solr writer from the cloudformation stack
+    get the url of the solr leader from the cloudformation stack
     """
     outputs = get_stack_outputs(f"cinco-{stack_name}-solr-solr")
     return f"http://{outputs['LoadBalancerDNS']}/solr/arclight"
@@ -136,9 +136,9 @@ class ArcLightEcsOperator(EcsRunTaskOperator):
         else:
             cf_distro = Variable.get("CINCO_CLOUDFRONT_STG")
 
-        solr_leader_url = get_solr_writer_url(cinco_environment)
+        solr_leader_url = get_solr_leader_url(cinco_environment)
         env = [
-            {"name": "SOLR_WRITER", "value": solr_leader_url},
+            {"name": "SOLR_LEADER", "value": solr_leader_url},
             {"name": "CLOUDFRONT_DISTRIBUTION_ID", "value": cf_distro},
         ]
         if self.arclight_command == "generate-static-findaid":
@@ -207,7 +207,7 @@ class ArcLightDockerOperator(DockerOperator):
                 "S3_BUCKET": "cinco-dev",
                 "CINCO_MINIO_ENDPOINT": os.environ.get("CINCO_MINIO_ENDPOINT", ""),
                 "SOLR_URL": "http://solr:8983/solr/arclight",
-                "SOLR_WRITER": "http://solr:8983/solr/arclight",
+                "SOLR_LEADER": "http://solr:8983/solr/arclight",
             },
             "max_active_tis_per_dag": 4,
         }
