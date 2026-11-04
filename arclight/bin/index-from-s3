@@ -17,9 +17,9 @@ if [ -z "$S3_BUCKET" ]; then
   exit 1
 fi
 
-# check that the SOLR_WRITER environment variable is set
-if [ -z "$SOLR_WRITER" ]; then
-  echo "The SOLR_WRITER environment variable must be set"
+# check that the SOLR_LEADER environment variable is set
+if [ -z "$SOLR_LEADER" ]; then
+  echo "The SOLR_LEADER environment variable must be set"
   exit 1
 fi
 
@@ -54,7 +54,7 @@ fi
 
 echo "Indexing Finding Aid ID: $1"
 bundle exec traject -I lib/ \
-    -u $SOLR_WRITER \
+    -u $SOLR_LEADER \
     -i xml -c lib/arclight/traject/ead2_config.rb \
     /tmp/$1/finding-aid.xml \
     -s ark=$4 \

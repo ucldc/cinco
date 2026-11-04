@@ -39,7 +39,7 @@ do
     fi
 done < "/tmp/$1"
 
-curl -X POST "$SOLR_WRITER/update?commit=true" \
+curl -X POST "$SOLR_LEADER/update?commit=true" \
     -H "Content-Type: text/xml" \
     --data-binary "<delete>$queries</delete>"
 

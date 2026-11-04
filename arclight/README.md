@@ -93,17 +93,17 @@ bin/load_dev_fixtures.sh
 Example indexing EAD in local dev environment (from arclight container):
 
 ```
-export SOLR_WRITER="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
+export SOLR_LEADER="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
 export REPOSITORY_ID=ampas_clac
-bundle exec traject -I lib/ -u $SOLR_WRITER -i xml -c lib/arclight/traject/ead2_config.rb files/xml/finding-aid.xml -s ark=ark:/13030/c8ht2mq2 -s eadid="filename.xml"
+bundle exec traject -I lib/ -u $SOLR_LEADER -i xml -c lib/arclight/traject/ead2_config.rb files/xml/finding-aid.xml -s ark=ark:/13030/c8ht2mq2 -s eadid="filename.xml"
 ```
 
 Example indexing marc in local dev environment (from arclight container):
 
 ```
-export SOLR_WRITER="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
+export SOLR_LEADER="http://arclight-local_dev_solr_leader-1:8983/solr/arclight"
 export REPOSITORY_ID=ucdavis_spcoll
-bundle exec traject -I lib/ -u $SOLR_WRITER -i marc -c lib/arclight/traject/marc_config.rb files/marc/UC_Davis.Shields.mrc
+bundle exec traject -I lib/ -u $SOLR_LEADER -i marc -c lib/arclight/traject/marc_config.rb files/marc/UC_Davis.Shields.mrc
 ```
 
 ## Code layout
