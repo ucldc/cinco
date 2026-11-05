@@ -528,9 +528,9 @@ chico:
     name: "California State University, Chico"
     description: "The Meriam Library Special Collections and University Archives, a unique regional resource of written and pictorial materials which document the historical as well as the contemporary issues of the 12-county region known as &quot;northeastern California&quot; as well as the history of California State University, Chico.  Special Collections is composed of several &quot;collections&quot; which are housed together in this non-circulating area of the library because of rarity, source, condition or form. Access to the material is provided primarily through the Meriam Library&#x27;s online Library Catalog. Use of these items is limited to the Special Collections reading room and are available for research by faculty, students, visiting scholars, and community members."
     contact_html: |
-        <div class="al-repository-contact-phone">(530) 898-6603</div>
-        <div class="al-repository-contact-info"><a href="mailto:SpecialCollections@csuchico.edu">SpecialCollections@csuchico.edu</a></div>
-        <div class="al-repository-contact-info"><a href="http://www.csuchico.edu/special-collections/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-phone">(530) 898-6342</div>
+        <div class="al-repository-contact-info"><a href="mailto:specialcollections@csuchico.edu">specialcollections@csuchico.edu</a></div>
+        <div class="al-repository-contact-info"><a href="https://library.csuchico.edu/special-collections" class="offsite-link">Website</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">California State University, Chico, Special Collections Meriam Library</div>
         <div class="al-repository-street-address-address2">400 West First Street</div>
