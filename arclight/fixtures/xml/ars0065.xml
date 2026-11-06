@@ -1,0 +1,1562 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ead>
+  <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511">
+    <eadid xmlns:cdlpath="http://www.cdlib.org/path/" identifier="ark:/13030/kt0z09r4w0" cdlpath:parent="ark:/13030/kt1v19q1s6" cdlpath:grandparent="ark:/13030/tf2r29p4gv">ARS0065</eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper type="filing">Hadlock (Richard) Collection</titleproper>
+        <titleproper>Guide to the Richard Hadlock Jazz Radio, Live Music, and Artist Interview
+          Collection <num>ARS.0065</num></titleproper>
+        <author>Franz Kunst and Nathan Coy</author>
+      </titlestmt>
+      <publicationstmt>
+        <publisher>Archive of Recorded Sound</publisher>
+        <p><date>2010, expanded 2021</date></p>
+        <address>
+          <addressline>soundarchive@stanford.edu</addressline>
+          <addressline>URL: <extptr href="http://library.stanford.edu/ars" show="new" title="http://library.stanford.edu/ars" linktype="simple"/></addressline>
+        </address>
+      </publicationstmt>
+    </filedesc>
+    <profiledesc>
+      <creation>This finding aid was produced using ArchivesSpace on <date>2021-10-20 13:44:30
+          -0700</date>.</creation>
+      <descrules>Describing Archives: A Content Standard</descrules>
+    </profiledesc>
+    <revisiondesc>
+      <change audience="internal">
+        <date>2021-10-12</date>
+        <item>Changed finding aid structure and created two new series to accomodate a new accession
+          of materials that are comprised of interviews and musical performances. The collection was
+          also renamed</item>
+      </change>
+    </revisiondesc>
+  </eadheader>
+  <archdesc level="collection" id="archdesc-1.2">
+    <did id="did-1.2.1">
+      <langmaterial>
+        <language langcode="eng">English</language>
+      </langmaterial>
+      <repository>
+        <corpname>Archive of Recorded Sound</corpname>
+      </repository>
+      <unittitle>Richard Hadlock Jazz Radio, Live Music, and Artist Interview Collection</unittitle>
+      <origination audience="internal" label="source">
+        <persname authfilenumber="n86134170" role="dnr" rules="rda" source="naf">Hadlock,
+          Richard</persname>
+      </origination>
+      <origination audience="internal" label="source">
+        <corpname source="local">KCSM (Radio station : San Mateo, Calif.)</corpname>
+      </origination>
+      <unitid>ARS.0065</unitid>
+      <unitid audience="internal" identifier="723" type="Archivists Toolkit Database::RESOURCE">723</unitid>
+      <physdesc altrender="whole">
+        <extent altrender="materialtype spaceoccupied">12 box(es)</extent>
+        <extent altrender="carrier">269 open reel tapes, 62 audiocassettes, 1 computer hard
+          drive</extent>
+      </physdesc>
+      <unitdate calendar="gregorian" era="ce">1982-1991</unitdate>
+      <physloc id="aspace_d8fb4c1d83d788c9a37824b3ae2cdd72">Stanford Archive of Recorded Sound
+        Stanford University Libraries Stanford, California 94305-3076</physloc>
+      <abstract id="aspace_6bbe3e05d5e3673f812252dc6a4e4534">Open reel tape recordings of the
+        "Annals of Jazz" radio program produced and hosted by historian and educator Richard
+        Hadlock, broadcast on KCSM, San Mateo between 1982 and 1991. The interviews in the
+        collection feature many Jazz luminaries at the peak of their careers and have on occasion
+        been broadcast on KCSM. Lastly, Richard Hadlock was also an active musical performer on reed
+        instruments, many of the live music recordings in this collection feature him.</abstract>
+    </did>
+    <prefercite id="aspace_f4b3bf30b644aebdebd86ca055d92124">
+      <head>Preferred Citation</head>
+      <p>the Richard Hadlock Jazz Radio, Live Music, and Artist Interview Collection, ARS-0065.
+        Courtesy of the Stanford Archive of Recorded Sound, Stanford University Libraries, Stanford,
+        Calif.</p>
+    </prefercite>
+    <acqinfo id="aspace_00424e42ace7654cdaed54b5d88deb41">
+      <head>Source</head>
+      <p>The Richard Hadlock Annals of Jazz Collection was donated to the Stanford Archive of
+        Recorded Sound by Richard Hadlock in October 2006. The artist interviews and live
+        performance recordings were donated in July 2021.</p>
+    </acqinfo>
+    <processinfo id="aspace_44e5a9f60fa5de8969e2e30821445ff1">
+      <head>Sponsor</head>
+      <p>This finding aid was produced with generous financial support from the National Historical
+        Publications and Records Commission.</p>
+    </processinfo>
+    <accessrestrict id="aspace_30e489b83178aca37b730dc9b44874fb">
+      <head>Access</head>
+      <p>Open for research; material must be requested at least two business days in advance of
+        intended use. Contact the Archive for assistance.</p>
+    </accessrestrict>
+    <userestrict id="aspace_677aa9cb483dfdc622574df3fa0d2323">
+      <head>Publication Rights</head>
+      <p>Property rights reside with repository. Publication and reproduction rights reside with the
+        creators or their heirs. To obtain permission to publish or reproduce, please contact the
+        Head Librarian of the Archive of Recorded Sound.</p>
+    </userestrict>
+    <controlaccess id="controlaccess-1.2.7">
+      <subject source="lcsh">Jazz</subject>
+      <genreform source="lcsh">Radio programs</genreform>
+      <persname authfilenumber="n86134170" role="dnr" rules="rda" source="naf">Hadlock,
+        Richard</persname>
+      <corpname role="fmo" source="local">KCSM (Radio station : San Mateo, Calif.)</corpname>
+      <persname authfilenumber="n86134170" rules="rda" source="naf">Hadlock, Richard</persname>
+    </controlaccess>
+    <dsc type="combined" id="dsc-1.2.8" score="0" C-ORDER="1" MAX-C-ORDER="177">
+      <c01 id="aspace_ref9_bma" level="series" score="5" C-ORDER="1">
+        <did>
+          <unittitle>Annals of Jazz radio show program recordings</unittitle>
+          <unitid audience="internal" identifier="21907" type="Archivists Toolkit Database::RESOURCE_COMPONENT">21907</unitid>
+          <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">12
+              box(es)</extent><extent altrender="carrier">231 open reel tapes</extent></physdesc>
+          <container id="aspace_bc47b53c163bf074fcb547472f47afbb" type="box">5</container>
+          <container id="aspace_4be58585a84c4cd02381d02ebbcc835e" type="box">6</container>
+          <container id="aspace_435f5b7223588c32f533c4870a7bca19" type="box">1</container>
+          <container id="aspace_c26095f336dfa1f96b85219b774a1260" type="box">2</container>
+          <container id="aspace_6d33f784257cc947accca6dd4ff5c4b1" type="box">3</container>
+          <container id="aspace_80f2365e0a4ed2a6fe1096a2c423c230" type="box">4</container>
+          <container id="aspace_67ba88ab725e96b569e69eb1affb1e1d" type="box">12</container>
+          <container id="aspace_38daae93ad219ab30c0495aa4dbc85b4" type="box">11</container>
+          <container id="aspace_b0f68c604ed8a179fc2a2fa8dffc7553" type="box">9</container>
+          <container id="aspace_08a10f2c05aaa3dd0c2d97ac11c94225" type="box">10</container>
+          <container id="aspace_6de4bf6ec35a6213abb2b14dc9ba0b17" type="box">7</container>
+          <container id="aspace_87a74aaa218fb119ab9137f1f801784a" type="box">8</container>
+        </did>
+        <scopecontent audience="internal" id="aspace_e76d481c2aa5f28e538f6af2dc58a342">
+          <head>Scope and Contents</head>
+          <p>The Richard Hadlock Annals of Jazz Collection consists of selected tapes from jazz
+            historian and educator Richard Hadlock's venerable radio series Annals of Jazz, as
+            broadcast on radio station KCSM in San Mateo, California from 1982-1991. Hadlock, a
+            musician, publisher (Record Changer magazine) and author (Downbeat, Metronome and the
+            book Jazz Masters of the Twenties), began Annals of Jazz on KJAZ in 1959, followed by
+            eighteen years at KQED, and has been at KCSM for over twenty years. The tapes in this
+            collection appear to have originated at KQED but were labeled and numbered by KCSM with
+            new air dates. The programs examine musicians, composers, performance styles, movements,
+            and instrumentation, largely from the classic era before free jazz, jazz rock and fusion
+            became prevalent. Outside of Hadlock's commentary, the series contains little
+            unpublished content, although there is an interview with clarinetist Bob Helm from 1984
+            (which aired on KCSM 5/6/89).</p>
+        </scopecontent>
+        <scopecontent audience="internal" id="aspace_4380c5f1047c100d9dcf7b6d3c7586af">
+          <head>Scope and Contents</head>
+          <p>Some of the musicians profiled: Duke Ellington, Red Norvo, Bunny Berigan, Jelly Roll
+            Morton, Lennie Tristano, Coleman Hawkins, Fats Waller, John Lewis, Johnny Hodges, Benny
+            Goodman, Roy Eldridge, Lester Young, Bob Brookmeyer, Miles Davis, Adrian Rollini, Isham
+            Jones, Charles Mingus, Don Redman, the Dodds Brothers, the Jones Brothers, James P.
+            Johnson, Jack Teagarden, Art Pepper, Sidney Bechet, Earl Hines, Teddy Wilson, Bud
+            Freeman, Thelonious Monk, Barney Bigard, Count Basie, Red Nichols, John Coltrane, Eddie
+            Sauter, Lee Konitz, Lionel Hampton, Joe Thomas, George Mitchell, Turk Murphy, Harry
+            James, Django Reinhardt, Bobby Hackett, Lawrence Brown, Clarence Williams, Ben Webster,
+            Irving Fazola, Gerry Mullifan, Ruby Braff, Dizzy Gillespie, Stan Getz, Mary Lou
+            Williams, Wingy Manone, King Oliver, Woody Herman, Tony Scott, Billy Butterfield, Art
+            Hodes, Bennie Moten, Artie Shaw, and Fats Navarro.</p>
+        </scopecontent>
+        <scopecontent audience="internal" id="aspace_1b51f39bc25d8df1ca2f1274bc280b8a">
+          <head>Scope and Contents</head>
+          <p>Some of the songwriters profiled: Vincent Youmans, Richard Whiting, Walter Donaldson,
+            Victor Young, Nacio Herb Brown, Ray Henderson, Jerome Kern, Harold Arlen, Fred Ahlert,
+            and Arthur Schwartz.</p>
+        </scopecontent>
+        <scopecontent audience="internal" id="aspace_305f3ca98a8cd9117d23d7106677ae87">
+          <head>Scope and Contents</head>
+          <p>Some of the subjects covered: Bay Area Jazz, Jazz as Sacred Music, The Joy of Hokum,
+            Forgotten Tenors, Western Swing, and Territory Bands.</p>
+        </scopecontent>
+      </c01>
+      <c01 id="aspace_d5c692f2a51b360e444b2e4a7512f58a" level="series" score="1" C-ORDER="6">
+        <did>
+          <unittitle>Interviews</unittitle>
+          <dao actuate="onrequest" audience="external" href="https://purl.stanford.edu/vy421mt4083" show="new" title="ars0065 Digitized Sound Recordings Hard Drive Inventory" linktype="simple">
+            <daodesc>
+              <p>ars0065 Digitized Sound Recordings Hard Drive Inventory</p>
+            </daodesc>
+          </dao>
+        </did>
+        <c02 id="aspace_e4691e44c584402823f4e9629b37b0ea" level="item" score="1" C-ORDER="7">
+          <did>
+            <unittitle>Paul Desmond</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1958-09-30/1958-09-30">1958-09-30</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_f4b63820854d462987c17eb84f5671af" type="Box">13</container>
+            <container id="aspace_16c3811383efeabc1337584f32b12d37" parent="aspace_f4b63820854d462987c17eb84f5671af" type="reel">1</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_582c266620f18a2734df0c524239af2d" type="Box">13</container>
+            <container id="aspace_58e44ff7bf0a386bdc4f1e98333ab451" parent="aspace_582c266620f18a2734df0c524239af2d" type="reel">2</container>
+          </did>
+        </c02>
+        <c02 id="aspace_598b3b5ed0f4670b01e21f14d0382b89" level="item" score="1" C-ORDER="8">
+          <did>
+            <unittitle>Red Norvo</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1958-10-14/1958-10-14">1958-10-14</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_57fd175eb74a58acbd44c3050747087f" type="Box">13</container>
+            <container id="aspace_aff094e48289fa649b651f69b72d5410" parent="aspace_57fd175eb74a58acbd44c3050747087f" type="reel">3</container>
+          </did>
+        </c02>
+        <c02 id="aspace_7df28855fe63b3412f19d205a2a2b53c" level="item" score="1" C-ORDER="9">
+          <did>
+            <unittitle>Ornette Coleman</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1959-09-30/1959-09-30">1959-09-30</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_926558d5d5595151e74decde75e86060" type="Box">13</container>
+            <container id="aspace_e04a29f02f4c612c6fa2e7ceba61c439" parent="aspace_926558d5d5595151e74decde75e86060" type="reel">4</container>
+          </did>
+        </c02>
+        <c02 id="aspace_abe3807720bd7e6a57304d3cbd01d3c8" level="item" score="1" C-ORDER="10">
+          <did>
+            <unittitle>Barney Kessel, Wes Montgomery</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1959-11-13/1959-11-13">1959-11-13</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_e4b5316becfcee8804c93b658d2e65ea" type="Box">13</container>
+            <container id="aspace_a90c681b5bf43e630318043d2490abc2" parent="aspace_e4b5316becfcee8804c93b658d2e65ea" type="reel">5</container>
+          </did>
+        </c02>
+        <c02 id="aspace_a2674b3cd7dbb5c2b1d1081241860933" level="item" score="1" C-ORDER="11">
+          <did>
+            <unittitle>Oscar Peterson, Ray Brown</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate>1959-10</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_7b0654e19afa750262e4885df8eaf0d2" type="Box">13</container>
+            <container id="aspace_38b5ade83fdfe0d37d477264ba558e40" parent="aspace_7b0654e19afa750262e4885df8eaf0d2" type="reel">6</container>
+          </did>
+        </c02>
+        <c02 id="aspace_a1d2f72c76395c58caf3b36fc4ced540" level="item" score="1" C-ORDER="12">
+          <did>
+            <unittitle>Lambert, Hendricks, and Ross</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">1959-10-08</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_ad82e6f4f4e75e1406ee7e501428a23c" type="Box">13</container>
+            <container id="aspace_3e4664df9ed0310c5a3cb4b8c28aa273" parent="aspace_ad82e6f4f4e75e1406ee7e501428a23c" type="reel">7</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_58580972a7714cb8a0b2b36458b9d0fc" type="Box">13</container>
+            <container id="aspace_074040e8f51b7f059fac32d4a0b4d8f6" parent="aspace_58580972a7714cb8a0b2b36458b9d0fc" type="reel">8</container>
+          </did>
+        </c02>
+        <c02 id="aspace_1148a43889c49938b7d5d6320d130533" level="item" score="1" C-ORDER="13">
+          <did>
+            <unittitle>Teddy Wilson</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1960-09/1960-09">1960-09</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_4c7d68191fe27dbf9b0375a03e249fef" type="Box">13</container>
+            <container id="aspace_d39af2dc5b300b860138dc71cb7528cd" parent="aspace_4c7d68191fe27dbf9b0375a03e249fef" type="reel">9</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_3859121805b2197e406a89ae09e26ddd" type="Box">13</container>
+            <container id="aspace_6317ba656329fc40565aa5f80a26a492" parent="aspace_3859121805b2197e406a89ae09e26ddd" type="reel">10</container>
+          </did>
+        </c02>
+        <c02 audience="internal" id="aspace_6d18db770e4cd89d816dd44c6bc7e93d" level="item" score="1" C-ORDER="14">
+          <did>
+            <unittitle>Kid Ory</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1960/1960">1960</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_f3de16065f4401c9c57b5d3079eaebb4" type="Box">13</container>
+            <container id="aspace_ba4e67604dcc8f8ae468740fc5aaf2b8" parent="aspace_f3de16065f4401c9c57b5d3079eaebb4" type="reel">11</container>
+          </did>
+        </c02>
+        <c02 id="aspace_4005f4b9bca7db42080a7c68fd8da3c0" level="item" score="1" C-ORDER="15">
+          <did>
+            <unittitle>Roy Eldridge, Tommy Flanagan</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1963-11/1963-11">1963-11</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_87b77e009b7552285c6f75dcb67906ed" type="Box">13</container>
+            <container id="aspace_c76f1f294d3aad6312a3b4b377a8fa74" parent="aspace_87b77e009b7552285c6f75dcb67906ed" type="reel">12</container>
+          </did>
+        </c02>
+        <c02 audience="internal" id="aspace_31006a1de3b2c8cb91384086888a813a" level="item" score="1" C-ORDER="16">
+          <did>
+            <unittitle>Kenneth Rexroth</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                (reel-to-reel)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1963-12-26/1963-12-26">1963-12-26</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_5a919da73f43c7ce2aaeb7dbe04c8f30" type="Box">13</container>
+            <container id="aspace_3c1dff24b6d3f5a5bec1aee925cf6916" parent="aspace_5a919da73f43c7ce2aaeb7dbe04c8f30" type="reel">13</container>
+          </did>
+        </c02>
+        <c02 id="aspace_12ccbb825db59adafae140370c67bc16" level="item" score="1" C-ORDER="17">
+          <did>
+            <unittitle>Pops Foster</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1964-06-15/1964-06-15">1964-06-15</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_df79dc4e89a1083064f2d7e20e1b1be1" type="Box">13</container>
+            <container id="aspace_6ca599aa456b5e54cb4d6f45c335a677" parent="aspace_df79dc4e89a1083064f2d7e20e1b1be1" type="reel">14</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_87bb104344b871fb77481cb1e56c7efd" type="Box">13</container>
+            <container id="aspace_7e520c43f2b338a42ae965c5b0a9f354" parent="aspace_87bb104344b871fb77481cb1e56c7efd" type="reel">15</container>
+          </did>
+        </c02>
+        <c02 id="aspace_41055d06f23b000525215d3cdb1d5fa6" level="item" score="1" C-ORDER="18">
+          <did>
+            <unittitle>Panel with Phil Elwood, Hadlock, James, Handy</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1965/1965">1965</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_8c5a97c6bdae72952c32dd36900b3133" type="Box">13</container>
+            <container id="aspace_52c4f65e8772d1dfdf299faf26382031" parent="aspace_8c5a97c6bdae72952c32dd36900b3133" type="reel">16</container>
+          </did>
+        </c02>
+        <c02 id="aspace_c71864fa171208f67ef10f336aef963d" level="item" score="1" C-ORDER="19">
+          <did>
+            <unittitle>Gerrry Mulligan, Burbridge speech, 8th grade plays</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1965-03-17/1965-03-17">1965-03-17</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_ed0487bfcfdea7012d9c532251d93e64" type="Box">13</container>
+            <container id="aspace_03964c663715b5ae820db0ae48ee9e91" parent="aspace_ed0487bfcfdea7012d9c532251d93e64" type="reel">17</container>
+          </did>
+        </c02>
+        <c02 id="aspace_95996ab108064103fe0d8f21924d6f9e" level="item" score="2" C-ORDER="20">
+          <did>
+            <unittitle>R. Hadlock's "Reminiscing in Tempo" with guest Jim Gordon, KCSM </unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                audiocassette(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce" normal="1993-08/1993-08">1993-08</unitdate>
+            <container id="aspace_606caedb84210bd63064de1c964b9d89" type="Box">15</container>
+            <container id="aspace_9e61e52a258bd54a2917c95dd487b37d" parent="aspace_606caedb84210bd63064de1c964b9d89" type="audiocassette">3</container>
+            <container id="aspace_9bac8a8a07b471368e5006b419283bea" type="Box">15</container>
+            <container id="aspace_5f4fa97519df8c0922cf71e5324fe628" parent="aspace_9bac8a8a07b471368e5006b419283bea" type="audiocassette">4</container>
+          </did>
+          <scopecontent id="aspace_0811cd7515a16ed45378882e605149a5">
+            <head>Scope and Contents</head>
+            <p>Live Radio show with discussion between Richard Hadlock and Jim Gordon.</p>
+          </scopecontent>
+        </c02>
+        <c02 id="aspace_3887f9f68df886fb3e3f2e7561984ed4" level="item" score="1" C-ORDER="22">
+          <did>
+            <unittitle>Dizzy Gillespie</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">3 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_fe4252f9f7475583b02258772d681d48" type="Box">13</container>
+            <container id="aspace_b8efe3b7968992990a421a2a58669e83" parent="aspace_fe4252f9f7475583b02258772d681d48" type="reel">18</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_27f89ba7a28b359e4e16c79ee89baa29" type="Box">13</container>
+            <container id="aspace_b74678551306c471302d241f384b25ea" parent="aspace_27f89ba7a28b359e4e16c79ee89baa29" type="reel">19</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_83a2f650a7e4c300f2e734f2e2e7dbf3" type="Box">13</container>
+            <container id="aspace_ec9c281ac41a3cf184ea54398ab4192f" parent="aspace_83a2f650a7e4c300f2e734f2e2e7dbf3" type="reel">20</container>
+          </did>
+        </c02>
+        <c02 audience="internal" id="aspace_0eded5cf4ab2d47ddba3fc6a5e64580a" level="item" score="1" C-ORDER="23">
+          <did>
+            <unittitle>Joe Sullivan</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a6a4e54942506119b21e4ed2432cdd05" type="Box">13</container>
+            <container id="aspace_e3ec00fa1521dc9e7871d7a36201960a" parent="aspace_a6a4e54942506119b21e4ed2432cdd05" type="reel">21</container>
+          </did>
+        </c02>
+        <c02 id="aspace_ea524a742963e54e440164248f6cf5be" level="item" score="1" C-ORDER="24">
+          <did>
+            <unittitle>Cannonball Adderley, Pony Poindexter, and Bill Liftborough</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_f02900264ea1db844a81b67a6abed765" type="Box">13</container>
+            <container id="aspace_d6ffa071a6e26546d162aba0bb010e13" parent="aspace_f02900264ea1db844a81b67a6abed765" type="reel">22</container>
+          </did>
+        </c02>
+        <c02 audience="internal" id="aspace_0e50e3a2bf5e9f2f091d9bd8294b58ec" level="item" score="1" C-ORDER="25">
+          <did>
+            <unittitle>Denny Zeitlin</unittitle>
+            <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_6f97160d98f531f1a455b05a3568a30d" type="Box">13</container>
+            <container id="aspace_84c2c19950d743fde0032db7c733963f" parent="aspace_6f97160d98f531f1a455b05a3568a30d" type="reel">23</container>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a8bf29ad2fc784028733fd410347abf9" type="Box">13</container>
+            <container id="aspace_dce61b52e34d4a9a56119e7151cda79f" parent="aspace_a8bf29ad2fc784028733fd410347abf9" type="reel">24</container>
+          </did>
+        </c02>
+        <c02 audience="internal" id="aspace_af67ef7e61cee0627783aa37a623c8a5" level="item" score="1" C-ORDER="26">
+          <did>
+            <unittitle>Lennie McBrowne</unittitle>
+            <physdesc altrender="part"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a81bbffec9d5f398cbb231c311d0a881" type="Box">13</container>
+            <container id="aspace_b7322a1f41693fc621f1c03b4e08c211" parent="aspace_a81bbffec9d5f398cbb231c311d0a881" type="reel">25</container>
+          </did>
+        </c02>
+        <c02 id="aspace_8fd74148159e17e14886f79e87e9932c" level="item" score="2" C-ORDER="27">
+          <did>
+            <unittitle>Louis Armstrong</unittitle>
+            <physdesc altrender="part"><extent altrender="materialtype spaceoccupied">1 audiotape
+                reel(s)</extent></physdesc>
+            <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_3b2214b418bea7132fc8cae59debf403" type="Box">13</container>
+            <container id="aspace_3077cbdf322388f76f28373ec0a368f5" parent="aspace_3b2214b418bea7132fc8cae59debf403" type="reel">38</container>
+          </did>
+          <scopecontent id="aspace_2b24bf2625604784617aab2da9df3ef2">
+            <head>Scope and Contents</head>
+            <p>Excerpt of interview as part of a mix tape.</p>
+          </scopecontent>
+        </c02>
+      </c01>
+      <c01 id="aspace_d4e39175fb0a28de2e6039336e22b4bc" level="series" score="2" C-ORDER="29">
+        <did>
+          <unittitle>Musical performances</unittitle>
+          <dao actuate="onrequest" audience="external" href="https://purl.stanford.edu/vy421mt4083" show="new" title="ars0065 Digitized Sound Recordings Hard Drive Inventory" linktype="simple">
+            <daodesc>
+              <p>ars0065 Digitized Sound Recordings Hard Drive Inventory</p>
+            </daodesc>
+          </dao>
+        </did>
+        <odd id="aspace_0ca93852aaba5ff55af2dd03ce8f2e41">
+          <head>General</head>
+          <p>Whenever possible the perfomers are listed in a scope and content note. The listings
+            reflect the names and instruments as marked on the recordings. If Richard Hadlock is not
+            listed as a performer on the carrier, the cassette is in the perofrmances by various
+            artists sub-series. There is a possibility Richard Hadlock is a performer but is not
+            listed on the carrier the recording is under "Performances by Various Artists" and has
+            an added note. Please be aware this does not mean Richard Hadlock is not performing on a
+            recording in the "Performances by Various Artists" sub-series, it is intended to be
+            interpreted as there is nothing suggesting he is.</p>
+        </odd>
+        <c02 audience="internal" id="aspace_fc8383b293d6a1da7bb1e93edf79ae8b" level="subseries" score="2" C-ORDER="31">
+          <did>
+            <unittitle>Live Richard Hadlock performances and recordings</unittitle>
+          </did>
+          <scopecontent id="aspace_9d93f95163c12173a5e46286a4b272df">
+            <head>Scope and Contents</head>
+            <p>This sub-series is comprised of sound recording carriers that have Richard Hadlock
+              noted as a perfomer on the case, box, or carrier itself.</p>
+          </scopecontent>
+          <c03 audience="internal" id="aspace_7de124dc82c1a20258b1eb27629c028e" level="item" score="2" C-ORDER="33">
+            <did>
+              <unittitle>Jelly tunes</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1955/1955">1955</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_89531bf565d55995b0b94efb66838f28" type="Box">13</container>
+              <container id="aspace_90c3c7de51f4dd683b1c1dff8bd1237e" parent="aspace_89531bf565d55995b0b94efb66838f28" type="reel">28</container>
+            </did>
+            <scopecontent id="aspace_bd071ac8eee8b36f613c0cb72591cd4a">
+              <head>Scope and Contents</head>
+              <p>Steve Knight, bass; Lawrence Lucie, Banjo; Bob Thompson, drums; H. Linley, trumpet;
+                R. Hadlock, clarinet; Hank Ross, piano.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_ac9ae37d9a96bcde0672ebd8e7905094" level="item" score="3" C-ORDER="35">
+            <did>
+              <unittitle>Red Onion Jazz Band</unittitle>
+              <unitid>zv081yq3521</unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1957-05-17/1957-05-17">1957-05-17</unitdate>
+            </did>
+            <odd id="aspace_352e6a9b8e74c3a49919d8ab29fe84f2">
+              <head>General</head>
+              <p>The source for this digital recording is a disc that was not donated with the
+                collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent audience="internal" id="aspace_5bca0d4be7d666a83bee6cc5ba5dff7b">
+              <head>Scope and Contents</head>
+              <p>Frank Laidlaw, trumpet; Steve Knight, trombone; Dick Hadlock, clarinet; Bob
+                Thompson, drums; Arnie Hyman, bass; Carl Lunsford, banjo.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_1287a97c743d9387c0c73bd5c287c583" level="item" score="2" C-ORDER="38">
+            <did>
+              <unittitle>Fred Burk Poetry and Jazz #6</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1962/1962">1962</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_bc898e761e69e871a61c9f86cdb9f63d" type="Box">13</container>
+              <container id="aspace_0c9d27dbe2b07dd1a4cff4a4d51640d7" parent="aspace_bc898e761e69e871a61c9f86cdb9f63d" type="reel">29</container>
+            </did>
+            <scopecontent id="aspace_10ae4f5b69a127d9b946f5da663681ff">
+              <head>Scope and Contents</head>
+              <p>Ronald Crotty, bass; Eddie Duran, guitar; Lenny McBrowne, drums; Dick Hadlock,
+                soprano sax; 7 children.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_abc1fff72768cfccdd6e701c725060f5" level="item" score="2" C-ORDER="40">
+            <did>
+              <unittitle>Dick's music</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1962/1962">1962</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a860610cd3bd02c808d24442d4a98397" type="Box">13</container>
+              <container id="aspace_66c74ae87eeaa242534f27aa56cbf69f" parent="aspace_a860610cd3bd02c808d24442d4a98397" type="reel">38</container>
+            </did>
+            <scopecontent id="aspace_5b66870665e86b3efb952e44a2a86136">
+              <head>Scope and Contents</head>
+              <p>This reel appears to be a mix tape made by Richard Hadlock.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_a207c3c6dab8938c8164f6767684f8ab" level="item" score="2" C-ORDER="42">
+            <did>
+              <unittitle>Concert at the Jewish Community Center</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1964-04-18/1964-04-18">1964-04-18</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_4f60240ef9f91800da6d9435f76283c2" type="Box">13</container>
+              <container id="aspace_1e1a493fdb7fa0d179be1db7c1438e0a" parent="aspace_4f60240ef9f91800da6d9435f76283c2" type="reel">30</container>
+            </did>
+            <scopecontent id="aspace_c30746d17d9b2d41c918da2fd90236ac">
+              <head>Scope and Contents</head>
+              <p>Richard Hadlock, soprano sax; Vern Walton, vibes + drums; Bill Erickson, piano;
+                Walter Robers, bass + vocals; Paul Miller, guitar; Bob Mielke, trombone; Carol
+                Leigh, vocals</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_9c2d735dfa69f3e0d02e296cd59adac0" level="item" score="2" C-ORDER="44">
+            <did>
+              <unittitle>LaVals</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 audiotape
+                  (reel-to-reel)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1964-07-11/1964-07-11">1964-07-11</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_3609b08f289c686be6958909455881aa" type="Box">13</container>
+              <container id="aspace_356439e3383cb50c225803944ef00a58" parent="aspace_3609b08f289c686be6958909455881aa" type="reel">31</container>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_745ca24261fa51e693970f23aac3f20c" type="Box">13</container>
+              <container id="aspace_b1786438d419ff19a7e95542ecadde36" parent="aspace_745ca24261fa51e693970f23aac3f20c" type="reel">32</container>
+            </did>
+            <scopecontent id="aspace_bd1601784bd708d90ca7186ab96efa80">
+              <head>Scope and Contents</head>
+              <p>R. Hadlock, sop., bar: Al Hall, trom; Ray Skjelbred, piano; Don Marchant, drums;
+                Ben Stevens, bass; Bruce Vermazen, tpt.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_545075c4eeab9f0456b1d8cf3a5d21d4" level="item" score="1" C-ORDER="46">
+            <did>
+              <unittitle>Kashia Reservation School Xmas Plays Rehearsal</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1967/1967">1967</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_63cd831cd30f7b778658ca80a3fb8d52" type="Box">13</container>
+              <container id="aspace_e09527f9193496c1723fd2350b89256e" parent="aspace_63cd831cd30f7b778658ca80a3fb8d52" type="reel">33</container>
+            </did>
+          </c03>
+          <c03 id="aspace_ad42b73d4de8795674869fd12afa7409" level="item" score="2" C-ORDER="47">
+            <did>
+              <unittitle>Jim/Bales, Hadlock</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1969/1977" type="inclusive">1969-1977</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_1b4e073d7f99cccc75a0988bcd677e94" type="Box">13</container>
+              <container id="aspace_1aab001778eba677eb2edbade5cc1114" parent="aspace_1b4e073d7f99cccc75a0988bcd677e94" type="reel">34</container>
+            </did>
+            <scopecontent id="aspace_edaa6d2523a6748e3bd936c7b4342505">
+              <head>Scope and Contents</head>
+              <p>1969 Goodwin/Skjelbred in Seattle; 1970 Bales/Goodwin in San Francisco; Aug 1977
+                Hadock quartet with Goodwin/Bales/Duffy; Aug 1977 Hadlock trio with Goodwin/Duffy at
+                Hadlock's house.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_fa55ef0c22415f5f8b1e0ade28af5652" level="item" score="3" C-ORDER="49">
+            <did>
+              <unittitle>Unissued Hickey</unittitle>
+              <unitid>zv081yq3521</unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1971-11/1971-11">1971-11</unitdate>
+            </did>
+            <odd id="aspace_d2fc0e447788b0984f4252261403b6ad">
+              <head>General</head>
+              <p>The source for this digital recording is an open reel tape that was not donated
+                with the collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent id="aspace_04f31de4f2575bae99180e55678b8a81">
+              <head>Scope and Contents</head>
+              <p>Vince Hickey's Baltic Jazz Quintet. Jim Goodwin, cornet; Dick Hadlock, soprano sax;
+                Cyril Bennett, piano; Jim Cumming, string bass; Vince Hickey, drums/vocals.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_925e2b243a852a81466251b1a173acc0" level="item" score="3" C-ORDER="52">
+            <did>
+              <unittitle>Vince Hickey Jazz Cardinals</unittitle>
+              <unitid>zv081yq3521 </unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1971-11/1971-11">1971-11</unitdate>
+            </did>
+            <odd id="aspace_3ec20c76db2c5a9b0131bdfb80889ce5">
+              <head>General</head>
+              <p>The source for this digital recording is an audiocassette that was not donated with
+                the collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent id="aspace_8dd19a7d26a2003393e9467de882cd98">
+              <head>Scope and Contents</head>
+              <p>Jim Goodwin, cnt; Richard Hadlock, sop; Cyril Bennett, pno; Jim Cumming, bass;
+                Vince Hickey, dms, vocal.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_f808a63f34bc699c356391210688f80d" level="item" score="2" C-ORDER="55">
+            <did>
+              <unittitle>Hickey, Berkeley Rhythm</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1971/1977" type="inclusive">1971-1977</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a2cfbbd88dd7d3f2305baf173ae62ad4" type="Box">13</container>
+              <container id="aspace_c99d98509f3217dab670008c726aae57" parent="aspace_a2cfbbd88dd7d3f2305baf173ae62ad4" type="reel">35</container>
+            </did>
+            <scopecontent id="aspace_9e5a6a30c904093c07607259e2b60dd5">
+              <head>Scope and Contents</head>
+              <p>1971 Vince Hickey Session Baltic Quintet; 1977 Vince Hickey Rehearsal; 1977 Vince
+                at Funk Fest; 1976 Berkeley Rhythm at Funk Fest; 1977 Berkeley Rhythm at Funk
+                Fest.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_7b1cdb1e5fe8ef9f79f275944a359c67" level="item" score="1" C-ORDER="57">
+            <did>
+              <unittitle>KPFA Benefit Berkeley Rhythm</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1973/1973">1973</unitdate>
+              <container id="aspace_9aed507673b791bcb86d4e1501bc14b3" type="Box">14</container>
+              <container id="aspace_24b5e0ec21edd99d6d6897a75123f9ee" parent="aspace_9aed507673b791bcb86d4e1501bc14b3" type="cassette">2</container>
+            </did>
+          </c03>
+          <c03 id="aspace_1f6eae6d83c9fefe8f2f5bfe6950a6bb" level="item" score="2" C-ORDER="58">
+            <did>
+              <unittitle>Hadlock Bands</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1977/1977">1977</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_7296307d8f3119fe8606eacb045de2dd" type="Box">13</container>
+              <container id="aspace_046527c510e6ec1d3ec724ac1e206c27" parent="aspace_7296307d8f3119fe8606eacb045de2dd" type="reel">36</container>
+            </did>
+            <scopecontent id="aspace_153d536720e320dbb8509222e2480d5e">
+              <head>Scope and Contents</head>
+              <p>7/5/77 Hadlock Trio at Berkeley Square; 9/15/77 Hadlock Quintet at Berkeley Square;
+                9/21/77 Hadlock Trio and Guests at Berkeley Sqaure.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_9dc2c61ad45b6c447a7efbb4c3b4998a" level="item" score="2" C-ORDER="60">
+            <did>
+              <unittitle>Misc. from Duffy, Hadlock, Skjelbred</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1977/1977">1977</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_ea2bf062fa85d7d28a8e2e32fa341936" type="Box">13</container>
+              <container id="aspace_9b0eb5d2d4ad196a2eccaf1c98fd2264" parent="aspace_ea2bf062fa85d7d28a8e2e32fa341936" type="reel">37</container>
+            </did>
+            <scopecontent id="aspace_8664f440efe582e4b427bb691e6c83bb">
+              <head>Scope and Contents</head>
+              <p>9/21/77 Hadlock Trio at Berkeley Square; 9/17/77 Port Costa; 8/13/77 Port Costa;
+                Ray Skjelbred piano.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_c1a6d774fa566f6de9ede9f56d95b438" level="item" score="2" C-ORDER="62">
+            <did>
+              <unittitle>Baltic</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1975-01/1975-01">1975-01</unitdate>
+              <container id="aspace_911fdcdf67a0d8a3f3a3c9154ea167f4" type="Box">14</container>
+              <container id="aspace_59860933cb91ec4658c26d1982139ad4" parent="aspace_911fdcdf67a0d8a3f3a3c9154ea167f4" type="audiocassette">4</container>
+              <container id="aspace_b6533dfd0a144176d093eb8ef815e7ef" type="Box">14</container>
+              <container id="aspace_520806c6069ffedd3ab732c05a5b21c3" parent="aspace_b6533dfd0a144176d093eb8ef815e7ef" type="audiocassette">5</container>
+            </did>
+            <scopecontent id="aspace_b370665c6a0fba89a0ce9022f757a70e">
+              <head>Scope and Contents</head>
+              <p>Hickey; Hadlock; Berry; Bennett.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_24bcc259b6ffaf085a43d53206f953ab" level="item" score="2" C-ORDER="64">
+            <did>
+              <unittitle>Baltic</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="approximate" era="ce" normal="1975-02/1975-02">1975-02</unitdate>
+              <container id="aspace_8ee318684bba8fb3b82d168a913437f2" type="Box">14</container>
+              <container id="aspace_b40115e90ba208dd7838f6dfeee17012" parent="aspace_8ee318684bba8fb3b82d168a913437f2" type="audiocassette">6</container>
+            </did>
+            <scopecontent id="aspace_c2cfa77a72e808136e5cd705e34f1825">
+              <head>Scope and Contents</head>
+              <p>B. Berry; Cyril Bennett; Vince Hickey; RBH; Tom Buck.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_4f520297adfce922471ff3e9b5cae6d9" level="item" score="2" C-ORDER="66">
+            <did>
+              <unittitle>Amos White Gig, First Christian Church Oakland</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1977-12-10/1977-12-10">1977-12-10</unitdate>
+              <container id="aspace_13a27b88153b92f7da996258f97c4aa3" type="Box">14</container>
+              <container id="aspace_e91828f7ac6ec05fb491c9c9529f75ee" parent="aspace_13a27b88153b92f7da996258f97c4aa3" type="audiocassette">7</container>
+            </did>
+            <scopecontent id="aspace_5f06caa1fafdc4b6ae53b38e812a8532">
+              <head>Scope and Contents</head>
+              <p>Amos White, cornet; Van Alexander, tpt; RBH, sop; Eddie Young, gtr; Raphael
+                Grimage, bass; Leete Patterson, dms; Kay ?, organ; lady harmonica player;
+                trombonist; Philipino trio; native american dancer and two drummers.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_7b05667243d090485a2c3543415e1197" level="item" score="1" C-ORDER="68">
+            <did>
+              <unittitle>Bay Area Bands Recorded by Mike Duffy: Vince Hickey, Golden State, Stone
+                Age, Skjelbred</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1977/1979" type="inclusive">1977-1979</unitdate>
+              <container id="aspace_49800ce4f83119a60820e323c2e742fb" type="Box">14</container>
+              <container id="aspace_b940384c23e1cca4b271acf56eb686a7" parent="aspace_49800ce4f83119a60820e323c2e742fb" type="audiocassette">9</container>
+            </did>
+          </c03>
+          <c03 id="aspace_a1502c55039635235a8ba96d20e51c38" level="item" score="3" C-ORDER="69">
+            <did>
+              <unittitle>Vince Hickey's Jazz Cardinals at Berkeley Square</unittitle>
+              <unitid>zv081yq3521</unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1978-06-23/1978-06-23">1978-06-23</unitdate>
+            </did>
+            <odd id="aspace_82c758b57d55d124d96f462a3db947df">
+              <head>General</head>
+              <p>The source for this digital recording is an open reel tape that was not donated
+                with the collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent id="aspace_022177bb2222ec2b3b762c48f121170f">
+              <head>Scope and Contents</head>
+              <p>Jim Goodwin, cornet; Dick Hadlock, soprano sax; Ray Skjelbred, piano; Mike Duffy,
+                string bass; Vince Hickey, drums/vocals.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_73c8958d3a4d2cff3a9c6adf9d0639c5" level="item" score="2" C-ORDER="72">
+            <did>
+              <unittitle>Casa Bonita Garden Orchestra</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1979/1979">1979</unitdate>
+              <container id="aspace_5be9c2059d795ba15c92badf518e866a" type="Box">14</container>
+              <container id="aspace_7e74ffeb8f3b69d526c4122343d11a96" parent="aspace_5be9c2059d795ba15c92badf518e866a" type="audiocassette">10</container>
+            </did>
+            <scopecontent id="aspace_3a16e30113cb631ab071058eaeb816f3">
+              <head>Scope and Contents</head>
+              <p>Tommy Cain, tenor; Al Hall, p.; Pete Allen, b; R. Hadlock, sop; Jack Minger, tpt.;
+                P.T. Stanton, atr.; Manny Funk, dms</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_3330426417fa3cb743cc8a238100917d" level="item" score="2" C-ORDER="74">
+            <did>
+              <unittitle>Davison Concert - Berkeley 1st Half</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1984-01-07/1984-01-07">1984-01-07</unitdate>
+              <container id="aspace_fbef5764732bda4473a21af8d14bea0e" type="Box">14</container>
+              <container id="aspace_3f9e88bbd3b7355f100eabe8c1973972" parent="aspace_fbef5764732bda4473a21af8d14bea0e" type="audiocassette">12</container>
+            </did>
+            <scopecontent id="aspace_d05e72da9793569a365ebc7853b4194b">
+              <head>Scope and Contents</head>
+              <p>Wild Bill Davison, cornet; Leon Oakley, cornet; Rex Allen, trb; Richard Hadlock,
+                reeds; Ray Skjelbred, piano; Frank Haggerty, guitar; Jim Cummin, bass; Benny Barth,
+                drums; Jim Watt, announcer engineer.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_803e2b0713b10808779edb2bcdde8223" level="item" score="2" C-ORDER="76">
+            <did>
+              <unittitle>Annals of Jazz Live Broadcast featuring Richard Hadlock sextet</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1984-04-14/1984-04-14">1984-04-14</unitdate>
+              <container id="aspace_2b593b280e5e61bfa17bcb4e6222f03c" type="Box">14</container>
+              <container id="aspace_a4500fc1c878caa1d37cb2a68335d7ac" parent="aspace_2b593b280e5e61bfa17bcb4e6222f03c" type="audiocassette">13</container>
+            </did>
+            <scopecontent id="aspace_58efce8db4f3d345d3636aa20a7c7f5b">
+              <head>Scope and Contents</head>
+              <p>Barbara Lashley, Leon Oakley, Richard Hadlock,Ed Wetteland, John Markham, Terry
+                Hillard.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_335526cbd246a0c7ba2967165a533317" level="item" score="2" C-ORDER="78">
+            <did>
+              <unittitle>Bechet Tribute at Kimballs East</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1984-05-14/1984-05-14">1984-05-14</unitdate>
+              <container id="aspace_0f2a5a55905c866894d5e7cd34d64e1e" type="Box">14</container>
+              <container id="aspace_1f6f25b6971712c721d0d2f6b73db7b7" parent="aspace_0f2a5a55905c866894d5e7cd34d64e1e" type="audiocassette">14</container>
+            </did>
+            <scopecontent id="aspace_3374b6f945de724c75b98cbfa796bd48">
+              <head>Scope and Contents</head>
+              <p>Richard Hadlock (reeds); Jim Goodwin (t); Bob Mielke (tb); Ray Skjelbred (p); Pete
+                Allen (b); John Gill (d); Grover Sales, (host).</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_f1475f83ed042433ae96e7a095b2e303" level="item" score="2" C-ORDER="80">
+            <did>
+              <unittitle>Hal Smith's Rhythmakers in Golden Hall, Hall Bros on Prarie Home Campanion,
+                Goodwin on on Prarie Home Companion</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1985/1985">1985</unitdate>
+              <container id="aspace_628d6c6a3478a83cb8928d401e8f2c39" type="Box">14</container>
+              <container id="aspace_17d8a063592a9953fbb4c442e7fcd4b6" parent="aspace_628d6c6a3478a83cb8928d401e8f2c39" type="audiocassette">16</container>
+            </did>
+            <scopecontent id="aspace_723bfe7830e1caff54be475168c996f1">
+              <head>Scope and Contents</head>
+              <p>A: Hal Smith, d; Ray Skjelbred, Mike Polad, p; Richard Hadlock, sop/alto; Chris
+                Tyle, tpt; Jack Meilahn, g; M. Duffy. B: Wild Bill Davison, tp; Richard Hadlock;
+                Russ Hall, tba; Stan Hall, p; w/ Butch Thompson; Hal Smith; Bill Evans, Peter
+                Ostroushko, gtr; Red Maddock, d.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_fdd0cb3bf5bf2d13a8221355d2f935c7" level="item" score="2" C-ORDER="82">
+            <did>
+              <unittitle>Hal Smith's Rhythmakers at National Ragtime and Traditional Jazz Festival
+                Golden Colorado</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1985-07-04/1985-07-06" type="inclusive">1985-07-04-1985-07-06</unitdate>
+              <container id="aspace_8be90f111b7ef13511297a79bcdda31d" type="Box">14</container>
+              <container id="aspace_dd56f18942823ed0cf93312eee6c853c" parent="aspace_8be90f111b7ef13511297a79bcdda31d" type="audiocassette">17</container>
+            </did>
+            <scopecontent id="aspace_f4f03bbfb010d3ea789e51834f01eae5">
+              <head>Scope and Contents</head>
+              <p>Chris Tyle, trumpet; Richard Hadlock, soprano/alto sax; Mike Polad, piano/soprano
+                sax; Ray Skjelbred, piano; Jack Meilahn, guitar; Mike Duffy, bass; Hal Smith,
+                drums/leader.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_f8a4b39842ad3b0cd8ad2aee131ff852" level="item" score="2" C-ORDER="84">
+            <did>
+              <unittitle>Maxine Sullivan at Kimball's East</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1985-12-04/1985-12-04">1985-12-04</unitdate>
+              <container id="aspace_7026629680bf03fedd6a045df8fc1660" type="Box">14</container>
+              <container id="aspace_1b613a79e87ce9ffe3b49529f5e663e1" parent="aspace_7026629680bf03fedd6a045df8fc1660" type="audiocassette">18</container>
+              <container id="aspace_31b562e271f0051f1cf5e7dfeeb6a744" type="Box">14</container>
+              <container id="aspace_0379527295c85656ff698f2743138784" parent="aspace_31b562e271f0051f1cf5e7dfeeb6a744" type="audiocassette">19</container>
+            </did>
+            <scopecontent id="aspace_1189cd2dfeab8fd0be60797edb6c0e32">
+              <head>Scope and Contents</head>
+              <p>Maxine Sullivan; Bill Bell, piano; Wyatt Reuther, bass; Gaylord Birch, drums;
+                Richard Hadlock, sop.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_a65a762181ddabed2bb2373bd33468f9" level="item" score="2" C-ORDER="86">
+            <did>
+              <unittitle>2.5 hours at the Catalyst in Santa Cruz</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1988-04-15/1988-04-15">1988-04-15</unitdate>
+              <container id="aspace_c7f87193de792614efe6c9cecf2f84a0" type="Box">14</container>
+              <container id="aspace_226beb86d4e4fa67904cfa35fc0cc5da" parent="aspace_c7f87193de792614efe6c9cecf2f84a0" type="audiocassette">25</container>
+            </did>
+            <scopecontent id="aspace_ad732a9587aaac68a442dec78676e381">
+              <head>Scope and Contents</head>
+              <p>Dan Marcus, Tuba; Jackie Coon, flugelhorn; Hadlock, soprano; Pail Mehling, gtr; ?,
+                drms.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_3fac7a3f956edf21275b550f85fe90b0" level="item" score="2" C-ORDER="88">
+            <did>
+              <unittitle>Barbara Dane at Freight and Salvage</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1989-05-06/1989-05-06">1989-05-06</unitdate>
+              <container id="aspace_5f56a2afbf1d5bfd7a350dd96c7cc571" type="Box">14</container>
+              <container id="aspace_a830f43c97a84eddb9c76235ed2043e7" parent="aspace_5f56a2afbf1d5bfd7a350dd96c7cc571" type="audiocassette">26</container>
+            </did>
+            <scopecontent id="aspace_6a0153ebe12e3f264456aa76b3508eef">
+              <head>Scope and Contents</head>
+              <p>B. Dane, vocals; Geo. Fleming, tpt; Bob Mielke, tbn; R. Hadlock, reeds; Burt Bales,
+                piano; Pete Allen, bass; Bill Maginnis, dms; Chris Grampp, gtr; Barry Nelson,
+                gtr.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_b5501d0c51b01e06bb99120c15d59bb1" level="item" score="2" C-ORDER="90">
+            <did>
+              <unittitle>Concert for Apple Computer</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1989/1989">1989</unitdate>
+              <container id="aspace_1aeae3079ea487cce9e2b2bafab7d0b8" type="Box">14</container>
+              <container id="aspace_ed5893c3d5bfbd3259465853abdd00f8" parent="aspace_1aeae3079ea487cce9e2b2bafab7d0b8" type="audiocassette">27</container>
+            </did>
+            <scopecontent id="aspace_b05a0268207ce7731f42252a7ad91c1d">
+              <head>Scope and Contents</head>
+              <p>Hadlock; Lashley; Strauss; Skjelbred.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_51f27af6a80b6606b35dc51d838e9e2a" level="item" score="2" C-ORDER="92">
+            <did>
+              <unittitle>The Giants Baseball Band, final game</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1990-10-03/1990-10-03">1990-10-03</unitdate>
+              <container id="aspace_475bc9d02a1e68d4a2b364da662ab7f4" type="Box">14</container>
+              <container id="aspace_d076f588aefbb54ab10c96296fc1faa4" parent="aspace_475bc9d02a1e68d4a2b364da662ab7f4" type="audiocassette">29</container>
+            </did>
+            <scopecontent id="aspace_a7a1338f08fad623d491c6c65cb16873">
+              <head>Scope and Contents</head>
+              <p>Bob Schulz, tpt.; Ernie Figueroa, v. tbn.; Richard Hadlock, sop.; Carl Lunsford,
+                bjo.; John Moore, tuba.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_1f8dee17e43bf8fad5345a79818960a1" level="item" score="2" C-ORDER="94">
+            <did>
+              <unittitle>Rehearsal</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1991-02-28/1991-02-28">1991-02-28</unitdate>
+              <container id="aspace_912c64cca55b4bb44d5f50b6cff29e63" type="Box">14</container>
+              <container id="aspace_7c8ccedb69671656211bdfdc3e73cf7d" parent="aspace_912c64cca55b4bb44d5f50b6cff29e63" type="audiocassette">30</container>
+            </did>
+            <scopecontent id="aspace_cf5814ea84239103bff23b739dcf5f07">
+              <head>Scope and Contents</head>
+              <p>Ted Shafer, bj; Geo. Knoblock, bj; Ray Ronna, tpt; R. Hadlock, cl; Pete Allen, b;
+                Bill Bardin.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_2d18d75a1a330306135273eb98c4f0a2" level="item" score="2" C-ORDER="96">
+            <did>
+              <unittitle>KPFA Benefit, Mal Sharpe Orchestra, Mielke's New Bearcats</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1991-06-11/1991-06-11">1991-06-11</unitdate>
+              <container id="aspace_28ce56fa9ddce06223aba8d741e64273" type="Box">14</container>
+              <container id="aspace_c93de2a16d047ddf8446e089be02fa14" parent="aspace_28ce56fa9ddce06223aba8d741e64273" type="audiocassette">31</container>
+            </did>
+            <scopecontent id="aspace_b0504aae853a8c27c5de1fade93d33bc">
+              <head>Scope and Contents</head>
+              <p>Mal Shrpe Orchestra: Mal Sharpe; Larry Stein; Tom Keets; Geo. Fleming; McNeal
+                Breaux; Joyce; Kenny Williams; Dave Ribsky; R. Hadlock; Jim Goodwin; David
+                Giampietro. Bob Mielke's New Bearcats: Bob Mielke, tbn; Bill Napier, cl; Jack
+                Minger, tpt; Steve Strauss, b; Ray Skjelbred, p; Bill de Kuyper, gtr; Don Marchant,
+                d; Joel Sachs, mc.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_026f2c323cdc3e3833d714c79acb5e02" level="item" score="2" C-ORDER="98">
+            <did>
+              <unittitle>Hadlock's Delta Serenaders with Joe Muranyi at Pasand's</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1991-11-17/1991-11-17">1991-11-17</unitdate>
+              <container id="aspace_1bf1c2e93c25f5e6c2dcfbd0632df24b" type="Box">14</container>
+              <container id="aspace_d81d27ba899c3bf063f8d963dffe84ef" parent="aspace_1bf1c2e93c25f5e6c2dcfbd0632df24b" type="audiocassette">32</container>
+            </did>
+            <scopecontent id="aspace_f0f2db92e461cbdf3f05285594e9fb88">
+              <head>Scope and Contents</head>
+              <p>Richard Hadlock; Joe Muranyi; Barbara Lashley; Bob Mielke; Leon Oakley; Ray
+                Skjelbred; Steve Strauss?.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_c23e77a6b1b43c18cb3d5c7c48b06b7e" level="item" score="2" C-ORDER="100">
+            <did>
+              <unittitle>Janney's East-West Jammers</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1992-05-23/1992-05-23">1992-05-23</unitdate>
+              <container id="aspace_c975ef64b5b71bf047b6d4dee7ed5f56" type="Box">14</container>
+              <container id="aspace_9a0d1aa304c98a2eede5f85854ac81aa" parent="aspace_c975ef64b5b71bf047b6d4dee7ed5f56" type="audiocassette">34</container>
+            </did>
+            <scopecontent id="aspace_b0418a9fc652860606aec63cb3bd2f4e">
+              <head>Scope and Contents</head>
+              <p>Janney Thompson, vocals; Robin Hodes-t-vo; Richard Hadlock-cl-ss-ts; Alan Hall-p;
+                Dan Keller-sb; Dawes Thompson-g-ldr.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_d3f9e84ab933fd60a6282731fee828f4" level="item" score="2" C-ORDER="102">
+            <did>
+              <unittitle>Dick Austin's B-Day Party</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1993-03-26/1993-03-26">1993-03-26</unitdate>
+              <container id="aspace_380c2a6bc0e75c6db8dcbb698d00b1f2" type="Box">15</container>
+              <container id="aspace_497a1ad7051decb9c37882adba22e621" parent="aspace_380c2a6bc0e75c6db8dcbb698d00b1f2" type="audiocassette">1</container>
+              <container id="aspace_78bf4dd645c9c19c1d2d3b0755baf6d1" type="Box">15</container>
+              <container id="aspace_d7d44b266dff802849797de3fcb2ba9a" parent="aspace_78bf4dd645c9c19c1d2d3b0755baf6d1" type="audiocassette">2</container>
+            </did>
+            <scopecontent id="aspace_8d77382a9eff6da0f561c1c6667548e3">
+              <head>Scope and Contents</head>
+              <p>RH [Hadlock], Ray S., Mingor [?], S. Strauss.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_5e0825a897b1bd4059278807f2a49a04" level="item" score="2" C-ORDER="104">
+            <did>
+              <unittitle>No Name Bar - Big Money Dixie on KCSM</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1993-10-24/1993-10-24">1993-10-24</unitdate>
+              <container id="aspace_19da505fa8b2fb4ee2c6f683015291b5" type="Box">15</container>
+              <container id="aspace_70aa703f75879bc3a43cd09c7521fb49" parent="aspace_19da505fa8b2fb4ee2c6f683015291b5" type="audiocassette">5</container>
+            </did>
+            <scopecontent id="aspace_92f3867f8a6f1fcbdc820ef36c6c54c5">
+              <head>Scope and Contents</head>
+              <p>Vince C.; Georgio F.; Mel S.; Ned Ripple; Peter [?]; RB [Richard Hadlock?].</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_292d2f402d9cf6fd71cf937cc270f9f1" level="item" score="2" C-ORDER="106">
+            <did>
+              <unittitle>John Marabuto at Pizza Company, San Pablo</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-04-29/1996-04-29">1996-04-29</unitdate>
+              <container id="aspace_9185da5a3f8b1566c5f6e2d13d80c59d" type="Box">15</container>
+              <container id="aspace_1506b04e4f04bac734877a77f3c9ca61" parent="aspace_9185da5a3f8b1566c5f6e2d13d80c59d" type="audiocassette">6</container>
+            </did>
+            <scopecontent id="aspace_14653eb880aeb776c0ba4862acfa4261">
+              <head>Scope and Contents</head>
+              <p>John Marabuto's Swing Quintet. R. Hadlock; M. Grosz; S. Straus; H. Wagner; L.
+                Oakley; R. Mielke; Terry Rodrigiuez.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_501b88220b024b718bc6ecce16422600" level="item" score="2" C-ORDER="108">
+            <did>
+              <unittitle>Clint Baker's New Orleans Jazz Band at Cafe Borrone</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-11-08/1996-11-08">1996-11-08</unitdate>
+              <container id="aspace_b5abb5172487df2074e3471df4eb05b7" type="Box">15</container>
+              <container id="aspace_43bbb087d7e5b884d4a68015aadd4a16" parent="aspace_b5abb5172487df2074e3471df4eb05b7" type="audiocassette">7</container>
+            </did>
+            <scopecontent id="aspace_36435f56fb007ecaed67c9afb0c4d70d">
+              <head>Scope and Contents</head>
+              <p>Clint Baker, tmb, cl; Leon Oakley, cnt; Richard Hadlock, cl, ss; Monte Reyes, bj;
+                Tom Wilson, bs; Jason Hansen [?], dr.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_a1a45bbe0f16c010edae5db702370c47" level="item" score="2" C-ORDER="110">
+            <did>
+              <unittitle>Clint Baker's New Orleans Jazz Band</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-11-22/1996-11-22">1996-11-22</unitdate>
+              <container id="aspace_b3fd35593003b691160c5b05ff8de336" type="Box">15</container>
+              <container id="aspace_bd891c4aecf0071945bc792e3edf027d" parent="aspace_b3fd35593003b691160c5b05ff8de336" type="audiocassette">8</container>
+            </did>
+            <scopecontent id="aspace_2fdd0d8a6bc3defe1bb0997066ce00c0">
+              <head>Scope and Contents</head>
+              <p>Clint Baker, tpt, cl; Bob Mielke, tmb; Richard Hadlock, cl, ss, ts; Tom Wilson, bs;
+                Monte Reyes, bj; Jason Hansen, d.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_ba0421196f1aae597530d8b0df6bf967" level="item" score="2" C-ORDER="112">
+            <did>
+              <unittitle>The "Udder" Bearcats at the Old SF Pizza Company</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-11-26/1996-11-26">1996-11-26</unitdate>
+              <container id="aspace_51ea4b0db3e2d46b79348c83e2cf60b0" type="Box">15</container>
+              <container id="aspace_fee5944d6c8cb69fe314a01c660462ab" parent="aspace_51ea4b0db3e2d46b79348c83e2cf60b0" type="audiocassette">18</container>
+            </did>
+            <scopecontent id="aspace_58b47c74ded65955f21d7f1dfee116b2">
+              <head>Scope and Contents</head>
+              <p>Bob Mielke, tbn; DeKuiper (?), gtr; G. Bennett (?), bass; Hadlock, clr; Jim Gammon,
+                tpt; H. Wagner (?) dms.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_fce35c99d2b95d7d4ce64ea0dbd9341b" level="item" score="2" C-ORDER="114">
+            <did>
+              <unittitle>Clint Baker's New Orleans Jazz Band at Cafe Borrone</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-12-06/1996-12-06">1996-12-06</unitdate>
+              <container id="aspace_1ce3aa536055b613f64fd9a48e6bb2e1" type="Box">15</container>
+              <container id="aspace_e20cfab334f9d735d739a6f5a70948c5" parent="aspace_1ce3aa536055b613f64fd9a48e6bb2e1" type="audiocassette">9</container>
+            </did>
+            <scopecontent id="aspace_254a381840e1e29670f947984fae50e0">
+              <head>Scope and Contents</head>
+              <p>Clint Baker, tpt, bs; Jim Klippert, tmb; Richard Hadlock, cl, ss; Monte Reyes, bj;
+                Mike Krische, pn; Tom Wilson, bs.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_157cfb4f6e6240229e527e6e43a275e1" level="item" score="2" C-ORDER="116">
+            <did>
+              <unittitle>Speakeasy Portland</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1996-12/1996-12">1996-12</unitdate>
+              <container id="aspace_e063d7d3dc85a12bdae0c1f77272bbb0" type="Box">15</container>
+              <container id="aspace_96d2ee5b4f12788ff3a29b24f24488f6" parent="aspace_e063d7d3dc85a12bdae0c1f77272bbb0" type="audiocassette">10</container>
+            </did>
+            <scopecontent id="aspace_14921ea91eeb42309491b637177b3ad5">
+              <head>Scope and Contents</head>
+              <p>"Same band add Frishberg-p. from August 96' Brewfest, Hadlock - sop. and Glen Koch
+                - washboard."</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_ab669f8f6532e896925b3c2924a4f556" level="item" score="2" C-ORDER="118">
+            <did>
+              <unittitle>Clint Baker Jazz Band at Borones Menlo Park</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1997-01-17/1997-01-17">1997-01-17</unitdate>
+              <container id="aspace_b8bb193bae77eeb72b6226231728595e" type="Box">15</container>
+              <container id="aspace_420d58de101caf7eb9d04415b1549206" parent="aspace_b8bb193bae77eeb72b6226231728595e" type="audiocassette">11</container>
+            </did>
+            <scopecontent id="aspace_fd3c304bfdd178584e096588479b45bc">
+              <head>Scope and Contents</head>
+              <p>Clint Baker, gtr.; Craig Ventresco, gtr.; Leon Oakley, cornet; Richard Hadlock,
+                reeds; Robbie Schlosser, b.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_8c1eed8afc35c186c29e598cf142ba26" level="item" score="2" C-ORDER="120">
+            <did>
+              <unittitle>SF Feetwarmers at Todos Santos Plaza</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1997-08/1997-08">1997-08</unitdate>
+              <unitdate calendar="gregorian" era="ce" normal="1997-11-30/1997-11-30">1997-11-30</unitdate>
+              <container id="aspace_5fe5583f4fbe48332e7f050cc8746e23" type="Box">15</container>
+              <container id="aspace_20e252173a6a164a301a18c505815de9" parent="aspace_5fe5583f4fbe48332e7f050cc8746e23" type="audiocassette">12</container>
+            </did>
+            <scopecontent id="aspace_2e94c0168b8815371a873b2e002b4bea">
+              <head>Scope and Contents</head>
+              <p>Mike Slack, cnt/ldr; Brian Richardson, tb; Richard Hadlock, clar; Bill Gould, p;
+                Jime Lockie-Brown, bjo; Pete Allen, b; Hank Wagner, d.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_741f199c0959184b7709a702021f539e" level="item" score="1" C-ORDER="122">
+            <did>
+              <unittitle>Hadlock - Schott</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1997-09-07/1997-09-07">1997-09-07</unitdate>
+              <container id="aspace_f0bfa028ea63c62ad5ec479d53dac33f" type="Box">15</container>
+              <container id="aspace_33e020b8c770839b55b7b6aec0f27752" parent="aspace_f0bfa028ea63c62ad5ec479d53dac33f" type="audiocassette">13</container>
+            </did>
+          </c03>
+          <c03 id="aspace_e3629df443f74d4f39368e71b03a11fa" level="item" score="1" C-ORDER="123">
+            <did>
+              <unittitle>Hadlock and Schott at Austins</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">11
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1997-09-07/1997-09-07">1997-09-07</unitdate>
+              <container id="aspace_e5c15ca948f420f23bc972b7890fcfdc" type="Box">15</container>
+              <container id="aspace_139c63b7edfb31e8fd7f87ffa24f67be" parent="aspace_e5c15ca948f420f23bc972b7890fcfdc" type="audiocassette">14</container>
+            </did>
+          </c03>
+          <c03 id="aspace_66a29b83bcb9545bc88d39a4241f4c11" level="item" score="3" C-ORDER="124">
+            <did>
+              <unittitle>Hadlock All Stars at College of San Mateo</unittitle>
+              <unitid>zv081yq3521</unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1998-05-09/1998-05-09">1998-05-09</unitdate>
+            </did>
+            <odd id="aspace_219cb1cc77d15faa60b6296b03622a48">
+              <head>General</head>
+              <p>The source for this digital recording is two audiocassettes that were not donated
+                with the collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent id="aspace_9edf12aae774f9306c9c46a9405083e0">
+              <head>Scope and Contents</head>
+              <p>Hadlock, reeds; Jim Gammen; Al Plank, piano; Ralph Carney; "everything"; Clint
+                Baker, guitar; Dean Riley, bass; Benny Bard, drums.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_ddcf262088e2f89c1c2be963f247ff81" level="item" score="2" C-ORDER="127">
+            <did>
+              <unittitle>Yeti Chasers at Concord Fest</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1998-08-02/1998-08-02">1998-08-02</unitdate>
+              <container id="aspace_250379a2bee0964a57cd5d9454a062e7" type="Box">15</container>
+              <container id="aspace_2e0e58c21caeddfd624afedbd52221b6" parent="aspace_250379a2bee0964a57cd5d9454a062e7" type="audiocassette">16</container>
+            </did>
+            <scopecontent id="aspace_0f3d6af9863288cada84bf1f5123b952">
+              <head>Scope and Contents</head>
+              <p>Ray Skjelbred, p/ldr; Jack Minger, tpt; Bill DeKuiper, gtr; Bob Mielke, tbn;
+                Richard Hadlock, reeds; Steven Strauss, vass/voc; John Gill, d.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_60e3b4ab83d4c0a44454175436c87e69" level="item" score="2" C-ORDER="129">
+            <did>
+              <unittitle>New Bearcats at Austins</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1998/1998">1998</unitdate>
+              <container id="aspace_a42e5ce400d7bcbb1aeaed9b7a4b122a" type="Box">15</container>
+              <container id="aspace_0cc24643bbd254ffcd6e9a29796523c5" parent="aspace_a42e5ce400d7bcbb1aeaed9b7a4b122a" type="audiocassette">17</container>
+            </did>
+            <scopecontent id="aspace_f783f716877e17cbd998c95baa7b1134">
+              <head>Scope and Contents</head>
+              <p>Bob Mielke, ldr/tbn; Jim Gammon, tpt; R. Hadlock, reeds; Bill DeKuiper, gtr; Gordon
+                Bennett, b; Hank Wagner, d.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_642147cd211e990ee19297764568f6b7" level="item" score="1" C-ORDER="131">
+            <did>
+              <unittitle>Hadlock and Plank Salute EKE</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1999-03-23/1999-03-23">1999-03-23</unitdate>
+              <container id="aspace_6666fa06365ee12d571ec51b61a1f2d4" type="Box">15</container>
+              <container id="aspace_71c3faac4d253242fd6bea0973b21fed" parent="aspace_6666fa06365ee12d571ec51b61a1f2d4" type="audiocassette">19</container>
+            </did>
+          </c03>
+          <c03 id="aspace_919f4b02cf517a78f6b3dec0e2156f04" level="item" score="2" C-ORDER="132">
+            <did>
+              <unittitle>Highlights Bill Reynolds Party</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="2000-01-29/2000-01-29">2000-01-29</unitdate>
+              <container id="aspace_82d4e69401e36df3f471709284141cf0" type="Box">15</container>
+              <container id="aspace_9b8709561ec789355389859ab82b6661" parent="aspace_82d4e69401e36df3f471709284141cf0" type="audiocassette">20</container>
+            </did>
+            <scopecontent id="aspace_d9904b577cc2345391bcc6a46b3604f0">
+              <head>Scope and Contents</head>
+              <p>Hodes Band; Scheelar Band; Clint Baker Band; Hadlock Band; Mielke Band; Skjelbred
+                Band.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_4b58bad71afa8d4577da1ebf2c33ea20" level="item" score="2" C-ORDER="134">
+            <did>
+              <unittitle>Gig? Session?</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_11e3fc483e694b072af09600eb354469" type="Box">15</container>
+              <container id="aspace_916e48672bfa7bd1730441e4b8de10bf" parent="aspace_11e3fc483e694b072af09600eb354469" type="audiocassette">24</container>
+            </did>
+            <scopecontent id="aspace_5c35ea20ed3d4ea3bf8c50fe813f19f8">
+              <head>Scope and Contents</head>
+              <p>Trio RBH [Richard Hadlock]; Jim Putman?; Don Bennett?; Bob Mielke.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_c0a5113f724f5c99534c670ea5e002f5" level="item" score="1" C-ORDER="136">
+            <did>
+              <unittitle>Hadlock and Friends for Duffy "Master"</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_fe45a8db71c2bc91c9ca407cd7d3bf53" type="Box">15</container>
+              <container id="aspace_2f7a2f164fa94b8db178e6410e71dac2" parent="aspace_fe45a8db71c2bc91c9ca407cd7d3bf53" type="audiocassette">26</container>
+            </did>
+          </c03>
+          <c03 id="aspace_b27b149c2a593175b89e063109a71479" level="item" score="1" C-ORDER="137">
+            <did>
+              <unittitle>Dick Hadlock and Co. at Jazz on the Hill, Tribute to Gershwin</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_16169f0f1a27e3ddcec2cdd36cddee10" type="Box">15</container>
+              <container id="aspace_938a3e111b097b9a1867ffc28e5f93c7" parent="aspace_16169f0f1a27e3ddcec2cdd36cddee10" type="audiocassette">27</container>
+            </did>
+          </c03>
+          <c03 id="aspace_bd923b59b3bbd2c600fea97df074eef3" level="item" score="1" C-ORDER="138">
+            <did>
+              <unittitle>Hadlock, Minger, G.Bennett, and John Lowry</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_04d1ca5c99413a87fea6e5f9d4fa3360" type="Box">15</container>
+              <container id="aspace_eabe11c024201367a287c632be717bf6" parent="aspace_04d1ca5c99413a87fea6e5f9d4fa3360" type="audiocassette">28</container>
+            </did>
+          </c03>
+        </c02>
+        <c02 id="aspace_c92d6a0e473c5982ae2e538216b9966a" level="subseries" score="2" C-ORDER="139">
+          <did>
+            <unittitle>Performances by various artists</unittitle>
+          </did>
+          <scopecontent id="aspace_b0ae8dd8525c19c1dc25f6beb91f4aaa">
+            <head>Scope and Contents</head>
+            <p>This sub-series is comprised of sound recording carriers that do not have Richard
+              Hadlock noted as a perfomer on the case, box, or carrier itself.</p>
+          </scopecontent>
+          <c03 id="aspace_49bc51bf4456d7cf90ae91bd776a0a63" level="item" score="1" C-ORDER="141">
+            <did>
+              <unittitle>Bechet and Mezz[row] at Kimball Hall</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1946/1946">1946</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_d173f20a334152c108af581694f72e18" type="Box">13</container>
+              <container id="aspace_ca950aec6d43d7f06e0ce74d6b4be594" parent="aspace_d173f20a334152c108af581694f72e18" type="reel">27</container>
+            </did>
+          </c03>
+          <c03 id="aspace_fe1f7602c89714722b489110a9d4ec38" level="item" score="1" C-ORDER="142">
+            <did>
+              <unittitle>7th army band performance with L. Wright, C. Harris, and D.
+                Ellis</unittitle>
+              <physdesc altrender="part"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  (reel-to-reel)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1958-06-10/1958-06-10">1958-06-10</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_05a3d49727a67cb6c86bc87eddc35fda" type="Box">13</container>
+              <container id="aspace_359a55182320710250e4b5ecc79cca0d" parent="aspace_05a3d49727a67cb6c86bc87eddc35fda" type="reel">25</container>
+            </did>
+          </c03>
+          <c03 id="aspace_46c7692d8aa442c00d1a8bba64161c36" level="item" score="2" C-ORDER="143">
+            <did>
+              <unittitle>Jazz for Kids</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 audiotape
+                  reel(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1959-08-27/1959-08-27">1959-08-27</unitdate>
+              <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_a79b250194d3e6aa73d493067be6cc94" type="Box">13</container>
+              <container id="aspace_c5a9dd89c35531917b8794836ea8f63c" parent="aspace_a79b250194d3e6aa73d493067be6cc94" type="reel">26</container>
+            </did>
+            <scopecontent id="aspace_2872b0d6eceb706651c2198c3c01a206">
+              <head>Scope and Contents</head>
+              <p>Appears to be a special Annals of Jazz show for young audiences.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_b92365eab874dbb1955b9e96aee72aea" level="item" score="1" C-ORDER="145">
+            <did>
+              <unittitle>Chase, Berry, Butzen, Erickson, and Oxtot</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="questionable" era="ce" normal="1960/1960">1960</unitdate>
+              <container id="aspace_8e2a71a73288e2ded4d4d47ef924167b" type="Box">14</container>
+              <container id="aspace_44da03623dcf7cb026c2af52a92a102b" parent="aspace_8e2a71a73288e2ded4d4d47ef924167b" type="audiocassette">1</container>
+            </did>
+          </c03>
+          <c03 id="aspace_b156694e7694ee343951f1dec62b7bfd" level="item" score="4" C-ORDER="146">
+            <did>
+              <unittitle>Funk Music</unittitle>
+              <unitid>zv081yq3521 </unitid>
+              <unitdate calendar="gregorian" era="ce" normal="1971-08-13/1971-08-14" type="inclusive">1971-8-13-1971-08-14</unitdate>
+            </did>
+            <odd id="aspace_94810ae3229a6b5c0056730f7856bd30">
+              <head>General</head>
+              <p>The source for this digital recording is an open reel tape that was not donated
+                with the collection materials, only the transfer was delivered.</p>
+            </odd>
+            <scopecontent id="aspace_1fc602a95c976c50bbe36608e81415e1">
+              <head>Scope and Contents</head>
+              <p>1. Vince Hickey and Band; 2. Bob Green (8/13); 3-9. Brett Punkie's Starting From
+                Scratch Jazz Band (8/14).</p>
+            </scopecontent>
+            <scopecontent id="aspace_8986c97750a83e806b6cc3d93ca94d6e">
+              <head>Scope and Contents</head>
+              <p>Might include Richard Hadlock performing.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_65bb29be2038d24ce60280b1e81b7b75" level="item" score="3" C-ORDER="150">
+            <did>
+              <unittitle>Amos White Concert </unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1974-01/1974-01">1974-01</unitdate>
+              <container id="aspace_eee591e261e9b7124ac1b26ab6d8c505" type="Box">14</container>
+              <container id="aspace_89ba7d51961cdd69f7095b9402f42bcd" parent="aspace_eee591e261e9b7124ac1b26ab6d8c505" type="audiocassette">3</container>
+            </did>
+            <scopecontent id="aspace_5822df0c634af340fc62a74258311eb6">
+              <head>Scope and Contents</head>
+              <p>Amos White, trumpet; Ike Bell, baritone. No note mentioning Richard Hadlock is part
+                of the ensemble.</p>
+            </scopecontent>
+            <odd id="aspace_35b7c5a12c376c9fbafa6c58c7dba6cf">
+              <head>General</head>
+              <p>Cassette case is marked "housing project."</p>
+            </odd>
+          </c03>
+          <c03 id="aspace_c503334b05c45b066d1b8e42f81dd61b" level="item" score="2" C-ORDER="153">
+            <did>
+              <unittitle>GSJB [Golden State Jazz Band] at Vic's place</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1978-09/1978-09">1978-09</unitdate>
+              <container id="aspace_9239a64cc93fc4692513f81cf59f8285" type="Box">14</container>
+              <container id="aspace_4138ebbd7fdabc5fb69cd26ef63408ff" parent="aspace_9239a64cc93fc4692513f81cf59f8285" type="audiocassette">8</container>
+            </did>
+            <scopecontent id="aspace_81f34f4046a389ca0008c0112d68cdba">
+              <head>Scope and Contents</head>
+              <p>Ev Farey, tpt/ldr; Bill Napier, cl; Bob Mielke, tbn; Carl Lunsford, bjo; Hal Smith,
+                d; Mike Duffy, bass; Turk Murphy, tbn. There is a note from a third party that
+                Richard Hadlock performed on this recording but there is no note of it on the
+                physical carrier.</p>
+            </scopecontent>
+          </c03>
+          <c03 audience="internal" id="aspace_78c93b48a09f2f5914ae0b428c951d19" level="item" score="1" C-ORDER="155">
+            <did>
+              <unittitle>Turk Murphy Jazz Band KJAZ Broadcast</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1983-12-31/1983-12-31">1983-12-31</unitdate>
+              <container id="aspace_cf1b59a12b258ac3a8148069010c7483" type="Box">14</container>
+              <container id="aspace_22c6cf6552e638beca77ae7ee0e5a444" parent="aspace_cf1b59a12b258ac3a8148069010c7483" type="audiocassette">11</container>
+            </did>
+          </c03>
+          <c03 id="aspace_49d8648db602ba3ec99cfd70b4b7415f" level="item" score="1" C-ORDER="156">
+            <did>
+              <unittitle>Ellington Broadcast Part 1</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1984-05-14/1984-05-14">1984-05-14</unitdate>
+              <container id="aspace_381856738743ffa49cf48d577c5db1f9" type="Box">14</container>
+              <container id="aspace_6343d8a69e9d0610c8b7f7fc44eaa15d" parent="aspace_381856738743ffa49cf48d577c5db1f9" type="audiocassette">15</container>
+            </did>
+          </c03>
+          <c03 id="aspace_f959924bbb43bd03368d11ff6fd3fd95" level="item" score="2" C-ORDER="157">
+            <did>
+              <unittitle>Art Hodes and Friends Direct from the Redwood Palace</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1986-01-05/1986-01-05">1986-01-05</unitdate>
+              <container id="aspace_e65926d5d188a95a3998fc6afe5d1b82" type="Box">14</container>
+              <container id="aspace_db37ab6bce34e255fc7e9d7339ff79e5" parent="aspace_e65926d5d188a95a3998fc6afe5d1b82" type="audiocassette">20</container>
+              <container id="aspace_1473be26799d83c1dbd40cfbe54f72ec" type="Box">14</container>
+              <container id="aspace_ef27f213007f6d215b355a732fccbce6" parent="aspace_1473be26799d83c1dbd40cfbe54f72ec" type="audiocassette">21</container>
+            </did>
+            <scopecontent id="aspace_a5bd1168c82659100c5138962dd50a03">
+              <head>Scope and Contents</head>
+              <p>Might include Richard Hadlock performing.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_0b6981dd137d301ec66ed3e62faae6b4" level="item" score="2" C-ORDER="159">
+            <did>
+              <unittitle>Barbara Dane Session (for Arhoolie)</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1986-12/1986-12">1986-12</unitdate>
+              <container id="aspace_e6c98f9f2a86c81503b86d046f1fdf6f" type="Box">14</container>
+              <container id="aspace_6577d1709f201cb22e701a55fd5348d3" parent="aspace_e6c98f9f2a86c81503b86d046f1fdf6f" type="audiocassette">22</container>
+            </did>
+            <scopecontent id="aspace_d3a536506963c7e5a64013529880115c">
+              <head>Scope and Contents</head>
+              <p>Might include Richard Hadlock performing.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_9bb479ef5c657fada2f711aa2f8f9d50" level="item" score="2" C-ORDER="161">
+            <did>
+              <unittitle>Barbara Lashley and Ray Skjelbred at New Orleans Bar and Grill</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1988-02-18/1988-02-18">1988-02-18</unitdate>
+              <container id="aspace_af28f9c201ae1e07f2fe2cf63b5f365c" type="Box">14</container>
+              <container id="aspace_2888ce0a4ad3f82b52d652dff969f066" parent="aspace_af28f9c201ae1e07f2fe2cf63b5f365c" type="audiocassette">23</container>
+              <container id="aspace_f3444d2cadd1ebad0bfbd86bf924ad9b" type="Box">14</container>
+              <container id="aspace_98fcfc0f6c3f3d123857c36a8147a2c4" parent="aspace_f3444d2cadd1ebad0bfbd86bf924ad9b" type="audiocassette">24</container>
+            </did>
+            <scopecontent id="aspace_d98f641ef68e43edcf9d83a0069affdc">
+              <head>Scope and Contents</head>
+              <p>Might include Richard Hadlock performing.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_ef93216478e10c8d06e6c95456137553" level="item" score="2" C-ORDER="163">
+            <did>
+              <unittitle>New Bearcats Live at Kimball's East, set 1</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1990-10-20/1990-10-20">1990-10-20</unitdate>
+              <container id="aspace_84e1e621cc8f7e09075e5fb4755d6e94" type="Box">14</container>
+              <container id="aspace_438c8b9fd35b5a24ebc8945407e2035c" parent="aspace_84e1e621cc8f7e09075e5fb4755d6e94" type="audiocassette">28</container>
+            </did>
+            <scopecontent id="aspace_c6e5ad1e6a6fa0ed1e74c1d606a90658">
+              <head>Scope and Contents</head>
+              <p>Jack Minger, trp; Bill Napier, clar; Bob Mielke, trom; Ray Skjelbred, piano; Tony
+                Marcus, g'tar; Pete Allen, s.bass; Don Marchant, drums.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_6a4398315df2c08bf440cf6327911bbd" level="item" score="2" C-ORDER="165">
+            <did>
+              <unittitle>Jack Buck Jazz Band in Danville with Barbara Lashley Tribute</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="approximate" era="ce" normal="1992-11-01/1992-11-01">1992-11-01</unitdate>
+              <container id="aspace_199433ca590fbb2ca8893c2c141debd7" type="Box">14</container>
+              <container id="aspace_10115e2a68e82a857ab10ff9fe26b302" parent="aspace_199433ca590fbb2ca8893c2c141debd7" type="audiocassette">33</container>
+            </did>
+            <scopecontent id="aspace_32aa5b1c68da6e175b1ddbaf45f603f2">
+              <head>Scope and Contents</head>
+              <p>Griff Harries, piano; Jim Rothermel, reeds; Leon Oakley, cornet; John Farcus, tmb;
+                Rex Allen, vibes/tmb; Bill Miginnis, drums; Jim Cumming, bass.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_03b8d63d6795673e34cfe69bdcd0c61e" level="item" score="1" C-ORDER="167">
+            <did>
+              <unittitle>New Bearcats at Dick and Rins [?] Austin's J. Party</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce" normal="1997-11-23/1997-11-23">1997-11-23</unitdate>
+              <container id="aspace_ba15d8fdcdbc8c03a3ddd4ddf712f7aa" type="Box">15</container>
+              <container id="aspace_d1f4ee120ed7b408a022121ce6818099" parent="aspace_ba15d8fdcdbc8c03a3ddd4ddf712f7aa" type="audiocassette">15</container>
+            </did>
+          </c03>
+          <c03 id="aspace_d96188603f07e0cf67def279845e2acf" level="item" score="2" C-ORDER="168">
+            <did>
+              <unittitle>Bud Spangler Turk Murphy Tribute, Carl Lunsford Band and Pat Yankee, Annals
+                of Jazz The Compositions of Joe Oliver Pt II</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" certainty="approximate" era="ce" normal="2004/2004">2004</unitdate>
+              <container id="aspace_e247155d85aa02c38183179d2042d538" type="Box">15</container>
+              <container id="aspace_a4f00818c126d504a641f0e006494fd2" parent="aspace_e247155d85aa02c38183179d2042d538" type="audiocassette">21</container>
+            </did>
+            <scopecontent id="aspace_ffe879457ddaa3cd1073e1e42ab3ae36">
+              <head>Scope and Contents</head>
+              <p>Jim Maihadt; L. Oakley; Phil Howe; Ray Skjelbred; E. Borneman; Carl Lunsford. Carl
+                Lunsford Band + Pat Yankee.</p>
+            </scopecontent>
+          </c03>
+          <c03 id="aspace_40a436ef3290b8edb6552a672bed31d8" level="item" score="1" C-ORDER="170">
+            <did>
+              <unittitle>The Lashley Project</unittitle>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_b22305c330bb720ccce7e50f8bed480f" type="Box">15</container>
+              <container id="aspace_41222283ebde72a8d022e7d9c69b87fb" parent="aspace_b22305c330bb720ccce7e50f8bed480f" type="audiocassette">22</container>
+            </did>
+          </c03>
+          <c03 id="aspace_13d2b24e8821b36c6ecd6086031c3a7f" level="item" score="1" C-ORDER="171">
+            <did>
+              <unittitle>Sound (Continous background) for Hadlock Videotape</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_5eb678cf44d447d83c865e9c41b9c95e" type="Box">15</container>
+              <container id="aspace_52e2984a8c99f4b1278462dad39f4085" parent="aspace_5eb678cf44d447d83c865e9c41b9c95e" type="audiocassette">23</container>
+            </did>
+          </c03>
+          <c03 id="aspace_a16b90c3c0d8239833b4acacbae6b92b" level="item" score="1" C-ORDER="172">
+            <did>
+              <unittitle>Marian McPartland's Piano Jazz with Guest Jimmy McPartland</unittitle>
+              <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1
+                  audiocassette(s)</extent></physdesc>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+              <container id="aspace_ef132e1116ed08d35d4f4eb2933f4978" type="Box">15</container>
+              <container id="aspace_f5aa95e3dc826be6baaf9e7b14a60cb5" parent="aspace_ef132e1116ed08d35d4f4eb2933f4978" type="audiocassette">25</container>
+            </did>
+          </c03>
+          <c03 id="aspace_0c06a317e2d0f589336c4d3d3ee8f35b" level="item" score="2" C-ORDER="173">
+            <did>
+              <unittitle>Enchanted Hills Soundtrack</unittitle>
+              <unitid>zv081yq3521 </unitid>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            </did>
+            <odd id="aspace_9e617ae6e1bb6980cbd937db888bea0a">
+              <head>General</head>
+              <p>The source for this digital recording is a lacquer disc that was not donated with
+                the collection materials, only the transfer was delivered.</p>
+            </odd>
+          </c03>
+          <c03 id="aspace_f16835193bcbe3a9068913a50ebacb29" level="item" score="2" C-ORDER="175">
+            <did>
+              <unittitle>Nod's Tap Room</unittitle>
+              <unitid>zv081yq3521</unitid>
+              <unitdate calendar="gregorian" era="ce">undated</unitdate>
+            </did>
+            <odd id="aspace_d26839e07efd0237b5ebad6ffad25536">
+              <head>General</head>
+              <p>The source for this digital recording is an open reel tape that was not donated
+                with the collection materials, only the transfer was delivered.</p>
+            </odd>
+          </c03>
+        </c02>
+      </c01>
+      <c01 id="aspace_7bff1ff4f4a16542be1dae4a9a6a06e7" level="item" score="4" C-ORDER="177">
+        <did>
+          <unittitle>Digital Transfers of interviews and musical performances</unittitle>
+          <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 hard drive(s)
+              (external)</extent></physdesc>
+          <container altrender="https://www.gaylord.com/Preservation/Document-Preservation/Record-Storage-Cartons/Gaylord-Archival%26%23174%3B-Classic-Record-Storage-Cartons-with-Handholds-%285-Pack%29/p/HYB09592" id="aspace_6a5dca58edf439077d933d1f540e42d8" type="Box">13</container>
+          <container id="aspace_7997ea065cf066cf21b25aba4c1a0c37" parent="aspace_6a5dca58edf439077d933d1f540e42d8" type="computer_media">1</container>
+          <dao actuate="onrequest" audience="external" href="https://purl.stanford.edu/vy421mt4083" show="new" title="ars0065 Digitized Sound Recordings Hard Drive Inventory" linktype="simple">
+            <daodesc>
+              <p>ars0065 Digitized Sound Recordings Hard Drive Inventory</p>
+            </daodesc>
+          </dao>
+          <dao actuate="onrequest" audience="external" href="https://purl.stanford.edu/zv081yq3521" show="new" title="ars0065 Digitized Sound Recordings on Hard Drive" linktype="simple">
+            <daodesc>
+              <p>ars0065 Digitized Sound Recordings on Hard Drive</p>
+            </daodesc>
+          </dao>
+        </did>
+        <processinfo id="aspace_6196cf7b71538feb3f1f50858d5742eb">
+          <head>Processing Information</head>
+          <p>The hard drive has been deposited in the Stanford Digitial Repository, DRUID:
+            zv081yq3521. The spreadsheet has also been deposited and is world downloadable, DRUID:
+            vy421mt4083.</p>
+        </processinfo>
+        <scopecontent id="aspace_9f625e3a8a4c143b0ec6928dd02b74fe">
+          <head>Scope and Contents</head>
+          <p>This drive contains digital transfers and spreadsheet of information about the physical
+            media in the two series "Musical Performances" and "Interviews." These were completed
+            independently by Duane Gordon before the recordings were donated to the Archive of
+            Recorded Sound.</p>
+        </scopecontent>
+        <accessrestrict audience="internal" id="aspace_d575592b2aaf1cb4640bf04b156a7566">
+          <head>Conditions Governing Access</head>
+          <p>The recordings on the drive are subject to copyright law, for access contact the
+            Archive or Recorded Sound.</p>
+        </accessrestrict>
+      </c01>
+    </dsc>
+  </archdesc>
+</ead>

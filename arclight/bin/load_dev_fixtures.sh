@@ -16,7 +16,14 @@ bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_con
 
 export REPOSITORY_ID=uci_spcoll
 bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/f045.xml -s eadid=f045.xml
+
 export REPOSITORY_ID=glhs
 bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/glbths_2017-18_GilbertBaker_FA.xml -s eadid=glbths_2017-18_GilbertBaker_FA.xml
+
+# These fixtures have embeded and linked content - see embed_component.html.erb
+export REPOSITORY_ID=stanford_cstmus
+bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/ms008-amy-test_XoWnVHq.xml -s eadid=amy-test
+bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/ars0035.xml -s eadid=ark:/13030/kt5k4036nc
+bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/ars0065.xml -s eadid=ark:/13030/kt0z09r4w0
 
 curl $SOLR_URL/update?commit=true

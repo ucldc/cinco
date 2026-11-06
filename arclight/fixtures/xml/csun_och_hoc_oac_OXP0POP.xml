@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ead PUBLIC "+//ISBN 1-931666-00-8//DTD ead.dtd (Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd">
+<ead>
+  <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"
+    repositoryencoding="iso15511">
+    <eadid countrycode="US" url="https://oac.cdlib.org/findaid/ark:/13030/c80866sb/">OCH/HOC</eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper type="filing">Olaussen (Harold) Collection</titleproper>
+        <titleproper>Guide to the Harold Olaussen Collection </titleproper>
+      </titlestmt>
+      <publicationstmt>
+        <publisher>Special Collections &amp; Archives</publisher>
+        <address>
+          <addressline>University Library</addressline>
+          <addressline>California State University, Northridge</addressline>
+          <addressline>18111 Nordhoff Street</addressline>
+          <addressline>Northridge, CA 91330-8326</addressline>
+        </address>
+        <p>URL:<extref href="https://library.csun.edu/SCA"><emph render="underline"
+          >https://library.csun.edu/SCA</emph></extref><lb/> Contact:<extref
+            href="https://library.csun.edu/SCA/Contact"><emph render="underline"
+              >https://library.csun.edu/SCA/Contact</emph></extref><lb/> © Copyright 2020
+          Special Collections &amp; Archives. All rights reserved.</p>
+      </publicationstmt>
+    </filedesc>
+    <profiledesc>
+      <creation>This finding aid was produced using ArchivesSpace on <date>2025-10-03 09:34:20
+          -0700</date>.</creation>
+      <langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English,
+          Latin script</language>.</langusage>
+      <descrules>Describing Archives: A Content Standard</descrules>
+    </profiledesc>
+  </eadheader>
+  <archdesc level="collection">
+    <did>
+      <repository>
+        <corpname>Special Collections &amp; Archives</corpname>
+      </repository>
+      <unittitle>Harold Olaussen Collection</unittitle>
+      <origination audience="internal" label="Creator">
+        <persname source="local">Olaussen, Harold, 1929-</persname>
+      </origination>
+      <unitid>OCH.HOC</unitid>
+      <physdesc altrender="whole">
+        <extent altrender="materialtype spaceoccupied">0.06 linear feet</extent>
+      </physdesc>
+      <unitdate datechar="creation" normal="1930/1949" type="inclusive">circa 1930-circa
+        1949</unitdate>
+      <abstract id="aspace_22b56b9e786a831932a99c724efdefd9">Harold (Harry) Olaussen was born in
+        Shanghai in 1929. His father was a Norwegian sea captain, and his mother was Italian. He
+        went to St. Francis Xavier's College, and lived above a bar owned by his grandmother. In
+        1949, he left Shanghai and traveled with his family to Italy, moved to Norway, and
+        eventually settled in Vancouver, Canada. In 1972 he was elected to the Canadian Parliament
+        for one term. The collection mostly consists of pictorials produced by the <emph
+          render="italic">North China Daily News</emph> photocopied by Olaussen. Also included in
+        the collection is a painting of the St. Francis Xavier's College coat of arms, and copies of
+        photographs of Shanghai, St. Francis Xavier's College and Olaussen with his amah.</abstract>
+      <langmaterial>
+        <language langcode="eng">English</language>.</langmaterial>
+    </did>
+    <bioghist id="aspace_5a25cdf65aff51e4026ae9d6d977f4cd">
+      <head>Biographical Information:</head>
+      <p>Harold (Harry) Olaussen was born in 1929 in Shanghai, China. His father was a Norwegian sea
+        captain and his mother was Italian. He attended St. Francis Xavier's College, and the French
+        Aurora University in Shanghai. In 1949, he and his family left China for Italy, where they
+        lived for a short time before Olaussen and his brother traveled to Norway to stay with an
+        uncle. They both started working on ships, and Olaussen traveled all over the world before
+        settling in Canada in the 1960s. Olaussen worked in a paper mill as an engineer, and also
+        was elected as the Member of Parliament for the Coast Chilcotin area from 1972-1974.</p>
+    </bioghist>
+    <scopecontent id="aspace_d30f0ff9941e9ca61cb0113aff6de219">
+      <head>Scope and Contents</head>
+      <p>The <emph render="italic">Harold Olaussen Collection</emph> mostly consists of pictorials
+        produced by the <emph render="italic">North China Daily News </emph>and the <emph
+          render="italic">Hong Kong Sunday Herald</emph> in 1940 which were photocopied by Olaussen.
+        Also included in the collection is a painting of the St. Francis Xavier's College crest, and
+        copies of photographs of Shanghai, St. Francis Xavier's College and Olaussen with his
+        amah.</p>
+    </scopecontent>
+    <accessrestrict id="aspace_17ea7ab565ea192191e44162bcaddc63">
+      <head>Conditions Governing Access:</head>
+      <p>The collection is open for research use.</p>
+    </accessrestrict>
+    <userestrict id="aspace_66a4012a99a3917b3070f8a69a5db30e">
+      <head>Conditions Governing Use:</head>
+      <p>Copyright for unpublished materials authored or otherwise produced by the creator(s) of
+        this collection has not been transferred to California State University, Northridge.
+        Copyright status for other materials is unknown. Transmission or reproduction of materials
+        protected by U.S. Copyright Law (Title 17, U.S.C.) beyond that allowed by fair use requires
+        the written permission of the copyright owners. Works not in the public domain cannot be
+        commercially exploited without permission of the copyright owners. Responsibility for any
+        use rests exclusively with the user.</p>
+    </userestrict>
+    <acqinfo audience="internal" id="aspace_473dba41c203249370a38480caafead8">
+      <head>Immediate Source of Acquisition</head>
+      <p>Harold Olaussen</p>
+    </acqinfo>
+    <prefercite id="aspace_12f9676b6586742fa4bd1a4fe57a23c3">
+      <head>Preferred Citation:</head>
+      <p>For information about citing items in this collection consult the appropriate style manual,
+        or see the <extref href="http://libguides.csun.edu/citing-archives/index"
+          ><emph render="underline">Citing Archival Materials</emph></extref> guide.</p>
+    </prefercite>
+    <processinfo id="aspace_9415d8020e6bd7b71cdb4cba131a8aa9">
+      <head>Processing Information:</head>
+      <p>Jessica Geiser, 2013</p>
+    </processinfo>
+    <controlaccess>
+      <genreform source="tgmi">Ephemera</genreform>
+      <genreform source="tgmi">Documents</genreform>
+      <genreform source="tgmi">Photographs</genreform>
+    </controlaccess>
+    <dsc>
+      <c01 id="aspace_032fc8ff99905972de32167f2dbfd0fe" level="item">
+        <did>
+          <unittitle>Photographs of Shanghai Buildings</unittitle>
+           <container id="aspace_9dca15be40b962b76234ec012886e6a4"
+            type="Box">1</container>
+          <container id="aspace_012120749c6e94404d9fb861272ef3f6"
+            parent="aspace_9dca15be40b962b76234ec012886e6a4" type="Item">1</container>
+        </did>
+      </c01>
+      <c01 id="aspace_b204fd283838103ee656d429e874f50a" level="item">
+        <did>
+          <unittitle>Photograph of Harold Olaussen with his Amah on a Rickshaw,</unittitle>
+           <unitdate datechar="creation">ca. 1930-ca. 1939</unitdate>
+          <container id="aspace_e3e934b947f474927f2b60e4cef207ea"
+            type="Box">1</container>
+          <container id="aspace_97a530e614682fec0f59eeca79f04d99"
+            parent="aspace_e3e934b947f474927f2b60e4cef207ea" type="Item">2</container>
+        </did>
+      </c01>
+      <c01 id="aspace_164d41bfefe7ff6eeb9711c1ca77d89e" level="item">
+        <did>
+          <unittitle>Photograph of St. Francis Xavier's College</unittitle>
+           <container id="aspace_9cc13d65cbf545a48acca96f69b47a85"
+            type="Box">1</container>
+          <container id="aspace_2651ed0f064006d2659c7e51cf921940"
+            parent="aspace_9cc13d65cbf545a48acca96f69b47a85" type="Item">3</container>
+        </did>
+      </c01>
+      <c01 id="aspace_e3c832f6ae75d113577ab395b16a7fcb" level="item">
+        <did>
+          <unittitle>Photograph of St. Francis Xavier's College Badge</unittitle>
+           <container id="aspace_6d516bb1a0e6f1e102831260db176f94"
+            type="Box">1</container>
+          <container id="aspace_af5e0a9472485105eea3e4390ea3324d"
+            parent="aspace_6d516bb1a0e6f1e102831260db176f94" type="Item">4</container>
+        </did>
+      </c01>
+      <c01 id="aspace_d1cc9a773ac61d2efd9e90abc2135cfe" level="item">
+        <did>
+          <unittitle>Photocopies of Pictorials from the <emph render="italic">North China Daily News
+            </emph>and the <emph render="italic">Hong Kong Sunday Herald</emph>,</unittitle>
+           <unitdate datechar="creation">1940</unitdate>
+          <container id="aspace_c00db7586db31030e90e44e866f47959"
+            type="Folder">1</container>
+          <container id="aspace_0e9b9e95fd51bc1805f7ee1cda8c1e45"
+            parent="aspace_c00db7586db31030e90e44e866f47959" type="Item">1</container>
+        </did>
+      </c01>
+      <c01 id="aspace_5c4a22953f0ed8005b8c3f3a6e774071" level="item">
+        <did>
+          <unittitle>Painting of the St. Francis Xavier's College Crest</unittitle>
+           <container id="aspace_fab553c01e63e8c838c3ca7de4737984"
+            type="Folder">1</container>
+          <container id="aspace_3b1c7a450bea8c69212c1c24e59e011f"
+            parent="aspace_fab553c01e63e8c838c3ca7de4737984" type="Item">2</container>
+        </did>
+      </c01>
+    </dsc>
+  </archdesc>
+</ead>

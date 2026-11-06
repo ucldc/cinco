@@ -1,0 +1,3007 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd">
+<eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511">
+<eadid countrycode="US" url="https://archives.stanford.edu/findingaid/ark:/22236/r5326d7fe9-cbbe-42d1-a06d-e478699ccced">ars0035</eadid>
+<filedesc>
+<titlestmt>
+<titleproper type="filing">Hess (Richard) Mullin-Palmer Tape Restoration Project Collection</titleproper>
+<titleproper>
+Guide to The Richard Hess Mullin-Palmer Tape Restoration Project Collection
+<num>ARS.0035</num>
+</titleproper>
+<author>Franz Kunst</author>
+</titlestmt>
+<publicationstmt>
+<publisher>Archive of Recorded Sound</publisher>
+<p>
+<date>December 2009</date>
+</p>
+<address>
+<addressline>soundarchive@stanford.edu</addressline>
+<addressline>
+URL:
+<extptr xlink:href="https://library.stanford.edu/libraries/archive-recorded-sound" xlink:show="new" xlink:title="https://library.stanford.edu/libraries/archive-recorded-sound" xlink:type="simple"/>
+</addressline>
+</address>
+<p>This record is made available under an Universal 1.0 Public Domain Dedication Creative Commons license.</p>
+</publicationstmt>
+</filedesc>
+<profiledesc>
+<creation>
+This finding aid was produced using ArchivesSpace on
+<date>2026-04-14 15:05:22 -0700</date>
+.
+</creation>
+<langusage>English</langusage>
+<descrules>Describing Archives: A Content Standard</descrules>
+</profiledesc>
+<revisiondesc>
+<change>
+<date>2026</date>
+<item>Digital objects in the Stanford Digital Repository linked to Finding Aid. Notes and technical information from Richard Hess were integrated into the Finding Aid.</item>
+</change>
+</revisiondesc>
+</eadheader>
+<archdesc level="collection">
+<did>
+<repository>
+<corpname>Archive of Recorded Sound</corpname>
+</repository>
+<unittitle>Richard Hess Mullin-Palmer Tape Restoration Project Collection</unittitle>
+<origination label="source">
+<persname role="rce" source="local">Hess, Richard L.</persname>
+</origination>
+<origination label="source">
+<persname role="dnr" source="local">Ososke, Don</persname>
+</origination>
+<origination label="source">
+<persname role="dnr" source="local">Collier, Eve Mullin</persname>
+</origination>
+<origination label="source">
+<corpname role="dnr" source="local">Pavek Museum of Broadcasting</corpname>
+</origination>
+<origination label="source">
+<persname role="dnr" source="local">Wheeler, Jim</persname>
+</origination>
+<origination label="source">
+<persname role="dnr" source="local">Hess, Richard L.</persname>
+</origination>
+<unitid>ARS.0035</unitid>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5326d7fe9-cbbe-42d1-a06d-e478699ccced" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">6 Linear Feet</extent>
+<extent altrender="carrier">6 boxes : approx. 110 digital files ; 54 open reel tapes; 2 boxes of reels and packaging</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce" normal="1934/2008" type="inclusive">1934-2008</unitdate>
+<unitdate calendar="gregorian" datechar="creation" era="ce" normal="1946/1950" type="bulk">1946-1950</unitdate>
+<abstract id="aspace_385b45e6ad1d6b65737aa1dc3d6036f1" label="Abstract">The Richard Hess Collection chronicles the early history of tape recording in the United States. The tapes were assembled and reformatted by engineer and researcher Richard L. Hess from 2003 to 2008. At the end of World War II, Jack Mullin recovered examples of German tape recording technology and, along with film maker Bill Palmer, approached Ampex with the idea of manufacturing audiotape and players. Entertainer Bing Crosby was an enthusiastic early adopter, and this collection is largely recordings used in the production of his radio programs. Digital files are only available at Stanford Archive of Recorded Sound.</abstract>
+<physdesc id="aspace_d67971b4b96a4b33d6ec215133b8b545" label="Physical Decription">Six boxes of audiotape are held by the Archive of Recorded Sound. The remainder of the collection is digital.</physdesc>
+<physloc id="aspace_bf0b450f288d5824fa5b87d39670c90a">Stanford Archive of Recorded Sound Stanford University Libraries Stanford, California 94305-3076</physloc>
+<langmaterial>
+<language langcode="eng" scriptcode="Latn">English</language>
+.
+</langmaterial>
+</did>
+<accessrestrict id="aspace_4b14648824b87ad3c7b76c56eb1f9d4b">
+<head>Access</head>
+<p>Open for research; material must be requested at least two business days in advance of intended use. Contact the Archive for assistance.</p>
+</accessrestrict>
+<arrangement id="aspace_eaa3e3d5a6d032906403afc4e3e6ef15">
+<head>Arrangement</head>
+<p>This collection is divided into five series. The first four are grouped according to their original donor, and Series 5 assembles most of the textual information concerning the collection.</p>
+</arrangement>
+<bioghist id="aspace_810750661385386ad1d63e90831cba61">
+<head>Historical Background</head>
+<p>The Richard Hess Mullin-Palmer Tape Restoration Project Collection chronicles the widespread dissemination of one of the most important advances in sound recording technology: magnetic recording on tape. In 1945, a U.S. Army Signal Corp soldier named John T. "Jack" Mullin was assigned to recover examples of the latest German technology from the field. In a radio station, Mullin confirmed that the Germans had developed a system of sound recording and reproduction using paper and plastic tape. He returned to the United States with several reels of audio tape and two AEG Magnetophon brand reel-to-reel machines on which to play them. This was not the first time that this country was introduced to the technology (in fact, research was published widely in the 30s), but Mullin's initiative, along with the enterprise of filmmaker Bill Palmer, was essentially the avenue by which tape manufacturing began in the United States.</p>
+<p>The story of Bing Crosby's involvement is familiar. In the late 1940s, Crosby hosted one of the most popular programs on radio: Philco Radio Time. Mullin and Palmer worked with Crosby to develop a tape machine. Harold Lindsay had attended a demonstration of the magnetophone at the May 16, 1946 meeting of the Institute of Radio Engineers (IRE, now IEEE) in San Francisco and along with Alexander M. Poniatoff, the founder of Ampex, sought out Mullin and Palmer for advice on developing a machine at Ampex. Ampex proceeded to develop its first model of tape recorder, the 200A, in 1947 (other companies, among them Brush, Rangertone, Orradio, and Presto, were also experimenting with magnetic recording with some success). </p>
+<p>The adoption of Tape provided an ease of editing that appealed to Crosby and his producers, and allowed for more creativity in assembling programs. It was also judged in many trials to offer improved fidelity compared to disc and optical film. Because of the risk of tape failing during a live broadcast, shows were still aired from transcription discs; it was the recording and editing that was done with tape. The first program recorded on tape was broadcast October 1st, 1947, the start of the 1947-1948 season. The recordings in this collection consist largely of material used for the Philco program, including performances, outtakes, and advertisements. Among the other stars to be heard on the programs are Dinah Shore, Peggy Lee, Burl Ives, and Claudette Colbert.</p>
+<p>The Richard Hess Collection is named for recording historian and audio engineer Richard L. Hess who assembled these tapes, transferred them, and provided detailed notes on both the content and its capture. Between 2001 and 2008, Hess drew from both public and private collections to construct a digital representation of the early days of magnetic recording in the United States.</p>
+</bioghist>
+<prefercite id="aspace_33ee28d6b06043faa467e17b98f5b705">
+<head>Preferred Citation</head>
+<p>Richard Hess Mullin-Palmer Tape Restoration Project Collection, ARS0035. Courtesy of the Stanford Archive of Recorded Sound, Stanford University Libraries, Stanford, Calif.</p>
+</prefercite>
+<processinfo id="aspace_1e384ff32db8e603555f9294f0ee6f36">
+<head>Sponsor</head>
+<p>A portion of this project was funded by a grant from the GRAMMY Foundation.</p>
+</processinfo>
+<processinfo id="aspace_78f42bb9e81b3df2e077ac8fa66243e7">
+<head>Processing Information</head>
+<p>Tape digtization information provided by Richard Hess: </p>
+<p>"All tapes were reproduced on a Sony APR-5003 with Nortronics full-track mono play heads.</p>
+<p>Digitization via an RME Multiface connected directly to the APR via a balanced patch bay.</p>
+<p>Sampling at 96,000 samples per second, 24 bits.</p>
+<p>The U.S. recorded tapes "Other Tapes" were reproduced at 30 in/s using the IEC/AES standard of 17.5 µs equalization.</p>
+<p>The Tonschreiber tapes were reproduced using the same equalization but at about 28.5 in/s to match the 72 cm/s speed found in the Tonschreiber Technical Documentation.</p>
+<p>The file containing the 11 reels was physically split so that 1-9 are on the 10.5-inch reel and 10-11 are on the 7-inch reel marked Crosby. #11 was originally supplied as a "misc" on a 3-inch reel. </p>
+<p>Note DIN Hub Misc 2 was blank.</p>
+<p>Misc 3 was transferred both as a full-track mono tape and on an NAB 2-track head on a Studer A810. This tape appeared to be recorded at 15 in/s and was reproduced using standard NAB equalization on both machines.</p>
+<p>The Crosby Show mentions Leap Year and is also the week before Valentines Day, this would be early February 1948. Guest is Jimmy Stewart.</p>
+<p>The portion of the Crosby show towards the centre of the hubless reel was badly damaged and folded. There are a few perturbations in playback that can be traced to this.</p>
+<p>The very last section was on one of the 11 reels that had been in the paper bag. See my article in the 2001-07 Journal of the Audio Engineering Society "The Jack Mullin/Bill Palmer Tape Restoration Project" and these tapes are in the bag that Jim Wheeler is holding in the photo. </p>
+<p>http://www.aes.org/journal/suppmat/hess_2001_7.pdf</p>
+<p>Transferred by Richard L. Hess Vignettes Media Aurora, Ontario Canada"</p>
+</processinfo>
+<relatedmaterial id="aspace_653c313ceda3da493c4a710c481614f6">
+<head>Related Collections</head>
+<p>
+Stanford also holds the
+<extref xlink:href="http://www.oac.cdlib.org/findaid/ark:/13030/ft4s2004rn">Ampex Corporation collection</extref>
+. Some material presented here is also available through the Pavek Museum of Broadcasting.
+</p>
+</relatedmaterial>
+<scopecontent id="aspace_6ba66e65aff63e43020e16d1d918f676">
+<head>Scope & Contents</head>
+<p>A significant portion of this collection (Reels 1-51) are reels of audio tape which are physically held at the Stanford Archive of Recorded Sound. However, the bulk of the collection consists of digital files, including transfers from those reels, as well as from tapes in several other collections not at Stanford. Prior to accession, each item (whether a physical reel or the digital file that was recorded from the tape) was assigned a reel number. There is also a series for all related documentation, including obituaries and tape transfer logs.</p>
+</scopecontent>
+<userestrict id="aspace_e2ea159953773e30561dd3a75dce1aa9">
+<head>Publication Rights</head>
+<p>Property rights reside with repository. Literary rights reside with creators of the documents or their heirs. To obtain permission to publish or reproduce, contact the Head Librarian of the Archive of Recorded Sound.</p>
+</userestrict>
+<controlaccess>
+<subject source="lcsh">Audiotapes</subject>
+<subject source="lcsh">Sound -- Recording and reproducing</subject>
+<subject source="lcsh">Magnetic tape industry</subject>
+<genreform source="lcsh">Radio programs</genreform>
+<corpname authfilenumber="http://id.loc.gov/authorities/names/n87135180" role="mfr" rules="dacs" source="naf">Ampex Corporation</corpname>
+<persname role="rce" source="local">Hess, Richard L.</persname>
+<persname role="dnr" source="local">Ososke, Don</persname>
+<persname role="org" source="local">Palmer, William A.</persname>
+<persname role="dnr" source="local">Collier, Eve Mullin</persname>
+<corpname role="dnr" source="local">Pavek Museum of Broadcasting</corpname>
+<persname role="org" source="local">Mullin, John T. (Jack)</persname>
+<persname role="dnr" source="local">Wheeler, Jim</persname>
+<corpname role="mfr" rules="aacr" source="naf">Allgemeine Elektricitäts-Gesellschaft (Germany)</corpname>
+<persname role="prf" rules="aacr" source="naf">Crosby, Bing</persname>
+<persname role="dnr" source="local">Hess, Richard L.</persname>
+</controlaccess>
+<dsc>
+<c id="aspace_ref22_rug" level="series">
+<did>
+<unittitle>Series 1. Jack Mullin-Bill Palmer</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r585f4d573-a107-4b7f-85d0-130bf9686a94" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">6 box(es)</extent>
+<extent altrender="carrier">4 boxes of 54 open reel tapes, 2 boxes of tape parts, approx. 50 sound files</extent>
+</physdesc>
+<physdesc id="aspace_d8c380d287d42a3536264f68e229d5aa" label="Physical Description">This is the only series in which the content's physical carriers and containers (tape, reels and packaging) are held in addition to the content's digital transfers.</physdesc>
+<langmaterial>
+<language langcode="eng">English</language>
+.
+</langmaterial>
+</did>
+<originalsloc id="aspace_fdc58bbfc3c0cef01fd374e1666324e6">
+<head>Source of Acquisition</head>
+<p>Jack Mullin & Bill Palmer Agfa 1943 tapes temporarily owned by former Ampex employee Jim Wheeler. Wheeler arranged for their donation to the Archive of Recorded Sound. Content was transferred in 2003.</p>
+</originalsloc>
+<c id="aspace_ref24_3xm" level="subseries">
+<did>
+<unittitle>Reels 1-51</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5f28bac12-bea9-4e2a-b712-3dba7e019c53" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref25_8yi" level="item">
+<did>
+<unittitle>Reel 1</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r507eec05c-0afa-4a98-b0e9-4eddde2c8e44" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_dba293ae27006ebbbff8e725df7d39c2" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_d849861ff076d2362894223d54db1c09" parent="aspace_dba293ae27006ebbbff8e725df7d39c2" type="reel">1</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/zj873qy9722 " xlink:role="audio-master" xlink:show="none" xlink:title="Reel 1" xlink:type="simple">
+<daodesc>
+<p>Reel 1: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_0e8912553b58e78125c679de9842b6d2">
+<head>Scope and Contents</head>
+<p>Bing Crosby (possibly from ET) ; John Scott Trotter "You Tell Me Your Dream" ; "Haunted Heart" from Inside USA ; "Haunted Heart" from Inside USA ; "Love is so Terrific" ; "Love is So Terrific" (with noticeable splice in the middle) ; "Blue Shadows on the Trail" from Disney movie Melody Time (Crosby makes a wisecrack during a false start) ; "Jeepers Creepers" ; "I Only have Eyes for You" (take 1, incomplete) ; "I Only have Eyes for You" (take 2, incomplete)</p>
+</scopecontent>
+<phystech id="aspace_8f5245ffe623a54cab79a916b71c742c">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref46_mgd" level="item">
+<did>
+<unittitle>Reel 2</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5210f310e-52cf-4cd2-bb3d-57b9eff8f594" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_ae214ac62c1ef6781e765187a832e6bf" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_5bb85f5c403710b083deeabf0bf67ef8" parent="aspace_ae214ac62c1ef6781e765187a832e6bf" type="reel">2</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sd658rd2820 " xlink:role="audio-master" xlink:show="none" xlink:title="Reel 2" xlink:type="simple">
+<daodesc>
+<p>Reel 2: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_a55c13b4b2a956b80a7c5977f54458f1">
+<head>Scope and Contents</head>
+<p>Bing Crosby "La Vie en Rose" (take 1) ; "La Vie en Rose" (take 1) ; "La Vie en Rose" (take 2) ; "I May Be Wrong" ; "I Think You're Marvelous" (take 1) ; "I May Be Wrong" (take 2) ; "I May Be Wrong" (take 3) ; Modernaires? "Thousand Islands" ; Modernaires? "Thousand Islands" (take 2) ; "Thousand Islands" (take 3) ; yodeling ; "Let the Song Begin" from the movie Emperor Waltz</p>
+</scopecontent>
+<phystech id="aspace_2916be961144dc28b6234983e25d7330">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref47_pvq" level="item">
+<did>
+<unittitle>Reel 3</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r53af4f25a-c38e-4910-818e-1bd14e72fefe" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_b3d11bacc51faeec77e28a007fe33e60" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_16615b52f91896c292dfb838aee70bb9" parent="aspace_b3d11bacc51faeec77e28a007fe33e60" type="reel">3</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rf724fp6920 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 3" xlink:type="simple">
+<daodesc>
+<p>Reel 3: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c1e48682837eb86376983747db3a6208">
+<head>Scope and Contents</head>
+<p>band, classical ; Bing Crosby excerpts ; female singer "Trouble is a Man"</p>
+</scopecontent>
+<phystech id="aspace_915d2f4f6488cccfd285bc34320069a6">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref48_d4l" level="item">
+<did>
+<unittitle>Reel 4</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5fc40e184-e531-4e08-9fe8-d5ad7f583154" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">12/1948</unitdate>
+<container id="aspace_3a85974065ca5ef54506657fb60b241a" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_3a2c67baee618883a20da3dec0095ec1" parent="aspace_3a85974065ca5ef54506657fb60b241a" type="reel">4</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wj915nq2674 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 4" xlink:type="simple">
+<daodesc>
+<p>Reel 4: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_4222a2ff53301395de92e8563ec3a136">
+<head>Scope and Contents</head>
+<p>Burl Ives "Twelve days of Christmas" ; spliced up Corinna Mura outtakes (first and last backward) ; Philco 1948 commercial ; next week: Marais & Miranda ; Christmas Seals</p>
+</scopecontent>
+<phystech id="aspace_f3cbaacb055fe82c620c3999cb7ca24c">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref49_mtd" level="item">
+<did>
+<unittitle>Reel 5</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5695ec0dc-2ed5-4b93-89f4-0394e9811912" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_f2cb26b4402bbea834d2f1ec52d0b898" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_e04daeea92f6786523a09f7a68d85def" parent="aspace_f2cb26b4402bbea834d2f1ec52d0b898" type="reel">5</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sv605gf7580 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 5" xlink:type="simple">
+<daodesc>
+<p>Reel 5: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_5a1a440bd873bc4f07db1bf06073fe33">
+<head>Scope and Contents</head>
+<p>orchestra (distorted, disc recording?) mostly blank. "PARIS" written on the IEC hub</p>
+</scopecontent>
+<phystech id="aspace_2d997c43efd90d1982da66229acc0873">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref50_gjc" level="item">
+<did>
+<unittitle>Reel 6</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52c68406c-6422-4387-944a-b14f5cdee7fa" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_f0bb08400909452c628850c65ea97802" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_fd35b16c81824b4e6e7669af9c82c0ba" parent="aspace_f0bb08400909452c628850c65ea97802" type="reel">6</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rc937ww2696 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 6" xlink:type="simple">
+<daodesc>
+<p>Reel 6: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_864a249841d79123923ea19456da26e7">
+<head>Scope and Contents</head>
+<p>probably a talk given at the Bohemian Club (Palmer was active member). Note attached to tape: "#2 Al Gordon-China"</p>
+</scopecontent>
+<phystech id="aspace_2ddf96b6435adeb713f0e3265a72a2c4">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref51_e8r" level="item">
+<did>
+<unittitle>Reel 7</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5267696e9-3b15-4f38-8bbe-9cb25a4b461a" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1948</unitdate>
+<container id="aspace_ce24bd87832b4eff4188efa0082dc8cd" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_9426184cb386e0549c89390066a234b3" parent="aspace_ce24bd87832b4eff4188efa0082dc8cd" type="reel">7</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/df567vs3081 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 7" xlink:type="simple">
+<daodesc>
+<p>Reel 7: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_d2ca3d856b1efc52f75c292250c5726e">
+<head>Scope and Contents</head>
+<p>Philco Radio Show 1948 ; Burl Ives - "Mr. Froggy" (take 1) ; "On Top of Old Smokey" ; Dinah Shore ; Burl Ives, Dinah Shore "Cockle Shells" (end of take 1, start of take 2) ; "Mr. Froggy"</p>
+</scopecontent>
+<phystech id="aspace_5582ffc8c78a7b4aeffc4167782a1828">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref52_5ns" level="item">
+<did>
+<unittitle>Reel 8</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5454364eb-e8aa-45f1-b4e6-1bb694d5d24b" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_3dd9ca0615daa2ae5773294a74a0f7c4" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_058a712cc2aad09d8d2f9f90902b0eb5" parent="aspace_3dd9ca0615daa2ae5773294a74a0f7c4" type="reel">8</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/dx196gr0851 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 8" xlink:type="simple">
+<daodesc>
+<p>Reel 8: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c014f63868e5d18ea47a553dc57ebed8">
+<head>Scope and Contents</head>
+<p>Bing Crosby "Story of Sorrento" (start) ; reversed section ; outtakes reel; cowboy song outtake ; "Pop goes the weasel" ; Foley practice ; Bill Palmer voice "Recording…but not doing well" ; last half silence with hundreds of splices</p>
+</scopecontent>
+<phystech id="aspace_0826153ab58f0304071d89b54805c46e">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref53_uhe" level="item">
+<did>
+<unittitle>Reel 9</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r54dfe3a2d-6af6-4bad-9c4a-669c481ca409" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1950</unitdate>
+<container id="aspace_7060f72eca85abb254718b87cece6aab" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_ed3cea3fb541fbd1d8ba20a9c927597e" parent="aspace_7060f72eca85abb254718b87cece6aab" type="reel">9</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/bx091qh2962 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 9" xlink:type="simple">
+<daodesc>
+<p>Reel 9: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_e513334d7ec66519f56ae8f3c08f4457">
+<head>Scope and Contents</head>
+<p>highly edited 4–H PG&E spot ; 1950 Rainier Beer Commercial (5 takes)</p>
+</scopecontent>
+<phystech id="aspace_b5123a57777a72ccf7856fbb9fa031c4">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref54_3lo" level="item">
+<did>
+<unittitle>Reel 10</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e5ef8344-c206-498f-8d92-81aeab7c734e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_2a0232cc2f5f7dddfa14cbf688a10f51" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_ca7e0bef385bbc5de10708f3d5d1facd" parent="aspace_2a0232cc2f5f7dddfa14cbf688a10f51" type="reel">10</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/qk462hp5179 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 10" xlink:type="simple">
+<daodesc>
+<p>Reel 10: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c9a90ce6e3530eaab97f05a1825308c4">
+<head>Scope and Contents</head>
+<p>folk dancing in California ; announcements ; music</p>
+</scopecontent>
+<phystech id="aspace_4681f78faaa7e2335d11864f221d34ec">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref55_d62" level="item">
+<did>
+<unittitle>Reel 11</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5177d7feb-8a5c-407f-abf8-1f0680fabcf6" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_7fe2b191a92aefe7850cf581f7bd0352" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_8f7406b9f80b379661a5f3e7575162dc" parent="aspace_7fe2b191a92aefe7850cf581f7bd0352" type="reel">11</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/kv708db7839 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 11" xlink:type="simple">
+<daodesc>
+<p>Reel 11: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_e057c38ded10b4b7c1005f229f1599a5">
+<head>Scope and Contents</head>
+<p>Del Monte script repeated many times (only partially recorded)</p>
+</scopecontent>
+<phystech id="aspace_35f6842f3ba73bae2af1e030fb26c7e9">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref56_o8t" level="item">
+<did>
+<unittitle>Reel 12</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r57f337b2a-1973-4e9b-9bd2-793415f10952" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_6bd7451314084442aba2d2b2ab8cbc8d" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_7c9a299b125125981a4d4320bc455524" parent="aspace_6bd7451314084442aba2d2b2ab8cbc8d" type="reel">12</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rg220hs3881 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 12" xlink:type="simple">
+<daodesc>
+<p>Reel 12: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c7cdaaa70f5f3d498df9a7d94122f864">
+<head>Scope and Contents</head>
+<p>34:00 backwards (now corrected)</p>
+</scopecontent>
+<phystech id="aspace_e2f811739be76bb670716b6ee4904cad">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref57_l3e" level="item">
+<did>
+<unittitle>Reel 13</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5308f3dbe-c6db-4afa-99d0-0ff863c70e6c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_5a5258413fde494b039ba925b3ee3eee" label="Audio [36105014450345]" type="Box">4</container>
+<container id="aspace_867eb5b2f4daf163ffd47a86e7c2971b" parent="aspace_5a5258413fde494b039ba925b3ee3eee" type="reel">13</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/df282ns2143 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 13" xlink:type="simple">
+<daodesc>
+<p>Reel 13: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c293670faddaa06075b86e8411cf1e6b">
+<head>Scope and Contents</head>
+<p>high level distorted music ; "Merry Widow" excerpt (from disc) ; Bill Palmer and buddies "Down by the Old Mill Stream" excerpt. "Tests of RPF in Paris" written on hub</p>
+</scopecontent>
+<phystech id="aspace_f2ddb35fa0fc2eb757a25575052d0291">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref58_0i7" level="item">
+<did>
+<unittitle>Reel 14</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r58244d961-7f0b-47ca-974b-63c8bb138ffb" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_9b0294b61e47578afe2d10fedaf148de" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_5f31f1eaa65eb20dda4aff408a8ca515" parent="aspace_9b0294b61e47578afe2d10fedaf148de" type="reel">14</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wy804dk4160 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 14" xlink:type="simple">
+<daodesc>
+<p>Reel 14: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_3585a688b7cca8b1b7c662cfdcc751a3">
+<head>Scope and Contents</head>
+<p>Acme Beer dialogue ; Joe Baldwin Show ; KSFO San Francisco excerpts ; John Nesbitt Passing Parade ; Mutual Broadcasting System ; "A Killer Named Accident" National Safety Council PSA</p>
+</scopecontent>
+<phystech id="aspace_fc29f78d4fb3094e2e73629c90ab8afd">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref59_iqy" level="item">
+<did>
+<unittitle>Reel 15</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5b2229912-8bdd-46ba-ae54-84d15ee5cec5" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_4dbd7ff2c7f4482b6b39e7f562f0d89d" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_babb46cd6f453f2a7b29295f6cc3bd06" parent="aspace_4dbd7ff2c7f4482b6b39e7f562f0d89d" type="reel">15</container>
+</did>
+<scopecontent id="aspace_0d1d64f76a8f80934c91e5fabcd3a282">
+<head>Scope and Contents</head>
+<p>Noise, not digitized.</p>
+</scopecontent>
+<phystech id="aspace_138c08217bd9e09142dcd7982234d638">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref60_9j3" level="item">
+<did>
+<unittitle>Reel 16</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r54ce325fa-6af7-4d07-a157-9941f053783d" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_3dbbe35cfe2707a91244d807e1fec419" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_79c6b4bb5438515350530a87f6562841" parent="aspace_3dbbe35cfe2707a91244d807e1fec419" type="reel">16</container>
+</did>
+<scopecontent id="aspace_31c6b689c1c16b9360b2c470deed66fd">
+<head>Scope and Contents</head>
+<p>Blank, not digitized</p>
+</scopecontent>
+<phystech id="aspace_e0aed6173ac4ce4ec62b8211dc70e2dd">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref61_7k9" level="item">
+<did>
+<unittitle>Reel 17</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5c736b7eb-81a0-4c8b-9c7c-86457f3c1699" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_b4e82f53be1a9b75fa1f5daddcc19681" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_3632c6ccc5eb551dd86c20dc3e717744" parent="aspace_b4e82f53be1a9b75fa1f5daddcc19681" type="reel">17</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/jf472jv0435 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 17" xlink:type="simple">
+<daodesc>
+<p>Reel 17: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_31eda8d3c2334f78002f0a0e9d11cd44">
+<head>Scope and Contents</head>
+<p>Hammond organ doodling, play reading ; Bing Crosby "Story of Sorrento" (end) ; Bing Crosby with Rhythmaires "C'mon Along and Shoot the Breeze" or "Flying W" ? ; "Big Brass Band from Brazil" (take 2, too high vocal, incomplete)</p>
+</scopecontent>
+<phystech id="aspace_b09f3648f1aa31df332d77aa47146680">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref62_vf4" level="item">
+<did>
+<unittitle>Reel 18</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5eaf6a51e-73d2-44f5-8645-b9054fe05610" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_ae0e2198b729ae564b1021a18f301b99" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_1a46e89940d6b3752b8504ae38a756e2" parent="aspace_ae0e2198b729ae564b1021a18f301b99" type="reel">18</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/jm587ps1209 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 18" xlink:type="simple">
+<daodesc>
+<p>Reel 18: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_566d31da2a6dc43d1992146813c96099">
+<head>Scope and Contents</head>
+<p>Ramona Lewis voice tests (probably from disc) ; aerodynamics dialogue</p>
+</scopecontent>
+<phystech id="aspace_c55b1800ae74fd8d8688bcd5ee5ba2e1">
+<head>Formt</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref63_rm1" level="item">
+<did>
+<unittitle>Reel 19</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r58a1ebcdf-39cb-4aac-bde9-260dd5d67f31" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_719b2ec184cc889443116f9299fdffba" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_cd03121782d161aa115af60826543546" parent="aspace_719b2ec184cc889443116f9299fdffba" type="reel">19</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/gd505sb6143 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 19" xlink:type="simple">
+<daodesc>
+<p>Reel 19: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_6531ddb2eb99e1ad3686e47e3548abbb">
+<head>Scope and Contents</head>
+<p>very short miscellaneous pieces ; standup comedian ; Bing Crosby Minute Maid commercial and announcements to be used on the air</p>
+</scopecontent>
+<phystech id="aspace_81afe4e42b214c8dc9831d81d15498f8">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref64_v9y" level="item">
+<did>
+<unittitle>Reel 20</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r59a092368-b215-475e-907d-907fc9a0af42" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_22cba6af958612997ff5aedf574329ba" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_64fbede565d2b37dedec8bdcc1b13a73" parent="aspace_22cba6af958612997ff5aedf574329ba" type="reel">20</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/hf288qw8339 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 20" xlink:type="simple">
+<daodesc>
+<p>Reel 20: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_ba8d09532cacef5f87c3df336ce8238e">
+<head>Scope and Contents</head>
+<p>ski clothes fashion show at Sun Valley ; Bill Palmer talking about movies and television ; Palmer, a woman, and team packing up equipment ; section in reverse: Roos Brothers commercial ; Bing Crosby "Blue of the Night" ; "160 acres"</p>
+</scopecontent>
+<phystech id="aspace_e8e9b395770b40dd3a2cecc790f6065d">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref65_g02" level="item">
+<did>
+<unittitle>Reel 21</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5746a1b74-728f-4770-827b-812966dedb9f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_32520e7aae3b50713295e27f8f6b5142" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_40a606ea89d603767e99d498812840ba" parent="aspace_32520e7aae3b50713295e27f8f6b5142" type="reel">21</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/km696gj5696 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 21" xlink:type="simple">
+<daodesc>
+<p>Reel 21: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_0d9cbd0f4aab613d396bb4fa9c5ad0dc">
+<head>Scope and Contents</head>
+<p>Sun Valley ski promotional piece</p>
+</scopecontent>
+<phystech id="aspace_aa8ac5af320d5df3c7a291ad363c5089">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref66_4qr" level="item">
+<did>
+<unittitle>Reel 22</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52bd2a696-7bca-4da7-ac12-16239bd3f918" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_cb6869e287d42fcbf8ef96a75e0622be" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_174c44c9727364ba5204a5724a49872e" parent="aspace_cb6869e287d42fcbf8ef96a75e0622be" type="reel">22</container>
+</did>
+<scopecontent id="aspace_7e2f1a660ad1f1f7f08827a9999d196a">
+<head>Scope and Contents</head>
+<p>traffic safety PSA ; logging promotion ; Del Monte pineapple ad. Not digitized.</p>
+</scopecontent>
+<phystech id="aspace_1b8419f32b2028a00cdd22573425bfdd">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref67_4g5" level="item">
+<did>
+<unittitle>Reel 23</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52727dcc6-d7eb-494c-a9f2-7c73eb5e4add" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_73c1f5950244614699ba98e2745a7ec9" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_78626494cb80c524b2bad0f6e5d990a4" parent="aspace_73c1f5950244614699ba98e2745a7ec9" type="reel">23</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sc819bx4138 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 23 Crosby portion" xlink:type="simple">
+<daodesc>
+<p>Reel 23 Crosby portion: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_408fcba10c9876a563e7e6a40aead53a">
+<head>Scope and Contents</head>
+<p>judging beef cattle: the Junior Grand National at the Cow Palace. Near the end, Bing Crosby sings "Peg-o-My-Heart." ONLY "Peg-o-My-Heart" was transferred.</p>
+</scopecontent>
+<phystech id="aspace_e48ae680b752f839ac2a28df7b6e67a0">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref68_o10" level="item">
+<did>
+<unittitle>Reel 24</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r575cfe198-9650-40c2-a953-cb36b110f3a0" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_d33016593b40cbdbc0af297b3266eac4" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_ffe36ea35dc35968d2f81bb390172d04" parent="aspace_d33016593b40cbdbc0af297b3266eac4" type="reel">24</container>
+</did>
+<scopecontent id="aspace_c7cea2823b4f4e4c8ebc4e57d60f3f1f">
+<head>Scope and Contents</head>
+<p>medical talk for about two minutes near the start, most of tape is blank. not digitized.</p>
+</scopecontent>
+<phystech id="aspace_e2b89f65c930c07e917957df17f6d5a1">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref69_xk2" level="item">
+<did>
+<unittitle>Reel 25</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r576ee6792-0f3e-4dd1-a2cb-92f81128ee68" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_fa1fa95d92e6fe90841d569c94ae4f65" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_ffdf6f2d342cd8480db788416f82c1fe" parent="aspace_fa1fa95d92e6fe90841d569c94ae4f65" type="reel">25</container>
+</did>
+<scopecontent id="aspace_dd4131edd17c6ad3701bfcbeb5096648">
+<head>Scope and Contents</head>
+<p>untransferrable ; "dark brown oxide, stiff, cupped"</p>
+</scopecontent>
+<phystech id="aspace_90acff5c5762b17014ac72107a45e2d5">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref70_gp2" level="item">
+<did>
+<unittitle>Reel 26</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51f1409de-4d6e-4f58-a2cb-9d9735c84470" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_ec29178f9e8def5e8844786e2505b294" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_59d21e9c50d9c77a4af484a04d5f7421" parent="aspace_ec29178f9e8def5e8844786e2505b294" type="reel">26</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cg680wg0855 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 26" xlink:type="simple">
+<daodesc>
+<p>Reel 26: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_f30ccb3762132e86c1649e9f08171ab8">
+<head>Scope and Contents</head>
+<p>R-rated story teller ; attacking Florence, Italy ; "This is number 10, 9... " etc. ; Bill Palmer singers - production song ; scissors sharpener commercial</p>
+</scopecontent>
+<phystech id="aspace_6d53455ee82b243230fc28d0347d9a07">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref71_0oc" level="item">
+<did>
+<unittitle>Reel 27</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5c3ff5500-5f88-4387-b481-5204b6d02181" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_534b095e251b02d22e0d9e1599ca4001" label="Audio [36105014450337]" type="Box">3</container>
+<container id="aspace_96a02f704bf91ec0f38b5b3e4046f1b2" parent="aspace_534b095e251b02d22e0d9e1599ca4001" type="reel">27</container>
+</did>
+<scopecontent id="aspace_56d46f01d8f0f269350adf68f926d912">
+<head>Scope and Contents</head>
+<p>medical presentation for entire length, not digitized.</p>
+</scopecontent>
+<phystech id="aspace_b35cc0a706ba6a9489e05800973f729c">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+</c>
+<c id="aspace_ref72_byj" level="item">
+<did>
+<unittitle>Reel 28</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r582f16264-79e1-4b02-8d41-4121f6549393" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_2cba730db4878044424898e72e5d40fe" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_eefc378a73a764e0d8b45db2f6216e10" parent="aspace_2cba730db4878044424898e72e5d40fe" type="reel">28</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/yw855gt6477 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 28" xlink:type="simple">
+<daodesc>
+<p>Reel 28: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_2027fafefaeacf96a193bfacb7bb93f1">
+<head>Scope and Contents</head>
+<p>political speech excerpts re: taxation outtakes ; two little boys fable (re: sports) with music introduction</p>
+</scopecontent>
+<phystech id="aspace_b9c3bf6c3008702f8f56cec9a06db6d8">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref73_05u" level="item">
+<did>
+<unittitle>Reel 29</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5c0ffab61-53b0-44ba-995a-8ea4ed82dc3f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_2976a98017909511ca0e17da2e6e1b55" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_a04f2d3eedd9672e81e7308bde60a624" parent="aspace_2976a98017909511ca0e17da2e6e1b55" type="reel">29</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ht857hm9576 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 29" xlink:type="simple">
+<daodesc>
+<p>Reel 29: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_4bf9cadaf92d777c2baf06e903a05000">
+<head>Scope and Contents</head>
+<p>concrete instructional film soundtrack ; miscellaneous film excerpts ; music snippets ; "O Susanna" ; "California Here I Come" ; "San Francisco"</p>
+</scopecontent>
+<phystech id="aspace_456f6b91cfd1e4131f216df0397156fa">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref74_91z" level="item">
+<did>
+<unittitle>Reel 30</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5053780cd-90fe-4b53-a830-5bc740c7452c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_8a428ef502d49b982597b6aa2ce5f245" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_36124ff40bacd67cbb30395402771c4e" parent="aspace_8a428ef502d49b982597b6aa2ce5f245" type="reel">30</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ys877kk8883 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 30" xlink:type="simple">
+<daodesc>
+<p>Reel 30: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_6001fe733a0189ae36af42b6073daf37">
+<head>Scope and Contents</head>
+<p>Bing Crosby snippets ; St. Patrick's Day closure announcement (prob. outtake) ; sound effects</p>
+</scopecontent>
+<phystech id="aspace_fd4373f279d4ee8e600c65e1b157eb24">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref75_fss" level="item">
+<did>
+<unittitle>Reel 31</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5fdf8c957-a060-4475-903f-5eb99ee3694c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_6743112adf8da41ecf6db36b5e552830" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_3fdd5012266cc89f57ac44b634b61a8c" parent="aspace_6743112adf8da41ecf6db36b5e552830" type="reel">31</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/bs380qs6014 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 31" xlink:type="simple">
+<daodesc>
+<p>Reel 31: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_14352bcc9b33f6d3da3956fe03a2631f">
+<head>Scope and Contents</head>
+<p>kazoo, bells, misc. ; "Good King Wenceslas" ; "Jack you ought to provide me with the right instruments…like a good harmonica" ; High Fidelity CSTM? with accent? ; McCann Ericson copy reading ; portion of Mallotte? ; setting of The Lord's Prayer (choir) ; segue to "O Come All Ye Faithful" (hummed) ; segue to "Ode to Joy" (Beethoven) ; orchestral, backwards piece</p>
+</scopecontent>
+<phystech id="aspace_bffe259c05919cb94d16fb9c4b7853bf">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref76_qkv" level="item">
+<did>
+<unittitle>Reel 32</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5bb812303-7207-44ef-9d3e-cd667e7a3b9d" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_85ee83db3bd2df8eeb6c9a15a6edd638" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_f0efaf2be6b8f3ea93add646b56d2861" parent="aspace_85ee83db3bd2df8eeb6c9a15a6edd638" type="reel">32</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cd199xn9558 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 32" xlink:type="simple">
+<daodesc>
+<p>Reel 32: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_8083d5d5e9f979384d9819e279c31c9e">
+<head>Scope and Contents</head>
+<p>film narration ; "For every action there is an equal and opposite reaction"</p>
+</scopecontent>
+<phystech id="aspace_f1c2200eb5c7de8561ae193dcdc99682">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref77_svw" level="item">
+<did>
+<unittitle>Reel 33</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r55eba50d0-dcbe-4325-a36a-983e442d575d" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_7aa48a151604e0f5a2f021978aa5b8bf" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_12c8ea1d2f91fe53d07b1c9f2c2c73b5" parent="aspace_7aa48a151604e0f5a2f021978aa5b8bf" type="reel">33</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/yw514jj3122 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 33" xlink:type="simple">
+<daodesc>
+<p>Reel 33: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_b84f24bdf416a2cf624c8e4b7366a6db">
+<head>Scope and Contents</head>
+<p>orchestral music</p>
+</scopecontent>
+<phystech id="aspace_b6f9ed129a0793de42f01de8b6e11893">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref78_m82" level="item">
+<did>
+<unittitle>Reel 34</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r575d83b2b-2c02-4cd4-9353-adecc19d903b" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1947-12-24</unitdate>
+<container id="aspace_e42f2ff3efac70b146687cfdfce042fe" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_b1ca5e810d95d50cb40eae6cef6435df" parent="aspace_e42f2ff3efac70b146687cfdfce042fe" type="reel">34</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cc572nn2101 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 34" xlink:type="simple">
+<daodesc>
+<p>Reel 34: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_479fce0e947b39bb706a8150f7c1fb24">
+<head>Scope and Contents</head>
+<p>Christmas Eve 1947 ; "White Christmas" ; Charles Taswell's Christmas play "The Small One" ; "Silent Night." Edited file also included.</p>
+</scopecontent>
+<phystech id="aspace_8c7242152cc8561fce2ba16d84f6030f">
+<head>Format</head>
+<p>Audio tape, .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref79_2rn" level="item">
+<did>
+<unittitle>Reel 35</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5aed09b22-7ae4-44d8-87ed-0f9a55084742" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_bba807b816ec80507c29ddb9eef12204" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_13a83051705704dc2f25455c7f677851" parent="aspace_bba807b816ec80507c29ddb9eef12204" type="reel">35</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/qc434hw2235 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 35" xlink:type="simple">
+<daodesc>
+<p>Reel 35: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_17e249396e0f3b8621ab30c60bc800c8">
+<head>Scope and Contents</head>
+<p>hot water from the beginning of time ; bronze (glitches...is this a dub from optical?) ; Automatic Electric Water Heater ; PG&E wage increase discussions ; power shortage of 1947 ; Utility Worker's Union of America ; The American Broadcasting Company sponsor ; KGO ; SFO</p>
+</scopecontent>
+<phystech id="aspace_06da6ccad2a68a4126c54868824aa21c">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref80_3hv" level="item">
+<did>
+<unittitle>Reel 36</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5d9723e33-5ae0-4446-bbb1-cc5612b421ed" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_27afe84be55cadc09773bd44d09aaf11" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_5a6c3847ed6ec4d36a21de73a9f14efe" parent="aspace_27afe84be55cadc09773bd44d09aaf11" type="reel">36</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/dy035pz4839 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 36" xlink:type="simple">
+<daodesc>
+<p>Reel 36: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_439bb08d7c709e01ee4f3c3889fdd2a0">
+<head>Scope and Contents</head>
+<p>"Story of Sorrento" beginning ; Oscar Levant ; Peggy Lee "The Man I Love." "Spliced tape to use" on paper sleeve</p>
+</scopecontent>
+<phystech id="aspace_545688f8bbf0c86bf1b85b303b5c8812">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref81_zr8" level="item">
+<did>
+<unittitle>Reel 37</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r500d69553-91dd-4fb3-87cc-23cbd5b566c3" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_b6fb15c8eda8f5bdb9860914e9f61577" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_8e74c8dd691ed40cfbc8f9c70dd5da04" parent="aspace_b6fb15c8eda8f5bdb9860914e9f61577" type="reel">37</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cd526ny9204 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 37" xlink:type="simple">
+<daodesc>
+<p>Reel 37: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_9d239e08b87aea6ba0958ce5546cb1b3">
+<head>Scope and Contents</head>
+<p>orchestral excerpts. "MGM Hammond Organ" on hub label</p>
+</scopecontent>
+<phystech id="aspace_64c65a557ae7a66ef80b3a462415e95b">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref82_t05" level="item">
+<did>
+<unittitle>Reel 38</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5844c5e36-3942-4d47-8e17-3532f1b04e99" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_5e8509c4d8074421dc9cdfecb936f426" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_ddc037c0b166de1c526342760ddfd624" parent="aspace_5e8509c4d8074421dc9cdfecb936f426" type="reel">38</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/zj838kt1376 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 38" xlink:type="simple">
+<daodesc>
+<p>Reel 38: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_00b026116a99487399226d3338e5de02">
+<head>Scope and Contents</head>
+<p>Del Monte pineapples specialized machine soundtrack</p>
+</scopecontent>
+<phystech id="aspace_54e5d4e45f03ddf547158270305f095d">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref83_rp9" level="item">
+<did>
+<unittitle>Reel 39</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r520ceba26-a1d1-40a9-8364-40aea0e697e9" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1949</unitdate>
+<container id="aspace_d0cb219eedb96c33a05bf859ba426b50" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_7cd0cc888d396e9d4a6e6aec2cb0e517" parent="aspace_d0cb219eedb96c33a05bf859ba426b50" type="reel">39</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ks319ns8294 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 39" xlink:type="simple">
+<daodesc>
+<p>Reel 39: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_52e393dfb521c9097d9dcc29b5720e77">
+<head>Scope and Contents</head>
+<p>toy songs snippets ; plum harvest then grapes ; migrant workers ; strike ; "The Di Giorgio Story" 1949</p>
+</scopecontent>
+<phystech id="aspace_94032dca092366203df6fc528a11cb2d">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref84_gx8" level="item">
+<did>
+<unittitle>Reel 40</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e408a3b2-dcd8-4cff-8e50-2d416fe4645f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_eb3e0b2beab0a2557c2d974f70f7957a" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_76c743fc280713b76c2763f5a4e7d1c1" parent="aspace_eb3e0b2beab0a2557c2d974f70f7957a" type="reel">40</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/qy946vm5262 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 40" xlink:type="simple">
+<daodesc>
+<p>Reel 40: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_88830fcc33fc260ef392af0ce6ddd994">
+<head>Scope and Contents</head>
+<p>announcement snippets ; "return of competitive selling" beeps (filmstrip?) ; motivational talk, sales. "Rerro [Remo?] Phono" on sleeve</p>
+</scopecontent>
+<phystech id="aspace_d8c2d41d8318e1dc881c95f32aff990f">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref85_6ir" level="item">
+<did>
+<unittitle>Reel 41</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r50f5d9cb1-ebeb-4e10-a468-fbe5cb18c28f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_28c345608a4d0bf59031cf8e558ae07d" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_ff417cb3db6dd3f0577625c442733be8" parent="aspace_28c345608a4d0bf59031cf8e558ae07d" type="reel">41</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rs244jd1830 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 41" xlink:type="simple">
+<daodesc>
+<p>Reel 41: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_9492532f9da509794518429fd226d648">
+<head>Scope and Contents</head>
+<p>Sonoran Desert ; says "Cut, Bill" (so is the narrator Bill Palmer?) ; horse dialogue ; a few snippets, mostly silence ; classical music ; kid baseball through window dialogue. "Pop mus off air" written on sleeve (not found), "Captain Williams Birds" label on hub</p>
+</scopecontent>
+<phystech id="aspace_b263d84abab604698893b2ae77c6d1b4">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref86_s2g" level="item">
+<did>
+<unittitle>Reel 42</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51a02b23a-d0ef-4eaf-bf20-5f42fe1f902e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_a22677e9de209457964f22e8e4b856d5" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_2ca0463c125c3eb8cba777c6646f8032" parent="aspace_a22677e9de209457964f22e8e4b856d5" type="reel">42</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/nv596qr9356 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 42" xlink:type="simple">
+<daodesc>
+<p>Reel 42: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_afbc1cf4013fe5887a238abe74006f15">
+<head>Scope and Contents</head>
+<p>probable outtakes ; [aircraft?] engine starting & takeoff ; Bing Crosby and Peggy Lee "Dearly Beloved" and "White Christmas" (take 2) ; Peggy Lee and Bing Crosby "Catalog Day" ; "Dearly Beloved" and "White Christmas." "Instruments of the Orchestra" written on sleeve</p>
+</scopecontent>
+<phystech id="aspace_416e7878ea94042cba8c4edbcb3bc592">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref87_beo" level="item">
+<did>
+<unittitle>Reel 43</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5599d8b60-e815-418d-a26b-176113d2a465" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_be077a36d43669d73e0fc98fa4ae22e6" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_75c59bc2589e3840a2bc9d6f66223435" parent="aspace_be077a36d43669d73e0fc98fa4ae22e6" type="reel">43</container>
+</did>
+<scopecontent id="aspace_38ae7de1b7f0c01bb90a960e78ed5dc8">
+<head>Scope and Contents</head>
+<p>one minute of tape noise, otherwise blank</p>
+</scopecontent>
+<phystech id="aspace_301b8d3e295fea4c3917062163728227">
+<head>Format</head>
+<p>Audio tape</p>
+</phystech>
+<processinfo id="aspace_1ededbafa6ddced0649b100522736b2d">
+<head>Processing Information</head>
+<p>Not preserved in the Stanford Digital Repository as tape was identified as blank during playback.</p>
+</processinfo>
+</c>
+<c id="aspace_ref88_hu1" level="item">
+<did>
+<unittitle>Reel 44A</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5182974a6-af72-4090-bac4-db9842cd7dec" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_5a27505b6f0acdb9431a989a2f2d0d2d" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_33d216eb22f6eefac9f93f0203159c4b" parent="aspace_5a27505b6f0acdb9431a989a2f2d0d2d" type="reel">44A</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/xw133bv6376 " xlink:role="audio-master-edited" xlink:show="new" xlink:title="Reel 44A" xlink:type="simple">
+<daodesc>
+<p>Reel 44A: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_9926d8ae91ee98d9d0efb2ba1f2c8a08">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+<processinfo id="aspace_69a6041916b12aa846e2e23ec57a561c">
+<head>Processing Information</head>
+<p>The transfers of reels 44 A & B were joined in a single sound file</p>
+</processinfo>
+<scopecontent id="aspace_47eb880f6fbf5df06bbba0dcbc271801">
+<head>Scope and Contents</head>
+<p>Wilbur Ellis Company soundtrack ; tour of Peru ; bonito versus tuna fish</p>
+</scopecontent>
+</c>
+<c id="aspace_ref89_0r8" level="item">
+<did>
+<unittitle>Reel 44B</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5dd70eb36-2dcb-47b7-952f-c433b34cda50" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_176e4c8605fee8a9c51be3d0625735b3" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_1c70fb17f5d92d90cdfee8e337b7fe5f" parent="aspace_176e4c8605fee8a9c51be3d0625735b3" type="reel">44B</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/xw133bv6376 " xlink:role="audio-master-edited" xlink:show="new" xlink:title="Reel 44B" xlink:type="simple">
+<daodesc>
+<p>Reel 44B: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_c7982e579c966040bb87fc2e27fbae0a">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+<processinfo id="aspace_a1f005e703ffb42c270451f419299a0a">
+<head>Processing Information</head>
+<p>The transfers of reels 44 A & B were joined in a single sound file</p>
+</processinfo>
+<scopecontent id="aspace_1c5e28a9a2f12ee9499ff24ca655db1b">
+<head>Scope and Contents</head>
+<p>Wilbur Ellis Company soundtrack ; tour of Peru ; bonito versus tuna fish</p>
+</scopecontent>
+</c>
+<c id="aspace_ref90_jk8" level="item">
+<did>
+<unittitle>Reel 45</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5f7805933-3ca8-4f31-9dc7-12e8fa190612" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_55dea339a44d758dc6d3b272602a59a5" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_2fb5e22a46815377397aff228b32d4d1" parent="aspace_55dea339a44d758dc6d3b272602a59a5" type="reel">45</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/zm621tx1290 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 45" xlink:type="simple">
+<daodesc>
+<p>Reel 45: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_12e3741b5884a616c2a5e57d560f8af6">
+<head>Scope and Contents</head>
+<p>film soundtrack snippets: dysentery in small animals ; Jerry Colonna "You Haven't Changed At All" ; "Call for Philip Morris" ; snippets</p>
+</scopecontent>
+<phystech id="aspace_abbacd8cde9b961610a1f699550baaa8">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref91_uqh" level="item">
+<did>
+<unittitle>Reel 46</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51bbed575-047d-432d-8704-243e815082c4" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1948</unitdate>
+<container id="aspace_21254489304472630dedd5cd1329c553" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_32c9de06cf17c8702bca997a6da178d7" parent="aspace_21254489304472630dedd5cd1329c553" type="reel">46</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/xw235wm3382 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 46" xlink:type="simple">
+<daodesc>
+<p>Reel 46: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_af9e5655fc78fc54b9f357c433ec4ec8">
+<head>format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+<scopecontent id="aspace_548344b8cf3c4c21ffce84835c413a31">
+<head>Scope and Contents</head>
+<p>Burl Ives ; South African singers Josef Marais and Miranda 1948 ; "Jimmy Crack Corn" (theme) ; "Sweet Betsy from Pike" ; quartet "How A Rose is Blooming." Edited file appending Reel 63 also available.</p>
+</scopecontent>
+</c>
+<c id="aspace_ref93_yep" level="item">
+<did>
+<unittitle>Reel 47</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5af8514cf-367d-4af2-b732-9d5f80950727" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_a36af52cadc4b1a13652bf4820aa3a02" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_01f15dfeba9c46675e32c707dc42a51f" parent="aspace_a36af52cadc4b1a13652bf4820aa3a02" type="reel">47</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/fc286gy9661 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 47" xlink:type="simple">
+<daodesc>
+<p>Reel 47: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_794dab560dc409a07912f24d880db5ca">
+<head>Scope and Contents</head>
+<p>asking Jack to be quiet ; "make your colors sing" ; woman producer-director ; announcer is Stu ; Pine Tour. "Kray Dialogue" on envelope label</p>
+</scopecontent>
+<phystech id="aspace_ebe0dd549deb8995d3505a3ad43b0c7f">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref94_hf3" level="item">
+<did>
+<unittitle>Reel 48</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5f2e03552-fb82-41d9-9ab1-8b1d47c38b00" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_77587c0323641d841193f4039791688c" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_b5f5033a6ca509ece706849ab4ba0bd2" parent="aspace_77587c0323641d841193f4039791688c" type="reel">48</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/vv367qv6652 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 48" xlink:type="simple">
+<daodesc>
+<p>Reel 48: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_1d3b6049bd8ffb735cd4052171a9797b">
+<head>Scope and Contents</head>
+<p>Cresta Blanca Wine Chef's Club with host Dean Jennings - intro only ; "Union must give a complete account…" ; "Non-communist affidavit for employers also" ; Fifth District Congressional race ; Y.J. Cosgrove not depicted as a puppet ; Tuesday November eighth</p>
+</scopecontent>
+<phystech id="aspace_1008d461218da6fba0c03fd66d46ac75">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref95_k2h" level="item">
+<did>
+<unittitle>Reel 49</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r585f97bfa-a283-4637-bb47-a65f85d11793" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_580e8e316881f2c92be06a9fb6e327ce" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_06552f6ca94f5297e641b1bb46193ed3" parent="aspace_580e8e316881f2c92be06a9fb6e327ce" type="reel">49</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cd213xt2373 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 49" xlink:type="simple">
+<daodesc>
+<p>Reel 49: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_bb9ff7a1f2e552f1c9e14dc547a9efbd">
+<head>Scope and Contents</head>
+<p>classical music and other snippets ; skiing, winter vacation Sun Valley etc. ; Chapter nine ; sorting and opening mail ; pamphlet on skiing</p>
+</scopecontent>
+<phystech id="aspace_2a21fdd469e4888246bc19bc80f9bd83">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref96_ozw" level="item">
+<did>
+<unittitle>Reel 50</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r530a10855-d2e5-45a9-bac0-5bf15cd9ea1b" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1950</unitdate>
+<container id="aspace_db49f151ca5c19c9533b2ef8abf6a9be" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_809dfcf374931ffa13e32ddc0676db80" parent="aspace_db49f151ca5c19c9533b2ef8abf6a9be" type="reel">50</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/vv810nq7492 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 50" xlink:type="simple">
+<daodesc>
+<p>Reel 50: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_5f8883e3b7b6fb35a82258082f3c6960">
+<head>Scope and Contents</head>
+<p>lip synch Gray-Wilcox tape recorder ; Acme Beer promotional plans 1950 beeps (filmstrip?) ; Operation 'Do it'" ; "Acme Hot Time" radio show ; Peggy Lee for Acme "Let's Do It"</p>
+</scopecontent>
+<phystech id="aspace_fb3397b5e3bf555cac3d6b3a70816dea">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref97_qun" level="item">
+<did>
+<unittitle>Reel 51</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5b4dbf005-1936-4eab-af5a-a0d50271034e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1950</unitdate>
+<container id="aspace_ab76f43133dfd6169ad3e7df9df00645" label="Audio [36105014450311]" type="Box">1</container>
+<container id="aspace_50b65eb3a0c1b5ecdd9391a5d52dceb2" parent="aspace_ab76f43133dfd6169ad3e7df9df00645" type="reel">51</container>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/gh278fw1497 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 51" xlink:type="simple">
+<daodesc>
+<p>Reel 51: digitized 2003</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_d45e894df294e5d0c747e7ca561276de">
+<head>Scope and Contents</head>
+<p>Bing Crosby and unknown with piano "La Vie en Rose" in French; "Blue of the Night" ; "Someone Waits for Me" ; Claudette Colbert announced later ; "Thousand Island Song" ; "Yodel Song" (incomplete) ; welcome to Claudette Colbert ; 1955 in the future ; Acme Beer 1950</p>
+</scopecontent>
+<phystech id="aspace_e13493c365f23866c6e0ffafc9231469">
+<head>Format</head>
+<p>Audio tape, Digital .wav audio file</p>
+</phystech>
+</c>
+</c>
+<c id="aspace_ref40_u4e" level="subseries">
+<did>
+<unittitle>Tape Segments</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5ac143b41-ddae-4fd2-b14b-0166b0406de4" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref41_n2k" level="item">
+<did>
+<unittitle>Segments 14-16, 18-23</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5929557e5-e904-411f-983c-c88524a33775" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<container id="aspace_3121795ffb44fad29cab44651e3590e3" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_950f8189e43d345f75bc2563e468138f" parent="aspace_3121795ffb44fad29cab44651e3590e3" type="Box">1</container>
+<container id="aspace_a077be16291be7cb769c6846f415bde1" parent="aspace_950f8189e43d345f75bc2563e468138f" type="reel">1</container>
+</did>
+</c>
+<c id="aspace_ref42_dzs" level="item">
+<did>
+<unittitle>Segment 17</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r54cacc79e-9e52-4c5c-9420-7f3b049cd4fd" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 audiotape reel(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1948-02</unitdate>
+<container id="aspace_adb5e55e88162807d628badb53626022" label="Audio [36105014450329]" type="Box">2</container>
+<container id="aspace_dc2a02e137ff131611967c2b69479213" parent="aspace_adb5e55e88162807d628badb53626022" type="Box">2</container>
+<container id="aspace_05168635436f6c8dcb52c3f21c809c4c" parent="aspace_dc2a02e137ff131611967c2b69479213" type="reel">1</container>
+</did>
+<scopecontent id="aspace_b944570264344d40f776edbd607ccbc9">
+<head>Scope and Contents</head>
+<p>Assembled with and transferred as part of Februrary 1948 Bing Crosby Show recording, aka "Audiotape_Hubless_Crosby_Show_Assembled"</p>
+</scopecontent>
+</c>
+</c>
+<c id="aspace_ref33_0wp" level="subseries">
+<did>
+<unittitle>German tape parts and packaging</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r547e6b1a6-e48b-4493-b7c2-cb031eee2de4" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 box(es)</extent>
+</physdesc>
+<unitdate datechar="creation">circa 1943</unitdate>
+<container id="aspace_7f2e9cddc5d5c6b4ae3b6808d4d9db58" label="Realia [36105014450352]" type="Box">5</container>
+<container id="aspace_f599ff2a5d72bf2c25065f37bdf35c6e" label="Realia [36105014450360]" type="Box">6</container>
+</did>
+</c>
+</c>
+<c id="aspace_ref34_gfd" level="series">
+<did>
+<unittitle>Series 2. Eve Mullin Collier</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r53e5577b7-5380-4ef7-847c-90d6a7dabe91" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">31 computer file(s)</extent>
+</physdesc>
+</did>
+<acqinfo id="aspace_c38f14cb5260b24cf646eccfb2d6ec00">
+<head>Source of Acquisition</head>
+<p>Tapes in this series borrowed, transferred, and returned to Jack Mullin's daughter, Eve Mullin Collier in 2008.</p>
+</acqinfo>
+<c id="aspace_ref38_e79" level="subseries">
+<did>
+<unittitle>Reels 52-63</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5a579d099-a083-4e82-adff-29be6ada628a" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref101_ns9" level="item">
+<did>
+<unittitle>Reel 52</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r501faf296-288a-4b87-bece-b19826337269" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1948-02-04</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/vg406wy3036 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 52" xlink:type="simple">
+<daodesc>
+<p>Reel 52: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_5ab8777d5a3c0bd9bc8a35d7f7963b35">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+<scopecontent id="aspace_196318ced2608c2839995dc83560228f">
+<head>Scope and Contents</head>
+<p>demonstration tape found on Magnetophon at time of Mr. Mullin's death in June 1999: Lutz Templin "Hot Love" announced in German ; Bing Crosby and Burl Ives "Cross the Wide Missouri" ; Chesterfield commercial ; "Too Late Now" (with outtakes) ; Burl Ives and Cache County Boys in San Francisco ; Chesterfield ad ; "Only One" ; Jimmy Durante with Bing Crosby Feb. 4, 1948 ; Lutz Templin "When Lights are Low"</p>
+</scopecontent>
+</c>
+<c id="aspace_ref102_l22" level="item">
+<did>
+<unittitle>Reel 53</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r523292e66-615c-4217-b0b8-ed2cb93a6518" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cv756mt6227 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 53" xlink:type="simple">
+<daodesc>
+<p>Reel 53: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_bc308fda8bd69300ce106fd5e3b8ff89">
+<head>Scope and Contents</head>
+<p>Jack Mullin's Magnetophon Demo Tape 1 (for machine A? from ETs?) "It Ain't Fair" Bing Crosby ; "I Hadn't Anyone" Ella Fitzgerald ; "Rosie" Al Jolson and Bing Crosby ; "Georgia" Pearl Bailey ; "With My Eyes Wide Open" Bing Crosby ; "The Night We Were Young" ; Bing Crosby ; "Yodel Blues" Bing Crosby ; "City Billy Song" Fred Allen ; "Wonderful Guy" Mary Martin (portion)</p>
+</scopecontent>
+<phystech id="aspace_d856003ed361ebb6d7d843432fef0c00">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref103_d46" level="item">
+<did>
+<unittitle>Reel 54</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r53c99ab1a-232e-417f-9442-bcc76332f942" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1947</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pd475gs7738 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 54" xlink:type="simple">
+<daodesc>
+<p>Reel 54: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_69e056c976a85c2c49e42185fdd71924">
+<head>Scope and Contents</head>
+<p>Magnetophon tape—this is the only reel that contains an original excerpt from a Crosby show recorded in 1947: Jimmy Durante segment ; "Dear Old Donegal" (excerpt) ; "One Saturday Night" Dinah Shore? ; "Galway Bay" Bing Crosby ; "Oh I Want To Go Back to that Tumbledown Shack Where the Wild Roses Bloom Around the Door" In Athelon?" Bing Crosby ; Prince Charming dialogue, multiple takes ; "Where the Blue of the Night … A Shamrock Waits For Me" ; rest is Lutz Templin Orch from Germany (believed to be a copy, quality so-so)</p>
+</scopecontent>
+<phystech id="aspace_f72a4811a2bee9783fe47cf28c3cd13a">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref104_awe" level="item">
+<did>
+<unittitle>Reel 55</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5247e22b2-d7d1-4584-8454-f703b35e6c67" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cw003cc1662 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 55" xlink:type="simple">
+<daodesc>
+<p>Reel 55: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c81a4658b97e57539ddec7bd2ce76b18">
+<head>Scope and Contents</head>
+<p>"On Top Of Old Smokey" Bing Crosby and Burl Ives ; "May The Good Lord Bless and Keep You" Bing Crosby ; "Listen My Loved Ones" Bing Crosby ; "Some Enchanted Evening" Bing Crosby ; "My Happiness" Ella Fitzgerald ; "Mam'selle" Bing Crosby ; "Someday You'll Want Me" Mills Brothers</p>
+</scopecontent>
+<phystech id="aspace_a282e66845943499e3f52ae6722dd991">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref106_qdi" level="item">
+<did>
+<unittitle>Reel 56</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5c9b03d81-dc5a-4a4e-91b1-ffd8aec4fa8b" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 Files</extent>
+</physdesc>
+</did>
+<scopecontent id="aspace_69bd440c70e2a55d5c53654752e210c8">
+<head>Scope and Contents</head>
+<p>blank, not digitized</p>
+</scopecontent>
+</c>
+<c id="aspace_ref107_3qm" level="item">
+<did>
+<unittitle>Reel 57</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5330a28ab-e0a9-477e-be20-452c35654c4a" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ms842vw3982 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 57" xlink:type="simple">
+<daodesc>
+<p>Reel 57: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_ebcd667eb85c13cf33218af8d3f6eb78">
+<head>Scope and Contents</head>
+<p>Magnetophon demo tape #5 Copy from 15: Ampex excerpts (EQ haywire) "In the Heart of a Fool" ; "You're So Glamorous" Bing Crosby ; "On Top of Old Smokey" Burl Ives ; "Old Chisholm Trail" ; "Tennessee Waltz" Bing Crosby ; "Mona Lisa" Nat King Cole ; "Qui Sas, Qui Sas, Qui Sas" Bing Crosby ; "Oceana Roll" unidentified female vocal ; "Would I Love You" Peggy Lee ; "Love is Funny" ; "Autumn Leaves" Bing Crosby</p>
+</scopecontent>
+<phystech id="aspace_c992d8712ba5cad8ff8c683abed0e25d">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref108_icu" level="item">
+<did>
+<unittitle>Reel 58</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r560af2810-2b79-4726-987b-70e7c5450208" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ch317yy9353 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 58" xlink:type="simple">
+<daodesc>
+<p>Reel 58: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_ad96296407d559085e078057e46ff3a6">
+<head>Scope and Contents</head>
+<p>Jack Mullin's Magnetophon demo – "modern" copy</p>
+</scopecontent>
+<phystech id="aspace_13ae25f943a163c57b7d50b304898620">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref109_42d" level="item">
+<did>
+<unittitle>Reel 59</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r588c573f6-75ad-4375-847d-cc9ddbce5c89" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/kt098hc4354 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 59" xlink:type="simple">
+<daodesc>
+<p>Reel 59: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_a38604d9ab31d99e93668888d14cbd5e">
+<head>Scope and Contents</head>
+<p>Khachaturian's Masquerade Suite</p>
+</scopecontent>
+<phystech id="aspace_78934696ed8a87ad1c8dece421add31d">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref110_uaf" level="item">
+<did>
+<unittitle>Reel 60</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5f5c6b9fa-4be7-43de-b4a1-3ba886b6c9ab" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/kq850ww6630 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 60" xlink:type="simple">
+<daodesc>
+<p>Reel 60: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c0930f8fd338cb50ba3f1f05f984dfc0">
+<head>Scope and Contents</head>
+<p>Crosby Show selections: "Autumn Leaves" ; "Beyond the Reef" ; "Simple Melody" ("first recording I did at Crosby house at Hayden Lake, Idaho on first Ampex Model 300 out of factory" but someone else wrote: "Not true, this recording done before audience" (original on a different reel) ; "Dear Hearts" Gary Crosby ; "Fire House Stomp" Fire House Five ; "Yes Sir, That's My Baby" Fire House Five and Bing Crosby ; "Red River Valley" Fire House Five ; "My Baby Don't Love" Fire House Five and Bing Crosby</p>
+</scopecontent>
+<phystech id="aspace_8e2cae4bd4815e4e80a9b3c4bbc44c77">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref111_daq" level="item">
+<did>
+<unittitle>Reel 61</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r521e81bca-33ab-4841-b316-6dcd4d556753" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1934-1936</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/jc303ch5518 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 61" xlink:type="simple">
+<daodesc>
+<p>Reel 61: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_73894f4ccbf4a06ef1acaf977bf3fce8">
+<head>Scope and Contents</head>
+<p>test tones 1934-1936</p>
+</scopecontent>
+<phystech id="aspace_5d4a1b101b0e16a17bc4045cb236037b">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref112_897" level="item">
+<did>
+<unittitle>Reel 62</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51a7b1f98-1a9c-47f4-89d6-8f054e6ca683" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1947-12</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sw592tj3391 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 62" xlink:type="simple">
+<daodesc>
+<p>Reel 62: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_6b73c26e792bd8a0b5e5ec6fe6cd730c">
+<head>Scope and Contents</head>
+<p>Burl Ives, Dick Davis and his Quartette Christmas 1947 Special</p>
+</scopecontent>
+<phystech id="aspace_2346e876b86c5ad47866b113d2c750df">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref113_yut" level="item">
+<did>
+<unittitle>Reel 63</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5509d1b7f-8d5b-4322-85f8-2ccd22285e33" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1947-12</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pj076hp9829 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 63" xlink:type="simple">
+<daodesc>
+<p>Reel 63: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_09df043dc4922577a68feab824fc957d">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+<scopecontent id="aspace_54239561e1b3f4bb3b3cda37f82b5e03">
+<head>Scope and Contents</head>
+<p>Philco Show Dec. 1947 with Burl Ives, Josef Marais and Miranda. Edited file with Reel 46 appended also available.</p>
+</scopecontent>
+</c>
+</c>
+<c id="aspace_ref39_103" level="subseries">
+<did>
+<unittitle>Reels 68-87</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r58001d852-3458-4ffc-803b-0d5af37d48f7" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref115_ggp" level="item">
+<did>
+<unittitle>Reel 68</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r56284197c-9aec-44d2-8da6-56b87d342fb0" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sf551gk4794 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 68" xlink:type="simple">
+<daodesc>
+<p>Reel 68: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_6f1abdf48398127e2fb23c387de76d33">
+<head>Scope and Contents</head>
+<p>Bing Crosby at fundraiser, Sunset Memorial Centre, Vancouver, BC. "Ballerina" (John Scott Trotter) ; distorted orchestra music with level variations ; more Bing Crosby "Glow worm" ; "Thanks for the Memory" with Bob Taylor</p>
+</scopecontent>
+<phystech id="aspace_2eeac14824effa8932cb47d5757548b3">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref116_gb2" level="item">
+<did>
+<unittitle>Reel 69</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r528b84a24-bd52-4121-a507-de47a9303e57" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cs217rd9109 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 69" xlink:type="simple">
+<daodesc>
+<p>Reel 69: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_ef2d3342b0a6a39da00a04440dcfe75c">
+<head>Scope and Contents</head>
+<p>Bing Crosby and Oscar Levant, Peggy Lee, Gershwin songs: "They Can't Take That Away From Me" ; "I Got Rhythm" ; "Summertime"</p>
+</scopecontent>
+<phystech id="aspace_2acf79372104bd7550644afc5cc0403f">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref117_9tp" level="item">
+<did>
+<unittitle>Reel 70</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e2c84d93-42b0-4ad2-9317-0f0579706523" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ng449ck1385 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 70" xlink:type="simple">
+<daodesc>
+<p>Reel 70: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_989603395cfb7bba5871a5d6c81aa2a9">
+<head>Scope and Contents</head>
+<p>Bing Crosby rehearsals. "Love Me Or Leave Me" ; "Wolf Creek Pass" (Jimmy Stewart) ; "But Beautiful" from Road to Rio ; "Idaho" ; "Where the Blue of the Night Meets the Gold of the Day" ; "Love Me Or Leave Me" ; "Lili Bolero" Margaret O'Brien "160 Acres"</p>
+</scopecontent>
+<phystech id="aspace_d4fb6ae8e1c0eb79b6a8755f72bbc0bb">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref118_rt1" level="item">
+<did>
+<unittitle>Reel 71</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5d5c7d9e1-2a20-47c2-a12b-c97d32e85339" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1948-03</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pw439cj0844 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 71" xlink:type="simple">
+<daodesc>
+<p>Reel 71: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_45d4941cb140be86c64f42da83dc4874">
+<head>Scope and Contents</head>
+<p>Bing Crosby with Fibber McGee, Margaret O'Brien ; Robert Coglar bits ; excerpts, "Thank You So Much" ; "Galway Bay" (audiotape) St. Patrick's Day (assume 1948—this would have been after 1947-10-01 the first taped show and prior to the introduction of the Ampex 200A which was, I believe, later in 1948) ; "160 Acres" ; "Wolf Creek Pass" ; "Love Is Funny" from Road to Rio ; "I Had a Dream Dear"</p>
+</scopecontent>
+<phystech id="aspace_cb18804a3605f109eb0509e5c2704d6d">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref119_ywp" level="item">
+<did>
+<unittitle>Reel 72 </unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5f85177b8-c70a-47ff-b835-2f1e619f285e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wv654jt2934 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 72" xlink:type="simple">
+<daodesc>
+<p>Reel 72: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_4cd77a404838144b93ee545e0dce7ab0">
+<head>Scope and Contents</head>
+<p>"Jolly Little Workman" ; Thanksgiving turkey segment. Magnetophonband tape, transcriptions from discs</p>
+</scopecontent>
+<phystech id="aspace_6f636d65ae68347024d8a4db3d5bb033">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref120_qaa" level="item">
+<did>
+<unittitle>Reel 73</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r549ae476b-6bbb-4446-83ae-c424e43ddfb9" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ph514wk3021 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 73" xlink:type="simple">
+<daodesc>
+<p>Reel 73: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_cf94081f5b1defed33889f38377dfc12">
+<head>Scope and Contents</head>
+<p>Bing Crosby excerpts: Burns and Allen ; "I'll Dance at Your Wedding" ; "Golden Earrings"</p>
+</scopecontent>
+<phystech id="aspace_975b2b4247fb1c61ab30b3d9275231d2">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref121_di6" level="item">
+<did>
+<unittitle>Reel 74</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e1ce4cdf-92e2-4ccf-ad8e-1f0f89fa586f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/by872pq8817 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 74" xlink:type="simple">
+<daodesc>
+<p>Reel 74: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_244fe31c9dfc0572ca2e9fbc4fa8f9a8">
+<head>Scope and Contents</head>
+<p>sound effects and outtakes ; campaign for Congress ; film soundtrack on aerodynamics ; pineapple processing</p>
+</scopecontent>
+<phystech id="aspace_c46249e9c779372d1025b3182d91ea61">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref122_iv1" level="item">
+<did>
+<unittitle>Reel 75</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5b24d9710-848c-4e63-9112-2396b4a0eadf" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sp273mj6174 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 75" xlink:type="simple">
+<daodesc>
+<p>Reel 75: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_a48daef80d819b2e2f572d55f8ec258e">
+<head>Scope and Contents</head>
+<p>noise test ; Bill Gwyn show excerpt ; music (this was also copied with additional material in the 1980s, see Reel 101 for this and more)</p>
+</scopecontent>
+<phystech id="aspace_8050ef4663335977a87ee90edc8951ca">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref123_yq4" level="item">
+<did>
+<unittitle>Reel 76</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5ab95c21e-3610-40ff-a213-55e3568e6096" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pq746kc0899 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 76" xlink:type="simple">
+<daodesc>
+<p>Reel 76: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_4fa819748ec1fba1d720f712f1419a83">
+<head>Scope and Contents</head>
+<p>Judy Garland guests on Bing Crosby Show ; "Mean To Me" ; "When You Wore A Tulip" ; "When You're Smiling" ; "Rock-A-Bye Your Baby" (from ET) ; "The Bells Are Ringing" ; "April in Paris" ; "Carolina in the Morning" ; "You Made Me Love You" ; "Hello My Baby" ; "In My Merry Oldsmobile" ; "Walkin' My Baby Back Home" ; "In My Merry Oldsmobile" reprise ; "You're Just In Love"</p>
+</scopecontent>
+<phystech id="aspace_19efe1568314940c69a7c9f7fe6866ce">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref124_zav" level="item">
+<did>
+<unittitle>Reel 77</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5089ff8bb-9321-423b-874a-ffe55734373c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/vb024zb5295 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 77" xlink:type="simple">
+<daodesc>
+<p>Reel 77: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c743bb666820061b3c8231d4d5aa7d9d">
+<head>Scope and Contents</head>
+<p>Magnetophon demonstration material, miscellany. Much of this material is also on Reels 68-76. "I Love You Till I Die" ; Canadian Vancouver close ; "Ballerina" ; overloaded music ; Bob Taylor-Bob Hope spoof ; Bardo and His Music from reel 75, then most if not all of Reel 75. See Reel 101 for a better copy of some of this.</p>
+</scopecontent>
+<phystech id="aspace_efcf4a17de6cf642741c3f47ac13d6db">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref125_pmb" level="item">
+<did>
+<unittitle>Reel 78</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5de26f559-17a1-49b5-89e2-388d10ca27d5" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cc099ty1585 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 78" xlink:type="simple">
+<daodesc>
+<p>Reel 78: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_f5ef95730794db11bb4394536d2768be">
+<head>Scope and Contents</head>
+<p>Jack Mullin and other actors "Why HiFi?" ; "H.F. Droop"</p>
+</scopecontent>
+<phystech id="aspace_f19d9b8c174c1651f4b5b06f70a9df4c">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref126_ek9" level="item">
+<did>
+<unittitle>Reel 79</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e7ab0f16-30a1-4ea1-80ae-440643daf611" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">4 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1948-12</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/fz915jp3845 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 79" xlink:type="simple">
+<daodesc>
+<p>Reel 79: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_a07334954edac632a209c4d57359cbe9">
+<head>Scope and Contents</head>
+<p>Transfers of a quarter-track tape. Bing Crosby Shows 12B 1948-12-15, Bob Hope and Peggy Lee (Track 2 or 3) & 13B 1948-12-22 (Track 1). "White Christmas" and "The Small One" are repeats from the previous year which is on Reel 34. (test tones on Tracks 2 and 4 - some crosstalk into audio. One transfer is with 4-channel in-line heads and the second transfer ("QT") is with a quarter-track head but the crosstalk still was there).</p>
+</scopecontent>
+<phystech id="aspace_dadfe74fa13e3154f43f9dddf89e08a8">
+<head>Format</head>
+<p>Four digital .wav audio files</p>
+</phystech>
+</c>
+<c id="aspace_ref127_gug" level="item">
+<did>
+<unittitle>Reel 80</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r56b6e428b-e762-4d8e-aa28-6e43975346e1" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">4 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ns489yp6567 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 80" xlink:type="simple">
+<daodesc>
+<p>Reel 80: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_2fd2518c4d126c71fabbb06594113226">
+<head>Scope and Contents</head>
+<p>Soundtracks from early sound films. See scan for contents. Transfers of a quarter-track tape.</p>
+</scopecontent>
+<phystech id="aspace_9d8d530379f10da38065b7fc22f9fafe">
+<head>Format</head>
+<p>3 Digital .wav audio files, jpeg image file</p>
+</phystech>
+</c>
+<c id="aspace_ref128_x35" level="item">
+<did>
+<unittitle>Reel 81</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r55151323d-61f4-4f9e-9ef3-393e26df23fc" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1974-10-17</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ym065ny8009" xlink:role="audio-master" xlink:show="new" xlink:title="Reel 81" xlink:type="simple">
+<daodesc>
+<p>Reel 81: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_73a43a742fb0d3554a784b7cf39f4115">
+<head>Scope and Contents</head>
+<p>John T. Mullin Magnetophon Talk, AES-SMPTE San Francisco 1974-10-17. Transfers of a quarter-track tape. Includes a file with all portions edited together.</p>
+</scopecontent>
+<phystech id="aspace_fe593b95fb5fd77cadce313a73cf2ed3">
+<head>Format</head>
+<p>2 digital .wav audio files</p>
+</phystech>
+</c>
+<c id="aspace_ref129_ylq" level="item">
+<did>
+<unittitle>Reel 82</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r55b0508ec-2cf5-4205-aff6-9a32309d3e9f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">8 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/sh431xb3575 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 82" xlink:type="simple">
+<daodesc>
+<p>Reel 82: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_63fc02895420931f583d1a72f5da790b">
+<head>Scope and Contents</head>
+<p>Bell Telephone Labs discs.</p>
+</scopecontent>
+<phystech id="aspace_0a89874e4d7b80c781c530ec6420970f">
+<head>Format</head>
+<p>Digital .wav audio file, seven jpeg image files</p>
+</phystech>
+</c>
+<c id="aspace_ref130_r6d" level="item">
+<did>
+<unittitle>Reel 83</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r50aa700e6-b404-4a3e-87ea-693829f87aa4" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">4 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1952</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/vy866tz4972 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 83" xlink:type="simple">
+<daodesc>
+<p>Reel 83: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_fcbc69db939f1de7f9b7ea2aeade7953">
+<head>Format</head>
+<p>Four digital .wav audio files</p>
+</phystech>
+<scopecontent id="aspace_d9bad122fec0c307abf2aa9a5b8d1572">
+<head>Scope and Contents</head>
+<p>1952 recording in 3-channel stereo of the Coast Starlight steam train arriving at and departing from the Glendale train station in California. Recorded by Bill Cara on an Ampex 400 specially built and supplied by Ross Snyder of Ampex. The tape was edited for the Audio Engineering Society Audio Fair in January 1953 in Los Angeles. See text file for more information from Mr. Snyder and others.</p>
+</scopecontent>
+</c>
+<c id="aspace_ref131_33i" level="item">
+<did>
+<unittitle>Reel 84</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51f8071b2-3c99-4727-851a-29c0a3a67c32" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">3 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1936</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rh262wk7981 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 84" xlink:type="simple">
+<daodesc>
+<p>Reel 84: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_fa74ed35e046b39d85d89ae4683de08c">
+<head>Scope and Contents</head>
+<p>Beecham London Philharmonic: 1936 Magnetophon Recording and Emperor Franz Josef (1900 [sic]). From Robert Angus. See scan of note from Angus that was included.</p>
+</scopecontent>
+<phystech id="aspace_0173f23d3332e02846f668157df07b64">
+<head>Format</head>
+<p>2 digital .wav audio file, jpeg image file</p>
+</phystech>
+</c>
+<c id="aspace_ref132_7xo" level="item">
+<did>
+<unittitle>Reel 85</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5a280e623-f099-42f2-9c52-4eca25fd06a6" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1981-05-18</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/kv934pw5617 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 85" xlink:type="simple">
+<daodesc>
+<p>Reel 85: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_2069990f3d15e14ffe4a2db0aec01da0">
+<head>Scope and Contents</head>
+<p>John T. Mullin on National Public Radio, 1981-05-18</p>
+</scopecontent>
+<phystech id="aspace_4d3cd4dd095b2c227e2f3b8ea1cf04e9">
+<head>Format</head>
+<p>Two digital .wav audio files</p>
+</phystech>
+</c>
+<c id="aspace_ref133_txs" level="item">
+<did>
+<unittitle>Reel 86</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52f203926-ad5e-480f-a748-91a6e48dec3c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1973-04-15</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/hg345cy2709" xlink:role="audio-master" xlink:show="new" xlink:title="Reel 86" xlink:type="simple">
+<daodesc>
+<p>Reel 86: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_fcc1b5e4086673c409329f33adbf306d">
+<head>Scope and Contents</head>
+<p>Harold Lindsay "The Ampex Story" recorded on cassette on a portable recorder by John M. Kaar, 1973-04-15 in Palo Alto, Foothill College Electronics Museum. Introduction by Jane Morgan. See scan of insert.</p>
+</scopecontent>
+<phystech id="aspace_be775e6270e9670c4c7809b60ebf056f">
+<head>Format</head>
+<p>Digital .wav audio file, .jpg image file</p>
+</phystech>
+</c>
+<c id="aspace_ref134_rcb" level="item">
+<did>
+<unittitle>Reel 87</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r544f4f5f2-77db-4cfc-bc6b-3e140583afbb" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/hk864xf3205" xlink:role="audio-master" xlink:show="new" xlink:title="Reel 87" xlink:type="simple">
+<daodesc>
+<p>Reel 87: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_44dcc6f20a5c28f2d7d76371949b2ba8">
+<head>Scope and Contents</head>
+<p>Emperor Franz Joseph, Vienna Worlds Fair 1908 from Telegraphon. Scan of insert included</p>
+</scopecontent>
+<phystech id="aspace_801f93781dd2dbb63a806a2941d20f6a">
+<head>Format</head>
+<p>Digital .wav audio file, .jpg image file</p>
+</phystech>
+</c>
+</c>
+</c>
+<c id="aspace_ref35_psv" level="series">
+<did>
+<unittitle>Series 3. Pavek Museum of Broadcasting</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r563966b51-a41d-476e-ac68-dff6e9d91b00" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">10 computer file(s)</extent>
+</physdesc>
+</did>
+<acqinfo id="aspace_baf14ad3bf331442e1f9ccef68d692e7">
+<head>Source of Acquisition</head>
+<p>Tapes in this series borrowed, transferred, and returned to the Pavek Museum of Broadcasting in St. Louis Park, Minnesota in 2008.</p>
+</acqinfo>
+<c id="aspace_ref43_6r0" level="subseries">
+<did>
+<unittitle>Reels 64-67</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5e6964518-e476-4d86-8758-a2c997f3692d" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref140_wz6" level="item">
+<did>
+<unittitle>Reel 64</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r555b83be4-e7f1-4986-bdb9-80e807e1ccdc" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rs686cx4247 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 64" xlink:type="simple">
+<daodesc>
+<p>Reel 64: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_5b575558e485f5f84041ba2e361bccb4">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+<scopecontent id="aspace_4a7b7facfe0edb7eda0a6b5d563fefa2">
+<head>Scope and Contents</head>
+<p>Festliches Konzert Württ 1, Staatstheater. incl. Carmen tenor aria</p>
+</scopecontent>
+</c>
+<c id="aspace_ref135_raa" level="item">
+<did>
+<unittitle>Reel 65</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52a7a1262-a28f-4012-abf5-a64ef9b291fb" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wp141kw1413 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 65" xlink:type="simple">
+<daodesc>
+<p>Reel 65: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_04da6a68559f9fb7acc26142acfdcb18">
+<head>Scope and Contents</head>
+<p>Festliches Konzert Württ 2, Staatstheater. Schubert's Serenade (sung in English) ; "Old Man River" ; "Home on the Range" ; "Shortening Bread"</p>
+</scopecontent>
+<phystech id="aspace_8360d67204fe9d9b4863fd183cee5b91">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref136_jf3" level="item">
+<did>
+<unittitle>Reel 66</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r505244800-b376-49a7-a296-184f88251515" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/qy445ks0800 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 66" xlink:type="simple">
+<daodesc>
+<p>Reel 66: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_c340c7d4cc62a4d2c8d12c5f0795ae88">
+<head>Scope and Contents</head>
+<p>Festliches Konzert Württ 3, Staatstheater. Thanks orchestra for cooperation with Maestro Bob Lawrence and himself, thanks Special Services branch for special care, thanks audience for "wonderful reception" ; "On the Road to Mandalay" ; "Evening Star" from Tannhauser</p>
+</scopecontent>
+<phystech id="aspace_6ab5e6f416cc0990ec4f0a60b8d8bb52">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref137_zzz" level="item">
+<did>
+<unittitle>Reel 67</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5884c5310-1d4e-4493-bf0d-5b73539261a6" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/yw121pg6299 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 67" xlink:type="simple">
+<daodesc>
+<p>Reel 67: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_8c8f83d3591e57633d0959b310fb89f4">
+<head>Scope and Contents</head>
+<p>Festliches Konzert Württ 4, Staatstheater. Overture to Tannhauser</p>
+</scopecontent>
+<phystech id="aspace_6d01c14efd3c8eea4a98bd374550d71f">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref285_ii4" level="subseries">
+<did>
+<unittitle>Pavek Museum Compact Disc</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r57b8f5c93-4c2d-4035-9a72-da783b0c72d5" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pv466bp0114 " xlink:role="audio-master-edited" xlink:show="new" xlink:title="Pavek Museum Compact Disc" xlink:type="simple">
+<daodesc>
+<p>Pavek Museum Compact Disc: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_6fcfa5158b3ded965afe4a97d511b22f">
+<head>Scope and Contents</head>
+<p>Pavek Museum Compact Disc, produced from Reels 64-67.</p>
+</scopecontent>
+<phystech id="aspace_6952844b3fb4b70215b57f740ed62f74">
+<head>Format</head>
+<p>Two digital .wav audio files, Two digital .tif image files, Digital .txt text file, Two digital .edl text files</p>
+</phystech>
+</c>
+</c>
+<c id="aspace_ref44_itz" level="subseries">
+<did>
+<unittitle>Reels 88-93</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r53597359f-4ce7-4163-83e1-a1780d0bf831" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref141_mk4" level="item">
+<did>
+<unittitle>Reel 88</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5ccea4a4a-9f95-4ec6-8c6e-5d62eaeeb482" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/dj840br0873 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 88" xlink:type="simple">
+<daodesc>
+<p>Reel 88: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_ee29113f447541087d7eb1c53dd905aa">
+<head>Scope and Contents</head>
+<p>Pavek demo tape done by Mullin. "On Top of Old Smokey" ; "Chisholm Trail" ; Bing Crosby "Tennessee Waltz" ; Nat King Cole "Mona Lisa" ; Bing Crosby? "Little Senorita" ; ? ; Peggy Lee "Would I Love You?" ; Bing Crosby "More I Cannot Wish You" from Guys and Dolls ; "Beautiful Lady" ; Peggy Lee? "Love Is Funny"</p>
+</scopecontent>
+<phystech id="aspace_83e4d0553af33f1f14a6a1770fd40d6e">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref142_xf4" level="item">
+<did>
+<unittitle>Reel 89</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r59486150c-00e9-4252-8309-6f3cddf3869e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1946-05-14</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pc016mv6419 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 89" xlink:type="simple">
+<daodesc>
+<p>Reel 89: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_b1238cb0834a1dcc6046332804518a6a">
+<head>Scope and Contents</head>
+<p>Doppelkonzert von Brahms Ma 403 1946-05-14. Reel 1 of 2</p>
+</scopecontent>
+<phystech id="aspace_7fabc859e3c4f5184bd4a8d9f3a7b8db">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref143_0c4" level="item">
+<did>
+<unittitle>Reel 90</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r564b16462-dd57-445f-b469-47c5b93ea1e1" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate datechar="creation">1946-05-14</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/dd304bc8485 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 90" xlink:type="simple">
+<daodesc>
+<p>Reel 90: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_d2517971cc5e57ac5a1d6603e91bd035">
+<head>Scope and Contents</head>
+<p>Doppelkonzert von Brahms Ma 403 1946-05-14 Reel 2 of 2</p>
+</scopecontent>
+<phystech id="aspace_081de16fe2e5484f1cc651236494051b">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref144_8ra" level="item">
+<did>
+<unittitle>Reel 91</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5119b214b-81ce-4393-b05a-5e49e2b06439" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wc345pf0442 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 91" xlink:type="simple">
+<daodesc>
+<p>Reel 91: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_d994450acb5941592dab0002bc89479b">
+<head>Scope and Contents</head>
+<p>Tanzkapelle Lutz Templin Band ; "Red Moon Over Havana"</p>
+</scopecontent>
+<phystech id="aspace_df5629316d33d64949386f3d8a1cbdcf">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref145_9eb" level="item">
+<did>
+<unittitle>Reel 92</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5a951407b-e867-423c-b4f8-5a5b23c07e0f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wx914sk2144 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 92" xlink:type="simple">
+<daodesc>
+<p>Reel 92: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_e011e7a1c036348ed3d7f4c9672aa689">
+<head>Scope and Contents</head>
+<p>Tanzkapelle Lutz Templin Band ; "Kiss the Boys Goodbye"</p>
+</scopecontent>
+<phystech id="aspace_ce5e56fd67cd0425697184b05dfb20c1">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref146_jwc" level="item">
+<did>
+<unittitle>Reel 93</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5a36d3f38-6e0d-41d2-9e63-aa3ab12f3b6f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rv872zy9950 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 93" xlink:type="simple">
+<daodesc>
+<p>Reel 93: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_125183d799461553045d19f8083d6dd6">
+<head>Scope and Contents</head>
+<p>Lutz Templin Sextett, "I'm Always Chasing Rainbows" (vocal in English)</p>
+</scopecontent>
+<phystech id="aspace_c902cd0c51e055c7a5d5e343fee342b8">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+</c>
+</c>
+<c id="aspace_ref36_2h5" level="series">
+<did>
+<unittitle>Series 4. Don Ososke</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r52c54be8f-affb-4762-9103-31c6401b337c" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">8 computer file(s)</extent>
+</physdesc>
+</did>
+<acqinfo id="aspace_515f79a2182bf4749047dcd0bd833880">
+<head>Source of Acquisition</head>
+<p>Tapes in this series borrowed, transferred, and returned to engineer and former Ampex employee Don Ososke.</p>
+</acqinfo>
+<c id="aspace_ref45_ueb" level="subseries">
+<did>
+<unittitle>Reels 94-101</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r54a1bdbf9-ef58-4faa-864c-9bf15952b289" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref147_tt7" level="item">
+<did>
+<unittitle>Reel 94</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r55e1bfd68-7ede-4969-a4f9-d6f07a253c69" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1947-10-01</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/kw973pp2772" xlink:role="audio-master" xlink:show="new" xlink:title="Reel 94" xlink:type="simple">
+<daodesc>
+<p>Reel 94: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_5f992bfe09e7018a25df4b6d10bb687b">
+<head>Format</head>
+<p>Digital .wav audio file, .edl text file</p>
+</phystech>
+<scopecontent id="aspace_c0d40b79469def5e60afe3580b01b64d">
+<head>Scope and Contents</head>
+<p>Bing Crosby Show 1947-10-01. In the 1980s, while Ososke was working at Ampex in the Standard Tape Lab, he made a transfer of the original tape. This recording is very important historically as it was the first radio program to air nationally in the U.S. that was recorded and edited on tape. To assuage fears of the tape breaking during airing, the actual broadcast was from discs (called electrical transcriptions or ETs) made from the tapes.</p>
+</scopecontent>
+<scopecontent id="aspace_804ed4edc4a5e36e214ecab52ac56469">
+<head>Scope and Contents</head>
+<p>Notes provided by Don Ososke: </p>
+<p>"From Don Ososke 2009-09-01</p>
+<p>Philco Radio Time with Bing Crosby Aired 1947-10-01</p>
+<p>It is believed to have been recorded in August 1947. It was recorded in Hollywood, probably at what became the ABC Radio Network Station.</p>
+<p>This was following the divestiture of the Blue Network from NBC (the Red Network) which became ABC.</p>
+<p>Crosby did not want to perform his shows live at the time of broadcast. During the 1946-1947 season, Crosby and his team used disc recordings (electrical transcriptions) to record his shows. The Hooper ratings suffered due to the relatively poor quality of the ETs and this loss of quality was reportedly audible even on table top radios. </p>
+<p>Tape recording became available at an opportune time for Crosby and his 1947-1948 season was the first nationally broadcast show to be recorded on tape. In the early days of the useage of tape, ETs were still made for the actual broadcast, as the engineers did not trust the old, frequently spliced German tape for actual on-air use.</p>
+<p>Personnel on the show: Bing Crosby Jerry Colonna (introduction) John Scott Trotter (orchestra leader and arranger) Rhythmaires (Background Vocal Group) Ken Carpenter (announcer) Perry Botkin (guitar player) Peggy Lee (staff perfomer) Murdo McKenzie (technical director) John T. (Jack) Mullin (recording engineer)</p>
+<p>Guest: Gary Cooper</p>
+<p> 1. Program Introduction 2. Where the Blue of the Night Meets the Gold of the Day (Bing Crosby Signature Intro, Crosby, Trotter, Botkin) 3. My Heart is a Hobo (Crosby, Trotter, Rhythmaires) 4. Philco Commercial (Carpenter) 5. Crosby introduces Peggy Lee 6. It Takes a Long Long Train with a Red Caboose to Carry My Blues Away (Lee, Trotter) 7. Patter - Crosby & Lee 8. Crosby introduces Gary Cooper 9. Mam'selle (Crosby, Trotter, Rhythmaires) 10. Chi-baba, Chi-baba (Crosby, Trotter) 11. Peg O' My Heart (Crosby, Trotter, Rhythmaires) 12. Patter - Crosby & Cooper 13. Ranchin on the Range (skit: primarily Crosby & Cooper with Lee and Trotter) 14. Philco Commercial (Carpenter) 15. You Do (Crosby, Trotter) 16. Program conclusion includes reprise of Blue of the Night (Crosby, Cooper, Trotter)"</p>
+</scopecontent>
+<index id="aspace_9bcc3aa0dd1d35ec381d0b7256ea026d">
+<p>From Don Osaske: </p>
+<p>"Samplitude - Marker List 2012-05-04 Project: "\NAS03\Media-Richard\Special Projects to keep\Mullin-Palmer\Reel_94_Don_Ososke_Collection_Philco_Radio_Time_with_Bing_Crosby_1947-10-01_first_taped_nationwide_radio_show_.wav"</p>
+<p>********************************************************* Type Start Time Name ISRC *********************************************************</p>
+<p>T:01 00:00:07:133 T:02 00:01:20:293 T:03 00:03:10:893 T:04 00:05:34:413 T:05 00:06:36:813 T:06 00:07:12:626 T:07 00:10:13:186 T:08 00:11:08:320 T:09 00:13:06:106 T:10 00:14:47:280 T:11 00:15:46:360 T:12 00:18:01:346 T:13 00:19:58:133 T:14 00:25:24:066 T:15 00:26:32:840 T:16 00:28:32:373 E: 00:29:57:133"</p>
+</index>
+</c>
+<c id="aspace_ref148_e13" level="item">
+<did>
+<unittitle>Reel 95</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r536267341-f77e-4382-8e0f-0d0551513472" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1954</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/nj567fq4029 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 95" xlink:type="simple">
+<daodesc>
+<p>Reel 95: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_da63cfb9d61b4d24ecee110a69353ef1">
+<head>Scope and Contents</head>
+<p>Ampex Model 612 demo tape from master or second generation pro copy. This is from the first stereo player that was designed in 1954 and released widely in 1955. Ross Snyder is the announcer, according to Larry Miller who was working at Ampex at the time.</p>
+</scopecontent>
+<phystech id="aspace_73d3fcfc495ff9bc3e0145ffa24ed48e">
+<head>Format</head>
+<p>Digital .wav audio file, .pdf document file</p>
+</phystech>
+</c>
+<c id="aspace_ref149_67i" level="item">
+<did>
+<unittitle>Reel 96</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r55bf86976-2a7d-4922-a8f1-2436b67c2c41" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1957-1958</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/mz018vj4981 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 96" xlink:type="simple">
+<daodesc>
+<p>Reel 96: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_0d3d24a3d18907ae07d52ce0f38516a1">
+<head>Scope and Contents</head>
+<p>Ampex "Around the World" stereo promotion. The 1947-10-01 section was dropped in from the superior transfer obtained from Reel 94 and the "Gaite Parisienne" section was dropped in from a 1956 consumer 2-track reel-to-reel copy in Mr. Hess's collection. This is probably from 1957-1958. Ross Snyder is the announcer, according to Larry Miller.</p>
+</scopecontent>
+<phystech id="aspace_9903a2f187102b20d7423469af00e044">
+<head>Format</head>
+<p>Digital .wav audio file, .edl text file</p>
+</phystech>
+</c>
+<c id="aspace_ref150_j3g" level="item">
+<did>
+<unittitle>Reel 97</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5cca8bfab-0e5b-401b-92bd-cb107359b38f" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/wx919vw3026 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 97" xlink:type="simple">
+<daodesc>
+<p>Reel 97: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_783a51ab40dce443d000331f7ac6c847">
+<head>Scope and Contents</head>
+<p>Sonotape demo tape from the 1950's or early 1960's.</p>
+</scopecontent>
+<phystech id="aspace_452c7f413747662ecd9b0bd6c90ece70">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+<c id="aspace_ref151_vbb" level="item">
+<did>
+<unittitle>Reel 98</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r508fb7dd4-25ce-4822-be2e-532f78ae2029" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">2 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1953-01-25</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/cg647cr5153" xlink:role="audio-master" xlink:show="new" xlink:title="Reel 98" xlink:type="simple">
+<daodesc>
+<p>Reel 98: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_5f99d30f44f6c5bdba22292981bd230b">
+<head>Format</head>
+<p>Digital .wav audio file, .edl text file</p>
+</phystech>
+<scopecontent id="aspace_4c17c7f2c2dd001af15c799c07217b20">
+<head>Scope and Contents</head>
+<p>Standard Hour radio program, recorded at the War Memorial Opera House in San Francisco, 1953-01-25 (at least first half hour). Early stereo recording -- the normal broadcast would have been done in mono.</p>
+</scopecontent>
+<scopecontent id="aspace_c51da7f8ee6a2ff1f9c7910aeeecb9d3">
+<head>Scope and Contents</head>
+<p>Description from Don Ososke:</p>
+<p>"Notes provided by Don Ososke 2009-09-01</p>
+<p>Recorded on January 1953-01-25, five days after Eisenhower was inaugurated. Recorded at the San Francisco War Memorial Opera House with the San Francisco Symphony Orchestra</p>
+<p>This is NOT the recording of the radio broadcast but was a very early experimental recording made by Ampex engineers Russ Tinkham and Harold Lindsay. These engineers were interested in the stereophonic aspects of symphonic concert recordings and not capturing the announcer as one would for an actual broadcast.</p>
+<p>Conducted by Alfred Wallenstein who was at the time the primary conductor of the Los Angeles Philharmonic.</p>
+<p>The violin soloist was Arthur Grumiaux.</p>
+<p>The tracks are: 1. Program Introduction 2. Beethoven Overture to the Creatures of Prometheus 3. Gian Carlo Menotti First Movement from symphonic work Apocalypse 4. Continuation of 3. 5. Third Movement of Apocalypse 6. Introduction of Grumiaux 7. Saint-Saens Introduction and Rondo Capriccioso 8. Standard Oil Commercial (3 mins) 9. Introduction of Kodaly Hary Janos Suite 10. Hary Janos Suite: Prelude; the Fairy Tale Begins 11. Viennese Musical Clock 12. Song 13. Song 14. The Battle and Defeat of Napoleon 15. Introduction of the movement Intermezzo 16. Intermezzo 17. Beginning of the Standard Hour Conclusion 18. Continuation of 17 and spoken tests"</p>
+</scopecontent>
+</c>
+<c id="aspace_ref152_hn8" level="item">
+<did>
+<unittitle>Reel 99</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5b51cdeba-7003-489a-94f9-7ce42809c115" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">3 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/rg477mj7719 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 99" xlink:type="simple">
+<daodesc>
+<p>Reel 99: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_fad33cb48d88c6860e694619cb3d3044">
+<head>Scope and Contents</head>
+<p>BASF "50 years of Tape Recording." Included here as additional background information.</p>
+</scopecontent>
+<phystech id="aspace_e2add9c74e2ece8191bbc27f4a8b322f">
+<head>Format</head>
+<p>Digital .wav audio file, .edl text file, .pdf document file</p>
+</phystech>
+</c>
+<c id="aspace_ref153_onq" level="item">
+<did>
+<unittitle>Reel 100</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5847fe932-b380-49b0-82f6-e2b7371a8f63" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">3 computer file(s)</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/gp388dk4746 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 100" xlink:type="simple">
+<daodesc>
+<p>Reel 100: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_bab3753e3edb8a9b2145a0815ac73ab7">
+<head>Scope and Contents</head>
+<p>Audio Engineering Society Stereo Magnetophon Recordings from WWII era Germany. Included here as additional background information.</p>
+</scopecontent>
+<phystech id="aspace_92abb3e8da73bb218d1b98582855b267">
+<head>Format</head>
+<p>Digital .wav audio file, .edl text file, .pdf document file</p>
+</phystech>
+</c>
+<c id="aspace_ref154_njn" level="item">
+<did>
+<unittitle>Reel 101</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r569e32746-1193-4d78-833d-cdb85642a767" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 computer file(s)</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">1946</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/ss507xp1332 " xlink:role="audio-master" xlink:show="new" xlink:title="Reel 101" xlink:type="simple">
+<daodesc>
+<p>Reel 101: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<scopecontent id="aspace_b9399a9d6371c4292b27c52290a3cfa5">
+<head>Scope and Contents</head>
+<p>Jack Mullin demo tape from 1946. This is a copy of a high-quality tape transfer of the original of this material. The copy was made by Ososke when he worked at Ampex in the Standard Tape Lab in the 1980s. These are the demos that Mullin used in 1946 at the San Francisco IRE meeting that interested Harold Lindsay and eventually led to Mullin working with Crosby and Ampex developing tape recorders. This same material is on other tapes (Reels 75 and 77), but this may be the best copy, although 75 is the original done as a direct transfer.</p>
+</scopecontent>
+<phystech id="aspace_268f8dfd9cb57b52e8406dbe1a4a038c">
+<head>Format</head>
+<p>Digital .wav audio file</p>
+</phystech>
+</c>
+</c>
+</c>
+<c id="aspace_ref37_mdt" level="series">
+<did>
+<unittitle>Series 5. Documentation</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5788ad875-9fb3-4256-9c68-42b10292b375" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">11 Files</extent>
+</physdesc>
+</did>
+<acqinfo id="aspace_42e5b2f0efd69f372c4addf7b86a2f8f">
+<head>Source of Acquisition</head>
+<p>Files in this series were assembled By Richard Hess and include relevant obituaries from the Journal of the Audio Engineering Society as well as Hess' own transfer databases.</p>
+</acqinfo>
+<c id="aspace_ref156_oo9" level="subseries">
+<did>
+<unittitle>Tape Logs</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51617f969-49cc-4da6-ad1f-5f624d63a778" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref159_z51" level="item">
+<did>
+<unittitle>Tape digitization log</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r51e427071-478f-4e39-9ee7-799ece41650e" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">5 Files</extent>
+</physdesc>
+<unitdate calendar="gregorian" datechar="creation" era="ce">2008</unitdate>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/mb925fd9585" xlink:role="text-master" xlink:show="new" xlink:title="Tape Master Log" xlink:type="simple">
+<daodesc>
+<p>Tape Master Log: 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_a08e6a9033852076843c82f4873b7d0d">
+<head>Format</head>
+<p>3 .pdf document files, 1 .xls file, 1 .csv file</p>
+</phystech>
+<scopecontent id="aspace_81222445d54f9a65577b31cae9452685">
+<head>Scope and Contents</head>
+<p>.pdf sorted by reel, .pdf sorted by original recording order, .pdf optical character recognized sorted by original order .xls file, .csv file</p>
+</scopecontent>
+</c>
+</c>
+<c id="aspace_ref157_a1s" level="subseries">
+<did>
+<unittitle>Other Documents</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5a6bb8031-a54e-4241-a08b-333bdbc5aefe" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+</did>
+<c id="aspace_ref162_6i6" level="item">
+<did>
+<unittitle>Mullin certificate to keep Magnetophon tape</unittitle>
+<unitid type="ark">
+<extref xlink:actuate="onLoad" xlink:href="https://archives.stanford.edu/findingaid/ark:/22236/r5eab7f6ba-e583-4b04-994d-c36a9c628f83" xlink:show="new">Archival Resource Key</extref>
+</unitid>
+<physdesc altrender="whole">
+<extent altrender="materialtype spaceoccupied">1 Files</extent>
+</physdesc>
+<dao xlink:actuate="none" xlink:href="https://purl.stanford.edu/pr271pq6087" xlink:role="image-master" xlink:show="new" xlink:title="Mullin certificate to keep Magnetophon tape" xlink:type="simple">
+<daodesc>
+<p>Mullin certificate to keep Magnetophon tape: digitized 2008</p>
+</daodesc>
+</dao>
+</did>
+<phystech id="aspace_745129e84ee68e0d42e7942816b278d3">
+<head>Format</head>
+<p>Digital .jpeg image file</p>
+</phystech>
+</c>
+</c>
+</c>
+</dsc>
+</archdesc>
+</ead>
