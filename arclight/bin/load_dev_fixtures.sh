@@ -26,4 +26,11 @@ bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_con
 bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/ars0035.xml -s eadid=ark:/13030/kt5k4036nc
 bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/ars0065.xml -s eadid=ark:/13030/kt0z09r4w0
 
+export REPOSITORY_ID=csbc
+# This fixture has data at controlaccess/controlaccess/geogname (nested - see issue #1432)
+bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/sc020_3Ydt0uE.xml -s eadid=ark:/13030/c8d225mt
+# This fixture has data at controlaccess/geogname (not nested)
+bundle exec traject -I lib/ -u $SOLR_URL -i xml -c lib/arclight/traject/ead2_config.rb $FIXTURE_PATH/xml/r189.xml -s eadid=ark:/13030/c8nz8gtn
+
+
 curl $SOLR_URL/update?commit=true
