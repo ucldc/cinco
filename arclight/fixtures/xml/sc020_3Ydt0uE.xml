@@ -1,0 +1,665 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd">
+<eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511">
+<eadid countrycode="US" mainagencycode="US-csbc">sc020</eadid>
+<filedesc>
+<titlestmt>
+<titleproper type="filing">Jacocks (Ratibu Shadidi) papers</titleproper>
+<titleproper>Ratibu Shadidi Jacocks papers</titleproper>
+<author>Nathaniel Saavedra</author>
+</titlestmt>
+<publicationstmt>
+<publisher>Special Collections & University Archives</publisher>
+<address>
+<addressline>California State University, San Bernardino</addressline>
+<addressline>Pfau Library</addressline>
+<addressline>San Bernardino, California 92407</addressline>
+<addressline>Phone: 909-537-5112</addressline>
+<addressline>Email: archives@csusb.edu</addressline>
+<addressline>URL: https://www.csusb.edu/special-collections</addressline>
+</address>
+<date>© 2024</date>
+<p>California State University, San Bernardino. All rights reserved.</p>
+</publicationstmt>
+</filedesc>
+<profiledesc>
+<creation>
+This finding aid was produced using ArchivesSpace on
+<date>2024-11-22 10:43:09 -0800</date>
+.
+</creation>
+<langusage>
+Description is in
+<language langcode="eng" scriptcode="Latn">English.</language>
+</langusage>
+<descrules>Describing Archives: A Content Standard</descrules>
+</profiledesc>
+</eadheader>
+<archdesc level="collection">
+<did>
+<head>Descriptive Summary</head>
+<unittitle label="Title">Ratibu Shadidi Jacocks papers</unittitle>
+<unitdate datechar="creation" type="inclusive">1886-2015, undated</unitdate>
+<unitdate datechar="creation" type="bulk">1980-2010</unitdate>
+<unitid label="Collection Number" repositorycode="US-CSBC" countrycode="US">SC 020</unitid>
+<origination label="Creator">
+<persname rules="aacr" source="local">Jacocks, Ratibu</persname>
+</origination>
+<physdesc altrender="whole" label="Extent">
+<extent altrender="materialtype spaceoccupied">6.0 Linear Feet</extent>
+<extent altrender="carrier">(6 record storage boxes) </extent>
+</physdesc>
+<repository label="Repository">
+<corpname>Pfau Library. Special Collections & University Archives</corpname>
+<address>
+<addressline>San Bernardino, CA 92407</addressline>
+</address>
+</repository>
+<abstract id="aspace_d7d3e4231073fbca186c23ec250c7982">The Ratibu Shadidi Jacocks papers document critical elements of Ratibu Jacocks' life, ranging from his cultural identity and community activism to family history. This collection contains correspondence, documents, vertical files, and other materials pertaining to Jacocks' involvement with Creative Business Services, Westside Action Group, Inland Area Kwanzaa Group, Inland Area Black Political Action Group, and other community-based organizations. Also includes materials related to Jacocks' family and proofs of his memoir titled "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention."</abstract>
+<langmaterial label="Languages">
+The collection is in
+<language langcode="eng">English.</language>
+</langmaterial>
+</did>
+<accessrestrict id="aspace_00bb4b809604b9ea20c72b0c2f69aa3c">
+<head>Access</head>
+<p>This collection is open for research.</p>
+</accessrestrict>
+<userestrict id="aspace_43fccb96a78a7cad66c8e8038f14089a">
+<head>Publication Rights</head>
+<p>Copyright Unknown: Some materials in this collection may be protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, the reproduction, and/or commercial use, of some materials may be restricted by gift or purchase agreements, donor restrictions, privacy and publicity rights, licensing agreement(s), and/or trademark rights. Distribution or reproduction of materials protected by copyright beyond that allowed by fair use requires the written permission of the copyright owners. To the extent other restrictions apply, permission for distribution or reproduction from the applicable rights holder is also required. Responsibility for obtaining permissions, and for any use rests exclusively with the user.</p>
+</userestrict>
+<prefercite id="aspace_a7b3c742c95e93bfaa61c684b5b1d27e">
+<head>Preferred Citation</head>
+<p>Ratibu Shadidi Jacocks papers (SC 020). John M. Pfau Library. Special Collections & University Archives. California State University, San Bernardino.</p>
+</prefercite>
+<acqinfo id="aspace_6724662f55e7a74167e68f5468cf1136">
+<head>Acquisition Information</head>
+<p>This collection was donated by Wilmer Amina Carter, 2023.</p>
+</acqinfo>
+<processinfo id="aspace_2c189715f15610f8cd568f7b51c95b25">
+<head>Processing Information</head>
+<p>This collection was processed by Nathaniel Saavedra as part of his archival processing student internship, 2024.</p>
+</processinfo>
+<scopecontent id="aspace_d99d54cac0ab08c1d58eb968f1899997">
+<head>Collection Scope and Content Summary</head>
+<p>This collection documents critical elements of Ratibu Jacocks' life, ranging from his cultural identity and community activism to family history. Includes correspondence, documents, vertical files, and other materials pertaining to Jacocks' involvement with Creative Business Services, Westside Action Group, Inland Area Kwanzaa Group, Inland Area Black Political Action Group, and other community-based organizations. Materials related to Jacocks' family and proofs of his memoir titled "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention" are also included.</p>
+</scopecontent>
+<bioghist id="aspace_fd601ea146bd8676e62ee7df753ef57c">
+<head>Biographical Note</head>
+<p>Ratibu Shadidi Jacocks was born William Henry Jacocks in 1943. He was a longtime resident and fixture in the Inland Empire's African American community and was an advocate for underrepresented communities in this region. Jacocks married Wilmer Amina Carter in 1984, and this marriage led to a powerful partnership that would be the driving force for supporting underrepresented businesses through their organization Creative Business Services (CBS). Jacocks served as the president of Westside Action Group (WAG), a group dedicated to the betterment of the African American community in San Bernardino, CA, and co-founded the Inland Area Kwanzaa Group to highlight Kwanzaa and Black/Pan African culture. Ratibu's commitment to the community has been impactful and resulted in positive changes within the Inland Empire.</p>
+</bioghist>
+<arrangement id="aspace_71d316eb2157cecfd5af688cf65a1148">
+<head>Collection Arrangement</head>
+<p>This collection is arranged into eight series. Collection arrangement is as follows:</p>
+<list type="simple">
+<item>Series 1: Artifacts, 1987-2008, undated.</item>
+<item>Series 2: Correspondence, 1961-2012, undated. </item>
+<item>Series 3: Documents, 1886-2015, undated.</item>
+<item>Series 4: Memoirs, 2003-2013, undated.</item>
+<item>Series 5: Newspapers and Clippings, 1963-2014.</item>
+<item>Series 6: Photographs and Negatives, undated. </item>
+<item>Series 7: Scrapbooks, 1999-2008, undated.</item>
+<item>Series 8: Vertical Files, 1984-2014, undated.</item>
+</list>
+</arrangement>
+<controlaccess>
+<head>Indexing Terms</head>
+<p>The following terms have been used to index the description of this collection in the library's online public access catalog.</p>
+<controlaccess>
+<head>Subjects</head>
+<subject source="lcsh">African American</subject>
+<subject source="lcsh">Community action</subject>
+<subject source="lcsh">Community activists</subject>
+<geogname source="lcsh">Inland Empire (Calif.)</geogname>
+<persname rules="aacr" source="local">Jacocks, Ratibu</persname>
+<geogname source="lcsh">Rialto (Calif.)</geogname>
+<geogname source="lcsh">San Bernardino (Calif.)</geogname>
+</controlaccess>
+<controlaccess>
+<head>Genres and Forms of Materials</head>
+<genreform source="aat">Correspondence</genreform>
+<genreform source="aat">Documents</genreform>
+<genreform source="aat">Newspapers</genreform>
+<genreform source="aat">Photographs</genreform>
+<genreform source="aat">Scrapbooks</genreform>
+<genreform source="aat">Vertical files</genreform>
+</controlaccess>
+</controlaccess>
+<dsc type="combined">
+<head>Collection Contents</head>
+<c01 id="aspace_cbad4462f5d5ed1cd4015112bb5b707d" level="series">
+<did>
+<unitid>Series 1</unitid>
+<unittitle>Artifacts</unittitle>
+<unitdate datechar="creation" type="inclusive">1987-2008, undated</unitdate>
+</did>
+<scopecontent id="aspace_29cf1cb3b25d949a07045d7a0d48ddc0">
+<head>Series Scope and Content Summary</head>
+<p>This series contains items collected and owned by Ratibu Jacocks.</p>
+</scopecontent>
+<arrangement id="aspace_f7aa6bd7fb052ec987149b950e024099">
+<head>Series Arrangement</head>
+<p>This series is arranged alphabetically by title.</p>
+</arrangement>
+<c02 id="aspace_bef415f1be645c89b9573afd7e38c3a8" level="item">
+<did>
+<unittitle>Briefcase of Ratibu Jacocks</unittitle>
+<unitdate datechar="creation">undated</unitdate>
+<container id="aspace_12d04cf855b344e6ff168c0e9c64adb2" label="Mixed Materials">On-shelf</container>
+</did>
+</c02>
+<c02 id="aspace_071ef7fabb28e16ee8c57f3f9333221f" level="file">
+<did>
+<unittitle>Business Cards from various businesses</unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_df5361aec422f6f13d839e5392b271ec" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_0ae0bbe4404f7bcb04bb4f42106349c3" parent="aspace_df5361aec422f6f13d839e5392b271ec" type="Folder">19</container>
+</did>
+</c02>
+<c02 id="aspace_a850f30928eda553eae0f78f706a611f" level="item">
+<did>
+<unittitle>California license plate personalized with "JACOCK"</unittitle>
+<unitdate datechar="creation">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_b70ce9a4dc3fed62ad9aa5844528a93a" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_0e39d3565c15fd61ccc012f7de0b6c5f" level="item">
+<did>
+<unittitle>Certificate of Appreciation awarded to Ratibu Shadidi from "The National Training Center" </unittitle>
+<unitdate datechar="creation">1992 February 1</unitdate>
+<container altrender="Record Storage Box" id="aspace_e9423ac537b763fe3b3ab1d77e713728" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_388d8bf7f81f075f2a864de42ae8df2a" level="item">
+<did>
+<unittitle>Duffel bag from the California Commerce Center</unittitle>
+<unitdate datechar="creation">1987</unitdate>
+<container altrender="Record Storage Box" id="aspace_87c46938ef53271208738c8f15fef963" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_14c0f51c0147445c6c81b18158a13c1c" level="item">
+<did>
+<unittitle>Lapel pins and brochure from the United States Postal Service's Black Heritage series of stamps</unittitle>
+<unitdate datechar="creation">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_f071917733850f2168448a8556ad16c2" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_8e997a317515411cecfbbd350b6c4099" level="item">
+<did>
+<unittitle>Plaque awarded to an honorary member form the San Bernardino Country Association of African American Employees</unittitle>
+<unitdate datechar="creation">2008</unitdate>
+<container altrender="Record Storage Box" id="aspace_831013e2ec43a9247b3fb8328ea61ee3" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_4e39937017e11670c241ddf8704c7adc" level="item">
+<did>
+<unittitle>Plaque from the Inland Empire Peace Officers Association </unittitle>
+<unitdate datechar="creation">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_7d3b7f7e96fa7e2fd6401c4a6b8b02a2" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_8845b2c8439b4531ccd3714841309fe4" level="series">
+<did>
+<unitid>Series 2</unitid>
+<unittitle>Correspondence </unittitle>
+<unitdate datechar="creation" type="inclusive">1961-2012, undated</unitdate>
+</did>
+<scopecontent id="aspace_5352095ea1010fd5b5c2f7f84aa7a4cd">
+<head>Series Scope and Content Summary</head>
+<p>This series contains correspondence from family, friends, organizations, and schools to Ratibu Jacocks on a variety of topics.</p>
+</scopecontent>
+<arrangement id="aspace_31483b10ef26549fde8f2bd3db4e5341">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_f7338cdb7c7b44f2838e00672b7903ce" level="file">
+<did>
+<unittitle>Email correspondence to Ratibu Jacocks and others on various topics</unittitle>
+<unitdate datechar="creation" normal="2007/2012" type="inclusive">2007-2012</unitdate>
+<container altrender="Record Storage Box" id="aspace_b4287548d531aec043b23f9553c74192" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_886ea6ac45fa184ac7e4b77de99a13a4" parent="aspace_b4287548d531aec043b23f9553c74192" type="Folder">5</container>
+</did>
+</c02>
+<c02 id="aspace_b8be09f4a302a0180f20c4d594765183" level="file">
+<did>
+<unittitle>Handwritten correspondence to the Jacocks Family on various topics</unittitle>
+<unitdate datechar="creation" normal="1987/2010" type="inclusive">1987-2010</unitdate>
+<container altrender="Record Storage Box" id="aspace_0bede742dad978a7797f3a078c981d15" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_b7bef71e886c3cc5b9f1fe109f7ea1b9" parent="aspace_0bede742dad978a7797f3a078c981d15" type="Folders">6-7</container>
+</did>
+</c02>
+<c02 id="aspace_f0a50c75fe29b04d08cdf16fcd70be5c" level="file">
+<did>
+<unittitle>Typed correspondence to Ratibu Jacocks on various topics</unittitle>
+<unitdate datechar="creation" normal="1982/2010" type="inclusive">1982-2010</unitdate>
+<container altrender="Record Storage Box" id="aspace_f92baa8b99e55a47c97dd04e988ee1c2" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_fe55f3d10479a7cb65edc9e2ab8446a0" parent="aspace_f92baa8b99e55a47c97dd04e988ee1c2" type="Folder">8</container>
+</did>
+</c02>
+<c02 id="aspace_4e7c60670bc71e172eb9938fa754edb6" level="file">
+<did>
+<unittitle>Post cards, memorandums, and faxes to the Jacocks family on various topics</unittitle>
+<unitdate datechar="creation" normal="1961/2009" type="inclusive">1961-2009, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_0bd0b18dbe1296bb2962c783d009d053" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_77154c0e4ac5ba021aace80f0d880c45" parent="aspace_0bd0b18dbe1296bb2962c783d009d053" type="Folder">9</container>
+</did>
+</c02>
+<c02 id="aspace_e269730bb07a0cc85304d6753facbb1a" level="file">
+<did>
+<unittitle>Correspondence from state and city departments to Ratibu Jacocks and Wilmer Amina Carter</unittitle>
+<unitdate datechar="creation" normal="1980/2012" type="inclusive">1980-2012</unitdate>
+<container altrender="Record Storage Box" id="aspace_87713d663fe124cd230f72e15884e0ff" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_ec5d4efd685a96c1455df7714b8b5f16" parent="aspace_87713d663fe124cd230f72e15884e0ff" type="Folder">10</container>
+</did>
+</c02>
+<c02 id="aspace_7f06343469ed9b0d85124ebf1b7cb9af" level="file">
+<did>
+<unittitle>Correspondence from schools to Ratibu Jacocks and Amina Carter</unittitle>
+<unitdate datechar="creation" normal="1998/2003" type="inclusive">1998-2003</unitdate>
+<container altrender="Record Storage Box" id="aspace_5576502020e1c1f5615ee9b2058a0017" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_aebf1a0ee4ae631c558d7348d1be202c" parent="aspace_5576502020e1c1f5615ee9b2058a0017" type="Folders">11</container>
+</did>
+</c02>
+<c02 id="aspace_e2ad6fa281aeb08d6b891f1d2de0b70d" level="file">
+<did>
+<unittitle>Letters of condolences and telegrams pertaining to the death of James A. Jacocks</unittitle>
+<unitdate datechar="creation" normal="1982/1982">1982</unitdate>
+<container altrender="Record Storage Box" id="aspace_c77fc1239dc3c42e8ff03ef8acd1589e" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_b12408729935427054b0896a8d8f2e86" parent="aspace_c77fc1239dc3c42e8ff03ef8acd1589e" type="Folder">12</container>
+</did>
+</c02>
+<c02 id="aspace_088c212dd8fe2ef4fce7f9c19aa7e995" level="file">
+<did>
+<unittitle>Greeting cards from friends and family to Ratibu Jacocks and Wilmer Amina Carter</unittitle>
+<unitdate datechar="creation" normal="1981/2008" type="inclusive">1981-2008, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_17bbd4cb9225e6f7e7b003844cf46965" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_0e4205799ccc871bfba5ac067b31a112" parent="aspace_17bbd4cb9225e6f7e7b003844cf46965" type="Folders">14-18</container>
+</did>
+</c02>
+<c02 id="aspace_65d45c7ca4966397e380267cde68bb6d" level="file">
+<did>
+<unittitle>Correspondence from the Inland Area Kwanzaa Group</unittitle>
+<unitdate datechar="creation" type="inclusive">2002</unitdate>
+<container altrender="Record Storage Box" id="aspace_ba11c24d990a1e932893f49b64a4de91" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_1d21c4dcca6f9acda10229502f90ea22" parent="aspace_ba11c24d990a1e932893f49b64a4de91" type="Folder">11</container>
+</did>
+</c02>
+<c02 id="aspace_0f2e29adae52fc1faac268a58f22cb62" level="file">
+<did>
+<unittitle>Correspondence and notes pertaining to "The Call"</unittitle>
+<unitdate datechar="creation" normal="2008/2011" type="inclusive">2008-2011</unitdate>
+<container altrender="Record Storage Box" id="aspace_a220d288cb0fbd5097b691d5fa42c570" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_44b6446b1d2531a9c8171b9a7f3df9d0" parent="aspace_a220d288cb0fbd5097b691d5fa42c570" type="Folders">17-18</container>
+</did>
+</c02>
+<c02 id="aspace_7f338bbb0a6626ae26eabab4d3eb2e9a" level="file">
+<did>
+<unittitle>Correspondence and administrative forms pertaining to the Arrowhead Elks Lodge </unittitle>
+<unitdate datechar="creation" normal="2000/2006" type="inclusive">2000-2006</unitdate>
+<container altrender="Record Storage Box" id="aspace_99d30fb6ffe6c5e25d821575a046d6e9" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_650db82204dd8553c8890aa138dd6976" parent="aspace_99d30fb6ffe6c5e25d821575a046d6e9" type="Folder">22</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_a908d238258709f262fd12756ef965ba" level="series">
+<did>
+<unitid>Series 3</unitid>
+<unittitle>Documents</unittitle>
+<unitdate datechar="creation" type="inclusive">1886-2015, undated</unitdate>
+</did>
+<scopecontent id="aspace_d2a5acb47c45b5a8fee3caf4553ac9b4">
+<head>Series Scope and Content Summary</head>
+<p>This series consists of brochures, certificates/deeds, fliers, notes, and schoolwork pertaining to Ratibu Jacocks's life. Including information on landownership, marriages, and births; newsletters on Kwanzaa teaching, organization, and events within and outside the Inland Empire; and plays, drawings, and report cards for children.</p>
+</scopecontent>
+<arrangement id="aspace_979353da0d8c9bbab6ac79c62f977683">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_7bf43b953f6474ceb2c5b0969a079aac" level="item">
+<did>
+<unittitle>Filer from "The Day of the African Child & Elders Honoring Ceremony" mounted on wood with thank you note to Ratibu Jacocks</unittitle>
+<unitdate datechar="creation">September 6, 2008</unitdate>
+<container altrender="Record Storage Box" id="aspace_2976eeb92fa4ab9568e4ef3bfde1cac0" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_eb071196ad002e8cb2aa95219b3ea7a0" level="file">
+<did>
+<unittitle>Brochures pertaining to organizations and events within the Inland Empire</unittitle>
+<unitdate datechar="creation" normal="1989/2014" type="inclusive">1989-2014, undated </unitdate>
+<container altrender="Record Storage Box" id="aspace_d5c6d54d01ef1ce1a4b6a70bfe322bd1" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_2c0ac73bf1ba5b95668c45838c439a8b" parent="aspace_d5c6d54d01ef1ce1a4b6a70bfe322bd1" type="Folder">1</container>
+</did>
+</c02>
+<c02 id="aspace_bb278d160d2fec56e835df2cb5ec7f6a" level="file">
+<did>
+<unittitle>Brochures pertaining to organizations and events outside of the Inland Empire </unittitle>
+<unitdate datechar="creation" normal="1984/2010" type="inclusive">1984-2010, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_472ef25abbf98af1e268e6cd451d8c90" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_b347ae9c7759b047901877736c30fbc4" parent="aspace_472ef25abbf98af1e268e6cd451d8c90" type="Folder">2</container>
+</did>
+</c02>
+<c02 id="aspace_97b0134e6a6b9ea7e30e2eccce2b9f4f" level="file">
+<did>
+<unittitle>Certificates of recognition awarded to Ratibu Jacocks and others</unittitle>
+<unitdate datechar="creation" normal="1980/2003" type="inclusive">1980-2003</unitdate>
+<container altrender="Record Storage Box" id="aspace_797e6cd16bacd80306f4d44befaac95a" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_b64aa9e8d8dee6f81c9e80bea6a1c69a" parent="aspace_797e6cd16bacd80306f4d44befaac95a" type="Folder">3</container>
+</did>
+</c02>
+<c02 id="aspace_0cbf27e498d002b761e4fac8d5719015" level="file">
+<did>
+<unittitle>Certificates of marriage and birth pertaining to the Jacocks family</unittitle>
+<unitdate datechar="creation" normal="1937/1960" type="inclusive">1937-1960</unitdate>
+<container altrender="Record Storage Box" id="aspace_39354d6db616d8fa9c31089aa0d71b7b" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_5ad0bd025f3127346d0f1f60d959f86e" parent="aspace_39354d6db616d8fa9c31089aa0d71b7b" type="Folder">3</container>
+</did>
+</c02>
+<c02 id="aspace_9ba9ca1b1e881c3cf0ec4df22e2a41a5" level="file">
+<did>
+<unittitle>Landownership deeds pertaining to the Jacocks family land in North Carolina and Virgina</unittitle>
+<unitdate datechar="creation" normal="1886/1965" type="inclusive">1886-1965</unitdate>
+<container altrender="Record Storage Box" id="aspace_a412ea75d9dc84ae2b06ededa6f64be2" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_be5197609b9d3ab93e55d257010b609e" parent="aspace_a412ea75d9dc84ae2b06ededa6f64be2" type="Folder">4</container>
+</did>
+</c02>
+<c02 id="aspace_84a279ee9f8ebe09df8f59a574e87eaa" level="file">
+<did>
+<unittitle>Filers primarily pertaining to events in the African American Community</unittitle>
+<unitdate datechar="creation" normal="1983/2015" type="inclusive">1983-2015, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_6b296dbc9fcc22feb85cfc665618e1c3" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_7aff2f6d2b812b66603b6fba96dad15d" parent="aspace_6b296dbc9fcc22feb85cfc665618e1c3" type="Folder">13</container>
+</did>
+</c02>
+<c02 id="aspace_fd2c52af3c39fd2ba762961c8c20f538" level="file">
+<did>
+<unittitle>Newsletters and other publications pertaining to the community and churches</unittitle>
+<unitdate datechar="creation" normal="1983/2015" type="inclusive">1983-2015</unitdate>
+<container altrender="Record Storage Box" id="aspace_82690e563033af0fa0ea61c959a7e769" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_322b5f163b393d6d58259679d561d1fd" parent="aspace_82690e563033af0fa0ea61c959a7e769" type="Folder">33</container>
+</did>
+</c02>
+<c02 id="aspace_7d7f0b79920af135c9440621eb6d193e" level="file">
+<did>
+<unittitle>Notes created and compiled by Ratibu Jacocks</unittitle>
+<unitdate datechar="creation" normal="1986/2012" type="inclusive">1986-2012, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_fe6fdce26c5dca0d3e4b1f7bbad8cd48" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_06da1a4388b162771f4085bf0603f5bc" parent="aspace_fe6fdce26c5dca0d3e4b1f7bbad8cd48" type="Folders">36-37</container>
+</did>
+</c02>
+<c02 id="aspace_2cde28cfbadc26798da5ed64feec91af" level="file">
+<did>
+<unittitle>Notebooks created and compiled by Ratibu Jacocks and Wilmer Amina Carter</unittitle>
+<unitdate datechar="creation" normal="2005/2015" type="inclusive">2005-2015</unitdate>
+<container altrender="Record Storage Box" id="aspace_896a119a794e7334dea44298be1eb727" label="Mixed Materials" type="Box">4</container>
+<container id="aspace_1af7bf2130ca4af25521390dd07d04d6" parent="aspace_896a119a794e7334dea44298be1eb727" type="Folders">1-9</container>
+</did>
+</c02>
+<c02 id="aspace_d3f471c7c11fe6c0c7407df54e16e793" level="file">
+<did>
+<unittitle>Appointment books</unittitle>
+<unitdate datechar="creation" normal="1976/2012" type="inclusive">1976-2012</unitdate>
+<container altrender="Record Storage Box" id="aspace_6b654fff0389c42eb58db1b707d72a12" label="Mixed Materials" type="Box">4</container>
+<container id="aspace_1ad7edc3fb9edec38f3850864229a842" parent="aspace_6b654fff0389c42eb58db1b707d72a12" type="Folders">10-12</container>
+</did>
+</c02>
+<c02 id="aspace_bfb5b67f4404257ea63632c371e69fa0" level="file">
+<did>
+<unittitle>Schoolwork and art completed by Shinae (Diama), Darian, Jamala and Malaika Jacocks, and other children</unittitle>
+<unitdate datechar="creation" normal="1971/2007" type="inclusive">1971-2007, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_1ee2b866228939c36c8e74d63c70bb57" label="Mixed Materials" type="Box">4</container>
+<container id="aspace_e739a93e937625a0d940fb90d941dd01" parent="aspace_1ee2b866228939c36c8e74d63c70bb57" type="Folders">15-18</container>
+<container altrender="Record Storage Box" id="aspace_ec92386722cfc1e4660d2bc4ee91ae97" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_6967140e902c284bc93734d7ebb89ca0" parent="aspace_ec92386722cfc1e4660d2bc4ee91ae97" type="Folders">3-8</container>
+</did>
+</c02>
+<c02 id="aspace_b4ca5d2c458583e78b40c69cd6c34ca1" level="file">
+<did>
+<unittitle>School report cards of Jacocks' family members</unittitle>
+<unitdate datechar="creation" normal="1955/1987" type="inclusive">1955-1987</unitdate>
+<container altrender="Record Storage Box" id="aspace_8c04b99c2a598173508ac20002cbc3b1" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_a5544be5abb2f15c044e25cf2e843436" parent="aspace_8c04b99c2a598173508ac20002cbc3b1" type="Folder">1</container>
+</did>
+</c02>
+<c02 id="aspace_c8cfad6224d3b71ac54fb9a4d2b5f792" level="file">
+<did>
+<unittitle>Plays written by Malaika and Jamala Jacocks</unittitle>
+<unitdate datechar="creation" type="inclusive">1984, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_2132cd00b2f49ce2b71ccfc151409d98" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_e11474ca30e2abc73355452bfa2c2e0f" parent="aspace_2132cd00b2f49ce2b71ccfc151409d98" type="Folder">2</container>
+</did>
+</c02>
+<c02 id="aspace_0cd8d97ccb67b301ef9a6873f05dbd23" level="file">
+<did>
+<unittitle>Obituaries</unittitle>
+<unitdate datechar="creation" normal="1969/2002" type="inclusive">1969-2002</unitdate>
+<container altrender="Record Storage Box" id="aspace_d8f32eaa7f8c9801da8d84dd4f17b4d6" label="Mixed Materials" type="Box">6</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_901dc6ff9e828c05aad295f2b844c782" level="series">
+<did>
+<unitid>Series 4</unitid>
+<unittitle>Memoirs</unittitle>
+<unitdate datechar="creation" type="inclusive">2003-2013, undated</unitdate>
+</did>
+<scopecontent id="aspace_2a6b60f5dfcf3f52c494ca041eaa5491">
+<head>Series Scope and Content Summary</head>
+<p>This series contains proofs and other materials related to Ratibu Jacocks' memoir titled "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention."</p>
+</scopecontent>
+<arrangement id="aspace_29aedcaaead6e106b548d2a80350b6d3">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_67f67e07a30d6d1af20ab240b3d37581" level="file">
+<did>
+<unittitle>Proofs of "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention"</unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_668e3d56296450e5463599db83181517" label="Mixed Materials" type="Box">2</container>
+<container id="aspace_39362efb4907adb615c560643fd4aafd" parent="aspace_668e3d56296450e5463599db83181517" type="Folders">20-24</container>
+</did>
+</c02>
+<c02 id="aspace_d07ac0134dbb9bdb9aee61b33f2cdef5" level="file">
+<did>
+<unittitle>Proofs of "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention"</unittitle>
+<unitdate datechar="creation" type="inclusive">2004, 2007</unitdate>
+<container altrender="Record Storage Box" id="aspace_50822e0b69037fb720fc97da203226d6" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_26265054488ce585f1fdf97290860c4d" parent="aspace_50822e0b69037fb720fc97da203226d6" type="Folders">1-5</container>
+</did>
+</c02>
+<c02 id="aspace_14c1939993c008a88d088ebef6074960" level="file">
+<did>
+<unittitle>Proofs of various chapters in "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention" </unittitle>
+<unitdate datechar="creation" normal="2003/2004" type="inclusive">2003-2004, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_e1c0a72e72e0200715f681e6de59a1de" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_15c5d8833df8b066e5bd0c56925af681" parent="aspace_e1c0a72e72e0200715f681e6de59a1de" type="Folders">6-31</container>
+</did>
+</c02>
+<c02 id="aspace_4e438fcf9bd3a5eb80eef215e6ccdbe1" level="file">
+<did>
+<unittitle>Article on and order slip for "Memoirs of Ratibu Shadidi Incidents, Struggles, and Divine Intervention"</unittitle>
+<unitdate datechar="creation" type="inclusive">2013 February 05</unitdate>
+<container altrender="Record Storage Box" id="aspace_765e3651de5aad45a3c3bfc74258480d" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_3f7c1b0f323b43105572e05205718c8b" parent="aspace_765e3651de5aad45a3c3bfc74258480d" type="Folder">32</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_6affe0d72a5d01f76c1cfaf6d014948d" level="series">
+<did>
+<unitid>Series 5</unitid>
+<unittitle>Newspapers and Clippings</unittitle>
+<unitdate datechar="creation" type="inclusive">1963-2014</unitdate>
+</did>
+<scopecontent id="aspace_a3359c578efc11af73ec97825eab8635">
+<head>Series Scope and Content Summary</head>
+<p>This series contains newspapers and clipping documenting issues of importance to the Inland Empire's African American community.</p>
+</scopecontent>
+<arrangement id="aspace_998eceb965f44d0b005eca56dc02b760">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_e1b706e120a265d967752e1144ac2381" level="file">
+<did>
+<unittitle>Newspapers including "The Black Voice News," "Westside Story," "Precinct Reporter," and others with coverage of the Inland Empire's African American community</unittitle>
+<unitdate datechar="creation" normal="1963/2014" type="inclusive">1963-2014</unitdate>
+<container altrender="Record Storage Box" id="aspace_945f93fec695f80d2920d12f432e67f2" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_06344e832ad6fe2bdf6eb4b66d735ed5" parent="aspace_945f93fec695f80d2920d12f432e67f2" type="Folder">34</container>
+</did>
+</c02>
+<c02 id="aspace_6fd3a81ebf4d1dcbda9c0ba66cbe15ab" level="file">
+<did>
+<unittitle>Newspaper clippings documenting issues of importance to the Inland Empire's African American community</unittitle>
+<unitdate datechar="creation" normal="1982/2013" type="inclusive">1982-2013</unitdate>
+<container altrender="Record Storage Box" id="aspace_89136c4623c6f5e411584278805c4319" label="Mixed Materials" type="Box">3</container>
+<container id="aspace_f53c60af103a3e3a1a7556ad41237720" parent="aspace_89136c4623c6f5e411584278805c4319" type="Folder">35</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_56a875c6fb279227c99afecbcf3ab046" level="series">
+<did>
+<unitid>Series 6</unitid>
+<unittitle>Photographs and Negatives</unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+</did>
+<scopecontent id="aspace_39edb8aee352a189eddbea4237803010">
+<head>Series Scope and Content Summary</head>
+<p>This series contains photographs/negatives of friends, family, events, and organizations such as the Westside Action Group, Creative Buissness Services, and Toastmasters International.</p>
+</scopecontent>
+<arrangement id="aspace_1d891bbfb00fdf5d9c3cfd50eea3435c">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_3ba982484ee4de02a19cdc61acb9ccc5" level="item">
+<did>
+<unittitle>Photograph of an unidentified child</unittitle>
+<unitdate datechar="creation">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_c779e074170a9ba0b4b91bedf5ab5eef" label="Mixed Materials" type="Box">1</container>
+</did>
+</c02>
+<c02 id="aspace_702c0c1a336c3ed4f64cb9f720458f78" level="file">
+<did>
+<unittitle>Photographs and negatives of Westside Action Group (WAG), Toastmasters International, and Creative Business Services (CBS)</unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_a5e264d7eedfe1ec4d1d376fb76e2f7d" label="Mixed Materials" type="Box">4</container>
+<container id="aspace_06d14fe482c0caec0525748ceda88031" parent="aspace_a5e264d7eedfe1ec4d1d376fb76e2f7d" type="Folder">13</container>
+</did>
+</c02>
+<c02 id="aspace_1a128452ad051f7305912760d835a8f3" level="file">
+<did>
+<unittitle>Photographs and negatives of Jacocks' friends and family</unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_417cae276c0a3d6947b249a01a00b2d6" label="Mixed Materials" type="Box">4</container>
+<container id="aspace_d2a9556640ad64d278e091c6ba2a342a" parent="aspace_417cae276c0a3d6947b249a01a00b2d6" type="Folder">14</container>
+</did>
+</c02>
+<c02 id="aspace_5d7ea5a706213e8c8e453b3286c13d09" level="item">
+<did>
+<unittitle>Photograph album of various individuals </unittitle>
+<unitdate datechar="creation" type="inclusive">undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_cb6bdff7f0824c409ffe29317486d893" label="Mixed Materials" type="Box">6</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_efbdb1ba357d2abd6335c1487e36122b" level="series">
+<did>
+<unitid>Series 7</unitid>
+<unittitle>Scrapbooks</unittitle>
+<unitdate datechar="creation" type="inclusive">1999-2008, undated</unitdate>
+</did>
+<scopecontent id="aspace_24f6a3e63431c2f381b3915a42b8031e">
+<head>Series Scope and Content Summary</head>
+<p>This series contains scrapbooks featuring photographs, letters, greeting cards, obituaries, and newspaper clippings that pertain to Ratibu Jacocks.</p>
+</scopecontent>
+<arrangement id="aspace_688f5f1ce9cf53cc81e70fb20553ae2b">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_d1fc6a2a8e14a92d528102c6dcc1ef2f" level="item">
+<did>
+<unittitle>Scrapbook titled "The Jacocks Family"</unittitle>
+<unitdate datechar="creation" normal="1999/2002" type="inclusive">1999-2002, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_449ff3a3bfb9a1107481c802924df14b" label="Mixed Materials" type="Box">6</container>
+</did>
+</c02>
+<c02 id="aspace_70445ecef6dab5d67c5c73140d291e27" level="item">
+<did>
+<unittitle>Scrapbook titled "Bill Jacocks Memoirs"</unittitle>
+<unitdate datechar="creation" normal="2002/2008" type="inclusive">2002-2008</unitdate>
+<container altrender="Record Storage Box" id="aspace_d03145922848ef336fd56353447e2cfe" label="Mixed Materials" type="Box">6</container>
+</did>
+</c02>
+</c01>
+<c01 id="aspace_e300f1e0f74f113e92d9e305193cbd4b" level="series">
+<did>
+<unitid>Series 8</unitid>
+<unittitle>Vertical Files</unittitle>
+<unitdate datechar="creation" type="inclusive">1983-2014, undated</unitdate>
+</did>
+<scopecontent id="aspace_2fcb60f2707458a8e24a0cbc2b7aacc3">
+<head>Series Scope and Content Summary</head>
+<p>This series contains vertical files with coverage of the Inland Area Black Political Action Committee, Black Student Union, Creative Business Services, and the Wilmer Amina Carter political campaign.</p>
+</scopecontent>
+<arrangement id="aspace_d0f09c688dcb645560c61ca35b0f074a">
+<head>Series Arrangement</head>
+<p>This series is arranged sequentially by box and folder number.</p>
+</arrangement>
+<c02 id="aspace_4afb825926b7379dc0cfa546e7e16b7a" level="file">
+<did>
+<unittitle>Files pertaining to the Inland Area Black Political Action Committee</unittitle>
+<unitdate datechar="creation" type="inclusive">1987, undated </unitdate>
+<container altrender="Record Storage Box" id="aspace_75a331286a842e7c494f69204fe7e035" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_1ee09397e132019ac6e0e896630cfbcc" parent="aspace_75a331286a842e7c494f69204fe7e035" type="Folder">9</container>
+</did>
+</c02>
+<c02 id="aspace_7b863c47afaca0d0e8cb921f29355c7f" level="file">
+<did>
+<unittitle>Files pertaining to the Black Student Union (BSU)</unittitle>
+<unitdate datechar="creation" normal="1992/1993" type="inclusive">1992-1993, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_beb14bf7f204f3a36a5b1bba631faea5" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_53af803ae6d1f71a87407fc72438c583" parent="aspace_beb14bf7f204f3a36a5b1bba631faea5" type="Folder">10</container>
+</did>
+</c02>
+<c02 id="aspace_327b43110dc1d10fb80783e48dbadcf3" level="file">
+<did>
+<unittitle>Files pertaining to the "Bring Your Dream Leave With Your Plan" workshop</unittitle>
+<unitdate datechar="creation" type="inclusive">2008, October 4</unitdate>
+<container altrender="Record Storage Box" id="aspace_2d5cc04d904b65c67f7d3237fb7f1504" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_3f4218b710231bbe26ca8ea4d6ce18bf" parent="aspace_2d5cc04d904b65c67f7d3237fb7f1504" type="Folder">12</container>
+</did>
+</c02>
+<c02 id="aspace_ead8ecb1ca1ef45d9456437b6c9c5c48" level="file">
+<did>
+<unittitle>Files pertaining to Creative Business Services (CBS)</unittitle>
+<unitdate datechar="creation" normal="1983/2004" type="inclusive">1983-2004, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_2704d9c1009063ece619b115ab24f0ac" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_39efebb3727500e8ded3569f19bbf59d" parent="aspace_2704d9c1009063ece619b115ab24f0ac" type="Folders">13-15</container>
+</did>
+</c02>
+<c02 id="aspace_11b50b60692d297b58b93ccced479540" level="file">
+<did>
+<unittitle>Files pertaining to Westside Action Group (WAG) </unittitle>
+<unitdate datechar="creation" normal="2004/2014" type="inclusive">2004-2014, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_61d169a26b2fb23e1237d9b70bdebdc9" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_4268c8246debd9fb52fefa7d8e2bdc04" parent="aspace_61d169a26b2fb23e1237d9b70bdebdc9" type="Folder">16</container>
+</did>
+</c02>
+<c02 id="aspace_d0a6e7ec998bd5f8a49161c6557d3ec4" level="file">
+<did>
+<unittitle>Files pertaining to Wilmer Amina Carter's political campaigns </unittitle>
+<unitdate datechar="creation" normal="1997/2014" type="inclusive">1997-2014, undated</unitdate>
+<container altrender="Record Storage Box" id="aspace_38a745c23fe2ee5ffd758879310f2939" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_d3ddb8c188a63f55741a221ef966bf89" parent="aspace_38a745c23fe2ee5ffd758879310f2939" type="Folders">19-20</container>
+</did>
+</c02>
+<c02 id="aspace_fb2e4153b5e41ed5cb881dcdaf109c1c" level="file">
+<did>
+<unittitle>Files pertaining to Wilmer Amina Carter's 2008 primary election campaign including the publication "Recipe for Success: How to Win Every Election"</unittitle>
+<unitdate datechar="creation" type="inclusive">2008 </unitdate>
+<container altrender="Record Storage Box" id="aspace_42094ad8abf64cc0225a890d08c38ef5" label="Mixed Materials" type="Box">5</container>
+<container id="aspace_b25c586578149ef82f6fda28072cf622" parent="aspace_42094ad8abf64cc0225a890d08c38ef5" type="Folder">21</container>
+</did>
+</c02>
+</c01>
+</dsc>
+</archdesc>
+</ead>
