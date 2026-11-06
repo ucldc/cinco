@@ -239,9 +239,7 @@ def main() -> None:
     # Start backup
     start_backup()
 
-    solr_backup_details = poll_solr_for_backup_completion(
-        last_snapshot_name, timeout_seconds=60, polling_seconds=5
-    )
+    solr_backup_details = poll_solr_for_backup_completion(last_snapshot_name)
     details = solr_backup_details.get("details", {})
     index_version = str(details.get("indexVersion"))
     backup = details.get("backup", {})
@@ -267,4 +265,14 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:  # noqa: BLE001
+        # Catch all exceptions to ensure the backup failure is logged in
+        # a format that our MetricFilter will capture and alert us about
+        log_msg(
+            "failed",
+            "backup failed",
+            {"error": f"{type(e).__name__}: {e}"},
+        )
+        sys.exit(1)
