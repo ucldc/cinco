@@ -1,3 +1,4 @@
+# ruff: noqa: PLC0415
 import contextlib
 from http import HTTPStatus
 from importlib import reload

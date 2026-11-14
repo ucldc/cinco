@@ -1,11 +1,9 @@
 import os
+
 import boto3
-
 from airflow.models import Variable
-
-from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.providers.amazon.aws.operators.ecs import EcsRunTaskOperator
-
+from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
 
 # generally speaking, the CONTAINER_EXECUTION_ENVIRONMENT should always

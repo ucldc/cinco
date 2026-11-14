@@ -58,6 +58,10 @@ target-version = "py312"
 extend-exclude = [
     "*/migrations/*.py",
     "staticfiles/*",
+    "manage.py",
+    "docs/conf.py",
+    "config/wsgi.py",
+    "config/urls.py",
 ]
 
 [tool.ruff.lint]
@@ -125,6 +129,7 @@ ignore = [
           # of types for comparison.
           # Deactivated because it can make the code slow:
           # https://github.com/astral-sh/ruff/issues/7871
+  "ERA001", # commented out code is okay
 ]
 # The fixes in extend-unsafe-fixes will require
 # provide the `--unsafe-fixes` flag when fixing.
