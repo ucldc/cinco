@@ -648,13 +648,17 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub ${Namespace}-service-cpu-alarm
-      AlarmDescription: CPU utilization > {{ cpu_alarm.threshold|default('90') }}%
+      AlarmDescription: !Sub '{"host": ${EscalopeHost}, "service": ${EscalopeService}, "description": "CPU utilization > {{ cpu_alarm.threshold|default('90') }}"}'
       {% if alarm_config.actions is defined %}
       AlarmActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
       OKActions:
+      {% for action in alarm_config.actions %}
+        - {{ action }}
+      {% endfor %}
+      InsufficientDataActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
@@ -679,13 +683,17 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub ${Namespace}-service-memory-alarm
-      AlarmDescription: !Sub Memory utilization > {{ memory_alarm.threshold|default('90') }}% on ${Namespace}
+      AlarmDescription: !Sub '{"host": ${EscalopeHost}, "service": ${EscalopeService}, "description": "Memory utilization > {{ memory_alarm.threshold|default('90') }}"}'
       {% if alarm_config.actions is defined %}
       AlarmActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
       OKActions:
+      {% for action in alarm_config.actions %}
+        - {{ action }}
+      {% endfor %}
+      InsufficientDataActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
@@ -711,13 +719,17 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub ${Namespace}-5xx-alarm
-      AlarmDescription: !Sub "5XX errors > {{fivexx_alarm.threshold|default('2')}} in the last {{fivexx_alarm.period|default('900')}} seconds on ${Namespace}"
+      AlarmDescription: !Sub '{"host": ${EscalopeHost}, "service": ${EscalopeService}, "description": "5XX errors > {{fivexx_alarm.threshold|default('2')}} in the last {{fivexx_alarm.period|default('900')}} seconds"}'
       {% if alarm_config.actions is defined %}
       AlarmActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
       OKActions:
+      {% for action in alarm_config.actions %}
+        - {{ action }}
+      {% endfor %}
+      InsufficientDataActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
@@ -744,13 +756,17 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub ${Namespace}-4xx-alarm
-      AlarmDescription: !Sub "4XX errors > {{ alarm_config.fourxx.threshold }} in the last 15 minutes on ${Namespace}"
+      AlarmDescription: !Sub '{"host": ${EscalopeHost}, "service": ${EscalopeService}, "description": "4XX errors > {{ alarm_config.fourxx.threshold }} in the last 15 minutes"}'
       {% if alarm_config.actions is defined %}
       AlarmActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
       OKActions:
+      {% for action in alarm_config.actions %}
+        - {{ action }}
+      {% endfor %}
+      InsufficientDataActions:
       {% for action in alarm_config.actions %}
         - {{ action }}
       {% endfor %}
