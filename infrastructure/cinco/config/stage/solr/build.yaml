@@ -2,7 +2,7 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
+  GitHubRepo: https://github.com/ucldc/cinco-solr
   Namespace: cinco-solr-stage
   Branch: main
 
@@ -14,17 +14,11 @@ sceptre_user_data:
       - Type: HEAD_REF
         Pattern: ^refs/heads/main$
         ExcludeMatchedPattern: false
-      - Type: FILE_PATH
-        Pattern: arclight/Dockerfile.solr|arclight/solr/*
-        ExcludeMatchedPattern: false
   build_spec: |-
     !Sub >-
               version: 0.2
 
               phases:
-                pre_build:
-                  commands:
-                    - cd $CODEBUILD_SRC_DIR/arclight
                 build:
                   commands:
                     - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com
@@ -33,4 +27,5 @@ sceptre_user_data:
                     - docker push ${AWS::AccountId}.dkr.ecr.us-west-2.amazonaws.com/cinco-solr:latest
                 post_build:
                   commands:
+                    - aws ecs update-service --cluster cinco-stage --service cinco-solr-follower-stage-service --force-new-deployment
                     - aws ecs update-service --cluster cinco-stage --service cinco-solr-stage-service --force-new-deployment

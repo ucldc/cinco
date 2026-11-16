@@ -24,7 +24,7 @@ services:
     image: cinco/solr
     pull_policy: never
     build:
-      context: ./
+      context: https://github.com/ucldc/cinco-solr.git
       dockerfile: ./Dockerfile.solr
       tags:
         - cinco/solr

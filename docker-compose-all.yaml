@@ -56,7 +56,7 @@ services:
 
   solr:
     build:
-      context: ./arclight
+      context: https://github.com/ucldc/cinco-solr.git
       dockerfile: ./Dockerfile.solr
     image: cinco/solr
     ports:
@@ -83,7 +83,7 @@ services:
     profiles:
       - solr-dev
     build:
-      context: ./arclight
+      context: https://github.com/ucldc/cinco-solr.git
       dockerfile: ./Dockerfile.solr
     image: cinco/solr
     ports:

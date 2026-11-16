@@ -86,7 +86,7 @@ The solr containers are configured as leader or follower (or neither) on startup
 
 When using index replication, Solr requires that you either add the leader URL to `allowUrls` in `solr.xml`, or set `-Dsolr.disable.allowUrls=true` to disable URL allow-list checks.
 
-The first option ended up being the least onerous. The modified `solr.xml` file is copied into the Docker image during build (see `Dockerfile.solr`).
+The first option ended up being the least onerous. The modified `solr.xml` file is copied into the Docker image during build (see `https://github.com/ucldc/cinco-solr/blob/main/Dockerfile.solr`).
 
 We are using ECS ServiceConnect for communication between the leader and follower containers, which gives us a stable leader URL.
 

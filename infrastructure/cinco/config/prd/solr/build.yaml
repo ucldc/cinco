@@ -2,7 +2,7 @@ template:
   path: codebuild.j2
   type: file
 parameters:
-  GitHubRepo: https://github.com/ucldc/cinco
+  GitHubRepo: https://github.com/ucldc/cinco-solr
   Namespace: cinco-solr-prd
   Branch: ''
   ECRRepositoryURI: !stack_output_external cinco-stage-solr-build::ECRRepository
@@ -23,9 +23,6 @@ sceptre_user_data:
                 install:
                   runtime-versions:
                     python: 3.12
-                pre_build:
-                  commands:
-                    - cd $CODEBUILD_SRC_DIR/arclight
                 build:
                   commands:
                     - TAG=`git describe --tags --abbrev=0`
