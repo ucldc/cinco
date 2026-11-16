@@ -13,10 +13,6 @@ parameters:
   ContainerPort: 8983
   ContainerCount: 2
   HealthCheckPath: "/solr/arclight/admin/ping"
-  # old container must be stopped before new one is started,
-  # otherwise we get an error about index dir locking from Solr
-  ServiceTaskMaximumPercent: 100
-  ServiceTaskMinimumHealthyPercent: 0
   HealthCheckGracePeriodSeconds: 600
   Cpu: 4096
   Memory: 16384 # SOLR_HEAP in arclight/solr/solr.in.sh should be set to 50% of this

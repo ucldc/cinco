@@ -56,7 +56,7 @@ services:
 
   solr:
     build:
-      context: ./arclight
+      context: https://github.com/ucldc/cinco-solr.git
       dockerfile: ./Dockerfile.solr
     image: cinco/solr
     ports:
@@ -65,14 +65,12 @@ services:
       test: ["CMD", "curl", "http://localhost:8983/solr/arclight/admin/ping"]
       timeout: 20s
       retries: 10
-    volumes:
-      - ./arclight/solr:/opt/solr/arclight/
     environment:
       # to run solr without any replication or backup
       # remove all of the following env vars (but most importantly, REPLICATION_ROLE)
       REPLICATION_ROLE: leader
       SOLR_S3_BUCKET: cinco-dev
-      SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
+      SOLR_S3_ENDPOINT: http://minio:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
       AWS_REGION: us-east-1
@@ -83,7 +81,7 @@ services:
     profiles:
       - solr-dev
     build:
-      context: ./arclight
+      context: https://github.com/ucldc/cinco-solr.git
       dockerfile: ./Dockerfile.solr
     image: cinco/solr
     ports:
@@ -96,7 +94,7 @@ services:
       REPLICATION_ROLE: follower
       SOLR_LEADER_URL: http://solr:8983/solr/arclight/replication
       SOLR_S3_BUCKET: cinco-dev
-      SOLR_S3_ENDPOINT: http://minio.cinco.orb.local:9000
+      SOLR_S3_ENDPOINT: http://minio:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
       AWS_REGION: us-east-1
