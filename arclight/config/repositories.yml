@@ -1539,6 +1539,21 @@ catorgfb:
     thumbnail_url: ""
     latitude: 34.0494156
     longitude: -118.2394707
+CaSfGGN:
+    name: "Golden Gate National Recreation Area"
+    description: "The Park Archives and Records Center contains over 5 million documents, photographic images, oral histories and maps that document all areas and facets of the history associated with Golden Gate National Recreation Area. These materials have been acquired through donation, transfer, as well as have been park created. Topics are heavy on the military&#x27;s presence at the Presidio and the surrounding fortifications (mostly from WWII forward); specific park sites like Alcatraz, Lands End; as well as significant events like the Panama-Pacific International Exposition, the Alcatraz Indian Occupation, or 1906 Earthquake and Fire. PARC also houses a large body of inactive park records that document the GGNRA&#x27;s projects, operations, and activities."
+    contact_html: |
+        <div class="al-repository-contact-phone">(415) 561-2807</div>
+        <div class="al-repository-contact-info"><a href="mailto:GOGA_Archives@nps.gov">GOGA_Archives@nps.gov</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.nps.gov/goga/learn/historyculture/collections.htm" class="offsite-link">Website</a></div>
+    location_html: |
+        <div class="al-repository-street-address-building">Park Archives and Records Center</div>
+        <div class="al-repository-street-address-address1">Presidio of San Francisco</div>
+        <div class="al-repository-street-address-address2">Bldg 667 McDowell Ave</div>
+        <div class="al-repository-street-address-city_state_zip_country">San Francisco, CA 94129, US</div>
+    thumbnail_url: ""
+    latitude: 37.801476
+    longitude: -122466335.0
 gtu:
     name: "Graduate Theological Union"
     description: "Special Collections and Archives support the curriculum and preserve the records of the Graduate Theological Union. The collections are dedicated to diverse religious dialogue, the Christian and wider religious intellectual heritage, the American religious experience in the West, and the ministries and missions of the Member Schools and Institutes of the GTU."
