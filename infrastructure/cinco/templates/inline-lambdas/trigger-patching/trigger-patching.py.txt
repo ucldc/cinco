@@ -64,8 +64,13 @@
 
               response = http.request("GET", url)
               response_data = json.loads(response.data)
+              if response_data.get("object"):
+                  object_data = response_data["object"]
+              else:
+                  object_data = response_data
+
               try:
-                  commit_hash = response_data["sha"]
+                  commit_hash = object_data["sha"]
               except KeyError:
                   msg = f"sha not in response from github: {json.dumps(response_data)}"
                   print(msg)
