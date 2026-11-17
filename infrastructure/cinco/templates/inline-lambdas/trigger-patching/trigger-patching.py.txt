@@ -65,9 +65,9 @@
               response = http.request("GET", url)
               response_data = json.loads(response.data)
               try:
-                  commit_hash = response_data["object"]["sha"]
+                  commit_hash = response_data["sha"]
               except KeyError:
-                  msg = f"object.sha not in response from github: {json.dumps(response_data)}"
+                  msg = f"sha not in response from github: {json.dumps(response_data)}"
                   print(msg)
                   return {"statusCode": 500, "body": json.dumps({"error": msg})}
 
