@@ -1,0 +1,75 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: EventBridge scheduler for running a lambda function
+
+Parameters:
+  Namespace:
+    Description: The namespace for the scheduler
+    Type: String
+  Description:
+    Description: Description of the the scheduler
+    Type: String
+  ScheduleExpression:
+    Description: The expression that defines when the schedule runs
+    Type: String
+  ScheduleExpressionTimezone:
+    Description: The timezone in which the scheduling expression is evaluated
+    Type: String
+    Default: "America/Los_Angeles"
+  State:
+    Description: Specifies whether the schedule is enabled or disabled.
+    Type: String
+    Default: ENABLED
+  TargetLambdaArn:
+    Description: ARN of the lambda to be run on a schedule
+    Type: String
+    Default: ENABLED
+  Input:
+    Description: Input to the lambda function. A JSON string.
+    Type: String
+
+Resources:
+
+  IAMEventBridgeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - scheduler.amazonaws.com
+          Action:
+          - 'sts:AssumeRole'
+      RoleName: !Sub ${Namespace}-role
+
+  IAMEventBridgePolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      PolicyName: !Sub ${Namespace}-policy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: 'Allow'
+          Action:
+          - lambda:InvokeFunction
+          Resource:
+          - !Ref TargetLambdaArn
+      RoleName:
+        Ref: IAMEventBridgeRole
+
+  EcsRestartSchedule:
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      Name: !Sub '${Namespace}-schedule'
+      Description: !Ref Description
+      FlexibleTimeWindow:
+        Mode: "OFF"
+      ScheduleExpression: !Ref ScheduleExpression
+      ScheduleExpressionTimezone: !Ref ScheduleExpressionTimezone
+      State: !Ref State
+      Target:
+        Arn: !Ref TargetLambdaArn
+        RoleArn: !GetAtt IAMEventBridgeRole.Arn
+        Input: !Ref Input
