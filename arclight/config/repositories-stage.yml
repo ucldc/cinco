@@ -5620,11 +5620,12 @@ berkeley_arthist:
     longitude: -122.2593892
 berkeley_bancroft:
     name: "UC Berkeley, Bancroft Library"
-    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. One of the largest and most heavily used libraries of manuscripts, rare books, and unique materials in the United States, Bancroft supports major research and instructional activities and plays a leading role in the development of the University&#x27;s research collections."
+    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. One of the largest and most heavily used libraries of manuscripts, rare books, and unique materials in the United States, Bancroft supports major research and instructional activities and plays a leading role in the development of the University&#x27;s research collections. Here you will find collection descriptions or finding aids to some of the library&#x27;s archival collections. The library maintains around 2,000 detailed finding aids in The Bancroft Library (finding aid repository). For collections described in brief catalog records, see The Bancroft Library (brief catalog records repository)."
     contact_html: |
         <div class="al-repository-contact-phone">510-642-6481</div>
         <div class="al-repository-contact-info"><a href="mailto:bancref-library@berkeley.edu">bancref-library@berkeley.edu</a></div>
         <div class="al-repository-contact-info"><a href="http://bancroft.berkeley.edu/" class="offsite-link">Website</a></div>
+        <div class="al-repository-contact-info"><a href="http://oac-stg.cdlib.org/institutions/berkeley_bancroft_marc" class="offsite-link">The Bancroft Library (brief catalog records repository)</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">University of California, Berkeley, The Bancroft Library</div>
         <div class="al-repository-street-address-city_state_zip_country">Berkeley, CA 94720-6000, US</div>
