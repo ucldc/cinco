@@ -5637,10 +5637,11 @@ berkeley_bancroft:
     longitude: -122.258825898
 berkeley_bancroft_marc:
     name: "UC Berkeley, Bancroft Library (brief catalog records repository)"
-    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. Here you will find brief collection records that The Bancroft does not have described in larger finding aids. These contain only the highest-level summary data. To request material from collections with records in this repository, you will need to record the call number and go to &lt;a href=&quot;https://www.lib.berkeley.edu/&quot;&gt;UC Library Search&lt;/a&gt;. See resource links above."
+    description: "The Bancroft Library is the primary special collections library at the University of California, Berkeley. Here you will find brief collection records that The Bancroft does not have described in larger finding aids. These contain only the highest-level summary data. To request material from collections with records in this repository, you will need to record the call number and go to UC Library Search. See resource links above."
     contact_html: |
         <div class="al-repository-contact-phone">510-642-6481</div>
         <div class="al-repository-contact-info"><a href="mailto:bancref-library@berkeley.edu">bancref-library@berkeley.edu</a></div>
+        <div class="al-repository-contact-info"><a href="https://www.lib.berkeley.edu/" class="offsite-link">UC Library Search</a></div>
     location_html: |
         <div class="al-repository-street-address-address1">University of California, Berkeley, The Bancroft Library</div>
         <div class="al-repository-street-address-city_state_zip_country">Berkeley, CA 94720-6000, US</div>
